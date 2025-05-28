@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noEmit": false
+  },
+  "references": [
+    { "path": "./packages/cli" },
+    { "path": "./packages/ui" },
+    { "path": "./packages/registry" }
+  ],
+  "files": []
+}
