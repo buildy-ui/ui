@@ -1,0 +1,12 @@
+{
+  "framework": "vite-react",
+  "typescript": true,
+  "aliases": {
+    "@": "./src",
+    "@/components": "./src/components",
+    "@/ui": "./src/components/ui",
+    "@/blocks": "./src/components/blocks"
+  },
+  "registry": "@ui8kit",
+  "componentsDir": "./src/components"
+}

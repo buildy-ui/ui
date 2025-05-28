@@ -13,8 +13,13 @@
     "packages/*"
   ],
   "scripts": {
+    "build": "bun run build --workspace=packages/cli",
+    "build:cli": "bun run build --workspace=packages/cli",
+    "dev:cli": "bun run dev --workspace=packages/cli",
     "type-check": "tsc --build tsconfig.build.json",
     "type-check:watch": "tsc --build tsconfig.build.json --watch",
-    "clean": "tsc --build tsconfig.build.json --clean"
+    "clean": "tsc --build tsconfig.build.json --clean",
+    "dev:web": "bun run dev --workspace=apps/web",
+    "build:web": "bun run build --workspace=apps/web"
   }
 }

@@ -1,0 +1,47 @@
+{
+  "name": "buildy",
+  "version": "1.0.0",
+  "description": "A CLI for adding UI components to your Vite React projects",
+  "type": "module",
+  "bin": {
+    "buildy": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "commander": "^11.1.0",
+    "chalk": "^5.3.0",
+    "ora": "^7.0.1",
+    "prompts": "^2.4.2",
+    "zod": "^3.22.4",
+    "fs-extra": "^11.1.1",
+    "execa": "^8.0.1",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/prompts": "^2.4.9",
+    "@types/node": "^20.8.0",
+    "tsup": "^7.2.0",
+    "typescript": "^5.2.2"
+  },
+  "keywords": [
+    "cli",
+    "ui",
+    "components",
+    "vite",
+    "react"
+  ],
+  "author": {
+    "name": "buildy",
+    "url": "https://buildy.tw"
+  },
+  "license": "MIT"
+} 

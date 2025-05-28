@@ -1,0 +1,17 @@
+{
+  "functions": {
+    "src/index.ts": {
+      "runtime": "bun"
+    }
+  },
+  "routes": [
+    {
+      "src": "/r/(.*)",
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET",
+        "Content-Type": "application/json"
+      }
+    }
+  ]
+}
