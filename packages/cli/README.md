@@ -72,18 +72,27 @@ The `buildy.config.json` file in your project root:
 
 ```json
 {
+  "$schema": "https://buildy.tw/schema.json",
   "framework": "vite-react",
   "typescript": true,
   "aliases": {
     "@": "./src",
     "@/components": "./src/components",
     "@/ui": "./src/components/ui",
-    "@/blocks": "./src/components/blocks"
+    "@/blocks": "./src/components/blocks",
+    "@/lib": "./src/lib"
   },
   "registry": "@ui8kit",
-  "componentsDir": "./src/components"
+  "componentsDir": "./src/components",
+  "libDir": "./src/lib"
 }
 ```
+
+The `$schema` property enables:
+- ✅ **IntelliSense** in VS Code and other editors
+- ✅ **Validation** of configuration values
+- ✅ **Auto-completion** for properties
+- ✅ **Hover documentation** for each field
 
 ## Examples
 

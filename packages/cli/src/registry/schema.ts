@@ -19,6 +19,7 @@ export type ComponentFile = z.infer<typeof componentFileSchema>
 export type Component = z.infer<typeof componentSchema>
 
 export const configSchema = z.object({
+  $schema: z.string().optional(),
   framework: z.literal("vite-react"),
   typescript: z.boolean().default(true),
   aliases: z.record(z.string()).default({
@@ -26,9 +27,11 @@ export const configSchema = z.object({
     "@/components": "./src/components",
     "@/ui": "./src/components/ui",
     "@/blocks": "./src/components/blocks",
+    "@/lib": "./src/lib",
   }),
   registry: z.string().default("@ui8kit"),
   componentsDir: z.string().default("./src/components"),
+  libDir: z.string().default("./src/lib"),
 })
 
 export type Config = z.infer<typeof configSchema> 

@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Buildy Configuration",
+  "description": "Configuration file for buildy CLI",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "JSON Schema URL"
+    },
+    "framework": {
+      "type": "string",
+      "enum": ["vite-react"],
+      "description": "Target framework"
+    },
+    "typescript": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the project uses TypeScript"
+    },
+    "aliases": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "default": {
+        "@": "./src",
+        "@/components": "./src/components",
+        "@/ui": "./src/components/ui",
+        "@/blocks": "./src/components/blocks",
+        "@/lib": "./src/lib"
+      },
+      "description": "Path aliases for imports"
+    },
+    "registry": {
+      "type": "string",
+      "default": "@ui8kit",
+      "description": "Default component registry"
+    },
+    "componentsDir": {
+      "type": "string",
+      "default": "./src/components",
+      "description": "Directory where components will be installed"
+    },
+    "libDir": {
+      "type": "string",
+      "default": "./src/lib",
+      "description": "Directory for utility libraries"
+    }
+  },
+  "required": ["framework"],
+  "additionalProperties": false
+}

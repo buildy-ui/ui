@@ -1,12 +1,15 @@
 {
+  "$schema": "https://buildy.tw/schema.json",
   "framework": "vite-react",
   "typescript": true,
   "aliases": {
     "@": "./src",
     "@/components": "./src/components",
     "@/ui": "./src/components/ui",
-    "@/blocks": "./src/components/blocks"
+    "@/blocks": "./src/components/blocks",
+    "@/lib": "./src/lib"
   },
   "registry": "@ui8kit",
-  "componentsDir": "./src/components"
+  "componentsDir": "./src/components",
+  "libDir": "./src/lib"
 }

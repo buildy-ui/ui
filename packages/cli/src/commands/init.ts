@@ -3,6 +3,8 @@ import prompts from "prompts"
 import ora from "ora"
 import { isViteProject, hasReact, getConfig, saveConfig, ensureDir } from "../utils/project.js"
 import { Config } from "../registry/schema.js"
+import path from "path"
+import fs from "fs/promises"
 
 interface InitOptions {
   yes?: boolean
@@ -46,6 +48,7 @@ export async function initCommand(options: InitOptions) {
   if (options.yes) {
     // Use defaults
     config = {
+      $schema: "https://buildy.tw/schema.json",
       framework: "vite-react",
       typescript: true,
       aliases: {
@@ -53,9 +56,11 @@ export async function initCommand(options: InitOptions) {
         "@/components": "./src/components",
         "@/ui": "./src/components/ui",
         "@/blocks": "./src/components/blocks",
+        "@/lib": "./src/lib",
       },
       registry: "@ui8kit",
       componentsDir: "./src/components",
+      libDir: "./src/lib",
     }
   } else {
     // Interactive setup
@@ -75,6 +80,7 @@ export async function initCommand(options: InitOptions) {
     ])
     
     config = {
+      $schema: "https://buildy.tw/schema.json",
       framework: "vite-react",
       typescript: responses.typescript,
       aliases: {
@@ -82,9 +88,11 @@ export async function initCommand(options: InitOptions) {
         "@/components": "./src/components",
         "@/ui": "./src/components/ui",
         "@/blocks": "./src/components/blocks",
+        "@/lib": "./src/lib",
       },
       registry: "@ui8kit",
       componentsDir: responses.componentsDir,
+      libDir: "./src/lib",
     }
   }
   
@@ -98,6 +106,10 @@ export async function initCommand(options: InitOptions) {
     await ensureDir(config.componentsDir)
     await ensureDir(`${config.componentsDir}/ui`)
     await ensureDir(`${config.componentsDir}/blocks`)
+    await ensureDir(config.libDir)
+    
+    // Create utils.ts file
+    await createUtilsFile(config.libDir, config.typescript)
     
     spinner.succeed("buildy initialized successfully!")
     
@@ -109,7 +121,21 @@ export async function initCommand(options: InitOptions) {
     
   } catch (error) {
     spinner.fail("Failed to initialize buildy")
-    console.error(chalk.red("❌ Error:"), error.message)
+    console.error(chalk.red("❌ Error:"), (error as Error).message)
     process.exit(1)
   }
+}
+
+async function createUtilsFile(libDir: string, typescript: boolean): Promise<void> {
+  const utilsContent = `import { type ClassValue, clsx } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}`
+
+  const fileName = typescript ? "utils.ts" : "utils.js"
+  const filePath = path.join(process.cwd(), libDir, fileName)
+  
+  await fs.writeFile(filePath, utilsContent, "utf-8")
 } 
