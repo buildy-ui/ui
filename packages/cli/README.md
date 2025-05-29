@@ -117,6 +117,9 @@ buildy build ./my-registry.json --output ./dist/registry
 
 # Build from different working directory
 buildy build --cwd ./packages/ui --output ./apps/web/public/r
+
+# Build without installation
+bun x buildy-ui@latest build --cwd ./packages/ui --output ./apps/web/public/r
 ```
 
 This will:

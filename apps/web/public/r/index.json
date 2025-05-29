@@ -3,18 +3,15 @@
   "components": [
     {
       "name": "button",
-      "type": "registry:ui",
-      "description": "A customizable button component"
+      "type": "registry:ui"
     },
     {
       "name": "utils",
-      "type": "registry:lib",
-      "description": "Utility functions for styling"
+      "type": "registry:lib"
     },
     {
       "name": "hero-section",
-      "type": "registry:block",
-      "description": "Hero section with call-to-action"
+      "type": "registry:block"
     }
   ],
   "categories": [
@@ -24,5 +21,5 @@
     "lib"
   ],
   "version": "1.0.0",
-  "lastUpdated": "2025-05-29T04:50:25.269Z"
+  "lastUpdated": "2025-05-29T05:27:43.416Z"
 }

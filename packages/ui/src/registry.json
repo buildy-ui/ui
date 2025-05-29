@@ -4,23 +4,28 @@
     {
       "name": "button",
       "type": "registry:ui",
-      "description": "A customizable button component",
-      "dependencies": ["clsx", "tailwind-merge"],
+      "dependencies": [
+        "react"
+      ],
+      "devDependencies": [],
       "files": [
         {
-          "path": "src/components/ui/button.tsx",
+          "path": "packages/ui/src/components/ui/button.tsx",
           "target": "ui"
         }
       ]
     },
     {
       "name": "utils",
-      "type": "registry:lib", 
-      "description": "Utility functions for styling",
-      "dependencies": ["clsx", "tailwind-merge"],
+      "type": "registry:lib",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "devDependencies": [],
       "files": [
         {
-          "path": "src/lib/utils.ts",
+          "path": "packages/ui/src/lib/utils.ts",
           "target": "lib"
         }
       ]
@@ -28,11 +33,13 @@
     {
       "name": "hero-section",
       "type": "registry:block",
-      "description": "Hero section with call-to-action",
-      "dependencies": ["clsx"],
+      "dependencies": [
+        "react"
+      ],
+      "devDependencies": [],
       "files": [
         {
-          "path": "src/components/blocks/hero-section.tsx",
+          "path": "packages/ui/src/components/blocks/hero-section.tsx",
           "target": "blocks"
         }
       ]

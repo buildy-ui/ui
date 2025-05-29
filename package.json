@@ -21,6 +21,17 @@
     "dev:cli": "bun run --cwd packages/cli dev",
     "type-check": "tsc --build tsconfig.build.json",
     "type-check:watch": "tsc --build tsconfig.build.json --watch",
-    "clean": "tsc --build tsconfig.build.json --clean"
+    "clean": "tsc --build tsconfig.build.json --clean",
+    "registry:test": "tsx scripts/quick-test.ts",
+    "registry:generate": "tsx scripts/generate-registry.ts",
+    "registry:scan": "tsx scripts/test-scan.ts",
+    "registry:build": "npm run registry:generate && cd packages/cli && npm run build && cd ../.. && bun x buildy-ui@latest build --output ./apps/web/public/r",
+    "registry:watch": "tsx watch scripts/generate-registry.ts"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2",
+    "tsx": "^4.0.0",
+    "glob": "^10.3.0",
+    "@types/node": "^20.8.0"
   }
 }
