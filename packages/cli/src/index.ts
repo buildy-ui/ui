@@ -4,6 +4,7 @@ import { Command } from "commander"
 import chalk from "chalk"
 import { addCommand } from "./commands/add.js"
 import { initCommand } from "./commands/init.js"
+import { buildCommand } from "./commands/build.js"
 
 const program = new Command()
 
@@ -26,6 +27,14 @@ program
   .option("-f, --force", "Overwrite existing files")
   .option("--dry-run", "Show what would be installed without installing")
   .action(addCommand)
+
+program
+  .command("build")
+  .description("Build components registry")
+  .argument("[registry]", "Path to registry.json file", "./packages/ui/src/registry.json")
+  .option("-o, --output <path>", "Output directory", "./public/r")
+  .option("-c, --cwd <cwd>", "Working directory", process.cwd())
+  .action(buildCommand)
 
 program.on("command:*", () => {
   console.error(chalk.red(`Invalid command: ${program.args.join(" ")}`))

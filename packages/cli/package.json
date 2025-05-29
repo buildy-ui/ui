@@ -1,19 +1,23 @@
 {
-  "name": "buildy",
-  "version": "1.0.0",
+  "name": "buildy-ui",
+  "version": "1.0.2",
   "description": "A CLI for adding UI components to your Vite React projects",
   "type": "module",
   "bin": {
+    "buildy-ui": "./dist/index.js",
     "buildy": "./dist/index.js"
   },
   "main": "./dist/index.js",
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "commander": "^11.1.0",
@@ -37,11 +41,25 @@
     "ui",
     "components",
     "vite",
-    "react"
+    "react",
+    "shadcn",
+    "tailwind"
   ],
   "author": {
     "name": "buildy",
     "url": "https://buildy.tw"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/buildy-ui/ui.git",
+    "directory": "packages/cli"
+  },
+  "homepage": "https://buildy.tw",
+  "bugs": {
+    "url": "https://github.com/buildy-ui/ui/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
 } 

@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Buildy Registry Item",
+  "type": "object",
+  "properties": {
+    "name": { "type": "string" },
+    "type": { 
+      "type": "string",
+      "enum": ["registry:lib", "registry:block", "registry:component", "registry:ui"]
+    },
+    "description": { "type": "string" },
+    "dependencies": { 
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "devDependencies": { 
+      "type": "array", 
+      "items": { "type": "string" }
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": { "type": "string" },
+          "content": { "type": "string" },
+          "target": { "type": "string" }
+        },
+        "required": ["path"]
+      }
+    }
+  },
+  "required": ["name", "type", "files"]
+}

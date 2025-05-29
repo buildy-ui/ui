@@ -1,6 +1,28 @@
 {
-  "components": ["button"],
-  "categories": ["ui", "blocks"],
+  "$schema": "https://buildy.tw/schema/registry.json",
+  "components": [
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "description": "A customizable button component"
+    },
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "description": "Utility functions for styling"
+    },
+    {
+      "name": "hero-section",
+      "type": "registry:block",
+      "description": "Hero section with call-to-action"
+    }
+  ],
+  "categories": [
+    "ui",
+    "components",
+    "blocks",
+    "lib"
+  ],
   "version": "1.0.0",
-  "lastUpdated": "2024-01-01T00:00:00Z"
+  "lastUpdated": "2025-05-29T04:50:25.269Z"
 }
