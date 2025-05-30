@@ -8,6 +8,18 @@ const CDN_URLS = [
   "https://raw.githubusercontent.com/buildy-ui/ui/main/packages/ui/registry/r"
 ]
 
+// Map component types to their corresponding folders
+const TYPE_TO_FOLDER = {
+  "registry:ui": "ui",
+  "registry:block": "blocks", 
+  "registry:component": "components",
+  "registry:lib": "lib"
+} as const
+
+// Cache the working CDN for the session to avoid repeated testing
+let workingCDN: string | null = null
+let registryIndex: any = null
+
 export function isUrl(path: string): boolean {
   try {
     new URL(path)
@@ -17,28 +29,96 @@ export function isUrl(path: string): boolean {
   }
 }
 
-async function fetchWithFallback(path: string): Promise<any> {
-  let lastError: Error | null = null
+/**
+ * Find and cache the first working CDN from the list
+ * This reduces requests by testing CDNs only once per session
+ */
+async function findWorkingCDN(): Promise<string> {
+  if (workingCDN) {
+    return workingCDN // Return cached result
+  }
   
   for (const baseUrl of CDN_URLS) {
     try {
-      const url = `${baseUrl}/${path}`
-      console.log(`🔍 Trying: ${url}`)
-      
-      const response = await fetch(url)
+      console.log(`🔍 Testing CDN: ${baseUrl}`)
+      const response = await fetch(`${baseUrl}/index.json`)
       if (response.ok) {
-        console.log(`✅ Success from: ${baseUrl}`)
-        return await response.json()
-      } else {
-        throw new Error(`HTTP ${response.status}: ${response.statusText}`)
+        workingCDN = baseUrl
+        console.log(`✅ Using CDN: ${baseUrl}`)
+        return baseUrl
       }
     } catch (error) {
-      console.log(`❌ Failed from ${baseUrl}: ${(error as Error).message}`)
-      lastError = error as Error
+      console.log(`❌ CDN failed: ${baseUrl}`)
     }
   }
   
-  throw new Error(`All CDN sources failed. Last error: ${lastError?.message}`)
+  throw new Error('No working CDN found')
+}
+
+/**
+ * Fetch from the working CDN only, avoiding fallback requests
+ * This ensures we use only 1 CDN per request instead of testing all 3
+ */
+async function fetchFromWorkingCDN(path: string): Promise<any> {
+  const baseUrl = await findWorkingCDN()
+  const url = `${baseUrl}/${path}`
+  
+  console.log(`🎯 Fetching: ${url}`)
+  const response = await fetch(url)
+  
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status}: ${response.statusText}`)
+  }
+  
+  return await response.json()
+}
+
+/**
+ * Get registry index and cache it for the session
+ * This avoids repeated index.json requests
+ */
+async function getRegistryIndex(): Promise<any> {
+  if (registryIndex) {
+    return registryIndex // Return cached index
+  }
+  
+  console.log(`🌐 Fetching registry index`)
+  registryIndex = await fetchFromWorkingCDN('index.json')
+  return registryIndex
+}
+
+/**
+ * Find component by type from index, then fetch directly from correct folder
+ * This eliminates blind searching through all categories (ui, blocks, components, lib)
+ */
+async function getComponentByType(name: string): Promise<Component | null> {
+  try {
+    // 1. Get index to find component metadata
+    const index = await getRegistryIndex()
+    
+    // 2. Find component in index
+    const componentInfo = index.components?.find((c: any) => c.name === name)
+    if (!componentInfo) {
+      console.log(`❌ Component ${name} not found in registry`)
+      return null
+    }
+    
+    // 3. Determine folder by component type
+    const folder = TYPE_TO_FOLDER[componentInfo.type as keyof typeof TYPE_TO_FOLDER]
+    if (!folder) {
+      console.log(`❌ Unknown component type: ${componentInfo.type}`)
+      return null
+    }
+    
+    // 4. Make targeted request to exact location
+    console.log(`🎯 Loading ${name} from /${folder}/ (type: ${componentInfo.type})`)
+    const data = await fetchFromWorkingCDN(`${folder}/${name}.json`)
+    return componentSchema.parse(data)
+    
+  } catch (error) {
+    console.log(`❌ Failed to get component by type: ${(error as Error).message}`)
+    return null
+  }
 }
 
 export async function getComponent(name: string): Promise<Component | null> {
@@ -48,26 +128,8 @@ export async function getComponent(name: string): Promise<Component | null> {
       return await fetchFromUrl(name)
     }
     
-    // Try to find in different categories
-    const categories = ["ui", "blocks", "components", "lib"]
-    
-    for (const category of categories) {
-      try {
-        console.log(`🔍 Searching in ${category} for ${name}`)
-        
-        const data = await fetchWithFallback(`${category}/${name}.json`)
-        const component = componentSchema.parse(data)
-        console.log(`✅ Found ${name} in ${category}`)
-        return component
-        
-      } catch (error) {
-        // Continue searching in the next category
-        console.log(`❌ Not found in ${category}`)
-      }
-    }
-    
-    console.log(`❌ Component ${name} not found in any category`)
-    return null
+    // Use optimized type-based lookup instead of category searching
+    return await getComponentByType(name)
     
   } catch (error) {
     console.error(`❌ Failed to fetch ${name}:`, (error as Error).message)
@@ -90,9 +152,10 @@ async function fetchFromUrl(url: string): Promise<Component | null> {
 
 export async function getAllComponents(): Promise<Component[]> {
   try {
-    console.log(`🌐 Fetching registry index with fallback`)
+    console.log(`🌐 Fetching all components using optimized approach`)
     
-    const indexData = await fetchWithFallback('index.json')
+    // Get index once, then fetch each component by type
+    const indexData = await getRegistryIndex()
     const components: Component[] = []
     
     // Get all components from the index
@@ -124,4 +187,14 @@ export async function getComponents(names: string[]): Promise<Component[]> {
   }
   
   return components
+}
+
+/**
+ * Reset cached CDN and index for testing or error recovery
+ * This allows fallback to other CDNs if the current one fails
+ */
+export function resetCache(): void {
+  workingCDN = null
+  registryIndex = null
+  console.log(`🔄 Cache reset - will rediscover working CDN`)
 } 

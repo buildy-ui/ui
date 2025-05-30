@@ -8,8 +8,20 @@ const CDN_URLS = [
   "https://raw.githubusercontent.com/buildy-ui/ui/main/packages/ui/registry/r"
 ]
 
+// Map component types to their corresponding folders
+const TYPE_TO_FOLDER = {
+  "registry:ui": "ui",
+  "registry:block": "blocks", 
+  "registry:component": "components",
+  "registry:lib": "lib"
+} as const
+
 const MAX_RETRIES = 3
 const RETRY_DELAY = 2000 // 2 seconds
+
+// Cache the working CDN for the session to avoid repeated testing
+let workingCDN: string | null = null
+let registryIndex: any = null
 
 export function isUrl(path: string): boolean {
   try {
@@ -76,25 +88,93 @@ async function fetchWithRetry(url: string, retries = MAX_RETRIES): Promise<any> 
   }
 }
 
-async function fetchWithFallbackAndRetry(path: string): Promise<any> {
-  let lastError: Error | null = null
+/**
+ * Find and cache the first working CDN from the list with retry logic
+ * This reduces requests by testing CDNs only once per session
+ */
+async function findWorkingCDNWithRetry(): Promise<string> {
+  if (workingCDN) {
+    return workingCDN // Return cached result
+  }
+  
+  // Check internet connection first
+  if (!(await checkInternetConnection())) {
+    throw new Error("No internet connection available")
+  }
   
   for (const baseUrl of CDN_URLS) {
     try {
-      const url = `${baseUrl}/${path}`
-      console.log(`🔍 Trying CDN: ${baseUrl}`)
-      
-      const data = await fetchWithRetry(url, 2) // Fewer retries per CDN
-      console.log(`✅ Success from: ${baseUrl}`)
-      return data
-      
+      console.log(`🔍 Testing CDN with retry: ${baseUrl}`)
+      await fetchWithRetry(`${baseUrl}/index.json`, 2) // Fewer retries for testing
+      workingCDN = baseUrl
+      console.log(`✅ Using CDN: ${baseUrl}`)
+      return baseUrl
     } catch (error) {
-      console.log(`❌ Failed from ${baseUrl}: ${(error as Error).message}`)
-      lastError = error as Error
+      console.log(`❌ CDN failed: ${baseUrl}`)
     }
   }
   
-  throw new Error(`All CDN sources failed. Last error: ${lastError?.message}`)
+  throw new Error('No working CDN found')
+}
+
+/**
+ * Fetch from the working CDN only with retry logic
+ * This ensures we use only 1 CDN per request instead of testing all 3
+ */
+async function fetchFromWorkingCDNWithRetry(path: string): Promise<any> {
+  const baseUrl = await findWorkingCDNWithRetry()
+  const url = `${baseUrl}/${path}`
+  
+  console.log(`🎯 Fetching with retry: ${url}`)
+  return await fetchWithRetry(url)
+}
+
+/**
+ * Get registry index and cache it for the session with retry logic
+ * This avoids repeated index.json requests
+ */
+async function getRegistryIndexWithRetry(): Promise<any> {
+  if (registryIndex) {
+    return registryIndex // Return cached index
+  }
+  
+  console.log(`🌐 Fetching registry index with retry`)
+  registryIndex = await fetchFromWorkingCDNWithRetry('index.json')
+  return registryIndex
+}
+
+/**
+ * Find component by type from index, then fetch directly from correct folder with retry
+ * This eliminates blind searching through all categories (ui, blocks, components, lib)
+ */
+async function getComponentByTypeWithRetry(name: string): Promise<Component | null> {
+  try {
+    // 1. Get index to find component metadata
+    const index = await getRegistryIndexWithRetry()
+    
+    // 2. Find component in index
+    const componentInfo = index.components?.find((c: any) => c.name === name)
+    if (!componentInfo) {
+      console.log(`❌ Component ${name} not found in registry`)
+      return null
+    }
+    
+    // 3. Determine folder by component type
+    const folder = TYPE_TO_FOLDER[componentInfo.type as keyof typeof TYPE_TO_FOLDER]
+    if (!folder) {
+      console.log(`❌ Unknown component type: ${componentInfo.type}`)
+      return null
+    }
+    
+    // 4. Make targeted request to exact location with retry
+    console.log(`🎯 Loading ${name} from /${folder}/ (type: ${componentInfo.type})`)
+    const data = await fetchFromWorkingCDNWithRetry(`${folder}/${name}.json`)
+    return componentSchema.parse(data)
+    
+  } catch (error) {
+    console.log(`❌ Failed to get component by type: ${(error as Error).message}`)
+    return null
+  }
 }
 
 export async function getComponentWithRetry(name: string): Promise<Component | null> {
@@ -109,26 +189,8 @@ export async function getComponentWithRetry(name: string): Promise<Component | n
       throw new Error("No internet connection available")
     }
     
-    // Try to find in different categories
-    const categories = ["ui", "blocks", "components", "lib"]
-    
-    for (const category of categories) {
-      try {
-        console.log(`🔍 Searching in ${category} for ${name}`)
-        
-        const data = await fetchWithFallbackAndRetry(`${category}/${name}.json`)
-        const component = componentSchema.parse(data)
-        console.log(`✅ Found ${name} in ${category}`)
-        return component
-        
-      } catch (error) {
-        // Continue searching in the next category
-        console.log(`❌ Not found in ${category}`)
-      }
-    }
-    
-    console.log(`❌ Component ${name} not found in any category`)
-    return null
+    // Use optimized type-based lookup instead of category searching
+    return await getComponentByTypeWithRetry(name)
     
   } catch (error) {
     console.error(`❌ Failed to fetch ${name}:`, (error as Error).message)
@@ -150,14 +212,15 @@ async function fetchFromUrlWithRetry(url: string): Promise<Component | null> {
 
 export async function getAllComponentsWithRetry(): Promise<Component[]> {
   try {
-    console.log(`🌐 Fetching registry index with fallback and retry`)
+    console.log(`🌐 Fetching all components using optimized approach with retry`)
     
     // Check internet connection first
     if (!(await checkInternetConnection())) {
       throw new Error("No internet connection available")
     }
     
-    const indexData = await fetchWithFallbackAndRetry('index.json')
+    // Get index once, then fetch each component by type
+    const indexData = await getRegistryIndexWithRetry()
     const components: Component[] = []
     
     // Get all components from the index
@@ -176,4 +239,14 @@ export async function getAllComponentsWithRetry(): Promise<Component[]> {
     console.error(`❌ Failed to fetch all components:`, (error as Error).message)
     return []
   }
+}
+
+/**
+ * Reset cached CDN and index for testing or error recovery
+ * This allows fallback to other CDNs if the current one fails
+ */
+export function resetCacheWithRetry(): void {
+  workingCDN = null
+  registryIndex = null
+  console.log(`🔄 Cache reset - will rediscover working CDN with retry`)
 } 
