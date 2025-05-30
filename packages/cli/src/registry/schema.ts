@@ -8,7 +8,7 @@ export const componentFileSchema = z.object({
 
 export const componentSchema = z.object({
   name: z.string(),
-  type: z.enum(["ui", "block", "component"]),
+  type: z.enum(["registry:ui", "registry:block", "registry:component", "registry:lib"]),
   description: z.string().optional(),
   dependencies: z.array(z.string()).default([]),
   devDependencies: z.array(z.string()).default([]),
@@ -25,8 +25,8 @@ export const configSchema = z.object({
   aliases: z.record(z.string()).default({
     "@": "./src",
     "@/components": "./src/components",
-    "@/ui": "./src/components/ui",
-    "@/blocks": "./src/components/blocks",
+    "@/ui": "./src/ui",
+    "@/blocks": "./src/blocks",
     "@/lib": "./src/lib",
   }),
   registry: z.string().default("@ui8kit"),

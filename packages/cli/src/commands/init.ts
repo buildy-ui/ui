@@ -54,8 +54,8 @@ export async function initCommand(options: InitOptions) {
       aliases: {
         "@": "./src",
         "@/components": "./src/components",
-        "@/ui": "./src/components/ui",
-        "@/blocks": "./src/components/blocks",
+        "@/ui": "./src/ui",
+        "@/blocks": "./src/blocks",
         "@/lib": "./src/lib",
       },
       registry: "@ui8kit",
@@ -86,8 +86,8 @@ export async function initCommand(options: InitOptions) {
       aliases: {
         "@": "./src",
         "@/components": "./src/components",
-        "@/ui": "./src/components/ui",
-        "@/blocks": "./src/components/blocks",
+        "@/ui": "./src/ui",
+        "@/blocks": "./src/blocks",
         "@/lib": "./src/lib",
       },
       registry: "@ui8kit",
@@ -104,8 +104,8 @@ export async function initCommand(options: InitOptions) {
     
     // Create directories
     await ensureDir(config.componentsDir)
-    await ensureDir(`${config.componentsDir}/ui`)
-    await ensureDir(`${config.componentsDir}/blocks`)
+    await ensureDir("./src/ui")
+    await ensureDir("./src/blocks")
     await ensureDir(config.libDir)
     
     // Create utils.ts file
@@ -115,9 +115,10 @@ export async function initCommand(options: InitOptions) {
     
     console.log(chalk.green("\n✅ Setup complete!"))
     console.log("\nNext steps:")
-    console.log(`  ${chalk.cyan("buildy add button")} - Add a button component`)
-    console.log(`  ${chalk.cyan("buildy add card --semantic")} - Add a semantic card component`)
-    console.log(`  ${chalk.cyan('buildy add "https://example.com/component.json"')} - Add from external URL`)
+    console.log(`  ${chalk.cyan("npx buildy-ui@latest add button")} - Add a button component`)
+    console.log(`  ${chalk.cyan("npx buildy-ui@latest add card input")} - Add multiple components`)
+    console.log(`  ${chalk.cyan("npx buildy-ui@latest add --all")} - Add all components`)
+    console.log(`  ${chalk.cyan('npx buildy-ui@latest add "https://example.com/component.json"')} - Add from external URL`)
     
   } catch (error) {
     spinner.fail("Failed to initialize buildy")

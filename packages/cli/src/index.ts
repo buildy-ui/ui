@@ -23,9 +23,10 @@ program
   .command("add")
   .description("Add components to your project")
   .argument("[components...]", "Components to add")
-  .option("-s, --semantic", "Use semantic components")
+  .option("-a, --all", "Install all available components")
   .option("-f, --force", "Overwrite existing files")
   .option("--dry-run", "Show what would be installed without installing")
+  .option("--retry", "Enable retry logic for unreliable connections")
   .action(addCommand)
 
 program

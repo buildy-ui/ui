@@ -23,7 +23,7 @@ interface ScanConfig {
 
 const scanConfigs: ScanConfig[] = [
   {
-    pattern: "packages/ui/src/components/ui/*.{ts,tsx}",
+    pattern: "packages/ui/src/ui/*.{ts,tsx}",
     type: "registry:ui",
     target: "ui"
   },
@@ -33,9 +33,14 @@ const scanConfigs: ScanConfig[] = [
     target: "lib"
   },
   {
-    pattern: "packages/ui/src/components/blocks/*.{ts,tsx}",
+    pattern: "packages/ui/src/blocks/*.{ts,tsx}",
     type: "registry:block",
     target: "blocks"
+  },
+  {
+    pattern: "packages/ui/src/components/*.{ts,tsx}",
+    type: "registry:component",
+    target: "components"
   }
 ]
 
@@ -53,7 +58,7 @@ async function generateRegistry() {
     components.push(...patternComponents)
   }
   
-  // Генерируем registry.json
+  // Generate registry.json
   const registry = {
     $schema: "https://buildy.tw/schema/registry.json",
     items: components
@@ -66,7 +71,7 @@ async function generateRegistry() {
   console.log(`\n✅ Generated registry with ${components.length} components`)
   console.log(`📄 Output: ${outputPath}`)
   
-  // Выводим найденные компоненты
+  // Display found components
   if (components.length > 0) {
     console.log("\n📦 Found components:")
     components.forEach(comp => {
@@ -84,7 +89,7 @@ async function generateRegistry() {
 
 async function scanByPattern(baseDir: string, config: ScanConfig): Promise<ComponentInfo[]> {
   try {
-    // Используем рабочие опции из test-scan
+    // Use working options from test-scan
     const files = await glob(config.pattern, { 
       cwd: baseDir,
       windowsPathsNoEscape: true 
@@ -131,7 +136,7 @@ async function analyzeComponent(
       true
     )
     
-    // Используем path.posix для Unix-стиля путей
+    // Use path.posix for Unix-style paths
     const unixPath = filePath.split(path.sep).join(path.posix.sep)
     
     const componentInfo: ComponentInfo = {
@@ -145,7 +150,7 @@ async function analyzeComponent(
       }]
     }
     
-    // Анализируем AST
+    // Analyze AST
     const analysis = analyzeAST(sourceFile)
     console.log(`    🔍 Analysis result:`, {
       hasExports: analysis.hasExports,
@@ -156,7 +161,7 @@ async function analyzeComponent(
     componentInfo.dependencies = analysis.dependencies
     componentInfo.description = analysis.description
     
-    // Фильтруем только экспортируемые компоненты
+    // Filter only exportable components
     if (analysis.hasExports) {
       return componentInfo
     }
@@ -180,14 +185,14 @@ function analyzeAST(sourceFile: ts.SourceFile): ASTAnalysis {
   let hasExports = false
   
   function visit(node: ts.Node) {
-    // Анализируем импорты
+    // Analyze imports
     if (ts.isImportDeclaration(node)) {
       const moduleSpecifier = node.moduleSpecifier
       if (ts.isStringLiteral(moduleSpecifier)) {
         const moduleName = moduleSpecifier.text
         console.log(`      📦 Import found: ${moduleName}`)
         
-        // Добавляем только внешние зависимости
+        // Add only external dependencies
         if (!moduleName.startsWith(".") && 
             !moduleName.startsWith("@/") && 
             !moduleName.startsWith("~/")) {
@@ -196,7 +201,7 @@ function analyzeAST(sourceFile: ts.SourceFile): ASTAnalysis {
       }
     }
     
-    // Анализируем экспорты
+    // Analyze exports
     if (ts.isExportDeclaration(node)) {
       console.log(`      🚀 Export declaration found`)
       hasExports = true
@@ -214,7 +219,7 @@ function analyzeAST(sourceFile: ts.SourceFile): ASTAnalysis {
       hasExports = true
     }
     
-    // Ищем JSDoc комментарии
+    // Search for JSDoc comments
     const jsDocComment = getJSDocComment(node)
     if (jsDocComment && !description) {
       console.log(`      📝 Description found: ${jsDocComment.substring(0, 50)}...`)
@@ -244,7 +249,7 @@ function hasExportModifier(node: ts.Node): boolean {
 
 function getJSDocComment(node: ts.Node): string | undefined {
   try {
-    // Получаем JSDoc комментарии
+    // Get JSDoc comments
     const jsDocTags = ts.getJSDocCommentsAndTags(node)
     
     for (const tag of jsDocTags) {
@@ -257,11 +262,11 @@ function getJSDocComment(node: ts.Node): string | undefined {
       }
     }
   } catch (error) {
-    // Игнорируем ошибки JSDoc парсинга
+    // Ignore JSDoc parsing errors
   }
   
   return undefined
 }
 
-// Запуск
+// Run
 generateRegistry().catch(console.error)

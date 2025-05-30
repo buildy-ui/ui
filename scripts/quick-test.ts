@@ -25,7 +25,7 @@ async function quickTest() {
       console.log(`   Has exports: ${hasExport}`)
       console.log(`   Imports: ${imports.length}`)
       
-      // Показываем внешние зависимости
+      // Show external dependencies
       const externalDeps = imports
         .map(imp => imp.match(/from\s+["']([^"']+)["']/)?.[1])
         .filter(dep => dep && !dep.startsWith('.') && !dep.startsWith('@/'))

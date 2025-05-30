@@ -1,0 +1,25 @@
+{
+  "$schema": "https://buildy.tw/schema/registry.json",
+  "components": [
+    {
+      "name": "button",
+      "type": "registry:ui"
+    },
+    {
+      "name": "utils",
+      "type": "registry:lib"
+    },
+    {
+      "name": "hero-section",
+      "type": "registry:block"
+    }
+  ],
+  "categories": [
+    "ui",
+    "components",
+    "blocks",
+    "lib"
+  ],
+  "version": "1.0.0",
+  "lastUpdated": "2025-05-30T10:32:24.827Z"
+}

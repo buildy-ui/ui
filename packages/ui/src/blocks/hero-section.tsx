@@ -1,5 +1,5 @@
 import React from "react"
-import { cn } from "../../lib/utils"
+import { cn } from "../lib/utils"
 
 interface HeroSectionProps extends React.HTMLAttributes<HTMLElement> {
   title?: string
@@ -43,4 +43,4 @@ export function HeroSection({
       )}
     </section>
   )
-}
+} 

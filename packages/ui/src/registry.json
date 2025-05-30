@@ -10,7 +10,7 @@
       "devDependencies": [],
       "files": [
         {
-          "path": "packages/ui/src/components/ui/button.tsx",
+          "path": "packages/ui/src/ui/button.tsx",
           "target": "ui"
         }
       ]
@@ -39,7 +39,7 @@
       "devDependencies": [],
       "files": [
         {
-          "path": "packages/ui/src/components/blocks/hero-section.tsx",
+          "path": "packages/ui/src/blocks/hero-section.tsx",
           "target": "blocks"
         }
       ]

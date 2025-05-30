@@ -2,134 +2,151 @@
 
 A simple CLI for adding UI components to your Vite React projects and building component registries.
 
-## Installation & Usage
-
-### Option 1: Direct usage (recommended)
-```bash
-# No installation needed - use directly
-bunx buildy-ui@latest init
-bunx buildy-ui@latest add button card
-bunx buildy-ui@latest build
-
-# Or with npm
-npx buildy-ui@latest init
-npx buildy-ui@latest add button card
-npx buildy-ui@latest build
-```
-
-### Option 2: Global installation
-```bash
-# Install globally
-npm install -g buildy-ui
-# or
-bun install -g buildy-ui
-
-# Then use the buildy command
-buildy init
-buildy add button card
-buildy build
-```
-
-### Option 3: Local installation
-```bash
-# Install in your project
-npm install -D buildy-ui
-# or  
-bun add -D buildy-ui
-
-# Use with npx/bunx
-npx buildy init
-bunx buildy add button card
-npx buildy build
-```
-
 ## Quick Start
 
-### For Component Users
+No installation needed! Use directly with `npx` or `bun x`:
+
 ```bash
-# 1. Navigate to your Vite React project
-cd my-vite-app
+# Initialize in your Vite React project
+npx buildy-ui@latest init
 
-# 2. Initialize buildy (creates config and directories)
-bunx buildy-ui@latest init
+# Add components (smart search across all categories)
+npx buildy-ui@latest add button card hero-section
+npx buildy-ui@latest add "https://example.com/component.json"
 
-# 3. Add components
-bunx buildy-ui@latest add button card
-bunx buildy-ui@latest add "https://example.com/component.json"
-```
+# Install all available components
+npx buildy-ui@latest add --all
 
-### For Component Library Authors
-```bash
-# 1. Create registry.json with your components
-# 2. Build the registry for distribution
-bunx buildy-ui@latest build
-
-# 3. Deploy the generated files to your CDN/website
+# Build registry (for library authors)
+npx buildy-ui@latest build
 ```
 
 ## Commands
 
-All examples below assume global installation. For direct usage, replace `buildy` with `bunx buildy-ui@latest`.
-
 ### Initialize project
 ```bash
-buildy init
+npx buildy-ui@latest init
 
 # Skip prompts and use defaults
-buildy init --yes
+npx buildy-ui@latest init --yes
 ```
 
-This will:
-- Check if you're in a Vite React project
-- Create a `buildy.config.json` configuration file
-- Set up component directories (`src/components/ui`, `src/components/blocks`, `src/lib`)
-- Create `src/lib/utils.ts` with utility functions
-- Install required dependencies (`clsx`, `tailwind-merge`)
+Creates configuration, directories, and installs dependencies.
 
 ### Add components
 ```bash
-# Add builtin components
-buildy add button card
+# Smart search - automatically finds components in any category
+npx buildy-ui@latest add button          # Found in ui/
+npx buildy-ui@latest add hero-section    # Found in blocks/
+npx buildy-ui@latest add utils           # Found in lib/
 
-# Add semantic components  
-buildy add button card --semantic
+# Add multiple components at once
+npx buildy-ui@latest add button card hero-section
 
 # Add from external URL
-buildy add "https://ui.example.com/button.json"
+npx buildy-ui@latest add "https://ui.example.com/button.json"
 
-# Add from GitHub
-buildy add "https://raw.githubusercontent.com/company/ui/main/registry/button.json"
+# Install ALL available components
+npx buildy-ui@latest add --all
+npx buildy-ui@latest add all
 
-# Dry run (see what would be installed)
-buildy add button --dry-run
+# Preview what would be installed
+npx buildy-ui@latest add --all --dry-run
+npx buildy-ui@latest add button --dry-run
 
 # Force overwrite existing files
-buildy add button --force
+npx buildy-ui@latest add button --force
+
+# Enable retry logic for unreliable connections
+npx buildy-ui@latest add button --retry
+npx buildy-ui@latest add --all --retry
 ```
+
+**Smart Features**:
+- **Smart Search**: Automatically searches across all categories (`ui`, `blocks`, `components`, `lib`)
+- **Skip Existing**: Already installed files are skipped automatically (use `--force` to overwrite)
+- **Retry Mode**: Use `--retry` flag for enhanced connection logic with automatic retries and timeouts
+- **Graceful Fallback**: Helpful error messages with alternative solutions when registry is unavailable
 
 ### Build registry (for library authors)
 ```bash
 # Build with default settings
-buildy build
+npx buildy-ui@latest build
 
 # Custom registry file and output directory
-buildy build ./my-registry.json --output ./dist/registry
+npx buildy-ui@latest build ./my-registry.json --output ./dist/registry
 
 # Build from different working directory
-buildy build --cwd ./packages/ui --output ./apps/web/public/r
-
-# Build without installation
-bun x buildy-ui@latest build --cwd ./packages/ui --output ./apps/web/public/r
+npx buildy-ui@latest build --cwd ./packages/ui --output ./apps/web/public/r
 ```
 
-This will:
-- Read your `registry.json` file
-- Process all component files and embed their content
-- Generate organized JSON files by component type
-- Create an index file for discovery
-- Output to `./public/r/` by default
+## Directory Structure
 
-## Registry Structure
+After initialization, your project will have:
+
+```
+src/
+├── ui/              # UI components (@/ui)
+├── blocks/          # Component blocks (@/blocks)
+├── components/      # Generic components (@/components)
+└── lib/             # Utilities (@/lib)
+```
+
+Components are automatically installed to the correct directory based on their type:
+- `registry:ui` → `src/ui/`
+- `registry:block` → `src/blocks/`
+- `registry:lib` → `src/lib/`
+- `registry:component` → `src/components/`
+
+## Component Types
+
+- `registry:ui` - Basic UI components (buttons, inputs, etc.)
+- `registry:lib` - Utility libraries and functions
+- `registry:block` - Complex component blocks
+- `registry:component` - Generic components
+
+## Configuration
+
+The `buildy.config.json` file provides IntelliSense and validation:
+
+```json
+{
+  "$schema": "https://buildy.tw/schema.json",
+  "framework": "vite-react",
+  "typescript": true,
+  "aliases": {
+    "@": "./src",
+    "@/components": "./src/components",
+    "@/ui": "./src/ui",
+    "@/blocks": "./src/blocks",
+    "@/lib": "./src/lib"
+  },
+  "registry": "@ui8kit",
+  "componentsDir": "./src/components",
+  "libDir": "./src/lib"
+}
+```
+
+## External Component Format
+
+```json
+{
+  "$schema": "https://buildy.tw/schema/registry-item.json",
+  "name": "button",
+  "type": "registry:ui",
+  "description": "A customizable button component",
+  "dependencies": ["clsx", "tailwind-merge"],
+  "files": [
+    {
+      "path": "button.tsx",
+      "content": "import React from 'react'...",
+      "target": "ui"
+    }
+  ]
+}
+```
+
+## Registry Building
 
 ### Input: registry.json
 ```json
@@ -143,20 +160,8 @@ This will:
       "dependencies": ["clsx", "tailwind-merge"],
       "files": [
         {
-          "path": "./src/components/ui/button.tsx",
+          "path": "./src/ui/button.tsx",
           "target": "ui"
-        }
-      ]
-    },
-    {
-      "name": "utils",
-      "type": "registry:lib",
-      "description": "Utility functions for styling",
-      "dependencies": ["clsx", "tailwind-merge"],
-      "files": [
-        {
-          "path": "./src/lib/utils.ts",
-          "target": "lib"
         }
       ]
     }
@@ -178,98 +183,29 @@ public/r/
     └── card.json       # Generic components
 ```
 
-### Supported Component Types
-- `registry:ui` - Basic UI components (buttons, inputs, etc.)
-- `registry:lib` - Utility libraries and functions
-- `registry:block` - Complex component blocks
-- `registry:component` - Generic components
-
-## Component Format
-
-External components should follow this JSON format:
-
-```json
-{
-  "$schema": "https://buildy.tw/schema/registry-item.json",
-  "name": "button",
-  "type": "registry:ui",
-  "description": "A customizable button component",
-  "dependencies": ["clsx", "tailwind-merge"],
-  "devDependencies": [],
-  "files": [
-    {
-      "path": "button.tsx",
-      "content": "import React from 'react'...",
-      "target": "ui"
-    }
-  ]
-}
-```
-
-## Configuration
-
-The `buildy.config.json` file in your project root:
-
-```json
-{
-  "$schema": "https://buildy.tw/schema.json",
-  "framework": "vite-react",
-  "typescript": true,
-  "aliases": {
-    "@": "./src",
-    "@/components": "./src/components",
-    "@/ui": "./src/components/ui",
-    "@/blocks": "./src/components/blocks",
-    "@/lib": "./src/lib"
-  },
-  "registry": "@ui8kit",
-  "componentsDir": "./src/components",
-  "libDir": "./src/lib"
-}
-```
-
-The `$schema` property enables:
-- ✅ **IntelliSense** in VS Code and other editors
-- ✅ **Validation** of configuration values
-- ✅ **Auto-completion** for properties
-- ✅ **Hover documentation** for each field
-
-## Examples
-
-### Using Components
-```bash
-# Initialize in a new Vite project
-cd my-vite-app
-buildy init
-
-# Add some components
-buildy add button card input
-
-# Add from external source
-buildy add "https://ui.company.com/registry/ui/hero-section.json"
-```
-
-### Building Component Library
-```bash
-# In your component library project
-cd my-ui-library
-
-# Create registry.json with your components
-# Build the registry
-buildy build
-
-# Deploy public/r/ to your CDN
-# Now users can install with:
-# buildy add "https://your-cdn.com/r/ui/button.json"
-```
-
 ## Workflow for Library Authors
 
 1. **Develop components** in your preferred structure
 2. **Create registry.json** describing your components
-3. **Run `buildy build`** to generate distribution files
+3. **Run `npx buildy-ui@latest build`** to generate distribution files
 4. **Deploy** the `public/r/` directory to your website/CDN
-5. **Users install** with `buildy add "https://your-site.com/r/ui/component.json"`
+5. **Users install** with `npx buildy-ui@latest add "https://your-site.com/r/ui/component.json"`
+
+## Alternative Installation Methods
+
+If you prefer to install the CLI:
+
+### Global installation
+```bash
+npm install -g buildy-ui
+# Then use: buildy init, buildy add button, etc.
+```
+
+### Local installation
+```bash
+npm install -D buildy-ui
+# Then use: npx buildy init, npx buildy add button, etc.
+```
 
 ## License
 

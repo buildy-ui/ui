@@ -6,15 +6,15 @@ async function testScan() {
   const baseDir = process.cwd()
   console.log("Base directory:", baseDir)
   
-  // Тестируем разные варианты паттернов
+  // Test different pattern variants
   const patterns = [
-    // Вариант 1: с baseDir
+    // Variant 1: with baseDir
     "packages/ui/src/components/ui/**/*.{ts,tsx}",
-    // Вариант 2: абсолютный путь
+    // Variant 2: absolute path
     path.join(baseDir, "packages/ui/src/components/ui/**/*.{ts,tsx}"),
-    // Вариант 3: простой паттерн
+    // Variant 3: simple pattern
     "packages/ui/src/components/ui/*.tsx",
-    // Вариант 4: с нормализацией пути
+    // Variant 4: with path normalization
     path.posix.join("packages/ui/src/components/ui/**/*.{ts,tsx}")
   ]
   
@@ -23,7 +23,7 @@ async function testScan() {
     console.log(`\nTesting pattern ${i + 1}: ${pattern}`)
     
     try {
-      // Пробуем разные опции glob
+      // Try different glob options
       const files1 = await glob(pattern)
       console.log(`  Default options: ${files1.length} files`)
       
@@ -36,7 +36,7 @@ async function testScan() {
       })
       console.log(`  With cwd: ${files3.length} files`)
       
-      // Показываем найденные файлы
+      // Show found files
       const allFiles = [...new Set([...files1, ...files2, ...files3])]
       if (allFiles.length > 0) {
         console.log("  Found files:")
@@ -48,7 +48,7 @@ async function testScan() {
     }
   }
   
-  // Прямая проверка существования файлов
+  // Direct file existence check
   console.log("\n🔍 Direct file check:")
   const directPaths = [
     "packages/ui/src/components/ui/button.tsx",
