@@ -1,0 +1,16 @@
+{
+  "$schema": "https://buildy.tw/schema/registry-item.json",
+  "name": "header",
+  "type": "registry:component",
+  "dependencies": [
+    "react"
+  ],
+  "devDependencies": [],
+  "files": [
+    {
+      "path": "packages/ui/src/components/header.tsx",
+      "content": "import * as React from \"react\"\nimport { cn } from \"@/lib/utils\";\n\nfunction Header({ className, ...props }: React.ComponentProps<\"header\">) {\n  return (\n    <header\n      data-slot=\"header\"\n      className={cn(className)}\n      {...props}\n    />\n  )\n}\n\nHeader.displayName = \"Header\"\n\nexport { Header }",
+      "target": "components"
+    }
+  ]
+}

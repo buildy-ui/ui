@@ -1,10 +1,9 @@
 import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
 
-const buttonVariants = cva(
+const linkVariants = cva(
   "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
   {
     variants: {
@@ -35,25 +34,63 @@ const buttonVariants = cva(
   }
 )
 
-function Button({
+function Link({
   className,
-  variant,
+  variant = "link",
   size,
-  asChild = false,
+  href,
+  type,
   ...props
-}: React.ComponentProps<"button"> &
-  VariantProps<typeof buttonVariants> & {
-    asChild?: boolean
-  }) {
-  const Comp = asChild ? Slot : "button"
-
+}: React.ComponentProps<"a"> &
+  VariantProps<typeof linkVariants>) {
   return (
-    <Comp
-      data-slot="button"
-      className={cn(buttonVariants({ variant, size, className }))}
+    <a
+      data-slot="link-button"
+      className={cn(linkVariants({ variant, size, className }))}
+      href={href}
+      type="button"
       {...props}
     />
   )
 }
 
-export { Button, buttonVariants }
+Link.displayName = "Link"
+
+function LinkButton({
+  className,
+  variant,
+  size,
+  href,
+  type,
+  ...props
+}: React.ComponentProps<"a"> &
+  VariantProps<typeof linkVariants>) {
+  return (
+    <a
+      data-slot="button"
+      className={cn(linkVariants({ variant, size, className }))}
+      href={href}
+      type="button"
+      {...props}
+    />
+  )
+}
+
+LinkButton.displayName = "LinkButton"
+
+function A({
+  href,
+  ...props
+}: React.ComponentProps<"a">) {
+  return (
+    <a
+      data-slot="a"
+      href={href}
+      {...props}
+    />
+  )
+}
+
+A.displayName = "A"
+
+export { Link, LinkButton, A, linkVariants }

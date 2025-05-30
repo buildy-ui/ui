@@ -3,7 +3,7 @@ import { Component, componentSchema } from "./schema.js"
 
 // CDN URLs in order of preference (fastest to slowest)
 const CDN_URLS = [
-  "https://cdn.jsdelivr.net/npm/ui8kit/r",
+  "https://cdn.jsdelivr.net/npm/ui8kit@latest/r",
   "https://unpkg.com/ui8kit@latest/r", 
   "https://raw.githubusercontent.com/buildy-ui/ui/main/packages/ui/registry/r"
 ]

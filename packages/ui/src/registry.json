@@ -2,7 +2,7 @@
   "$schema": "https://buildy.tw/schema/registry.json",
   "items": [
     {
-      "name": "button",
+      "name": "textarea",
       "type": "registry:ui",
       "dependencies": [
         "react"
@@ -10,7 +10,167 @@
       "devDependencies": [],
       "files": [
         {
+          "path": "packages/ui/src/ui/textarea.tsx",
+          "target": "ui"
+        }
+      ]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "dependencies": [
+        "react"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/ui/table.tsx",
+          "target": "ui"
+        }
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "dependencies": [],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/ui/skeleton.tsx",
+          "target": "ui"
+        }
+      ]
+    },
+    {
+      "name": "link",
+      "type": "registry:ui",
+      "dependencies": [
+        "react",
+        "class-variance-authority"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/ui/link.tsx",
+          "target": "ui"
+        }
+      ]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "dependencies": [
+        "react"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/ui/label.tsx",
+          "target": "ui"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "dependencies": [
+        "react"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/ui/input.tsx",
+          "target": "ui"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "dependencies": [
+        "react"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/ui/card.tsx",
+          "target": "ui"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "dependencies": [
+        "react",
+        "@radix-ui/react-slot",
+        "class-variance-authority"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
           "path": "packages/ui/src/ui/button.tsx",
+          "target": "ui"
+        }
+      ]
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "dependencies": [
+        "react",
+        "@radix-ui/react-slot",
+        "lucide-react"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/ui/breadcrumb.tsx",
+          "target": "ui"
+        }
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "dependencies": [
+        "react",
+        "@radix-ui/react-slot",
+        "class-variance-authority"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/ui/badge.tsx",
+          "target": "ui"
+        }
+      ]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "dependencies": [
+        "react"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/ui/avatar.tsx",
+          "target": "ui"
+        }
+      ]
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "dependencies": [
+        "react",
+        "class-variance-authority"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/ui/alert.tsx",
           "target": "ui"
         }
       ]
@@ -41,6 +201,150 @@
         {
           "path": "packages/ui/src/blocks/hero-section.tsx",
           "target": "blocks"
+        }
+      ]
+    },
+    {
+      "name": "sheet",
+      "type": "registry:component",
+      "dependencies": [
+        "react",
+        "lucide-react"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/components/sheet.tsx",
+          "target": "components"
+        }
+      ],
+      "description": "CSS-only Sheet component for SSR/SSG compatibility\n\nUsage example:\n```tsx\n<Sheet>\n  <SheetTrigger href=\"#my-sheet\">Open Sheet</SheetTrigger>\n  <SheetContent id=\"my-sheet\">\n    <SheetHeader>\n      <SheetTitle>Sheet Title</SheetTitle>\n      <SheetDescription>Description text</SheetDescription>\n    </SheetHeader>\n    <div className=\"p-6\">Content here</div>\n    <SheetFooter>\n      <SheetClose>Close</SheetClose>\n    </SheetFooter>\n  </SheetContent>\n</Sheet>\n```"
+    },
+    {
+      "name": "section",
+      "type": "registry:component",
+      "dependencies": [
+        "react"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/components/section.tsx",
+          "target": "components"
+        }
+      ]
+    },
+    {
+      "name": "nav",
+      "type": "registry:component",
+      "dependencies": [
+        "react",
+        "lucide-react"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/components/nav.tsx",
+          "target": "components"
+        }
+      ],
+      "description": "CSS-only Navigation component with responsive design\n\nNo external JavaScript dependencies or runtime requirements.\nWorks with server-side rendering (SSR) and static site generation (SSG).\n\nRequired Tailwind CSS:\n```css"
+    },
+    {
+      "name": "media",
+      "type": "registry:component",
+      "dependencies": [
+        "react"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/components/media.tsx",
+          "target": "components"
+        }
+      ]
+    },
+    {
+      "name": "markup",
+      "type": "registry:component",
+      "dependencies": [
+        "react"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/components/markup.tsx",
+          "target": "components"
+        }
+      ]
+    },
+    {
+      "name": "main",
+      "type": "registry:component",
+      "dependencies": [
+        "react"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/components/main.tsx",
+          "target": "components"
+        }
+      ]
+    },
+    {
+      "name": "header",
+      "type": "registry:component",
+      "dependencies": [
+        "react"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/components/header.tsx",
+          "target": "components"
+        }
+      ]
+    },
+    {
+      "name": "footer",
+      "type": "registry:component",
+      "dependencies": [
+        "react"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/components/footer.tsx",
+          "target": "components"
+        }
+      ]
+    },
+    {
+      "name": "aside",
+      "type": "registry:component",
+      "dependencies": [
+        "react"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/components/aside.tsx",
+          "target": "components"
+        }
+      ]
+    },
+    {
+      "name": "article",
+      "type": "registry:component",
+      "dependencies": [
+        "react"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/components/article.tsx",
+          "target": "components"
         }
       ]
     }

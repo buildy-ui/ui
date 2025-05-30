@@ -2,7 +2,51 @@
   "$schema": "https://buildy.tw/schema/registry.json",
   "components": [
     {
+      "name": "textarea",
+      "type": "registry:ui"
+    },
+    {
+      "name": "table",
+      "type": "registry:ui"
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui"
+    },
+    {
+      "name": "link",
+      "type": "registry:ui"
+    },
+    {
+      "name": "label",
+      "type": "registry:ui"
+    },
+    {
+      "name": "input",
+      "type": "registry:ui"
+    },
+    {
+      "name": "card",
+      "type": "registry:ui"
+    },
+    {
       "name": "button",
+      "type": "registry:ui"
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui"
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui"
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui"
+    },
+    {
+      "name": "alert",
       "type": "registry:ui"
     },
     {
@@ -12,6 +56,48 @@
     {
       "name": "hero-section",
       "type": "registry:block"
+    },
+    {
+      "name": "sheet",
+      "type": "registry:component",
+      "description": "CSS-only Sheet component for SSR/SSG compatibility\n\nUsage example:\n```tsx\n<Sheet>\n  <SheetTrigger href=\"#my-sheet\">Open Sheet</SheetTrigger>\n  <SheetContent id=\"my-sheet\">\n    <SheetHeader>\n      <SheetTitle>Sheet Title</SheetTitle>\n      <SheetDescription>Description text</SheetDescription>\n    </SheetHeader>\n    <div className=\"p-6\">Content here</div>\n    <SheetFooter>\n      <SheetClose>Close</SheetClose>\n    </SheetFooter>\n  </SheetContent>\n</Sheet>\n```"
+    },
+    {
+      "name": "section",
+      "type": "registry:component"
+    },
+    {
+      "name": "nav",
+      "type": "registry:component",
+      "description": "CSS-only Navigation component with responsive design\n\nNo external JavaScript dependencies or runtime requirements.\nWorks with server-side rendering (SSR) and static site generation (SSG).\n\nRequired Tailwind CSS:\n```css"
+    },
+    {
+      "name": "media",
+      "type": "registry:component"
+    },
+    {
+      "name": "markup",
+      "type": "registry:component"
+    },
+    {
+      "name": "main",
+      "type": "registry:component"
+    },
+    {
+      "name": "header",
+      "type": "registry:component"
+    },
+    {
+      "name": "footer",
+      "type": "registry:component"
+    },
+    {
+      "name": "aside",
+      "type": "registry:component"
+    },
+    {
+      "name": "article",
+      "type": "registry:component"
     }
   ],
   "categories": [
@@ -21,5 +107,5 @@
     "lib"
   ],
   "version": "1.0.0",
-  "lastUpdated": "2025-05-30T19:33:11.888Z"
+  "lastUpdated": "2025-05-30T23:19:04.044Z"
 }
