@@ -6,3 +6,5 @@ node_modules/
 dist/
 build/
 bun.lock
+.env
+package-lock.json
