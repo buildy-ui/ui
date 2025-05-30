@@ -1,7 +1,13 @@
 import fetch from "node-fetch"
 import { Component, componentSchema } from "./schema.js"
 
-const BUILDY_REGISTRY_URL = "https://buildy.tw/r"
+// CDN URLs in order of preference (fastest to slowest)
+const CDN_URLS = [
+  "https://cdn.jsdelivr.net/npm/ui8kit/r",
+  "https://unpkg.com/ui8kit@latest/r", 
+  "https://raw.githubusercontent.com/buildy-ui/ui/main/packages/ui/registry/r"
+]
+
 const MAX_RETRIES = 3
 const RETRY_DELAY = 2000 // 2 seconds
 
@@ -70,6 +76,27 @@ async function fetchWithRetry(url: string, retries = MAX_RETRIES): Promise<any> 
   }
 }
 
+async function fetchWithFallbackAndRetry(path: string): Promise<any> {
+  let lastError: Error | null = null
+  
+  for (const baseUrl of CDN_URLS) {
+    try {
+      const url = `${baseUrl}/${path}`
+      console.log(`🔍 Trying CDN: ${baseUrl}`)
+      
+      const data = await fetchWithRetry(url, 2) // Fewer retries per CDN
+      console.log(`✅ Success from: ${baseUrl}`)
+      return data
+      
+    } catch (error) {
+      console.log(`❌ Failed from ${baseUrl}: ${(error as Error).message}`)
+      lastError = error as Error
+    }
+  }
+  
+  throw new Error(`All CDN sources failed. Last error: ${lastError?.message}`)
+}
+
 export async function getComponentWithRetry(name: string): Promise<Component | null> {
   try {
     if (isUrl(name)) {
@@ -87,10 +114,9 @@ export async function getComponentWithRetry(name: string): Promise<Component | n
     
     for (const category of categories) {
       try {
-        const url = `${BUILDY_REGISTRY_URL}/${category}/${name}.json`
-        console.log(`🔍 Searching in ${category}: ${url}`)
+        console.log(`🔍 Searching in ${category} for ${name}`)
         
-        const data = await fetchWithRetry(url, 2) // Fewer retries for search
+        const data = await fetchWithFallbackAndRetry(`${category}/${name}.json`)
         const component = componentSchema.parse(data)
         console.log(`✅ Found ${name} in ${category}`)
         return component
@@ -124,14 +150,14 @@ async function fetchFromUrlWithRetry(url: string): Promise<Component | null> {
 
 export async function getAllComponentsWithRetry(): Promise<Component[]> {
   try {
-    console.log(`🌐 Fetching registry index from: ${BUILDY_REGISTRY_URL}/index.json`)
+    console.log(`🌐 Fetching registry index with fallback and retry`)
     
     // Check internet connection first
     if (!(await checkInternetConnection())) {
       throw new Error("No internet connection available")
     }
     
-    const indexData = await fetchWithRetry(`${BUILDY_REGISTRY_URL}/index.json`)
+    const indexData = await fetchWithFallbackAndRetry('index.json')
     const components: Component[] = []
     
     // Get all components from the index

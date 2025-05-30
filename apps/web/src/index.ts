@@ -7,7 +7,7 @@ const app = new Elysia()
     prefix: ""
   }))
   .get("/", () => Bun.file("public/index.html"))
-  .get("/r/*", ({ params }) => {
+  .get("/r/*", ({ params }: { params: { "*"?: string } }) => {
     // Serve registry files with CORS
     const path = `public/r/${params['*']}`
     return Bun.file(path)

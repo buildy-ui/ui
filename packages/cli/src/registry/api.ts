@@ -1,7 +1,12 @@
 import fetch from "node-fetch"
 import { Component, componentSchema } from "./schema.js"
 
-const BUILDY_REGISTRY_URL = "https://buildy.tw/r"
+// CDN URLs in order of preference (fastest to slowest)
+const CDN_URLS = [
+  "https://cdn.jsdelivr.net/npm/ui8kit/r",
+  "https://unpkg.com/ui8kit@latest/r", 
+  "https://raw.githubusercontent.com/buildy-ui/ui/main/packages/ui/registry/r"
+]
 
 export function isUrl(path: string): boolean {
   try {
@@ -10,6 +15,30 @@ export function isUrl(path: string): boolean {
   } catch {
     return false
   }
+}
+
+async function fetchWithFallback(path: string): Promise<any> {
+  let lastError: Error | null = null
+  
+  for (const baseUrl of CDN_URLS) {
+    try {
+      const url = `${baseUrl}/${path}`
+      console.log(`🔍 Trying: ${url}`)
+      
+      const response = await fetch(url)
+      if (response.ok) {
+        console.log(`✅ Success from: ${baseUrl}`)
+        return await response.json()
+      } else {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`)
+      }
+    } catch (error) {
+      console.log(`❌ Failed from ${baseUrl}: ${(error as Error).message}`)
+      lastError = error as Error
+    }
+  }
+  
+  throw new Error(`All CDN sources failed. Last error: ${lastError?.message}`)
 }
 
 export async function getComponent(name: string): Promise<Component | null> {
@@ -24,16 +53,13 @@ export async function getComponent(name: string): Promise<Component | null> {
     
     for (const category of categories) {
       try {
-        const url = `${BUILDY_REGISTRY_URL}/${category}/${name}.json`
-        console.log(`🔍 Searching in ${category}: ${url}`)
+        console.log(`🔍 Searching in ${category} for ${name}`)
         
-        const response = await fetch(url)
-        if (response.ok) {
-          const data = await response.json()
-          const component = componentSchema.parse(data)
-          console.log(`✅ Found ${name} in ${category}`)
-          return component
-        }
+        const data = await fetchWithFallback(`${category}/${name}.json`)
+        const component = componentSchema.parse(data)
+        console.log(`✅ Found ${name} in ${category}`)
+        return component
+        
       } catch (error) {
         // Continue searching in the next category
         console.log(`❌ Not found in ${category}`)
@@ -64,14 +90,9 @@ async function fetchFromUrl(url: string): Promise<Component | null> {
 
 export async function getAllComponents(): Promise<Component[]> {
   try {
-    console.log(`🌐 Fetching registry index from: ${BUILDY_REGISTRY_URL}/index.json`)
+    console.log(`🌐 Fetching registry index with fallback`)
     
-    const response = await fetch(`${BUILDY_REGISTRY_URL}/index.json`)
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}: ${response.statusText}`)
-    }
-    
-    const indexData = await response.json() as any
+    const indexData = await fetchWithFallback('index.json')
     const components: Component[] = []
     
     // Get all components from the index

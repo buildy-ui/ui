@@ -25,7 +25,7 @@
     "registry:test": "tsx scripts/quick-test.ts",
     "registry:generate": "tsx scripts/generate-registry.ts",
     "registry:scan": "tsx scripts/test-scan.ts",
-    "registry:build": "npm run registry:generate && cd packages/cli && npm run build && cd ../.. && bun x buildy-ui@latest build --output ./apps/web/public/r",
+    "registry:build": "npm run registry:generate && cd packages/cli && npm run build && cd ../.. && bun x buildy-ui@latest build --output ./packages/registry/r",
     "registry:watch": "tsx watch scripts/generate-registry.ts"
   },
   "devDependencies": {

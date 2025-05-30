@@ -33,7 +33,7 @@ program
   .command("build")
   .description("Build components registry")
   .argument("[registry]", "Path to registry.json file", "./packages/ui/src/registry.json")
-  .option("-o, --output <path>", "Output directory", "./public/r")
+  .option("-o, --output <path>", "Output directory", "./packages/registry/r")
   .option("-c, --cwd <cwd>", "Working directory", process.cwd())
   .action(buildCommand)
 

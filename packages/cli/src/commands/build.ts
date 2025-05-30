@@ -17,7 +17,7 @@ export async function buildCommand(
   const buildOptions: BuildOptions = {
     cwd: path.resolve(options.cwd || process.cwd()),
     registryFile: path.resolve(registryPath),
-    outputDir: path.resolve(options.output || "./public/r"),
+    outputDir: path.resolve(options.output || "./packages/registry/r"),
   }
 
   console.log(chalk.blue("🔨 Building registry..."))

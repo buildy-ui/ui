@@ -77,7 +77,7 @@ npx buildy-ui@latest build
 npx buildy-ui@latest build ./my-registry.json --output ./dist/registry
 
 # Build from different working directory
-npx buildy-ui@latest build --cwd ./packages/ui --output ./apps/web/public/r
+npx buildy-ui@latest build --cwd ./packages/ui --output ./packages/registry/r
 ```
 
 ## Directory Structure
