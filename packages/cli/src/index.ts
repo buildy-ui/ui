@@ -18,29 +18,34 @@ program
   .command("init")
   .description("Initialize UI8Kit structure in your project")
   .option("-y, --yes", "Skip prompts and use defaults")
+  .option("-r, --registry <type>", "Registry type: utility, semantic, theme", "utility")
   .action(initCommand)
 
 program
   .command("add")
-  .description("Add utility components to your project")
+  .description("Add components to your project from different registries")
   .argument("[components...]", "Components to add")
   .option("-a, --all", "Install all available components")
   .option("-f, --force", "Overwrite existing files")
+  .option("-r, --registry <type>", "Registry type: utility, semantic, theme", "utility")
   .option("--dry-run", "Show what would be installed without installing")
   .option("--retry", "Enable retry logic for unreliable connections")
   .action(addCommand)
 
 program
   .command("scan")
-  .description("Scan utility directory and generate registry.json")
-  .option("-o, --output <path>", "Output registry file", "./utility/registry.json")
-  .option("-s, --source <path>", "Source directory to scan", "./utility")
-  .option("-c, --cwd <cwd>", "Working directory", process.cwd())
-  .action(scanCommand)
+  .description("Scan and generate registry from existing components")
+  .option("-r, --registry <type|path>", "Registry type (utility|semantic|theme) or custom path", "utility")
+  .option("-o, --output <file>", "Output registry file")
+  .option("-s, --source <dir>", "Source directory to scan")
+  .option("--cwd <dir>", "Working directory")
+  .action(async (options) => {
+    await scanCommand(options)
+  })
 
 program
   .command("build")
-  .description("Build utility components registry")
+  .description("Build components registry")
   .argument("[registry]", "Path to registry.json file", "./utility/registry.json")
   .option("-o, --output <path>", "Output directory", "./packages/registry/r/utility")
   .option("-c, --cwd <cwd>", "Working directory", process.cwd())

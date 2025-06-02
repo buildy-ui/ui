@@ -1,28 +1,15 @@
 import fetch from "node-fetch"
-import { Component, componentSchema } from "./schema"
-
-// CDN URLs in order of preference (fastest to slowest) - now pointing to utility registry
-const CDN_URLS = [
-  "https://cdn.jsdelivr.net/npm/ui8kit@latest/r/utility",
-  "https://unpkg.com/ui8kit@latest/r/utility", 
-  "https://raw.githubusercontent.com/buildy-ui/ui/main/packages/ui/packages/registry/r/utility"
-]
-
-// Map component types to their corresponding folders in utility structure
-const TYPE_TO_FOLDER = {
-  "registry:ui": "ui",
-  "registry:block": "blocks", 
-  "registry:component": "components",
-  "registry:lib": "lib",
-  "registry:template": "templates"
-} as const
+import { Component, componentSchema } from "./schema.js"
+import { SCHEMA_CONFIG, TYPE_TO_FOLDER, getCdnUrls, type RegistryType } from "../utils/schema-config.js"
 
 const MAX_RETRIES = 3
 const RETRY_DELAY = 2000 // 2 seconds
 
-// Cache the working CDN for the session to avoid repeated testing
-let workingCDN: string | null = null
-let registryIndex: any = null
+// Cache for each registry type with retry logic
+const registryCache = new Map<RegistryType, {
+  workingCDN: string | null
+  registryIndex: any
+}>()
 
 export function isUrl(path: string): boolean {
   try {
@@ -31,6 +18,19 @@ export function isUrl(path: string): boolean {
   } catch {
     return false
   }
+}
+
+/**
+ * Get or initialize cache for specific registry
+ */
+function getRegistryCache(registryType: RegistryType) {
+  if (!registryCache.has(registryType)) {
+    registryCache.set(registryType, {
+      workingCDN: null,
+      registryIndex: null
+    })
+  }
+  return registryCache.get(registryType)!
 }
 
 async function checkInternetConnection(): Promise<boolean> {
@@ -91,11 +91,12 @@ async function fetchWithRetry(url: string, retries = MAX_RETRIES): Promise<any> 
 
 /**
  * Find and cache the first working CDN from the list with retry logic
- * This reduces requests by testing CDNs only once per session
  */
-async function findWorkingCDNWithRetry(): Promise<string> {
-  if (workingCDN) {
-    return workingCDN // Return cached result
+async function findWorkingCDNWithRetry(registryType: RegistryType): Promise<string> {
+  const cache = getRegistryCache(registryType)
+  
+  if (cache.workingCDN) {
+    return cache.workingCDN
   }
   
   // Check internet connection first
@@ -103,60 +104,61 @@ async function findWorkingCDNWithRetry(): Promise<string> {
     throw new Error("No internet connection available")
   }
   
-  for (const baseUrl of CDN_URLS) {
+  const cdnUrls = getCdnUrls(registryType)
+  
+  for (const baseUrl of cdnUrls) {
     try {
-      console.log(`🔍 Testing utility CDN with retry: ${baseUrl}`)
+      console.log(`🔍 Testing ${registryType} CDN with retry: ${baseUrl}`)
       await fetchWithRetry(`${baseUrl}/index.json`, 2) // Fewer retries for testing
-      workingCDN = baseUrl
-      console.log(`✅ Using utility CDN: ${baseUrl}`)
+      cache.workingCDN = baseUrl
+      console.log(`✅ Using ${registryType} CDN: ${baseUrl}`)
       return baseUrl
     } catch (error) {
-      console.log(`❌ Utility CDN failed: ${baseUrl}`)
+      console.log(`❌ ${registryType} CDN failed: ${baseUrl}`)
     }
   }
   
-  throw new Error('No working utility CDN found')
+  throw new Error(`No working ${registryType} CDN found`)
 }
 
 /**
  * Fetch from the working CDN only with retry logic
- * This ensures we use only 1 CDN per request instead of testing all 3
  */
-async function fetchFromWorkingCDNWithRetry(path: string): Promise<any> {
-  const baseUrl = await findWorkingCDNWithRetry()
+async function fetchFromWorkingCDNWithRetry(path: string, registryType: RegistryType): Promise<any> {
+  const baseUrl = await findWorkingCDNWithRetry(registryType)
   const url = `${baseUrl}/${path}`
   
-  console.log(`🎯 Fetching from utility with retry: ${url}`)
+  console.log(`🎯 Fetching from ${registryType} with retry: ${url}`)
   return await fetchWithRetry(url)
 }
 
 /**
  * Get registry index and cache it for the session with retry logic
- * This avoids repeated index.json requests
  */
-async function getRegistryIndexWithRetry(): Promise<any> {
-  if (registryIndex) {
-    return registryIndex // Return cached index
+async function getRegistryIndexWithRetry(registryType: RegistryType): Promise<any> {
+  const cache = getRegistryCache(registryType)
+  
+  if (cache.registryIndex) {
+    return cache.registryIndex
   }
   
-  console.log(`🌐 Fetching utility registry index with retry`)
-  registryIndex = await fetchFromWorkingCDNWithRetry('index.json')
-  return registryIndex
+  console.log(`🌐 Fetching ${registryType} registry index with retry`)
+  cache.registryIndex = await fetchFromWorkingCDNWithRetry('index.json', registryType)
+  return cache.registryIndex
 }
 
 /**
  * Find component by type from index, then fetch directly from correct folder with retry
- * This eliminates blind searching through all categories (ui, blocks, components, lib, templates)
  */
-async function getComponentByTypeWithRetry(name: string): Promise<Component | null> {
+async function getComponentByTypeWithRetry(name: string, registryType: RegistryType): Promise<Component | null> {
   try {
     // 1. Get index to find component metadata
-    const index = await getRegistryIndexWithRetry()
+    const index = await getRegistryIndexWithRetry(registryType)
     
     // 2. Find component in index
     const componentInfo = index.components?.find((c: any) => c.name === name)
     if (!componentInfo) {
-      console.log(`❌ Component ${name} not found in utility registry`)
+      console.log(`❌ Component ${name} not found in ${registryType} registry`)
       return null
     }
     
@@ -167,9 +169,9 @@ async function getComponentByTypeWithRetry(name: string): Promise<Component | nu
       return null
     }
     
-    // 4. Make targeted request to exact location with retry in utility structure
-    console.log(`🎯 Loading ${name} from /utility/${folder}/ (type: ${componentInfo.type})`)
-    const data = await fetchFromWorkingCDNWithRetry(`${folder}/${name}.json`)
+    // 4. Make targeted request to exact location with retry
+    console.log(`🎯 Loading ${name} from /${registryType}/${folder}/ (type: ${componentInfo.type})`)
+    const data = await fetchFromWorkingCDNWithRetry(`${folder}/${name}.json`, registryType)
     return componentSchema.parse(data)
     
   } catch (error) {
@@ -178,7 +180,7 @@ async function getComponentByTypeWithRetry(name: string): Promise<Component | nu
   }
 }
 
-export async function getComponentWithRetry(name: string): Promise<Component | null> {
+export async function getComponentWithRetry(name: string, registryType: RegistryType = SCHEMA_CONFIG.defaultRegistryType): Promise<Component | null> {
   try {
     if (isUrl(name)) {
       // If this is a URL - load directly
@@ -191,29 +193,24 @@ export async function getComponentWithRetry(name: string): Promise<Component | n
     }
     
     // Use optimized type-based lookup instead of category searching
-    return await getComponentByTypeWithRetry(name)
+    return await getComponentByTypeWithRetry(name, registryType)
     
   } catch (error) {
-    console.error(`❌ Failed to fetch ${name}:`, (error as Error).message)
+    console.error(`❌ Failed to fetch ${name} from ${registryType}:`, (error as Error).message)
     return null
   }
 }
 
 async function fetchFromUrlWithRetry(url: string): Promise<Component | null> {
-  console.log(`🌐 Fetching component from: ${url}`)
-  
-  // Check internet connection first
-  if (!(await checkInternetConnection())) {
-    throw new Error("No internet connection available")
-  }
+  console.log(`🌐 Fetching component from URL with retry: ${url}`)
   
   const data = await fetchWithRetry(url)
   return componentSchema.parse(data)
 }
 
-export async function getAllComponentsWithRetry(): Promise<Component[]> {
+export async function getAllComponentsWithRetry(registryType: RegistryType = SCHEMA_CONFIG.defaultRegistryType): Promise<Component[]> {
   try {
-    console.log(`🌐 Fetching all utility components using optimized approach with retry`)
+    console.log(`🌐 Fetching all ${registryType} components with retry logic`)
     
     // Check internet connection first
     if (!(await checkInternetConnection())) {
@@ -221,13 +218,13 @@ export async function getAllComponentsWithRetry(): Promise<Component[]> {
     }
     
     // Get index once, then fetch each component by type
-    const indexData = await getRegistryIndexWithRetry()
+    const indexData = await getRegistryIndexWithRetry(registryType)
     const components: Component[] = []
     
     // Get all components from the index
     if (indexData.components && Array.isArray(indexData.components)) {
       for (const componentInfo of indexData.components) {
-        const component = await getComponentWithRetry(componentInfo.name)
+        const component = await getComponentWithRetry(componentInfo.name, registryType)
         if (component) {
           components.push(component)
         }
@@ -237,17 +234,20 @@ export async function getAllComponentsWithRetry(): Promise<Component[]> {
     return components
     
   } catch (error) {
-    console.error(`❌ Failed to fetch all utility components:`, (error as Error).message)
+    console.error(`❌ Failed to fetch all ${registryType} components:`, (error as Error).message)
     return []
   }
 }
 
 /**
- * Reset cached CDN and index for testing or error recovery
- * This allows fallback to other CDNs if the current one fails
+ * Reset cached CDN and index for testing or error recovery with retry logic
  */
-export function resetCacheWithRetry(): void {
-  workingCDN = null
-  registryIndex = null
-  console.log(`🔄 Cache reset - will rediscover working utility CDN with retry`)
+export function resetCacheWithRetry(registryType?: RegistryType): void {
+  if (registryType) {
+    registryCache.delete(registryType)
+    console.log(`🔄 Retry cache reset for ${registryType} - will rediscover working CDN`)
+  } else {
+    registryCache.clear()
+    console.log(`🔄 All retry caches reset - will rediscover working CDNs`)
+  }
 } 

@@ -4,8 +4,7 @@
   "type": "registry:ui",
   "description": "Avatar context for image loading status",
   "dependencies": [
-    "react",
-    "@/lib/utils"
+    "react"
   ],
   "devDependencies": [],
   "files": [

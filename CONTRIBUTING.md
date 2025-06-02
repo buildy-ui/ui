@@ -14,6 +14,6 @@ If you have a request for a new component, please open a discussion on GitHub. W
 
 ## CLI
 
-The `buildy` package is a CLI for adding components to your project.
+The `buildy-ui` [package](https://www.npmjs.com/package/buildy-ui) is a CLI for adding components to your project.
 
 Any changes to the CLI should be made in the `packages/cli` directory. If you can, it would be great if you could add tests for your changes.

@@ -4,8 +4,7 @@
   "type": "registry:component",
   "description": "Helper function for determining styles that the parser will be able to process",
   "dependencies": [
-    "react",
-    "@/lib/utils"
+    "react"
   ],
   "devDependencies": [],
   "files": [

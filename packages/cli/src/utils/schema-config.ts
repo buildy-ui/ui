@@ -24,6 +24,16 @@ export const SCHEMA_CONFIG = {
   // Registry configuration
   defaultRegistry: "@ui8kit",
   registryTypes: ["utility", "semantic", "theme"],
+
+  // Default registry type
+  defaultRegistryType: "utility",
+  
+  // CDN base URLs (registryName will be substituted)
+  cdnBaseUrls: [
+    "https://cdn.jsdelivr.net/npm/ui8kit@latest/r",
+    "https://unpkg.com/ui8kit@latest/r", 
+    "https://raw.githubusercontent.com/buildy-ui/ui/main/packages/ui/packages/registry/r"
+  ],
   
   // Component categories
   componentCategories: ["ui", "components", "blocks", "lib", "templates"],
@@ -78,6 +88,80 @@ export const SCHEMA_CONFIG = {
     items: "Full component definitions",
   }
 } as const
+
+export type RegistryType = "utility" | "semantic" | "theme"
+
+// Map component types to their corresponding folders
+export const TYPE_TO_FOLDER = {
+  "registry:ui": "ui",
+  "registry:block": "blocks", 
+  "registry:component": "components",
+  "registry:lib": "lib",
+  "registry:template": "templates"
+} as const
+
+// Helper functions to generate URLs dynamically
+export function getCdnUrls(registryType: RegistryType): string[] {
+  return SCHEMA_CONFIG.cdnBaseUrls.map(baseUrl => `${baseUrl}/${registryType}`)
+}
+
+export function getInstallPath(registryType: RegistryType, componentType: string): string {
+  const folder = TYPE_TO_FOLDER[componentType as keyof typeof TYPE_TO_FOLDER]
+  
+  if (componentType === "registry:lib") {
+    return "lib" // lib всегда в корне
+  }
+  
+  return `${registryType}/${folder}`
+}
+
+// Helper function to filter real npm dependencies (exclude local aliases and paths)
+export function filterRealDependencies(dependencies: string[]): string[] {
+  return dependencies.filter(dep => {
+    // Skip local aliases that start with @/ or ./
+    if (dep.startsWith('@/') || dep.startsWith('./') || dep.startsWith('../')) {
+      return false
+    }
+    
+    // Skip tilde aliases
+    if (dep.startsWith('~/')) {
+      return false
+    }
+    
+    // Skip internal workspace packages
+    if (dep.startsWith('@ui8kit/') || dep.startsWith('ui8kit/')) {
+      return false
+    }
+    
+    // Skip relative paths and Windows paths
+    if (dep.includes('\\') || (dep.includes('/') && !dep.startsWith('@') && !dep.includes('://'))) {
+      return false
+    }
+    
+    // Skip empty strings
+    if (dep.trim() === '') {
+      return false
+    }
+    
+    // Skip file: protocol
+    if (dep.startsWith('file:')) {
+      return false
+    }
+    
+    return true
+  })
+}
+
+// Helper function to check if a module is an external dependency
+export function isExternalDependency(moduleName: string): boolean {
+  return !moduleName.startsWith(".") && 
+         !moduleName.startsWith("@/") && 
+         !moduleName.startsWith("~/") &&
+         !moduleName.startsWith("@ui8kit/") &&
+         !moduleName.includes("\\") &&
+         moduleName !== "" &&
+         !moduleName.startsWith("file:")
+}
 
 // Helper function to get schema reference URL
 export function getSchemaRef(schemaName: string): string {

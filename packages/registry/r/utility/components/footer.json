@@ -4,8 +4,7 @@
   "type": "registry:component",
   "description": "",
   "dependencies": [
-    "react",
-    "@/lib/utils"
+    "react"
   ],
   "devDependencies": [],
   "files": [

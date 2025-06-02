@@ -3,9 +3,7 @@
   "name": "skeleton",
   "type": "registry:ui",
   "description": "",
-  "dependencies": [
-    "@/lib/utils"
-  ],
+  "dependencies": [],
   "devDependencies": [],
   "files": [
     {

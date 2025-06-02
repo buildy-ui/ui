@@ -6,8 +6,7 @@
   "dependencies": [
     "react",
     "@radix-ui/react-slot",
-    "lucide-react",
-    "@/lib/utils"
+    "lucide-react"
   ],
   "devDependencies": [],
   "files": [

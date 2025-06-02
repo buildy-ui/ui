@@ -5,8 +5,7 @@
   "description": "CSS-only Sheet component for SSR/SSG compatibility\n * \n * Usage example:\n * ```tsx\n * <Sheet>\n *   <SheetTrigger href=\"#my-sheet\">Open Sheet</SheetTrigger>\n *   <SheetContent id=\"my-sheet\">\n *     <SheetHeader>\n *       <SheetTitle>Sheet Title</SheetTitle>\n *       <SheetDescription>Description text</SheetDescription>\n *     </SheetHeader>\n *     <div className=\"p-6\">Content here</div>\n *     <SheetFooter>\n *       <SheetClose>Close</SheetClose>\n *     </SheetFooter>\n *   </SheetContent>\n * </Sheet>\n * ```",
   "dependencies": [
     "react",
-    "lucide-react",
-    "@/lib/utils"
+    "lucide-react"
   ],
   "devDependencies": [],
   "files": [

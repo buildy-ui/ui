@@ -1,6 +1,6 @@
 {
   "name": "buildy-ui",
-  "version": "1.1.4",
+  "version": "1.2.3",
   "description": "A CLI for adding UI components to your Vite React projects (UI8Kit utility components)",
   "type": "module",
   "bin": {

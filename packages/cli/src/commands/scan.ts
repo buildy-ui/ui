@@ -4,9 +4,11 @@ import chalk from "chalk"
 import ora from "ora"
 import { glob } from "glob"
 import * as ts from "typescript"
+import { SCHEMA_CONFIG, isExternalDependency } from "../utils/schema-config.js"
 
 interface ScanOptions {
   cwd: string
+  registry: string
   outputFile: string
   sourceDir: string
 }
@@ -22,19 +24,31 @@ interface RegistryItem {
   type: string
   description?: string
   dependencies: string[]
+  devDependencies: string[]
   files: ComponentFile[]
 }
 
+interface ASTAnalysis {
+  dependencies: string[]
+  devDependencies: string[]
+  description?: string
+  hasExports: boolean
+}
+
 export async function scanCommand(
-  options: { output?: string; cwd?: string; source?: string } = {}
+  options: { cwd?: string; registry?: string; output?: string; source?: string } = {}
 ) {
+  const registryName = options.registry || SCHEMA_CONFIG.defaultRegistryType
+  const registryPath = `./${registryName}`
+  
   const scanOptions: ScanOptions = {
     cwd: path.resolve(options.cwd || process.cwd()),
-    outputFile: path.resolve(options.output || "./utility/registry.json"),
-    sourceDir: path.resolve(options.source || "./utility"),
+    registry: path.resolve(registryPath),
+    outputFile: path.resolve(options.output || registryPath + "/registry.json"),
+    sourceDir: path.resolve(options.source || registryPath),
   }
 
-  console.log(chalk.blue("🔍 Scanning utility components..."))
+  console.log(chalk.blue(`🔍 Scanning ${registryName} components...`))
   
   try {
     const spinner = ora("Scanning directories...").start()
@@ -57,20 +71,27 @@ export async function scanCommand(
       ...libComponents
     ]
     
-    spinner.text = `Found ${allComponents.length} components, analyzing...`
+    spinner.text = `Found ${allComponents.length} components, analyzing dependencies...`
     
-    // Analyze each component for dependencies
+    // Analyze each component for dependencies and devDependencies
     for (const component of allComponents) {
-      component.dependencies = await analyzeDependencies(component.files, scanOptions.cwd)
+      const analysis = await analyzeComponentDependencies(component.files, scanOptions.cwd)
+      component.dependencies = analysis.dependencies
+      component.devDependencies = analysis.devDependencies
+      
+      // Update description if found during analysis
+      if (analysis.description && !component.description) {
+        component.description = analysis.description
+      }
     }
     
-    // Create registry
+    // Create registry with dynamic registry name
     const registry = {
       $schema: "https://buildy.tw/schema/registry.json",
       items: allComponents,
       version: "1.0.0",
       lastUpdated: new Date().toISOString(),
-      registry: "utility"
+      registry: registryName
     }
     
     // Ensure output directory exists
@@ -81,7 +102,7 @@ export async function scanCommand(
     
     spinner.succeed(`Scanned ${allComponents.length} components`)
     
-    console.log(chalk.green("✅ Registry generated successfully!"))
+    console.log(chalk.green(`✅ ${registryName} registry generated successfully!`))
     console.log(`Output: ${scanOptions.outputFile}`)
     
     // Show summary
@@ -94,6 +115,18 @@ export async function scanCommand(
     Object.entries(summary).forEach(([type, count]) => {
       console.log(`   ${type}: ${count}`)
     })
+    
+    // Show dependency summary
+    const allDeps = new Set<string>()
+    const allDevDeps = new Set<string>()
+    allComponents.forEach(comp => {
+      comp.dependencies.forEach(dep => allDeps.add(dep))
+      comp.devDependencies.forEach(dep => allDevDeps.add(dep))
+    })
+    
+    console.log(chalk.blue("\n📦 Dependencies Summary:"))
+    console.log(`   Dependencies: ${allDeps.size} unique (${Array.from(allDeps).join(", ") || "none"})`)
+    console.log(`   DevDependencies: ${allDevDeps.size} unique (${Array.from(allDevDeps).join(", ") || "none"})`)
     
   } catch (error) {
     console.error(chalk.red("❌ Scan failed:"), (error as Error).message)
@@ -135,6 +168,7 @@ async function scanDirectory(dirPath: string, type: string): Promise<RegistryIte
         type,
         description,
         dependencies: [], // Will be filled later
+        devDependencies: [], // Will be filled later
         files: [{
           path: relativePath,
           target: getTargetFromType(type)
@@ -170,8 +204,14 @@ function hasValidExports(content: string): boolean {
          /export\s*\{/.test(content)
 }
 
-async function analyzeDependencies(files: ComponentFile[], cwd: string): Promise<string[]> {
-  const dependencies = new Set<string>()
+async function analyzeComponentDependencies(files: ComponentFile[], cwd: string): Promise<{
+  dependencies: string[]
+  devDependencies: string[]
+  description?: string
+}> {
+  const allDependencies = new Set<string>()
+  const allDevDependencies = new Set<string>()
+  let description: string | undefined
   
   for (const file of files) {
     try {
@@ -186,26 +226,136 @@ async function analyzeDependencies(files: ComponentFile[], cwd: string): Promise
         true
       )
       
-      function visit(node: ts.Node) {
-        if (ts.isImportDeclaration(node) && node.moduleSpecifier) {
-          const moduleSpecifier = (node.moduleSpecifier as ts.StringLiteral).text
-          
-          // Only include external dependencies (not relative imports)
-          if (!moduleSpecifier.startsWith(".") && !moduleSpecifier.startsWith("/")) {
-            dependencies.add(moduleSpecifier)
-          }
-        }
-        
-        ts.forEachChild(node, visit)
+      const analysis = analyzeAST(sourceFile)
+      
+      // Merge dependencies
+      analysis.dependencies.forEach(dep => allDependencies.add(dep))
+      analysis.devDependencies.forEach(dep => allDevDependencies.add(dep))
+      
+      // Use first found description
+      if (analysis.description && !description) {
+        description = analysis.description
       }
       
-      visit(sourceFile)
     } catch (error) {
       console.warn(`Warning: Could not analyze dependencies for ${file.path}:`, (error as Error).message)
     }
   }
   
-  return Array.from(dependencies)
+  return {
+    dependencies: Array.from(allDependencies),
+    devDependencies: Array.from(allDevDependencies),
+    description
+  }
+}
+
+function analyzeAST(sourceFile: ts.SourceFile): ASTAnalysis {
+  const dependencies = new Set<string>()
+  const devDependencies = new Set<string>()
+  let description: string | undefined
+  let hasExports = false
+  
+  function visit(node: ts.Node) {
+    // Analyze imports
+    if (ts.isImportDeclaration(node)) {
+      const moduleSpecifier = node.moduleSpecifier
+      if (ts.isStringLiteral(moduleSpecifier)) {
+        const moduleName = moduleSpecifier.text
+        
+        // Add only external dependencies using the same logic as generate-registry.ts
+        if (isExternalDependency(moduleName)) {
+          // Determine if it's a dev dependency based on common patterns
+          if (isDevDependency(moduleName)) {
+            devDependencies.add(moduleName)
+          } else {
+            dependencies.add(moduleName)
+          }
+        }
+      }
+    }
+    
+    // Analyze exports
+    if (ts.isExportDeclaration(node)) {
+      hasExports = true
+    } else if (ts.isExportAssignment(node)) {
+      hasExports = true
+    } else if (hasExportModifier(node)) {
+      hasExports = true
+    }
+    
+    // Search for JSDoc comments
+    const jsDocComment = getJSDocComment(node)
+    if (jsDocComment && !description) {
+      description = jsDocComment
+    }
+    
+    ts.forEachChild(node, visit)
+  }
+  
+  visit(sourceFile)
+  
+  return {
+    dependencies: Array.from(dependencies),
+    devDependencies: Array.from(devDependencies),
+    description,
+    hasExports
+  }
+}
+
+function isDevDependency(moduleName: string): boolean {
+  // Common dev dependency patterns
+  const devPatterns = [
+    '@types/',
+    'eslint',
+    'prettier',
+    'typescript',
+    'jest',
+    'vitest',
+    'testing-library',
+    '@testing-library/',
+    'storybook',
+    '@storybook/',
+    'webpack',
+    'vite',
+    'rollup',
+    'babel',
+    '@babel/',
+    'postcss',
+    'tailwindcss',
+    'autoprefixer'
+  ]
+  
+  return devPatterns.some(pattern => moduleName.includes(pattern))
+}
+
+function hasExportModifier(node: ts.Node): boolean {
+  if ('modifiers' in node && node.modifiers) {
+    return (node.modifiers as ts.NodeArray<ts.Modifier>).some(
+      mod => mod.kind === ts.SyntaxKind.ExportKeyword
+    )
+  }
+  return false
+}
+
+function getJSDocComment(node: ts.Node): string | undefined {
+  try {
+    // Get JSDoc comments
+    const jsDocTags = ts.getJSDocCommentsAndTags(node)
+    
+    for (const tag of jsDocTags) {
+      if (ts.isJSDoc(tag) && tag.comment) {
+        if (typeof tag.comment === 'string') {
+          return tag.comment.trim()
+        } else if (Array.isArray(tag.comment)) {
+          return tag.comment.map(part => part.text).join('').trim()
+        }
+      }
+    }
+  } catch (error) {
+    // Ignore JSDoc parsing errors
+  }
+  
+  return undefined
 }
 
 function getTargetFromType(type: string): string {

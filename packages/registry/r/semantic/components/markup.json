@@ -1,0 +1,17 @@
+{
+  "$schema": "https://buildy.tw/schema/registry-item.json",
+  "name": "markup",
+  "type": "registry:component",
+  "description": "",
+  "dependencies": [
+    "react"
+  ],
+  "devDependencies": [],
+  "files": [
+    {
+      "path": "semantic/components/markup.tsx",
+      "content": "import * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\n\nfunction H1({ className, ...props }: React.ComponentProps<\"h1\">) {\n  return (\n    <h1\n\n      className={cn(\"h1\", className)}\n      {...props} />);\n\n\n}\n\nH1.displayName = \"H1\";\n\nfunction H2({ className, ...props }: React.ComponentProps<\"h2\">) {\n  return (\n    <h2\n\n      className={cn(\"h2\", className)}\n      {...props} />);\n\n\n}\n\nH2.displayName = \"H2\";\n\nfunction H3({ className, ...props }: React.ComponentProps<\"h3\">) {\n  return (\n    <h3\n\n      className={cn(\"h3\", className)}\n      {...props} />);\n\n\n}\n\nH3.displayName = \"H3\";\n\nfunction H4({ className, ...props }: React.ComponentProps<\"h4\">) {\n  return (\n    <h4\n\n      className={cn(\"h4\", className)}\n      {...props} />);\n\n\n}\n\nH4.displayName = \"H4\";\n\nfunction H5({ className, ...props }: React.ComponentProps<\"h5\">) {\n  return (\n    <h5\n\n      className={cn(\"h5\", className)}\n      {...props} />);\n\n\n}\n\nH5.displayName = \"H5\";\n\nfunction H6({ className, ...props }: React.ComponentProps<\"h6\">) {\n  return (\n    <h6\n\n      className={cn(\"h6\", className)}\n      {...props} />);\n\n\n}\n\nH6.displayName = \"H6\";\n\nfunction P({ className, ...props }: React.ComponentProps<\"p\">) {\n  return (\n    <p\n\n      className={cn(className)}\n      {...props} />);\n\n\n}\n\nP.displayName = \"P\";\n\nfunction Figure({ className, ...props }: React.ComponentProps<\"figure\">) {\n  return (\n    <figure\n\n      className={cn(className)}\n      {...props} />);\n\n\n}\n\nFigure.displayName = \"Figure\";\n\nfunction Figcaption({ className, ...props }: React.ComponentProps<\"figcaption\">) {\n  return (\n    <figcaption\n\n      className={cn(className)}\n      {...props} />);\n\n\n}\n\nFigcaption.displayName = \"Figcaption\";\n\nfunction Blockquote({ className, ...props }: React.ComponentProps<\"blockquote\">) {\n  return (\n    <blockquote\n\n      className={cn(className)}\n      {...props} />);\n\n\n}\n\nBlockquote.displayName = \"Blockquote\";\n\nfunction Time({ className, ...props }: React.ComponentProps<\"time\">) {\n  return (\n    <time\n\n      className={cn(className)}\n      {...props} />);\n\n\n}\n\nTime.displayName = \"Time\";\n\nfunction Address({ className, ...props }: React.ComponentProps<\"address\">) {\n  return (\n    <address\n\n      className={cn(className)}\n      {...props} />);\n\n\n}\n\nAddress.displayName = \"Address\";\n\nfunction Ul({ className, ...props }: React.ComponentProps<\"ul\">) {\n  return (\n    <ul\n\n      className={cn(className)}\n      {...props} />);\n\n\n}\n\nUl.displayName = \"Ul\";\n\nfunction Ol({ className, ...props }: React.ComponentProps<\"ol\">) {\n  return (\n    <ol\n\n      className={cn(className)}\n      {...props} />);\n\n\n}\n\nOl.displayName = \"Ol\";\n\nfunction Li({ className, ...props }: React.ComponentProps<\"li\">) {\n  return (\n    <li\n\n      className={cn(className)}\n      {...props} />);\n\n\n}\n\nLi.displayName = \"Li\";\n\nexport { H1, H2, H3, H4, H5, H6, P, Figure, Figcaption, Blockquote, Time, Address, Ul, Ol, Li };",
+      "target": "components"
+    }
+  ]
+}
