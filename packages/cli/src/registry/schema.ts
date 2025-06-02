@@ -8,7 +8,7 @@ export const componentFileSchema = z.object({
 
 export const componentSchema = z.object({
   name: z.string(),
-  type: z.enum(["registry:ui", "registry:block", "registry:component", "registry:lib"]),
+  type: z.enum(["registry:ui", "registry:block", "registry:component", "registry:lib", "registry:template"]),
   description: z.string().optional(),
   dependencies: z.array(z.string()).default([]),
   devDependencies: z.array(z.string()).default([]),
@@ -25,13 +25,16 @@ export const configSchema = z.object({
   aliases: z.record(z.string()).default({
     "@": "./src",
     "@/components": "./src/components",
-    "@/ui": "./src/ui",
-    "@/blocks": "./src/blocks",
-    "@/lib": "./src/lib",
+    "@/ui": "./utility/ui",
+    "@/blocks": "./utility/blocks",
+    "@/lib": "./lib",
+    "@/utility": "./utility",
+    "@/semantic": "./semantic",
+    "@/theme": "./theme",
   }),
   registry: z.string().default("@ui8kit"),
-  componentsDir: z.string().default("./src/components"),
-  libDir: z.string().default("./src/lib"),
+  componentsDir: z.string().default("./utility/components"),
+  libDir: z.string().default("./lib"),
 })
 
 export type Config = z.infer<typeof configSchema> 

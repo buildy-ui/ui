@@ -2,6 +2,7 @@
   "$schema": "https://buildy.tw/schema/registry-item.json",
   "name": "utils",
   "type": "registry:lib",
+  "description": "",
   "dependencies": [
     "clsx",
     "tailwind-merge"
@@ -9,7 +10,7 @@
   "devDependencies": [],
   "files": [
     {
-      "path": "packages/ui/src/lib/utils.ts",
+      "path": "lib/utils.ts",
       "content": "import { type ClassValue, clsx } from \"clsx\"\r\nimport { twMerge } from \"tailwind-merge\"\r\n\r\nexport function cn(...inputs: ClassValue[]) {\r\n  return twMerge(clsx(inputs))\r\n} ",
       "target": "lib"
     }

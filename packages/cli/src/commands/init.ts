@@ -11,7 +11,7 @@ interface InitOptions {
 }
 
 export async function initCommand(options: InitOptions) {
-  console.log(chalk.blue("🚀 Initializing buildy in your project..."))
+  console.log(chalk.blue("🚀 Initializing UI8Kit buildy in your project..."))
   
   // Check if it's a Vite project
   if (!(await isViteProject())) {
@@ -33,7 +33,7 @@ export async function initCommand(options: InitOptions) {
     const { overwrite } = await prompts({
       type: "confirm",
       name: "overwrite",
-      message: "buildy is already initialized. Overwrite configuration?",
+      message: "UI8Kit buildy is already initialized. Overwrite configuration?",
       initial: false
     })
     
@@ -42,25 +42,28 @@ export async function initCommand(options: InitOptions) {
       return
     }
   }
-  
+
   let config: Config
   
   if (options.yes) {
-    // Use defaults
+    // Use defaults for UI8Kit structure
     config = {
       $schema: "https://buildy.tw/schema.json",
       framework: "vite-react",
       typescript: true,
       aliases: {
         "@": "./src",
-        "@/components": "./src/components",
-        "@/ui": "./src/ui",
-        "@/blocks": "./src/blocks",
-        "@/lib": "./src/lib",
+        "@/components": "./utility/components",
+        "@/ui": "./utility/ui",
+        "@/blocks": "./utility/blocks",
+        "@/lib": "./lib",
+        "@/utility": "./utility",
+        "@/semantic": "./semantic",
+        "@/theme": "./theme",
       },
       registry: "@ui8kit",
-      componentsDir: "./src/components",
-      libDir: "./src/lib",
+      componentsDir: "./utility/ui",
+      libDir: "./lib",
     }
   } else {
     // Interactive setup
@@ -71,12 +74,12 @@ export async function initCommand(options: InitOptions) {
         message: "Are you using TypeScript?",
         initial: true
       },
-      {
+      /*{
         type: "text",
         name: "componentsDir",
-        message: "Where would you like to store your components?",
-        initial: "./src/components"
-      }
+        message: "Where would you like to store utility ui components?",
+        initial: "./utility/ui"
+      }*/
     ])
     
     config = {
@@ -85,43 +88,68 @@ export async function initCommand(options: InitOptions) {
       typescript: responses.typescript,
       aliases: {
         "@": "./src",
-        "@/components": "./src/components",
-        "@/ui": "./src/ui",
-        "@/blocks": "./src/blocks",
-        "@/lib": "./src/lib",
+        "@/components": "./utility/components",
+        "@/ui": "./utility/ui",
+        "@/blocks": "./utility/blocks",
+        "@/lib": "./lib",
+        "@/utility": "./utility",
+        "@/semantic": "./semantic",
+        "@/theme": "./theme",
       },
       registry: "@ui8kit",
-      componentsDir: responses.componentsDir,
-      libDir: "./src/lib",
+      componentsDir: "./utility/ui",
+      libDir: "./lib",
     }
   }
   
-  const spinner = ora("Setting up buildy...").start()
+  const spinner = ora("Setting up UI8Kit structure...").start()
   
   try {
     // Save configuration
     await saveConfig(config)
     
-    // Create directories
-    await ensureDir(config.componentsDir)
-    await ensureDir("./src/ui")
-    await ensureDir("./src/blocks")
+    // Create UI8Kit directory structure
     await ensureDir(config.libDir)
+    /*
+    await ensureDir("./assets")
+    await ensureDir("./utility/ui")
+    await ensureDir("./semantic/ui")
+    await ensureDir("./theme")
+    await ensureDir("./src")
     
-    // Create utils.ts file
+    // Create utility directories (buildy-ui@latest)
+    await ensureDir("./utility/templates")
+    await ensureDir("./utility/blocks")
+    await ensureDir(config.componentsDir)
+    
+    // Create semantic directories (buildy-cli@latest)
+    await ensureDir("./semantic/templates")
+    await ensureDir("./semantic/blocks")
+    await ensureDir("./semantic/components")*/
+    
+    // Create utils.ts file in lib directory
     await createUtilsFile(config.libDir, config.typescript)
     
-    spinner.succeed("buildy initialized successfully!")
+    spinner.succeed("UI8Kit structure initialized successfully!")
     
-    console.log(chalk.green("\n✅ Setup complete!"))
+    console.log(chalk.green("\n✅ UI8Kit Setup complete!"))
+    console.log("\nDirectory created:")
+    console.log(`  ${chalk.cyan("assets/")} - Static assets`)
+    console.log(`  ${chalk.cyan("lib/")} - Utils, helpers, functions`)
+    /*console.log(`  ${chalk.cyan("utility/")} - Utility components (buildy-ui@latest)`)
+    console.log(`  ${chalk.cyan("semantic/")} - Semantic components (buildy-cli@latest)`)
+    console.log(`  ${chalk.cyan("theme/")} - Theme configuration (buildy-theme@latest)`)
+    console.log(`  ${chalk.cyan("src/")} - Development source`)
+    */
+    
     console.log("\nNext steps:")
     console.log(`  ${chalk.cyan("npx buildy-ui@latest add button")} - Add a button component`)
     console.log(`  ${chalk.cyan("npx buildy-ui@latest add card input")} - Add multiple components`)
     console.log(`  ${chalk.cyan("npx buildy-ui@latest add --all")} - Add all components`)
     console.log(`  ${chalk.cyan('npx buildy-ui@latest add "https://example.com/component.json"')} - Add from external URL`)
-    
+
   } catch (error) {
-    spinner.fail("Failed to initialize buildy")
+    spinner.fail("Failed to initialize UI8Kit")
     console.error(chalk.red("❌ Error:"), (error as Error).message)
     process.exit(1)
   }
@@ -139,4 +167,4 @@ export function cn(...inputs: ClassValue[]) {
   const filePath = path.join(process.cwd(), libDir, fileName)
   
   await fs.writeFile(filePath, utilsContent, "utf-8")
-} 
+}

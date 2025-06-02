@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Buildy Configuration",
-  "description": "Configuration file for buildy CLI",
+  "description": "Configuration file for buildy CLI (UI8Kit structure)",
   "type": "object",
   "properties": {
     "$schema": {
@@ -26,11 +26,14 @@
       "default": {
         "@": "./src",
         "@/components": "./src/components",
-        "@/ui": "./src/components/ui",
-        "@/blocks": "./src/components/blocks",
-        "@/lib": "./src/lib"
+        "@/ui": "./utility/ui",
+        "@/blocks": "./utility/blocks",
+        "@/lib": "./lib",
+        "@/utility": "./utility",
+        "@/semantic": "./semantic",
+        "@/theme": "./theme"
       },
-      "description": "Path aliases for imports"
+      "description": "Path aliases for imports in UI8Kit structure"
     },
     "registry": {
       "type": "string",
@@ -39,12 +42,12 @@
     },
     "componentsDir": {
       "type": "string",
-      "default": "./src/components",
-      "description": "Directory where components will be installed"
+      "default": "./utility/components",
+      "description": "Directory where utility components will be installed"
     },
     "libDir": {
       "type": "string",
-      "default": "./src/lib",
+      "default": "./lib",
       "description": "Directory for utility libraries"
     }
   },

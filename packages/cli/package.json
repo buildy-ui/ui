@@ -1,7 +1,7 @@
 {
   "name": "buildy-ui",
-  "version": "1.0.9",
-  "description": "A CLI for adding UI components to your Vite React projects",
+  "version": "1.1.4",
+  "description": "A CLI for adding UI components to your Vite React projects (UI8Kit utility components)",
   "type": "module",
   "bin": {
     "buildy-ui": "./dist/index.js",
@@ -27,14 +27,15 @@
     "zod": "^3.22.4",
     "fs-extra": "^11.1.1",
     "execa": "^8.0.1",
-    "node-fetch": "^3.3.2"
+    "node-fetch": "^3.3.2",
+    "glob": "^10.3.10",
+    "typescript": "^5.2.2"
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
     "@types/prompts": "^2.4.9",
     "@types/node": "^20.8.0",
-    "tsup": "^7.2.0",
-    "typescript": "^5.2.2"
+    "tsup": "^7.2.0"
   },
   "keywords": [
     "cli",
@@ -43,7 +44,9 @@
     "vite",
     "react",
     "shadcn",
-    "tailwind"
+    "tailwind",
+    "ui8kit",
+    "utility"
   ],
   "author": {
     "name": "buildy",

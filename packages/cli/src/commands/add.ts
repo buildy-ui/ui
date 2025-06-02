@@ -219,18 +219,18 @@ async function installComponentFiles(
     // Extract just the filename from the full path
     const fileName = path.basename(file.path)
     
-    // Determine the full path based on the component type
+    // Determine the full path based on the component type for utility structure
     let targetPath: string
     if (component.type === "registry:ui") {
-      targetPath = path.join(process.cwd(), "src", "ui", fileName)
+      targetPath = path.join(process.cwd(), "utility", "ui", fileName)
     } else if (component.type === "registry:block") {
-      targetPath = path.join(process.cwd(), "src", "blocks", fileName)
+      targetPath = path.join(process.cwd(), "utility", "blocks", fileName)
     } else if (component.type === "registry:lib") {
-      targetPath = path.join(process.cwd(), "src", "lib", fileName)
+      targetPath = path.join(process.cwd(), "lib", fileName)
     } else {
-      // registry:component and others go to componentsDir
+      // registry:component and others go to utility/components
       const targetDir = file.target || getTargetDirFromType(component.type)
-      targetPath = path.join(process.cwd(), componentsDir, targetDir, fileName)
+      targetPath = path.join(process.cwd(), "utility", targetDir, fileName)
     }
     
     // Check if file already exists

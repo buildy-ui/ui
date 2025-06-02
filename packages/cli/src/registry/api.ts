@@ -1,19 +1,20 @@
 import fetch from "node-fetch"
-import { Component, componentSchema } from "./schema.js"
+import { Component, componentSchema } from "./schema"
 
-// CDN URLs in order of preference (fastest to slowest)
+// CDN URLs in order of preference (fastest to slowest) - now pointing to utility registry
 const CDN_URLS = [
-  "https://cdn.jsdelivr.net/npm/ui8kit/r",
-  "https://unpkg.com/ui8kit@latest/r", 
-  "https://raw.githubusercontent.com/buildy-ui/ui/main/packages/ui/registry/r"
+  "https://cdn.jsdelivr.net/npm/ui8kit@latest/r/utility",
+  "https://unpkg.com/ui8kit@latest/r/utility", 
+  "https://raw.githubusercontent.com/buildy-ui/ui/main/packages/ui/packages/registry/r/utility"
 ]
 
-// Map component types to their corresponding folders
+// Map component types to their corresponding folders in utility structure
 const TYPE_TO_FOLDER = {
   "registry:ui": "ui",
   "registry:block": "blocks", 
   "registry:component": "components",
-  "registry:lib": "lib"
+  "registry:lib": "lib",
+  "registry:template": "templates"
 } as const
 
 // Cache the working CDN for the session to avoid repeated testing
@@ -40,19 +41,19 @@ async function findWorkingCDN(): Promise<string> {
   
   for (const baseUrl of CDN_URLS) {
     try {
-      console.log(`🔍 Testing CDN: ${baseUrl}`)
+      console.log(`🔍 Testing utility CDN: ${baseUrl}`)
       const response = await fetch(`${baseUrl}/index.json`)
       if (response.ok) {
         workingCDN = baseUrl
-        console.log(`✅ Using CDN: ${baseUrl}`)
+        console.log(`✅ Using utility CDN: ${baseUrl}`)
         return baseUrl
       }
     } catch (error) {
-      console.log(`❌ CDN failed: ${baseUrl}`)
+      console.log(`❌ Utility CDN failed: ${baseUrl}`)
     }
   }
   
-  throw new Error('No working CDN found')
+  throw new Error('No working utility CDN found')
 }
 
 /**
@@ -63,7 +64,7 @@ async function fetchFromWorkingCDN(path: string): Promise<any> {
   const baseUrl = await findWorkingCDN()
   const url = `${baseUrl}/${path}`
   
-  console.log(`🎯 Fetching: ${url}`)
+  console.log(`🎯 Fetching from utility: ${url}`)
   const response = await fetch(url)
   
   if (!response.ok) {
@@ -82,14 +83,14 @@ async function getRegistryIndex(): Promise<any> {
     return registryIndex // Return cached index
   }
   
-  console.log(`🌐 Fetching registry index`)
+  console.log(`🌐 Fetching utility registry index`)
   registryIndex = await fetchFromWorkingCDN('index.json')
   return registryIndex
 }
 
 /**
  * Find component by type from index, then fetch directly from correct folder
- * This eliminates blind searching through all categories (ui, blocks, components, lib)
+ * This eliminates blind searching through all categories (ui, blocks, components, lib, templates)
  */
 async function getComponentByType(name: string): Promise<Component | null> {
   try {
@@ -99,7 +100,7 @@ async function getComponentByType(name: string): Promise<Component | null> {
     // 2. Find component in index
     const componentInfo = index.components?.find((c: any) => c.name === name)
     if (!componentInfo) {
-      console.log(`❌ Component ${name} not found in registry`)
+      console.log(`❌ Component ${name} not found in utility registry`)
       return null
     }
     
@@ -110,8 +111,8 @@ async function getComponentByType(name: string): Promise<Component | null> {
       return null
     }
     
-    // 4. Make targeted request to exact location
-    console.log(`🎯 Loading ${name} from /${folder}/ (type: ${componentInfo.type})`)
+    // 4. Make targeted request to exact location in utility structure
+    console.log(`🎯 Loading ${name} from /utility/${folder}/ (type: ${componentInfo.type})`)
     const data = await fetchFromWorkingCDN(`${folder}/${name}.json`)
     return componentSchema.parse(data)
     
@@ -152,7 +153,7 @@ async function fetchFromUrl(url: string): Promise<Component | null> {
 
 export async function getAllComponents(): Promise<Component[]> {
   try {
-    console.log(`🌐 Fetching all components using optimized approach`)
+    console.log(`🌐 Fetching all utility components using optimized approach`)
     
     // Get index once, then fetch each component by type
     const indexData = await getRegistryIndex()
@@ -171,7 +172,7 @@ export async function getAllComponents(): Promise<Component[]> {
     return components
     
   } catch (error) {
-    console.error(`❌ Failed to fetch all components:`, (error as Error).message)
+    console.error(`❌ Failed to fetch all utility components:`, (error as Error).message)
     return []
   }
 }
@@ -196,5 +197,5 @@ export async function getComponents(names: string[]): Promise<Component[]> {
 export function resetCache(): void {
   workingCDN = null
   registryIndex = null
-  console.log(`🔄 Cache reset - will rediscover working CDN`)
+  console.log(`🔄 Cache reset - will rediscover working utility CDN`)
 } 

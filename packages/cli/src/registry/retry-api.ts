@@ -1,19 +1,20 @@
 import fetch from "node-fetch"
-import { Component, componentSchema } from "./schema.js"
+import { Component, componentSchema } from "./schema"
 
-// CDN URLs in order of preference (fastest to slowest)
+// CDN URLs in order of preference (fastest to slowest) - now pointing to utility registry
 const CDN_URLS = [
-  "https://cdn.jsdelivr.net/npm/ui8kit/r",
-  "https://unpkg.com/ui8kit@latest/r", 
-  "https://raw.githubusercontent.com/buildy-ui/ui/main/packages/ui/registry/r"
+  "https://cdn.jsdelivr.net/npm/ui8kit@latest/r/utility",
+  "https://unpkg.com/ui8kit@latest/r/utility", 
+  "https://raw.githubusercontent.com/buildy-ui/ui/main/packages/ui/packages/registry/r/utility"
 ]
 
-// Map component types to their corresponding folders
+// Map component types to their corresponding folders in utility structure
 const TYPE_TO_FOLDER = {
   "registry:ui": "ui",
   "registry:block": "blocks", 
   "registry:component": "components",
-  "registry:lib": "lib"
+  "registry:lib": "lib",
+  "registry:template": "templates"
 } as const
 
 const MAX_RETRIES = 3
@@ -104,17 +105,17 @@ async function findWorkingCDNWithRetry(): Promise<string> {
   
   for (const baseUrl of CDN_URLS) {
     try {
-      console.log(`🔍 Testing CDN with retry: ${baseUrl}`)
+      console.log(`🔍 Testing utility CDN with retry: ${baseUrl}`)
       await fetchWithRetry(`${baseUrl}/index.json`, 2) // Fewer retries for testing
       workingCDN = baseUrl
-      console.log(`✅ Using CDN: ${baseUrl}`)
+      console.log(`✅ Using utility CDN: ${baseUrl}`)
       return baseUrl
     } catch (error) {
-      console.log(`❌ CDN failed: ${baseUrl}`)
+      console.log(`❌ Utility CDN failed: ${baseUrl}`)
     }
   }
   
-  throw new Error('No working CDN found')
+  throw new Error('No working utility CDN found')
 }
 
 /**
@@ -125,7 +126,7 @@ async function fetchFromWorkingCDNWithRetry(path: string): Promise<any> {
   const baseUrl = await findWorkingCDNWithRetry()
   const url = `${baseUrl}/${path}`
   
-  console.log(`🎯 Fetching with retry: ${url}`)
+  console.log(`🎯 Fetching from utility with retry: ${url}`)
   return await fetchWithRetry(url)
 }
 
@@ -138,14 +139,14 @@ async function getRegistryIndexWithRetry(): Promise<any> {
     return registryIndex // Return cached index
   }
   
-  console.log(`🌐 Fetching registry index with retry`)
+  console.log(`🌐 Fetching utility registry index with retry`)
   registryIndex = await fetchFromWorkingCDNWithRetry('index.json')
   return registryIndex
 }
 
 /**
  * Find component by type from index, then fetch directly from correct folder with retry
- * This eliminates blind searching through all categories (ui, blocks, components, lib)
+ * This eliminates blind searching through all categories (ui, blocks, components, lib, templates)
  */
 async function getComponentByTypeWithRetry(name: string): Promise<Component | null> {
   try {
@@ -155,7 +156,7 @@ async function getComponentByTypeWithRetry(name: string): Promise<Component | nu
     // 2. Find component in index
     const componentInfo = index.components?.find((c: any) => c.name === name)
     if (!componentInfo) {
-      console.log(`❌ Component ${name} not found in registry`)
+      console.log(`❌ Component ${name} not found in utility registry`)
       return null
     }
     
@@ -166,8 +167,8 @@ async function getComponentByTypeWithRetry(name: string): Promise<Component | nu
       return null
     }
     
-    // 4. Make targeted request to exact location with retry
-    console.log(`🎯 Loading ${name} from /${folder}/ (type: ${componentInfo.type})`)
+    // 4. Make targeted request to exact location with retry in utility structure
+    console.log(`🎯 Loading ${name} from /utility/${folder}/ (type: ${componentInfo.type})`)
     const data = await fetchFromWorkingCDNWithRetry(`${folder}/${name}.json`)
     return componentSchema.parse(data)
     
@@ -212,7 +213,7 @@ async function fetchFromUrlWithRetry(url: string): Promise<Component | null> {
 
 export async function getAllComponentsWithRetry(): Promise<Component[]> {
   try {
-    console.log(`🌐 Fetching all components using optimized approach with retry`)
+    console.log(`🌐 Fetching all utility components using optimized approach with retry`)
     
     // Check internet connection first
     if (!(await checkInternetConnection())) {
@@ -236,7 +237,7 @@ export async function getAllComponentsWithRetry(): Promise<Component[]> {
     return components
     
   } catch (error) {
-    console.error(`❌ Failed to fetch all components:`, (error as Error).message)
+    console.error(`❌ Failed to fetch all utility components:`, (error as Error).message)
     return []
   }
 }
@@ -248,5 +249,5 @@ export async function getAllComponentsWithRetry(): Promise<Component[]> {
 export function resetCacheWithRetry(): void {
   workingCDN = null
   registryIndex = null
-  console.log(`🔄 Cache reset - will rediscover working CDN with retry`)
+  console.log(`🔄 Cache reset - will rediscover working utility CDN with retry`)
 } 

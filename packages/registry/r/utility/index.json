@@ -1,0 +1,150 @@
+{
+  "$schema": "https://buildy.tw/schema/registry.json",
+  "components": [
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "description": ""
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "description": ""
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "description": ""
+    },
+    {
+      "name": "link",
+      "type": "registry:ui",
+      "description": ""
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "description": ""
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "description": ""
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "description": "A flexible card component for displaying content"
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "description": "A customizable button component with multiple variants and sizes"
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "description": ""
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "description": ""
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "description": "Avatar context for image loading status"
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "description": ""
+    },
+    {
+      "name": "hero-section",
+      "type": "registry:block",
+      "description": ""
+    },
+    {
+      "name": "hero-section",
+      "type": "registry:block",
+      "description": "A hero section component for landing pages"
+    },
+    {
+      "name": "sheet",
+      "type": "registry:component",
+      "description": "CSS-only Sheet component for SSR/SSG compatibility\n * \n * Usage example:\n * ```tsx\n * <Sheet>\n *   <SheetTrigger href=\"#my-sheet\">Open Sheet</SheetTrigger>\n *   <SheetContent id=\"my-sheet\">\n *     <SheetHeader>\n *       <SheetTitle>Sheet Title</SheetTitle>\n *       <SheetDescription>Description text</SheetDescription>\n *     </SheetHeader>\n *     <div className=\"p-6\">Content here</div>\n *     <SheetFooter>\n *       <SheetClose>Close</SheetClose>\n *     </SheetFooter>\n *   </SheetContent>\n * </Sheet>\n * ```"
+    },
+    {
+      "name": "section",
+      "type": "registry:component",
+      "description": ""
+    },
+    {
+      "name": "navbar",
+      "type": "registry:component",
+      "description": "A responsive navigation bar component with logo and menu items"
+    },
+    {
+      "name": "nav",
+      "type": "registry:component",
+      "description": "CSS-only Navigation component with responsive design\n * \n * No external JavaScript dependencies or runtime requirements.\n * Works with server-side rendering (SSR) and static site generation (SSG).\n * \n * Required Tailwind CSS:\n * ```css\n * @layer components {\n *  \n *   .peer:checked ~[data - slot=\"nav-mobile\"] {\n * @apply opacity - 100 visible translate - y - 0;\n *   }\n * \n *   \n *   .group: target[data - slot= \"nav-dropdown-content\"] {\n * @apply opacity - 100 visible scale - 100;\n *   }\n * \n *  \n * details[data - slot=\"nav-mobile-dropdown\"][open] summary {\n * @apply bg - accent text - accent - foreground;\n *   }\n * }\n * ```\n * \n * Key features:\n * - Pure CSS dropdowns using :target selector\n * - Checkbox-based mobile menu\n * - Auto-closing mobile menu when clicking outside\n * - Accessible keyboard navigation\n * \n * Usage example:\n * \n  * <NavLayout>\n    *   <NavBar>\n      *     <h2>Logo</h2>\n      *\n      *   \n      *     <Nav>\n        *       <NavList>\n          *         <NavItem>\n            *           <NavLink href=\"/\" active>Home</NavLink>\n            *         </NavItem>\n          *         <NavItem>\n            *           <NavDropdown id=\"products-dropdown\" title=\"Products\">\n              *             <NavDropdownItem href=\"/products/web\">Web</NavDropdownItem>\n              *             <NavDropdownItem href=\"/products/mobile\">Mobile</NavDropdownItem>\n              *           </NavDropdown>\n            *         </NavItem>\n          *       </NavList>\n        *     </Nav>\n      *\n      *    \n      *     <NavTrigger />\n      *   </NavBar>\n    *\n    *  \n    *   <NavMobile>\n      *     <NavMobileList>\n        *       <NavMobileItem>\n          *         <NavMobileLink href=\"/\" active>Home</NavMobileLink>\n          *       </NavMobileItem>\n        *       <NavMobileItem>\n          *         <NavMobileDropdown title=\"Products\">\n            *           <NavMobileDropdownItem href=\"/products/web\">Web</NavMobileDropdownItem>\n            *           <NavMobileDropdownItem href=\"/products/mobile\">Mobile</NavMobileDropdownItem>\n            *         </NavMobileDropdown>\n          *       </NavMobileItem>\n        *     </NavMobileList>\n      *   </NavMobile>\n    * </NavLayout>\n  * ```"
+    },
+    {
+      "name": "media",
+      "type": "registry:component",
+      "description": ""
+    },
+    {
+      "name": "markup",
+      "type": "registry:component",
+      "description": ""
+    },
+    {
+      "name": "main",
+      "type": "registry:component",
+      "description": ""
+    },
+    {
+      "name": "header",
+      "type": "registry:component",
+      "description": ""
+    },
+    {
+      "name": "footer",
+      "type": "registry:component",
+      "description": ""
+    },
+    {
+      "name": "aside",
+      "type": "registry:component",
+      "description": ""
+    },
+    {
+      "name": "article",
+      "type": "registry:component",
+      "description": "Helper function for determining styles that the parser will be able to process"
+    },
+    {
+      "name": "landing-page",
+      "type": "registry:template",
+      "description": "A complete landing page template with hero, features, and footer sections"
+    },
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "description": ""
+    }
+  ],
+  "categories": [
+    "ui",
+    "components",
+    "blocks",
+    "lib",
+    "templates"
+  ],
+  "version": "1.0.0",
+  "lastUpdated": "2025-06-01T01:24:13.020Z",
+  "registry": "utility"
+}

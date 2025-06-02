@@ -1,13 +1,63 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Buildy Registry",
+  "description": "Registry schema for UI8Kit component system",
   "type": "object",
   "properties": {
-    "name": { "type": "string" },
-    "homepage": { "type": "string" },
+    "$schema": {
+      "type": "string",
+      "description": "JSON Schema URL"
+    },
+    "name": { 
+      "type": "string",
+      "description": "Registry name"
+    },
+    "homepage": { 
+      "type": "string",
+      "description": "Registry homepage URL"
+    },
+    "registry": {
+      "type": "string",
+      "enum": ["utility", "semantic", "theme"],
+      "description": "Registry type in UI8Kit architecture"
+    },
+    "version": {
+      "type": "string",
+      "description": "Registry version"
+    },
+    "lastUpdated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last update timestamp"
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["ui", "components", "blocks", "lib", "templates"]
+      },
+      "description": "Available component categories"
+    },
+    "components": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "type": { 
+            "type": "string",
+            "enum": ["registry:lib", "registry:block", "registry:component", "registry:ui", "registry:template"]
+          },
+          "description": { "type": "string" }
+        },
+        "required": ["name", "type"]
+      },
+      "description": "Component metadata for quick lookup"
+    },
     "items": {
       "type": "array",
-      "items": { "$ref": "https://buildy.tw/schema/registry-item.json" }
+      "items": { "$ref": "https://buildy.tw/schema/registry-item.json" },
+      "description": "Full component definitions"
     }
   },
   "required": ["items"]

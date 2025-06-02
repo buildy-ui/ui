@@ -6,7 +6,7 @@
     "name": { "type": "string" },
     "type": { 
       "type": "string",
-      "enum": ["registry:lib", "registry:block", "registry:component", "registry:ui"]
+      "enum": ["registry:lib", "registry:block", "registry:component", "registry:ui", "registry:template"]
     },
     "description": { "type": "string" },
     "dependencies": { 
