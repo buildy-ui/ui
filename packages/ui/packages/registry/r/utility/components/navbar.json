@@ -1,0 +1,15 @@
+{
+  "$schema": "https://buildy.tw/schema/registry-item.json",
+  "name": "navbar",
+  "type": "registry:component",
+  "description": "A responsive navigation bar component with logo and menu items",
+  "dependencies": [],
+  "devDependencies": [],
+  "files": [
+    {
+      "path": "utility/components/navbar.js",
+      "content": "/**\r\n * A responsive navigation bar component with logo and menu items\r\n */\r\nexport function Navbar({ logo, menuItems = [], className = \"\" }) {\r\n  const menuHtml = menuItems.map(item => `\r\n    <a href=\"${item.href}\" class=\"text-foreground hover:text-primary transition-colors\">\r\n      ${item.label}\r\n    </a>\r\n  `).join('')\r\n\r\n  return `\r\n    <nav class=\"sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 ${className}\">\r\n      <div class=\"container flex h-14 items-center\">\r\n        <div class=\"mr-4 flex\">\r\n          <a class=\"mr-6 flex items-center space-x-2\" href=\"/\">\r\n            <span class=\"font-bold text-xl\">${logo || 'Logo'}</span>\r\n          </a>\r\n          <nav class=\"hidden md:flex items-center space-x-6 text-sm font-medium\">\r\n            ${menuHtml}\r\n          </nav>\r\n        </div>\r\n        <div class=\"flex flex-1 items-center justify-between space-x-2 md:justify-end\">\r\n          <div class=\"w-full flex-1 md:w-auto md:flex-none\">\r\n            <!-- Search or other content -->\r\n          </div>\r\n          <nav class=\"flex items-center\">\r\n            <button class=\"md:hidden p-2\">\r\n              <span class=\"sr-only\">Toggle menu</span>\r\n              <svg class=\"h-6 w-6\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\r\n                <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M4 6h16M4 12h16M4 18h16\"></path>\r\n              </svg>\r\n            </button>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </nav>\r\n  `\r\n}\r\n\r\nexport function NavbarItem({ href, label, active = false }) {\r\n  return `\r\n    <a href=\"${href}\" class=\"text-sm font-medium transition-colors hover:text-primary ${active ? 'text-primary' : 'text-muted-foreground'}\">\r\n      ${label}\r\n    </a>\r\n  `\r\n} ",
+      "target": "components"
+    }
+  ]
+}

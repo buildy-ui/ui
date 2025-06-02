@@ -8,17 +8,21 @@
       "type": "string",
       "description": "JSON Schema URL"
     },
-    "name": { 
+    "name": {
       "type": "string",
       "description": "Registry name"
     },
-    "homepage": { 
+    "homepage": {
       "type": "string",
       "description": "Registry homepage URL"
     },
     "registry": {
       "type": "string",
-      "enum": ["utility", "semantic", "theme"],
+      "enum": [
+        "utility",
+        "semantic",
+        "theme"
+      ],
       "description": "Registry type in UI8Kit architecture"
     },
     "version": {
@@ -34,7 +38,13 @@
       "type": "array",
       "items": {
         "type": "string",
-        "enum": ["ui", "components", "blocks", "lib", "templates"]
+        "enum": [
+          "ui",
+          "components",
+          "blocks",
+          "lib",
+          "templates"
+        ]
       },
       "description": "Available component categories"
     },
@@ -43,22 +53,41 @@
       "items": {
         "type": "object",
         "properties": {
-          "name": { "type": "string" },
-          "type": { 
-            "type": "string",
-            "enum": ["registry:lib", "registry:block", "registry:component", "registry:ui", "registry:template"]
+          "name": {
+            "type": "string"
           },
-          "description": { "type": "string" }
+          "type": {
+            "type": "string",
+            "enum": [
+              "registry:lib",
+              "registry:block",
+              "registry:component",
+              "registry:ui",
+              "registry:template"
+            ]
+          },
+          "description": {
+            "type": "string"
+          }
         },
-        "required": ["name", "type"]
+        "required": [
+          "name",
+          "type"
+        ],
+        "additionalProperties": false
       },
       "description": "Component metadata for quick lookup"
     },
     "items": {
       "type": "array",
-      "items": { "$ref": "https://buildy.tw/schema/registry-item.json" },
+      "items": {
+        "$ref": "https://buildy.tw/schema/registry-item.json"
+      },
       "description": "Full component definitions"
     }
   },
-  "required": ["items"]
+  "required": [
+    "items"
+  ],
+  "additionalProperties": false
 }

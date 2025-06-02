@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env
 
 import { Command } from "commander"
 import chalk from "chalk"

@@ -10,7 +10,9 @@
     },
     "framework": {
       "type": "string",
-      "enum": ["vite-react"],
+      "enum": [
+        "vite-react"
+      ],
       "description": "Target framework"
     },
     "typescript": {
@@ -51,6 +53,8 @@
       "description": "Directory for utility libraries"
     }
   },
-  "required": ["framework"],
+  "required": [
+    "framework"
+  ],
   "additionalProperties": false
 }
