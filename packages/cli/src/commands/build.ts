@@ -3,6 +3,7 @@ import path from "path"
 import chalk from "chalk"
 import ora from "ora"
 import { registrySchema, registryItemSchema } from "../registry/build-schema.js"
+import { generateConfigSchema, generateRegistrySchema, generateRegistryItemSchema } from "../utils/schema-generator.js"
 
 interface BuildOptions {
   cwd: string
@@ -32,6 +33,9 @@ export async function buildCommand(
     
     // Create output directory
     await fs.ensureDir(buildOptions.outputDir)
+    
+    // Generate schema files
+    await generateSchemaFiles(buildOptions.outputDir)
     
     const spinner = ora("Processing utility components...").start()
     
@@ -72,6 +76,7 @@ export async function buildCommand(
     
     console.log(chalk.green("✅ Utility registry built successfully!"))
     console.log(`Output: ${buildOptions.outputDir}`)
+    console.log(chalk.green("✅ Schema files generated successfully!"))
     
   } catch (error) {
     console.error(chalk.red("❌ Build failed:"), (error as Error).message)
@@ -113,5 +118,34 @@ async function createIndexFile(registry: any, outputDir: string) {
   await fs.writeFile(
     path.join(outputDir, "index.json"),
     JSON.stringify(index, null, 2)
+  )
+}
+
+async function generateSchemaFiles(outputDir: string) {
+  const registryBaseDir = path.dirname(outputDir) // Go up from r/utility to registry
+  
+  // Create schema directory
+  const schemaDir = path.join(registryBaseDir, "schema")
+  await fs.ensureDir(schemaDir)
+  
+  // Generate schemas dynamically from Zod schemas
+  const configSchemaJson = generateConfigSchema()
+  const registrySchemaJson = generateRegistrySchema()
+  const registryItemSchemaJson = generateRegistryItemSchema()
+  
+  // Write schema files
+  await fs.writeFile(
+    path.join(registryBaseDir, "schema.json"),
+    JSON.stringify(configSchemaJson, null, 2)
+  )
+  
+  await fs.writeFile(
+    path.join(schemaDir, "registry.json"),
+    JSON.stringify(registrySchemaJson, null, 2)
+  )
+  
+  await fs.writeFile(
+    path.join(schemaDir, "registry-item.json"),
+    JSON.stringify(registryItemSchemaJson, null, 2)
   )
 }

@@ -46,7 +46,7 @@ export async function getConfig(): Promise<Config | null> {
     const config = await fs.readJson(configPath)
     return configSchema.parse(config)
   } catch (error) {
-    console.error("❌ Invalid buildy.config.json:", error.message)
+    console.error("❌ Invalid buildy.config.json:", (error as Error).message)
     return null
   }
 }

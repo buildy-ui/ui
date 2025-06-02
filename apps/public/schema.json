@@ -25,7 +25,7 @@
       },
       "default": {
         "@": "./src",
-        "@/components": "./src/components",
+        "@/components": "./utility/components",
         "@/ui": "./utility/ui",
         "@/blocks": "./utility/blocks",
         "@/lib": "./lib",
@@ -42,7 +42,7 @@
     },
     "componentsDir": {
       "type": "string",
-      "default": "./utility/components",
+      "default": "./utility/ui",
       "description": "Directory where utility components will be installed"
     },
     "libDir": {

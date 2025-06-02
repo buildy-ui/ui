@@ -43,6 +43,17 @@ export async function initCommand(options: InitOptions) {
     }
   }
 
+  const aliases = {
+    "@": "./src",
+    "@/components": "./utility/components",
+    "@/ui": "./utility/ui",
+    "@/blocks": "./utility/blocks",
+    "@/lib": "./lib",
+    "@/utility": "./utility",
+    "@/semantic": "./semantic",
+    "@/theme": "./theme",
+  }
+
   let config: Config
   
   if (options.yes) {
@@ -51,16 +62,7 @@ export async function initCommand(options: InitOptions) {
       $schema: "https://buildy.tw/schema.json",
       framework: "vite-react",
       typescript: true,
-      aliases: {
-        "@": "./src",
-        "@/components": "./utility/components",
-        "@/ui": "./utility/ui",
-        "@/blocks": "./utility/blocks",
-        "@/lib": "./lib",
-        "@/utility": "./utility",
-        "@/semantic": "./semantic",
-        "@/theme": "./theme",
-      },
+      aliases,
       registry: "@ui8kit",
       componentsDir: "./utility/ui",
       libDir: "./lib",
@@ -73,29 +75,14 @@ export async function initCommand(options: InitOptions) {
         name: "typescript",
         message: "Are you using TypeScript?",
         initial: true
-      },
-      /*{
-        type: "text",
-        name: "componentsDir",
-        message: "Where would you like to store utility ui components?",
-        initial: "./utility/ui"
-      }*/
+      }
     ])
     
     config = {
       $schema: "https://buildy.tw/schema.json",
       framework: "vite-react",
       typescript: responses.typescript,
-      aliases: {
-        "@": "./src",
-        "@/components": "./utility/components",
-        "@/ui": "./utility/ui",
-        "@/blocks": "./utility/blocks",
-        "@/lib": "./lib",
-        "@/utility": "./utility",
-        "@/semantic": "./semantic",
-        "@/theme": "./theme",
-      },
+      aliases,
       registry: "@ui8kit",
       componentsDir: "./utility/ui",
       libDir: "./lib",
@@ -110,22 +97,6 @@ export async function initCommand(options: InitOptions) {
     
     // Create UI8Kit directory structure
     await ensureDir(config.libDir)
-    /*
-    await ensureDir("./assets")
-    await ensureDir("./utility/ui")
-    await ensureDir("./semantic/ui")
-    await ensureDir("./theme")
-    await ensureDir("./src")
-    
-    // Create utility directories (buildy-ui@latest)
-    await ensureDir("./utility/templates")
-    await ensureDir("./utility/blocks")
-    await ensureDir(config.componentsDir)
-    
-    // Create semantic directories (buildy-cli@latest)
-    await ensureDir("./semantic/templates")
-    await ensureDir("./semantic/blocks")
-    await ensureDir("./semantic/components")*/
     
     // Create utils.ts file in lib directory
     await createUtilsFile(config.libDir, config.typescript)
@@ -134,13 +105,7 @@ export async function initCommand(options: InitOptions) {
     
     console.log(chalk.green("\n✅ UI8Kit Setup complete!"))
     console.log("\nDirectory created:")
-    console.log(`  ${chalk.cyan("assets/")} - Static assets`)
     console.log(`  ${chalk.cyan("lib/")} - Utils, helpers, functions`)
-    /*console.log(`  ${chalk.cyan("utility/")} - Utility components (buildy-ui@latest)`)
-    console.log(`  ${chalk.cyan("semantic/")} - Semantic components (buildy-cli@latest)`)
-    console.log(`  ${chalk.cyan("theme/")} - Theme configuration (buildy-theme@latest)`)
-    console.log(`  ${chalk.cyan("src/")} - Development source`)
-    */
     
     console.log("\nNext steps:")
     console.log(`  ${chalk.cyan("npx buildy-ui@latest add button")} - Add a button component`)

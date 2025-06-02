@@ -24,7 +24,7 @@ export const configSchema = z.object({
   typescript: z.boolean().default(true),
   aliases: z.record(z.string()).default({
     "@": "./src",
-    "@/components": "./src/components",
+    "@/components": "./utility/components",
     "@/ui": "./utility/ui",
     "@/blocks": "./utility/blocks",
     "@/lib": "./lib",
@@ -33,7 +33,7 @@ export const configSchema = z.object({
     "@/theme": "./theme",
   }),
   registry: z.string().default("@ui8kit"),
-  componentsDir: z.string().default("./utility/components"),
+  componentsDir: z.string().default("./utility/ui"),
   libDir: z.string().default("./lib"),
 })
 
