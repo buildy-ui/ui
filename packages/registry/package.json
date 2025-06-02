@@ -1,6 +1,6 @@
 {
   "name": "ui8kit",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "UI8Kit components registry for buildy-ui cli",
   "main": "index.js",
   "files": [

@@ -27,17 +27,15 @@ npx buildy-ui@latest scan --registry utility
 npx buildy-ui@latest build
 ```
 
-## Semantic CSS Styles via CDN only dev mode
+## Semantic CSS Styles via CDN
 
 Components installed via CLI can also use semantic styles through CDN:
 
 ```html
-<!-- Add semantic CSS styles to CLI-imported components -->
-<link rel="stylesheet" href="https://unpkg.com/ui8kit@1.0.1/css/dist/semantic/index.css">
+<!-- Add compiled semantic CSS styles -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ui8kit@latest/css/dist/styles.css">
 <!-- OR -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ui8kit@latest/css/dist/semantic/index.css">
-<!-- OR -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ui8kit@latest/css/dist/semantic/button.css">
+<link rel="stylesheet" href="https://unpkg.com/ui8kit@latest/css/dist/styles.css">
 ```
 
 This allows you to:
@@ -97,7 +95,7 @@ Semantic CSS files contain Tailwind directives that need compilation:
 }
 ```
 
-### CDN vs Package Comparison
+### Package vs CDN Comparison
 
 | Method | Use Case | Tailwind Directives | Build Required |
 |--------|----------|-------------------|----------------|
@@ -113,13 +111,13 @@ Add the package path to your `tailwind.config.js` for proper purging:
 module.exports = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx}",
-    "./node_modules/ui8kit/**/*.{js,ts,jsx,tsx}", // Add this line
+    "./node_modules/ui8kit/**/*.{js,ts,jsx,tsx}",
   ],
   // ... rest of your config
 }
 ```
 
-**Note**: CDN links with `@import` URLs will remain as external references and won't be processed by Tailwind's build system.
+**Note**: For production builds, use npm package installation. CDN is only for quick prototyping with pre-compiled styles.
 
 ## Multi-Registry Architecture
 

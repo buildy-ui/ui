@@ -61,11 +61,13 @@ Since semantic CSS files contain Tailwind directives (`@apply`), they must be pr
 
 ```bash
 # Install the CSS package
-npm install ui8kit
+npm install ui8kit@latest
 # or
-yarn add ui8kit
+yarn add ui8kit@latest
 # or
-pnpm add ui8kit
+pnpm add ui8kit@latest
+# or
+bun add ui8kit@latest
 ```
 
 ### Import in your CSS/SCSS files
@@ -90,8 +92,8 @@ Semantic CSS files contain Tailwind directives that need compilation:
   @apply bg-primary text-primary-foreground shadow-xs hover:bg-primary/90;
 }
 
-.button-destructive {
-  @apply bg-destructive text-destructive-foreground shadow-xs hover:bg-destructive/90;
+.button-secondary {
+  @apply bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/90;
 }
 ```
 
@@ -119,38 +121,17 @@ module.exports = {
 
 **Note**: CDN links with `@import` URLs will remain as external references and won't be processed by Tailwind's build system.
 
-### CDN Integration (only DEV Mode)
+### CDN Integration
 
 For projects that prefer CDN over CLI installation:
 
-#### Full Semantic Stylesheet
+#### Compiled Semantic Stylesheet
 ```html
-<!-- Load complete semantic components -->
-<link rel="stylesheet" href="https://unpkg.com/ui8kit@1.0.1/css/dist/semantic/index.css">
+<!-- Load compiled semantic components -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ui8kit@latest/css/dist/styles.css">
 <!-- OR -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ui8kit@latest/css/dist/semantic/index.css">
+<link rel="stylesheet" href="https://unpkg.com/ui8kit@latest/css/dist/styles.css">
 ```
-
-#### Individual Component Stylesheets
-```html
-<!-- Load only specific components you need -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ui8kit@latest/css/dist/semantic/button.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ui8kit@latest/css/dist/semantic/card.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ui8kit@latest/css/dist/semantic/input.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ui8kit@latest/css/dist/semantic/alert.css">
-```
-
-#### Available Individual Components
-- `button.css` - Enhanced button styles
-- `card.css` - Card component layouts
-- `input.css` - Form input styling
-- `alert.css` - Alert and notification styles
-- `badge.css` - Badge and label components
-- `avatar.css` - User avatar components
-- `table.css` - Data table styling
-- `pagination.css` - Navigation pagination
-- `breadcrumb.css` - Navigation breadcrumbs
-- `skeleton.css` - Loading skeleton states
 
 ### Usage Examples
 
@@ -163,7 +144,7 @@ import { Card } from '@/semantic/ui/card'
 function App() {
   return (
     <Card>
-      <Button variant="semantic">Semantic Button</Button>
+      <Button variant="secondary">Semantic Button</Button>
     </Card>
   )
 }
@@ -174,13 +155,13 @@ function App() {
 <!DOCTYPE html>
 <html>
 <head>
-  <!-- Load semantic styles -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ui8kit@latest/css/dist/semantic/index.css">
+  <!-- Load compiled semantic styles -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ui8kit@latest/css/dist/styles.css">
 </head>
 <body>
   <!-- Use semantic classes directly -->
-  <div class="semantic-card">
-    <button class="semantic-btn semantic-btn-primary">
+  <div class="card">
+    <button class="button button-secondary button-lg">
       Semantic Button
     </button>
   </div>

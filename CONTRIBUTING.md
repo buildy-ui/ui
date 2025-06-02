@@ -84,17 +84,15 @@ module.exports = {
 
 **Note**: CDN links with `@import` URLs will remain as external references and won't be processed by Tailwind's build system.
 
-## CSS Styles via CDN only DEV Mode
+## CSS Styles via CDN
 
 Components installed via CLI can also use semantic styles through CDN:
 
 ```html
-<!-- Add semantic CSS styles to CLI-imported components -->
-<link rel="stylesheet" href="https://unpkg.com/ui8kit@1.0.1/css/dist/semantic/index.css">
+<!-- Add compiled semantic CSS styles -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ui8kit@latest/css/dist/styles.css">
 <!-- OR -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ui8kit@latest/css/dist/semantic/index.css">
-<!-- OR -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ui8kit@latest/css/dist/semantic/button.css">
+<link rel="stylesheet" href="https://unpkg.com/ui8kit@latest/css/dist/styles.css">
 ```
 
 This allows you to:

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UI8Kit Semantic CSS</title>
+  <meta description="UI8Kit Semantic CSS Full page example site">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="preload" as="image"
+    href="https://images.unsplash.com/photo-1542125387-c71274d94f0a?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=560&amp;q=80">
+  <title>Welcome to React Static Site</title>
+  <meta name="description" content="My Page Excerpt">
+  <script>!function () { try { const e = "dark" === localStorage.getItem("darkmode") || !("darkmode" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches; document.documentElement.classList.toggle("dark", e) } catch (e) { console.error("Failed to set initial theme:", e) } }();</script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ui8kit@latest/css/dist/styles.css">
+</head>
+
+<body class="bg-background text-foreground">
+  <div class="relative"><input type="checkbox" id="sheet-toggle" class="peer sr-only" aria-hidden="true">
+    <div class="nav-bar">
+      <div class="container flex h-16 items-center justify-between px-4">
+        <div class="flex items-center gap-2"><span class="latty latty-box text-teal-500"></span><span
+            class="text-lg font-bold">UI8Kit CSS</span></div>
+        <nav class="nav">
+          <ul class="nav-list">
+            <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+          </ul>
+        </nav>
+        <div class="nav-group-buttons"><button data-slot="button"
+            class="button button-ghost button-sm !px-2 !rounded-full" id="darkmode" aria-label="Toggle dark mode"><span
+              class="latty latty-sun sun-icon" style="display: block;"></span><span class="latty latty-moon moon-icon"
+              style="display: none;"></span></button><label for="sheet-toggle"
+            class="sheet-trigger"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="lucide lucide-menu h-5 w-5" aria-hidden="true">
+              <path d="M4 12h16"></path>
+              <path d="M4 18h16"></path>
+              <path d="M4 6h16"></path>
+            </svg></label></div>
+      </div>
+    </div>
+    <section class="section">
+      <div class="container grid grid-cols-3 gap-6">
+        <main class="main col-span-3 md:col-span-2">
+          <article class="article">
+            <figure class="article-figure"><img class="article-image"
+                src="https://images.unsplash.com/photo-1542125387-c71274d94f0a?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=560&amp;q=80"
+                alt="My Page Featured Image"></figure>
+            <div class="article-content">
+              <h1 class="h1">Semantic CSS Classes with Tailwind @apply</h1>
+              <p>Transform verbose Tailwind utility classes into clean, semantic CSS using @apply directives. This approach reduces code volume while maintaining the same design system and improving readability for developers.</p>
+              <p>The BuildY UI8Kit provides a powerful CLI for adding UI components with multi-registry support. Install components via <code>npx buildy-ui@latest init</code> and add semantic components with <code>npx buildy-ui@latest add button --registry semantic</code>. For production builds, use npm package installation to process Tailwind directives, or use our compiled CSS via CDN for quick prototyping.</p>
+            </div>
+          </article>
+        </main>
+        <aside data-slot="aside" class="col-span-3 md:col-span-1">
+          <div class="flex flex-col gap-6">
+            <div class="card">
+              <figure class="article-figure"><img class="article-image"
+                  src="https://images.unsplash.com/photo-1542125387-c71274d94f0a?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=560&amp;q=80"
+                  alt="My Page Featured Image"></figure>
+              <div class="card-content">
+                <h3 class="card-title">Clean Code Benefits</h3>
+                <div class="card-description">Semantic classes like .button-primary replace dozens of utility classes, making your HTML cleaner and more maintainable. Instead of writing <code>bg-primary text-primary-foreground shadow-xs hover:bg-primary/90</code>, simply use <code>button-primary</code>.</div>
+              </div>
+            </div>
+            <div class="card py-4">
+              <div class="card-content">
+                <h3 class="card-title">Tailwind Directive @apply</h3>
+                <div class="card-description">Use @apply to extract common utility patterns into reusable semantic classes that express intent rather than implementation. This creates a design system that's both developer-friendly and maintainable across large projects.</div>
+                <div class="card-description">The CLI supports utility, semantic, and theme registries with intelligent dependency validation, ensuring components work together seamlessly.</div>
+                <div class="flex justify-center mt-4">
+                  <a href="https://github.com/buildy-ui/ui" class="button button-default button-lg !text-white">BuildY UI8Kit CSS</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+    <footer class="section-footer">
+      <div class="container">
+        <p class="text-center py-4">© 2025 UI8Kit - Semantic CSS Framework</p>
+      </div>
+    </footer><label for="sheet-toggle" class="sheet-overlay"></label>
+    <div role="dialog" aria-modal="true" class="sheet-content">
+      <div class="absolute top-4 right-4 z-10"><label for="sheet-toggle"
+          class="button button-ghost button-sm"><svg
+            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="lucide lucide-x h-4 w-4" aria-hidden="true">
+            <path d="M18 6 6 18"></path>
+            <path d="m6 6 12 12"></path>
+          </svg><span class="sr-only">Close</span></label></div>
+      <div class="sheet-header">
+        <h2 class="sheet-title">Menu</h2>
+        <p class="sheet-description">Navigation menu</p>
+      </div>
+      <div class="sheet-body">
+        <ul class="nav-mobile-list">
+          <li><a href="#" class="nav-mobile-link">Home</a></li>
+          <li><a href="#" class="nav-mobile-link">Blog</a></li>
+          <li><a href="#" class="nav-mobile-link">About</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Update button icon based on dark mode state
+    function updateButtonIcon(isDark) {
+      const button = document.getElementById('darkmode');
+      if (!button) return;
+
+      const sunIcon = button.querySelector('.sun-icon');
+      const moonIcon = button.querySelector('.moon-icon');
+
+      if (sunIcon && moonIcon) {
+        sunIcon.style.display = isDark ? 'block' : 'none';
+        moonIcon.style.display = isDark ? 'none' : 'block';
+      }
+    }
+
+    // Toggle dark mode
+    function toggleDarkMode() {
+      const isDark = document.documentElement.classList.contains('dark');
+      document.documentElement.classList.toggle('dark');
+      localStorage.setItem('darkmode', isDark ? 'light' : 'dark');
+      updateButtonIcon(!isDark);
+    }
+
+    // Initialize
+    (function () {
+      // Set initial theme
+      const isDark = localStorage.getItem('darkmode') === 'dark' ||
+        (!('darkmode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+      document.documentElement.classList.toggle('dark', isDark);
+
+      // Add event listener once DOM is ready
+      document.addEventListener('DOMContentLoaded', function () {
+        updateButtonIcon(isDark);
+
+        const button = document.getElementById('darkmode');
+        if (button) button.addEventListener('click', toggleDarkMode);
+      });
+    })();
+  </script>
+</body>
+
+</html>
