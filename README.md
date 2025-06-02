@@ -61,11 +61,13 @@ Since semantic CSS files contain Tailwind directives (`@apply`), they must be pr
 
 ```bash
 # Install the CSS package
-npm install ui8kit
+npm install ui8kit@latest
 # or
-yarn add ui8kit
+yarn add ui8kit@latest
 # or
-pnpm add ui8kit
+pnpm add ui8kit@latest
+# or
+bun add ui8kit@latest
 ```
 
 ### Import in your CSS/SCSS files
