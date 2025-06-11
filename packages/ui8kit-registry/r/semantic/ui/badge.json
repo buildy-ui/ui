@@ -1,0 +1,18 @@
+{
+  "$schema": "https://buildy.tw/schema/registry-item.json",
+  "name": "badge",
+  "type": "registry:ui",
+  "description": "Simple array of badge variant keys for semantic classes",
+  "dependencies": [
+    "react",
+    "@radix-ui/react-slot"
+  ],
+  "devDependencies": [],
+  "files": [
+    {
+      "path": "semantic/ui/badge.tsx",
+      "content": "import * as React from \"react\";\nimport { cn } from \"@/lib/utils\"\nimport { Slot } from \"@radix-ui/react-slot\";\n\n// Simple array of badge variant keys for semantic classes\nconst badgeVariants = [\"default\", \"secondary\", \"destructive\", \"outline\"] as const;\n\n// Type for badge variants\ntype BadgeVariant = typeof badgeVariants[number];\n\nfunction Badge({\n  className,\n  variant = \"default\",\n  asChild = false,\n  ...props\n}: React.ComponentProps<\"span\"> & { variant?: BadgeVariant; asChild?: boolean }) {\n  const Comp = asChild ? Slot : \"span\";\n\n  return (\n    <Comp\n      data-slot=\"badge\"\n      className={cn(\n        \"badge\",\n        variant && `badge-${variant}`,\n        className\n      )}\n      {...props}\n    />\n  );\n}\n\nBadge.displayName = \"Badge\";\n\nexport { Badge };",
+      "target": "ui"
+    }
+  ]
+}

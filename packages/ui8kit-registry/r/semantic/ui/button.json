@@ -1,0 +1,18 @@
+{
+  "$schema": "https://buildy.tw/schema/registry-item.json",
+  "name": "button",
+  "type": "registry:ui",
+  "description": "Simple arrays of button variant keys for semantic classes",
+  "dependencies": [
+    "react",
+    "@radix-ui/react-slot"
+  ],
+  "devDependencies": [],
+  "files": [
+    {
+      "path": "semantic/ui/button.tsx",
+      "content": "import * as React from \"react\";\nimport { Slot } from \"@radix-ui/react-slot\";\nimport { cn } from \"@/lib/utils\";\n\n// Simple arrays of button variant keys for semantic classes\nconst buttonVariants = {\n  variant: [\"default\", \"destructive\", \"outline\", \"secondary\", \"ghost\", \"link\"] as const,\n  size: [\"default\", \"sm\", \"lg\", \"icon\"] as const,\n} as const;\n\n// Types for button variants\ntype ButtonVariant = typeof buttonVariants.variant[number];\ntype ButtonSize = typeof buttonVariants.size[number];\n\nfunction Button({\n  className,\n  variant,\n  size,\n  asChild = false,\n  ...props\n}: React.ComponentProps<\"button\"> & {\n  variant?: ButtonVariant;\n  size?: ButtonSize;\n  asChild?: boolean;\n}) {\n  const Comp = asChild ? Slot : \"button\"\n\n  return (\n    <Comp\n      data-slot=\"button\"\n      className={cn(\n        \"button\",\n        variant && `button-${variant}`,\n        size && `button-${size}`,\n        className\n      )}\n      {...props}\n    />\n  );\n}\n\nButton.displayName = \"Button\";\n\nexport { Button };",
+      "target": "ui"
+    }
+  ]
+}
