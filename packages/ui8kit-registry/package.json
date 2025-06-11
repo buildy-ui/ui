@@ -1,0 +1,28 @@
+{
+  "name": "ui8kit",
+  "version": "1.0.5",
+  "description": "UI8Kit components registry for buildy-ui CLI - published from npm to CDN",
+  "main": "index.js",
+  "files": [
+    "*.css",
+    "**/*.css",
+    "semantic/",
+    "dist/",
+    "src/",
+    "r/",
+    "index.json"
+  ],
+  "keywords": [
+    "ui",
+    "components", 
+    "registry",
+    "buildy"
+  ],
+  "author": "buildy",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/buildy-ui/ui.git"
+  },
+  "url": "https://unpkg.com/ui8kit@latest/r/index.json"
+}

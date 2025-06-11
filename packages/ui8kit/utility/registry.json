@@ -1,0 +1,375 @@
+{
+  "$schema": "https://buildy.tw/schema/registry.json",
+  "items": [
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "description": "",
+      "dependencies": [
+        "react"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "utility/ui/textarea.tsx",
+          "target": "ui"
+        }
+      ]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "description": "",
+      "dependencies": [
+        "react"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "utility/ui/table.tsx",
+          "target": "ui"
+        }
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "description": "",
+      "dependencies": [],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "utility/ui/skeleton.tsx",
+          "target": "ui"
+        }
+      ]
+    },
+    {
+      "name": "link",
+      "type": "registry:ui",
+      "description": "",
+      "dependencies": [
+        "react",
+        "class-variance-authority"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "utility/ui/link.tsx",
+          "target": "ui"
+        }
+      ]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "description": "",
+      "dependencies": [
+        "react"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "utility/ui/label.tsx",
+          "target": "ui"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "description": "",
+      "dependencies": [
+        "react"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "utility/ui/input.tsx",
+          "target": "ui"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "description": "",
+      "dependencies": [
+        "react"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "utility/ui/card.tsx",
+          "target": "ui"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "description": "",
+      "dependencies": [
+        "react",
+        "@radix-ui/react-slot",
+        "class-variance-authority"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "utility/ui/button.tsx",
+          "target": "ui"
+        }
+      ]
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "description": "",
+      "dependencies": [
+        "react",
+        "@radix-ui/react-slot",
+        "lucide-react"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "utility/ui/breadcrumb.tsx",
+          "target": "ui"
+        }
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "description": "",
+      "dependencies": [
+        "react",
+        "@radix-ui/react-slot",
+        "class-variance-authority"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "utility/ui/badge.tsx",
+          "target": "ui"
+        }
+      ]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "description": "Avatar context for image loading status",
+      "dependencies": [
+        "react"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "utility/ui/avatar.tsx",
+          "target": "ui"
+        }
+      ]
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "description": "",
+      "dependencies": [
+        "react",
+        "class-variance-authority"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "utility/ui/alert.tsx",
+          "target": "ui"
+        }
+      ]
+    },
+    {
+      "name": "sheet",
+      "type": "registry:component",
+      "description": "CSS-only Sheet component for SSR/SSG compatibility\n * \n * Usage example:\n * ```tsx\n * <Sheet>\n *   <SheetTrigger href=\"#my-sheet\">Open Sheet</SheetTrigger>\n *   <SheetContent id=\"my-sheet\">\n *     <SheetHeader>\n *       <SheetTitle>Sheet Title</SheetTitle>\n *       <SheetDescription>Description text</SheetDescription>\n *     </SheetHeader>\n *     <div className=\"p-6\">Content here</div>\n *     <SheetFooter>\n *       <SheetClose>Close</SheetClose>\n *     </SheetFooter>\n *   </SheetContent>\n * </Sheet>\n * ```",
+      "dependencies": [
+        "react",
+        "lucide-react"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "utility/components/sheet.tsx",
+          "target": "components"
+        }
+      ]
+    },
+    {
+      "name": "section",
+      "type": "registry:component",
+      "description": "",
+      "dependencies": [
+        "react"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "utility/components/section.tsx",
+          "target": "components"
+        }
+      ]
+    },
+    {
+      "name": "navbar",
+      "type": "registry:component",
+      "description": "A responsive navigation bar component with logo and menu items",
+      "dependencies": [],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "utility/components/navbar.js",
+          "target": "components"
+        }
+      ]
+    },
+    {
+      "name": "nav",
+      "type": "registry:component",
+      "description": "CSS-only Navigation component with responsive design\n * \n * No external JavaScript dependencies or runtime requirements.\n * Works with server-side rendering (SSR) and static site generation (SSG).\n * \n * Required Tailwind CSS:\n * ```css\n * @layer components {\n *  \n *   .peer:checked ~[data - slot=\"nav-mobile\"] {\n * @apply opacity - 100 visible translate - y - 0;\n *   }\n * \n *   \n *   .group: target[data - slot= \"nav-dropdown-content\"] {\n * @apply opacity - 100 visible scale - 100;\n *   }\n * \n *  \n * details[data - slot=\"nav-mobile-dropdown\"][open] summary {\n * @apply bg - accent text - accent - foreground;\n *   }\n * }\n * ```\n * \n * Key features:\n * - Pure CSS dropdowns using :target selector\n * - Checkbox-based mobile menu\n * - Auto-closing mobile menu when clicking outside\n * - Accessible keyboard navigation\n * \n * Usage example:\n * \n  * <NavLayout>\n    *   <NavBar>\n      *     <h2>Logo</h2>\n      *\n      *   \n      *     <Nav>\n        *       <NavList>\n          *         <NavItem>\n            *           <NavLink href=\"/\" active>Home</NavLink>\n            *         </NavItem>\n          *         <NavItem>\n            *           <NavDropdown id=\"products-dropdown\" title=\"Products\">\n              *             <NavDropdownItem href=\"/products/web\">Web</NavDropdownItem>\n              *             <NavDropdownItem href=\"/products/mobile\">Mobile</NavDropdownItem>\n              *           </NavDropdown>\n            *         </NavItem>\n          *       </NavList>\n        *     </Nav>\n      *\n      *    \n      *     <NavTrigger />\n      *   </NavBar>\n    *\n    *  \n    *   <NavMobile>\n      *     <NavMobileList>\n        *       <NavMobileItem>\n          *         <NavMobileLink href=\"/\" active>Home</NavMobileLink>\n          *       </NavMobileItem>\n        *       <NavMobileItem>\n          *         <NavMobileDropdown title=\"Products\">\n            *           <NavMobileDropdownItem href=\"/products/web\">Web</NavMobileDropdownItem>\n            *           <NavMobileDropdownItem href=\"/products/mobile\">Mobile</NavMobileDropdownItem>\n            *         </NavMobileDropdown>\n          *       </NavMobileItem>\n        *     </NavMobileList>\n      *   </NavMobile>\n    * </NavLayout>\n  * ```",
+      "dependencies": [
+        "react",
+        "lucide-react"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "utility/components/nav.tsx",
+          "target": "components"
+        }
+      ]
+    },
+    {
+      "name": "media",
+      "type": "registry:component",
+      "description": "",
+      "dependencies": [
+        "react"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "utility/components/media.tsx",
+          "target": "components"
+        }
+      ]
+    },
+    {
+      "name": "markup",
+      "type": "registry:component",
+      "description": "",
+      "dependencies": [
+        "react"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "utility/components/markup.tsx",
+          "target": "components"
+        }
+      ]
+    },
+    {
+      "name": "main",
+      "type": "registry:component",
+      "description": "",
+      "dependencies": [
+        "react"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "utility/components/main.tsx",
+          "target": "components"
+        }
+      ]
+    },
+    {
+      "name": "header",
+      "type": "registry:component",
+      "description": "",
+      "dependencies": [
+        "react"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "utility/components/header.tsx",
+          "target": "components"
+        }
+      ]
+    },
+    {
+      "name": "footer",
+      "type": "registry:component",
+      "description": "",
+      "dependencies": [
+        "react"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "utility/components/footer.tsx",
+          "target": "components"
+        }
+      ]
+    },
+    {
+      "name": "aside",
+      "type": "registry:component",
+      "description": "",
+      "dependencies": [
+        "react"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "utility/components/aside.tsx",
+          "target": "components"
+        }
+      ]
+    },
+    {
+      "name": "article",
+      "type": "registry:component",
+      "description": "Helper function for determining styles that the parser will be able to process",
+      "dependencies": [
+        "react"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "utility/components/article.tsx",
+          "target": "components"
+        }
+      ]
+    },
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "description": "",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "devDependencies": [],
+      "files": [
+        {
+          "path": "lib/utils.ts",
+          "target": "lib"
+        }
+      ]
+    }
+  ],
+  "version": "1.0.0",
+  "lastUpdated": "2025-06-11T09:20:54.408Z",
+  "registry": "utility"
+}

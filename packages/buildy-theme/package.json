@@ -1,0 +1,85 @@
+{
+  "name": "@buildy-ui/theme",
+  "version": "1.0.1",
+  "description": "React theme state management library for utility and semantic CSS approaches",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./collection": {
+      "require": "./dist/collection.js",
+      "types": "./dist/collection.d.ts"
+    },
+    "./context": {
+      "require": "./dist/context.js",
+      "types": "./dist/context.d.ts"
+    },
+    "./utils": {
+      "require": "./dist/utils.js",
+      "types": "./dist/utils.d.ts"
+    },
+    "./client": {
+      "require": "./dist/client.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run clean && npm run build"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "typescript": "^5.2.2",
+    "tsup": "^7.2.0"
+  },
+  "keywords": [
+    "react",
+    "theme",
+    "state-management",
+    "utility-css",
+    "semantic-css",
+    "css",
+    "tailwind",
+    "ui"
+  ],
+  "author": {
+    "name": "buildy-ui",
+    "url": "https://buildy.tw"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/buildy-ui/ui.git",
+    "directory": "packages/buildy-theme"
+  },
+  "homepage": "https://buildy.tw",
+  "bugs": {
+    "url": "https://github.com/buildy-ui/ui/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

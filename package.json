@@ -22,11 +22,7 @@
     "type-check": "tsc --build tsconfig.build.json",
     "type-check:watch": "tsc --build tsconfig.build.json --watch",
     "clean": "tsc --build tsconfig.build.json --clean",
-    "registry:test": "tsx scripts/quick-test.ts",
-    "registry:generate": "tsx scripts/generate-registry.ts",
-    "registry:scan": "tsx scripts/test-scan.ts",
-    "registry:build": "npm run registry:generate && cd packages/cli && npm run build && cd ../.. && bun x buildy-ui@latest build --output ./packages/registry/r",
-    "registry:watch": "tsx watch scripts/generate-registry.ts"
+    "registry:build": "cd packages/ui8kit && bunx buildy-ui@latest build --output ./@registry/r"
   },
   "devDependencies": {
     "typescript": "^5.2.2",
