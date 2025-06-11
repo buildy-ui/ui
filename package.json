@@ -22,7 +22,8 @@
     "type-check": "tsc --build tsconfig.build.json",
     "type-check:watch": "tsc --build tsconfig.build.json --watch",
     "clean": "tsc --build tsconfig.build.json --clean",
-    "registry:build": "cd packages/ui8kit && bunx buildy-ui@latest build --output ./@registry/r"
+    "registry:utility": "bun run --cwd packages/ui8kit build:utility",
+    "registry:semantic": "bun run --cwd packages/ui8kit build:semantic"
   },
   "devDependencies": {
     "typescript": "^5.2.2",
