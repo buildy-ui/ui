@@ -362,17 +362,19 @@ npx buildy-ui@latest init
 npx buildy-ui@latest init --registry semantic
 npx buildy-ui@latest init --registry yourtheme
 
-# Develop components in utility/, semantic/, yourtheme/ directories
+# Develop components in utility/, semantic/, yourtheme/ directories 
 
 # Generate registry files
 npx buildy-ui@latest scan --registry utility --output ./utility/registry.json
 npx buildy-ui@latest scan --registry semantic --output ./semantic/registry.json
 npx buildy-ui@latest scan --registry yourtheme --output ./theme/registry.json
+bunx buildy-ui@latest scan --registry builddy --output ./builddy/registry.json
 
 # Build distribution
 npx buildy-ui@latest build ./utility/registry.json --output ./packages/registry/r/utility
 npx buildy-ui@latest build ./semantic/registry.json --output ./packages/registry/r/semantic
 npx buildy-ui@latest build ./theme/registry.json --output ./packages/registry/r/theme
+bunx buildy-ui@latest build ./builddy/registry.json --output ./builddy/registry/r/blocks
 
 # Deploy packages/registry/r/ to your CDN
 ```
