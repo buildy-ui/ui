@@ -107,6 +107,7 @@ async function createIndexFile(registry: any, outputDir: string) {
     components: registry.items.map((item: any) => ({
       name: item.name,
       type: item.type,
+      title: item.title,
       description: item.description,
     })),
     categories: ["ui", "components", "blocks", "lib", "templates"],

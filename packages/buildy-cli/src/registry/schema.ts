@@ -9,10 +9,25 @@ export const componentFileSchema = z.object({
 export const componentSchema = z.object({
   name: z.string(),
   type: z.enum(["registry:ui", "registry:block", "registry:component", "registry:lib", "registry:template"]),
+  title: z.string().optional(),
   description: z.string().optional(),
   dependencies: z.array(z.string()).default([]),
   devDependencies: z.array(z.string()).default([]),
+  registryDependencies: z.array(z.string()).optional(),
   files: z.array(componentFileSchema),
+  tailwind: z.object({
+    config: z.object({
+      content: z.array(z.string()).optional(),
+      theme: z.record(z.string(), z.any()).optional(),
+      plugins: z.array(z.string()).optional(),
+    }).optional(),
+  }).optional(),
+  cssVars: z.object({
+    theme: z.record(z.string(), z.string()).optional(),
+    light: z.record(z.string(), z.string()).optional(),
+    dark: z.record(z.string(), z.string()).optional(),
+  }).optional(),
+  meta: z.record(z.string(), z.any()).optional(),
 })
 
 export type ComponentFile = z.infer<typeof componentFileSchema>
