@@ -1,0 +1,44 @@
+{
+  "name": "@ui8kit/blocks",
+  "version": "0.0.1",
+  "description": "A collection of 50+ blocks for state and UI management for buildy",
+  "homepage": "https://buildy.tw",
+  "license": "MIT",
+  "author": "buildy-ui",
+  "keywords": [
+    "frontend",
+    "blocks",
+    "library",
+    "tailwind",
+    "utility-first",
+    "semantic",
+    "react",
+    "react-blocks",
+    "state"
+  ],
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "repository": {
+    "url": "https://github.com/buildy-ui/ui.git",
+    "type": "git",
+    "directory": "packages/@ui8kit/blocks"
+  },
+  "peerDependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  }
+}

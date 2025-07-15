@@ -1,10 +1,10 @@
 {
-  "name": "@buildy/hooks",
+  "name": "@ui8kit/hooks",
   "version": "0.0.1",
   "description": "A collection of 50+ hooks for state and UI management for buildy",
   "homepage": "https://buildy.tw",
   "license": "MIT",
-  "author": "buildy",
+  "author": "buildy-ui",
   "keywords": [
     "frontend",
     "hooks",
@@ -35,7 +35,7 @@
   "repository": {
     "url": "https://github.com/buildy-ui/ui.git",
     "type": "git",
-    "directory": "packages/@buildy/hooks"
+    "directory": "packages/@ui8kit/hooks"
   },
   "peerDependencies": {
     "react": "^19.1.0",
