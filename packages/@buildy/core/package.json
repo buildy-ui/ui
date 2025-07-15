@@ -1,0 +1,58 @@
+{
+  "name": "@buildy/core",
+  "version": "0.0.1",
+  "description": "Open source React UI components library with Tailwind utility-first and semantic classes",
+  "homepage": "https://buildy.dev/",
+  "license": "MIT",
+  "author": "buildy",
+  "keywords": [
+    "components",
+    "design",
+    "frontend",
+    "library",
+    "tailwind",
+    "utility-first",
+    "semantic",
+    "react",
+    "ui",
+    "ui8kit"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./styles.css": "./styles.css",
+    "./styles/*": "./styles/*"
+  },
+  "repository": {
+    "url": "https://github.com/buildy-ui/ui.git",
+    "type": "git",
+    "directory": "packages/@buildy/core"
+  },
+  "peerDependencies": {
+    "@buildy/hooks": "0.0.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "dependencies": {
+    "@floating-ui/react": "^0.26.28",
+    "clsx": "^2.1.1",
+    "class-variance-authority": "^0.7.1"
+  },
+  "devDependencies": {
+    "@buildy-tests/core": "workspace:*",
+    "@buildy/hooks": "workspace:*",
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
+  }
+}

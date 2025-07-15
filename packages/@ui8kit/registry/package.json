@@ -1,5 +1,5 @@
 {
-  "name": "ui8kit",
+  "name": "@ui8kit/registry",
   "version": "1.0.6",
   "description": "UI8Kit components registry for buildy-ui CLI - published from npm to CDN",
   "main": "index.js",

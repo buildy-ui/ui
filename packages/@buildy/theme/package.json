@@ -1,5 +1,5 @@
 {
-  "name": "@buildy-ui/theme",
+  "name": "@buildy/theme",
   "version": "1.0.1",
   "description": "React theme state management library for utility and semantic CSS approaches",
   "type": "module",
