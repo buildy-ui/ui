@@ -19,12 +19,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@/core": ["./src/core/index"],
-      "@/core/*": ["./src/core/*"],
-      "@/components": ["./src/utility/components/index"],
-      "@/components/*": ["./src/utility/components/*"],
-      "@/ui": ["./src/utility/ui/index"],
-      "@/ui/*": ["./src/utility/ui/*"]
+      "@/hooks": ["./src/index"],
+      "@/hooks/*": ["./src/*"]
     }
   }
-}
+} 

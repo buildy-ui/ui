@@ -1,8 +1,7 @@
 {
-  "include": ["./src"],
+  "include": ["./src", "../core/src", "../hooks/src"],
   "exclude": ["./lib", "./dist"],
   "compilerOptions": {
-    "rootDir": "src",
     "types": ["node"],
     "target": "ES2020",
     "lib": ["DOM", "ESNext"],
@@ -12,19 +11,16 @@
     "resolveJsonModule": true,
     "strict": true,
     "skipLibCheck": true,
-    "composite": true,
     "declaration": true,
     "declarationDir": "./dist",
     "outDir": "./dist",
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@/core": ["./src/core/index"],
-      "@/core/*": ["./src/core/*"],
-      "@/components": ["./src/utility/components/index"],
-      "@/components/*": ["./src/utility/components/*"],
-      "@/ui": ["./src/utility/ui/index"],
-      "@/ui/*": ["./src/utility/ui/*"]
+      "@/blocks": ["./src/index"],
+      "@/blocks/*": ["./src/*"],
+      "@ui8kit/core": ["../core/src"],
+      "@ui8kit/hooks": ["../hooks/src"]
     }
   }
-}
+} 

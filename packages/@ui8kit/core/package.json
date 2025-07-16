@@ -39,20 +39,13 @@
     "type": "git",
     "directory": "packages/@ui8kit/core"
   },
-  "peerDependencies": {
-    "@ui8kit/hooks": "0.0.1",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0"
-  },
   "dependencies": {
     "@floating-ui/react": "^0.26.28",
     "clsx": "^2.1.1",
     "class-variance-authority": "^0.7.1"
   },
   "devDependencies": {
-    "@ui8kit-tests/core": "workspace:*",
-    "@ui8kit/hooks": "workspace:*",
-    "react": "19.0.0",
-    "react-dom": "19.0.0"
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
   }
 }

@@ -1,0 +1,1 @@
+export { HeroBlock, heroTemplate } from './HeroBlock'; 

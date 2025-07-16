@@ -1,0 +1,1 @@
+export { BlogNewsBlock, blogNewsBlockTemplate } from './BlogNewsBlock'; 

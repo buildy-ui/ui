@@ -8,7 +8,10 @@
   "references": [
     { "path": "./packages/cli" },
     { "path": "./packages/ui" },
-    { "path": "./packages/registry" }
+    { "path": "./packages/registry" },
+    { "path": "./packages/@ui8kit/core" },
+    { "path": "./packages/@ui8kit/hooks" },
+    { "path": "./packages/@ui8kit/blocks" }
   ],
   "files": []
 }

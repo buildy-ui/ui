@@ -1,0 +1,1 @@
+export { FeaturesSplitMedia, featuresSplitMediaTemplate } from './FeaturesSplitMedia'; 
