@@ -5,8 +5,8 @@ import { cn } from "../../../core/utils";
 const overlayVariants = cva("absolute inset-0", {
   variants: {
     color: {
-      black: "bg-black",
-      white: "bg-white",
+      black: "bg-white dark:bg-black",
+      white: "bg-black dark:bg-white",
       primary: "bg-primary",
       secondary: "bg-secondary",
       background: "bg-background",
@@ -79,7 +79,7 @@ export const Overlay = forwardRef<HTMLDivElement, OverlayProps>(
     return (
       <div
         ref={ref}
-        data-slot="overlay"
+        data-class="overlay"
         className={cn(overlayVariants({ color, opacity, blur, fixed }), className)}
         style={overlayStyle}
         {...props}

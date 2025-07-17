@@ -26,9 +26,10 @@ const textVariants = cva("", {
     },
     c: {
       foreground: "text-foreground",
-      "muted-foreground": "text-muted-foreground",
+      mutedForeground: "text-muted-foreground",
       primary: "text-primary",
       secondary: "text-secondary",
+      secondaryForeground: "text-secondary-foreground",
       destructive: "text-destructive",
       accent: "text-accent"
     },
@@ -72,7 +73,7 @@ export const Text = forwardRef<HTMLElement, TextProps>(
     return (
       <Component
         ref={ref}
-        data-slot="text"
+        data-class="text"
         className={cn(textVariants({ size, fw, ta, c, truncate }), className)}
         style={style}
         {...props}

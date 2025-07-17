@@ -1,6 +1,7 @@
 import { forwardRef } from "react";
 import { 
-  Box, 
+  Box,
+  Block, 
   Container, 
   Stack, 
   Group, 
@@ -30,15 +31,15 @@ export const FeaturesSplitMedia = forwardRef<HTMLElement, FeaturesSplitMediaProp
     const { badge, title, description, features } = content;
     
     return (
-      <Box
+      <Block
         ref={ref}
-        component="section"
+        variant="section"
         className="w-full py-16 lg:py-32 bg-background"
-        data-slot="features-split-media"
+        data-class="features-split-media"
         {...props}
       >
-        <Container size="lg" className="px-4 md:px-6 lg:px-8">
-          <Grid cols={2} gap="lg" align="center" className="items-center">
+        <Container size="lg" padding="responsive">
+          <Grid cols={2} gap="lg" align="center" centered={true} data-class="features-split-grid">
             {/* Content Section */}
             <Grid.Col span={1}>
               <Stack gap="lg">
@@ -76,14 +77,14 @@ export const FeaturesSplitMedia = forwardRef<HTMLElement, FeaturesSplitMediaProp
                 </Stack>
                 
                 {/* Features List */}
-                <Stack gap="md" className="lg:pl-4">
+                <Stack gap="md" className="lg:pl-4" data-class="features-list">
                   {features?.map((feature, index) => (
-                    <Group key={index} gap="md" align="start">
+                    <Group key={index} gap="md" align="start" data-class="feature-item">
                       {/* Check Icon */}
                       <Box 
-                        className="w-4 h-4 mt-2 flex-shrink-0"
+                        className="w-4 h-4 mt-2 flex-shrink-0 text-primary dark:text-white"
                         style={{ 
-                          backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor'%3e%3cpath stroke-linecap='round' stroke-linejoin='round' d='m4.5 12.75 6 6 9-13.5' /%3e%3c/svg%3e")`,
+                          backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2.5' stroke='currentColor' %3e%3cpath stroke-linecap='round' stroke-linejoin='round' d='m4.5 12.75 6 6 9-13.5' /%3e%3c/svg%3e")`,
                           backgroundSize: 'contain',
                           backgroundRepeat: 'no-repeat',
                           filter: 'hue-rotate(210deg) saturate(2) brightness(1.2)'
@@ -123,7 +124,7 @@ export const FeaturesSplitMedia = forwardRef<HTMLElement, FeaturesSplitMediaProp
             </Grid.Col>
           </Grid>
         </Container>
-      </Box>
+      </Block>
     );
   }
 );

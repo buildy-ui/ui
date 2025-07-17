@@ -1,6 +1,7 @@
 import { forwardRef } from "react";
 import { 
-  Box, 
+  Box,
+  Block, 
   Container, 
   Stack, 
   Group, 
@@ -40,14 +41,14 @@ export const BlogNewsBlock = forwardRef<HTMLElement, BlogNewsBlockProps>(
     };
 
     return (
-      <Box
+      <Block
         ref={ref}
-        component="section"
+        variant="section"
         className="py-20 px-6 bg-background"
-        data-slot="blog-news-block"
+        data-class="blog-news-block"
         {...props}
       >
-        <Container size="xl">
+        <Container size="xl" padding="responsive">
           <Stack gap="xl" align="center">
             {/* Header */}
             <Stack gap="md" align="center" className="text-center max-w-2xl mx-auto">
@@ -79,15 +80,16 @@ export const BlogNewsBlock = forwardRef<HTMLElement, BlogNewsBlockProps>(
             </Stack>
 
             {/* Articles Grid */}
-            <Grid cols={2} gap="lg" className="w-full">
+            <Grid cols={2} gap="lg" align="stretch" className="w-full" data-class="blog-articles-grid">
               {content.articles.map((article: Article, index: number) => (
                 <Grid.Col key={index} span={1}>
                   <Card 
                     padding="none"
                     className="group overflow-hidden hover:shadow-lg transition-all duration-300 border border-border bg-card hover:scale-105 rounded-lg cursor-pointer"
+                    data-class="blog-article-card"
                   >
                     {/* Article Image */}
-                    <Box className="aspect-video overflow-hidden rounded-t-lg">
+                    <Box className="aspect-video overflow-hidden rounded-t-lg" data-class="blog-article-image-wrapper">
                       <Image 
                         src={article.image} 
                         alt={article.title}
@@ -99,7 +101,7 @@ export const BlogNewsBlock = forwardRef<HTMLElement, BlogNewsBlockProps>(
                     </Box>
                     
                     {/* Article Content */}
-                    <Card.Content padding="lg">
+                    <Card.Content padding="lg" data-class="blog-article-content">
                       <Stack gap="sm">
                         {/* Date */}
                         <Group gap="xs" align="center">
@@ -161,7 +163,7 @@ export const BlogNewsBlock = forwardRef<HTMLElement, BlogNewsBlockProps>(
             </Grid>
           </Stack>
         </Container>
-      </Box>
+      </Block>
     );
   }
 );

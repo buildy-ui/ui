@@ -45,7 +45,7 @@ export const Badge = forwardRef<HTMLDivElement, BadgeProps>(
     return (
       <div
         ref={ref}
-        data-slot="badge"
+        data-class="badge"
         className={cn(badgeVariants({ variant, size }), className)}
         {...props}
       >

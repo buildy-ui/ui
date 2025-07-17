@@ -1,6 +1,7 @@
 import { forwardRef, HTMLAttributes, ReactNode } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "../../../core/utils";
+import { cn, withDataClass } from "../../../core/utils";
+import { DataClassName } from "../../../core/bem-types";
 
 const cardVariants = cva(
   "rounded-lg border bg-card text-card-foreground shadow-sm",
@@ -27,13 +28,15 @@ const cardVariants = cva(
 
 export interface CardProps
   extends HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof cardVariants> {}
+    VariantProps<typeof cardVariants> {
+  'data-class'?: DataClassName | string;
+}
 
 const Card = forwardRef<HTMLDivElement, CardProps>(
-  ({ className, variant, padding, ...props }, ref) => (
+  ({ className, variant, padding, 'data-class': dataClass, ...props }, ref) => (
     <div
       ref={ref}
-      data-slot="card"
+      {...withDataClass(className, dataClass || "card")}
       className={cn(cardVariants({ variant, padding }), className)}
       {...props}
     />
@@ -64,7 +67,7 @@ const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
   ({ className, padding, ...props }, ref) => (
     <div
       ref={ref}
-      data-slot="card-header"
+      data-class="card-header"
       className={cn(cardHeaderVariants({ padding }), className)}
       {...props}
     />
@@ -95,7 +98,7 @@ const CardTitle = forwardRef<HTMLParagraphElement, CardTitleProps>(
   ({ className, size, ...props }, ref) => (
     <h3
       ref={ref}
-      data-slot="card-title"
+      data-class="card-title"
       className={cn(cardTitleVariants({ size }), className)}
       {...props}
     />
@@ -110,7 +113,7 @@ const CardDescription = forwardRef<
 >(({ className, ...props }, ref) => (
   <p
     ref={ref}
-    data-slot="card-description"
+    data-class="card-description"
     className={cn("text-sm text-muted-foreground", className)}
     {...props}
   />
@@ -140,7 +143,7 @@ const CardContent = forwardRef<HTMLDivElement, CardContentProps>(
   ({ className, padding, ...props }, ref) => (
     <div
       ref={ref}
-      data-slot="card-content"
+      data-class="card-content"
       className={cn(cardContentVariants({ padding }), className)}
       {...props}
     />
@@ -171,7 +174,7 @@ const CardFooter = forwardRef<HTMLDivElement, CardFooterProps>(
   ({ className, padding, ...props }, ref) => (
     <div
       ref={ref}
-      data-slot="card-footer"
+      data-class="card-footer"
       className={cn(cardFooterVariants({ padding }), className)}
       {...props}
     />
@@ -207,7 +210,7 @@ const CardSection = forwardRef<HTMLDivElement, CardSectionProps>(
   ({ className, padding, withBorder, ...props }, ref) => (
     <div
       ref={ref}
-      data-slot="card-section"
+      data-class="card-section"
       className={cn(cardSectionVariants({ padding, withBorder }), className)}
       {...props}
     />

@@ -1,4 +1,5 @@
 export * from './Box';
+export * from './Block';
 export * from './Container';
 export * from './Stack';
 export * from './Group';

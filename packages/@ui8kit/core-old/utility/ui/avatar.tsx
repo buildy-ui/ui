@@ -15,7 +15,7 @@ function Avatar({ className, ...props }: React.HTMLAttributes<HTMLSpanElement>) 
   return (
     <AvatarContext.Provider value={{ imageStatus, setImageStatus }}>
       <span
-        data-slot="avatar"
+        data-class="avatar"
         className={cn(
           "relative flex size-8 shrink-0 overflow-hidden rounded-full",
           className
@@ -60,7 +60,7 @@ function AvatarImage({ className, src, ...props }: AvatarImageProps) {
   if (status !== "loaded") return null
   return (
     <img
-      data-slot="avatar-image"
+      data-class="avatar-image"
       className={cn("aspect-square size-full", className)}
       src={src}
       {...props}
@@ -87,7 +87,7 @@ function AvatarFallback({ className, delayMs, ...props }: AvatarFallbackProps) {
   if (ctx?.imageStatus === "loaded") return null
   return (
     <span
-      data-slot="avatar-fallback"
+      data-class="avatar-fallback"
       className={cn(
         "bg-muted flex size-full items-center justify-center rounded-full",
         className

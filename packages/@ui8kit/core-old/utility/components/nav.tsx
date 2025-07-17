@@ -81,7 +81,7 @@ import { Menu, X, ChevronDown } from "lucide-react"
 function Nav({ className, children, ...props }: React.ComponentProps<"nav">) {
   return (
     <nav
-      data-slot="nav"
+      data-class="nav"
       className={cn("hidden lg:flex items-center space-x-1", className)}
       {...props}
     >
@@ -94,7 +94,7 @@ function Nav({ className, children, ...props }: React.ComponentProps<"nav">) {
 function NavLayout({ className, children, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="nav-layout"
+      data-class="nav-layout"
       className={cn("relative", className)}
       {...props}
     >
@@ -114,7 +114,7 @@ function NavLayout({ className, children, ...props }: React.ComponentProps<"div"
 function NavBar({ className, children, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="nav-bar"
+      data-class="nav-bar"
       className={cn("sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60", className)}
       {...props}
     >
@@ -129,7 +129,7 @@ function NavBar({ className, children, ...props }: React.ComponentProps<"div">) 
 function NavList({ className, children, ...props }: React.ComponentProps<"ul">) {
   return (
     <ul
-      data-slot="nav-list"
+      data-class="nav-list"
       className={cn("flex items-center space-x-1", className)}
       {...props}
     >
@@ -142,7 +142,7 @@ function NavList({ className, children, ...props }: React.ComponentProps<"ul">) 
 function NavItem({ className, children, ...props }: React.ComponentProps<"li">) {
   return (
     <li
-      data-slot="nav-item"
+      data-class="nav-item"
       className={cn("relative", className)}
       {...props}
     >
@@ -160,7 +160,7 @@ function NavLink({
 }: React.ComponentProps<"a"> & { active?: boolean }) {
   return (
     <a
-      data-slot="nav-link"
+      data-class="nav-link"
       data-active={active ? "true" : undefined}
       className={cn("inline-flex items-center px-3 py-2 text-sm font-medium rounded-md transition-colors hover:bg-accent hover:text-accent-foreground data-[active=true]:bg-accent data-[active=true]:text-accent-foreground", className)}
       {...props}
@@ -181,7 +181,7 @@ function NavDropdown({
   return (
     <details
       id={id}
-      data-slot="nav-dropdown"
+      data-class="nav-dropdown"
       className={cn("relative", className)}
       {...props}
     >
@@ -194,7 +194,7 @@ function NavDropdown({
 
       {/* Dropdown content */}
       <div
-        data-slot="nav-dropdown-content"
+        data-class="nav-dropdown-content"
         className={cn("absolute top-full left-0 mt-1 w-48 rounded-md bg-popover border border-border shadow-lg z-50 origin-top-left")}
       >
         <div className="py-1">
@@ -213,7 +213,7 @@ function NavDropdownItem({
 }: React.ComponentProps<"a">) {
   return (
     <a
-      data-slot="nav-dropdown-item"
+      data-class="nav-dropdown-item"
       className={cn("block px-4 py-2 text-sm text-popover-foreground transition-colors hover:bg-accent hover:text-accent-foreground", className)}
       {...props}
     >
@@ -227,7 +227,7 @@ function NavTrigger({ className, ...props }: React.ComponentProps<"label">) {
   return (
     <label
       htmlFor="nav-toggle"
-      data-slot="nav-trigger"
+      data-class="nav-trigger"
       className={cn("lg:hidden inline-flex items-center justify-center p-2 rounded-md text-foreground hover:bg-accent hover:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-ring cursor-pointer", className)}
       aria-label="Toggle navigation menu"
       {...props}
@@ -241,7 +241,7 @@ function NavTrigger({ className, ...props }: React.ComponentProps<"label">) {
 function NavMobile({ className, children, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="nav-mobile"
+      data-class="nav-mobile"
       className={cn("fixed inset-0 z-50 lg:hidden opacity-0 invisible -translate-y-full transition-all duration-300 ease-out peer-checked:opacity-100 peer-checked:visible peer-checked:translate-y-0", className)}
       {...props}
     >
@@ -275,7 +275,7 @@ function NavMobile({ className, children, ...props }: React.ComponentProps<"div"
 function NavMobileList({ className, children, ...props }: React.ComponentProps<"ul">) {
   return (
     <ul
-      data-slot="nav-mobile-list"
+      data-class="nav-mobile-list"
       className={cn("space-y-1", className)}
       {...props}
     >
@@ -288,7 +288,7 @@ function NavMobileList({ className, children, ...props }: React.ComponentProps<"
 function NavMobileItem({ className, children, ...props }: React.ComponentProps<"li">) {
   return (
     <li
-      data-slot="nav-mobile-item"
+      data-class="nav-mobile-item"
       className={cn(className)}
       {...props}
     >
@@ -308,7 +308,7 @@ function NavMobileLink({
   return (
     <a
       href={href}
-      data-slot="nav-mobile-link"
+      data-class="nav-mobile-link"
       data-active={active ? "true" : undefined}
       className={cn(
         "flex items-center w-full px-3 py-3 text-base font-medium rounded-md transition-colors hover:bg-accent hover:text-accent-foreground data-[active=true]:bg-accent data-[active=true]:text-accent-foreground",
@@ -332,7 +332,7 @@ function NavMobileDropdownItem({
   return (
     <a
       href={href}
-      data-slot="nav-mobile-dropdown-item"
+      data-class="nav-mobile-dropdown-item"
       className={cn(
         "block px-3 py-2 text-sm rounded-md transition-colors hover:bg-accent hover:text-accent-foreground",
         className
@@ -354,7 +354,7 @@ function NavMobileDropdown({
 }: React.ComponentProps<"details"> & { title: string }) {
   return (
     <details
-      data-slot="nav-mobile-dropdown"
+      data-class="nav-mobile-dropdown"
       className={cn("", className)}
       {...props}
     >
@@ -380,7 +380,7 @@ function NavGroup({
 }: React.ComponentProps<"div"> & { title?: string }) {
   return (
     <div
-      data-slot="nav-group"
+      data-class="nav-group"
       className={cn("py-2", className)}
       {...props}
     >
@@ -400,7 +400,7 @@ function NavGroup({
 function NavGroupButtons({ className, children, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="nav-group-buttons"
+      data-class="nav-group-buttons"
       className={cn("flex items-center space-x-2", className)}
       {...props}
     >

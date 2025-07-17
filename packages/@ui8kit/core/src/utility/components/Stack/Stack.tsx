@@ -56,7 +56,7 @@ export const Stack = forwardRef<HTMLElement, StackProps>(
     return (
       <Component
         ref={ref}
-        data-slot="stack"
+        data-class="stack"
         className={cn(stackVariants({ gap, align, justify }), className)}
         style={style}
         {...props}

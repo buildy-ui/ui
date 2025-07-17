@@ -10,7 +10,7 @@ function ArticleBase({
 }: React.ComponentProps<"article">) {
   return (
     <article
-      data-slot="article"
+      data-class="article"
       className={cn(
         "bg-card text-card-foreground flex flex-col gap-6 rounded-md border shadow-sm",
         className
@@ -46,7 +46,7 @@ function Article<T extends ElementType = "article">({
   return React.createElement(
     Component,
     {
-      "data-slot": "article",
+      "data-class": "article",
       className: cn("article", className),
       ...props
     },
@@ -60,7 +60,7 @@ function ArticleHeader({
 }: React.ComponentProps<"header">) {
   return (
     <header
-      data-slot="article-header"
+      data-class="article-header"
       className={cn(
         "flex flex-col gap-2 px-6 mt-4",
         className
@@ -76,7 +76,7 @@ function ArticleTitle({
 }: React.ComponentProps<"h3">) {
   return (
     <h3
-      data-slot="article-title"
+      data-class="article-title"
       className={cn(
         "text-2xl font-bold mb-4",
         className
@@ -92,7 +92,7 @@ function ArticleMeta({
 }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="article-meta"
+      data-class="article-meta"
       className={cn(
         "flex flex-wrap items-center gap-3 text-sm text-muted-foreground",
         className
@@ -108,7 +108,7 @@ function ArticleTime({
 }: React.ComponentProps<"time">) {
   return (
     <time
-      data-slot="article-time"
+      data-class="article-time"
       className={cn(
         "text-sm text-muted-foreground",
         className
@@ -124,7 +124,7 @@ function ArticleAuthor({
 }: React.ComponentProps<"address">) {
   return (
     <address
-      data-slot="article-author"
+      data-class="article-author"
       className={cn(
         "text-sm not-italic",
         className
@@ -140,7 +140,7 @@ function ArticleFigure({
 }: React.ComponentProps<"figure">) {
   return (
     <figure
-      data-slot="article-figure"
+      data-class="article-figure"
       className={cn(
         "overflow-hidden",
         className
@@ -156,7 +156,7 @@ function ArticleImage({
 }: React.ComponentProps<"img">) {
   return (
     <img
-      data-slot="article-image"
+      data-class="article-image"
       className={cn(
         "aspect-video w-full object-cover rounded-t-md",
         className
@@ -172,7 +172,7 @@ function ArticleFigcaption({
 }: React.ComponentProps<"figcaption">) {
   return (
     <figcaption
-      data-slot="article-figcaption"
+      data-class="article-figcaption"
       className={cn(
         "mt-2 text-center text-sm text-muted-foreground",
         className
@@ -188,7 +188,7 @@ function ArticleContent({
 }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="article-content"
+      data-class="article-content"
       className={cn(
         "max-w-none px-6 py-4",
         className
@@ -204,7 +204,7 @@ function ArticleBlockquote({
 }: React.ComponentProps<"blockquote">) {
   return (
     <blockquote
-      data-slot="article-blockquote"
+      data-class="article-blockquote"
       className={cn(
         "border-l-4 border-muted pl-4 italic",
         className
@@ -220,7 +220,7 @@ function ArticleFooter({
 }: React.ComponentProps<"footer">) {
   return (
     <footer
-      data-slot="article-footer"
+      data-class="article-footer"
       className={cn(
         "flex items-center justify-between px-6 py-4",
         className
@@ -236,7 +236,7 @@ function ArticleTags({
 }: React.ComponentProps<"ul">) {
   return (
     <ul
-      data-slot="article-tags"
+      data-class="article-tags"
       className={cn(
         "flex flex-wrap gap-2",
         className
@@ -252,7 +252,7 @@ function ArticleTag({
 }: React.ComponentProps<"li">) {
   return (
     <li
-      data-slot="article-tag"
+      data-class="article-tag"
       className={cn(
         "inline-flex items-center rounded-full border bg-muted px-2.5 py-0.5 text-xs font-semibold",
         className
@@ -268,7 +268,7 @@ function ArticleActions({
 }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="article-actions"
+      data-class="article-actions"
       className={cn(
         "flex items-center gap-2",
         className

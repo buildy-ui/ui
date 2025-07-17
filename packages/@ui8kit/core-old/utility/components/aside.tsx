@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 function Aside({ className, ...props }: React.ComponentProps<"aside">) {
   return (
     <aside
-      data-slot="aside"
+      data-class="aside"
       className={cn(className)}
       {...props}
     />

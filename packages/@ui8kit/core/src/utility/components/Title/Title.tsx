@@ -68,7 +68,7 @@ export const Title = forwardRef<HTMLHeadingElement, TitleProps>(
     return (
       <Component
         ref={ref}
-        data-slot="title"
+        data-class="title"
         className={cn(titleVariants({ size, fw, ta, c }), className)}
         style={style}
         {...props}

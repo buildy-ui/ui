@@ -18,7 +18,7 @@ function Badge({
 
   return (
     <Comp
-      data-slot="badge"
+      data-class="badge"
       className={cn(
         "badge",
         variant && `badge-${variant}`,

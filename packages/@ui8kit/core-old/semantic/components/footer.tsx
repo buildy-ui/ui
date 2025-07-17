@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 function Footer({ className, ...props }: React.ComponentProps<"footer">) {
   return (
     <footer
-      data-slot="footer"
+      data-class="footer"
       className={cn(className)}
       {...props}
     />

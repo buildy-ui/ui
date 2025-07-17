@@ -78,7 +78,7 @@ export const Image = forwardRef<HTMLImageElement, ImageProps>(
     return (
       <img
         ref={ref}
-        data-slot="image"
+        data-class="image"
         className={cn(
           imageVariants({ fit, position, radius, fallback: withPlaceholder || fallback }),
           className

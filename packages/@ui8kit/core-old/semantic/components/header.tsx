@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 function Header({ className, ...props }: React.ComponentProps<"header">) {
   return (
     <header
-      data-slot="header"
+      data-class="header"
       className={cn(className)}
       {...props}
     />

@@ -70,7 +70,7 @@ export const BackgroundImage = forwardRef<HTMLDivElement, BackgroundImageProps>(
     return (
       <div
         ref={ref}
-        data-slot="background-image"
+        data-class="background-image"
         className={cn(
           backgroundImageVariants({ size, position, repeat, attachment }),
           className

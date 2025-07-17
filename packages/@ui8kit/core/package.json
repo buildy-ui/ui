@@ -1,6 +1,6 @@
 {
   "name": "@ui8kit/core",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Open source React UI components library with Tailwind utility-first and semantic classes",
   "homepage": "https://buildy.tw/",
   "license": "MIT",

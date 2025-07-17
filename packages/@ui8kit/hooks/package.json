@@ -1,7 +1,7 @@
 {
   "name": "@ui8kit/hooks",
-  "version": "0.0.1",
-  "description": "A collection of 50+ hooks for state and UI management for buildy",
+  "version": "0.1.0",
+  "description": "A collection of hooks for state and UI management for buildy/ui",
   "homepage": "https://buildy.tw",
   "license": "MIT",
   "author": "buildy-ui",

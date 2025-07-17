@@ -38,13 +38,18 @@ const gridVariants = cva("grid", {
       center: "justify-items-center",
       end: "justify-items-end",
       stretch: "justify-items-stretch"
+    },
+    centered: {
+      true: "items-center",
+      false: ""
     }
   },
   defaultVariants: {
     cols: 1,
     gap: "md",
     align: "stretch",
-    justify: "stretch"
+    justify: "stretch",
+    centered: false
   }
 });
 
@@ -64,6 +69,7 @@ const Grid = forwardRef<HTMLElement, GridProps>(
     gap,
     align,
     justify,
+    centered,
     style,
     children, 
     ...props 
@@ -73,8 +79,8 @@ const Grid = forwardRef<HTMLElement, GridProps>(
     return (
       <Component
         ref={ref}
-        data-slot="grid"
-        className={cn(gridVariants({ cols, gap, align, justify }), className)}
+        data-class="grid"
+        className={cn(gridVariants({ cols, gap, align, justify, centered }), className)}
         style={style}
         {...props}
       >
@@ -166,7 +172,7 @@ const GridCol = forwardRef<HTMLElement, GridColProps>(
     return (
       <Component
         ref={ref}
-        data-slot="grid-col"
+        data-class="grid-col"
         className={cn(gridColVariants({ span, start, order }), className)}
         style={style}
         {...props}

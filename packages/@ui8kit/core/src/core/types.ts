@@ -1,4 +1,5 @@
 import { ReactNode, ElementType } from "react";
+import { DataClassName } from './bem-types';
 
 export interface DataAttributes {
   [key: `data-${string}`]: string | number | boolean | undefined;
@@ -8,7 +9,7 @@ export interface DataAttributes {
 export interface BaseComponentProps {
   className?: string;
   children?: ReactNode;
-  "data-slot"?: string;
+  "data-class"?: DataClassName | string; // Allow string for flexibility but suggest BEM types
 }
 
 // Polymorphic component props

@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 function Main({ className, ...props }: React.ComponentProps<"main">) {
   return (
     <main
-      data-slot="main"
+      data-class="main"
       className={cn("flex-1", className)}
       {...props}
     />

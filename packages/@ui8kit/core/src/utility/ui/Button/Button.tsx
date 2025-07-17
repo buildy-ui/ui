@@ -52,7 +52,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         className={cn(buttonVariants({ variant, size }), className)}
         ref={ref}
-        data-slot="button"
+        data-class="button"
         {...props}
       >
         {leftSection && <span className="mr-2">{leftSection}</span>}

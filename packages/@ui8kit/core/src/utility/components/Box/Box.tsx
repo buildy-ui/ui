@@ -39,7 +39,7 @@ export const Box = forwardRef<HTMLElement, BoxProps>(
     return (
       <Component
         ref={ref}
-        data-slot="box"
+        data-class="box"
         className={cn(boxVariants({ display }), className)}
         style={style}
         {...props}

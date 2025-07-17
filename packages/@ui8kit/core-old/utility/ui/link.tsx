@@ -45,7 +45,7 @@ function Link({
   VariantProps<typeof linkVariants>) {
   return (
     <a
-      data-slot="link-button"
+      data-class="link-button"
       className={cn(linkVariants({ variant, size, className }))}
       href={href}
       type="button"
@@ -67,7 +67,7 @@ function LinkButton({
   VariantProps<typeof linkVariants>) {
   return (
     <a
-      data-slot="button"
+      data-class="button"
       className={cn(linkVariants({ variant, size, className }))}
       href={href}
       type="button"
@@ -84,7 +84,7 @@ function A({
 }: React.ComponentProps<"a">) {
   return (
     <a
-      data-slot="a"
+      data-class="a"
       href={href}
       {...props}
     />

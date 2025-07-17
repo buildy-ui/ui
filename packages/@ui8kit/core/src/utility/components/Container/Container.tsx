@@ -2,7 +2,7 @@ import { forwardRef, ElementType, ReactNode } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../../core/utils";
 
-const containerVariants = cva("mx-auto w-full px-4", {
+const containerVariants = cva("mx-auto w-full", {
   variants: {
     size: {
       xs: "max-w-screen-sm",
@@ -15,11 +15,20 @@ const containerVariants = cva("mx-auto w-full px-4", {
     fluid: {
       true: "max-w-none",
       false: ""
+    },
+    padding: {
+      none: "px-0",
+      sm: "px-2",
+      md: "px-4",
+      lg: "px-6",
+      xl: "px-8",
+      responsive: "px-4 md:px-6 lg:px-8"
     }
   },
   defaultVariants: {
     size: "lg",
-    fluid: false
+    fluid: false,
+    padding: "responsive"
   }
 });
 
@@ -37,6 +46,7 @@ export const Container = forwardRef<HTMLElement, ContainerProps>(
     className, 
     size,
     fluid,
+    padding,
     style,
     children, 
     ...props 
@@ -46,8 +56,8 @@ export const Container = forwardRef<HTMLElement, ContainerProps>(
     return (
       <Component
         ref={ref}
-        data-slot="container"
-        className={cn(containerVariants({ size, fluid }), className)}
+        data-class="container"
+        className={cn(containerVariants({ size, fluid, padding }), className)}
         style={style}
         {...props}
       >

@@ -55,7 +55,7 @@ interface SheetContentProps {
 // Trigger component - uses peer checkbox
 function SheetTrigger({ children, className, ...props }: SheetTriggerProps) {
   return (
-    <label htmlFor="sheet-toggle" data-slot="sheet-trigger" className={cn("inline-flex md:hidden items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all h-9 p-2 border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground cursor-pointer", className)} {...props}>
+    <label htmlFor="sheet-toggle" data-class="sheet-trigger" className={cn("inline-flex md:hidden items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all h-9 p-2 border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground cursor-pointer", className)} {...props}>
       {children}
     </label>
   )
@@ -70,7 +70,7 @@ function SheetContent({ children, className, ...props }: SheetContentProps) {
   // LEFT PANEL:  className={cn("fixed inset-y-0 left-0 z-50 w-full max-w-sm bg-background shadow-lg border-r transform -translate-x-full transition-transform duration-300 ease-out peer-checked:translate-x-0 flex flex-col overflow-hidden", className)}
   // RIGHT PANEL: className={cn("fixed inset-y-0 right-0 z-50 w-full max-w-sm bg-background shadow-lg border-l transform translate-x-full transition-transform duration-300 ease-out peer-checked:translate-x-0 flex flex-col overflow-hidden", className)}
   return (
-    <div data-slot="sheet-content" role="dialog" aria-modal="true" className={cn("fixed inset-y-0 left-0 z-50 w-full max-w-sm bg-background shadow-lg border-r transform -translate-x-full transition-transform duration-300 ease-out peer-checked:translate-x-0 flex flex-col overflow-hidden", className)} {...props}>
+    <div data-class="sheet-content" role="dialog" aria-modal="true" className={cn("fixed inset-y-0 left-0 z-50 w-full max-w-sm bg-background shadow-lg border-r transform -translate-x-full transition-transform duration-300 ease-out peer-checked:translate-x-0 flex flex-col overflow-hidden", className)} {...props}>
       {/* Close button */}
       <div className="absolute top-4 right-4 z-10">
         <label htmlFor="sheet-toggle" className={cn("rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 inline-flex h-6 w-6 items-center justify-center bg-background/80 backdrop-blur-sm cursor-pointer")}>
@@ -88,7 +88,7 @@ function SheetOverlay({ className, ...props }: { className?: string }) {
   return (
     <label
       htmlFor="sheet-toggle"
-      data-slot="sheet-overlay"
+      data-class="sheet-overlay"
       className={cn(
         "fixed inset-0 z-40 bg-black/50 backdrop-blur-sm opacity-0 invisible transition-all duration-300 ease-out peer-checked:opacity-100 peer-checked:visible peer-checked:pointer-events-auto transform-gpu cursor-pointer",
         className
@@ -106,7 +106,7 @@ interface SheetHeaderProps {
 
 function SheetHeader({ children, className, ...props }: SheetHeaderProps) {
   return (
-    <div data-slot="sheet-header" className={cn("flex flex-col space-y-2 p-6", className)} {...props}>
+    <div data-class="sheet-header" className={cn("flex flex-col space-y-2 p-6", className)} {...props}>
       {children}
     </div>
   )
@@ -120,7 +120,7 @@ interface SheetBodyProps {
 
 function SheetBody({ children, className, ...props }: SheetBodyProps) {
   return (
-    <div data-slot="sheet-body" className={cn("flex-1 overflow-y-auto p-6", className)} {...props}>
+    <div data-class="sheet-body" className={cn("flex-1 overflow-y-auto p-6", className)} {...props}>
       {children}
     </div>
   )
@@ -134,7 +134,7 @@ interface SheetFooterProps {
 
 function SheetFooter({ children, className, ...props }: SheetFooterProps) {
   return (
-    <div data-slot="sheet-footer" className={cn("mt-auto flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2 p-6", className)} {...props}>
+    <div data-class="sheet-footer" className={cn("mt-auto flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2 p-6", className)} {...props}>
       {children}
     </div>
   )
@@ -148,7 +148,7 @@ interface SheetTitleProps {
 
 function SheetTitle({ children, className, ...props }: SheetTitleProps) {
   return (
-    <h2 data-slot="sheet-title" className={cn("text-lg font-semibold text-foreground", className)} {...props}>
+    <h2 data-class="sheet-title" className={cn("text-lg font-semibold text-foreground", className)} {...props}>
       {children}
     </h2>
   )
@@ -162,7 +162,7 @@ interface SheetDescriptionProps {
 
 function SheetDescription({ children, className, ...props }: SheetDescriptionProps) {
   return (
-    <p data-slot="sheet-description" className={cn("text-sm text-muted-foreground", className)} {...props}>
+    <p data-class="sheet-description" className={cn("text-sm text-muted-foreground", className)} {...props}>
       {children}
     </p>
   )
@@ -176,7 +176,7 @@ interface SheetCloseProps {
 
 function SheetClose({ children, className, ...props }: SheetCloseProps) {
   return (
-    <label htmlFor="sheet-toggle" data-slot="sheet-close" className={cn("inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring cursor-pointer", className)} {...props}>
+    <label htmlFor="sheet-toggle" data-class="sheet-close" className={cn("inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring cursor-pointer", className)} {...props}>
       {children}
     </label>
   )

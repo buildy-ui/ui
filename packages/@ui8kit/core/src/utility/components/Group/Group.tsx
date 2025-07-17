@@ -65,7 +65,7 @@ export const Group = forwardRef<HTMLElement, GroupProps>(
     return (
       <Component
         ref={ref}
-        data-slot="group"
+        data-class="group"
         className={cn(groupVariants({ gap, align, justify, wrap }), className)}
         style={style}
         {...props}
