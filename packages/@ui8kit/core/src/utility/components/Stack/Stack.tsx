@@ -2,7 +2,7 @@ import { forwardRef, ElementType, ReactNode } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../../core/utils";
 
-const stackVariants = cva("flex flex-col", {
+export const stackVariants = cva("flex flex-col", {
   variants: {
     gap: {
       xs: "gap-1",
@@ -30,9 +30,11 @@ const stackVariants = cva("flex flex-col", {
     align: "stretch",
     justify: "start"
   }
-});
+  });
 
-export interface StackProps extends VariantProps<typeof stackVariants> {
+export type StackVariants = VariantProps<typeof stackVariants>;
+
+export interface StackProps extends StackVariants {
   component?: ElementType;
   className?: string;
   children?: ReactNode;
@@ -49,6 +51,7 @@ export const Stack = forwardRef<HTMLElement, StackProps>(
     justify,
     style,
     children, 
+    stackVariants,
     ...props 
   }, ref) => {
     const Component = component as ElementType;
@@ -56,8 +59,7 @@ export const Stack = forwardRef<HTMLElement, StackProps>(
     return (
       <Component
         ref={ref}
-        data-class="stack"
-        className={cn(stackVariants({ gap, align, justify }), className)}
+        className={cn(stackVariants({ gap, align, justify, ...stackVariants }), className)}
         style={style}
         {...props}
       >

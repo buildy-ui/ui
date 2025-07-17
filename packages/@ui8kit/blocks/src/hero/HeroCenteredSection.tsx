@@ -38,7 +38,7 @@ export const HeroCenteredSection = forwardRef<HTMLElement, HeroCenteredSectionPr
           padding="responsive"
           ta="center"
         >
-          <Stack gap="xl">
+          <Stack gap="xl" justify="center" align="center" {...props}>
             {content.badge && (
               <Group justify="center">
                 <Badge 

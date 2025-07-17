@@ -1,6 +1,6 @@
 import { forwardRef, HTMLAttributes, ReactNode } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-import { cn, withDataClass } from "../../../core/utils";
+import { cn } from "../../../core/utils";
 import { DataClassName } from "../../../core/bem-types";
 
 const cardVariants = cva(
@@ -36,7 +36,6 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
   ({ className, variant, padding, 'data-class': dataClass, ...props }, ref) => (
     <div
       ref={ref}
-      {...withDataClass(className, dataClass || "card")}
       className={cn(cardVariants({ variant, padding }), className)}
       {...props}
     />
