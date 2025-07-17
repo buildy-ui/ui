@@ -11,7 +11,7 @@
 packages/@ui8kit/core/src/
 ├── core/           # Logic and utilities (@/core)
 │   ├── types.ts    # Core types and interfaces
-│   ├── utils.ts    # Utilities (cn, withDataClass, hasUtilityClasses)
+│   ├── utils.ts    # Utilities (cn function)
 │   ├── bem-types.ts # BEM TypeScript autocomplete types
 │   └── index.ts    # Exports
 └── utility/        # UI components (@/utility)
@@ -23,22 +23,73 @@ blocks/             # Final reconstructed blocks
 
 ## Core Architecture Principles
 
-### 1. **Data-Class System with BEM and Conditional Application**
-- **CRITICAL**: Use `data-class` attribute ONLY when element has utility classes in `className`
-- **NEVER**: Use `data-class` when element only uses CVA props (variant, size, etc.)
-- **BEM Structure**: Follow "block", "block-element", "block-element-modifier" naming
-- Scripts automatically detect `data-class` attributes and extract utility classes from `className`
-- TypeScript autocomplete available for BEM patterns
+### 1. **Core-First Development Strategy**
+- **PRIORITY #1**: Use core component props instead of utility classes
+- **PRIORITY #2**: Maintain consistency with core library defaults
+- **PRIORITY #3**: Create coherent prototypes, not exact copies
+- **PRIORITY #4**: Minimize utility class usage
 
-#### **Conditional Data-Class Application:**
+#### **Core-First Decision Matrix:**
 ```typescript
-// ✅ CORRECT: Has utility classes → USE data-class
+// ✅ CORRECT: Use core props instead of utilities
+<Title order={1} size="4xl" fw="bold" ta="center" c="foreground">
+  <!-- NO utility classes needed -->
+</Title>
+
+// ❌ WRONG: Duplicating with utility classes
+<Title 
+  order={1} 
+  size="4xl" 
+  className="text-4xl font-bold text-center text-foreground"
+>
+  <!-- Redundant utilities -->
+</Title>
+
+// ✅ CORRECT: Only use utilities for what props can't handle
+<Title 
+  order={1} 
+  size="4xl" 
+  fw="bold"
+  className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
+  data-class="hero-title"
+>
+  <!-- Gradient effect needs utilities -->
+</Title>
+```
+
+#### **Core Library Consistency Rules:**
+```typescript
+// If core has default behavior → use it, don't override
+<Container size="lg">
+  <!-- mx-auto is default, don't add className="mx-auto" -->
+</Container>
+
+// If core has prop for styling → use prop, not utility
+<Button size="lg" variant="primary">
+  <!-- Use size prop, not className="px-8 py-6" -->
+</Button>
+
+// If core prop conflicts with source → choose core prop
+// Source: className="px-8"
+// Core: size="lg" (gives px-6)
+// Choose: size="lg" ✅
+```
+
+### 2. **Data-Class System with BEM - Simple Rules**
+- **Rule 1**: If element has `className` with utility classes → add `data-class` with BEM naming
+- **Rule 2**: If element has no `className` or empty `className` → no `data-class`
+- **Rule 3**: Use BEM structure: "block", "block-element", "block-element-modifier"
+- **Rule 4**: Scripts process elements with `data-class` and extract utilities from `className`
+
+#### **Simple Decision Making:**
+```typescript
+// ✅ CORRECT: Has utility classes → ADD data-class
 <Card 
   className="bg-white border-2 shadow-lg hover:shadow-xl transition-shadow"
   data-class="testimonial-card"
 />
 
-// ✅ CORRECT: Has responsive utilities → USE data-class  
+// ✅ CORRECT: Has responsive utilities → ADD data-class  
 <Grid 
   cols={2} 
   gap="lg" 
@@ -46,14 +97,15 @@ blocks/             # Final reconstructed blocks
   data-class="products-grid"
 />
 
-// ❌ INCORRECT: Only CVA props → NO data-class
+// ✅ CORRECT: Only CVA props → NO data-class
 <Card padding="lg" variant="outline">
   <!-- No className with utilities = No data-class -->
 </Card>
 
-// ❌ INCORRECT: Empty or whitespace className → NO data-class
-<Card className="" data-class="testimonial-card">
-<Card className="   " data-class="testimonial-card">
+// ✅ CORRECT: Empty className → NO data-class
+<Card className="">
+  <!-- No utility classes = No data-class -->
+</Card>
 ```
 
 #### **BEM Naming Structure:**
@@ -80,39 +132,18 @@ data-class="features-grid-centered"
 - **Components**: `card`, `button`, `form`, `modal`, `nav`, `sidebar`
 - **Content**: `article`, `gallery`, `timeline`, `stats`
 
-#### **Script Processing Mechanism:**
-```typescript
-// Script finds element with data-class AND utility classes
-<Box 
-  data-class="hero-section" 
-  className="min-h-screen flex items-center justify-center bg-gradient-to-r from-primary to-secondary"
-/>
-
-// AST parser extracts utility classes from className
-// Generates CSS:
-.hero-section {
-  @apply min-h-screen flex items-center justify-center bg-gradient-to-r from-primary to-secondary;
-}
-
-// Script IGNORES elements without utility classes:
-<Card padding="lg" variant="outline">
-  <!-- No data-class needed, no CSS generated -->
-</Card>
-```
-
-### 2. **Block Component as Universal Semantic Wrapper**
+### 3. **Block Component as Universal Semantic Wrapper**
 - **Block** component replaces generic `<div>` and `<Box>` for semantic sections
 - Supports all HTML5 semantic elements: `section`, `main`, `nav`, `article`, `header`, `footer`, `aside`
 - Includes comprehensive spacing, color, and layout props
-- Automatically handles responsive behavior
+- Use `variant` prop instead of `component` prop: `<Block variant="section">`
 
 #### **Block Component Usage:**
 ```typescript
 // Replace generic divs with semantic Block
 <Block 
-  component="section" 
-  padding="responsive"
-  className="bg-background"
+  variant="section" 
+  className="bg-gradient-to-r from-primary to-secondary"
   data-class="hero-section"
 >
   <Container size="lg">
@@ -126,7 +157,7 @@ data-class="features-grid-centered"
 </Container>
 ```
 
-### 3. **Mantine-Inspired Component Design**
+### 4. **Mantine-Inspired Component Design**
 - Universal, context-independent component names (Title, not HeroTitle)
 - Polymorphic components with `component` prop
 - Comprehensive props system that reduces need for utility classes:
@@ -135,27 +166,36 @@ data-class="features-grid-centered"
   - Typography: `size`, `fw`, `ta`, `lh`
   - Layout: `pos`, `w`, `h`, `maw`, `mah`
   - Responsive objects: `{ base: 'sm', md: 'lg' }`
-- Composition with compound components (Card.Header, Card.Content)
 
 #### **Props vs Utility Classes Strategy:**
 ```typescript
-// ✅ PREFER: Use component props when available
+// ✅ ALWAYS PREFER: Use component props when available
 <Title order={1} size="4xl" fw="bold" ta="center">
   <!-- No data-class needed -->
 </Title>
 
-// ✅ USE data-class: When props don't cover the styling
+// ❌ AVOID: Duplicating props with utilities
 <Title 
   order={1} 
   size="4xl" 
-  className="text-4xl md:text-6xl lg:text-7xl leading-tight bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
+  className="text-4xl font-bold text-center"
+>
+  <!-- Redundant - props already handle this -->
+</Title>
+
+// ✅ ONLY USE utilities: When props don't cover the need
+<Title 
+  order={1} 
+  size="4xl" 
+  fw="bold"
+  className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
   data-class="hero-title"
 >
-  Responsive + Gradient Title
+  <!-- Gradient effect requires utilities -->
 </Title>
 ```
 
-### 4. **Shadcn Color System Requirements**
+### 5. **Shadcn Color System Requirements**
 - **ONLY** use shadcn semantic color names: `primary`, `secondary`, `destructive`, `muted`, `accent`, `card`, `popover`, `border`, `input`, `ring`, `background`, `foreground`
 - **ALWAYS** use foreground pairs: `primary-foreground`, `secondary-foreground`, etc.
 - **NEVER** use arbitrary colors like `blue-500`, `red-600`, `gray-100`
@@ -173,26 +213,65 @@ className="bg-blue-500 text-white hover:bg-blue-600"
 className="bg-gray-100 text-gray-900 border-gray-300"
 ```
 
-### 5. **Utility Functions for Data-Class Management**
-```typescript
-import { withDataClass, hasUtilityClasses } from '@ui8kit/core';
-
-// Automatically applies data-class only when utility classes present
-const conditionalProps = withDataClass(className, "hero-title");
-
-// Check if className contains utility classes
-const hasUtilities = hasUtilityClasses("bg-white border-2 shadow-lg");
-// Returns: true
-
-const hasNoUtilities = hasUtilityClasses(""); 
-// Returns: false
-```
-
 ## Analysis Algorithm for AI Agents
 
-### Phase 1: Identify Component Structure (Priority Order)
+### Phase 1: Core Component Analysis (Priority Order)
 
-#### 1.1 **Semantic Structure Analysis**
+#### 1.1 **Core Props Discovery**
+```typescript
+1. Identify available core component props (80%) 
+2. Map source styling to core props (15%)
+3. Determine remaining utility needs (5%)
+```
+
+#### 1.2 **Core-First Mapping Rules**
+```typescript
+// Typography → Title/Text props
+font-bold → fw="bold"
+text-center → ta="center"
+text-xl → size="xl"
+text-primary → c="primary"
+text-white → c="white"
+
+// Layout → Container/Block props  
+max-w-4xl → size="lg" (on Container)
+mx-auto → default behavior (don't add)
+py-16 → py="xl"
+px-4 → padding="responsive"
+
+// Spacing → Component props
+space-y-6 → gap="lg" (on Stack)
+gap-4 → gap="md" (on Group/Grid)
+p-6 → padding="lg"
+
+// Interactive → Button props
+px-8 py-3 → size="lg"
+bg-primary → variant="primary"
+hover:bg-primary/90 → handled by variant
+```
+
+#### 1.3 **Redundancy Elimination**
+```typescript
+// ❌ WRONG: Duplicating props with utilities
+<Title 
+  size="4xl" 
+  className="text-4xl"
+/>
+
+// ✅ CORRECT: Use only props
+<Title size="4xl" />
+
+// ✅ CORRECT: Props + non-redundant utilities
+<Title 
+  size="4xl" 
+  className="bg-gradient-to-r from-primary to-secondary"
+  data-class="hero-title"
+/>
+```
+
+### Phase 2: Component Structure Analysis
+
+#### 2.1 **Semantic Structure Analysis**
 ```typescript
 1. Semantic containers (40%) - section, main, article, header, footer
 2. Layout patterns (30%) - flex, grid, positioning 
@@ -200,12 +279,12 @@ const hasNoUtilities = hasUtilityClasses("");
 4. Interactive elements (10%) - buttons, forms, links
 ```
 
-#### 1.2 **Component Mapping Rules**
+#### 2.2 **Component Mapping Rules**
 ```typescript
 // Semantic Elements → Block Component
-<section className="..."> → <Block component="section" ...>
-<main className="..."> → <Block component="main" ...>
-<div className="..."> → <Block component="div" ...> (if semantic wrapper)
+<section className="..."> → <Block variant="section" ...>
+<main className="..."> → <Block variant="main" ...>
+<div className="..."> → <Block variant="div" ...> (if semantic wrapper)
 
 // Layout Patterns → Layout Components
 <div className="flex gap-4"> → <Group gap="md">
@@ -214,36 +293,35 @@ const hasNoUtilities = hasUtilityClasses("");
 <div className="max-w-4xl mx-auto"> → <Container size="lg">
 
 // Content Elements → Content Components  
-<h1 className="text-4xl font-bold"> → <Title order={1} size="2xl" fw="bold">
+<h1 className="text-4xl font-bold"> → <Title order={1} size="4xl" fw="bold">
 <p className="text-lg"> → <Text size="lg">
 <img src="..." className="..."> → <Image src="..." className="..." data-class="...">
 <button className="..."> → <Button variant="..." size="...">
 ```
 
-#### 1.3 **Data-Class Decision Matrix**
+#### 2.3 **Data-Class Decision - Simple Rules**
 ```typescript
-// STEP 1: Check if element has className with utility classes
-const hasUtilities = className && hasUtilityClasses(className);
+// SIMPLE RULE: If className has utility classes → add data-class
+<Component 
+  className="bg-white border-2 shadow-lg"
+  data-class="block-element"
+/>
 
-// STEP 2: Apply data-class logic
-if (hasUtilities) {
-  // ✅ Add data-class with BEM naming
-  <Component className="..." data-class="block-element" />
-} else {
-  // ❌ Use only CVA props, no data-class
-  <Component variant="..." size="..." />
-}
+// SIMPLE RULE: If no className or empty → no data-class
+<Component variant="secondary" size="lg">
+  <!-- No className = No data-class -->
+</Component>
 
-// STEP 3: BEM naming guidelines
+// BEM naming examples
 "hero" → main hero section
 "hero-title" → title within hero
 "hero-content" → content wrapper in hero
 "hero-title-large" → large variant of hero title
 ```
 
-### Phase 2: Advanced Pattern Recognition
+### Phase 3: Advanced Pattern Recognition
 
-#### 2.1 **Complex Layout Patterns**
+#### 3.1 **Complex Layout Patterns**
 ```typescript
 // Multi-column layouts
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
@@ -258,7 +336,7 @@ if (hasUtilities) {
 → <Stack gap="lg" className="lg:gap-8" data-class="responsive-stack">
 ```
 
-#### 2.2 **Visual Enhancement Patterns**
+#### 3.2 **Visual Enhancement Patterns**
 ```typescript
 // Background overlays
 <div className="relative">
@@ -281,7 +359,7 @@ if (hasUtilities) {
 ```typescript
 // Layout & Structure
 - Block         // Universal semantic wrapper (section, main, div, etc.)
-- Container     // Constrained width container with responsive padding
+- Container     // Constrained width container with responsive padding (mx-auto by default)
 - Stack         // Vertical layout (space-y-*)
 - Group         // Horizontal layout (flex gap-*)
 - Grid          // Grid layouts
@@ -370,18 +448,28 @@ export const Component = forwardRef<HTMLElement, ComponentProps>(({
 
 ### **Step-by-Step Transformation Process**
 
-#### **Step 1: Semantic Analysis**
+#### **Step 1: Core Props Analysis**
+```typescript
+// Identify what core props can handle
+<h1 className="text-4xl font-bold text-center text-primary">
+  ↓ Analyze available props
+  order={1} size="4xl" fw="bold" ta="center" c="primary"
+  ↓ Result
+<Title order={1} size="4xl" fw="bold" ta="center" c="primary">
+```
+
+#### **Step 2: Semantic Analysis**
 ```typescript
 // Identify semantic structure
-<section> → <Block component="section">
-<main> → <Block component="main">  
+<section> → <Block variant="section">
+<main> → <Block variant="main">  
 <div> as wrapper → <Block> or specific layout component
 <div> as container → <Container>
 <div> as flex → <Group> or <Stack>
 <div> as grid → <Grid>
 ```
 
-#### **Step 2: Content Mapping**
+#### **Step 3: Content Mapping**
 ```typescript
 // Map content elements
 <h1-h6> → <Title order={1-6}>
@@ -391,22 +479,9 @@ export const Component = forwardRef<HTMLElement, ComponentProps>(({
 <a> → <Button component="a"> or <Text component="a">
 ```
 
-#### **Step 3: Styling Strategy**
+#### **Step 4: Core-First Styling Strategy**
 ```typescript
-// For each element, decide:
-1. Can component props handle the styling?
-   YES → Use props only, no data-class
-   NO → Use className + data-class
-
-2. If using className + data-class:
-   - Extract utility classes to className
-   - Create BEM-compliant data-class name
-   - Ensure data-class follows block-element-modifier pattern
-```
-
-#### **Step 4: Props vs Utilities Decision Tree**
-```typescript
-// Common styling → Use component props
+// PRIORITY 1: Use core props
 text-center → ta="center"
 text-xl → size="xl"
 font-bold → fw="bold"
@@ -414,11 +489,23 @@ p-4 → p="md"
 text-primary-foreground → c="primary"
 bg-secondary → bg="secondary"
 
-// Complex/Responsive styling → Use className + data-class  
-text-4xl md:text-6xl lg:text-7xl → className + data-class
+// PRIORITY 2: Use utilities only for uncovered needs
 bg-gradient-to-r from-primary to-secondary → className + data-class
 hover:scale-105 transition-transform → className + data-class
 group-hover:translate-x-2 → className + data-class
+```
+
+#### **Step 5: Consistency Check**
+```typescript
+// Check against core defaults
+<Container className="mx-auto"> → <Container> (mx-auto is default)
+<Button className="px-8 py-3"> → <Button size="lg"> (if core size="lg" gives px-8 py-3)
+<Title className="text-4xl"> → <Title size="4xl"> (if core size="4xl" gives text-4xl)
+
+// Choose core over source when conflict
+Source: px-8 py-3
+Core: size="lg" gives px-6 py-3
+Choose: size="lg" ✅ (consistency over exactness)
 ```
 
 ## Quality Standards for AI Agents
@@ -426,28 +513,35 @@ group-hover:translate-x-2 → className + data-class
 ### **MANDATORY Requirements**
 
 #### **✅ Must Have:**
+- **Core props prioritized over utility classes**
+- **Consistency with core library defaults**
+- **Minimal utility class usage**
 - All Tailwind classes in single strings (no line breaks)
 - Only shadcn semantic colors used
 - data-class ONLY when className has utility classes
 - BEM naming for all data-class values
-- Component props used when available
 - Proper semantic HTML through Block component
 
 #### **❌ Must Avoid:**
+- **Duplicating core props with utility classes**
+- **Overriding core defaults unnecessarily**
+- **Exact source matching over core consistency**
 - data-class with empty/whitespace className
 - Arbitrary color values (blue-500, gray-100, etc.)
 - Arrays or template literals in cn() calls
 - Line breaks in className strings
 - Generic div when semantic element appropriate
-- Utility classes when component props available
 
 ### **Validation Checklist**
 ```typescript
 // Before submitting transformation:
+□ Core props used instead of equivalent utility classes
+□ No redundant utilities that duplicate props
+□ Core library defaults respected
+□ Prototype coherence prioritized over exact matching
 □ All data-class usage has corresponding utility classes in className
 □ All colors use shadcn semantic names only
 □ BEM naming pattern followed for data-class values  
-□ Component props used instead of utilities where possible
 □ Semantic HTML structure maintained through Block component
 □ No arbitrary color values present
 □ All className strings are single-line
@@ -458,7 +552,7 @@ group-hover:translate-x-2 → className + data-class
 
 ## Example Transformations
 
-### **Example 1: Hero Section**
+### **Example 1: Core-First Hero Section**
 ```typescript
 // BEFORE (typical React block)
 <section className="min-h-screen bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center">
@@ -475,16 +569,19 @@ group-hover:translate-x-2 → className + data-class
   </div>
 </section>
 
-// AFTER (ui8kit/core transformation)
+// AFTER (ui8kit/core transformation - CORE-FIRST)
 <Block 
-  component="section" 
+  variant="section" 
   className="min-h-screen bg-gradient-to-r from-primary to-secondary flex items-center justify-center"
   data-class="hero-section"
 >
   <Container size="lg" ta="center">
     <Title 
       order={1} 
-      className="text-5xl md:text-6xl font-bold text-primary-foreground mb-6"
+      size="4xl" 
+      fw="bold" 
+      c="primary-foreground"
+      className="mb-6"
       data-class="hero-title"
     >
       Build Something Amazing
@@ -499,7 +596,8 @@ group-hover:translate-x-2 → className + data-class
     </Text>
     <Button 
       size="lg"
-      className="bg-background text-foreground px-8 py-3 hover:bg-muted transition-colors"
+      variant="secondary"
+      className="transition-colors"
       data-class="hero-cta"
     >
       Get Started
@@ -508,43 +606,60 @@ group-hover:translate-x-2 → className + data-class
 </Block>
 ```
 
-### **Example 2: Card Grid Layout**
+### **Example 2: Props Over Utilities**
 ```typescript
-// BEFORE
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-  <div className="bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow p-6">
-    <img src="..." className="w-full h-48 object-cover rounded-md mb-4" />
-    <h3 className="text-xl font-bold text-gray-900 mb-2">Card Title</h3>
-    <p className="text-gray-600">Card description text here.</p>
-  </div>
-</div>
-
-// AFTER  
-<Grid 
-  cols={1} 
-  gap="lg" 
-  p="lg"
-  className="md:grid-cols-2 lg:grid-cols-3"
-  data-class="cards-grid"
+// ❌ WRONG: Duplicating props with utilities
+<Title 
+  order={1} 
+  size="4xl" 
+  className="text-4xl md:text-6xl font-bold text-center"
 >
-  <Card 
-    padding="lg"
-    className="shadow-lg hover:shadow-xl transition-shadow"
-    data-class="feature-card"
-  >
-    <Image 
-      src="..." 
-      className="w-full h-48 object-cover rounded-md mb-4"
-      data-class="card-image"
-    />
-    <Title order={3} size="xl" fw="bold" c="foreground" className="mb-2">
-      Card Title
-    </Title>
-    <Text c="muted-foreground">
-      Card description text here.
-    </Text>
-  </Card>
-</Grid>
+  Redundant Title
+</Title>
+
+// ✅ CORRECT: Core props only
+<Title 
+  order={1} 
+  size="4xl" 
+  fw="bold" 
+  ta="center"
+>
+  Clean Title
+</Title>
+
+// ✅ CORRECT: Props + necessary utilities
+<Title 
+  order={1} 
+  size="4xl" 
+  fw="bold" 
+  ta="center"
+  className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
+  data-class="hero-title"
+>
+  Gradient Title
+</Title>
+```
+
+### **Example 3: Container Defaults**
+```typescript
+// ❌ WRONG: Overriding defaults
+<Container size="lg" className="mx-auto">
+  <!-- mx-auto is default -->
+</Container>
+
+// ✅ CORRECT: Use defaults
+<Container size="lg">
+  <!-- mx-auto applied automatically -->
+</Container>
+
+// ✅ CORRECT: Only add when needed
+<Container 
+  size="lg" 
+  className="bg-muted"
+  data-class="hero-container"
+>
+  <!-- Only non-default styling -->
+</Container>
 ```
 
 ## VS Code Integration
@@ -554,9 +669,20 @@ group-hover:translate-x-2 → className + data-class
 bem-block    → data-class="hero|features|blog..."
 bem-hero     → data-class="hero-title|hero-content..."  
 bem-card     → data-class="card-header|card-content..."
-ui-block     → <Block component="section" data-class="">
+ui-block     → <Block variant="section" data-class="">
 ui-container → <Container size="lg" padding="responsive">
 ui-grid      → <Grid cols={2} gap="lg" data-class="">
 ```
 
-This comprehensive system ensures AI agents can accurately transform any React block into the ui8kit/core design system while maintaining semantic integrity, visual fidelity, and following all architectural principles.
+## Summary
+
+The key principles are:
+1. **Core props ALWAYS take priority over utility classes**
+2. **Maintain consistency with core library defaults**
+3. **Create coherent prototypes, not exact copies**
+4. **If className has utility classes → add data-class with BEM naming**
+5. **If no className or empty className → no data-class**
+6. **Use only shadcn semantic colors**
+7. **Follow BEM naming structure**
+
+**Remember: Core consistency > Source exactness!**
