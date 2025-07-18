@@ -51,10 +51,16 @@ export const BlogNewsBlock = forwardRef<HTMLElement, BlogNewsBlockProps>(
         <Container size="xl" padding="responsive">
           <Stack gap="xl" align="center">
             {/* Header */}
-            <Stack gap="md" align="center" className="text-center max-w-2xl mx-auto">
+            <Stack 
+              gap="md" 
+              align="center" 
+              className="text-center max-w-2xl mx-auto" 
+              data-class="stack-text-center"
+            >
               <Badge 
                 variant="secondary"
                 className="mb-4 px-4 py-2 text-sm"
+                data-class="badge-mb-4"
               >
                 News & Updates
               </Badge>
@@ -65,6 +71,7 @@ export const BlogNewsBlock = forwardRef<HTMLElement, BlogNewsBlockProps>(
                 fw="bold"
                 c="foreground"
                 className="text-3xl md:text-5xl"
+                data-class="title-text-3xl"
               >
                 {content.title}
               </Title>
@@ -74,6 +81,7 @@ export const BlogNewsBlock = forwardRef<HTMLElement, BlogNewsBlockProps>(
                 c="muted-foreground"
                 ta="center"
                 className="leading-relaxed"
+                data-class="text-leading-relaxed"
               >
                 {content.subtitle}
               </Text>
@@ -97,11 +105,12 @@ export const BlogNewsBlock = forwardRef<HTMLElement, BlogNewsBlockProps>(
                         height={300}
                         fit="cover"
                         className="w-full h-auto group-hover:scale-110 transition-transform duration-500"
+                        data-class="image-w-full"
                       />
                     </Box>
                     
                     {/* Article Content */}
-                    <Card.Content padding="lg" data-class="blog-article-content">
+                    <Card.Content padding="lg">
                       <Stack gap="sm">
                         {/* Date */}
                         <Group gap="xs" align="center">
@@ -113,6 +122,7 @@ export const BlogNewsBlock = forwardRef<HTMLElement, BlogNewsBlockProps>(
                               backgroundSize: 'contain',
                               backgroundRepeat: 'no-repeat'
                             }}
+                            data-class="box-inline-block"
                           />
                           <Text size="sm" c="muted-foreground">
                             {formatDate(article.date)}
@@ -126,6 +136,7 @@ export const BlogNewsBlock = forwardRef<HTMLElement, BlogNewsBlockProps>(
                           fw="semibold"
                           c="card-foreground"
                           className="group-hover:text-primary transition-colors"
+                          data-class="title-group-hover"
                         >
                           {article.title}
                         </Title>
@@ -134,6 +145,7 @@ export const BlogNewsBlock = forwardRef<HTMLElement, BlogNewsBlockProps>(
                         <Text
                           c="muted-foreground"
                           className="leading-relaxed"
+                          data-class="text-leading-relaxed"
                         >
                           {article.excerpt}
                         </Text>
@@ -143,6 +155,7 @@ export const BlogNewsBlock = forwardRef<HTMLElement, BlogNewsBlockProps>(
                           gap="xs" 
                           align="center"
                           className="text-primary font-medium group-hover:gap-3 transition-all"
+                          data-class="group-text-primary"
                         >
                           <Text c="primary" fw="medium">Read more</Text>
                           <Box 
@@ -153,6 +166,7 @@ export const BlogNewsBlock = forwardRef<HTMLElement, BlogNewsBlockProps>(
                               backgroundSize: 'contain',
                               backgroundRepeat: 'no-repeat'
                             }}
+                            data-class="box-inline-block"
                           />
                         </Group>
                       </Stack>

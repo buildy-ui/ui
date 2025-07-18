@@ -37,7 +37,7 @@ export const HeroBlock = forwardRef<HTMLElement, HeroBlockProps>(
           src={content.backgroundImage}
           size="cover"
           position="center"
-          data-class="hero-background-image"
+          data-class="absolute-inset"
           className="absolute inset-0"
         />
 
@@ -45,7 +45,7 @@ export const HeroBlock = forwardRef<HTMLElement, HeroBlockProps>(
         <Overlay
           color="black"
           opacity={70}
-          data-class="overlay-absolute"
+          data-class="absolute-inset"
           className="absolute inset-0"
         />
 
@@ -109,7 +109,7 @@ export const HeroBlock = forwardRef<HTMLElement, HeroBlockProps>(
               >
                 <Box
                   component="span"
-                  data-class="hero-button-icon-outline"
+                  data-class="inline-icon-mr"
                   className="mr-2 inline-block w-5 h-5"
                   style={{
                     backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor'%3e%3cpath stroke-linecap='round' stroke-linejoin='round' d='M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z' /%3e%3c/svg%3e")`,

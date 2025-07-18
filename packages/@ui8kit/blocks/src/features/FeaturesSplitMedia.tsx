@@ -39,7 +39,7 @@ export const FeaturesSplitMedia = forwardRef<HTMLElement, FeaturesSplitMediaProp
         {...props}
       >
         <Container size="lg" padding="responsive">
-          <Grid cols={2} gap="lg" align="center" centered={true} data-class="features-split-grid">
+          <Grid cols={2} gap="lg" align="center" centered={true}>
             {/* Content Section */}
             <Grid.Col span={1}>
               <Stack gap="lg">
@@ -47,6 +47,7 @@ export const FeaturesSplitMedia = forwardRef<HTMLElement, FeaturesSplitMediaProp
                   {/* Badge */}
                   <Badge 
                     variant="outline" 
+                    data-class="badge-w-fit"
                     className="w-fit"
                   >
                     {badge}
@@ -60,6 +61,7 @@ export const FeaturesSplitMedia = forwardRef<HTMLElement, FeaturesSplitMediaProp
                       fw="bold"
                       c="foreground"
                       ta="left"
+                      data-class="title-max-w-2xl"
                       className="max-w-2xl text-3xl md:text-4xl lg:text-5xl"
                     >
                       {title}
@@ -69,6 +71,7 @@ export const FeaturesSplitMedia = forwardRef<HTMLElement, FeaturesSplitMediaProp
                       size="lg"
                       c="muted-foreground"
                       ta="left"
+                      data-class="text-max-w-2xl"
                       className="max-w-2xl"
                     >
                       {description}
@@ -79,9 +82,10 @@ export const FeaturesSplitMedia = forwardRef<HTMLElement, FeaturesSplitMediaProp
                 {/* Features List */}
                 <Stack gap="md" className="lg:pl-4" data-class="features-list">
                   {features?.map((feature, index) => (
-                    <Group key={index} gap="md" align="start" data-class="feature-item">
+                    <Group key={index} gap="md" align="start">
                       {/* Check Icon */}
                       <Box 
+                        data-class="box-w-4"
                         className="w-4 h-4 mt-2 flex-shrink-0 text-primary dark:text-white"
                         style={{ 
                           backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2.5' stroke='currentColor' %3e%3cpath stroke-linecap='round' stroke-linejoin='round' d='m4.5 12.75 6 6 9-13.5' /%3e%3c/svg%3e")`,
@@ -92,7 +96,7 @@ export const FeaturesSplitMedia = forwardRef<HTMLElement, FeaturesSplitMediaProp
                       />
                       
                       {/* Feature Content */}
-                      <Stack gap="xs" className="flex-1">
+                      <Stack gap="xs" data-class="stack-flex-1" className="flex-1">
                         <Text fw="medium" c="foreground">
                           {feature.title}
                         </Text>
@@ -112,6 +116,7 @@ export const FeaturesSplitMedia = forwardRef<HTMLElement, FeaturesSplitMediaProp
             {/* Media Placeholder */}
             <Grid.Col span={1}>
               <Box 
+                data-class="box-bg-muted"
                 className="bg-muted rounded-md aspect-square w-full"
                 style={{
                   backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1' stroke='currentColor'%3e%3cpath stroke-linecap='round' stroke-linejoin='round' d='m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z' /%3e%3c/svg%3e")`,
