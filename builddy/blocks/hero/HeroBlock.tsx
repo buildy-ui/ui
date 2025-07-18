@@ -14,7 +14,7 @@ export default function HeroBlock({ content }: HeroBlockProps) {
   
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
-      {/* Background Image - priority loading для LCP */}
+      {/* Background Image - priority loading for LCP */}
       <img
         src={content.backgroundImage}
         alt="Hero background"

@@ -1,0 +1,35 @@
+.hero-block {
+  @apply relative min-h-screen flex items-center justify-center overflow-hidden;
+}
+
+.hero-background-image {
+  @apply absolute inset-0;
+}
+
+.hero-content {
+  @apply relative z-10 h-full flex items-center;
+}
+
+.hero-subtitle {
+  @apply text-xl md:text-2xl max-w-2xl mx-auto leading-relaxed;
+}
+
+.hero-button-group {
+  @apply flex-col sm:flex-row;
+}
+
+.hero-button {
+  @apply text-lg px-8 py-6 h-auto bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300;
+}
+
+.hero-button-icon {
+  @apply ml-2 inline-block w-5 h-5;
+}
+
+.hero-button-outline {
+  @apply text-lg px-8 py-6 h-auto bg-white/10 border-white/30 text-white hover:bg-white/20 hover:text-white rounded-lg backdrop-blur-sm;
+}
+
+.hero-button-icon-outline {
+  @apply mr-2 inline-block w-5 h-5;
+}

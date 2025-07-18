@@ -109,7 +109,7 @@ export function getInstallPath(registryType: RegistryType, componentType: string
   const folder = TYPE_TO_FOLDER[componentType as keyof typeof TYPE_TO_FOLDER]
   
   if (componentType === "registry:lib") {
-    return "lib" // lib всегда в корне
+    return "lib"
   }
   
   return `${registryType}/${folder}`
