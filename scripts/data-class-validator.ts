@@ -339,17 +339,68 @@ class DataClassValidator {
   }
 
   private suggestDataClassName(elementName: string, className: string): string {
-    // Simple heuristic for suggesting a data-class name
-    const element = elementName.toLowerCase();
-    const firstClass = className.split(' ')[0].toLowerCase();
+    // Utility-based naming suggestions (reusable across components)
+    const classes = className.toLowerCase().split(' ');
     
-    // If the first class is descriptive, use it
-    if (firstClass.length > 2 && !['px', 'py', 'pt', 'pb', 'pl', 'pr', 'mx', 'my', 'mt', 'mb', 'ml', 'mr'].includes(firstClass)) {
-      return `${element}-${firstClass}`;
+    // Layout & Positioning patterns
+    if (classes.includes('absolute') && classes.includes('inset-0')) {
+      return 'overlay-full';
+    }
+    if (classes.includes('max-w-4xl') || classes.includes('max-w-6xl')) {
+      return 'container-centered';
+    }
+    if (classes.includes('flex') && classes.includes('items-center')) {
+      return 'flex-centered';
+    }
+    if (classes.includes('grid') && classes.some(c => c.includes('grid-cols'))) {
+      return 'grid-responsive';
     }
     
-    // Otherwise use a generic name
-    return `${element}-container`;
+    // Visual effects patterns
+    if (classes.includes('bg-gradient-to-r') || classes.includes('bg-gradient-to-b')) {
+      return 'background-gradient';
+    }
+    if (classes.includes('shadow-lg') && classes.includes('hover:shadow-xl')) {
+      return 'button-elevated';
+    }
+    if (classes.includes('hover:scale-105') || classes.includes('hover:scale-110')) {
+      return 'interactive-hover';
+    }
+    if (classes.includes('transition-all') || classes.includes('transition-transform')) {
+      return 'animated-element';
+    }
+    
+    // Spacing patterns
+    if (classes.some(c => c.includes('mb-') || c.includes('mt-'))) {
+      return 'content-spaced';
+    }
+    if (classes.some(c => c.includes('py-') && parseInt(c.split('-')[1]) >= 16)) {
+      return 'section-padded';
+    }
+    
+    // Size patterns
+    if (classes.includes('w-4') && classes.includes('h-4')) {
+      return 'icon-small';
+    }
+    if (classes.includes('w-5') && classes.includes('h-5')) {
+      return 'icon-medium';
+    }
+    if (classes.includes('w-full') && classes.includes('h-auto')) {
+      return 'image-responsive';
+    }
+    
+    // Fallback based on element type and first meaningful class
+    const element = elementName.toLowerCase();
+    const firstMeaningfulClass = classes.find(c => 
+      c.length > 2 && 
+      !['px', 'py', 'pt', 'pb', 'pl', 'pr', 'mx', 'my', 'mt', 'mb', 'ml', 'mr'].includes(c)
+    );
+    
+    if (firstMeaningfulClass) {
+      return `${element}-${firstMeaningfulClass.replace(':', '-')}`;
+    }
+    
+    return `${element}-styled`;
   }
 }
 
