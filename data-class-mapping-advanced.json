@@ -1,0 +1,786 @@
+{
+  "absolute inset-0": [
+    {
+      "dataClass": "absolute-inset",
+      "stemmed": [
+        "absolute",
+        "inset-num"
+      ],
+      "normalized": [
+        "absolute",
+        "inset-0"
+      ]
+    },
+    {
+      "dataClass": "absolute-inset",
+      "stemmed": [
+        "absolute",
+        "inset-num"
+      ],
+      "normalized": [
+        "absolute",
+        "inset-0"
+      ]
+    }
+  ],
+  "aspect-video overflow-hidden rounded-t-lg": [
+    {
+      "dataClass": "blog-article-image-wrapper",
+      "stemmed": [
+        "aspect-video",
+        "overflow-hidden",
+        "rounded-t-size"
+      ],
+      "normalized": [
+        "aspect-video",
+        "overflow-hidden",
+        "rounded-t-lg"
+      ]
+    }
+  ],
+  "bg-muted rounded-md aspect-square w-full": [
+    {
+      "dataClass": "box-bg-muted",
+      "stemmed": [
+        "aspect-square",
+        "bg-color",
+        "rounded-size",
+        "w-size"
+      ],
+      "normalized": [
+        "aspect-square",
+        "bg-muted",
+        "rounded-md",
+        "w-full"
+      ]
+    }
+  ],
+  "bg-primary text-primary-foreground hover:bg-primary/90": [
+    {
+      "dataClass": "button-elevated",
+      "stemmed": [
+        "bg-color",
+        "hover:bg-primary/90",
+        "text-primary-foreground"
+      ],
+      "normalized": [
+        "bg-primary",
+        "hover:bg-primary/90",
+        "text-primary-foreground"
+      ]
+    }
+  ],
+  "flex-1": [
+    {
+      "dataClass": "stack-flex-1",
+      "stemmed": [
+        "flex-num"
+      ],
+      "normalized": [
+        "flex-1"
+      ]
+    }
+  ],
+  "flex-col md:flex-row": [
+    {
+      "dataClass": "button-group-flex",
+      "stemmed": [
+        "flex-col",
+        "md:flex-row"
+      ],
+      "normalized": [
+        "flex-col",
+        "md:flex-row"
+      ]
+    }
+  ],
+  "flex-col sm:flex-row": [
+    {
+      "dataClass": "hero-button-group",
+      "stemmed": [
+        "flex-col",
+        "sm:flex-row"
+      ],
+      "normalized": [
+        "flex-col",
+        "sm:flex-row"
+      ]
+    }
+  ],
+  "group overflow-hidden hover:shadow-lg transition-all duration-300 border border-border bg-card hover:scale-105 rounded-lg cursor-pointer": [
+    {
+      "dataClass": "blog-article-card",
+      "stemmed": [
+        "bg-card",
+        "border",
+        "border-border",
+        "cursor-pointer",
+        "duration-300",
+        "group",
+        "hover:scale-105",
+        "hover:shadow-size",
+        "overflow-hidden",
+        "rounded-size",
+        "transition-all"
+      ],
+      "normalized": [
+        "bg-card",
+        "border",
+        "border-border",
+        "cursor-pointer",
+        "duration-300",
+        "group",
+        "hover:scale-105",
+        "hover:shadow-lg",
+        "overflow-hidden",
+        "rounded-lg",
+        "transition-all"
+      ]
+    }
+  ],
+  "group-hover:text-primary transition-colors": [
+    {
+      "dataClass": "title-group-hover",
+      "stemmed": [
+        "group-hover:text-color",
+        "transition-colors"
+      ],
+      "normalized": [
+        "group-hover:text-primary",
+        "transition-colors"
+      ]
+    }
+  ],
+  "inline-block w-4 h-4": [
+    {
+      "dataClass": "box-inline-block",
+      "stemmed": [
+        "h-num",
+        "inline-block",
+        "w-num"
+      ],
+      "normalized": [
+        "h-4",
+        "inline-block",
+        "w-4"
+      ]
+    }
+  ],
+  "inline-block w-4 h-4 group-hover:translate-x-1 transition-transform": [
+    {
+      "dataClass": "box-inline-block",
+      "stemmed": [
+        "group-hover:translate-x-num",
+        "h-num",
+        "inline-block",
+        "transition-transform",
+        "w-num"
+      ],
+      "normalized": [
+        "group-hover:translate-x-1",
+        "h-4",
+        "inline-block",
+        "transition-transform",
+        "w-4"
+      ]
+    }
+  ],
+  "leading-relaxed": [
+    {
+      "dataClass": "text-leading-relaxed",
+      "stemmed": [
+        "leading-relaxed"
+      ],
+      "normalized": [
+        "leading-relaxed"
+      ]
+    },
+    {
+      "dataClass": "text-leading-relaxed",
+      "stemmed": [
+        "leading-relaxed"
+      ],
+      "normalized": [
+        "leading-relaxed"
+      ]
+    }
+  ],
+  "lg:pl-4": [
+    {
+      "dataClass": "features-list",
+      "stemmed": [
+        "lg:pl-num"
+      ],
+      "normalized": [
+        "lg:pl-4"
+      ]
+    }
+  ],
+  "max-w-2xl": [
+    {
+      "dataClass": "text-max-w-2xl",
+      "stemmed": [
+        "max-w-size"
+      ],
+      "normalized": [
+        "max-w-2xl"
+      ]
+    }
+  ],
+  "max-w-2xl text-3xl md:text-4xl lg:text-5xl": [
+    {
+      "dataClass": "title-max-w-2xl",
+      "stemmed": [
+        "lg:text-size",
+        "max-w-size",
+        "md:text-size",
+        "text-size"
+      ],
+      "normalized": [
+        "lg:text-5xl",
+        "max-w-2xl",
+        "md:text-4xl",
+        "text-3xl"
+      ]
+    }
+  ],
+  "max-w-[700px] md:text-xl": [
+    {
+      "dataClass": "text-constrained",
+      "stemmed": [
+        "max-w-[700px]",
+        "md:text-size"
+      ],
+      "normalized": [
+        "max-w-[700px]",
+        "md:text-xl"
+      ]
+    }
+  ],
+  "mb-4 px-4 py-2 text-sm": [
+    {
+      "dataClass": "badge-mb-4",
+      "stemmed": [
+        "mb-num",
+        "px-num",
+        "py-num",
+        "text-size"
+      ],
+      "normalized": [
+        "mb-4",
+        "px-4",
+        "py-2",
+        "text-sm"
+      ]
+    }
+  ],
+  "ml-2 h-4 w-4": [
+    {
+      "dataClass": "icon-small",
+      "stemmed": [
+        "h-num",
+        "ml-num",
+        "w-num"
+      ],
+      "normalized": [
+        "h-4",
+        "ml-2",
+        "w-4"
+      ]
+    }
+  ],
+  "ml-2 h-5 w-5": [
+    {
+      "dataClass": "icon-medium",
+      "stemmed": [
+        "h-num",
+        "ml-num",
+        "w-num"
+      ],
+      "normalized": [
+        "h-5",
+        "ml-2",
+        "w-5"
+      ]
+    }
+  ],
+  "ml-2 inline-block w-5 h-5": [
+    {
+      "dataClass": "hero-button-icon",
+      "stemmed": [
+        "h-num",
+        "inline-block",
+        "ml-num",
+        "w-num"
+      ],
+      "normalized": [
+        "h-5",
+        "inline-block",
+        "ml-2",
+        "w-5"
+      ]
+    }
+  ],
+  "mr-2 inline-block w-5 h-5": [
+    {
+      "dataClass": "inline-icon-mr",
+      "stemmed": [
+        "h-num",
+        "inline-block",
+        "mr-num",
+        "w-num"
+      ],
+      "normalized": [
+        "h-5",
+        "inline-block",
+        "mr-2",
+        "w-5"
+      ]
+    },
+    {
+      "dataClass": "inline-icon-mr",
+      "stemmed": [
+        "h-num",
+        "inline-block",
+        "mr-num",
+        "w-num"
+      ],
+      "normalized": [
+        "h-5",
+        "inline-block",
+        "mr-2",
+        "w-5"
+      ]
+    },
+    {
+      "dataClass": "inline-icon-mr",
+      "stemmed": [
+        "h-num",
+        "inline-block",
+        "mr-num",
+        "w-num"
+      ],
+      "normalized": [
+        "h-5",
+        "inline-block",
+        "mr-2",
+        "w-5"
+      ]
+    }
+  ],
+  "py-20 px-6 bg-background": [
+    {
+      "dataClass": "blog-news-block",
+      "stemmed": [
+        "bg-background",
+        "px-num",
+        "py-num"
+      ],
+      "normalized": [
+        "bg-background",
+        "px-6",
+        "py-20"
+      ]
+    }
+  ],
+  "relative min-h-screen flex items-center justify-center overflow-hidden": [
+    {
+      "dataClass": "hero-block",
+      "stemmed": [
+        "fle-axis",
+        "items-center",
+        "justify-center",
+        "min-h-screen",
+        "overflow-hidden",
+        "relative"
+      ],
+      "normalized": [
+        "flex",
+        "items-center",
+        "justify-center",
+        "min-h-screen",
+        "overflow-hidden",
+        "relative"
+      ]
+    }
+  ],
+  "relative z-10 h-full flex items-center": [
+    {
+      "dataClass": "hero-content",
+      "stemmed": [
+        "fle-axis",
+        "h-size",
+        "items-center",
+        "relative",
+        "z-num"
+      ],
+      "normalized": [
+        "flex",
+        "h-full",
+        "items-center",
+        "relative",
+        "z-10"
+      ]
+    }
+  ],
+  "rounded-full px-4 py-2": [
+    {
+      "dataClass": "badge-rounded-full",
+      "stemmed": [
+        "px-num",
+        "py-num",
+        "rounded-size"
+      ],
+      "normalized": [
+        "px-4",
+        "py-2",
+        "rounded-full"
+      ]
+    }
+  ],
+  "shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300": [
+    {
+      "dataClass": "button-shadow-lg",
+      "stemmed": [
+        "duration-300",
+        "hover:scale-105",
+        "hover:shadow-size",
+        "shadow-size",
+        "transform",
+        "transition-all"
+      ],
+      "normalized": [
+        "duration-300",
+        "hover:scale-105",
+        "hover:shadow-xl",
+        "shadow-lg",
+        "transform",
+        "transition-all"
+      ]
+    },
+    {
+      "dataClass": "button-shadow-lg",
+      "stemmed": [
+        "duration-300",
+        "hover:scale-105",
+        "hover:shadow-size",
+        "shadow-size",
+        "transform",
+        "transition-all"
+      ],
+      "normalized": [
+        "duration-300",
+        "hover:scale-105",
+        "hover:shadow-xl",
+        "shadow-lg",
+        "transform",
+        "transition-all"
+      ]
+    }
+  ],
+  "space-y-6": [
+    {
+      "dataClass": "content-spaced",
+      "stemmed": [
+        "space-y-num"
+      ],
+      "normalized": [
+        "space-y-6"
+      ]
+    }
+  ],
+  "text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl": [
+    {
+      "dataClass": "title-responsive",
+      "stemmed": [
+        "font-bold",
+        "lg:text-size",
+        "md:text-size",
+        "sm:text-size",
+        "text-size",
+        "tracking-tighter"
+      ],
+      "normalized": [
+        "font-bold",
+        "lg:text-6xl",
+        "md:text-5xl",
+        "sm:text-4xl",
+        "text-3xl",
+        "tracking-tighter"
+      ]
+    }
+  ],
+  "text-3xl md:text-5xl": [
+    {
+      "dataClass": "title-text-3xl",
+      "stemmed": [
+        "md:text-size",
+        "text-size"
+      ],
+      "normalized": [
+        "md:text-5xl",
+        "text-3xl"
+      ]
+    }
+  ],
+  "text-4xl md:text-6xl lg:text-7xl leading-tight": [
+    {
+      "dataClass": "title-4xl",
+      "stemmed": [
+        "leading-tight",
+        "lg:text-7xl",
+        "md:text-size",
+        "text-size"
+      ],
+      "normalized": [
+        "leading-tight",
+        "lg:text-7xl",
+        "md:text-6xl",
+        "text-4xl"
+      ]
+    }
+  ],
+  "text-center max-w-2xl mx-auto": [
+    {
+      "dataClass": "stack-text-center",
+      "stemmed": [
+        "max-w-size",
+        "mx-size",
+        "text-center"
+      ],
+      "normalized": [
+        "max-w-2xl",
+        "mx-auto",
+        "text-center"
+      ]
+    }
+  ],
+  "text-center mx-auto max-w-4xl": [
+    {
+      "dataClass": "stack-text-center",
+      "stemmed": [
+        "max-w-size",
+        "mx-size",
+        "text-center"
+      ],
+      "normalized": [
+        "max-w-4xl",
+        "mx-auto",
+        "text-center"
+      ]
+    }
+  ],
+  "text-lg px-8 py-6 h-auto bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300": [
+    {
+      "dataClass": "hero-button",
+      "stemmed": [
+        "bg-color",
+        "duration-300",
+        "h-size",
+        "hover:bg-primary/90",
+        "hover:scale-105",
+        "hover:shadow-size",
+        "px-num",
+        "py-num",
+        "rounded-size",
+        "shadow-size",
+        "text-size",
+        "text-primary-foreground",
+        "transform",
+        "transition-all"
+      ],
+      "normalized": [
+        "bg-primary",
+        "duration-300",
+        "h-auto",
+        "hover:bg-primary/90",
+        "hover:scale-105",
+        "hover:shadow-2xl",
+        "px-8",
+        "py-6",
+        "rounded-lg",
+        "shadow-xl",
+        "text-lg",
+        "text-primary-foreground",
+        "transform",
+        "transition-all"
+      ]
+    }
+  ],
+  "text-lg px-8 py-6 h-auto bg-white/10 border-white/30 text-white hover:bg-white/20 hover:text-white rounded-lg backdrop-blur-sm": [
+    {
+      "dataClass": "hero-button-outline",
+      "stemmed": [
+        "backdrop-blur-size",
+        "bg-white/10",
+        "border-white/30",
+        "h-size",
+        "hover:bg-white/20",
+        "hover:text-white",
+        "px-num",
+        "py-num",
+        "rounded-size",
+        "text-size",
+        "text-white"
+      ],
+      "normalized": [
+        "backdrop-blur-sm",
+        "bg-white/10",
+        "border-white/30",
+        "h-auto",
+        "hover:bg-white/20",
+        "hover:text-white",
+        "px-8",
+        "py-6",
+        "rounded-lg",
+        "text-lg",
+        "text-white"
+      ]
+    }
+  ],
+  "text-primary font-medium group-hover:gap-3 transition-all": [
+    {
+      "dataClass": "group-text-primary",
+      "stemmed": [
+        "font-medium",
+        "group-hover:gap-num",
+        "text-color",
+        "transition-all"
+      ],
+      "normalized": [
+        "font-medium",
+        "group-hover:gap-3",
+        "text-primary",
+        "transition-all"
+      ]
+    }
+  ],
+  "text-sm": [
+    {
+      "dataClass": "button-outlined",
+      "stemmed": [
+        "text-size"
+      ],
+      "normalized": [
+        "text-sm"
+      ]
+    }
+  ],
+  "text-xl md:text-2xl max-w-2xl mx-auto leading-relaxed": [
+    {
+      "dataClass": "hero-subtitle",
+      "stemmed": [
+        "leading-relaxed",
+        "max-w-size",
+        "md:text-size",
+        "mx-size",
+        "text-size"
+      ],
+      "normalized": [
+        "leading-relaxed",
+        "max-w-2xl",
+        "md:text-2xl",
+        "mx-auto",
+        "text-xl"
+      ]
+    }
+  ],
+  "w-4 h-4 mt-2 flex-shrink-0 text-primary dark:text-white": [
+    {
+      "dataClass": "box-w-4",
+      "stemmed": [
+        "dark:text-white",
+        "flex-shrink-num",
+        "h-num",
+        "mt-num",
+        "text-color",
+        "w-num"
+      ],
+      "normalized": [
+        "dark:text-white",
+        "flex-shrink-0",
+        "h-4",
+        "mt-2",
+        "text-primary",
+        "w-4"
+      ]
+    }
+  ],
+  "w-fit": [
+    {
+      "dataClass": "badge-w-fit",
+      "stemmed": [
+        "w-size"
+      ],
+      "normalized": [
+        "w-fit"
+      ]
+    }
+  ],
+  "w-full": [
+    {
+      "dataClass": "blog-articles-grid",
+      "stemmed": [
+        "w-size"
+      ],
+      "normalized": [
+        "w-full"
+      ]
+    }
+  ],
+  "w-full h-auto group-hover:scale-110 transition-transform duration-500": [
+    {
+      "dataClass": "image-w-full",
+      "stemmed": [
+        "duration-500",
+        "group-hover:scale-110",
+        "h-size",
+        "transition-transform",
+        "w-size"
+      ],
+      "normalized": [
+        "duration-500",
+        "group-hover:scale-110",
+        "h-auto",
+        "transition-transform",
+        "w-full"
+      ]
+    }
+  ],
+  "w-full py-12 md:py-24 lg:py-32 bg-accent": [
+    {
+      "dataClass": "section-padded",
+      "stemmed": [
+        "bg-color",
+        "lg:py-num",
+        "md:py-num",
+        "py-num",
+        "w-size"
+      ],
+      "normalized": [
+        "bg-accent",
+        "lg:py-32",
+        "md:py-24",
+        "py-12",
+        "w-full"
+      ]
+    }
+  ],
+  "w-full py-16 lg:py-32 bg-background": [
+    {
+      "dataClass": "features-split-media",
+      "stemmed": [
+        "bg-background",
+        "lg:py-num",
+        "py-num",
+        "w-size"
+      ],
+      "normalized": [
+        "bg-background",
+        "lg:py-32",
+        "py-16",
+        "w-full"
+      ]
+    }
+  ]
+}
