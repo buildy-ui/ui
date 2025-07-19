@@ -87,34 +87,6 @@
       "levenshteinPattern": "flex-1"
     }
   ],
-  "flex-col md:flex-row": [
-    {
-      "dataClass": "button-group-flex",
-      "stemmed": [
-        "flex-col",
-        "md:flex-row"
-      ],
-      "normalized": [
-        "flex-col",
-        "md:flex-row"
-      ],
-      "levenshteinPattern": "flex-col|md:flex-row"
-    }
-  ],
-  "flex-col sm:flex-row": [
-    {
-      "dataClass": "hero-button-group",
-      "stemmed": [
-        "flex-col",
-        "sm:flex-row"
-      ],
-      "normalized": [
-        "flex-col",
-        "sm:flex-row"
-      ],
-      "levenshteinPattern": "flex-col|sm:flex-row"
-    }
-  ],
   "group overflow-hidden hover:shadow-lg transition-all duration-300 border border-border bg-card hover:scale-105 rounded-lg cursor-pointer": [
     {
       "dataClass": "blog-article-card",
@@ -159,42 +131,6 @@
         "transition-colors"
       ],
       "levenshteinPattern": "group-hover:text-primary|transition-colors"
-    }
-  ],
-  "inline-block w-4 h-4": [
-    {
-      "dataClass": "box-inline-block",
-      "stemmed": [
-        "h-4",
-        "inline-block",
-        "w-4"
-      ],
-      "normalized": [
-        "h-4",
-        "inline-block",
-        "w-4"
-      ],
-      "levenshteinPattern": "h-4|inline-block|w-4"
-    }
-  ],
-  "inline-block w-4 h-4 group-hover:translate-x-1 transition-transform": [
-    {
-      "dataClass": "box-inline-block",
-      "stemmed": [
-        "group-hover:translate-x-1",
-        "h-4",
-        "inline-block",
-        "transition-transform",
-        "w-4"
-      ],
-      "normalized": [
-        "group-hover:translate-x-1",
-        "h-4",
-        "inline-block",
-        "transition-transform",
-        "w-4"
-      ],
-      "levenshteinPattern": "group-hover:translate-x-1|h-4|inline-block|transition-transform|w-4"
     }
   ],
   "leading-relaxed": [
@@ -291,106 +227,6 @@
         "text-sm"
       ],
       "levenshteinPattern": "mb-4|px-4|py-2|text-sm"
-    }
-  ],
-  "ml-2 h-4 w-4": [
-    {
-      "dataClass": "icon-small",
-      "stemmed": [
-        "h-4",
-        "ml-2",
-        "w-4"
-      ],
-      "normalized": [
-        "h-4",
-        "ml-2",
-        "w-4"
-      ],
-      "levenshteinPattern": "h-4|ml-2|w-4"
-    }
-  ],
-  "ml-2 h-5 w-5": [
-    {
-      "dataClass": "icon-medium",
-      "stemmed": [
-        "h-5",
-        "ml-2",
-        "w-5"
-      ],
-      "normalized": [
-        "h-5",
-        "ml-2",
-        "w-5"
-      ],
-      "levenshteinPattern": "h-5|ml-2|w-5"
-    }
-  ],
-  "ml-2 inline-block w-5 h-5": [
-    {
-      "dataClass": "hero-button-icon",
-      "stemmed": [
-        "h-5",
-        "inline-block",
-        "ml-2",
-        "w-5"
-      ],
-      "normalized": [
-        "h-5",
-        "inline-block",
-        "ml-2",
-        "w-5"
-      ],
-      "levenshteinPattern": "h-5|inline-block|ml-2|w-5"
-    }
-  ],
-  "mr-2 inline-block w-5 h-5": [
-    {
-      "dataClass": "inline-icon-mr",
-      "stemmed": [
-        "h-5",
-        "inline-block",
-        "mr-2",
-        "w-5"
-      ],
-      "normalized": [
-        "h-5",
-        "inline-block",
-        "mr-2",
-        "w-5"
-      ],
-      "levenshteinPattern": "h-5|inline-block|mr-2|w-5"
-    },
-    {
-      "dataClass": "inline-icon-mr",
-      "stemmed": [
-        "h-5",
-        "inline-block",
-        "mr-2",
-        "w-5"
-      ],
-      "normalized": [
-        "h-5",
-        "inline-block",
-        "mr-2",
-        "w-5"
-      ],
-      "levenshteinPattern": "h-5|inline-block|mr-2|w-5"
-    },
-    {
-      "dataClass": "inline-icon-mr",
-      "stemmed": [
-        "h-5",
-        "inline-block",
-        "mr-2",
-        "w-5"
-      ],
-      "normalized": [
-        "h-5",
-        "inline-block",
-        "mr-2",
-        "w-5"
-      ],
-      "levenshteinPattern": "h-5|inline-block|mr-2|w-5"
     }
   ],
   "py-20 px-6 bg-background": [
@@ -575,38 +411,6 @@
       "levenshteinPattern": "leading-tight|lg:text-7xl|md:text-6xl|text-4xl"
     }
   ],
-  "text-center max-w-2xl mx-auto": [
-    {
-      "dataClass": "stack-text-center",
-      "stemmed": [
-        "max-w-2xl",
-        "mx-auto",
-        "text-cent"
-      ],
-      "normalized": [
-        "max-w-2xl",
-        "mx-auto",
-        "text-center"
-      ],
-      "levenshteinPattern": "max-w-2xl|mx-auto|text-center"
-    }
-  ],
-  "text-center mx-auto max-w-4xl": [
-    {
-      "dataClass": "stack-text-center",
-      "stemmed": [
-        "max-w-4xl",
-        "mx-auto",
-        "text-cent"
-      ],
-      "normalized": [
-        "max-w-4xl",
-        "mx-auto",
-        "text-center"
-      ],
-      "levenshteinPattern": "max-w-4xl|mx-auto|text-center"
-    }
-  ],
   "text-lg px-8 py-6 h-auto bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300": [
     {
       "dataClass": "hero-button",
@@ -747,18 +551,6 @@
         "w-4"
       ],
       "levenshteinPattern": "dark:text-white|flex-shrink-0|h-4|mt-2|text-primary|w-4"
-    }
-  ],
-  "w-fit": [
-    {
-      "dataClass": "badge-w-fit",
-      "stemmed": [
-        "w-fit"
-      ],
-      "normalized": [
-        "w-fit"
-      ],
-      "levenshteinPattern": "w-fit"
     }
   ],
   "w-full": [

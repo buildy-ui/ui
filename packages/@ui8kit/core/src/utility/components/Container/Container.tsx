@@ -2,7 +2,7 @@ import { forwardRef, ElementType, ReactNode } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../../core/utils";
 
-const containerVariants = cva("mx-auto w-full", {
+const containerVariants = cva("w-full", {
   variants: {
     size: {
       xs: "max-w-screen-sm",
@@ -10,7 +10,21 @@ const containerVariants = cva("mx-auto w-full", {
       md: "max-w-screen-lg", 
       lg: "max-w-screen-xl",
       xl: "max-w-screen-2xl",
+      "2xl": "max-w-2xl",   // For content containers 
+      "4xl": "max-w-4xl",   // For content containers
+      "6xl": "max-w-6xl",   // For content containers
       full: "max-w-none"
+    },
+    centered: {
+      true: "mx-auto",
+      false: ""
+    },
+    // Text alignment patterns
+    ta: {
+      left: "text-left",
+      center: "text-center", 
+      right: "text-right",
+      justify: "text-justify"
     },
     fluid: {
       true: "max-w-none",
@@ -27,6 +41,7 @@ const containerVariants = cva("mx-auto w-full", {
   },
   defaultVariants: {
     size: "lg",
+    centered: true,
     fluid: false,
     padding: "responsive"
   }
@@ -45,6 +60,8 @@ export const Container = forwardRef<HTMLElement, ContainerProps>(
     component = "div",
     className, 
     size,
+    centered,
+    ta,
     fluid,
     padding,
     style,
@@ -57,7 +74,7 @@ export const Container = forwardRef<HTMLElement, ContainerProps>(
       <Component
         ref={ref}
         data-class="container"
-        className={cn(containerVariants({ size, fluid, padding }), className)}
+        className={cn(containerVariants({ size, centered, ta, fluid, padding }), className)}
         style={style}
         {...props}
       >

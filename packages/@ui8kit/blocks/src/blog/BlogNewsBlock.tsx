@@ -10,7 +10,8 @@ import {
   Text, 
   Badge,
   Card,
-  Image
+  Image,
+  Icon
 } from "@ui8kit/core";
 
 interface Article {
@@ -54,8 +55,9 @@ export const BlogNewsBlock = forwardRef<HTMLElement, BlogNewsBlockProps>(
             <Stack 
               gap="md" 
               align="center" 
-              className="text-center max-w-2xl mx-auto" 
-              data-class="stack-text-center"
+              ta="center"
+              size="2xl"
+              centered
             >
               <Badge 
                 variant="secondary"
@@ -114,15 +116,15 @@ export const BlogNewsBlock = forwardRef<HTMLElement, BlogNewsBlockProps>(
                       <Stack gap="sm">
                         {/* Date */}
                         <Group gap="xs" align="center">
-                          <Box 
+                          <Icon 
                             component="span" 
-                            className="inline-block w-4 h-4"
+                            size="sm"
+                            display="inline"
                             style={{ 
                               backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor'%3e%3cpath stroke-linecap='round' stroke-linejoin='round' d='M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5a2.25 2.25 0 0 0 2.25-2.25m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5a2.25 2.25 0 0 1 2.25 2.25v7.5' /%3e%3c/svg%3e")`,
                               backgroundSize: 'contain',
                               backgroundRepeat: 'no-repeat'
                             }}
-                            data-class="box-inline-block"
                           />
                           <Text size="sm" c="muted-foreground">
                             {formatDate(article.date)}
@@ -158,15 +160,17 @@ export const BlogNewsBlock = forwardRef<HTMLElement, BlogNewsBlockProps>(
                           data-class="group-text-primary"
                         >
                           <Text c="primary" fw="medium">Read more</Text>
-                          <Box 
+                          <Icon 
                             component="span" 
-                            className="inline-block w-4 h-4 group-hover:translate-x-1 transition-transform"
+                            size="sm"
+                            display="inline"
+                            animated
+                            hover="translate"
                             style={{ 
                               backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor'%3e%3cpath stroke-linecap='round' stroke-linejoin='round' d='M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3' /%3e%3c/svg%3e")`,
                               backgroundSize: 'contain',
                               backgroundRepeat: 'no-repeat'
                             }}
-                            data-class="box-inline-block"
                           />
                         </Group>
                       </Stack>

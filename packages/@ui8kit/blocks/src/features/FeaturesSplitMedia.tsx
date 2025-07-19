@@ -45,13 +45,13 @@ export const FeaturesSplitMedia = forwardRef<HTMLElement, FeaturesSplitMediaProp
               <Stack gap="lg">
                 <Stack gap="md">
                   {/* Badge */}
-                  <Badge 
-                    variant="outline" 
-                    data-class="badge-w-fit"
-                    className="w-fit"
+                  <Box 
+                    width="fit"
                   >
-                    {badge}
-                  </Badge>
+                    <Badge variant="outline">
+                      {badge}
+                    </Badge>
+                  </Box>
                   
                   {/* Title and Description */}
                   <Stack gap="sm">

@@ -7,7 +7,8 @@ import {
   Title,
   Text,
   Button,
-  Box
+  Box,
+  Icon
 } from "@ui8kit/core";
 
 interface HeroCenteredWithTopButtonProps {
@@ -46,13 +47,14 @@ export const HeroCenteredWithTopButton = forwardRef<HTMLElement, HeroCenteredWit
               data-class="button-outlined"
             >
               {content.topButtonText}
-              <Box 
+              <Icon 
                 component="span"
-                className="ml-2 h-4 w-4"
-                data-class="icon-small"
+                size="sm"
+                spacing="left"
+                display="inline"
               >
                 <ArrowUpRight className="h-4 w-4" />
-              </Box>
+              </Icon>
             </Button>
             
             {/* Title */}
@@ -85,13 +87,14 @@ export const HeroCenteredWithTopButton = forwardRef<HTMLElement, HeroCenteredWit
               data-class="button-elevated"
             >
               {content.mainButtonText}
-              <Box 
+              <Icon 
                 component="span"
-                className="ml-2 h-5 w-5"
-                data-class="icon-medium"
+                size="md"
+                spacing="left"
+                display="inline"
               >
                 <CheckCircle className="h-5 w-5" />
-              </Box>
+              </Icon>
             </Button>
           </Stack>
         </Container>

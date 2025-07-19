@@ -1,7 +1,6 @@
 import { forwardRef, ElementType, ReactNode } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../../core/utils";
-import { DataClassName } from "../../../core/bem-types";
 
 const blockVariants = cva("", {
   variants: {
@@ -152,7 +151,6 @@ export interface BlockProps extends VariantProps<typeof blockVariants> {
   className?: string;
   children?: ReactNode;
   style?: React.CSSProperties;
-  'data-class'?: DataClassName | string;
   [key: string]: any;
 }
 

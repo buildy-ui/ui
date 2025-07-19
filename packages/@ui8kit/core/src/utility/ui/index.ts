@@ -1,6 +1,7 @@
-export * from './Button';
-export * from './Badge';
-export * from './Card';
-export * from './Image';
-export * from './BackgroundImage';
-export * from './Overlay'; 
+export { Badge } from './Badge';
+export { Button } from './Button';
+export { Card } from './Card';
+export { Image } from './Image';
+export { Overlay } from './Overlay';
+export { BackgroundImage } from './BackgroundImage';
+export { Icon } from './Icon'; 
