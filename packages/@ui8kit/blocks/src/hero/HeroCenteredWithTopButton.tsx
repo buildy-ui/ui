@@ -82,9 +82,7 @@ export const HeroCenteredWithTopButton = forwardRef<HTMLElement, HeroCenteredWit
             {/* Main Button */}
             <Button 
               size="lg" 
-              variant="default"
-              className="bg-primary text-primary-foreground hover:bg-primary/90"
-              data-class="button-elevated"
+              variant="elevated"
             >
               {content.mainButtonText}
               <Icon 

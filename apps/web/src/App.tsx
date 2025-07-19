@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { HeroCenteredSection } from '@ui8kit/blocks/hero'
+import { HeroCenteredSection, HeroBlock } from '@ui8kit/blocks/hero'
 import { BlogNewsBlock } from '@ui8kit/blocks/blog'
 import { FeaturesSplitMedia } from '@ui8kit/blocks/features'
 
@@ -38,14 +38,13 @@ function App() {
       {/* Main content */}
       <main>
         {/* Hero Block */}
-        <HeroCenteredSection 
+        <HeroBlock
           content={{
-            badge: "Welcome to @ui8kit",
-            title: "Build beautiful interfaces with our component library",
-            description: "Our component library provides everything you need to build modern web applications.",
-            primaryButtonText: "Get Started",
-            secondaryButtonText: "Learn More"
-          }} 
+            title: "Welcome to @ui8kit",
+            subtitle: "Build beautiful interfaces with our component library",
+            buttonText: "Get Started",
+            backgroundImage: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=200&fit=crop"
+          }}
         />
 
         {/* Blog News Block */}
@@ -106,6 +105,15 @@ function App() {
               }
             ]
           }}
+        />
+        <HeroCenteredSection 
+          content={{
+            badge: "Welcome to @ui8kit",
+            title: "Build beautiful interfaces with our component library",
+            description: "Our component library provides everything you need to build modern web applications.",
+            primaryButtonText: "Get Started",
+            secondaryButtonText: "Learn More"
+          }} 
         />
       </main>
 

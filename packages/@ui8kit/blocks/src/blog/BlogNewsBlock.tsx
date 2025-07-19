@@ -82,8 +82,7 @@ export const BlogNewsBlock = forwardRef<HTMLElement, BlogNewsBlockProps>(
                 size="xl"
                 c="muted-foreground"
                 ta="center"
-                className="leading-relaxed"
-                data-class="text-leading-relaxed"
+                leading="relaxed"
               >
                 {content.subtitle}
               </Text>
@@ -146,8 +145,7 @@ export const BlogNewsBlock = forwardRef<HTMLElement, BlogNewsBlockProps>(
                         {/* Excerpt */}
                         <Text
                           c="muted-foreground"
-                          className="leading-relaxed"
-                          data-class="text-leading-relaxed"
+                          leading="relaxed"
                         >
                           {article.excerpt}
                         </Text>

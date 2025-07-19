@@ -37,17 +37,13 @@ export const HeroBlock = forwardRef<HTMLElement, HeroBlockProps>(
         <BackgroundImage
           src={content.backgroundImage}
           size="cover"
-          position="center"
-          data-class="absolute-inset"
-          className="absolute inset-0"
+          position="absolute-inset"
         />
 
         {/* Overlay */}
         <Overlay
           color="black"
           opacity={70}
-          data-class="absolute-inset"
-          className="absolute inset-0"
         />
 
         {/* Content */}
@@ -72,8 +68,9 @@ export const HeroBlock = forwardRef<HTMLElement, HeroBlockProps>(
             <Text
               size="xl"
               c="secondaryForeground"
+              leading="relaxed"
               data-class="hero-subtitle"
-              className="text-xl md:text-2xl max-w-2xl mx-auto leading-relaxed"
+              className="text-xl md:text-2xl max-w-2xl mx-auto"
             >
               {content.subtitle}
             </Text>

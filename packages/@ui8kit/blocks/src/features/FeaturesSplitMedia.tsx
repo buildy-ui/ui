@@ -96,8 +96,8 @@ export const FeaturesSplitMedia = forwardRef<HTMLElement, FeaturesSplitMediaProp
                       />
                       
                       {/* Feature Content */}
-                      <Stack gap="xs" data-class="stack-flex-1" className="flex-1">
-                        <Text fw="medium" c="foreground">
+                      <Stack gap="xs">
+                        <Text fw="medium" c="foreground"> 
                           {feature.title}
                         </Text>
                         <Text 
