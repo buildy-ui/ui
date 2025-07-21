@@ -2,19 +2,8 @@ import { forwardRef, ElementType, ReactNode } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../../core/utils";
 
-const boxVariants = cva("", {
+const iconVariants = cva("", {
   variants: {
-    display: {
-      block: "block",
-      "inline-block": "inline-block",
-      inline: "inline",
-      flex: "flex",
-      "inline-flex": "inline-flex",
-      grid: "grid",
-      "inline-grid": "inline-grid",
-      hidden: "hidden"
-    },
-    // Icon/element sizing patterns
     size: {
       xs: "w-3 h-3",
       sm: "w-4 h-4",
@@ -23,26 +12,39 @@ const boxVariants = cva("", {
       xl: "w-8 h-8",
       "2xl": "w-12 h-12"
     },
-    // Spacing patterns for icons and elements
     spacing: {
       left: "ml-2",
       right: "mr-2",
       "left-sm": "ml-1",
-      "right-sm": "mr-1",
+      "right-sm": "mr-1", 
       "left-lg": "ml-3",
       "right-lg": "mr-3",
       none: ""
     },
-    // Width fit patterns
-    width: {
-      fit: "w-fit",
-      full: "w-full",
-      auto: "w-auto"
+    display: {
+      inline: "inline-block",
+      block: "block"
+    },
+    animated: {
+      true: "transition-transform",
+      false: ""
+    },
+    hover: {
+      scale: "hover:scale-110",
+      translate: "group-hover:translate-x-1",
+      none: ""
     }
+  },
+  defaultVariants: {
+    size: "md",
+    spacing: "none",
+    display: "inline",
+    animated: false,
+    hover: "none"
   }
 });
 
-export interface BoxProps extends VariantProps<typeof boxVariants> {
+export interface IconProps extends VariantProps<typeof iconVariants> {
   component?: ElementType;
   className?: string;
   children?: ReactNode;
@@ -50,14 +52,15 @@ export interface BoxProps extends VariantProps<typeof boxVariants> {
   [key: string]: any;
 }
 
-export const Box = forwardRef<HTMLElement, BoxProps>(
+export const Icon = forwardRef<HTMLElement, IconProps>(
   ({ 
     component = "div", 
     className, 
-    display,
     size,
     spacing,
-    width,
+    display,
+    animated,
+    hover,
     style,
     children, 
     ...props 
@@ -67,8 +70,8 @@ export const Box = forwardRef<HTMLElement, BoxProps>(
     return (
       <Component
         ref={ref}
-        data-class="box"
-        className={cn(boxVariants({ display, size, spacing, width }), className)}
+        data-class="icon"
+        className={cn(iconVariants({ size, spacing, display, animated, hover }), className)}
         style={style}
         {...props}
       >
@@ -78,4 +81,4 @@ export const Box = forwardRef<HTMLElement, BoxProps>(
   }
 );
 
-Box.displayName = "Box"; 
+Icon.displayName = "Icon"; 

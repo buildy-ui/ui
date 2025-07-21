@@ -23,6 +23,28 @@ export const stackVariants = cva("flex flex-col", {
       end: "justify-end",
       between: "justify-between",
       around: "justify-around"
+    },
+    // Text alignment patterns from analysis
+    ta: {
+      left: "text-left",
+      center: "text-center", 
+      right: "text-right"
+    },
+    // Content container sizes from analysis
+    size: {
+      sm: "max-w-sm",
+      md: "max-w-md",
+      lg: "max-w-lg",
+      xl: "max-w-xl",
+      "2xl": "max-w-2xl",   // Found in analysis
+      "4xl": "max-w-4xl",   // Found in analysis
+      "6xl": "max-w-6xl",
+      full: "max-w-none"
+    },
+    // Centering pattern from analysis
+    centered: {
+      true: "mx-auto",
+      false: ""
     }
   },
   defaultVariants: {
@@ -49,9 +71,11 @@ export const Stack = forwardRef<HTMLElement, StackProps>(
     gap,
     align,
     justify,
+    ta,
+    size,
+    centered,
     style,
     children, 
-    stackVariants,
     ...props 
   }, ref) => {
     const Component = component as ElementType;
@@ -59,7 +83,8 @@ export const Stack = forwardRef<HTMLElement, StackProps>(
     return (
       <Component
         ref={ref}
-        className={cn(stackVariants({ gap, align, justify, ...stackVariants }), className)}
+        data-class="stack"
+        className={cn(stackVariants({ gap, align, justify, ta, size, centered }), className)}
         style={style}
         {...props}
       >

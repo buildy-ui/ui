@@ -1,7 +1,6 @@
 import { forwardRef, HTMLAttributes, ReactNode } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../../core/utils";
-import { DataClassName } from "../../../core/bem-types";
 
 const cardVariants = cva(
   "rounded-lg border bg-card text-card-foreground shadow-sm",
@@ -28,12 +27,10 @@ const cardVariants = cva(
 
 export interface CardProps
   extends HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof cardVariants> {
-  'data-class'?: DataClassName | string;
-}
+    VariantProps<typeof cardVariants> {}
 
 const Card = forwardRef<HTMLDivElement, CardProps>(
-  ({ className, variant, padding, 'data-class': dataClass, ...props }, ref) => (
+  ({ className, variant, padding, ...props }, ref) => (
     <div
       ref={ref}
       className={cn(cardVariants({ variant, padding }), className)}

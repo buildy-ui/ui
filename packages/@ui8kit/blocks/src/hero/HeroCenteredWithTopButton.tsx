@@ -7,7 +7,8 @@ import {
   Title,
   Text,
   Button,
-  Box
+  Box,
+  Icon
 } from "@ui8kit/core";
 
 interface HeroCenteredWithTopButtonProps {
@@ -17,42 +18,32 @@ interface HeroCenteredWithTopButtonProps {
     description: string;
     mainButtonText: string;
   };
-  className?: string;
 }
 
 export const HeroCenteredWithTopButton = forwardRef<HTMLElement, HeroCenteredWithTopButtonProps>(
-  ({ content, className, ...props }, ref) => {
+  ({ content }, ref) => {
     return (
       <Block
+        component="section"
         ref={ref}
-        variant="section"
-        className="w-full py-12 md:py-24 lg:py-32 bg-accent"
-        data-class="section-padded"
-        {...props}
+        py="xl"
       >
         <Container size="lg" padding="responsive">
-          <Stack 
-            gap="lg" 
-            align="center" 
-            ta="center"
-            className="space-y-6"
-            data-class="content-spaced"
-          >
+          <Stack gap="xl" align="center" ta="center">
             {/* Top Button */}
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               size="sm"
-              className="text-sm"
-              data-class="button-outlined"
             >
               {content.topButtonText}
-              <Box 
+              <Icon 
                 component="span"
-                className="ml-2 h-4 w-4"
-                data-class="icon-small"
+                size="sm"
+                spacing="left"
+                display="inline"
               >
                 <ArrowUpRight className="h-4 w-4" />
-              </Box>
+              </Icon>
             </Button>
             
             {/* Title */}
@@ -61,8 +52,6 @@ export const HeroCenteredWithTopButton = forwardRef<HTMLElement, HeroCenteredWit
               size="4xl"
               fw="bold"
               c="foreground"
-              className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl"
-              data-class="title-responsive"
             >
               {content.title}
             </Title>
@@ -71,8 +60,8 @@ export const HeroCenteredWithTopButton = forwardRef<HTMLElement, HeroCenteredWit
             <Text
               size="lg"
               c="muted-foreground"
-              className="max-w-[700px] md:text-xl"
               data-class="text-constrained"
+              className="max-w-[700px]"
             >
               {content.description}
             </Text>
@@ -80,18 +69,17 @@ export const HeroCenteredWithTopButton = forwardRef<HTMLElement, HeroCenteredWit
             {/* Main Button */}
             <Button 
               size="lg" 
-              variant="default"
-              className="bg-primary text-primary-foreground hover:bg-primary/90"
-              data-class="button-elevated"
+              variant="elevated"
             >
               {content.mainButtonText}
-              <Box 
+              <Icon 
                 component="span"
-                className="ml-2 h-5 w-5"
-                data-class="icon-medium"
+                size="md"
+                spacing="left"
+                display="inline"
               >
                 <CheckCircle className="h-5 w-5" />
-              </Box>
+              </Icon>
             </Button>
           </Stack>
         </Container>

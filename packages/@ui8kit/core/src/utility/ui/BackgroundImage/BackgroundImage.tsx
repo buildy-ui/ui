@@ -10,6 +10,7 @@ const backgroundImageVariants = cva("", {
       contain: "bg-contain"
     },
     position: {
+      "absolute-inset": "bg-center absolute inset-0",
       center: "bg-center",
       top: "bg-top",
       "top-right": "bg-top bg-right",

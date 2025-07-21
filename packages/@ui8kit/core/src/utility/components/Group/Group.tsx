@@ -2,8 +2,20 @@ import { forwardRef, ElementType, ReactNode } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../../core/utils";
 
-const groupVariants = cva("flex flex-row", {
+const groupVariants = cva("flex", {
   variants: {
+    direction: {
+      row: "flex-row",
+      col: "flex-col"
+    },
+    // Responsive direction changes
+    responsive: {
+      sm: "sm:flex-row",
+      md: "md:flex-row", 
+      lg: "lg:flex-row",
+      xl: "xl:flex-row",
+      none: ""
+    },
     gap: {
       xs: "gap-1",
       sm: "gap-2",
@@ -33,6 +45,8 @@ const groupVariants = cva("flex flex-row", {
     }
   },
   defaultVariants: {
+    direction: "row",
+    responsive: "none",
     gap: "md",
     align: "center",
     justify: "start",
@@ -52,6 +66,8 @@ export const Group = forwardRef<HTMLElement, GroupProps>(
   ({ 
     component = "div",
     className, 
+    direction,
+    responsive,
     gap,
     align,
     justify,
@@ -66,7 +82,7 @@ export const Group = forwardRef<HTMLElement, GroupProps>(
       <Component
         ref={ref}
         data-class="group"
-        className={cn(groupVariants({ gap, align, justify, wrap }), className)}
+        className={cn(groupVariants({ direction, responsive, gap, align, justify, wrap }), className)}
         style={style}
         {...props}
       >

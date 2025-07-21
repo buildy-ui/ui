@@ -10,7 +10,8 @@ import {
   Text, 
   Badge,
   Card,
-  Image
+  Image,
+  Icon
 } from "@ui8kit/core";
 
 interface Article {
@@ -27,26 +28,23 @@ interface BlogNewsBlockProps {
     subtitle: string;
     articles: Article[];
   };
-  className?: string;
 }
 
-export const BlogNewsBlock = forwardRef<HTMLElement, BlogNewsBlockProps>(
-  ({ content, className, ...props }, ref) => {
-    const formatDate = (dateString: string) => {
-      return new Date(dateString).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-      });
-    };
+const formatDate = (dateString: string) => {
+  return new Date(dateString).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+};
 
+export const BlogNewsBlock = forwardRef<HTMLElement, BlogNewsBlockProps>(
+  ({ content }, ref) => {
     return (
       <Block
+        component="section"
         ref={ref}
-        variant="section"
-        className="py-20 px-6 bg-background"
-        data-class="blog-news-block"
-        {...props}
+        py="xl"
       >
         <Container size="xl" padding="responsive">
           <Stack gap="xl" align="center">
@@ -54,13 +52,12 @@ export const BlogNewsBlock = forwardRef<HTMLElement, BlogNewsBlockProps>(
             <Stack 
               gap="md" 
               align="center" 
-              className="text-center max-w-2xl mx-auto" 
-              data-class="stack-text-center"
+              ta="center"
+              size="2xl"
+              centered
             >
               <Badge 
                 variant="secondary"
-                className="mb-4 px-4 py-2 text-sm"
-                data-class="badge-mb-4"
               >
                 News & Updates
               </Badge>
@@ -70,109 +67,109 @@ export const BlogNewsBlock = forwardRef<HTMLElement, BlogNewsBlockProps>(
                 size="3xl"
                 fw="bold"
                 c="foreground"
-                className="text-3xl md:text-5xl"
-                data-class="title-text-3xl"
               >
                 {content.title}
               </Title>
               
               <Text
-                size="xl"
+                size="lg"
                 c="muted-foreground"
                 ta="center"
-                className="leading-relaxed"
-                data-class="text-leading-relaxed"
+                leading="relaxed"
               >
                 {content.subtitle}
               </Text>
             </Stack>
 
             {/* Articles Grid */}
-            <Grid cols={2} gap="lg" align="stretch" className="w-full" data-class="blog-articles-grid">
-              {content.articles.map((article: Article, index: number) => (
-                <Grid.Col key={index} span={1}>
-                  <Card 
-                    padding="none"
-                    className="group overflow-hidden hover:shadow-lg transition-all duration-300 border border-border bg-card hover:scale-105 rounded-lg cursor-pointer"
-                    data-class="blog-article-card"
+            <Grid
+              cols={1}
+              colsMd={2}
+              colsLg={3}
+              gap="lg"
+            >
+              {content.articles.map((article, index) => (
+                <Card
+                  key={index}
+                  padding="none"
+                  data-class="blog-article-card"
+                  className="group overflow-hidden border border-border bg-card cursor-pointer"
+                >
+                  {/* Article Image */}
+                  <Box 
+                    data-class="blog-article-image-wrapper"
+                    className="aspect-video overflow-hidden"
                   >
-                    {/* Article Image */}
-                    <Box className="aspect-video overflow-hidden rounded-t-lg" data-class="blog-article-image-wrapper">
-                      <Image 
-                        src={article.image} 
-                        alt={article.title}
-                        width={400}
-                        height={300}
-                        fit="cover"
-                        className="w-full h-auto group-hover:scale-110 transition-transform duration-500"
-                        data-class="image-w-full"
-                      />
-                    </Box>
-                    
-                    {/* Article Content */}
-                    <Card.Content padding="lg">
-                      <Stack gap="sm">
-                        {/* Date */}
-                        <Group gap="xs" align="center">
-                          <Box 
-                            component="span" 
-                            className="inline-block w-4 h-4"
-                            style={{ 
-                              backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor'%3e%3cpath stroke-linecap='round' stroke-linejoin='round' d='M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5a2.25 2.25 0 0 0 2.25-2.25m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5a2.25 2.25 0 0 1 2.25 2.25v7.5' /%3e%3c/svg%3e")`,
-                              backgroundSize: 'contain',
-                              backgroundRepeat: 'no-repeat'
-                            }}
-                            data-class="box-inline-block"
-                          />
-                          <Text size="sm" c="muted-foreground">
-                            {formatDate(article.date)}
-                          </Text>
-                        </Group>
-                        
-                        {/* Title */}
-                        <Title
-                          order={3}
-                          size="xl"
-                          fw="semibold"
-                          c="card-foreground"
-                          className="group-hover:text-primary transition-colors"
-                          data-class="title-group-hover"
-                        >
-                          {article.title}
-                        </Title>
-                        
-                        {/* Excerpt */}
-                        <Text
-                          c="muted-foreground"
-                          className="leading-relaxed"
-                          data-class="text-leading-relaxed"
-                        >
-                          {article.excerpt}
+                    <Image
+                      src={article.image}
+                      alt={article.title}
+                      width="full"
+                      height="auto"
+                      data-class="image-w-full"
+                      className="w-full h-auto"
+                    />
+                  </Box>
+                  
+                  {/* Article Content */}
+                  <Card.Content padding="lg">
+                    <Stack gap="sm">
+                      {/* Date */}
+                      <Group gap="xs" align="center">
+                        <Icon 
+                          component="span" 
+                          size="sm"
+                          display="inline"
+                          style={{ 
+                            backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor'%3e%3cpath stroke-linecap='round' stroke-linejoin='round' d='M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5a2.25 2.25 0 0 0 2.25-2.25m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5a2.25 2.25 0 0 1 2.25 2.25v7.5' /%3e%3c/svg%3e")`,
+                            backgroundSize: 'contain',
+                            backgroundRepeat: 'no-repeat'
+                          }}
+                        />
+                        <Text size="sm" c="muted-foreground">
+                          {formatDate(article.date)}
                         </Text>
-                        
-                        {/* Read More */}
-                        <Group 
-                          gap="xs" 
-                          align="center"
-                          className="text-primary font-medium group-hover:gap-3 transition-all"
-                          data-class="group-text-primary"
-                        >
-                          <Text c="primary" fw="medium">Read more</Text>
-                          <Box 
-                            component="span" 
-                            className="inline-block w-4 h-4 group-hover:translate-x-1 transition-transform"
-                            style={{ 
-                              backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor'%3e%3cpath stroke-linecap='round' stroke-linejoin='round' d='M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3' /%3e%3c/svg%3e")`,
-                              backgroundSize: 'contain',
-                              backgroundRepeat: 'no-repeat'
-                            }}
-                            data-class="box-inline-block"
-                          />
-                        </Group>
-                      </Stack>
-                    </Card.Content>
-                  </Card>
-                </Grid.Col>
+                      </Group>
+                      
+                      {/* Title */}
+                      <Title
+                        order={3}
+                        size="lg"
+                        fw="semibold"
+                        c="foreground"
+                      >
+                        {article.title}
+                      </Title>
+                      
+                      {/* Excerpt */}
+                      <Text
+                        c="muted-foreground"
+                        leading="relaxed"
+                      >
+                        {article.excerpt}
+                      </Text>
+                      
+                      {/* Read More */}
+                      <Group 
+                        gap="xs" 
+                        align="center"
+                      >
+                        <Text c="primary" fw="medium">Read more</Text>
+                        <Icon 
+                          component="span" 
+                          size="sm"
+                          display="inline"
+                          animated
+                          hover="translate"
+                          style={{ 
+                            backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor'%3e%3cpath stroke-linecap='round' stroke-linejoin='round' d='M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3' /%3e%3c/svg%3e")`,
+                            backgroundSize: 'contain',
+                            backgroundRepeat: 'no-repeat'
+                          }}
+                        />
+                      </Group>
+                    </Stack>
+                  </Card.Content>
+                </Card>
               ))}
             </Grid>
           </Stack>

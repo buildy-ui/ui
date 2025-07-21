@@ -1,14 +1,15 @@
 import { forwardRef } from "react";
-import { 
+import {
   Box,
-  Block, 
-  Container, 
-  Stack, 
-  Group, 
+  Block,
+  Container,
+  Stack,
+  Group,
   Grid,
-  Title, 
-  Text, 
-  Badge
+  Title,
+  Text,
+  Badge,
+  Image
 } from "@ui8kit/core";
 
 interface Feature {
@@ -17,52 +18,45 @@ interface Feature {
 }
 
 interface FeaturesSplitMediaProps {
-  content: {
-    badge: string;
-    title: string;
-    description: string;
-    features: Feature[];
-  };
-  className?: string;
+  badge: string;
+  title: string;
+  description: string;
+  image: string;
+  features: Feature[];
 }
 
 export const FeaturesSplitMedia = forwardRef<HTMLElement, FeaturesSplitMediaProps>(
-  ({ content, className, ...props }, ref) => {
-    const { badge, title, description, features } = content;
-    
+  ({ badge, title, description, image, features }, ref) => {
     return (
       <Block
+        component="section"
         ref={ref}
-        variant="section"
-        className="w-full py-16 lg:py-32 bg-background"
-        data-class="features-split-media"
-        {...props}
+        py="xl"
       >
-        <Container size="lg" padding="responsive">
-          <Grid cols={2} gap="lg" align="center" centered={true}>
-            {/* Content Section */}
-            <Grid.Col span={1}>
+        <Container size="xl" padding="responsive">
+          <Grid cols={1} colsLg={2} gap="xl" align="center">
+            {/* Content */}
+            <Grid.Col>
               <Stack gap="lg">
                 <Stack gap="md">
                   {/* Badge */}
-                  <Badge 
-                    variant="outline" 
-                    data-class="badge-w-fit"
-                    className="w-fit"
+                  <Box 
+                    width="fit"
                   >
-                    {badge}
-                  </Badge>
+                    <Badge variant="outline">
+                      {badge}
+                    </Badge>
+                  </Box>
                   
                   {/* Title and Description */}
-                  <Stack gap="sm">
+                  <Stack gap="md">
                     <Title
                       order={2}
                       size="3xl"
                       fw="bold"
                       c="foreground"
-                      ta="left"
                       data-class="title-max-w-2xl"
-                      className="max-w-2xl text-3xl md:text-4xl lg:text-5xl"
+                      className="max-w-2xl"
                     >
                       {title}
                     </Title>
@@ -70,7 +64,6 @@ export const FeaturesSplitMedia = forwardRef<HTMLElement, FeaturesSplitMediaProp
                     <Text
                       size="lg"
                       c="muted-foreground"
-                      ta="left"
                       data-class="text-max-w-2xl"
                       className="max-w-2xl"
                     >
@@ -80,30 +73,26 @@ export const FeaturesSplitMedia = forwardRef<HTMLElement, FeaturesSplitMediaProp
                 </Stack>
                 
                 {/* Features List */}
-                <Stack gap="md" className="lg:pl-4" data-class="features-list">
-                  {features?.map((feature, index) => (
+                <Stack gap="md" data-class="features-list" className="lg:pl-4">
+                  {features.map((feature, index) => (
                     <Group key={index} gap="md" align="start">
-                      {/* Check Icon */}
+                      {/* Icon */}
                       <Box 
                         data-class="box-w-4"
-                        className="w-4 h-4 mt-2 flex-shrink-0 text-primary dark:text-white"
-                        style={{ 
-                          backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2.5' stroke='currentColor' %3e%3cpath stroke-linecap='round' stroke-linejoin='round' d='m4.5 12.75 6 6 9-13.5' /%3e%3c/svg%3e")`,
+                        className="w-4 h-4 mt-2 flex-shrink-0"
+                        style={{
+                          backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor'%3e%3cpath stroke-linecap='round' stroke-linejoin='round' d='M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z' /%3e%3c/svg%3e")`,
                           backgroundSize: 'contain',
-                          backgroundRepeat: 'no-repeat',
-                          filter: 'hue-rotate(210deg) saturate(2) brightness(1.2)'
+                          backgroundRepeat: 'no-repeat'
                         }}
                       />
                       
                       {/* Feature Content */}
-                      <Stack gap="xs" data-class="stack-flex-1" className="flex-1">
-                        <Text fw="medium" c="foreground">
+                      <Stack gap="xs">
+                        <Text fw="medium" c="foreground"> 
                           {feature.title}
                         </Text>
-                        <Text 
-                          size="sm"
-                          c="muted-foreground"
-                        >
+                        <Text c="muted-foreground">
                           {feature.description}
                         </Text>
                       </Stack>
@@ -113,19 +102,16 @@ export const FeaturesSplitMedia = forwardRef<HTMLElement, FeaturesSplitMediaProp
               </Stack>
             </Grid.Col>
             
-            {/* Media Placeholder */}
-            <Grid.Col span={1}>
-              <Box 
-                data-class="box-bg-muted"
-                className="bg-muted rounded-md aspect-square w-full"
-                style={{
-                  backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1' stroke='currentColor'%3e%3cpath stroke-linecap='round' stroke-linejoin='round' d='m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z' /%3e%3c/svg%3e")`,
-                  backgroundSize: '3rem',
-                  backgroundRepeat: 'no-repeat',
-                  backgroundPosition: 'center',
-                  opacity: 0.4
-                }}
-              />
+            {/* Image */}
+            <Grid.Col>
+              <Box data-class="box-bg-muted" className="bg-muted rounded-md aspect-square w-full">
+                <Image
+                  src={image}
+                  alt={title}
+                  width="full"
+                  height="auto"
+                />
+              </Box>
             </Grid.Col>
           </Grid>
         </Container>
@@ -145,6 +131,7 @@ export const featuresSplitMediaTemplate = {
     badge: 'Open Source',
     title: 'Beautiful Components for Your Next Project',
     description: 'Elevate your application with stunning, customizable UI elements built with Radix UI and Tailwind CSS.',
+    image: 'https://via.placeholder.com/400x400', // Added default image
     features: [
       { 
         title: 'Radix UI Integration', 

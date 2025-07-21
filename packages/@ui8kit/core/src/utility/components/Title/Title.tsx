@@ -33,6 +33,10 @@ const titleVariants = cva("font-semibold tracking-tight", {
       secondary: "text-secondary",
       destructive: "text-destructive",
       accent: "text-accent"
+    },
+    leading: {
+      relaxed: "leading-relaxed",
+      tight: "leading-tight"
     }
   },
   defaultVariants: {
@@ -59,6 +63,7 @@ export const Title = forwardRef<HTMLHeadingElement, TitleProps>(
     fw,
     ta,
     c,
+    leading,
     style,
     children, 
     ...props 
@@ -69,7 +74,7 @@ export const Title = forwardRef<HTMLHeadingElement, TitleProps>(
       <Component
         ref={ref}
         data-class="title"
-        className={cn(titleVariants({ size, fw, ta, c }), className)}
+        className={cn(titleVariants({ size, fw, ta, c, leading }), className)}
         style={style}
         {...props}
       >

@@ -48,13 +48,13 @@ const DEFAULT_CONFIG: AnalyzerConfig = {
 class PorterStemmer {
   private static vowels = 'aeiou';
   
-  // Простая реализация алгоритма Портера для CSS классов
+  // Simple implementation of the Porter Stemmer algorithm for CSS classes
   static stem(word: string): string {
     if (word.length <= 2) return word;
     
     let stem = word.toLowerCase();
     
-    // Убираем общие CSS суффиксы
+    // Remove common CSS suffixes
     const cssRules = [
       { pattern: /-(sm|md|lg|xl|2xl|3xl|4xl|5xl|6xl)$/, replacement: '-size' },
       { pattern: /-(0|1|2|3|4|5|6|8|10|12|16|20|24|32|40|48|56|64|72|80|96)$/, replacement: '-num' },
