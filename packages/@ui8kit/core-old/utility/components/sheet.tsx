@@ -1,7 +1,7 @@
 import * as React from "react"
 import { XIcon } from "lucide-react"
 
-import { cn } from "@/lib/utils"
+import { cn } from "@ui8kit/core"
 
 /**
  * CSS-only Sheet component for SSR/SSG compatibility

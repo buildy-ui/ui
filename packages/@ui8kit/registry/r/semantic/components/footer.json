@@ -10,7 +10,7 @@
   "files": [
     {
       "path": "semantic/components/footer.tsx",
-      "content": "import * as React from \"react\"\nimport { cn } from \"@/lib/utils\";\n\nfunction Footer({ className, ...props }: React.ComponentProps<\"footer\">) {\n  return (\n    <footer\n      data-slot=\"footer\"\n      className={cn(className)}\n      {...props}\n    />\n  )\n}\n\nFooter.displayName = \"Footer\"\n\nexport { Footer }",
+      "content": "import * as React from \"react\"\nimport { cn } from \"@ui8kit/core\";\n\nfunction Footer({ className, ...props }: React.ComponentProps<\"footer\">) {\n  return (\n    <footer\n      data-slot=\"footer\"\n      className={cn(className)}\n      {...props}\n    />\n  )\n}\n\nFooter.displayName = \"Footer\"\n\nexport { Footer }",
       "target": "components"
     }
   ]

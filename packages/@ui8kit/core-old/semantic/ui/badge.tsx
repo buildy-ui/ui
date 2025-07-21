@@ -1,5 +1,5 @@
 import * as React from "react";
-import { cn } from "@/lib/utils"
+import { cn } from "@ui8kit/core"
 import { Slot } from "@radix-ui/react-slot";
 
 // Simple array of badge variant keys for semantic classes

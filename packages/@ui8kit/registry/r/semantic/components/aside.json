@@ -10,7 +10,7 @@
   "files": [
     {
       "path": "semantic/components/aside.tsx",
-      "content": "import * as React from \"react\"\nimport { cn } from \"@/lib/utils\";\n\nfunction Aside({ className, ...props }: React.ComponentProps<\"aside\">) {\n  return (\n    <aside\n      data-slot=\"aside\"\n      className={cn(className)}\n      {...props}\n    />\n  )\n}\n\nAside.displayName = \"Aside\"\n\nexport { Aside }",
+      "content": "import * as React from \"react\"\nimport { cn } from \"@ui8kit/core\";\n\nfunction Aside({ className, ...props }: React.ComponentProps<\"aside\">) {\n  return (\n    <aside\n      data-slot=\"aside\"\n      className={cn(className)}\n      {...props}\n    />\n  )\n}\n\nAside.displayName = \"Aside\"\n\nexport { Aside }",
       "target": "components"
     }
   ]

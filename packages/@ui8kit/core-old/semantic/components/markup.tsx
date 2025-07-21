@@ -1,5 +1,5 @@
 import * as React from "react";
-import { cn } from "@/lib/utils";
+import { cn } from "@ui8kit/core";
 
 function H1({ className, ...props }: React.ComponentProps<"h1">) {
   return (

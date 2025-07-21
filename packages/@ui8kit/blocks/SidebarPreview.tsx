@@ -1,7 +1,7 @@
 import { Plus, Eye, Loader2 } from "lucide-react";
 import { Suspense } from "react";
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Button } from "@ui8kit/core";
 import { useAtom } from 'jotai';
 
 import type { Block, Template } from "@/types";

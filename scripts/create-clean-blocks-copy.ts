@@ -1,9 +1,11 @@
+// bun scripts/create-clean-blocks-copy.ts
+
 import { parse } from '@babel/parser';
 import traverse from '@babel/traverse';
 import generate from '@babel/generator';
 import { readFileSync, writeFileSync, readdirSync, statSync, mkdirSync, copyFileSync } from 'fs';
-import { join, extname, dirname, relative } from 'path';
-import { SimpleBlockCleaner } from './simple-block-cleaner';
+import { join, extname, relative } from 'path';
+//import { SimpleBlockCleaner } from './simple-block-cleaner';
 
 /**
  * Creates a clean copy of blocks folder with CVA-filtered classes
@@ -277,8 +279,8 @@ class CleanBlocksCopier {
 
 // Main execution
 async function main() {
-  const sourceDir = join(__dirname, '../builddy/blocks');
-  const targetDir = join(__dirname, '../builddy/blocks-clean');
+  const sourceDir = join(__dirname, '../builddy/twblocks');
+  const targetDir = join(__dirname, '../packages/@twblocks/blocks');
   const whitelistPath = join(__dirname, 'cva-whitelist.json');
   const outputPath = join(__dirname, `clean-copy-results-${Date.now()}.json`);
   

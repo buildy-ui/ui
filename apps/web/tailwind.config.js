@@ -8,6 +8,7 @@ export default {
     './src/**/*.{ts,tsx}',
     '../../packages/@ui8kit/core/src/**/*.{ts,tsx}',
     '../../packages/@ui8kit/blocks/src/**/*.{ts,tsx}',
+    '../../packages/@twblocks/blocks/**/*.{ts,tsx}',
   ],
   prefix: "",
   theme: {
@@ -52,7 +53,7 @@ export default {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
-        },
+        }
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -73,6 +74,10 @@ export default {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      width: {
+        '5/13': '38.2%',
+        '8/13': '61.8%'
+      }
     },
   },
   plugins: [],

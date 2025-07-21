@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { cn } from "@/lib/utils"
+import { cn } from "@ui8kit/core"
 
 // Avatar context for image loading status
 const AvatarContext = React.createContext<{

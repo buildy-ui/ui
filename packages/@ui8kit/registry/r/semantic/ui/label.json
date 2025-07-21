@@ -10,7 +10,7 @@
   "files": [
     {
       "path": "semantic/ui/label.tsx",
-      "content": "import * as React from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nfunction Label({ className, ...props }: React.ComponentProps<\"label\">) {\n  return (\n    <label\n\n      className={cn(\"label\",\n\n      className\n      )}\n      {...props} />);\n\n\n}\n\nexport { Label };",
+      "content": "import * as React from \"react\";\n\nimport { cn } from \"@ui8kit/core\";\n\nfunction Label({ className, ...props }: React.ComponentProps<\"label\">) {\n  return (\n    <label\n\n      className={cn(\"label\",\n\n      className\n      )}\n      {...props} />);\n\n\n}\n\nexport { Label };",
       "target": "ui"
     }
   ]

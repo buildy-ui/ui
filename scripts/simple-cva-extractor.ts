@@ -1,3 +1,5 @@
+// bun scripts/simple-cva-extractor.ts
+
 import { parse } from '@babel/parser';
 import traverse from '@babel/traverse';
 import { readFileSync, writeFileSync, readdirSync, statSync } from 'fs';

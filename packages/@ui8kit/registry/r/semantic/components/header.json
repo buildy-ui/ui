@@ -10,7 +10,7 @@
   "files": [
     {
       "path": "semantic/components/header.tsx",
-      "content": "import * as React from \"react\"\nimport { cn } from \"@/lib/utils\";\n\nfunction Header({ className, ...props }: React.ComponentProps<\"header\">) {\n  return (\n    <header\n      data-slot=\"header\"\n      className={cn(className)}\n      {...props}\n    />\n  )\n}\n\nHeader.displayName = \"Header\"\n\nexport { Header }",
+      "content": "import * as React from \"react\"\nimport { cn } from \"@ui8kit/core\";\n\nfunction Header({ className, ...props }: React.ComponentProps<\"header\">) {\n  return (\n    <header\n      data-slot=\"header\"\n      className={cn(className)}\n      {...props}\n    />\n  )\n}\n\nHeader.displayName = \"Header\"\n\nexport { Header }",
       "target": "components"
     }
   ]

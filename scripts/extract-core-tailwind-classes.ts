@@ -1,3 +1,5 @@
+// bun scripts/extract-core-tailwind-classes.ts
+
 import { parse } from '@babel/parser';
 import traverse from '@babel/traverse';
 import { readFileSync, readdirSync, statSync } from 'fs';

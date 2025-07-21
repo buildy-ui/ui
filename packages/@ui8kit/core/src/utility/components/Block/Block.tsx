@@ -58,11 +58,11 @@ const blockVariants = cva("", {
     },
     py: {
       none: "py-0",
-      xs: "py-1",
-      sm: "py-2",
-      md: "py-4",
-      lg: "py-6",
-      xl: "py-8"
+      xs: "py-0 md:py-4 lg:py-8",
+      sm: "py-4 md:py-8 lg:py-16",
+      md: "py-8 md:py-16 lg:py-24",
+      lg: "py-16 md:py-24 lg:py-32",
+      xl: "py-24 md:py-32 lg:py-40"
     },
     m: {
       none: "m-0",
