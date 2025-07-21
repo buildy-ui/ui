@@ -2,13 +2,10 @@
 export default {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-    '../../packages/@ui8kit/core/src/**/*.{ts,tsx}',
-    '../../packages/@ui8kit/blocks/src/**/*.{ts,tsx}',
-    '../../packages/@twblocks/blocks/**/*.{ts,tsx}',
+    './src/**/*.tsx',
+    '../../packages/@ui8kit/core/src/**/*.tsx',
+    '../../packages/@ui8kit/blocks/src/**/*.tsx',
+    '../../packages/@twblocks/blocks/**/*.tsx',
   ],
   prefix: "",
   theme: {

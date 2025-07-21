@@ -87,7 +87,7 @@ export const PricingYearSection = (props: PricingYearSectionProps) => {
   const [isYearly, setIsYearly] = useState(false);
 
   return (
-    <section className="w-full py-16 lg:py-32">
+    <section className="w-full py-16 lg:py-32 bg-background">
       <div className="mx-auto px-4 md:px-6 lg:px-8">
         <div className="mx-auto flex flex-col items-center gap-6 text-center">
           <header className="flex flex-col gap-4">

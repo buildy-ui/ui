@@ -1,6 +1,3 @@
-import { buttonVariants } from '@ui8kit/core';
-import { cn } from '@ui8kit/core';
-
 type Content = {
   title: string;
   description: string;
@@ -114,13 +111,7 @@ export const CareerSection = (props: CareerSectionProps) => {
                   </a>
 
                   <div
-                className={cn(
-                  buttonVariants({
-                    variant: 'outline',
-                    size: 'sm'
-                  }),
-                  'rounded-full cursor-default'
-                )}>
+                className="rounded-full cursor-default">
                 
                     {job.location}
                   </div>

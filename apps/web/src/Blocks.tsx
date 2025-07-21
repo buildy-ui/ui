@@ -1,15 +1,15 @@
-/*import { allComponents } from "../blocks";
-export const blocks = allComponents;
-const HeroCenteredSection = blocks.HeroCenteredSection;*/
-
-import { HeroCenteredSection } from "@twblocks/blocks/hero/HeroCenteredSection";
-import { HeroSplitWithMedia } from "@twblocks/blocks/hero/HeroSplitWithMedia";
+// import HeroBlocks from "./blocks/hero";
+// import BlogBlocks from "./blocks/blog";
+// import BusinessBlocks from "./blocks/business";
+import FeaturesBlocks from "./blocks/features";
 
 function Blocks() {
   return (
     <div>
-      <HeroCenteredSection />
-      <HeroSplitWithMedia />
+      {/*<HeroBlocks />*/}
+      {/*<BlogBlocks />*/}
+      {/*<BusinessBlocks />*/}
+      <FeaturesBlocks />
     </div>
   );
 }
