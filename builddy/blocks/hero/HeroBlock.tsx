@@ -11,7 +11,7 @@ interface HeroBlockProps {
 }
 
 export default function HeroBlock({ content }: HeroBlockProps) {
-  
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
       {/* Background Image - priority loading for LCP */}
@@ -23,40 +23,40 @@ export default function HeroBlock({ content }: HeroBlockProps) {
         height={1080}
         loading="eager"
         decoding="sync"
-        fetchPriority="high"
-      />
-      <div className="absolute inset-0 bg-black/50 dark:bg-black/60" />
+        fetchPriority="high" />
+      
+      <div className="absolute inset-0 dark:bg-black/60" />
       
       {/* Content */}
       <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
           {content.title}
         </h1>
-        <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-xl md:text-2xl max-w-2xl mx-auto leading-relaxed">
           {content.subtitle}
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button 
+          <Button
             size="lg"
-            className="text-lg px-8 py-6 h-auto bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
-          >
+            className="text-lg px-8 py-6 h-auto bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg shadow-xl">
+            
             {content.buttonText}
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
           
-          <Button 
-            variant="outline" 
+          <Button
+            variant="outline"
             size="lg"
-            className="text-lg px-8 py-6 h-auto bg-white/10 border-white/30 text-white hover:bg-white/20 hover:text-white rounded-lg backdrop-blur-sm"
-          >
+            className="text-lg px-8 py-6 h-auto rounded-lg">
+            
             <Play className="mr-2 h-5 w-5" />
             Watch Demo
           </Button>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 }
 
 export const heroTemplate = {

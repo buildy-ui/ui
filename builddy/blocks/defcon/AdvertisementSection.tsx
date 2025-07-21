@@ -30,18 +30,18 @@ export default function AdvertisementSection({ content }: AdvertisementSectionPr
   return (
     <div className="border-t border-border bg-background defcon-theme-transition">
       <div className="container mx-auto px-4 sm:px-6 py-4">
-        <div className="flex items-center justify-center gap-2 py-2 px-4 bg-card/30 border border-border rounded-lg hover:border-primary defcon-theme-transition cursor-pointer group defcon-focus">
+        <div className="flex items-center justify-center gap-2 py-2 px-4 border border-border rounded-lg defcon-theme-transition cursor-pointer group defcon-focus">
           <div className={`w-5 h-5 rounded-full flex items-center justify-center defcon-theme-transition ${getStatusColor(status.type)}`}>
             <span className="text-xs">{icon}</span>
           </div>
-          <span className="text-xs font-mono text-muted-foreground group-hover:text-primary defcon-theme-transition">
+          <span className="text-xs text-muted-foreground group-hover:text-primary defcon-theme-transition">
             {title}
           </span>
           <LucideChevronDown className="w-3 h-3 text-muted-foreground group-hover:text-primary defcon-theme-transition" />
         </div>
       </div>
-    </div>
-  );
+    </div>);
+
 }
 
 export const advertisementSectionTemplate = {
@@ -57,4 +57,4 @@ export const advertisementSectionTemplate = {
       type: "success"
     }
   }
-}; 
+};

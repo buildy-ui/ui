@@ -1,21 +1,21 @@
-import { Button } from "@/components/ui/button"
-import { ArrowRight } from "lucide-react"
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
 
 interface CallToActionSectionProps {
   content: {
-    title: string
-    description: string
-    primaryButtonText: string
-    secondaryButtonText: string
-  }
+    title: string;
+    description: string;
+    primaryButtonText: string;
+    secondaryButtonText: string;
+  };
 }
 
 export default function CallToActionSection({ content }: CallToActionSectionProps) {
   return (
-    <section className="w-full py-16 lg:py-32 bg-background">
+    <section className="w-full lg:py-32 bg-background">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="grid w-full rounded-lg bg-accent p-8 md:rounded-xl lg:grid-cols-2 lg:items-center lg:p-16">
-          <div className="space-y-4">
+          <div className="">
             <h2 className="text-2xl font-semibold md:text-4xl text-foreground">
               {content.title}
             </h2>
@@ -24,7 +24,7 @@ export default function CallToActionSection({ content }: CallToActionSectionProp
             </p>
           </div>
           
-          <div className="mt-6 flex flex-col gap-4 sm:flex-row lg:justify-end">
+          <div className="flex flex-col gap-4 sm:flex-row lg:justify-end">
             <Button variant="outline" className="w-full sm:w-auto border-border text-foreground">
               {content.primaryButtonText} <ArrowRight />
             </Button>
@@ -34,8 +34,8 @@ export default function CallToActionSection({ content }: CallToActionSectionProp
           </div>
         </div>
       </div>
-    </section>
-  )
+    </section>);
+
 }
 
 export const callToActionSectionTemplate = {
@@ -49,4 +49,4 @@ export const callToActionSectionTemplate = {
     primaryButtonText: "Explore Solutions",
     secondaryButtonText: "Start Your Journey"
   }
-}
+};

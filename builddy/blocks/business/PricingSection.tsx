@@ -5,8 +5,8 @@ import {
   CardContent,
   CardFooter,
   CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+  CardTitle } from
+"@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
 interface PricingSectionProps {
@@ -20,7 +20,7 @@ interface PricingSectionProps {
       price: string;
       features: Array<string>;
       buttonText: string;
-      buttonVariant: string;  // Ensured as string without ButtonProps
+      buttonVariant: string; // Ensured as string without ButtonProps
     }>;
   };
 }
@@ -28,7 +28,7 @@ interface PricingSectionProps {
 export default function PricingSection({ content }: PricingSectionProps) {
   const { title, description, plans } = content;
   return (
-    <section className="w-full py-16 lg:py-32 bg-background">
+    <section className="w-full lg:py-32 bg-background">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="mx-auto flex max-w-5xl flex-col items-center gap-6 text-center">
           <header className="flex flex-col gap-4">
@@ -40,22 +40,22 @@ export default function PricingSection({ content }: PricingSectionProps) {
             </p>
           </header>
           <div className="flex flex-col items-stretch gap-6 md:flex-row">
-            {plans?.map((plan) => (
-              <Card key={plan.id} className="flex min-w-72 flex-col justify-between text-left bg-card border border-border hover:shadow-lg transition-all">
+            {plans?.map((plan) =>
+            <Card key={plan.id} className="flex min-w-72 flex-col justify-between text-left bg-card border border-border">
                 <CardHeader>
                   <CardTitle>{plan.name}</CardTitle>
                   <p className="text-sm text-muted-foreground">{plan.description}</p>
                   <span className="text-4xl font-bold">{plan.price}</span>
                 </CardHeader>
                 <CardContent>
-                  <Separator className="mb-6" />
-                  <ul className="space-y-4">
-                    {plan.features.map((feature, index) => (
-                      <li key={index} className="flex items-center gap-2 text-muted-foreground">
+                  <Separator className="" />
+                  <ul className="">
+                    {plan.features.map((feature, index) =>
+                  <li key={index} className="flex items-center gap-2 text-muted-foreground">
                         <CircleCheck className="w-4 h-4" />
                         <span>{feature}</span>
                       </li>
-                    ))}
+                  )}
                   </ul>
                 </CardContent>
                 <CardFooter className="mt-auto">
@@ -65,12 +65,12 @@ export default function PricingSection({ content }: PricingSectionProps) {
                   </Button>
                 </CardFooter>
               </Card>
-            ))}
+            )}
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 }
 
 export const pricingSectionTemplate = {
@@ -82,24 +82,24 @@ export const pricingSectionTemplate = {
     title: "Pricing",
     description: "Choose the perfect plan for your needs.",
     plans: [
-      {
-        id: "free",
-        name: "Free",
-        description: "Ideal for personal use.",
-        price: "$0",
-        features: ["Access to all free components", "Basic support"],
-        buttonText: "Get Started",
-        buttonVariant: "outline"
-      },
-      {
-        id: "premium",
-        name: "Premium",
-        description: "For professionals.",
-        price: "$249",
-        features: ["Everything in Free", "Premium support"],
-        buttonText: "Get Premium",
-        buttonVariant: "default"
-      }
-    ]
+    {
+      id: "free",
+      name: "Free",
+      description: "Ideal for personal use.",
+      price: "$0",
+      features: ["Access to all free components", "Basic support"],
+      buttonText: "Get Started",
+      buttonVariant: "outline"
+    },
+    {
+      id: "premium",
+      name: "Premium",
+      description: "For professionals.",
+      price: "$249",
+      features: ["Everything in Free", "Premium support"],
+      buttonText: "Get Premium",
+      buttonVariant: "default"
+    }]
+
   }
 };

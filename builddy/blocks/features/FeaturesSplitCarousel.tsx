@@ -4,8 +4,8 @@ import {
   CarouselContent,
   CarouselItem,
   CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+  CarouselPrevious } from
+"@/components/ui/carousel";
 
 interface FeaturesSplitCarouselProps {
   content: {
@@ -22,7 +22,7 @@ interface FeaturesSplitCarouselProps {
 export default function FeaturesSplitCarousel({ content }: FeaturesSplitCarouselProps) {
   const { badge, title, description, carouselItems } = content;
   return (
-    <section className="w-full py-16 lg:py-32 bg-background">
+    <section className="w-full lg:py-32 bg-background">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-10 items-end lg:grid-cols-2">
           <header className="flex flex-col gap-4 items-start">
@@ -41,13 +41,13 @@ export default function FeaturesSplitCarousel({ content }: FeaturesSplitCarousel
           <div className="w-full max-w-full px-4 md:px-6 lg:px-8">
             <Carousel opts={{ align: "start", loop: true }}>
               <CarouselContent>
-                {carouselItems?.map((item) => (
-                  <CarouselItem key={item.id}>
-                    <div className="flex rounded aspect-video bg-muted items-center justify-center">
+                {carouselItems?.map((item) =>
+                <CarouselItem key={item.id}>
+                    <div className="flex aspect-video bg-muted items-center justify-center">
                       <span className="text-sm text-muted-foreground">{item.label}</span>
                     </div>
                   </CarouselItem>
-                ))}
+                )}
               </CarouselContent>
               <CarouselPrevious />
               <CarouselNext />
@@ -55,8 +55,8 @@ export default function FeaturesSplitCarousel({ content }: FeaturesSplitCarousel
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 }
 
 export const featuresSplitCarouselTemplate = {
@@ -69,9 +69,9 @@ export const featuresSplitCarouselTemplate = {
     title: "Discover Endless Possibilities with Buildy/UI",
     description: "Empower your projects with versatile and innovative solutions.",
     carouselItems: [
-      { id: "item1", label: "Possibilities with Buildy/UI" },
-      { id: "item2", label: "Shadcn Library Integration" },
-      { id: "item3", label: "User-friendly UI/UX" }
-    ]
+    { id: "item1", label: "Possibilities with Buildy/UI" },
+    { id: "item2", label: "Shadcn Library Integration" },
+    { id: "item3", label: "User-friendly UI/UX" }]
+
   }
 };

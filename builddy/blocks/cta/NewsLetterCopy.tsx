@@ -12,12 +12,12 @@ interface NewsLetterCopyProps {
 
 export default function NewsLetterCopy({ content }: NewsLetterCopyProps) {
   return (
-    <section className="w-full py-16 lg:py-32 bg-background">
+    <section className="w-full lg:py-32 bg-background">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <h3 className="text-center text-4xl md:text-5xl font-bold text-foreground">
           {content.title}
         </h3>
-        <p className="text-xl text-muted-foreground text-center mt-4 mb-8">
+        <p className="text-xl text-muted-foreground text-center">
           {content.description}
         </p>
 
@@ -28,8 +28,8 @@ export default function NewsLetterCopy({ content }: NewsLetterCopyProps) {
           </Button>
         </form>
       </div>
-    </section>
-  );
+    </section>);
+
 }
 
 export const newsLetterCopyTemplate = {

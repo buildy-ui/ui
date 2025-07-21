@@ -16,7 +16,7 @@ interface FeaturesGridMediaCardsProps {
 export default function FeaturesGridMediaCards({ content }: FeaturesGridMediaCardsProps) {
   const { badge, title, description, features } = content;
   return (
-    <section className="w-full py-16 lg:py-32 bg-background">
+    <section className="w-full lg:py-32 bg-background">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="flex flex-col gap-10">
           <div className="flex gap-4 flex-col items-start">
@@ -33,18 +33,18 @@ export default function FeaturesGridMediaCards({ content }: FeaturesGridMediaCar
             </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features?.map((feature) => (
-              <div key={feature.id} className="flex flex-col gap-2 bg-card border border-border hover:shadow-lg transition-all rounded-md p-6">
-                <div className="bg-muted rounded-md aspect-video mb-2"></div>
+            {features?.map((feature) =>
+            <div key={feature.id} className="flex flex-col gap-2 bg-card border border-border rounded-md p-6">
+                <div className="bg-muted rounded-md aspect-video"></div>
                 <h3 className="text-xl font-semibold text-card-foreground">{feature.title}</h3>
                 <p className="text-muted-foreground text-base">{feature.description}</p>
               </div>
-            ))}
+            )}
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 }
 
 export const featuresGridMediaCardsTemplate = {
@@ -57,21 +57,21 @@ export const featuresGridMediaCardsTemplate = {
     title: "Innovate Your Brand!",
     description: "Crafting remarkable experiences in UI/UX for your business.",
     features: [
-      {
-        id: "uiux1",
-        title: "User-Centric Design",
-        description: "Deliver intuitive and engaging interfaces that resonate with your target audience."
-      },
-      {
-        id: "marketing1",
-        title: "Strategic Branding",
-        description: "Elevate your brand identity and ensure a consistent message across all platforms."
-      },
-      {
-        id: "shadcn1",
-        title: "Shadcn Library Integration",
-        description: "Seamlessly blend components for a cohesive and modern design aesthetic."
-      }
-    ]
+    {
+      id: "uiux1",
+      title: "User-Centric Design",
+      description: "Deliver intuitive and engaging interfaces that resonate with your target audience."
+    },
+    {
+      id: "marketing1",
+      title: "Strategic Branding",
+      description: "Elevate your brand identity and ensure a consistent message across all platforms."
+    },
+    {
+      id: "shadcn1",
+      title: "Shadcn Library Integration",
+      description: "Seamlessly blend components for a cohesive and modern design aesthetic."
+    }]
+
   }
 };

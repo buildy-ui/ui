@@ -14,16 +14,16 @@ interface HeroCenteredSectionProps {
 
 export default function HeroCenteredSection({ content }: HeroCenteredSectionProps) {
   return (
-    <section className="w-full py-16 lg:py-32 bg-background">
+    <section className="w-full lg:py-32 bg-background">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="flex flex-col text-center gap-8 items-center">
-          {content.badge && (
-            <div className="flex justify-center">
+          {content.badge &&
+          <div className="flex justify-center">
               <Badge variant="secondary" className="rounded-full px-4 py-2">
                 {content.badge}
               </Badge>
             </div>
-          )}
+          }
           
           <div className="flex flex-col gap-4">
             <h2 className="max-w-2xl text-3xl md:text-4xl lg:text-6xl font-bold text-foreground">
@@ -37,8 +37,8 @@ export default function HeroCenteredSection({ content }: HeroCenteredSectionProp
           <div className="flex flex-col md:flex-row gap-8 justify-center">
             <Button
               size="lg"
-              className="text-lg px-8 py-6 h-auto bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
-            >
+              className="text-lg px-8 py-6 h-auto bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg shadow-lg">
+              
               <Info className="mr-2 h-5 w-5" />
               {content.primaryButtonText}
             </Button>
@@ -46,16 +46,16 @@ export default function HeroCenteredSection({ content }: HeroCenteredSectionProp
             <Button
               variant="outline"
               size="lg"
-              className="text-lg px-8 py-6 h-auto border-border text-foreground hover:bg-muted rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
-            >
+              className="text-lg px-8 py-6 h-auto border-border text-foreground rounded-lg shadow-lg">
+              
               <Rocket className="mr-2 h-5 w-5" />
               {content.secondaryButtonText}
             </Button>
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 }
 
 export const heroCenteredSectionTemplate = {

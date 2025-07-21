@@ -11,55 +11,55 @@ interface CtaBlockProps {
 }
 
 export default function CtaBlock({ content }: CtaBlockProps) {
-  
+
   return (
-    <section className="py-20 px-6 bg-gradient-to-r from-accent via-accent/90 to-accent/80 relative overflow-hidden">
+    <section className="px-6 relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-10 left-10 w-20 h-20 bg-accent-foreground/10 rounded-full animate-pulse" />
-        <div className="absolute top-40 right-20 w-32 h-32 bg-accent-foreground/5 rounded-full animate-pulse delay-1000" />
-        <div className="absolute bottom-20 left-1/3 w-16 h-16 bg-accent-foreground/10 rounded-full animate-pulse delay-500" />
+        <div className="absolute top-10 left-10 w-20 h-20 rounded-full" />
+        <div className="absolute top-40 right-20 w-32 h-32 rounded-full" />
+        <div className="absolute bottom-20 left-1/3 w-16 h-16 rounded-full" />
       </div>
       
       <div className="max-w-4xl mx-auto text-center relative z-10">
-        <div className="inline-flex items-center gap-2 bg-accent-foreground/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
-          <Sparkles className="h-4 w-4 text-yellow-300" />
-          <span className="text-accent-foreground/90 text-sm font-medium">Limited Time Offer</span>
+        <div className="inline-flex items-center gap-2 rounded-full px-4 py-2">
+          <Sparkles className="h-4 w-4" />
+          <span className="text-sm font-medium">Limited Time Offer</span>
         </div>
         
-        <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-accent-foreground mb-6 leading-tight">
+        <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight">
           {content.title}
         </h2>
-        <p className="text-xl md:text-2xl text-accent-foreground/90 mb-10 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-xl md:text-2xl max-w-2xl mx-auto leading-relaxed">
           {content.subtitle}
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button 
+          <Button
             size="lg"
-            className="text-lg px-8 py-6 h-auto bg-accent-foreground text-accent hover:bg-accent-foreground/90 hover:text-accent rounded-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
-          >
+            className="text-lg px-8 py-6 h-auto bg-accent-foreground text-accent rounded-lg shadow-xl">
+            
             {content.buttonText}
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
           
-          {content.secondaryButtonText && (
-            <Button 
-              variant="outline" 
-              size="lg"
-              className="text-lg px-8 py-6 h-auto bg-accent-foreground/10 border-accent-foreground/30 text-accent-foreground hover:bg-accent-foreground/20 hover:text-accent-foreground rounded-lg backdrop-blur-sm"
-          >
+          {content.secondaryButtonText &&
+          <Button
+            variant="outline"
+            size="lg"
+            className="text-lg px-8 py-6 h-auto hover:text-accent-foreground rounded-lg">
+            
               {content.secondaryButtonText}
             </Button>
-          )}
+          }
         </div>
         
-        <div className="mt-8 text-accent-foreground/70 text-sm">
+        <div className="text-sm">
           No credit card required • Cancel anytime • 30-day money back guarantee
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 }
 
 export const ctaTemplate = {

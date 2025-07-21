@@ -4,8 +4,8 @@ import {
   Accordion,
   AccordionContent,
   AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+  AccordionTrigger } from
+"@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 
 interface FAQContentSectionProps {
@@ -28,7 +28,7 @@ interface FAQContentSectionProps {
 export default function FAQContentSection({ content }: FAQContentSectionProps) {
   const { badge, title, description, button, faqs } = content;
   return (
-    <section className="w-full py-16 lg:py-32 bg-background">
+    <section className="w-full lg:py-32 bg-background">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-10">
           <div className="flex flex-col gap-6">
@@ -48,17 +48,17 @@ export default function FAQContentSection({ content }: FAQContentSectionProps) {
             </Button>
           </div>
           <Accordion type="single" collapsible className="w-full">
-            {faqs.map(({ id, question, answer }) => (
-              <AccordionItem key={id} value={id}>
+            {faqs.map(({ id, question, answer }) =>
+            <AccordionItem key={id} value={id}>
                 <AccordionTrigger className="font-bold text-muted-foreground">{question}</AccordionTrigger>
                 <AccordionContent>{answer}</AccordionContent>
               </AccordionItem>
-            ))}
+            )}
           </Accordion>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 }
 
 export const faqContentSectionTemplate = {
@@ -75,16 +75,16 @@ export const faqContentSectionTemplate = {
       variant: "default"
     },
     faqs: [
-      {
-        id: "faq1",
-        question: "What makes shadcn/ui unique?",
-        answer: "shadcn/ui leverages Radix UI and Tailwind CSS for accessible components."
-      },
-      {
-        id: "faq2",
-        question: "Is shadcn/ui suitable for production?",
-        answer: "Yes, it's designed for production with a focus on accessibility."
-      }
-    ]
+    {
+      id: "faq1",
+      question: "What makes shadcn/ui unique?",
+      answer: "shadcn/ui leverages Radix UI and Tailwind CSS for accessible components."
+    },
+    {
+      id: "faq2",
+      question: "Is shadcn/ui suitable for production?",
+      answer: "Yes, it's designed for production with a focus on accessibility."
+    }]
+
   }
 };

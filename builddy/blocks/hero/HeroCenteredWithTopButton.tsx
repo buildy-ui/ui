@@ -12,14 +12,14 @@ interface HeroCenteredWithTopButtonProps {
 
 export default function HeroCenteredWithTopButton({ content }: HeroCenteredWithTopButtonProps) {
   return (
-    <section className="w-full py-12 md:py-24 lg:py-32 bg-accent">
+    <section className="w-full md:py-24 lg:py-32 bg-accent">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="flex flex-col items-center text-center space-y-6">
+        <div className="flex flex-col items-center text-center">
           <Button variant="outline" size="sm" className="text-sm">
             {content.topButtonText} <ArrowUpRight className="ml-2 h-4 w-4" />
           </Button>
           
-          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl text-foreground">
+          <h1 className="text-3xl font-bold sm:text-4xl md:text-5xl lg:text-6xl text-foreground">
             {content.title}
           </h1>
           
@@ -32,8 +32,8 @@ export default function HeroCenteredWithTopButton({ content }: HeroCenteredWithT
           </Button>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 }
 
 export const heroCenteredWithTopButtonTemplate = {
