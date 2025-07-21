@@ -1,7 +1,8 @@
 // import HeroBlocks from "./blocks/hero";
 // import BlogBlocks from "./blocks/blog";
 // import BusinessBlocks from "./blocks/business";
-import FeaturesBlocks from "./blocks/features";
+// import FeaturesBlocks from "./blocks/features";
+import CTABlocks from "./blocks/cta";
 
 function Blocks() {
   return (
@@ -9,7 +10,8 @@ function Blocks() {
       {/*<HeroBlocks />*/}
       {/*<BlogBlocks />*/}
       {/*<BusinessBlocks />*/}
-      <FeaturesBlocks />
+      {/*<FeaturesBlocks />*/}
+      <CTABlocks />
     </div>
   );
 }
