@@ -30,6 +30,11 @@ const imageVariants = cva("", {
       xl: "rounded-xl",
       full: "rounded-full"
     },
+    aspect: {
+      square: "aspect-square",
+      video: "aspect-video",
+      auto: "aspect-auto"
+    },
     fallback: {
       true: "bg-muted",
       false: ""

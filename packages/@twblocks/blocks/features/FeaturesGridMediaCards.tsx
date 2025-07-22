@@ -45,7 +45,7 @@ export const FeaturesGridMediaCards = (props: FeaturesGridMediaCardsProps) => {
   return (
     <section className="w-full py-16 lg:py-32">
     <div className="container mx-auto px-4 md:px-6 lg:px-8">
-      <div className="flex flex-col">
+      <div className="flex flex-col gap-8">
         <div className="flex gap-4 flex-col">
           <div>
             <Badge>{badge}</Badge>
@@ -62,7 +62,7 @@ export const FeaturesGridMediaCards = (props: FeaturesGridMediaCardsProps) => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {features?.map((feature) =>
             <div key={feature.id} className="flex flex-col gap-2">
-              <div className="bg-muted rounded-md"></div>
+              <div className="bg-muted rounded-md aspect-video"></div>
               <h3 className="text-xl tracking-tight">{feature.title}</h3>
               <p className="text-muted-foreground text-base">{feature.description}</p>
             </div>

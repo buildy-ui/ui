@@ -119,7 +119,7 @@ export const PromoTeamSection = (props: PromoTeamSectionProps) => {
                 <img
                 src={imageUrl}
                 alt={`${name} - ${position}`}
-                className="absolute rounded-full object-cover" />
+                className="absolute rounded-full aspect-square object-cover" />
               
                 <CardTitle className="text-center text-xl font-semibold">
                   {name}

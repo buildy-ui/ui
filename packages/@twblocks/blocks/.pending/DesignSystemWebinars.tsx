@@ -84,7 +84,7 @@ export const DesignSystemWebinars = (props: DesignSystemWebinarsProps) => {
             </div>
             {/* Webinar image */}
             <div className="">
-              <div className="rounded-lg border border-border">
+              <div className="aspect-video rounded-lg border border-border">
                 <img
                   src={webinar.image}
                   alt={webinar.title}

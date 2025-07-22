@@ -56,7 +56,7 @@ export const HeroSplitWithMedia = (props: HeroSplitWithMediaProps) => {
               )}
                     </div>
                 </div>
-                <div className="bg-muted">
+                <div className="aspect-square bg-muted">
                     <img src={image.src} alt={image.alt} className={image.className} />
                 </div>
             </div>

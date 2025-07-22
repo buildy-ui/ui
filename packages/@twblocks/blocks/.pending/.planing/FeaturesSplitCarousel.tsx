@@ -63,7 +63,7 @@ export const FeaturesSplitCarousel = (props: FeaturesSplitCarouselProps) => {
             <CarouselContent>
               {carouselItems?.map((item) =>
                 <CarouselItem key={item.id}>
-                  <div className="flex bg-muted items-center justify-center">
+                  <div className="flex aspect-video bg-muted items-center justify-center">
                     <span className="text-sm">{item.label}</span>
                   </div>
                 </CarouselItem>

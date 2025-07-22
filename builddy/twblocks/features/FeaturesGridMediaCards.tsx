@@ -45,7 +45,7 @@ export const FeaturesGridMediaCards = (props: FeaturesGridMediaCardsProps) => {
   return (
     <section className="w-full py-16 lg:py-32">
     <div className="container mx-auto px-4 md:px-6 lg:px-8">
-      <div className="flex flex-col gap-10">
+      <div className="flex flex-col gap-8">
         <div className="flex gap-4 flex-col features-start">
           <div>
             <Badge>{badge}</Badge>

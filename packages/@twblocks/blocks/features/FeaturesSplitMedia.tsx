@@ -71,7 +71,7 @@ export const FeaturesSplitMedia = (props: FeaturesSplitMediaProps) => {
               )}
           </div>
         </div>
-        <div className="bg-muted rounded-md"></div>
+        <div className="bg-muted rounded-md aspect-square"></div>
         </div>
       </div>
     </section>);

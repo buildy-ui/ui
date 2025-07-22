@@ -1,9 +1,12 @@
 {
-  "timestamp": "2025-07-22T19:45:23.196Z",
+  "timestamp": "2025-07-22T20:02:11.035Z",
   "method": "simple-cva-extraction",
   "description": "All classes extracted from CVA definitions without filtering",
   "allClasses": [
     "absolute",
+    "aspect-auto",
+    "aspect-square",
+    "aspect-video",
     "backdrop-blur-lg",
     "backdrop-blur-md",
     "backdrop-blur-sm",
@@ -1737,6 +1740,9 @@
         "rounded-lg",
         "rounded-xl",
         "rounded-full",
+        "aspect-square",
+        "aspect-video",
+        "aspect-auto",
         "bg-muted",
         "cover",
         "center",
@@ -1768,6 +1774,9 @@
         "rounded-lg",
         "rounded-xl",
         "rounded-full",
+        "aspect-square",
+        "aspect-video",
+        "aspect-auto",
         "bg-muted",
         "cover",
         "center",
@@ -1852,7 +1861,7 @@
   },
   "summary": {
     "totalComponents": 15,
-    "totalClasses": 385,
+    "totalClasses": 388,
     "totalFiles": 37
   }
 }

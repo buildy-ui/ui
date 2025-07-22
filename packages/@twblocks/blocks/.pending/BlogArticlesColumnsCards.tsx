@@ -86,7 +86,7 @@ export const BlogArticlesColumnsCards = (props: BlogArticlesColumnsCardsProps) =
             key={article.id}
             className={`flex flex-col gap-4 hover:opacity-75 cursor-pointer ${article.className}`}>
             
-            <div className="bg-muted rounded-md"></div>
+            <div className="bg-muted rounded-md aspect-video"></div>
             <div className="flex flex-row gap-4 items-center">
               <Badge>{article.category}</Badge>
               <p className="flex flex-row gap-2 text-sm items-center">
