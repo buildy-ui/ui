@@ -2,7 +2,7 @@ import { FeaturesGridMediaCards } from "@twblocks/blocks/features/FeaturesGridMe
 import { FeaturesSplitLeftMedia } from "@twblocks/blocks/features/FeaturesSplitLeftMedia";
 import { FeaturesSplitMedia } from "@twblocks/blocks/features/FeaturesSplitMedia";
 import { FeaturesThreeColumns } from "@twblocks/blocks/features/FeaturesThreeColumns";
-import { FeaturesThreeColumnsIcons } from "@twblocks/blocks/features/FeaturesThreeColumnsIcons";
+// import { FeaturesThreeColumnsIcons } from "@twblocks/blocks/features/FeaturesThreeColumnsIcons";
 
 function FeaturesBlocks() {
   return (
@@ -11,7 +11,7 @@ function FeaturesBlocks() {
       <FeaturesSplitLeftMedia />
       <FeaturesSplitMedia />
       <FeaturesThreeColumns />
-      <FeaturesThreeColumnsIcons />
+      {/*<FeaturesThreeColumnsIcons />*/}
     </div>
   );
 }

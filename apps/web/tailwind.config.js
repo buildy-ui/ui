@@ -70,10 +70,6 @@ export default {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-      },
-      width: {
-        '5/13': '38.2%',
-        '8/13': '61.8%'
       }
     },
   },
