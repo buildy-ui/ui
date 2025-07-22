@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-07-22T19:35:33.174Z",
+  "timestamp": "2025-07-22T19:45:23.196Z",
   "method": "simple-cva-extraction",
   "description": "All classes extracted from CVA definitions without filtering",
   "allClasses": [
@@ -327,6 +327,8 @@
     "shadow-sm",
     "shadow-xl",
     "sm:flex-row",
+    "sm:items-center",
+    "sm:justify-between",
     "space-x-1",
     "space-x-2",
     "space-x-4",
@@ -952,6 +954,9 @@
         "md:flex-row",
         "lg:flex-row",
         "xl:flex-row",
+        "sm:flex-row",
+        "sm:justify-between",
+        "sm:items-center",
         "gap-1",
         "gap-2",
         "gap-4",
@@ -998,6 +1003,9 @@
         "md:flex-row",
         "lg:flex-row",
         "xl:flex-row",
+        "sm:flex-row",
+        "sm:justify-between",
+        "sm:items-center",
         "gap-1",
         "gap-2",
         "gap-4",
@@ -1844,7 +1852,7 @@
   },
   "summary": {
     "totalComponents": 15,
-    "totalClasses": 383,
+    "totalClasses": 385,
     "totalFiles": 37
   }
 }

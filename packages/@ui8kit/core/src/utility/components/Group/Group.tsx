@@ -14,6 +14,7 @@ const groupVariants = cva("flex", {
       md: "md:flex-row", 
       lg: "lg:flex-row",
       xl: "xl:flex-row",
+      sm_between: "sm:flex-row sm:justify-between sm:items-center",
       none: ""
     },
     gap: {
