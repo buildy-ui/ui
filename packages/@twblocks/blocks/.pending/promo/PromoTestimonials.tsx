@@ -82,7 +82,7 @@ export const PromoTestimonials = (props: PromoTestimonialsProps) => {
   };
 
   return (
-    <section className="mx-auto px-4 md:px-6 lg:px-8 py-8 lg:py-16">
+    <section className="container mx-auto px-4 md:px-6 lg:px-8 py-8 lg:py-16">
       <header className="text-center space-y-4">
         <h2 className="text-3xl font-bold">
           {title}{" "}

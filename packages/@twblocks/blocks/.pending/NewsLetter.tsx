@@ -27,7 +27,7 @@ export const NewsLetter = (props: NewsLetterProps) => {
 
   return (
     <section className="w-full py-16 lg:py-32">
-      <div className="mx-auto px-4 md:px-6 lg:px-8">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <h3 className="text-center text-4xl font-bold">
             {title}
         </h3>

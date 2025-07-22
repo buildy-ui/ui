@@ -2,7 +2,7 @@ import { forwardRef, ElementType, ReactNode } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../../core/utils";
 
-const containerVariants = cva("w-full", {
+const containerVariants = cva("container", {
   variants: {
     size: {
       xs: "max-w-screen-sm",

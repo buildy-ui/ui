@@ -47,7 +47,7 @@ export const PromoAboutSection = (props: PromoAboutSectionProps) => {
 
   return (
     <section className="w-full py-8 lg:py-16">
-      <div className="mx-auto px-4 md:px-6 lg:px-8">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8">
       <div className="relative rounded-2xl">
         <div className="bg-secondary border rounded-2xl">
             <div className="px-6 flex md:flex-row gap-8">

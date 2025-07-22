@@ -69,7 +69,7 @@ export const PromoFeatureList = (props: PromoFeatureListProps) => {
   };
 
   return (
-    <section className="mx-auto px-4 md:px-6 lg:px-8 py-16 lg:py-32 space-y-8">
+    <section className="container mx-auto px-4 md:px-6 lg:px-8 py-16 lg:py-32 space-y-8">
       <header className="flex flex-col items-center gap-4 text-center">
         <h2 className="text-3xl font-bold">
           <span className="">

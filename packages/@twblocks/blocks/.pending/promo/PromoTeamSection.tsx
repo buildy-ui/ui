@@ -93,7 +93,7 @@ export const PromoTeamSection = (props: PromoTeamSectionProps) => {
   };
 
   return (
-    <section className="mx-auto px-4 md:px-6 lg:px-8 py-16 lg:py-32">
+    <section className="container mx-auto px-4 md:px-6 lg:px-8 py-16 lg:py-32">
       <header className="text-center space-y-4">
         <h2 className="text-3xl font-bold">
           {title}{" "}

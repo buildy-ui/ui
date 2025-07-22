@@ -71,7 +71,7 @@ export const BlogArticlesColumnsCards = (props: BlogArticlesColumnsCardsProps) =
 
   return (
     <section className="w-full py-8 lg:py-16">
-    <div className="mx-auto px-4 md:px-6 lg:px-8 flex flex-col gap-8">
+    <div className="container mx-auto px-4 md:px-6 lg:px-8 flex flex-col gap-8">
       <header className="flex flex-col gap-2">
         <h2 className="text-3xl font-bold max-w-xl">
           {title}

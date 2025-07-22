@@ -106,7 +106,7 @@ const MobileNavigation = () => {
 
 const HeroSection = () =>
 <section className="w-full py-16 lg:py-32">
-    <div className="mx-auto px-4 md:px-6 lg:px-8">
+    <div className="container mx-auto px-4 md:px-6 lg:px-8">
       <div className="flex flex-col text-center gap-8 items-center">
         <div className="flex flex-col gap-4">
           <h2 className="max-w-2xl text-3xl font-bold">
@@ -134,7 +134,7 @@ export const NavbarLineMenu = (props: NavbarProps) => {
   return (
     <>
       <header className="sticky w-full">
-        <div className="mx-auto px-4 flex items-center">
+        <div className="container mx-auto px-4 flex items-center">
           <div className="flex">
             <Brand />
           </div>

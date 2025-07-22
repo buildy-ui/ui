@@ -52,7 +52,7 @@ export const DesignSystemWebinars = (props: DesignSystemWebinarsProps) => {
 
   return (
     <section className="w-full py-16 lg:py-32">
-    <div className="mx-auto px-4 md:px-6 lg:px-8 flex flex-col">
+    <div className="container mx-auto px-4 md:px-6 lg:px-8 flex flex-col">
       {/* Section header */}
       <header className="text-center py-8 lg:py-16">
         <h2 className="text-3xl font-bold">

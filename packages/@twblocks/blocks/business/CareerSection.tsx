@@ -81,7 +81,7 @@ export const CareerSection = (props: CareerSectionProps) => {
       aria-labelledby="careers-heading"
       className="w-full py-16 lg:py-32 bg-background">
       
-      <div className="mx-auto px-4 md:px-6 lg:px-8 max-w-screen-lg">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <header className="">
           <h2 className="text-3xl font-semibold text-foreground">
             {title}

@@ -1,7 +1,7 @@
 // import { BlogArticlesColumnsCards } from "@twblocks/blocks/blog/BlogArticlesColumnsCards";
 import { BlogCardsSection } from "@twblocks/blocks/blog/BlogCardsSection";
 import { BlogPostsGridSection } from "@twblocks/blocks/blog/BlogPostsGridSection";
-import { DesignSystemWebinars } from "@twblocks/blocks/blog/DesignSystemWebinars";
+// import { DesignSystemWebinars } from "@twblocks/blocks/blog/DesignSystemWebinars";
 
 function BlogBlocks() {
   return (
@@ -9,7 +9,7 @@ function BlogBlocks() {
       {/*<BlogArticlesColumnsCards />*/}
       <BlogCardsSection />
       <BlogPostsGridSection />
-      <DesignSystemWebinars />
+      {/*<DesignSystemWebinars />*/}
     </div>
   );
 }

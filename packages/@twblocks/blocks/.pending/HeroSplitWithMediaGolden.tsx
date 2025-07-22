@@ -39,7 +39,7 @@ export const HeroSplitWithMediaGolden = (props: HeroSplitWithMediaProps) => {
 
   return (
     <section className={`py-16 ${className || ''}`} {...rest}>
-      <div className="mx-auto max-w-6xl px-4">
+      <div className="container mx-auto max-w-6xl px-4">
         <div className="flex flex-col md:flex-row items-center">
           <div className="w-full flex flex-col">
             <h2 className="text-4xl font-bold tracking-tight">

@@ -78,8 +78,9 @@ export const BlogPostsGridSection = (props: BlogPostsGridSectionProps) => {
 
   return (
     <section className="w-full py-16 lg:py-32">
-    <div className="mx-auto px-4 md:px-6 lg:px-8 flex flex-col text-center">
-      <header className="max-w-2xl mx-auto flex flex-col gap-4">
+    <div className="container mx-auto px-4 md:px-6 lg:px-8">
+      <div className="flex flex-col gap-8">
+        <header className="flex flex-col max-w-2xl mx-auto text-center gap-4">
         <p className="text-xs font-medium text-muted-foreground">
           {tagline}
         </p>
@@ -95,15 +96,15 @@ export const BlogPostsGridSection = (props: BlogPostsGridSectionProps) => {
       </header>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {posts?.map((post) =>
-          <a
-            key={post.id}
-            href={post.href}
-            className="flex flex-col rounded-lg border border-border">
+            <a
+              key={post.id}
+              href={post.href}
+              className="flex flex-col rounded-lg border border-border">
             
             <img
-              src={post.image}
-              alt={post.title}
-              className="object-cover" />
+                src={post.image}
+                alt={post.title}
+                className="object-cover" />
             
             <div className="flex flex-col gap-4 p-6">
               <h3 className="text-lg font-semibold">
@@ -117,8 +118,9 @@ export const BlogPostsGridSection = (props: BlogPostsGridSectionProps) => {
               </p>
             </div>
           </a>
-          )}
+            )}
         </div>
+      </div>
       </div>
     </section>);
 

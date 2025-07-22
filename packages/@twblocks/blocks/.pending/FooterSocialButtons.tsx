@@ -57,7 +57,7 @@ export const FooterSocialButtons = (props: FooterSocialButtonsProps) => {
 
   return (
     <footer className="w-full py-4 lg:py-8 bg-background text-foreground">
-      <div className="mx-auto px-4 md:px-6 lg:px-8">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="grid md:grid-cols-2">
           <div>
             <div className="text-2xl font-bold">

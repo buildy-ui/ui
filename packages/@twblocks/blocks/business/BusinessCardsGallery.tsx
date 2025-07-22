@@ -97,7 +97,7 @@ export const BusinessCardsGallery = (props: BusinessCardsGalleryProps) => {
 
   return (
     <section className="w-full py-16 lg:py-32">
-    <div className="mx-auto px-4 md:px-6 lg:px-8">
+    <div className="container mx-auto px-4 md:px-6 lg:px-8">
       <div className="flex flex-col gap-8">
         <header className="flex flex-col gap-4 items-start">
           <Badge variant="outline" className="rounded-full">

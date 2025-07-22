@@ -38,7 +38,7 @@ export const FeaturesSplitCarousel = (props: FeaturesSplitCarouselProps) => {
 
   return (
     <section className="w-full py-16 lg:py-32">
-      <div className="mx-auto px-4 md:px-6 lg:px-8">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 items-end">
         <header className="flex flex-col gap-4 items-start">
           <Badge variant="outline" className="rounded-full">

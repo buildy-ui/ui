@@ -47,7 +47,7 @@ export const PromoServiceLottie = (props: PromoServiceLottieProps) => {
 
   return (
     <section className="w-full py-8 lg:py-16">
-      <div className="mx-auto px-4 md:px-6 lg:px-8 grid">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8 grid">
         <div>
           <h2 className="text-3xl font-bold">
             <span className="">
