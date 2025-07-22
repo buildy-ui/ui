@@ -41,7 +41,7 @@ export const CallToActionCenteredSection = (props: CallToActionCenteredSectionPr
   return (
     <section className="w-full py-16 lg:py-32">
       <div className="mx-auto px-4 md:px-6 lg:px-8">
-        <div className="flex flex-col items-center text-center rounded-lg bg-accent p-8">
+        <div className="flex flex-col items-center text-center rounded-lg bg-accent gap-8 py-16 px-4">
           <div className="space-y-4">
             <h2 className="text-2xl font-semibold">
               {title}

@@ -5,8 +5,8 @@ import {
   CardContent,
   CardFooter,
   CardHeader,
-  CardTitle
-} from
+  CardTitle } from
+
 "@ui8kit/core";
 
 type Content = {

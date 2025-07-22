@@ -95,12 +95,12 @@ const HeroButton = ({ href, external, text, icon, ...buttonProps }: HeroButtonPr
       <Button
         asChild
         {...buttonProps}>
-
+        
         <a
           href={href}
           target="_blank"
           rel="noopener noreferrer">
-
+          
           {text} {icon}
         </a>
       </Button>);
@@ -111,7 +111,7 @@ const HeroButton = ({ href, external, text, icon, ...buttonProps }: HeroButtonPr
     <Button
       asChild
       {...buttonProps}>
-
+      
       <Link href={href}>
         {text} {icon}
       </Link>
@@ -143,7 +143,7 @@ export const HeroSplitWithGallery = ({
         className
       )}
       {...sectionProps}>
-
+      
       <div className="mx-auto px-4 md:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-8">
           <div className="flex gap-4 flex-col">
@@ -182,7 +182,7 @@ export const HeroSplitWithGallery = ({
                 "relative overflow-hidden",
                 image.className
               )}>
-
+              
                 <img
                 src={image.src}
                 alt={image.id}
@@ -190,7 +190,7 @@ export const HeroSplitWithGallery = ({
                   "w-full h-full object-cover",
                   image.className
                 )} />
-
+              
               </div>
             )}
           </div>

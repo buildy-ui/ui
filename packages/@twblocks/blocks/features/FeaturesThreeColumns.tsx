@@ -70,7 +70,7 @@ export const FeaturesThreeColumns = (props: FeaturesThreeColumnsProps) => {
         <p className="text-lg text-muted-foreground max-w-2xl text-left">{description}</p>
       </div>
       <div className="flex flex-col w-full">
-        <div className="grid items-start lg:grid-cols-3">
+        <div className="grid grid-cols-2 items-start lg:grid-cols-3">
           {features?.map((feature) =>
             <div key={feature.id} className="flex flex-row gap-6 w-full items-start">
               <Check className="w-4 h-4 text-primary" />

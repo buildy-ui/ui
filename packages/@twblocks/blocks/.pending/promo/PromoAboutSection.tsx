@@ -82,7 +82,7 @@ export const Statistics = (props: {statistics: {quantity: string;description: st
   const { statistics } = props;
   return (
     <section id="statistics">
-      <div className="grid gap-8">
+      <div className="grid grid-cols-2 gap-8">
         {statistics?.map(({ quantity, description }) =>
         <div key={description} className="space-y-2 text-center">
             <h2 className="text-3xl font-bold">{quantity}</h2>

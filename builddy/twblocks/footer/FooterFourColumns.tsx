@@ -69,7 +69,7 @@ export const FooterFourColumns = (props: FooterFourColumnsProps) => {
   return (
   <footer className="w-full py-4 lg:py-8">
     <div className="container mx-auto px-4 md:px-6 lg:px-8">
-        <div className="grid grid-cols-2 gap-8 lg:grid-cols-6">
+        <div className="grid grid-cols-2 lg:grid-cols-6 gap-8">
           <div className="col-span-2">
             <div className="text-2xl font-bold mb-8 lg:mb-4">
               <Volleyball className="mr-1 h-8 w-8 inline-block" /> {brand}

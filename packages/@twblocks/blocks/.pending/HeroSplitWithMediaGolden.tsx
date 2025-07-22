@@ -63,7 +63,7 @@ export const HeroSplitWithMediaGolden = (props: HeroSplitWithMediaProps) => {
                 src={image.src}
                 alt={image.alt}
                 className={`${image.className} w-full h-full object-cover`} />
-
+              
             </div>
           </div>
         </div>

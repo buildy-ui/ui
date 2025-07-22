@@ -111,7 +111,7 @@ export const CareerSection = (props: CareerSectionProps) => {
                   </a>
 
                   <div
-                className="rounded-full cursor-default">
+                className="rounded-full">
                 
                     {job.location}
                   </div>

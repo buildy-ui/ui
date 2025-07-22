@@ -6,17 +6,22 @@ const gridVariants = cva("grid", {
   variants: {
     cols: {
       1: "grid-cols-1",
-      2: "grid-cols-1 lg:grid-cols-2", 
-      3: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
-      4: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4",
-      5: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5",
-      6: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6",
-      7: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-7",
+      2: "grid-cols-2", 
+      3: "grid-cols-3",
+      4: "grid-cols-4",
+      5: "grid-cols-5",
+      6: "grid-cols-6",
+      7: "grid-cols-7",
       8: "grid-cols-8",
       9: "grid-cols-9",
       10: "grid-cols-10",
       11: "grid-cols-11",
-      12: "grid-cols-12"
+      12: "grid-cols-12",
+      cols2: "grid-cols-1 lg:grid-cols-2", 
+      cols3: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
+      cols4: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4",
+      cols5: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5",
+      cols2_6: "grid-cols-2 lg:grid-cols-6"
     },
     gap: {
       none: "gap-0",
