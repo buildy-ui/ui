@@ -66,6 +66,16 @@ const boxVariants = cva("", {
       absolute: "absolute",
       fixed: "fixed",
       sticky: "sticky"
+    },
+    // Z-index
+    z: {
+      "0": "z-0",
+      "10": "z-10",
+      "20": "z-20",
+      "30": "z-30",
+      "40": "z-40",
+      "50": "z-50",
+      auto: "z-auto"
     }
   }
 });
@@ -89,6 +99,7 @@ export const Box = forwardRef<HTMLElement, BoxProps>(
     bg,
     rounded,
     position,
+    z,
     style,
     children, 
     ...props 
@@ -99,7 +110,7 @@ export const Box = forwardRef<HTMLElement, BoxProps>(
       <Component
         ref={ref}
         data-class="box"
-        className={cn(boxVariants({ display, size, spacing, width, bg, rounded, position }), className)}
+        className={cn(boxVariants({ display, size, spacing, width, bg, rounded, position, z }), className)}
         style={style}
         {...props}
       >

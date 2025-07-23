@@ -31,7 +31,8 @@ const textVariants = cva("", {
       secondary: "text-secondary",
       secondaryForeground: "text-secondary-foreground",
       destructive: "text-destructive",
-      accent: "text-accent"
+      accent: "text-accent",
+      white: "text-white"
     },
     truncate: {
       true: "truncate",

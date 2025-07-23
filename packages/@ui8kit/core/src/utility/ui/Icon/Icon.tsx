@@ -36,7 +36,7 @@ const iconVariants = cva("", {
     }
   },
   defaultVariants: {
-    size: "md",
+    size: "sm",
     spacing: "none",
     display: "inline",
     animated: false,
@@ -80,6 +80,19 @@ export const Icon = forwardRef<HTMLElement, IconProps>(
     // If Lucide icon is provided, render it directly
     if (lucideIcon) {
       const LucideIcon = lucideIcon;
+      
+      // Map size variants to pixel values for Lucide
+      const sizeMap = {
+        xs: 12,
+        sm: 16,
+        md: 20,
+        lg: 24,
+        xl: 32,
+        "2xl": 48
+      };
+      
+      const lucideSize = sizeMap[size as keyof typeof sizeMap] || 16;
+      
       return (
         <Component
           ref={ref}
@@ -88,7 +101,7 @@ export const Icon = forwardRef<HTMLElement, IconProps>(
           style={style}
           {...props}
         >
-          <LucideIcon size={size} />
+          <LucideIcon size={lucideSize} />
         </Component>
       );
     }

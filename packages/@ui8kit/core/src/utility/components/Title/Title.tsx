@@ -32,7 +32,8 @@ const titleVariants = cva("font-semibold tracking-tight", {
       primary: "text-primary",
       secondary: "text-secondary",
       destructive: "text-destructive",
-      accent: "text-accent"
+      accent: "text-accent",
+      white: "text-white"
     },
     leading: {
       relaxed: "leading-relaxed",

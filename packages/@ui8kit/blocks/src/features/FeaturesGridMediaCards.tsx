@@ -27,7 +27,7 @@ interface FeaturesGridMediaCardsProps {
         src: string;
         alt: string;
       };
-      iconSvg: string;
+      lucideIcon: any;
     }>;
   };
 }
@@ -86,7 +86,7 @@ export const FeaturesGridMediaCards = forwardRef<HTMLElement, FeaturesGridMediaC
                     <Stack gap="md">
                       <Box size="2xl" bg="primary" rounded="lg">
                       <Icon
-                        lucideIcon={ArrowRight}
+                        lucideIcon={feature.lucideIcon}
                         size="md"
                       />
                       </Box>
@@ -137,7 +137,7 @@ export const featuresGridMediaCardsTemplate = {
           src: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
           alt: "Fast Performance"
         },
-        iconSvg: `<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' d='M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z' /></svg>`
+        lucideIcon: ArrowRight
       },
       {
         id: "feature2",
@@ -147,7 +147,7 @@ export const featuresGridMediaCardsTemplate = {
           src: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
           alt: "Security"
         },
-        iconSvg: `<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' d='M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.623 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z' /></svg>`
+        lucideIcon: ArrowRight
       },
       {
         id: "feature3",
@@ -157,7 +157,7 @@ export const featuresGridMediaCardsTemplate = {
           src: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
           alt: "Integration"
         },
-        iconSvg: `<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' d='M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244' /></svg>`
+        lucideIcon: ArrowRight
       }
     ]
   }

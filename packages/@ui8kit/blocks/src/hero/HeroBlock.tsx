@@ -19,7 +19,6 @@ interface HeroBlockProps {
     title: string;
     subtitle: string;
     buttonText: string;
-    learnMoreText: string;
     backgroundImage: string;
   };
 }
@@ -31,48 +30,51 @@ export const HeroBlock = forwardRef<HTMLElement, HeroBlockProps>(
         component="section"
         ref={ref}
         position="relative"
-        display="flex"
         h="screen"
-        align="center"
-        justify="center"
+        w="full"
         overflow="hidden"
       >
-        {/* Background Image
+        {/* Background Image */}
         <BackgroundImage
           src={content.backgroundImage}
           size="cover"
           position="absolute-inset"
-        /> */}
+        />
 
-        {/* Overlay
+        {/* Overlay */}
         <Overlay
           color="black"
-          opacity={70}
-        /> */}
+          opacity={50}
+        />
 
         {/* Content */}
-        <Container
-          size="lg"
-          padding="responsive"
+        <Box
           position="relative"
-          display="flex"
           h="full"
+          display="flex"
           align="center"
+          justify="center"
           z="10"
         >
-          <Stack gap="lg" ta="center" centered size="4xl">
+          <Container
+            size="lg"
+            padding="responsive"
+          >
+          <Stack gap="xl" ta="center" align="center" w="4xl">
             <Title
               order={1}
               size="4xl"
               fw="bold"
               c="white"
+              ta="center"
             >
               {content.title}
             </Title>
 
             <Text
               size="xl"
-              c="secondaryForeground"
+              c="white"
+              ta="center"
               leading="relaxed"
             >
               {content.subtitle}
@@ -86,13 +88,13 @@ export const HeroBlock = forwardRef<HTMLElement, HeroBlockProps>(
             >
               <Button
                 size="lg"
+                variant="default"
               >
                 {content.buttonText}
                 <Icon
                   component="span"
                   size="sm"
                   spacing="left"
-                  display="inline"
                   lucideIcon={ArrowRight}
                 />
               </Button>
@@ -105,14 +107,14 @@ export const HeroBlock = forwardRef<HTMLElement, HeroBlockProps>(
                   component="span"
                   size="sm"
                   spacing="right"
-                  display="inline"
                   lucideIcon={Play}
                 />
-                {content.learnMoreText}
+                Watch Demo
               </Button>
             </Group>
           </Stack>
-        </Container>
+          </Container>
+        </Box>
       </Block>
     );
   }
