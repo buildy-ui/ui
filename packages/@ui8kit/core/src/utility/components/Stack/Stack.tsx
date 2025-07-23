@@ -9,7 +9,14 @@ export const stackVariants = cva("flex flex-col", {
       sm: "gap-2",
       md: "gap-4",
       lg: "gap-6",
-      xl: "gap-8"
+      xl: "gap-8",
+      "2xl": "gap-10",
+      "3xl": "gap-12",
+      "4xl": "gap-14",
+      "5xl": "gap-16",
+      "6xl": "gap-18",
+      "7xl": "gap-20",
+      "8xl": "gap-22",
     },
     align: {
       start: "items-start",

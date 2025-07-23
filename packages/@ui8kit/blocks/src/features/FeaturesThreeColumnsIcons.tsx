@@ -36,7 +36,7 @@ export const FeaturesThreeColumnsIcons = forwardRef<HTMLElement, FeaturesThreeCo
         py="lg"
       >
         <Container size="lg" padding="responsive" centered>
-          <Stack gap="xl">
+          <Stack gap="3xl" align="center">
             {/* Header */}
             <Stack gap="md" align="center" ta="center" size="2xl">
               <Badge variant="secondary">
@@ -65,9 +65,8 @@ export const FeaturesThreeColumnsIcons = forwardRef<HTMLElement, FeaturesThreeCo
             <Grid cols="cols3" gap="lg">
               {content.features.map((feature) => (
                 <Stack key={feature.id} gap="md" align="center" ta="center">
-                  <Box size="2xl" bg="primary" rounded="lg">
+                  <Box size="2xl" bg="primary" rounded="full" className="flex items-center justify-center">
                     <Icon
-                      component="div"
                       lucideIcon={feature.lucideIcon}
                       size="xl"
                     />

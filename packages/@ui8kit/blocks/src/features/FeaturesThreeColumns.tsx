@@ -32,7 +32,7 @@ export const FeaturesThreeColumns = forwardRef<HTMLElement, FeaturesThreeColumns
         py="lg"
       >
         <Container size="lg" padding="responsive" centered>
-          <Stack gap="xl">
+          <Stack gap="3xl" align="center">
             {/* Header */}
             <Stack gap="md" align="center" ta="center" size="2xl">
               <Badge variant="secondary">

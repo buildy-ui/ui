@@ -16,6 +16,16 @@ const cardVariants = cva(
         sm: "p-3",
         md: "p-6",
         lg: "p-8"
+      },
+      radius: {
+        none: "rounded-none",
+        sm: "rounded-sm",
+        md: "rounded-md",
+        lg: "rounded-lg",
+        xl: "rounded-xl",
+        "2xl": "rounded-2xl",
+        "3xl": "rounded-3xl",
+        full: "rounded-full"
       }
     },
     defaultVariants: {
@@ -27,13 +37,15 @@ const cardVariants = cva(
 
 export interface CardProps
   extends HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof cardVariants> {}
+    VariantProps<typeof cardVariants> {
+  radius?: "none" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "full";
+}
 
 const Card = forwardRef<HTMLDivElement, CardProps>(
-  ({ className, variant, padding, ...props }, ref) => (
+  ({ className, variant, padding, radius, ...props }, ref) => (
     <div
       ref={ref}
-      className={cn(cardVariants({ variant, padding }), className)}
+      className={cn(cardVariants({ variant, padding, radius }), className)}
       {...props}
     />
   )
@@ -117,13 +129,13 @@ const CardDescription = forwardRef<
 CardDescription.displayName = "CardDescription";
 
 // Card Content
-const cardContentVariants = cva("p-6 pt-0", {
+const cardContentVariants = cva("", {
   variants: {
     padding: {
       none: "p-0",
-      sm: "p-3 pt-0", 
-      md: "p-6 pt-0",
-      lg: "p-8 pt-0"
+      sm: "p-3", 
+      md: "p-6",
+      lg: "p-8"
     }
   },
   defaultVariants: {

@@ -17,7 +17,7 @@ const gridVariants = cva("grid", {
       10: "grid-cols-10",
       11: "grid-cols-11",
       12: "grid-cols-12",
-      cols2: "grid-cols-1 lg:grid-cols-2", 
+      cols2: "grid-cols-1 md:grid-cols-2", 
       cols3: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
       cols4: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4",
       cols5: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5",

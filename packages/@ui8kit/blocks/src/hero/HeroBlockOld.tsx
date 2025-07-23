@@ -1,5 +1,4 @@
 import { forwardRef } from "react";
-import { ArrowRight, Play } from "lucide-react";
 import {
   Box,
   Block,
@@ -19,6 +18,7 @@ interface HeroBlockProps {
     title: string;
     subtitle: string;
     buttonText: string;
+    learnMoreText: string;
     backgroundImage: string;
   };
 }
@@ -57,8 +57,7 @@ export const HeroBlock = forwardRef<HTMLElement, HeroBlockProps>(
               order={1}
               size="4xl"
               fw="bold"
-              c="secondaryForeground"
-              ta="center"
+              c="white"
             >
               {content.title}
             </Title>
@@ -66,7 +65,6 @@ export const HeroBlock = forwardRef<HTMLElement, HeroBlockProps>(
             <Text
               size="xl"
               c="secondaryForeground"
-              ta="center"
               leading="relaxed"
             >
               {content.subtitle}
@@ -80,7 +78,6 @@ export const HeroBlock = forwardRef<HTMLElement, HeroBlockProps>(
             >
               <Button
                 size="lg"
-                variant="default"
               >
                 {content.buttonText}
                 <Icon
@@ -88,7 +85,11 @@ export const HeroBlock = forwardRef<HTMLElement, HeroBlockProps>(
                   size="md"
                   spacing="left"
                   display="inline"
-                  lucideIcon={ArrowRight}
+                  style={{
+                    backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor'%3e%3cpath stroke-linecap='round' stroke-linejoin='round' d='M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3' /%3e%3c/svg%3e")`,
+                    backgroundSize: 'contain',
+                    backgroundRepeat: 'no-repeat'
+                  }}
                 />
               </Button>
 
@@ -101,12 +102,16 @@ export const HeroBlock = forwardRef<HTMLElement, HeroBlockProps>(
                   size="md"
                   spacing="right"
                   display="inline"
-                  lucideIcon={Play}
+                  style={{
+                    backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor'%3e%3cpath stroke-linecap='round' stroke-linejoin='round' d='M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z' /%3e%3c/svg%3e")`,
+                    backgroundSize: 'contain',
+                    backgroundRepeat: 'no-repeat'
+                  }}
                 />
-                Watch Demo
+                {content.learnMoreText}
               </Button>
             </Group>
-                      </Stack>
+          </Stack>
         </Container>
       </Block>
     );

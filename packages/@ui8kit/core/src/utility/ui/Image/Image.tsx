@@ -2,7 +2,7 @@ import { forwardRef, ImgHTMLAttributes } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../../core/utils";
 
-const imageVariants = cva("", {
+const imageVariants = cva("block", {
   variants: {
     fit: {
       contain: "object-contain",

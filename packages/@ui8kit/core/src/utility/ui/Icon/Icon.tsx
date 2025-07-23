@@ -60,7 +60,7 @@ export interface IconProps extends VariantProps<typeof iconVariants> {
 
 export const Icon = forwardRef<HTMLElement, IconProps>(
   ({ 
-    component = "div", 
+    component = "span", 
     className, 
     size,
     spacing,

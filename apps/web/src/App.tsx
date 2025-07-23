@@ -1,7 +1,5 @@
 import { useState } from 'react'
-import { HeroCenteredSection, HeroBlock } from '@ui8kit/blocks/hero'
-import { BlogNewsBlock } from '@ui8kit/blocks/blog'
-import { FeaturesSplitMedia } from '@ui8kit/blocks/features'
+import Blocks from '@/Blocks'
 
 function App() {
   const [darkMode, setDarkMode] = useState(false)
@@ -36,110 +34,7 @@ function App() {
       </header>
 
       {/* Main content */}
-      <main>
-        {/* Hero Block */}
-        <HeroBlock
-          content={{
-            title: "Welcome to @ui8kit",
-            subtitle: "Build beautiful interfaces with our component library",
-            buttonText: "Get Started",
-            learnMoreText: "Learn More",
-            backgroundImage: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=200&fit=crop"
-          }}
-        />
-
-        {/* Blog News Block */}
-        <section className="py-16">
-          <BlogNewsBlock 
-            content={{
-              title: "Latest Updates",
-              subtitle: "Stay up to date with the latest news and updates from our component library.",
-              articles: [
-                {
-                  title: 'Component Library v2.0 Released',
-                  excerpt: 'We are excited to announce the release of version 2.0 with new components and improvements.',
-                  image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=200&fit=crop',
-                  date: '2024-01-15',
-                  readTime: '5 min read'
-                },
-                {
-                  title: 'New Dark Mode Support',
-                  excerpt: 'Enhanced dark mode support with better color schemes and improved accessibility.',
-                  image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=200&fit=crop',
-                  date: '2024-01-10',
-                  readTime: '3 min read'
-                },
-                {
-                  title: 'Performance Improvements',
-                  excerpt: 'Significant performance improvements and bundle size reduction in the latest update.',
-                  image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=200&fit=crop',
-                  date: '2024-01-05',
-                  readTime: '4 min read'
-                }
-              ]
-            }}
-          />
-        </section>
-
-        {/* Features Split Media
-        <FeaturesSplitMedia 
-          content={{
-            badge: "Features",
-            title: "Why Choose @ui8kit?",
-            description: "Our component library provides everything you need to build modern web applications.",
-            image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=200&fit=crop",
-            features: [
-              {
-                title: "Modern Design",
-                description: "Built with the latest design trends and best practices for modern web applications."
-              },
-              {
-                title: "Easy to Use",
-                description: "Simple API and comprehensive documentation make it easy to get started quickly."
-              },
-              {
-                title: "Type Safe",
-                description: "Built with TypeScript for better developer experience and fewer runtime errors."
-              },
-              {
-                title: "Customizable",
-                description: "Highly customizable components that adapt to your design system and brand."
-              }
-            ]
-          }}
-        /> */}
-        <HeroCenteredSection 
-          content={{
-            badge: "Welcome to @ui8kit",
-            title: "Build beautiful interfaces with our component library",
-            description: "Our component library provides everything you need to build modern web applications.",
-            primaryButtonText: "Get Started",
-            secondaryButtonText: "Learn More"
-          }} 
-        />
-      </main>
-
-      {/* Footer */}
-      <footer className="border-t">
-        <div className="container py-8 md:py-12">
-          <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-            <div className="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
-              <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
-                Built by the @ui8kit team. The source code is available on{" "}
-                <a
-                  href="#"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="font-medium underline underline-offset-4"
-                >
-                  GitHub
-                </a>
-                .
-              </p>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Blocks />
     </div>
   )
 }

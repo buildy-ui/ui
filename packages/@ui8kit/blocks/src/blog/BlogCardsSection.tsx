@@ -44,7 +44,7 @@ export const BlogCardsSection = forwardRef<HTMLElement, BlogCardsSectionProps>(
         py="lg"
       >
         <Container size="lg" padding="responsive" centered>
-          <Stack gap="xl" align="center">
+          <Stack gap="3xl" align="center">
             {/* Header */}
             <Stack gap="md" align="center" ta="center" size="2xl">
               <Badge variant="secondary">
@@ -72,16 +72,18 @@ export const BlogCardsSection = forwardRef<HTMLElement, BlogCardsSectionProps>(
             {/* Blog Posts Grid */}
             <Grid cols="cols3" gap="lg">
               {content.posts.map((post) => (
-                <Card key={post.id} padding="none">
-                  <Box>
+                <Card key={post.id} padding="none" radius="lg">
+                  <Box 
+                    className="aspect-video overflow-hidden"
+                    data-class="image-container"
+                  >
                     <Image
                       src={post.image.src}
                       alt={post.image.alt}
-                      fit="cover"
                       width="100%"
-                      height="100%"
+                      height="auto"
                       aspect="video"
-                      radius="md"
+                      radius="lg"
                     />
                   </Box>
                   
