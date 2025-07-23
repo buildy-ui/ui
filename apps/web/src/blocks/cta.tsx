@@ -1,5 +1,5 @@
-import { CallToActionCenteredSection } from "@twblocks/blocks/cta/CallToActionCenteredSection";
-import { CallToActionSection } from "@twblocks/blocks/cta/CallToActionSection";
+import { CallToActionCenteredSection } from "@ui8kit/blocks/cta/CallToActionCenteredSection";
+import { CallToActionSection } from "@ui8kit/blocks/cta/CallToActionSection";
 
 function CTABlocks() {
   return (

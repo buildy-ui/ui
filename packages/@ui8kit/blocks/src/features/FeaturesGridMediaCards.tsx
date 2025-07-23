@@ -9,7 +9,8 @@ import {
   Badge,
   Card,
   Image,
-  Icon
+  Icon,
+  Box
 } from "@ui8kit/core";
 
 interface FeaturesGridMediaCardsProps {
@@ -68,42 +69,48 @@ export const FeaturesGridMediaCards = forwardRef<HTMLElement, FeaturesGridMediaC
             {/* Features Grid */}
             <Grid cols="cols3" gap="lg">
               {content.features.map((feature) => (
-                <Card key={feature.id} className="overflow-hidden">
-                  <Block className="aspect-video relative overflow-hidden">
+                <Card key={feature.id} padding="none">
+                  <Box>
                     <Image
                       src={feature.image.src}
                       alt={feature.image.alt}
-                      className="w-full h-full object-cover"
+                      width="100%"
+                      height="100%"
+                      fit="cover"
+                      aspect="video"
                     />
-                  </Block>
+                  </Box>
                   
-                  <Stack gap="md" className="p-6">
-                    <Icon
-                      component="div"
-                      className="w-12 h-12 p-3 bg-primary/10 rounded-lg"
-                      style={{
-                        backgroundImage: `url("data:image/svg+xml,${encodeURIComponent(feature.iconSvg)}")`,
-                        backgroundSize: '24px 24px',
-                        backgroundRepeat: 'no-repeat',
-                        backgroundPosition: 'center'
-                      }}
-                    />
-                    
-                    <Title
-                      order={3}
-                      size="lg"
-                      fw="semibold"
-                    >
-                      {feature.title}
-                    </Title>
-                    
-                    <Text
-                      size="sm"
-                      c="muted-foreground"
-                    >
-                      {feature.description}
-                    </Text>
-                  </Stack>
+                  <Card.Content>
+                    <Stack gap="md">
+                      <Box size="2xl" bg="primary" rounded="lg">
+                        <Icon
+                          component="div"
+                          style={{
+                            backgroundImage: `url("data:image/svg+xml,${encodeURIComponent(feature.iconSvg)}")`,
+                            backgroundSize: '24px 24px',
+                            backgroundRepeat: 'no-repeat',
+                            backgroundPosition: 'center'
+                          }}
+                        />
+                      </Box>
+                      
+                      <Title
+                        order={3}
+                        size="lg"
+                        fw="semibold"
+                      >
+                        {feature.title}
+                      </Title>
+                      
+                      <Text
+                        size="sm"
+                        c="muted-foreground"
+                      >
+                        {feature.description}
+                      </Text>
+                    </Stack>
+                  </Card.Content>
                 </Card>
               ))}
             </Grid>

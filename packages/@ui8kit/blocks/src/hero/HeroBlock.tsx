@@ -12,6 +12,7 @@ import {
   BackgroundImage,
   Overlay
 } from "@ui8kit/core";
+// TODO: Импортировать HeroContainer и ContentWrapper из backlog когда настроится система импортов
 
 interface HeroBlockProps {
   content: {
@@ -29,8 +30,9 @@ export const HeroBlock = forwardRef<HTMLElement, HeroBlockProps>(
       <Block
         component="section"
         ref={ref}
-        data-class="hero-block"
-        className="relative min-h-screen flex items-center justify-center overflow-hidden"
+        position="relative"
+        display="flex"
+        style={{ minHeight: "100vh", alignItems: "center", justifyContent: "center", overflow: "hidden" }}
       >
         {/* Background Image */}
         <BackgroundImage
@@ -49,8 +51,7 @@ export const HeroBlock = forwardRef<HTMLElement, HeroBlockProps>(
         <Container
           size="lg"
           padding="responsive"
-          data-class="hero-content"
-          className="relative z-10 h-full flex items-center"
+          style={{ position: "relative", zIndex: 10, height: "100%", display: "flex", alignItems: "center" }}
         >
           <Stack gap="lg" ta="center" centered size="4xl">
             <Title

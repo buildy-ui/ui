@@ -8,7 +8,8 @@ import {
   Text,
   Badge,
   Image,
-  Icon
+  Icon,
+  Box
 } from "@ui8kit/core";
 
 interface FeaturesSplitMediaProps {
@@ -64,16 +65,17 @@ export const FeaturesSplitMedia = forwardRef<HTMLElement, FeaturesSplitMediaProp
               <Stack gap="md">
                 {content.features.map((feature) => (
                   <Stack key={feature.id} gap="sm" direction="row" align="start">
-                    <Icon
-                      component="div"
-                      className="w-8 h-8 p-2 bg-primary/10 rounded-lg flex-shrink-0"
-                      style={{
-                        backgroundImage: `url("data:image/svg+xml,${encodeURIComponent(feature.iconSvg)}")`,
-                        backgroundSize: '16px 16px',
-                        backgroundRepeat: 'no-repeat',
-                        backgroundPosition: 'center'
-                      }}
-                    />
+                    <Box size="xl" bg="primary" rounded="lg">
+                      <Icon
+                        component="div"
+                        style={{
+                          backgroundImage: `url("data:image/svg+xml,${encodeURIComponent(feature.iconSvg)}")`,
+                          backgroundSize: '16px 16px',
+                          backgroundRepeat: 'no-repeat',
+                          backgroundPosition: 'center'
+                        }}
+                      />
+                    </Box>
                     <Stack gap="xs">
                       <Title order={4} size="md" fw="semibold">
                         {feature.title}
@@ -88,13 +90,15 @@ export const FeaturesSplitMedia = forwardRef<HTMLElement, FeaturesSplitMediaProp
             </Stack>
             
             {/* Image */}
-            <Block className="relative">
+            <Box>
               <Image
                 src={content.image.src}
                 alt={content.image.alt}
-                className="w-full h-auto rounded-lg shadow-lg"
+                width="100%"
+                height="auto"
+                radius="lg"
               />
-            </Block>
+            </Box>
           </Grid>
         </Container>
       </Block>

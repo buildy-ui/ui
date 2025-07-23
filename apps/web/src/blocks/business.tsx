@@ -1,8 +1,8 @@
-import { BusinessCardsGallery } from "@twblocks/blocks/business/BusinessCardsGallery";
-import { BusinessSolutionsGrid } from "@twblocks/blocks/business/BusinessSolutionsGrid";
-import { CareerSection } from "@twblocks/blocks/business/CareerSection";
-import { PricingSection } from "@twblocks/blocks/business/PricingSection";
-import { PricingYearSection } from "@twblocks/blocks/business/PricingYearSection";
+import { BusinessCardsGallery } from "@ui8kit/blocks/business/BusinessCardsGallery";
+import { BusinessSolutionsGrid } from "@ui8kit/blocks/business/BusinessSolutionsGrid";
+import { CareerSection } from "@ui8kit/blocks/business/CareerSection";
+import { PricingSection } from "@ui8kit/blocks/business/PricingSection";
+import { PricingYearSection } from "@ui8kit/blocks/business/PricingYearSection";
 
 function BusinessBlocks() {
   return (

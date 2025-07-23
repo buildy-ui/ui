@@ -9,7 +9,8 @@ import {
   Button,
   Badge,
   Card,
-  Image
+  Image,
+  Box
 } from "@ui8kit/core";
 
 interface BlogCardsSectionProps {
@@ -71,44 +72,52 @@ export const BlogCardsSection = forwardRef<HTMLElement, BlogCardsSectionProps>(
             {/* Blog Posts Grid */}
             <Grid cols="cols3" gap="lg">
               {content.posts.map((post) => (
-                <Card key={post.id} className="overflow-hidden">
-                  <Block className="aspect-video relative overflow-hidden">
+                <Card key={post.id} padding="none">
+                  <Box>
                     <Image
                       src={post.image.src}
                       alt={post.image.alt}
-                      className="w-full h-full object-cover"
+                      fit="cover"
+                      width="100%"
+                      height="100%"
+                      aspect="video"
+                      radius="md"
                     />
-                  </Block>
+                  </Box>
                   
-                  <Stack gap="md" className="p-6">
-                    <Badge variant="outline" className="w-fit">
-                      {post.category}
-                    </Badge>
-                    
-                    <Title
-                      order={3}
-                      size="lg"
-                      fw="semibold"
-                    >
-                      {post.title}
-                    </Title>
-                    
-                    <Text
-                      size="sm"
-                      c="muted-foreground"
-                    >
-                      {post.description}
-                    </Text>
-                    
-                    <Stack gap="xs">
-                      <Text size="sm" fw="medium">
-                        {post.author}
+                  <Card.Content>
+                    <Stack gap="md">
+                      <Box width="fit">
+                        <Badge variant="outline">
+                          {post.category}
+                        </Badge>
+                      </Box>
+                      
+                      <Title
+                        order={3}
+                        size="lg"
+                        fw="semibold"
+                      >
+                        {post.title}
+                      </Title>
+                      
+                      <Text
+                        size="sm"
+                        c="muted-foreground"
+                      >
+                        {post.description}
                       </Text>
-                      <Text size="xs" c="muted-foreground">
-                        {post.date} • {post.readTime}
-                      </Text>
+                      
+                      <Stack gap="xs">
+                        <Text size="sm" fw="medium">
+                          {post.author}
+                        </Text>
+                        <Text size="xs" c="muted-foreground">
+                          {post.date} • {post.readTime}
+                        </Text>
+                      </Stack>
                     </Stack>
-                  </Stack>
+                  </Card.Content>
                 </Card>
               ))}
             </Grid>

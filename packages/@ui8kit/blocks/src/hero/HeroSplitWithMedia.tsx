@@ -10,7 +10,8 @@ import {
   Button,
   Badge,
   Image,
-  Icon
+  Icon,
+  Box
 } from "@ui8kit/core";
 
 interface HeroSplitWithMediaProps {
@@ -107,13 +108,15 @@ export const HeroSplitWithMedia = forwardRef<HTMLElement, HeroSplitWithMediaProp
             </Stack>
             
             {/* Image */}
-            <Block className="relative">
+            <Box>
               <Image
                 src={content.image.src}
                 alt={content.image.alt}
-                className="w-full h-auto rounded-lg shadow-lg"
+                width="100%"
+                height="auto"
+                radius="lg"
               />
-            </Block>
+            </Box>
           </Grid>
         </Container>
       </Block>

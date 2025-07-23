@@ -7,7 +7,8 @@ import {
   Title,
   Text,
   Badge,
-  Icon
+  Icon,
+  Box
 } from "@ui8kit/core";
 
 interface FeaturesThreeColumnsIconsProps {
@@ -63,16 +64,17 @@ export const FeaturesThreeColumnsIcons = forwardRef<HTMLElement, FeaturesThreeCo
             <Grid cols="cols3" gap="lg">
               {content.features.map((feature) => (
                 <Stack key={feature.id} gap="md" align="center" ta="center">
-                  <Icon
-                    component="div"
-                    className="w-16 h-16 p-4 bg-primary/10 rounded-lg"
-                    style={{
-                      backgroundImage: `url("data:image/svg+xml,${encodeURIComponent(feature.iconSvg)}")`,
-                      backgroundSize: '32px 32px',
-                      backgroundRepeat: 'no-repeat',
-                      backgroundPosition: 'center'
-                    }}
-                  />
+                  <Box size="2xl" bg="primary" rounded="lg">
+                    <Icon
+                      component="div"
+                      style={{
+                        backgroundImage: `url("data:image/svg+xml,${encodeURIComponent(feature.iconSvg)}")`,
+                        backgroundSize: '32px 32px',
+                        backgroundRepeat: 'no-repeat',
+                        backgroundPosition: 'center'
+                      }}
+                    />
+                  </Box>
                   
                   <Title
                     order={3}

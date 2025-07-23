@@ -11,7 +11,8 @@ import {
   Badge,
   Card,
   Image,
-  Icon
+  Icon,
+  Box
 } from "@ui8kit/core";
 
 interface BlogPostsGridSectionProps {
@@ -53,9 +54,11 @@ export const BlogPostsGridSection = forwardRef<HTMLElement, BlogPostsGridSection
             {/* Header */}
             <Group justify="between" align="center" responsive="sm_between">
               <Stack gap="md" size="2xl">
-                <Badge variant="secondary" className="w-fit">
-                  {content.badge}
-                </Badge>
+                <Box width="fit">
+                  <Badge variant="secondary">
+                    {content.badge}
+                  </Badge>
+                </Box>
                 
                 <Title
                   order={2}
@@ -94,56 +97,66 @@ export const BlogPostsGridSection = forwardRef<HTMLElement, BlogPostsGridSection
             </Group>
             
             {/* Posts Grid */}
-            <Grid cols="cols3" gap="lg">
-              {content.posts.map((post) => (
-                <Card key={post.id} className="overflow-hidden">
-                  <Block className="aspect-video relative overflow-hidden">
-                    <Image
-                      src={post.image.src}
-                      alt={post.image.alt}
-                      className="w-full h-full object-cover"
-                    />
-                  </Block>
-                  
-                  <Stack gap="md" className="p-6">
-                    <Badge variant="outline" className="w-fit">
-                      {post.category}
-                    </Badge>
-                    
-                    <Title
-                      order={3}
-                      size="lg"
-                      fw="semibold"
-                    >
-                      {post.title}
-                    </Title>
-                    
-                    <Text
-                      size="sm"
-                      c="muted-foreground"
-                    >
-                      {post.description}
-                    </Text>
-                    
-                    <Group gap="sm" align="center">
-                      <Image
-                        src={post.author.avatar}
-                        alt={post.author.name}
-                        className="w-8 h-8 rounded-full object-cover"
-                      />
-                      <Stack gap="xs">
-                        <Text size="sm" fw="medium">
-                          {post.author.name}
-                        </Text>
-                        <Text size="xs" c="muted-foreground">
-                          {post.date} • {post.readTime}
-                        </Text>
-                      </Stack>
-                    </Group>
-                  </Stack>
-                </Card>
-              ))}
-            </Grid>
+                         <Grid cols="cols3" gap="lg">
+               {content.posts.map((post) => (
+                 <Card key={post.id} padding="none">
+                   <Box>
+                     <Image
+                       src={post.image.src}
+                       alt={post.image.alt}
+                       fit="cover"
+                       width="100%"
+                       height="100%"
+                       aspect="video"
+                     />
+                   </Box>
+                   
+                   <Card.Content>
+                     <Stack gap="md">
+                       <Box width="fit">
+                         <Badge variant="outline">
+                           {post.category}
+                         </Badge>
+                       </Box>
+                       
+                       <Title
+                         order={3}
+                         size="lg"
+                         fw="semibold"
+                       >
+                         {post.title}
+                       </Title>
+                       
+                       <Text
+                         size="sm"
+                         c="muted-foreground"
+                       >
+                         {post.description}
+                       </Text>
+                       
+                       <Group gap="sm" align="center">
+                         <Image
+                           src={post.author.avatar}
+                           alt={post.author.name}
+                           width="32"
+                           height="32"
+                           radius="full"
+                           fit="cover"
+                         />
+                         <Stack gap="xs">
+                           <Text size="sm" fw="medium">
+                             {post.author.name}
+                           </Text>
+                           <Text size="xs" c="muted-foreground">
+                             {post.date} • {post.readTime}
+                           </Text>
+                         </Stack>
+                       </Group>
+                     </Stack>
+                   </Card.Content>
+                 </Card>
+               ))}
+             </Grid>
           </Stack>
         </Container>
       </Block>

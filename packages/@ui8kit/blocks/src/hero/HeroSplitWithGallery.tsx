@@ -10,7 +10,8 @@ import {
   Button,
   Badge,
   Image,
-  Icon
+  Icon,
+  Box
 } from "@ui8kit/core";
 
 interface HeroSplitWithGalleryProps {
@@ -110,16 +111,26 @@ export const HeroSplitWithGallery = forwardRef<HTMLElement, HeroSplitWithGallery
             {/* Image Gallery */}
             <Grid cols={2} gap="lg">
               {content.images.map((image, index) => (
-                <Block 
-                  key={image.id} 
-                  className={`${index === 1 ? 'row-span-2' : 'aspect-square'} relative overflow-hidden rounded-md bg-muted`}
+                <Grid.Col 
+                  key={image.id}
+                  span={index === 1 ? 2 : 1}
                 >
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    className="w-full h-full object-cover"
-                  />
-                </Block>
+                  <Box 
+                    position="relative"
+                    bg="muted"
+                    rounded="md"
+                  >
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      width="100%"
+                      height="100%"
+                      fit="cover"
+                      aspect={index === 1 ? "auto" : "square"}
+                      radius="md"
+                    />
+                  </Box>
+                </Grid.Col>
               ))}
             </Grid>
           </Grid>

@@ -92,21 +92,16 @@ export const BlogNewsBlock = forwardRef<HTMLElement, BlogNewsBlockProps>(
                 <Card
                   key={index}
                   padding="none"
-                  data-class="blog-article-card"
-                  className="group overflow-hidden border border-border bg-card cursor-pointer"
                 >
                   {/* Article Image */}
-                  <Box 
-                    data-class="blog-article-image-wrapper"
-                    className="aspect-video overflow-hidden"
-                  >
+                  <Box>
                     <Image
                       src={article.image}
                       alt={article.title}
-                      width="full"
+                      width="100%"
                       height="auto"
-                      data-class="image-w-full"
-                      className="w-full h-auto"
+                      aspect="video"
+                      fit="cover"
                     />
                   </Box>
                   
