@@ -49,6 +49,10 @@ export interface IconProps extends VariantProps<typeof iconVariants> {
   className?: string;
   children?: ReactNode;
   style?: React.CSSProperties;
+  // SVG props
+  svgPath?: string;
+  svgSize?: string;
+  svgViewBox?: string;
   [key: string]: any;
 }
 
@@ -61,11 +65,37 @@ export const Icon = forwardRef<HTMLElement, IconProps>(
     display,
     animated,
     hover,
+    svgPath,
+    svgSize = "24",
+    svgViewBox = "0 0 24 24",
     style,
     children, 
     ...props 
   }, ref) => {
     const Component = component as ElementType;
+    
+    // If SVG path is provided, create SVG element
+    if (svgPath) {
+      const svgStyle = {
+        ...style,
+        backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='${svgViewBox}' stroke-width='1.5' stroke='currentColor'%3e${encodeURIComponent(svgPath)}%3c/svg%3e")`,
+        backgroundSize: `${svgSize}px ${svgSize}px`,
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center'
+      };
+      
+      return (
+        <Component
+          ref={ref}
+          data-class="icon"
+          className={cn(iconVariants({ size, spacing, display, animated, hover }), className)}
+          style={svgStyle}
+          {...props}
+        >
+          {children}
+        </Component>
+      );
+    }
     
     return (
       <Component

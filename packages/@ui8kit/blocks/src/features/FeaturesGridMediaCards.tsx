@@ -86,12 +86,8 @@ export const FeaturesGridMediaCards = forwardRef<HTMLElement, FeaturesGridMediaC
                       <Box size="2xl" bg="primary" rounded="lg">
                         <Icon
                           component="div"
-                          style={{
-                            backgroundImage: `url("data:image/svg+xml,${encodeURIComponent(feature.iconSvg)}")`,
-                            backgroundSize: '24px 24px',
-                            backgroundRepeat: 'no-repeat',
-                            backgroundPosition: 'center'
-                          }}
+                          svgPath={feature.iconSvg.replace(/<svg[^>]*>|<\/svg>/g, '')}
+                          svgSize="24"
                         />
                       </Box>
                       

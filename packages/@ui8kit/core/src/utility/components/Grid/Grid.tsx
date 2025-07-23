@@ -23,6 +23,19 @@ const gridVariants = cva("grid", {
       cols5: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5",
       cols2_6: "grid-cols-2 lg:grid-cols-6"
     },
+    // Responsive columns
+    colsMd: {
+      1: "md:grid-cols-1",
+      2: "md:grid-cols-2",
+      3: "md:grid-cols-3",
+      4: "md:grid-cols-4"
+    },
+    colsLg: {
+      1: "lg:grid-cols-1",
+      2: "lg:grid-cols-2", 
+      3: "lg:grid-cols-3",
+      4: "lg:grid-cols-4"
+    },
     gap: {
       none: "gap-0",
       xs: "gap-1",
@@ -71,6 +84,8 @@ const Grid = forwardRef<HTMLElement, GridProps>(
     component = "div",
     className, 
     cols,
+    colsMd,
+    colsLg,
     gap,
     align,
     justify,
@@ -85,7 +100,7 @@ const Grid = forwardRef<HTMLElement, GridProps>(
       <Component
         ref={ref}
         data-class="grid"
-        className={cn(gridVariants({ cols, gap, align, justify, centered }), className)}
+        className={cn(gridVariants({ cols, colsMd, colsLg, gap, align, justify, centered }), className)}
         style={style}
         {...props}
       >
@@ -114,6 +129,15 @@ const gridColVariants = cva("", {
       11: "col-span-11",
       12: "col-span-12",
       full: "col-span-full"
+    },
+    rowSpan: {
+      1: "row-span-1",
+      2: "row-span-2",
+      3: "row-span-3",
+      4: "row-span-4",
+      5: "row-span-5",
+      6: "row-span-6",
+      full: "row-span-full"
     },
     start: {
       1: "col-start-1",
@@ -166,6 +190,7 @@ const GridCol = forwardRef<HTMLElement, GridColProps>(
     component = "div",
     className, 
     span,
+    rowSpan,
     start,
     order,
     style,
@@ -178,7 +203,7 @@ const GridCol = forwardRef<HTMLElement, GridColProps>(
       <Component
         ref={ref}
         data-class="grid-col"
-        className={cn(gridColVariants({ span, start, order }), className)}
+        className={cn(gridColVariants({ span, rowSpan, start, order }), className)}
         style={style}
         {...props}
       >

@@ -38,6 +38,34 @@ const boxVariants = cva("", {
       fit: "w-fit",
       full: "w-full",
       auto: "w-auto"
+    },
+    // Background colors
+    bg: {
+      transparent: "bg-transparent",
+      background: "bg-background",
+      foreground: "bg-foreground",
+      primary: "bg-primary/10",
+      secondary: "bg-secondary",
+      muted: "bg-muted",
+      accent: "bg-accent",
+      destructive: "bg-destructive"
+    },
+    // Border radius
+    rounded: {
+      none: "rounded-none",
+      sm: "rounded-sm",
+      md: "rounded-md",
+      lg: "rounded-lg",
+      xl: "rounded-xl",
+      full: "rounded-full"
+    },
+    // Position
+    position: {
+      static: "static",
+      relative: "relative",
+      absolute: "absolute",
+      fixed: "fixed",
+      sticky: "sticky"
     }
   }
 });
@@ -58,6 +86,9 @@ export const Box = forwardRef<HTMLElement, BoxProps>(
     size,
     spacing,
     width,
+    bg,
+    rounded,
+    position,
     style,
     children, 
     ...props 
@@ -68,7 +99,7 @@ export const Box = forwardRef<HTMLElement, BoxProps>(
       <Component
         ref={ref}
         data-class="box"
-        className={cn(boxVariants({ display, size, spacing, width }), className)}
+        className={cn(boxVariants({ display, size, spacing, width, bg, rounded, position }), className)}
         style={style}
         {...props}
       >

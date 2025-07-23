@@ -78,19 +78,14 @@ export const BlogPostsGridSection = forwardRef<HTMLElement, BlogPostsGridSection
               
               <Button
                 variant="outline"
-                rightSection={
-                  <Icon
-                    component="span"
-                    size="sm"
-                    style={{
-                      backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor'%3e%3cpath stroke-linecap='round' stroke-linejoin='round' d='M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3' /%3e%3c/svg%3e")`,
-                      backgroundSize: 'contain',
-                      backgroundRepeat: 'no-repeat',
-                      width: '1rem',
-                      height: '1rem'
-                    }}
-                  />
-                }
+                                  rightSection={
+                    <Icon
+                      component="span"
+                      size="sm"
+                      svgPath="<path stroke-linecap='round' stroke-linejoin='round' d='M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3' />"
+                      svgSize="16"
+                    />
+                  }
               >
                 {content.buttonText}
               </Button>

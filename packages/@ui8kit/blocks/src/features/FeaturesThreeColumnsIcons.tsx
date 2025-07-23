@@ -67,12 +67,8 @@ export const FeaturesThreeColumnsIcons = forwardRef<HTMLElement, FeaturesThreeCo
                   <Box size="2xl" bg="primary" rounded="lg">
                     <Icon
                       component="div"
-                      style={{
-                        backgroundImage: `url("data:image/svg+xml,${encodeURIComponent(feature.iconSvg)}")`,
-                        backgroundSize: '32px 32px',
-                        backgroundRepeat: 'no-repeat',
-                        backgroundPosition: 'center'
-                      }}
+                      svgPath={feature.iconSvg.replace('<svg xmlns=\'http://www.w3.org/2000/svg\' fill=\'none\' viewBox=\'0 0 24 24\' stroke-width=\'1.5\' stroke=\'currentColor\'>', '').replace('</svg>', '')}
+                      svgSize="32"
                     />
                   </Box>
                   
