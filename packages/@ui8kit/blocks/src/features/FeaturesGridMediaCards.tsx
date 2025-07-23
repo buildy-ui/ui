@@ -1,4 +1,5 @@
 import { forwardRef } from "react";
+import { ArrowRight } from "lucide-react";
 import {
   Block,
   Container,
@@ -84,11 +85,10 @@ export const FeaturesGridMediaCards = forwardRef<HTMLElement, FeaturesGridMediaC
                   <Card.Content>
                     <Stack gap="md">
                       <Box size="2xl" bg="primary" rounded="lg">
-                        <Icon
-                          component="div"
-                          svgPath={feature.iconSvg.replace(/<svg[^>]*>|<\/svg>/g, '')}
-                          svgSize="24"
-                        />
+                      <Icon
+                        lucideIcon={ArrowRight}
+                        size="md"
+                      />
                       </Box>
                       
                       <Title

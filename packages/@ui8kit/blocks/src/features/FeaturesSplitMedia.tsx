@@ -1,4 +1,5 @@
 import { forwardRef } from "react";
+import { Check } from "lucide-react";
 import {
   Block,
   Container,
@@ -25,7 +26,6 @@ interface FeaturesSplitMediaProps {
       id: string;
       title: string;
       description: string;
-      iconSvg: string;
     }>;
   };
 }
@@ -68,8 +68,8 @@ export const FeaturesSplitMedia = forwardRef<HTMLElement, FeaturesSplitMediaProp
                     <Box size="xl" bg="primary" rounded="lg">
                       <Icon
                         component="div"
-                        svgPath={feature.iconSvg.replace('<svg xmlns=\'http://www.w3.org/2000/svg\' fill=\'none\' viewBox=\'0 0 24 24\' stroke-width=\'1.5\' stroke=\'currentColor\'>', '').replace('</svg>', '')}
-                        svgSize="16"
+                        lucideIcon={Check}
+                        size="md"
                       />
                     </Box>
                     <Stack gap="xs">
@@ -120,21 +120,18 @@ export const featuresSplitMediaTemplate = {
     features: [
       {
         id: "feature1",
-        title: "Fast Development",
-        description: "Build faster with our optimized components and tools.",
-        iconSvg: `<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' d='M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z' /></svg>`
+        title: "Radix UI Integration",
+        description: "Harness the power of Radix UI's robust component library for seamless integration into your project."
       },
       {
         id: "feature2",
-        title: "Secure",
-        description: "Enterprise-grade security built into every component.",
-        iconSvg: `<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' d='M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.623 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z' /></svg>`
+        title: "Tailwind CSS Styling",
+        description: "Utilize Tailwind CSS for effortless customization and rapid development of your UI components."
       },
       {
         id: "feature3",
-        title: "Scalable",
-        description: "Grows with your business from startup to enterprise.",
-        iconSvg: `<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' d='M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 010 0L21.75 9M21.75 9H15M21.75 9v6.75' /></svg>`
+        title: "Free and Open Source",
+        description: "Access these beautifully crafted components absolutely free, perfect for both personal and commercial projects."
       }
     ]
   }

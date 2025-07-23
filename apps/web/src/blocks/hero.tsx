@@ -1,7 +1,16 @@
+import { HeroBlock } from "@ui8kit/blocks/hero/HeroBlock";
 import { HeroCenteredSection } from "@ui8kit/blocks/hero/HeroCenteredSection";
 import { HeroCenteredWithTopButton } from "@ui8kit/blocks/hero/HeroCenteredWithTopButton";
 import { HeroSplitWithMedia } from "@ui8kit/blocks/hero/HeroSplitWithMedia";
 import { HeroSplitWithGallery } from "@ui8kit/blocks/hero/HeroSplitWithGallery";
+
+const heroBlockContent = {
+  title: "BuildY",
+  subtitle: "BuildY is a platform for building amazing products.",
+  buttonText: "Get Started",
+  learnMoreText: "Learn More",
+  backgroundImage: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+};
 
 const heroCenteredContent = {
   badge: "Start Now",
@@ -63,6 +72,7 @@ const heroGalleryContent = {
 function HeroBlocks() {
   return (
     <div>
+      <HeroBlock content={heroBlockContent} />
       <HeroCenteredSection content={heroCenteredContent} />
       <HeroCenteredWithTopButton content={heroWithTopButtonContent} />
       <HeroSplitWithMedia content={heroSplitMediaContent} />

@@ -1,4 +1,5 @@
 import { forwardRef } from "react";
+import { Check } from "lucide-react";
 import {
   Block,
   Container,
@@ -25,7 +26,6 @@ interface FeaturesSplitLeftMediaProps {
       id: string;
       title: string;
       description: string;
-      iconSvg: string;
     }>;
   };
 }
@@ -79,8 +79,8 @@ export const FeaturesSplitLeftMedia = forwardRef<HTMLElement, FeaturesSplitLeftM
                     <Box size="xl" bg="primary" rounded="lg">
                       <Icon
                         component="div"
-                        svgPath={feature.iconSvg.replace('<svg xmlns=\'http://www.w3.org/2000/svg\' fill=\'none\' viewBox=\'0 0 24 24\' stroke-width=\'1.5\' stroke=\'currentColor\'>', '').replace('</svg>', '')}
-                        svgSize="16"
+                        lucideIcon={Check}
+                        size="md"
                       />
                     </Box>
                     <Stack gap="xs">

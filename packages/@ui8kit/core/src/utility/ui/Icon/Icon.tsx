@@ -6,7 +6,7 @@ const iconVariants = cva("", {
   variants: {
     size: {
       xs: "w-3 h-3",
-      sm: "w-4 h-4",
+      sm: "w-4 h-4", 
       md: "w-5 h-5",
       lg: "w-6 h-6",
       xl: "w-8 h-8",
@@ -53,6 +53,8 @@ export interface IconProps extends VariantProps<typeof iconVariants> {
   svgPath?: string;
   svgSize?: string;
   svgViewBox?: string;
+  // Lucide icon component
+  lucideIcon?: ElementType;
   [key: string]: any;
 }
 
@@ -68,11 +70,28 @@ export const Icon = forwardRef<HTMLElement, IconProps>(
     svgPath,
     svgSize = "24",
     svgViewBox = "0 0 24 24",
+    lucideIcon,
     style,
     children, 
     ...props 
   }, ref) => {
     const Component = component as ElementType;
+    
+    // If Lucide icon is provided, render it directly
+    if (lucideIcon) {
+      const LucideIcon = lucideIcon;
+      return (
+        <Component
+          ref={ref}
+          data-class="icon"
+          className={cn(iconVariants({ size, spacing, display, animated, hover }), className)}
+          style={style}
+          {...props}
+        >
+          <LucideIcon size={size} />
+        </Component>
+      );
+    }
     
     // If SVG path is provided, create SVG element
     if (svgPath) {
