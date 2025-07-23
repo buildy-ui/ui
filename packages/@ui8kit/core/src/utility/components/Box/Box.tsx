@@ -23,6 +23,10 @@ const boxVariants = cva("", {
       xl: "w-8 h-8",
       "2xl": "w-12 h-12"
     },
+    // Flex patterns
+    flex: {
+      center: "flex items-center justify-center"
+    },
     // Spacing patterns for icons and elements
     spacing: {
       left: "ml-2",
@@ -94,6 +98,7 @@ export const Box = forwardRef<HTMLElement, BoxProps>(
     className, 
     display,
     size,
+    flex,
     spacing,
     width,
     bg,
@@ -110,7 +115,7 @@ export const Box = forwardRef<HTMLElement, BoxProps>(
       <Component
         ref={ref}
         data-class="box"
-        className={cn(boxVariants({ display, size, spacing, width, bg, rounded, position, z }), className)}
+        className={cn(boxVariants({ display, size, flex, spacing, width, bg, rounded, position, z }), className)}
         style={style}
         {...props}
       >

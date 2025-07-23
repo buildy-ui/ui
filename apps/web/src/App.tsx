@@ -16,7 +16,7 @@ function App() {
         <div className="container flex h-14 items-center">
           <div className="mr-4 flex">
             <span className="hidden font-bold sm:inline-block">
-              @ui8kit/blocks Demo
+              @ui8kit/blocks
             </span>
           </div>
           <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">

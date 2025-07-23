@@ -83,8 +83,8 @@ export const FeaturesGridMediaCards = forwardRef<HTMLElement, FeaturesGridMediaC
                   </Box>
                   
                   <Card.Content>
-                    <Stack gap="md">
-                      <Box size="2xl" bg="primary" rounded="lg">
+                    <Stack gap="md" align="start" ta="left">
+                      <Box size="xl" bg="primary" rounded="lg" flex="center">
                       <Icon
                         lucideIcon={feature.lucideIcon}
                         size="md"

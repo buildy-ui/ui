@@ -77,9 +77,8 @@ export const FeaturesSplitLeftMedia = forwardRef<HTMLElement, FeaturesSplitLeftM
               <Stack gap="md">
                 {content.features.map((feature) => (
                   <Stack key={feature.id} gap="sm" direction="row" align="start">
-                    <Box size="xl" bg="primary" rounded="lg">
+                    <Box size="xl" bg="primary" rounded="lg" flex="center">
                       <Icon
-                        component="div"
                         lucideIcon={feature.lucideIcon}
                         size="md"
                       />
