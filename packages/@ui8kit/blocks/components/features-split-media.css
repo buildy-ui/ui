@@ -1,7 +1,0 @@
-.features-split-media {
-  @apply w-full py-16 lg:py-32 bg-background;
-}
-
-.features-list {
-  @apply lg:pl-4;
-}

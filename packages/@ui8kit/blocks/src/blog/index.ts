@@ -1,1 +1,2 @@
-export { BlogNewsBlock, blogNewsBlockTemplate } from './BlogNewsBlock'; 
+export * from './BlogCardsSection';
+export * from './BlogPostsGridSection'; 

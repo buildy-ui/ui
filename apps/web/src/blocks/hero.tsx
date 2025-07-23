@@ -1,19 +1,23 @@
-/*import { allComponents } from "../blocks";
-export const blocks = allComponents;
-const HeroCenteredSection = blocks.HeroCenteredSection;*/
+import { HeroBlock } from "@ui8kit/blocks/hero/HeroBlock";
+//import { HeroSplitWithMedia } from "@ui8kit/blocks/hero/HeroSplitWithMedia";
+//import { HeroCenteredWithTopButton } from "@ui8kit/blocks/hero/HeroCenteredWithTopButton";
+//import { HeroSplitWithGallery } from "@ui8kit/blocks/hero/HeroSplitWithGallery";
 
-import { HeroCenteredSection } from "@twblocks/blocks/hero/HeroCenteredSection";
-import { HeroSplitWithMedia } from "@twblocks/blocks/hero/HeroSplitWithMedia";
-import { HeroCenteredWithTopButton } from "@twblocks/blocks/hero/HeroCenteredWithTopButton";
-import { HeroSplitWithGallery } from "@twblocks/blocks/hero/HeroSplitWithGallery";
+const heroBlockContent = {
+  title: "Hero Block",
+  subtitle: "This is a subtitle",
+  buttonText: "Click me",
+  learnMoreText: "Learn more",
+  backgroundImage: "https://via.placeholder.com/150"
+}
 
 function HeroBlocks() {
   return (
     <div>
-      <HeroCenteredSection />
-      <HeroSplitWithMedia />
+      <HeroBlock content={heroBlockContent} />
+      {/*<HeroSplitWithMedia />
       <HeroCenteredWithTopButton />
-      <HeroSplitWithGallery />
+      <HeroSplitWithGallery />*/}
     </div>
   );
 }
