@@ -1,11 +1,11 @@
-import { CallToActionCenteredSection } from "@ui8kit/blocks/cta/CallToActionCenteredSection";
-import { CallToActionSection } from "@ui8kit/blocks/cta/CallToActionSection";
+import { CallToActionCenteredSection, callToActionCenteredSectionTemplate } from "@ui8kit/blocks/cta/CallToActionCenteredSection";
+import { CallToActionSection, callToActionSectionTemplate } from "@ui8kit/blocks/cta/CallToActionSection";
 
 function CTABlocks() {
   return (
     <div>
-      <CallToActionCenteredSection />
-      <CallToActionSection />
+      <CallToActionCenteredSection content={callToActionCenteredSectionTemplate.defaultContent} />
+      <CallToActionSection content={callToActionSectionTemplate.defaultContent} />
     </div>
   );
 }

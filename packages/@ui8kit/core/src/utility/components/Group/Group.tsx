@@ -15,6 +15,7 @@ const groupVariants = cva("flex", {
       lg: "lg:flex-row",
       xl: "xl:flex-row",
       sm_between: "sm:flex-row sm:justify-between sm:items-center",
+      sm_flex_col: "flex flex-col sm:flex-row mt-6 sm:mt-0",
       none: ""
     },
     gap: {
@@ -57,6 +58,25 @@ const groupVariants = cva("flex", {
       wrap: "flex-wrap",
       nowrap: "flex-nowrap",
       "wrap-reverse": "flex-wrap-reverse"
+    },
+    // Padding
+    py: {
+      none: "py-0",
+      xs: "py-1",
+      sm: "py-2",
+      md: "py-4",
+      lg: "py-6", 
+      xl: "py-8",
+      "2xl": "py-12"
+    },
+    px: {
+      none: "px-0",
+      xs: "px-1",
+      sm: "px-2",
+      md: "px-4", 
+      lg: "px-6",
+      xl: "px-8",
+      "2xl": "px-12"
     }
   },
   defaultVariants: {
@@ -87,6 +107,8 @@ export const Group = forwardRef<HTMLElement, GroupProps>(
     align,
     justify,
     wrap,
+    py,
+    px,
     style,
     children, 
     ...props 
@@ -97,7 +119,7 @@ export const Group = forwardRef<HTMLElement, GroupProps>(
       <Component
         ref={ref}
         data-class="group"
-        className={cn(groupVariants({ direction, responsive, gap, align, justify, wrap }), className)}
+        className={cn(groupVariants({ direction, responsive, gap, align, justify, wrap, py, px }), className)}
         style={style}
         {...props}
       >

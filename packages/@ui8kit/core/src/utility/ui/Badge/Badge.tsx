@@ -16,6 +16,16 @@ const badgeVariants = cva(
         sm: "px-1.5 py-0.5 text-xs",
         default: "px-2.5 py-0.5 text-xs",
         lg: "px-3 py-1 text-sm"
+      },
+      radius: {
+        default: "rounded-md",
+        lg: "rounded-lg",
+        xl: "rounded-xl",
+        "2xl": "rounded-2xl",
+        "3xl": "rounded-3xl",
+        "4xl": "rounded-4xl",
+        "5xl": "rounded-5xl",
+        "full": "rounded-full",
       }
     },
     defaultVariants: {
@@ -37,6 +47,7 @@ export const Badge = forwardRef<HTMLDivElement, BadgeProps>(
     className, 
     variant, 
     size,
+    radius,
     leftSection,
     rightSection,
     children,
@@ -46,7 +57,7 @@ export const Badge = forwardRef<HTMLDivElement, BadgeProps>(
       <div
         ref={ref}
         data-class="badge"
-        className={cn(badgeVariants({ variant, size }), className)}
+        className={cn(badgeVariants({ variant, size, radius }), className)}
         {...props}
       >
         {leftSection && <span className="mr-1">{leftSection}</span>}
