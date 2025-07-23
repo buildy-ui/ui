@@ -70,14 +70,14 @@ export const FeaturesGridMediaCards = forwardRef<HTMLElement, FeaturesGridMediaC
             {/* Features Grid */}
             <Grid cols="cols3" gap="lg">
               {content.features.map((feature) => (
-                <Card key={feature.id} padding="none">
+                <Card key={feature.id} padding="none" radius="lg">
                   <Box>
                     <Image
                       src={feature.image.src}
                       alt={feature.image.alt}
+                      radius="t_lg"
                       width="100%"
-                      height="100%"
-                      fit="cover"
+                      height="auto"
                       aspect="video"
                     />
                   </Box>

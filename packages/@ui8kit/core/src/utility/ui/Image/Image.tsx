@@ -9,7 +9,8 @@ const imageVariants = cva("block", {
       cover: "object-cover",
       fill: "object-fill",
       "scale-down": "object-scale-down",
-      none: "object-none"
+      none: "object-none",
+      full: "object-cover w-full h-full"
     },
     position: {
       center: "object-center",
@@ -28,7 +29,11 @@ const imageVariants = cva("block", {
       md: "rounded-md",
       lg: "rounded-lg",
       xl: "rounded-xl",
-      full: "rounded-full"
+      full: "rounded-full",
+      t_sm: "rounded-t-sm",
+      t_md: "rounded-t-md",
+      t_lg: "rounded-t-lg",
+      t_xl: "rounded-t-xl"
     },
     aspect: {
       square: "aspect-square",

@@ -83,7 +83,7 @@ export const BlogCardsSection = forwardRef<HTMLElement, BlogCardsSectionProps>(
                       width="100%"
                       height="auto"
                       aspect="video"
-                      radius="lg"
+                      radius="t_lg"
                     />
                   </Box>
                   

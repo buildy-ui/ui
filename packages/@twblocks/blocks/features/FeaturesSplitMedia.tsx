@@ -17,10 +17,6 @@ const content: Content = {
   description: "Elevate your application with stunning, customizable UI elements built with Radix UI and Tailwind CSS.",
   features: [
   {
-    title: "Radix UI Integration",
-    description: "Harness the power of Radix UI's robust component library for seamless integration into your project."
-  },
-  {
     title: "Tailwind CSS Styling",
     description: "Utilize Tailwind CSS for effortless customization and rapid development of your UI components."
   },

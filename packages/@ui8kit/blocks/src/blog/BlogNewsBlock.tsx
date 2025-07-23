@@ -93,6 +93,7 @@ export const BlogNewsBlock = forwardRef<HTMLElement, BlogNewsBlockProps>(
                 <Card
                   key={index}
                   padding="none"
+                  radius="lg"
                 >
                   {/* Article Image */}
                   <Box>
@@ -102,7 +103,7 @@ export const BlogNewsBlock = forwardRef<HTMLElement, BlogNewsBlockProps>(
                       width="100%"
                       height="auto"
                       aspect="video"
-                      fit="cover"
+                      radius="t_lg"
                     />
                   </Box>
                   

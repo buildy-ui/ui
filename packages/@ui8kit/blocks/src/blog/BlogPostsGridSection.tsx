@@ -94,14 +94,14 @@ export const BlogPostsGridSection = forwardRef<HTMLElement, BlogPostsGridSection
             {/* Posts Grid */}
                          <Grid cols="cols3" gap="lg">
                {content.posts.map((post) => (
-                 <Card key={post.id} padding="none">
+                 <Card key={post.id} padding="none" radius="lg">
                    <Box>
                      <Image
                        src={post.image.src}
                        alt={post.image.alt}
-                       fit="cover"
+                       radius="t_lg"
                        width="100%"
-                       height="100%"
+                       height="auto"
                        aspect="video"
                      />
                    </Box>
@@ -130,14 +130,13 @@ export const BlogPostsGridSection = forwardRef<HTMLElement, BlogPostsGridSection
                        </Text>
                        
                        <Group gap="sm" align="center">
-                         <Image
-                           src={post.author.avatar}
-                           alt={post.author.name}
-                           width="32"
-                           height="32"
-                           radius="full"
-                           fit="cover"
-                         />
+                         <Box size="2xl" bg="primary" rounded="full" overflow="hidden">
+                           <Image
+                             src={post.author.avatar}
+                             alt={post.author.name}
+                             fit="full"
+                           />
+                         </Box>
                          <Stack gap="xs">
                            <Text size="sm" fw="medium">
                              {post.author.name}
@@ -177,8 +176,8 @@ export const blogPostsGridSectionTemplate = {
         title: "Building Scalable Applications",
         description: "Learn best practices for building applications that can handle growth and scale effectively.",
         author: {
-          name: "Sarah Chen",
-          avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b77c?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+          name: "Timothy Chen",
+          avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
         },
         date: "Dec 18, 2023",
         readTime: "7 min read",

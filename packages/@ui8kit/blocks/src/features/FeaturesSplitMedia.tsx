@@ -118,11 +118,6 @@ export const featuresSplitMediaTemplate = {
     },
     features: [
       {
-        id: "feature1",
-        title: "Radix UI Integration",
-        description: "Harness the power of Radix UI's robust component library for seamless integration into your project."
-      },
-      {
         id: "feature2",
         title: "Tailwind CSS Styling",
         description: "Utilize Tailwind CSS for effortless customization and rapid development of your UI components."
