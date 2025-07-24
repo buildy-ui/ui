@@ -43,6 +43,7 @@ export const CallToActionWithBackground = forwardRef<HTMLElement, CallToActionWi
             src={content.backgroundImage}
             size="cover"
             position="center"
+            rounded="lg"
           >
             <Box
               w="full"

@@ -79,7 +79,7 @@ export const CallToActionCenteredWithLogos = forwardRef<HTMLElement, CallToActio
               </Group>
 
               {/* Brand Logos */}
-              <Stack gap="md" align="center">
+              <Stack gap="xl" align="center">
                 <Text
                   size="sm"
                   c="muted-foreground"
@@ -89,8 +89,7 @@ export const CallToActionCenteredWithLogos = forwardRef<HTMLElement, CallToActio
                 </Text>
                 
                 <Grid
-                  cols={3}
-                  colsMd={6}
+                  cols={6}
                   gap="lg"
                   align="center"
                 >

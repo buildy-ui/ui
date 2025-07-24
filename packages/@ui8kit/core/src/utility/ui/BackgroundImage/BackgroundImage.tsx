@@ -27,6 +27,15 @@ const backgroundImageVariants = cva("", {
       "repeat-x": "bg-repeat-x",
       "repeat-y": "bg-repeat-y"
     },
+    // Border radius
+    rounded: {
+      none: "rounded-none",
+      sm: "rounded-sm",
+      md: "rounded-md",
+      lg: "rounded-lg",
+      xl: "rounded-xl",
+      full: "rounded-full"
+    },
     attachment: {
       fixed: "bg-fixed",
       local: "bg-local",
@@ -37,7 +46,8 @@ const backgroundImageVariants = cva("", {
     size: "cover",
     position: "center",
     repeat: "no-repeat",
-    attachment: "scroll"
+    attachment: "scroll",
+    rounded: "none"
   }
 });
 
@@ -58,6 +68,7 @@ export const BackgroundImage = forwardRef<HTMLDivElement, BackgroundImageProps>(
     position,
     repeat,
     attachment,
+    rounded,
     style,
     children,
     ...props 
@@ -73,7 +84,7 @@ export const BackgroundImage = forwardRef<HTMLDivElement, BackgroundImageProps>(
         ref={ref}
         data-class="background-image"
         className={cn(
-          backgroundImageVariants({ size, position, repeat, attachment }),
+          backgroundImageVariants({ size, position, repeat, attachment, rounded }),
           className
         )}
         style={backgroundStyle}

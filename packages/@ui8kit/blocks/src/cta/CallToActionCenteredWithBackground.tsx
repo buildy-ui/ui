@@ -43,6 +43,7 @@ export const CallToActionCenteredWithBackground = forwardRef<HTMLElement, CallTo
             gradient={content.gradient}
             size="cover"
             position="center"
+            rounded="lg"
           >
             <Box
               w="full"
