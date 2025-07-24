@@ -4,7 +4,7 @@ import { CallToActionCenteredWithLogos, callToActionCenteredWithLogosTemplate } 
 import { CallToActionCenteredWithBackground, callToActionCenteredWithBackgroundTemplate } from "@ui8kit/blocks/cta/CallToActionCenteredWithBackground";
 import { CallToActionWithBackground, callToActionWithBackgroundTemplate } from "@ui8kit/blocks/cta/CallToActionWithBackground";
 import { CallToActionSplitWithImage, callToActionSplitWithImageTemplate } from "@ui8kit/blocks/cta/CallToActionSplitWithImage";
-
+import { CallToActionWithBackgroundGradient, callToActionWithBackgroundGradientTemplate } from "@ui8kit/blocks/cta/CallToActionWithBackgroundGradient";
 function CTABlocks() {
   return (
     <div>
@@ -14,6 +14,7 @@ function CTABlocks() {
       <CallToActionCenteredWithBackground content={callToActionCenteredWithBackgroundTemplate.defaultContent} />
       <CallToActionWithBackground content={callToActionWithBackgroundTemplate.defaultContent} />
       <CallToActionSplitWithImage content={callToActionSplitWithImageTemplate.defaultContent} />
+      <CallToActionWithBackgroundGradient content={callToActionWithBackgroundGradientTemplate.defaultContent} />
     </div>
   );
 }

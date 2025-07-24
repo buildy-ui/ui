@@ -10,7 +10,8 @@ import {
   Button,
   Box,
   Group,
-  BackgroundImage
+  BackgroundImage,
+  Overlay
 } from "@ui8kit/core";
 
 interface CallToActionWithBackgroundProps {
@@ -38,33 +39,26 @@ export const CallToActionWithBackground = forwardRef<HTMLElement, CallToActionWi
         py="lg"
       >
         <Container size="lg" padding="responsive" centered>
-          <Box
-            w="full"
-            radius="lg"
-            position="relative"
-            overflow="hidden"
+          <BackgroundImage
+            src={content.backgroundImage}
+            size="cover"
+            position="center"
           >
-            {/* Background Image */}
-            <BackgroundImage
-              src={content.backgroundImage}
-              gradient={content.gradient}
-              size="cover"
-              position="center"
+            <Box
+              w="full"
+              rounded="lg"
+              bg="transparent"
+              p="2xl"
+              position="relative"
             >
               {/* Overlay for better text readability */}
-              <Block
-                position="absolute"
-                w="full"
-                h="full"
-                bg="foreground"
-                opacity="0.7"
+              <Overlay
+                color="black"
+                opacity={70}
               />
               
               {/* Content */}
-              <Block
-                position="relative"
-                p="2xl"
-              >
+              <Block position="relative">
                 <Grid cols={1} colsMd={2} gap="2xl" align="center">
                   {/* Content */}
                   <Stack gap="md">
@@ -79,7 +73,6 @@ export const CallToActionWithBackground = forwardRef<HTMLElement, CallToActionWi
                     
                     <Text
                       c="background"
-                      opacity="0.9"
                     >
                       {content.description}
                     </Text>
@@ -99,8 +92,8 @@ export const CallToActionWithBackground = forwardRef<HTMLElement, CallToActionWi
                   </Group>
                 </Grid>
               </Block>
-            </BackgroundImage>
-          </Box>
+            </Box>
+          </BackgroundImage>
         </Container>
       </Block>
     );
@@ -117,7 +110,7 @@ export const callToActionWithBackgroundTemplate = {
   defaultContent: {
     title: "Transform Your Business Today",
     description: "Unlock powerful solutions that drive growth, efficiency, and innovation for your organization.",
-    backgroundImage: "",
+    backgroundImage: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&h=1080&q=75",
     gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
     buttons: [
       {

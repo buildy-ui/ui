@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import {
   Block,
   Container,
+  Grid,
   Stack,
   Title,
   Text,
@@ -13,7 +14,7 @@ import {
   Overlay
 } from "@ui8kit/core";
 
-interface CallToActionCenteredWithBackgroundProps {
+interface CallToActionWithBackgroundGradientProps {
   content: {
     title: string;
     description: string;
@@ -28,7 +29,7 @@ interface CallToActionCenteredWithBackgroundProps {
   };
 }
 
-export const CallToActionCenteredWithBackground = forwardRef<HTMLElement, CallToActionCenteredWithBackgroundProps>(
+export const CallToActionWithBackgroundGradient = forwardRef<HTMLElement, CallToActionWithBackgroundGradientProps>(
   ({ content }, ref) => {
     return (
       <Block
@@ -39,7 +40,6 @@ export const CallToActionCenteredWithBackground = forwardRef<HTMLElement, CallTo
       >
         <Container size="lg" padding="responsive" centered>
           <BackgroundImage
-            src={content.backgroundImage}
             gradient={content.gradient}
             size="cover"
             position="center"
@@ -51,7 +51,7 @@ export const CallToActionCenteredWithBackground = forwardRef<HTMLElement, CallTo
               p="2xl"
               position="relative"
             >
-              {/* Overlay */}
+              {/* Overlay for better text readability */}
               <Overlay
                 color="black"
                 opacity={70}
@@ -59,8 +59,9 @@ export const CallToActionCenteredWithBackground = forwardRef<HTMLElement, CallTo
               
               {/* Content */}
               <Block position="relative">
-                <Stack gap="xl" align="center" ta="center">
-                  <Stack gap="md" align="center">
+                <Grid cols={1} colsMd={2} gap="2xl" align="center">
+                  {/* Content */}
+                  <Stack gap="md">
                     <Title
                       order={2}
                       size="2xl"
@@ -78,7 +79,7 @@ export const CallToActionCenteredWithBackground = forwardRef<HTMLElement, CallTo
                   </Stack>
 
                   {/* Buttons */}
-                  <Group gap="md" responsive="sm_flex_col" justify="center">
+                  <Group gap="md" responsive="sm_flex_col" justify="end"> 
                     {content.buttons.map((button) => (
                       <Button
                         key={button.id}
@@ -89,7 +90,7 @@ export const CallToActionCenteredWithBackground = forwardRef<HTMLElement, CallTo
                       </Button>
                     ))}
                   </Group>
-                </Stack>
+                </Grid>
               </Block>
             </Box>
           </BackgroundImage>
@@ -99,13 +100,13 @@ export const CallToActionCenteredWithBackground = forwardRef<HTMLElement, CallTo
   }
 );
 
-CallToActionCenteredWithBackground.displayName = "CallToActionCenteredWithBackground";
+CallToActionWithBackgroundGradient.displayName = "CallToActionWithBackgroundGradient";
 
-export const callToActionCenteredWithBackgroundTemplate = {
-  id: "callToActionCenteredWithBackground",
-  name: "Call To Action Centered With Background",
-  description: "Call to action section with centered layout and background image",
-  component: CallToActionCenteredWithBackground,
+export const callToActionWithBackgroundGradientTemplate = {
+  id: "callToActionWithBackground",
+  name: "Call To Action With Background",
+  description: "Call to action section with split layout and background image",
+  component: CallToActionWithBackgroundGradient,
   defaultContent: {
     title: "Transform Your Business Today",
     description: "Unlock powerful solutions that drive growth, efficiency, and innovation for your organization.",

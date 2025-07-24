@@ -43,7 +43,7 @@ export const CallToActionCenteredWithLogos = forwardRef<HTMLElement, CallToActio
         <Container size="lg" padding="responsive" centered>
           <Box
             w="full"
-            radius="lg"
+            rounded="lg"
             bg="accent"
             p="2xl"
           >

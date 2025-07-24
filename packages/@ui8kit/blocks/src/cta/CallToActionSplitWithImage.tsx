@@ -42,14 +42,14 @@ export const CallToActionSplitWithImage = forwardRef<HTMLElement, CallToActionSp
         <Container size="lg" padding="responsive" centered>
           <Box
             w="full"
-            radius="lg"
+            rounded="lg"
             bg="accent"
             overflow="hidden"
           >
             <Grid cols={1} colsMd={2} gap="none" align="stretch">
-              {/* Content Side */}
-              <Block p="2xl">
-                <Stack gap="xl" justify="center" h="full">
+                             {/* Content Side */}
+               <Block p="xl" h="full" display="flex" align="center" className="items-center">
+                 <Stack gap="xl" w="full">
                   <Stack gap="md">
                     <Title
                       order={2}
@@ -81,23 +81,25 @@ export const CallToActionSplitWithImage = forwardRef<HTMLElement, CallToActionSp
                 </Stack>
               </Block>
 
-              {/* Image Side */}
-              <Block
-                w="full"
-                h="full"
-                bg="muted"
-                position="relative"
-              >
-                {content.image?.src ? (
-                  <Image
-                    src={content.image.src}
-                    alt={content.image.alt}
-                    fit="cover"
-                    width="100%"
-                    height="100%"
-                    position="absolute"
-                  />
-                ) : (
+                             {/* Image Side */}
+               <Block
+                 w="full"
+                 h="full"
+                 bg="muted"
+                 position="relative"
+                 className="min-h-[300px]"
+               >
+                                 {content.image?.src ? (
+                   <Image
+                     src={content.image.src}
+                     alt={content.image.alt}
+                     fit="cover"
+                     width="100%"
+                     height="100%"
+                     position="center"
+                     className="w-full h-full object-cover"
+                   />
+                 ) : (
                   <Block
                     w="full"
                     h="full"
@@ -154,7 +156,7 @@ export const callToActionSplitWithImageTemplate = {
     title: "Ready to Transform Your Business?",
     description: "Join thousands of companies that have already revolutionized their operations with our cutting-edge solutions.",
     image: {
-      src: "",
+      src: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&h=1080&q=75",
       alt: "Business transformation illustration"
     },
     buttons: [

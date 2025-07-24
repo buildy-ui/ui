@@ -40,6 +40,14 @@ const blockVariants = cva("", {
       min: "h-min",
       max: "h-max"
     },
+    minH: {
+      "200px": "min-h-[200px]",
+      "300px": "min-h-[300px]",
+      "400px": "min-h-[400px]",
+      "500px": "min-h-[500px]",
+      screen: "min-h-screen",
+      full: "min-h-full"
+    },
     p: {
       none: "p-0",
       xs: "p-1",
@@ -162,6 +170,7 @@ export const Block = forwardRef<HTMLElement, BlockProps>(
     display,
     w,
     h,
+    minH,
     p,
     px,
     py,
@@ -191,6 +200,7 @@ export const Block = forwardRef<HTMLElement, BlockProps>(
             display, 
             w, 
             h, 
+            minH,
             p, 
             px, 
             py, 
