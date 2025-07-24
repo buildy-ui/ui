@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "@types/natural": "^6.0.1",
+    "jsdom": "^26.1.0",
     "levenshtein": "^1.0.5",
     "natural": "^8.1.0",
     "porter-stemmer": "^0.9.1"

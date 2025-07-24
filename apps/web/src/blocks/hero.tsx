@@ -1,4 +1,5 @@
 import { HeroBlock } from "@ui8kit/blocks/hero/HeroBlock";
+import { HeroWithImageSection, heroWithImageSectionTemplate } from "@ui8kit/blocks/hero/HeroWithImageSection";
 import { HeroCenteredSection } from "@ui8kit/blocks/hero/HeroCenteredSection";
 import { HeroCenteredWithTopButton } from "@ui8kit/blocks/hero/HeroCenteredWithTopButton";
 import { HeroSplitWithMedia } from "@ui8kit/blocks/hero/HeroSplitWithMedia";
@@ -73,6 +74,7 @@ function HeroBlocks() {
   return (
     <div>
       <HeroBlock content={heroBlockContent} />
+      <HeroWithImageSection content={heroWithImageSectionTemplate.defaultContent} />
       <HeroCenteredSection content={heroCenteredContent} />
       <HeroCenteredWithTopButton content={heroWithTopButtonContent} />
       <HeroSplitWithMedia content={heroSplitMediaContent} />
