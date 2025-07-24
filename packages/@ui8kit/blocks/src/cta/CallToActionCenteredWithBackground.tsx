@@ -64,7 +64,7 @@ export const CallToActionCenteredWithBackground = forwardRef<HTMLElement, CallTo
                   <Stack gap="md" align="center">
                     <Title
                       order={2}
-                      size="2xl"
+                      size="3xl"
                       fw="semibold"
                       c="background"
                     >

@@ -53,7 +53,7 @@ export const CallToActionSplitWithImage = forwardRef<HTMLElement, CallToActionSp
                   <Stack gap="md">
                     <Title
                       order={2}
-                      size="2xl"
+                      size="3xl"
                       fw="semibold"
                     >
                       {content.title}

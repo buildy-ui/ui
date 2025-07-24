@@ -45,7 +45,7 @@ export const CallToActionCenteredSection = forwardRef<HTMLElement, CallToActionC
               <Stack gap="md" align="center">
                 <Title
                   order={2}
-                  size="2xl"
+                  size="3xl"
                   fw="semibold"
                 >
                   {content.title}

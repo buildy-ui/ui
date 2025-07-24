@@ -65,7 +65,7 @@ export const CallToActionWithBackgroundGradient = forwardRef<HTMLElement, CallTo
                   <Stack gap="md">
                     <Title
                       order={2}
-                      size="2xl"
+                      size="3xl"
                       fw="semibold"
                       c="background"
                     >
