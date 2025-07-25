@@ -4,7 +4,7 @@
 // import FeaturesBlocks from "./blocks/features";
 // import CTABlocks from "./blocks/cta";
 import { FooterFourColumns, footerFourColumnsTemplate } from "@ui8kit/blocks/footer/FooterFourColumns";
-import { Faq } from "./twblocks/faq";
+import { Faq } from "./blocks/faq";
 
 function Blocks() {
   return (
