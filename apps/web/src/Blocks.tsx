@@ -8,7 +8,8 @@ import { FooterFourColumns, footerFourColumnsTemplate } from "@ui8kit/blocks/foo
 // import { Testimonials } from "./blocks/testimonial";
 // import { Team } from "./blocks/team";
 // import { Post } from "./blocks/post";
-import { Portfolio } from "./blocks/portfolio";
+// import { Portfolio } from "./blocks/portfolio";
+import { Gallery } from "./blocks/gallery";
 
 function Blocks() {
   return (
@@ -21,7 +22,8 @@ function Blocks() {
       {/*<Testimonials />*/}
       {/*<Team />*/}
       {/*<Post />*/}
-      <Portfolio />
+      {/*<Portfolio />*/}
+      <Gallery />
       {/* <Faq /> */}
       <FooterFourColumns content={footerFourColumnsTemplate.defaultContent} />
     </div>
