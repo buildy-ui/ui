@@ -1,0 +1,1 @@
+export { Link, A, type LinkProps } from "./Link"
