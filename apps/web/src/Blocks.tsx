@@ -1,5 +1,5 @@
 // import HeroBlocks from "./blocks/hero";
-// import NewHeroBlocks from "./blocks/new-hero";
+import NewHeroBlocks from "./blocks/new-hero";
 // import BlogBlocks from "./blocks/blog";
 // import BusinessBlocks from "./blocks/business";
 // import FeaturesBlocks from "./blocks/features";
@@ -11,7 +11,7 @@
 // import { Post } from "./blocks/post";
 // import { Portfolio } from "./blocks/portfolio";
 // import { Gallery } from "./blocks/gallery";
-import CoreUI from "./CoreUI";
+// import CoreUI from "./CoreUI";
 
 function Blocks() {
   return (
@@ -19,8 +19,8 @@ function Blocks() {
       <hr className=" border-primary/50 border-4 border-dashed" />
       {/* <HeroBlocks />
       <hr className=" border-primary/50 border-4 border-dashed" /> */}
-      {/*<NewHeroBlocks />*/}
-      <CoreUI />
+      <NewHeroBlocks />
+      {/*<CoreUI />*/}
       {/*<BlogBlocks />*/}
       {/*<BusinessBlocks />*/}
       {/*<FeaturesBlocks />*/}

@@ -1,31 +1,33 @@
-import { BookOpen, Code, Check, Rocket, Info } from "lucide-react";
+import { BookOpen, Code, Rocket, Info } from "lucide-react";
 import {
-  Box,
-  Image,
-  Grid,
+  Block,
+  Container,
   Stack,
+  Grid,
+  Group,
   Title,
   Text,
   Badge,
-  Icon,
-  Container
+  Button,
+  Image,
+  Icon
 } from "@ui8kit/core";
-import { SplitBlock, createContentHook, defaultContentHooks, advancedContentHooks, type ContentHooks } from "./SplitBlock";
+import { SplitBlock, createContentHook, defaultContentHooks, advancedContentHooks, type ContentHooks } from "@ui8kit/core";
 
 // ===== EXAMPLES =====
 
 // 1. Basic usage as HeroSplitWithMedia (using Container hook)
 export const HeroSplitExample = () => {
   const mediaSection = (
-    <Box>
+    <Block>
       <Image
         src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
         alt="Hero Image"
         width="100%"
         height="auto"
-        radius="lg"
+        rounded="lg"
       />
-    </Box>
+    </Block>
   );
 
   const content = {
@@ -51,37 +53,35 @@ export const HeroSplitExample = () => {
 // 2. Gallery as HeroSplitWithGallery (using Container hook)
 export const GallerySplitExample = () => {
   const gallerySection = (
-    <Grid cols={2} gap="md">
-      <Grid.Col rowSpan={2}>
+    <Grid cols="1-2" gap="md">
+      <Block>
         <Image
           src="https://images.unsplash.com/photo-1618477247222-acbdb0e159b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
           alt="Gallery Image 1"
           width="100%"
-          height="100%"
-          fit="full"
-          radius="md"
+          height="300px"
+          fit="cover"
+          rounded="md"
         />
-      </Grid.Col>
-      <Grid.Col>
+      </Block>
+      <Stack gap="md">
         <Image
           src="https://images.unsplash.com/photo-1618477388954-7852f32655ec?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
           alt="Gallery Image 2"
           width="100%"
-          height="100%"
+          height="150px"
           fit="cover"
-          radius="md"
+          rounded="md"
         />
-      </Grid.Col>
-      <Grid.Col>
         <Image
           src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
           alt="Gallery Image 3"
           width="100%"
-          height="100%"
+          height="150px"
           fit="cover"
-          radius="md"
+          rounded="md"
         />
-      </Grid.Col>
+      </Stack>
     </Grid>
   );
 
@@ -109,60 +109,98 @@ export const GallerySplitExample = () => {
 // 3. Full-height Features with stretched image and centered content
 export const FeaturesSplitExample = () => {
   const imageSection = (
-    <Box className="h-full bg-gradient-to-br from-primary/5 to-primary/10 relative overflow-hidden">
+    <Block 
+      className="h-full bg-gradient-to-br from-primary/5 to-primary/10 relative overflow-hidden"
+      data-class="features-image-section"
+    >
       <Image
         src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
         alt="Features"
         className="absolute inset-0 w-full h-full object-cover opacity-80"
+        data-class="features-background-image"
       />
-    </Box>
+    </Block>
   );
 
   // Custom content hook for full-height centered layout
   const fullHeightContentHook = createContentHook({
-    content: (content) => (
-      <Stack gap="lg" align="start" className="flex flex-col items-start text-left gap-4 sm:gap-6 p-6 sm:p-8 lg:p-12 max-w-lg">
-        <Badge variant="secondary">{content.badge}</Badge>
-        <Title order={2} className="font-bold tracking-tight text-3xl sm:text-4xl md:text-6xl">
+    content: (content: any) => (
+      <Stack 
+        gap="lg" 
+        align="start" 
+        className="flex flex-col items-start text-left gap-4 sm:gap-6 p-6 sm:p-8 lg:p-12 max-w-lg"
+        data-class="features-content-stack"
+      >
+        <Badge variant="secondary" size="default" rounded="md">
+          {content.badge}
+        </Badge>
+        <Title 
+          order={2} 
+          size="3xl" 
+          fw="bold"
+          className="font-bold tracking-tight text-3xl sm:text-4xl md:text-6xl"
+          data-class="features-title"
+        >
           {content.title}
         </Title>
-        <Text className="text-lg text-muted-foreground sm:text-xl max-w-[42rem]">
+        <Text 
+          size="lg" 
+          c="secondary-foreground"
+          className="text-lg text-muted-foreground sm:text-xl max-w-[42rem]"
+          data-class="features-description"
+        >
           {content.description}
         </Text>
         
         {/* Analytics Cards */}
-        <Grid cols={2} gap="md" className="w-full">
-          <Box p="lg" bg="card" rounded="xl" border="1px solid" borderColor="border" className="shadow">
+        <Grid cols="1-2" gap="md" className="w-full" data-class="analytics-cards">
+          <Block 
+            p="lg" 
+            bg="card" 
+            rounded="xl" 
+            border="1px" 
+            borderColor="border" 
+            className="shadow"
+            data-class="analytics-card"
+          >
             <Stack gap="xs">
               <Text size="2xl" fw="bold" c="primary">84%</Text>
-              <Text size="xs" c="muted-foreground">
+              <Text size="xs" c="secondary-foreground">
                 Conversion Rate: this is a test
               </Text>
             </Stack>
-          </Box>
-          <Box p="lg" bg="card" rounded="xl" border="1px solid" borderColor="border" className="shadow">
+          </Block>
+          <Block 
+            p="lg" 
+            bg="card" 
+            rounded="xl" 
+            border="1px" 
+            borderColor="border" 
+            className="shadow"
+            data-class="analytics-card"
+          >
             <Stack gap="xs">
               <Text size="2xl" fw="bold" c="primary">12.5k</Text>
-              <Text size="xs" c="muted-foreground">
+              <Text size="xs" c="secondary-foreground">
                 Active Users: this is a test
               </Text>
             </Stack>
-          </Box>
+          </Block>
         </Grid>
 
         {/* Feature List */}
         {content.features && (
-          <Stack gap="md" className="w-full">
+          <Stack gap="md" className="w-full" data-class="features-list">
             {content.features.map((feature: any, index: number) => (
-              <Stack key={index} gap="xs" direction="row" align="start">
-                <Badge variant="default" size="sm">✓</Badge>
-                <Stack gap="2xs">
+              <Group key={index} gap="sm" align="start">
+                <Badge variant="default" size="sm" rounded="md">✓</Badge>
+                <Stack gap="xs">
                   <Text fw="semibold">{feature.title}</Text>
-                  <Text size="sm" c="muted-foreground">
+                  <Text size="sm" c="secondary-foreground">
                     {feature.description}
                   </Text>
                 </Stack>
-              </Stack>
+              </Group>
             ))}
           </Stack>
         )}
@@ -204,26 +242,26 @@ export const FeaturesSplitExample = () => {
 
 // Custom hooks with before/after content
 const customHooks: ContentHooks = createContentHook({
-  beforeContent: (content) => (
+  beforeContent: (content: any) => (
     <Text size="sm" c="primary" fw="bold">
       ⭐ Exclusive: {content.category}
     </Text>
   ),
-  content: (content) => (
+  content: (content: any) => (
       <Stack gap="lg" align="start">
-        <Badge variant="outline" size="lg">
+        <Badge variant="outline" size="lg" rounded="md">
           🚀 {content.badge}
         </Badge>
         <Title order={1} size="4xl" fw="bold">
           {content.title}
         </Title>
-        <Text size="xl" c="muted-foreground">
+        <Text size="xl" c="secondary-foreground">
           {content.description}
         </Text>
       </Stack>
   ),
   afterContent: () => (
-      <Text size="xs" c="muted-foreground" ta="center">
+      <Text size="xs" c="secondary-foreground" ta="center">
         💡 Tip: Use content hooks for maximum flexibility
       </Text>
   )
@@ -231,88 +269,31 @@ const customHooks: ContentHooks = createContentHook({
 
 export const CustomHooksExample = () => {
   const imageSection = (
-    <Box className="h-full bg-gradient-to-br from-primary/5 to-primary/10 relative overflow-hidden">
+    <Block 
+      className="h-full bg-gradient-to-br from-primary/5 to-primary/10 relative overflow-hidden"
+      data-class="custom-hooks-image"
+    >
       <Image
         src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
         alt="Features"
         className="absolute inset-0 w-full h-full object-cover opacity-80"
+        data-class="custom-hooks-background"
       />
-    </Box>
+    </Block>
   );
 
-  // Custom content hook for full-height centered layout
-  const fullHeightContentHook = createContentHook({
-    content: (content) => (
-      <Stack gap="lg" align="start" className="flex flex-col items-start text-left gap-4 sm:gap-6 p-6 sm:p-8 lg:p-12 max-w-lg">
-        <Badge variant="secondary">{content.badge}</Badge>
-        <Title order={2} className="font-bold tracking-tight text-3xl sm:text-4xl md:text-6xl">
-          {content.title}
-        </Title>
-        <Text className="text-lg text-muted-foreground sm:text-xl max-w-[42rem]">
-          {content.description}
-        </Text>
-        
-        {/* Analytics Cards */}
-        <Grid cols={2} gap="md" className="w-full">
-          <Box p="lg" bg="card" rounded="xl" border="1px solid" borderColor="border" className="shadow">
-            <Stack gap="xs">
-              <Text size="2xl" fw="bold" c="primary">84%</Text>
-              <Text size="xs" c="muted-foreground">
-                Conversion Rate: this is a test
-              </Text>
-            </Stack>
-          </Box>
-          <Box p="lg" bg="card" rounded="xl" border="1px solid" borderColor="border" className="shadow">
-            <Stack gap="xs">
-              <Text size="2xl" fw="bold" c="primary">12.5k</Text>
-              <Text size="xs" c="muted-foreground">
-                Active Users: this is a test
-              </Text>
-            </Stack>
-          </Box>
-        </Grid>
-
-        {/* Feature List */}
-        {content.features && (
-          <Stack gap="md" className="w-full">
-            {content.features.map((feature: any, index: number) => (
-              <Stack key={index} gap="xs" direction="row" align="start">
-                <Badge variant="default" size="sm">✓</Badge>
-                <Stack gap="2xs">
-                  <Text fw="semibold">{feature.title}</Text>
-                  <Text size="sm" c="muted-foreground">
-                    {feature.description}
-                  </Text>
-                </Stack>
-              </Stack>
-            ))}
-          </Stack>
-        )}
-      </Stack>
-    )
-  });
-
   const content = {
-    badge: "Dashboard",
-    title: "Powerful Analytics",
-    description: "Get real-time insights into your business performance with our advanced analytics dashboard.",
-    features: [
-      {
-        title: "Real-time Data",
-        description: "Monitor your metrics as they happen with live updates."
-      },
-      {
-        title: "Advanced Reporting", 
-        description: "Generate comprehensive reports with custom filters and insights."
-      }
-    ]
+    badge: "Custom Hooks",
+    title: "Flexible Content System",
+    description: "Build complex layouts with our powerful content hook system.",
+    category: "Advanced Feature"
   };
 
   return (
     <SplitBlock
       mediaSection={imageSection}
       content={content}
-      contentHooks={fullHeightContentHook}
+      contentHooks={customHooks}
       leftMedia={true}
       py="none"
       gap="none"
@@ -332,15 +313,15 @@ export const StackedLayoutExample = () => {
   };
 
   const mediaSection = (
-    <Box>
+    <Block>
       <Image
         src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
         alt="Stacked Image"
         width="100%"
         height="auto"
-        radius="lg"
+        rounded="lg"
       />
-    </Box>
+    </Block>
   );
 
   return (
@@ -359,38 +340,38 @@ export const StackedLayoutExample = () => {
 export const FullGridExample = () => {
   const customContentSection = (
     <Stack gap="xl" align="center">
-      <Title order={1} size="5xl" fw="black" ta="center">
+      <Title order={1} size="5xl" fw="bold" ta="center">
         🎨 Full Grid Layout
       </Title>
-      <Text size="xl" ta="center" c="muted-foreground">
+      <Text size="xl" ta="center" c="secondary-foreground">
         Grid directly after Block without Container
       </Text>
-      <Box 
-        w="200px" 
-        h="100px" 
+      <Block 
         bg="primary" 
         rounded="xl"
-        flex="center"
+        className="w-[200px] h-[100px] flex items-center justify-center"
+        data-class="demo-block"
       >
-        <Text c="white" fw="bold">No Container!</Text>
-      </Box>
+        <Text c="primary-foreground" fw="bold">No Container!</Text>
+      </Block>
     </Stack>
   );
 
   const customMediaSection = (
     <Stack gap="md" align="center">
       <Title order={3} ta="center">Direct Grid Media</Title>
-      <Grid cols={3} gap="sm">
+      <Grid cols="1-2-3" gap="sm">
         {[1, 2, 3, 4, 5, 6].map((i) => (
-          <Box 
+          <Block 
             key={i}
-            size="lg" 
+            p="lg" 
             bg="secondary" 
             rounded="md" 
-            flex="center"
+            className="flex items-center justify-center"
+            data-class="grid-item"
           >
             <Text fw="bold">{i}</Text>
-          </Box>
+          </Block>
         ))}
       </Grid>
     </Stack>
@@ -414,9 +395,9 @@ export const PresetHooksExample = () => {
   };
 
   const mediaSection = (
-    <Box p="xl" bg="muted" rounded="lg">
+    <Block p="xl" bg="muted" rounded="lg">
       <Text ta="center" fw="bold">Media with Background</Text>
-    </Box>
+    </Block>
   );
 
   return (

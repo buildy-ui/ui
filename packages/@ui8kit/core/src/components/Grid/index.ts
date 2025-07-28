@@ -1,1 +1,1 @@
-export * from './Grid'; 
+export { Grid, GridCol } from './Grid'; 

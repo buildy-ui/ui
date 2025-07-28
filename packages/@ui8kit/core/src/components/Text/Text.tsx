@@ -4,59 +4,34 @@ import {
   spacingVariants,
   colorVariants,
   layoutVariants,
+  textSizeVariants,
+  fontWeightVariants,
+  textAlignVariants,
+  leadingVariants,
+  typographyModifierVariants,
   type VariantSpacingProps,
   type ColorProps,
   type VariantLayoutProps,
+  type TextSizeProps,
+  type FontWeightProps,
+  type TextAlignProps,
+  type LeadingProps,
+  type TypographyModifierProps,
   cn
 } from "../../core";
-
-// Text size configurations
-const textSizeVariants = {
-  xs: 'text-xs',
-  sm: 'text-sm',
-  md: 'text-base',
-  lg: 'text-lg',
-  xl: 'text-xl',
-  '2xl': 'text-2xl'
-};
-
-// Font weight configurations
-const fontWeightVariants = {
-  normal: 'font-normal',
-  medium: 'font-medium',
-  semibold: 'font-semibold',
-  bold: 'font-bold'
-};
-
-// Text alignment configurations
-const textAlignVariants = {
-  left: 'text-left',
-  center: 'text-center',
-  right: 'text-right',
-  justify: 'text-justify'
-};
-
-// Leading configurations
-const leadingVariants = {
-  tight: 'leading-tight',
-  normal: 'leading-normal',
-  relaxed: 'leading-relaxed'
-};
 
 export interface TextProps 
   extends React.HTMLAttributes<HTMLElement>,
     Pick<VariantSpacingProps, 'm' | 'mx' | 'my' | 'mb' | 'mt'>,
     Pick<ColorProps, 'c'>,
-    Pick<VariantLayoutProps, 'w'> {
+    Pick<VariantLayoutProps, 'w'>,
+    TextSizeProps,
+    FontWeightProps,
+    TextAlignProps,
+    LeadingProps,
+    TypographyModifierProps {
   children: ReactNode;
   component?: ElementType;
-  size?: keyof typeof textSizeVariants;
-  fw?: keyof typeof fontWeightVariants;
-  ta?: keyof typeof textAlignVariants;
-  leading?: keyof typeof leadingVariants;
-  truncate?: boolean;
-  italic?: boolean;
-  underline?: boolean;
 }
 
 export const Text = forwardRef<HTMLElement, TextProps>(
@@ -85,19 +60,12 @@ export const Text = forwardRef<HTMLElement, TextProps>(
         as={component}
         data-class="text"
         className={cn(
-          // Size
-          textSizeVariants[size],
-          // Font weight
-          fontWeightVariants[fw],
-          // Text alignment
-          textAlignVariants[ta],
-          // Leading
-          leadingVariants[leading],
-          // Modifiers
-          truncate && 'truncate',
-          italic && 'italic',
-          underline && 'underline',
-          // Apply variants
+          // Apply CVA variants
+          textSizeVariants({ size }),
+          fontWeightVariants({ fw }),
+          textAlignVariants({ ta }),
+          leadingVariants({ leading }),
+          typographyModifierVariants({ truncate, italic, underline }),
           spacingVariants({ m, mx, my, mb, mt }),
           colorVariants({ c }),
           layoutVariants({ w }),

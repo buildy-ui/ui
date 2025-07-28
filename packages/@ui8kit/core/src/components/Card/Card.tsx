@@ -8,17 +8,19 @@ import {
   colorVariants,
   borderVariants,
   layoutVariants,
+  textSizeVariants,
   type VariantSpacingProps,
   type RoundedProps,
   type ShadowProps,
   type ColorProps,
   type BorderProps,
   type VariantLayoutProps,
+  type TextSizeProps,
   cn
 } from "../../core";
 
 // Main Card component interface
-export interface CardProps 
+interface CardProps 
   extends React.HTMLAttributes<HTMLDivElement>,
     VariantSpacingProps,
     RoundedProps,
@@ -31,7 +33,7 @@ export interface CardProps
 }
 
 // Enhanced Card component with prop forwarding
-export const Card = forwardRef<HTMLDivElement, CardProps>(
+const Card = forwardRef<HTMLDivElement, CardProps>(
   ({ 
     children, 
     className,
@@ -63,7 +65,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
         className={cn(
           // Base card styles
           'text-card-foreground transition-colors',
-          // Apply variants
+          // Apply CVA variants
           spacingVariants({ p: p || 'md', px, py, pt, pb, pl, pr, m, mx, my, mt, mb, ml, mr }),
           roundedVariants({ rounded }),
           shadowVariants({ shadow }),
@@ -90,13 +92,13 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
 Card.displayName = "Card";
 
 // Card.Header component
-export interface CardHeaderProps 
+interface CardHeaderProps 
   extends React.HTMLAttributes<HTMLDivElement>,
     Pick<VariantSpacingProps, 'p' | 'px' | 'py'> {
   children: ReactNode;
 }
 
-export const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
+const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
   ({ 
     children, 
     className,
@@ -125,14 +127,14 @@ export const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
 CardHeader.displayName = "CardHeader";
 
 // Card.Title component
-export interface CardTitleProps 
-  extends React.HTMLAttributes<HTMLHeadingElement> {
+interface CardTitleProps 
+  extends React.HTMLAttributes<HTMLHeadingElement>,
+    TextSizeProps {
   children: ReactNode;
-  size?: 'sm' | 'md' | 'lg' | 'xl';
   order?: 1 | 2 | 3 | 4 | 5 | 6;
 }
 
-export const CardTitle = forwardRef<HTMLHeadingElement, CardTitleProps>(
+const CardTitle = forwardRef<HTMLHeadingElement, CardTitleProps>(
   ({ 
     children, 
     className,
@@ -140,41 +142,48 @@ export const CardTitle = forwardRef<HTMLHeadingElement, CardTitleProps>(
     order = 3,
     ...props 
   }, ref) => {
-    const Component = `h${order}` as keyof JSX.IntrinsicElements;
-    
-    const sizeClasses = {
-      sm: 'text-lg',
-      md: 'text-xl', 
-      lg: 'text-2xl',
-      xl: 'text-3xl'
+    // Create props for the heading element
+    const headingProps = {
+      ref,
+      'data-class': 'card-title',
+      className: cn(
+        'font-semibold leading-none tracking-tight',
+        // Apply CVA variants
+        textSizeVariants({ size }),
+        className
+      ),
+      ...props
     };
 
-    return (
-      <Component
-        ref={ref}
-        data-class="card-title"
-        className={cn(
-          'font-semibold leading-none tracking-tight',
-          sizeClasses[size],
-          className
-        )}
-        {...props}
-      >
-        {children}
-      </Component>
-    );
+    // Return the appropriate heading element
+    switch (order) {
+      case 1:
+        return <h1 {...headingProps}>{children}</h1>;
+      case 2:
+        return <h2 {...headingProps}>{children}</h2>;
+      case 3:
+        return <h3 {...headingProps}>{children}</h3>;
+      case 4:
+        return <h4 {...headingProps}>{children}</h4>;
+      case 5:
+        return <h5 {...headingProps}>{children}</h5>;
+      case 6:
+        return <h6 {...headingProps}>{children}</h6>;
+      default:
+        return <h3 {...headingProps}>{children}</h3>;
+    }
   }
 );
 
 CardTitle.displayName = "CardTitle";
 
 // Card.Description component
-export interface CardDescriptionProps 
+interface CardDescriptionProps 
   extends React.HTMLAttributes<HTMLParagraphElement> {
   children: ReactNode;
 }
 
-export const CardDescription = forwardRef<HTMLParagraphElement, CardDescriptionProps>(
+const CardDescription = forwardRef<HTMLParagraphElement, CardDescriptionProps>(
   ({ children, className, ...props }, ref) => (
     <p
       ref={ref}
@@ -193,13 +202,13 @@ export const CardDescription = forwardRef<HTMLParagraphElement, CardDescriptionP
 CardDescription.displayName = "CardDescription";
 
 // Card.Content component
-export interface CardContentProps 
+interface CardContentProps 
   extends React.HTMLAttributes<HTMLDivElement>,
     Pick<VariantSpacingProps, 'p' | 'px' | 'py'> {
   children: ReactNode;
 }
 
-export const CardContent = forwardRef<HTMLDivElement, CardContentProps>(
+const CardContent = forwardRef<HTMLDivElement, CardContentProps>(
   ({ 
     children, 
     className,
@@ -227,13 +236,13 @@ export const CardContent = forwardRef<HTMLDivElement, CardContentProps>(
 CardContent.displayName = "CardContent";
 
 // Card.Footer component
-export interface CardFooterProps 
+interface CardFooterProps 
   extends React.HTMLAttributes<HTMLDivElement>,
     Pick<VariantSpacingProps, 'p' | 'px' | 'py'> {
   children: ReactNode;
 }
 
-export const CardFooter = forwardRef<HTMLDivElement, CardFooterProps>(
+const CardFooter = forwardRef<HTMLDivElement, CardFooterProps>(
   ({ 
     children, 
     className,
@@ -270,5 +279,6 @@ const CompoundCard = Object.assign(Card, {
   Footer: CardFooter,
 });
 
-//export { CompoundCard as Card };
-//export { CardHeader, CardTitle, CardDescription, CardContent, CardFooter }; 
+// Export types and components
+export type { CardProps, CardHeaderProps, CardTitleProps, CardDescriptionProps, CardContentProps, CardFooterProps };
+export { CompoundCard as Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }; 

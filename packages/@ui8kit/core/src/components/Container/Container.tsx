@@ -3,32 +3,25 @@ import {
   Container as BaseContainer,
   spacingVariants,
   colorVariants,
-  layoutVariants,
   containerSizeVariants,
+  textAlignVariants,
   type VariantSpacingProps,
   type ColorProps,
   type ContainerSizingProps,
+  type TextAlignProps,
   cn
 } from "../../core";
-
-// Text alignment configurations
-const textAlignVariants = {
-  left: 'text-left',
-  center: 'text-center',
-  right: 'text-right',
-  justify: 'text-justify'
-};
 
 export interface ContainerProps 
   extends React.HTMLAttributes<HTMLElement>,
     VariantSpacingProps,
     ColorProps,
-    ContainerSizingProps {
+    ContainerSizingProps,
+    TextAlignProps {
   children: ReactNode;
   component?: ElementType;
   centered?: boolean;
   fluid?: boolean;
-  ta?: keyof typeof textAlignVariants;
 }
 
 export const Container = forwardRef<HTMLElement, ContainerProps>(
@@ -64,9 +57,8 @@ export const Container = forwardRef<HTMLElement, ContainerProps>(
           centered && 'mx-auto',
           // Fluid
           fluid && 'max-w-none',
-          // Text alignment
-          ta && textAlignVariants[ta],
-          // Apply variants
+          // Apply CVA variants
+          textAlignVariants({ ta }),
           spacingVariants({ p, px, py, pt, pb, pl, pr, m, mx, my, mt, mb, ml, mr }),
           colorVariants({ bg, c, borderColor }),
           className

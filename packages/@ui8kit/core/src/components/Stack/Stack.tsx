@@ -5,30 +5,24 @@ import {
   colorVariants,
   layoutVariants,
   flexVariants,
+  textAlignVariants,
   type VariantSpacingProps,
   type ColorProps,
   type VariantLayoutProps,
   type VariantFlexProps,
+  type TextAlignProps,
   cn
 } from "../../core";
-
-// Text alignment configurations
-const textAlignVariants = {
-  left: 'text-left',
-  center: 'text-center',
-  right: 'text-right',
-  justify: 'text-justify'
-};
 
 export interface StackProps 
   extends React.HTMLAttributes<HTMLElement>,
     Pick<VariantSpacingProps, 'p' | 'px' | 'py' | 'm' | 'mx' | 'my'>,
     Pick<ColorProps, 'bg' | 'c'>,
     Pick<VariantLayoutProps, 'w' | 'h'>,
-    Pick<VariantFlexProps, 'gap' | 'align' | 'justify'> {
+    Pick<VariantFlexProps, 'gap' | 'align' | 'justify'>,
+    TextAlignProps {
   children: ReactNode;
   component?: ElementType;
-  ta?: keyof typeof textAlignVariants;
 }
 
 export const Stack = forwardRef<HTMLElement, StackProps>(
@@ -57,13 +51,12 @@ export const Stack = forwardRef<HTMLElement, StackProps>(
         component={component}
         data-class="stack"
         className={cn(
-          // Apply variants
+          // Apply CVA variants
           flexVariants({ gap, align, justify }),
           spacingVariants({ p, px, py, m, mx, my }),
           colorVariants({ bg, c }),
           layoutVariants({ w, h }),
-          // Text alignment
-          ta && textAlignVariants[ta],
+          textAlignVariants({ ta }),
           className
         )}
         {...props}

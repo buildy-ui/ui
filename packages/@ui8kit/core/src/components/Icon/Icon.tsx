@@ -41,7 +41,7 @@ export const Icon = forwardRef<HTMLElement, IconProps>(
         className={cn(
           // Base icon styles
           'inline-block',
-          // Apply variants
+          // Apply CVA variants
           iconSizeVariants({ size }),
           spacingVariants({ m, mx, my }),
           colorVariants({ c }),

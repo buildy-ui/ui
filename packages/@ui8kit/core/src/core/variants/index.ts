@@ -1,4 +1,4 @@
-// Export all variants and their types
+// Base variants
 export * from './spacing';
 export * from './rounded';
 export * from './shadow';
@@ -8,31 +8,84 @@ export * from './border';
 export * from './sizing';
 export * from './flex';
 
-// Combined props type for convenience
+// Component-specific variants
+export * from './button';
+export * from './badge';
+export * from './typography';
+export * from './image';
+
+// Combined types for common use cases
 import type { VariantSpacingProps } from './spacing';
 import type { RoundedProps } from './rounded';
 import type { ShadowProps } from './shadow';
 import type { ColorProps } from './colors';
-import type { VariantLayoutProps } from './layout';
 import type { BorderProps } from './border';
-import type { SizingProps } from './sizing';
+import type { VariantLayoutProps } from './layout';
 import type { VariantFlexProps, VariantGridProps } from './flex';
+import type { SizingProps, ContainerSizingProps, IconSizingProps } from './sizing';
 
-// Universal props that can be applied to any component
+import type {
+  ButtonSizeProps,
+  ButtonStyleProps
+} from './button';
+
+import type {
+  BadgeSizeProps,
+  BadgeStyleProps
+} from './badge';
+
+import type {
+  TextSizeProps,
+  FontWeightProps,
+  TextAlignProps,
+  LeadingProps,
+  TypographyModifierProps
+} from './typography';
+
+import type {
+  ImageFitProps,
+  ImagePositionProps,
+  AspectRatioProps
+} from './image';
+
+// Universal props interface
 export interface UniversalProps extends 
   VariantSpacingProps,
   RoundedProps,
   ShadowProps,
   ColorProps,
-  VariantLayoutProps,
   BorderProps {}
 
-// Layout-specific props for containers
-export interface LayoutComponentProps extends
+// Layout component props
+export interface LayoutComponentProps extends 
   UniversalProps,
-  VariantFlexProps {}
+  VariantLayoutProps {}
 
-// Grid-specific props
+// Grid component props  
 export interface GridComponentProps extends
-  UniversalProps,
-  VariantGridProps {} 
+  LayoutComponentProps,
+  VariantGridProps {}
+
+// Typography props
+export interface TypographyProps extends
+  TextSizeProps,
+  FontWeightProps,
+  TextAlignProps,
+  LeadingProps,
+  TypographyModifierProps {}
+
+// Button props
+export interface ButtonVariantProps extends
+  ButtonSizeProps,
+  ButtonStyleProps {}
+
+// Badge props
+export interface BadgeVariantProps extends
+  BadgeSizeProps,
+  BadgeStyleProps {}
+
+// Image props
+export interface ImageVariantProps extends
+  ImageFitProps,
+  ImagePositionProps,
+  AspectRatioProps {} 

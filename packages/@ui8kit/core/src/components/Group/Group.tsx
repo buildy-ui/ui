@@ -52,7 +52,7 @@ export const Group = forwardRef<HTMLElement, GroupProps>(
         component={component}
         data-class="group"
         className={cn(
-          // Apply variants - Group is always flex-row
+          // Apply CVA variants - Group is always flex-row
           flexVariants({ gap, align, justify, wrap }),
           spacingVariants({ p, px, py, m, mx, my }),
           colorVariants({ bg, c }),
