@@ -1,19 +1,16 @@
 import React from 'react';
+import { Flex, Box } from '@ui8kit/core/core/ui';
 import { 
   // Core primitives
   Block, 
   Container, 
-  Grid, 
-  Flex, 
-  Box, 
+  Grid,
   Stack,
   
   // Composite components
   Card, 
   Button, 
-  Badge, 
-  Image,
-  Icon,
+  Badge,
   
   // CVA variants for styling
   spacingVariants,

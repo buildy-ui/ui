@@ -1,0 +1,58 @@
+import { forwardRef, ReactNode, ElementType } from "react";
+import {
+  Icon as BaseIcon,
+  spacingVariants,
+  colorVariants,
+  iconSizeVariants,
+  type VariantSpacingProps,
+  type ColorProps,
+  type IconSizingProps,
+  cn
+} from "../../core";
+
+export interface IconProps 
+  extends React.HTMLAttributes<HTMLElement>,
+    Pick<VariantSpacingProps, 'm' | 'mx' | 'my'>,
+    Pick<ColorProps, 'c'>,
+    IconSizingProps {
+  children?: ReactNode;
+  component?: ElementType;
+  lucideIcon?: any; // For Lucide React icons
+}
+
+export const Icon = forwardRef<HTMLElement, IconProps>(
+  ({ 
+    children,
+    className,
+    component = 'span',
+    size = 'md',
+    lucideIcon: LucideIcon,
+    // Spacing props  
+    m, mx, my,
+    // Color props
+    c = 'foreground',
+    ...props 
+  }, ref) => {
+    return (
+      <BaseIcon
+        ref={ref}
+        component={component}
+        data-class="icon"
+        className={cn(
+          // Base icon styles
+          'inline-block',
+          // Apply variants
+          iconSizeVariants({ size }),
+          spacingVariants({ m, mx, my }),
+          colorVariants({ c }),
+          className
+        )}
+        {...props}
+      >
+        {LucideIcon ? <LucideIcon /> : children}
+      </BaseIcon>
+    );
+  }
+);
+
+Icon.displayName = "Icon"; 
