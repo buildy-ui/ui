@@ -5,7 +5,6 @@ export default {
     './src/**/*.tsx',
     '../../packages/@ui8kit/core/src/**/*.tsx',
     '../../packages/@ui8kit/blocks/src/**/*.tsx',
-    '../../packages/@twblocks/blocks/**/*.tsx',
   ],
   prefix: "",
   theme: {

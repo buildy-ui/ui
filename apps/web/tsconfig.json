@@ -27,9 +27,7 @@
       "@ui8kit/core": ["../../packages/@ui8kit/core/src"],
       "@ui8kit/core/*": ["../../packages/@ui8kit/core/src/*"],
       "@ui8kit/blocks": ["../../packages/@ui8kit/blocks/src"],
-      "@ui8kit/blocks/*": ["../../packages/@ui8kit/blocks/src/*"],
-      "@twblocks/blocks": ["../../packages/@twblocks/blocks"],
-      "@twblocks/blocks/*": ["../../packages/@twblocks/blocks/*"]
+      "@ui8kit/blocks/*": ["../../packages/@ui8kit/blocks/src/*"]
     }
   },
   "include": ["src"],
