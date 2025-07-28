@@ -1,4 +1,5 @@
 // import HeroBlocks from "./blocks/hero";
+import NewHeroBlocks from "./blocks/new-hero";
 // import BlogBlocks from "./blocks/blog";
 // import BusinessBlocks from "./blocks/business";
 // import FeaturesBlocks from "./blocks/features";
@@ -9,12 +10,15 @@ import { FooterFourColumns, footerFourColumnsTemplate } from "@ui8kit/blocks/foo
 // import { Team } from "./blocks/team";
 // import { Post } from "./blocks/post";
 // import { Portfolio } from "./blocks/portfolio";
-import { Gallery } from "./blocks/gallery";
+// import { Gallery } from "./blocks/gallery";
 
 function Blocks() {
   return (
     <div>
-      {/*<HeroBlocks />*/}
+      <hr className=" border-primary/50 border-4 border-dashed" />
+      {/* <HeroBlocks />
+      <hr className=" border-primary/50 border-4 border-dashed" /> */}
+      <NewHeroBlocks />
       {/*<BlogBlocks />*/}
       {/*<BusinessBlocks />*/}
       {/*<FeaturesBlocks />*/}
@@ -23,8 +27,9 @@ function Blocks() {
       {/*<Team />*/}
       {/*<Post />*/}
       {/*<Portfolio />*/}
-      <Gallery />
+      {/*<Gallery />*/}
       {/* <Faq /> */}
+      <hr className=" border-primary/50 border-4 border-dashed" />
       <FooterFourColumns content={footerFourColumnsTemplate.defaultContent} />
     </div>
   );

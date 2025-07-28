@@ -115,7 +115,7 @@ export const HeroBlock = forwardRef<HTMLElement, HeroBlockProps>(
 
 HeroBlock.displayName = "HeroBlock";
 
-export const heroTemplate = {
+export const heroBlockTemplate = {
   id: "hero",
   name: "Hero Section",
   description: "Eye-catching header with CTA",

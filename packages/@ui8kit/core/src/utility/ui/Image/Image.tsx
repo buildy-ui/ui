@@ -38,7 +38,8 @@ const imageVariants = cva("block", {
     aspect: {
       square: "aspect-square",
       video: "aspect-video",
-      auto: "aspect-auto"
+      auto: "aspect-auto",
+      none: ""
     },
     fallback: {
       true: "bg-muted",

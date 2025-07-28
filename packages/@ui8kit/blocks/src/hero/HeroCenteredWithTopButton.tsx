@@ -38,10 +38,10 @@ export const HeroCenteredWithTopButton = forwardRef<HTMLElement, HeroCenteredWit
         <Container size="lg" padding="responsive" centered>
           <Stack gap="xl" align="center" ta="center">
             {/* Top Button */}
-            <Button variant="outline" size="sm">
+            <Button variant="outline" size="xs" rounded="full">
               <Icon
                 component="span"
-                size="sm"
+                size="xs"
                 lucideIcon={ExternalLink}
               />
               {content.topButton.text}
@@ -96,7 +96,7 @@ export const HeroCenteredWithTopButton = forwardRef<HTMLElement, HeroCenteredWit
               <Button
                 variant="outline"
                 size="lg"
-                                  leftSection={
+                leftSection={
                     <Icon
                       component="span"
                       size="md"

@@ -11,8 +11,7 @@ import {
   Button,
   Badge,
   Image,
-  Icon,
-  Box
+  Icon
 } from "@ui8kit/core";
 
 interface HeroSplitWithGalleryProps {
@@ -28,10 +27,28 @@ interface HeroSplitWithGalleryProps {
       alt: string;
     }>;
   };
+  leftImage?: true;
 }
 
 export const HeroSplitWithGallery = forwardRef<HTMLElement, HeroSplitWithGalleryProps>(
-  ({ content }, ref) => {
+  ({ content, leftImage }, ref) => {
+    const galleryElement = (
+      <Grid cols={2} gap="md">
+        {content.images.map((image, index) =>
+          <Grid.Col key={image.id} rowSpan={index === 0 ? 2 : 1}>
+          <Image
+            src={image.src}
+            alt={image.alt}
+            width="100%"
+            height="100%"
+            fit="cover"
+            radius="md"
+            className="w-full h-full"
+          />
+        </Grid.Col>
+      )}
+    </Grid>
+    );
     return (
       <Block
         component="section"
@@ -39,12 +56,11 @@ export const HeroSplitWithGallery = forwardRef<HTMLElement, HeroSplitWithGallery
         w="full"
         py="lg"
       >
-        <Container size="lg" padding="responsive" centered>
+        <Container size="lg" padding="responsive" >
           <Grid
-            cols="cols2"
-            gap="xl"
-            align="center"
+            className="grid grid-cols-1 md:grid-cols-2 items-center gap-8"
           >
+            {leftImage && galleryElement}
             {/* Content */}
             <Stack gap="lg" align="start">
               <Badge variant="outline">
@@ -96,32 +112,7 @@ export const HeroSplitWithGallery = forwardRef<HTMLElement, HeroSplitWithGallery
                 </Button>
               </Group>
             </Stack>
-            
-            {/* Image Gallery */}
-            <Grid cols={2} gap="lg">
-              {content.images.map((image, index) => (
-                <Grid.Col 
-                  key={image.id}
-                  rowSpan={index === 1 ? 2 : 1}
-                >
-                  <Box 
-                    position="relative"
-                    bg="muted"
-                    rounded="md"
-                  >
-                    <Image
-                      src={image.src}
-                      alt={image.alt}
-                      width="100%"
-                      height="100%"
-                      fit="cover"
-                      aspect={index === 1 ? "auto" : "square"}
-                      radius="md"
-                    />
-                  </Box>
-                </Grid.Col>
-              ))}
-            </Grid>
+            {leftImage !== true && galleryElement}
           </Grid>
         </Container>
       </Block>
@@ -155,7 +146,7 @@ export const heroSplitWithGalleryTemplate = {
       },
       {
         id: "image3",
-        src: "https://images.unsplash.com/photo-1618477202872-89cec7957b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=320&q=80",
+        src: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
         alt: "Gallery Image 3"
       }
     ]

@@ -27,10 +27,23 @@ interface HeroSplitWithMediaProps {
       alt: string;
     };
   };
+  leftImage?: true;
 }
 
 export const HeroSplitWithMedia = forwardRef<HTMLElement, HeroSplitWithMediaProps>(
-  ({ content }, ref) => {
+  ({ content, leftImage }, ref) => {
+    const imageElement = (
+      <Box>
+        <Image
+          src={content.image.src}
+          alt={content.image.alt}
+          width="100%"
+          height="auto"
+          radius="lg"
+        />
+      </Box>
+    );
+
     return (
       <Block
         component="section"
@@ -44,12 +57,14 @@ export const HeroSplitWithMedia = forwardRef<HTMLElement, HeroSplitWithMediaProp
             gap="xl"
             align="center"
           >
+            {leftImage === true ? imageElement : null}
+
             {/* Content */}
             <Stack gap="lg" align="start">
               <Badge variant="secondary">
                 {content.badge}
               </Badge>
-              
+
               <Title
                 order={1}
                 size="3xl"
@@ -57,14 +72,14 @@ export const HeroSplitWithMedia = forwardRef<HTMLElement, HeroSplitWithMediaProp
               >
                 {content.title}
               </Title>
-              
+
               <Text
                 size="lg"
                 c="muted-foreground"
               >
                 {content.description}
               </Text>
-              
+
               <Group gap="md" align="center">
                 <Button
                   size="lg"
@@ -79,7 +94,7 @@ export const HeroSplitWithMedia = forwardRef<HTMLElement, HeroSplitWithMediaProp
                 >
                   {content.primaryButtonText}
                 </Button>
-                
+
                 <Button
                   variant="outline"
                   size="lg"
@@ -95,17 +110,8 @@ export const HeroSplitWithMedia = forwardRef<HTMLElement, HeroSplitWithMediaProp
                 </Button>
               </Group>
             </Stack>
-            
-            {/* Image */}
-            <Box>
-              <Image
-                src={content.image.src}
-                alt={content.image.alt}
-                width="100%"
-                height="auto"
-                radius="lg"
-              />
-            </Box>
+
+            {leftImage !== true ? imageElement : null}
           </Grid>
         </Container>
       </Block>

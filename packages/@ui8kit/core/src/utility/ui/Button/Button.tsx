@@ -17,15 +17,25 @@ export const buttonVariants = cva(
       },
       size: {
         default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-md px-8",
-        xl: "h-12 rounded-md px-10 text-base",
+        xs: "h-6 px-2 text-xs",
+        sm: "h-9 px-3",
+        lg: "h-11 px-8",
+        xl: "h-12 px-10 text-base",
         icon: "h-10 w-10"
+      },
+      rounded: {
+        default: "rounded-md",
+        sm: "rounded-sm",
+        md: "rounded-md",
+        lg: "rounded-lg",
+        xl: "rounded-xl",
+        full: "rounded-full"
       }
     },
     defaultVariants: {
       variant: "default",
-      size: "default"
+      size: "default",
+      rounded: "default"
     }
   }
 );
@@ -43,6 +53,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     className, 
     variant, 
     size, 
+    rounded,
     asChild = false,
     leftSection,
     rightSection,
@@ -51,7 +62,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   }, ref) => {
     return (
       <button
-        className={cn(buttonVariants({ variant, size }), className)}
+        className={cn(buttonVariants({ variant, size, rounded }), className)}
         ref={ref}
         data-class="button"
         {...props}
