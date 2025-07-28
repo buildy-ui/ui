@@ -38,8 +38,8 @@ export interface SplitBlockProps {
 
   // Container settings (only for splitSection=false)
   containerSize?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "4xl" | "6xl" | "full";
-  padding?: "none" | "xs" | "sm" | "md" | "lg" | "xl";
-  py?: "none" | "xs" | "sm" | "md" | "lg" | "xl";
+  padding?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
+  py?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
 
   // Grid settings (only for splitSection=true)
   gap?: "none" | "xs" | "sm" | "md" | "lg" | "xl";
@@ -145,7 +145,7 @@ export const SplitBlock = forwardRef<HTMLElement, SplitBlockProps>(
     containerSize = "lg",
     padding = "md",
     py = "lg",
-    gap = "xl",
+    gap = "lg",
     align = "center",
     className,
     ...props
@@ -189,7 +189,7 @@ export const SplitBlock = forwardRef<HTMLElement, SplitBlockProps>(
       >
         <Grid 
           cols="1-2" 
-          gap={gap === "none" ? undefined : gap} 
+          gap={gap} 
           align={align}
           className="flex-1 items-center"
           data-class="split-grid"

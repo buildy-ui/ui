@@ -44,8 +44,10 @@ export const HeroSplitExample = () => {
     <SplitBlock
       mediaSection={mediaSection}
       content={content}
-      contentHooks={advancedContentHooks.heroWithContainer} 
-      leftMedia={false}
+      contentHooks={advancedContentHooks.heroWithContainer}
+      splitSection={false}
+      py="xl"
+      gap="lg"
     />
   );
 };
@@ -59,9 +61,10 @@ export const GallerySplitExample = () => {
           src="https://images.unsplash.com/photo-1618477247222-acbdb0e159b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
           alt="Gallery Image 1"
           width="100%"
-          height="300px"
+          height="100%"
           fit="cover"
           rounded="md"
+          className="h-full"
         />
       </Block>
       <Stack gap="md">
@@ -69,7 +72,7 @@ export const GallerySplitExample = () => {
           src="https://images.unsplash.com/photo-1618477388954-7852f32655ec?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
           alt="Gallery Image 2"
           width="100%"
-          height="150px"
+          height="100%"
           fit="cover"
           rounded="md"
         />
@@ -77,7 +80,7 @@ export const GallerySplitExample = () => {
           src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
           alt="Gallery Image 3"
           width="100%"
-          height="150px"
+          height="100%"
           fit="cover"
           rounded="md"
         />
@@ -102,6 +105,7 @@ export const GallerySplitExample = () => {
       contentHooks={advancedContentHooks.heroWithContainer}
       splitSection={false}
       leftMedia={true}
+      gap="lg"
     />
   );
 };
@@ -229,72 +233,139 @@ export const FeaturesSplitExample = () => {
       mediaSection={imageSection}
       content={content}
       contentHooks={fullHeightContentHook}
-      splitSection={false}
-      leftMedia={false}
-      py="xl"
+      splitSection={true}
+      leftMedia={true}
+      py="none"
       gap="none"
       className="min-h-[calc(100vh-64px)] overflow-hidden"
     />
   );
 };
 
-// ===== EXAMPLES WITH CONTENT HOOKS =====
-
-// Custom hooks with before/after content
-const customHooks: ContentHooks = createContentHook({
-  beforeContent: (content: any) => (
-    <Text size="sm" c="primary" fw="bold">
-      ⭐ Exclusive: {content.category}
-    </Text>
-  ),
-  content: (content: any) => (
-      <Stack gap="lg" align="start">
-        <Badge variant="outline" size="lg" rounded="md">
-          🚀 {content.badge}
-        </Badge>
-        <Title order={1} size="4xl" fw="bold">
-          {content.title}
-        </Title>
-        <Text size="xl" c="secondary-foreground">
-          {content.description}
-        </Text>
-      </Stack>
-  ),
-  afterContent: () => (
-      <Text size="xs" c="secondary-foreground" ta="center">
-        💡 Tip: Use content hooks for maximum flexibility
-      </Text>
-  )
-});
-
-export const CustomHooksExample = () => {
+// 4. Full-height Features with stretched image and centered content
+export const FeaturesSplitExample2 = () => {
   const imageSection = (
     <Block 
       className="h-full bg-gradient-to-br from-primary/5 to-primary/10 relative overflow-hidden"
-      data-class="custom-hooks-image"
+      data-class="features-image-section"
     >
       <Image
         src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
         alt="Features"
         className="absolute inset-0 w-full h-full object-cover opacity-80"
-        data-class="custom-hooks-background"
+        data-class="features-background-image"
       />
     </Block>
   );
 
+  // Custom content hook for full-height centered layout
+  const fullHeightContentHook = createContentHook({
+    content: (content: any) => (
+      <Stack 
+        gap="lg" 
+        align="start" 
+        className="flex flex-col items-start text-left gap-4 sm:gap-6 p-6 sm:p-8 lg:p-12 max-w-lg"
+        data-class="features-content-stack"
+      >
+        <Badge variant="secondary" size="default" rounded="md">
+          {content.badge}
+        </Badge>
+        <Title 
+          order={2} 
+          size="3xl" 
+          fw="bold"
+          className="font-bold tracking-tight text-3xl sm:text-4xl md:text-6xl"
+          data-class="features-title"
+        >
+          {content.title}
+        </Title>
+        <Text 
+          size="lg" 
+          c="secondary-foreground"
+          className="text-lg text-muted-foreground sm:text-xl max-w-[42rem]"
+          data-class="features-description"
+        >
+          {content.description}
+        </Text>
+        
+        {/* Analytics Cards */}
+        <Grid cols="1-2" gap="md" className="w-full" data-class="analytics-cards">
+          <Block 
+            p="lg" 
+            bg="card" 
+            rounded="xl" 
+            border="1px" 
+            borderColor="border" 
+            className="shadow"
+            data-class="analytics-card"
+          >
+            <Stack gap="xs">
+              <Text size="2xl" fw="bold" c="primary">84%</Text>
+              <Text size="xs" c="secondary-foreground">
+                Conversion Rate: this is a test
+              </Text>
+            </Stack>
+          </Block>
+          <Block 
+            p="lg" 
+            bg="card" 
+            rounded="xl" 
+            border="1px" 
+            borderColor="border" 
+            className="shadow"
+            data-class="analytics-card"
+          >
+            <Stack gap="xs">
+              <Text size="2xl" fw="bold" c="primary">12.5k</Text>
+              <Text size="xs" c="secondary-foreground">
+                Active Users: this is a test
+              </Text>
+            </Stack>
+          </Block>
+        </Grid>
+
+        {/* Feature List */}
+        {content.features && (
+          <Stack gap="md" className="w-full" data-class="features-list">
+            {content.features.map((feature: any, index: number) => (
+              <Group key={index} gap="sm" align="start">
+                <Badge variant="default" size="sm" rounded="md">✓</Badge>
+                <Stack gap="xs">
+                  <Text fw="semibold">{feature.title}</Text>
+                  <Text size="sm" c="secondary-foreground">
+                    {feature.description}
+                  </Text>
+                </Stack>
+              </Group>
+            ))}
+          </Stack>
+        )}
+      </Stack>
+    )
+  });
+
   const content = {
-    badge: "Custom Hooks",
-    title: "Flexible Content System",
-    description: "Build complex layouts with our powerful content hook system.",
-    category: "Advanced Feature"
+    badge: "Dashboard",
+    title: "Powerful Analytics",
+    description: "Get real-time insights into your business performance with our advanced analytics dashboard.",
+    features: [
+      {
+        title: "Real-time Data",
+        description: "Monitor your metrics as they happen with live updates."
+      },
+      {
+        title: "Advanced Reporting", 
+        description: "Generate comprehensive reports with custom filters and insights."
+      }
+    ]
   };
 
   return (
     <SplitBlock
       mediaSection={imageSection}
       content={content}
-      contentHooks={customHooks}
-      leftMedia={true}
+      contentHooks={fullHeightContentHook}
+      splitSection={true}
       py="none"
       gap="none"
       className="min-h-[calc(100vh-64px)] overflow-hidden"
@@ -415,7 +486,7 @@ export const splitBlockExamples = {
   hero: HeroSplitExample,
   gallery: GallerySplitExample,
   features: FeaturesSplitExample,
-  customHooks: CustomHooksExample,
+  features2: FeaturesSplitExample2,
   stacked: StackedLayoutExample,
   fullGrid: FullGridExample,
   presetHooks: PresetHooksExample

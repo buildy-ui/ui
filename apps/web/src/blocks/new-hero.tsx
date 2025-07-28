@@ -2,7 +2,7 @@ import {
   HeroSplitExample,
   GallerySplitExample,
   FeaturesSplitExample,
-  CustomHooksExample,
+  FeaturesSplitExample2,
   StackedLayoutExample,
   FullGridExample,
   PresetHooksExample
@@ -13,8 +13,8 @@ function NewHeroBlocks() {
     <div className="flex flex-col divide-y divide-border">
         <HeroSplitExample />
         <GallerySplitExample />
+        <FeaturesSplitExample2 />
         <FeaturesSplitExample />
-        <CustomHooksExample />
         <StackedLayoutExample />
         <FullGridExample />
         <PresetHooksExample />

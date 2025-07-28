@@ -94,12 +94,12 @@ export const spacingVariants = cva("", {
     },
     py: {
       none: "py-0",
-      xs: "py-1",
-      sm: "py-2",
-      md: "py-4",
-      lg: "py-6",
-      xl: "py-8",
-      "2xl": "py-12"
+      xs: "py-2",
+      sm: "py-4",
+      md: "py-8",
+      lg: "py-16",
+      xl: "py-32",
+      "2xl": "py-48"
     },
     pt: {
       none: "pt-0",

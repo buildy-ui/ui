@@ -3,7 +3,7 @@ export {
   HeroSplitExample,
   GallerySplitExample,
   FeaturesSplitExample,
-  CustomHooksExample,
+  FeaturesSplitExample2,
   StackedLayoutExample,
   FullGridExample,
   PresetHooksExample

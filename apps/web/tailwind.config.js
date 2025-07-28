@@ -3,8 +3,8 @@ export default {
   darkMode: ["class"],
   content: [
     './src/**/*.tsx',
-    '../../packages/@ui8kit/core/src/**/*.tsx',
-    '../../packages/@ui8kit/blocks/src/**/*.tsx',
+    '../../packages/@ui8kit/core/src/**/*.{ts,tsx}',
+    '../../packages/@ui8kit/blocks/src/**/*.{ts,tsx}',
   ],
   prefix: "",
   theme: {
