@@ -7,6 +7,9 @@ scripts/
 node_modules/
 dist/
 build/
+builddy/
+scripts/
+@twblocks/
 @registry/
 hello/
 bun.lock
