@@ -1,17 +1,37 @@
-import { PortfolioGridSection, portfolioGridSectionTemplate } from "@ui8kit/blocks/portfolio/PortfolioGridSection";
-import { PortfolioTwoColumnsSection, portfolioTwoColumnsSectionTemplate } from "@ui8kit/blocks/portfolio/PortfolioTwoColumnsSection";
-import { PortfolioWithButtonsSection, portfolioWithButtonsSectionTemplate } from "@ui8kit/blocks/portfolio/PortfolioWithButtonsSection";
-import { PortfolioDetailsSection, portfolioDetailsSectionTemplate } from "@ui8kit/blocks/portfolio/PortfolioDetailsSection";
-import { PortfolioHorizontalSection, portfolioHorizontalSectionTemplate } from "@ui8kit/blocks/portfolio/PortfolioHorizontalSection";
+import { gridPortfolioExamples } from "@ui8kit/blocks/portfolio/GridPortfolio.examples";
+import { splitPortfolioExamples } from "@ui8kit/blocks/portfolio/SplitPortfolio.examples";
 
-export const Portfolio = () => {
+// New Factory-based Portfolio Examples
+export const GridPortfolioCardsExample = gridPortfolioExamples.cards;
+export const GridPortfolioMasonryExample = gridPortfolioExamples.masonry;
+export const GridPortfolioMinimalExample = gridPortfolioExamples.minimal;
+export const GridPortfolioDetailedExample = gridPortfolioExamples.detailed;
+export const GridPortfolioShowcaseExample = gridPortfolioExamples.showcase;
+
+export const SplitPortfolioShowcaseExample = splitPortfolioExamples.showcase;
+export const SplitPortfolioAboutExample = splitPortfolioExamples.about;
+export const SplitPortfolioSkillsExample = splitPortfolioExamples.skills;
+export const SplitPortfolioTestimonialExample = splitPortfolioExamples.testimonial;
+export const SplitPortfolioProcessExample = splitPortfolioExamples.process;
+
+function PortfolioBlocks() {
   return (
-    <>
-      <PortfolioGridSection content={portfolioGridSectionTemplate.defaultContent} />
-      <PortfolioTwoColumnsSection content={portfolioTwoColumnsSectionTemplate.defaultContent} />
-      <PortfolioWithButtonsSection content={portfolioWithButtonsSectionTemplate.defaultContent} />
-      <PortfolioDetailsSection content={portfolioDetailsSectionTemplate.defaultContent} />
-      <PortfolioHorizontalSection content={portfolioHorizontalSectionTemplate.defaultContent} />
-    </>
+    <div className="flex flex-col divide-y divide-border">
+      {/* Grid Portfolio Examples */}
+      <GridPortfolioCardsExample />
+      <GridPortfolioMasonryExample />
+      <GridPortfolioMinimalExample />
+      <GridPortfolioDetailedExample />
+      <GridPortfolioShowcaseExample />
+      
+      {/* Split Portfolio Examples */}
+      <SplitPortfolioShowcaseExample />
+      <SplitPortfolioAboutExample />
+      <SplitPortfolioSkillsExample />
+      <SplitPortfolioTestimonialExample />
+      <SplitPortfolioProcessExample />
+    </div>
   );
-};
+}
+
+export default PortfolioBlocks;
