@@ -20,3 +20,5 @@ export { Icon, type IconProps } from "./Icon";
 
 // Composite Components
 export { Card, type CardProps } from "./Card"; 
+
+export { Accordion, AccordionItem, AccordionTrigger, AccordionContent, type AccordionProps, type AccordionItemProps, type AccordionTriggerProps, type AccordionContentProps } from "./Accordion";
