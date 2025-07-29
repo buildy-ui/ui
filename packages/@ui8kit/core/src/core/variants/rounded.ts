@@ -4,6 +4,7 @@ export const roundedVariants = cva("", {
   variants: {
     rounded: {
       none: "rounded-none",
+      default: "rounded",
       sm: "rounded-sm",
       md: "rounded-md",
       lg: "rounded-lg",

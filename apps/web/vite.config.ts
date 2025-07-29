@@ -9,7 +9,8 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './src'),
       '@ui8kit/core': path.resolve(__dirname, '../../packages/@ui8kit/core/src'),
-      '@ui8kit/blocks': path.resolve(__dirname, '../../packages/@ui8kit/blocks/src')
+      '@ui8kit/blocks': path.resolve(__dirname, '../../packages/@ui8kit/blocks/src'),
+      '@ui8kit/theme': path.resolve(__dirname, '../../packages/@ui8kit/theme/src')
     }
   },
   server: {

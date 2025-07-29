@@ -11,10 +11,19 @@ import {
   Icon,
   Box
 } from "@ui8kit/core";
-import { 
+import {
   LayoutBlock,
   createLayoutContentHook,
 } from "@ui8kit/core";
+import { skyOSTheme } from "@ui8kit/theme";
+
+export const currentTheme = skyOSTheme; // modernUITheme | skyOSTheme
+
+export const theme = {
+  theme: currentTheme,
+  themeRounded: currentTheme.rounded,
+  themeButtonSize: currentTheme.buttonSize
+}
 
 // Centered Hero data interface
 export interface CenteredHeroData {
@@ -53,24 +62,24 @@ const centeredHeroContentHooks = {
     header: (content: CenteredHeroData) => (
       <Stack gap="xl" align="center" ta="center" className="max-w-4xl mx-auto">
         {content.badge && (
-          <Badge variant="secondary" size="default" rounded="full">
+          <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
             {content.badge}
           </Badge>
         )}
 
-        <Title 
-          order={1} 
-          size="5xl" 
-          fw="bold" 
-          ta="center" 
+        <Title
+          order={1}
+          size="5xl"
+          fw="bold"
+          ta="center"
           className="tracking-tight leading-tight"
         >
           {content.title}
         </Title>
 
         <Text
-          c="secondary-foreground" 
-          ta="center" 
+          c="secondary-foreground"
+          ta="center"
           className="max-w-[42rem]"
         >
           {content.description}
@@ -81,9 +90,10 @@ const centeredHeroContentHooks = {
             {content.primaryButtonText && (
               <Button
                 variant="default"
+                rounded={theme?.themeRounded.default}
+                size={theme?.themeButtonSize.default}
                 leftSection={content.primaryButtonIcon ? (
                   <Icon
-                    component="span"
                     c="primary-foreground"
                     lucideIcon={content.primaryButtonIcon || Info}
                   />
@@ -96,9 +106,10 @@ const centeredHeroContentHooks = {
             {content.secondaryButtonText && (
               <Button
                 variant="outline"
+                rounded={theme?.themeRounded.default}
+                size={theme?.themeButtonSize.default}
                 leftSection={content.secondaryButtonIcon ? (
                   <Icon
-                    component="span"
                     lucideIcon={content.secondaryButtonIcon || Rocket}
                   />
                 ) : undefined}
@@ -116,9 +127,8 @@ const centeredHeroContentHooks = {
   withTopButton: createLayoutContentHook({
     beforeHeader: (content: CenteredHeroData) => (
       content.topButton ? (
-        <Button variant="outline" size="sm" rounded="full">
+        <Button variant="outline" size="sm" rounded={theme?.themeRounded.default}>
           <Icon
-            component="span"
             lucideIcon={ExternalLink}
           />
           {content.topButton.text}
@@ -128,24 +138,24 @@ const centeredHeroContentHooks = {
     header: (content: CenteredHeroData) => (
       <Stack gap="xl" align="center" ta="center" className="max-w-4xl mx-auto">
         {content.badge && (
-          <Badge variant="secondary" size="default" rounded="lg">
+          <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
             {content.badge}
           </Badge>
         )}
 
-        <Title 
-          order={1} 
-          size="5xl" 
-          fw="bold" 
-          ta="center" 
+        <Title
+          order={1}
+          size="5xl"
+          fw="bold"
+          ta="center"
           className="tracking-tight leading-tight"
         >
           {content.title}
         </Title>
 
         <Text
-          c="secondary-foreground" 
-          ta="center" 
+          c="secondary-foreground"
+          ta="center"
           className="max-w-[42rem]"
         >
           {content.description}
@@ -156,9 +166,10 @@ const centeredHeroContentHooks = {
             {content.primaryButtonText && (
               <Button
                 variant="default"
+                rounded={theme?.themeRounded.default}
+                size={theme?.themeButtonSize.default}
                 leftSection={
                   <Icon
-                    component="span"
                     c="primary-foreground"
                     lucideIcon={Info}
                   />
@@ -171,9 +182,10 @@ const centeredHeroContentHooks = {
             {content.secondaryButtonText && (
               <Button
                 variant="outline"
+                rounded={theme?.themeRounded.default}
+                size={theme?.themeButtonSize.default}
                 leftSection={
                   <Icon
-                    component="span"
                     lucideIcon={Rocket}
                   />
                 }
@@ -191,19 +203,19 @@ const centeredHeroContentHooks = {
   withImage: createLayoutContentHook({
     header: (content: CenteredHeroData) => (
       <Stack gap="xl" align="center" ta="center" className="max-w-4xl mx-auto">
-        <Title 
-          order={1} 
-          size="5xl" 
-          fw="bold" 
-          ta="center" 
+        <Title
+          order={1}
+          size="5xl"
+          fw="bold"
+          ta="center"
           className="tracking-tight leading-tight"
         >
           {content.title}
         </Title>
 
         <Text
-          c="secondary-foreground" 
-          ta="center" 
+          c="secondary-foreground"
+          ta="center"
           className="max-w-[42rem]"
         >
           {content.description}
@@ -214,6 +226,8 @@ const centeredHeroContentHooks = {
             {content.primaryButtonText && (
               <Button
                 variant="default"
+                rounded={theme?.themeRounded.default}
+                size={theme?.themeButtonSize.default}
               >
                 {content.primaryButtonText}
               </Button>
@@ -222,9 +236,10 @@ const centeredHeroContentHooks = {
             {content.secondaryButtonText && (
               <Button
                 variant="outline"
+                rounded={theme?.themeRounded.default}
+                size={theme?.themeButtonSize.default}
                 leftSection={
                   <Icon
-                    component="span"
                     lucideIcon={Play}
                   />
                 }
@@ -244,7 +259,7 @@ const centeredHeroContentHooks = {
             alt={content.imageAlt || "Hero image"}
             width="100%"
             height="auto"
-            rounded="lg"
+            rounded={theme?.themeRounded.default}
             className="shadow-2xl"
           />
         </Box>
@@ -257,24 +272,24 @@ const centeredHeroContentHooks = {
     header: (content: CenteredHeroData) => (
       <Stack gap="xl" align="center" ta="center" className="max-w-4xl mx-auto">
         {content.badge && (
-          <Badge variant="secondary" size="default" rounded="full">
+          <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
             {content.badge}
           </Badge>
         )}
 
-        <Title 
-          order={1} 
-          size="5xl" 
-          fw="bold" 
-          ta="center" 
+        <Title
+          order={1}
+          size="5xl"
+          fw="bold"
+          ta="center"
           className="tracking-tight leading-tight"
         >
           {content.title}
         </Title>
 
         <Text
-          c="secondary-foreground" 
-          ta="center" 
+          c="secondary-foreground"
+          ta="center"
           className="max-w-[42rem]"
         >
           {content.description}
@@ -285,9 +300,10 @@ const centeredHeroContentHooks = {
             {content.primaryButtonText && (
               <Button
                 variant="default"
+                rounded={theme?.themeRounded.default}
+                size={theme?.themeButtonSize.default}
                 rightSection={
                   <Icon
-                    component="span"
                     c="primary-foreground"
                     lucideIcon={ArrowRight}
                   />
@@ -298,7 +314,7 @@ const centeredHeroContentHooks = {
             )}
 
             {content.secondaryButtonText && (
-              <Button variant="outline">
+              <Button variant="outline" rounded={theme?.themeRounded.default} size={theme?.themeButtonSize.default}>
                 {content.secondaryButtonText}
               </Button>
             )}
@@ -326,15 +342,15 @@ const centeredHeroContentHooks = {
 };
 
 export const CenteredHero = forwardRef<HTMLElement, CenteredHeroProps>(
-  ({ 
-    content, 
+  ({
+    content,
     variant = "simple",
     useContainer = true,
     py = "2xl",
     className,
-    ...props 
+    ...props
   }, ref) => {
-    
+
     // Choose content hooks based on variant
     const contentHooks = centeredHeroContentHooks[variant] || centeredHeroContentHooks.simple;
 
@@ -365,7 +381,7 @@ export const centeredHeroTemplates = {
     component: CenteredHero,
     defaultProps: { variant: "simple" as const }
   },
-  
+
   withTopButton: {
     id: "centeredHeroWithTopButton",
     name: "Centered Hero with Top Button",

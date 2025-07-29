@@ -8,7 +8,6 @@ import {
   Title,
   Text,
   Badge,
-  Button,
   Icon,
   Box,
   Card,
@@ -92,7 +91,7 @@ const DefaultHeaderRenderer = ({ content, align = "center" }: { content: any; al
   return (
     <Stack gap="md" align={align} ta={textAlign} className="max-w-2xl">
       {content.badge && (
-        <Badge variant="secondary" size="default" rounded="md">
+        <Badge variant="secondary" rounded="full">
           {content.badge}
         </Badge>
       )}
@@ -110,7 +109,6 @@ const DefaultHeaderRenderer = ({ content, align = "center" }: { content: any; al
 
       {content.description && (
         <Text
-          size="lg"
           c="secondary-foreground"
           ta={textAlign}
         >
@@ -125,7 +123,7 @@ const DefaultHeaderRenderer = ({ content, align = "center" }: { content: any; al
 const DefaultItemRenderers = {
   // Card-based grid item
   gridCard: (item: any, index: number) => (
-    <Card p="lg" rounded="md" shadow="sm" className="h-full">
+    <Card p="lg" rounded="lg" shadow="sm" className="h-full">
       <Stack gap="md" align="start">
         {item.image && (
           <Image
@@ -142,13 +140,11 @@ const DefaultItemRenderers = {
           <Box 
             p="sm" 
             bg="primary" 
-            rounded="md" 
+            rounded="lg" 
             className="inline-flex"
             data-class="icon-wrapper"
           >
             <Icon
-              component="span"
-              size="md"
               lucideIcon={item.lucideIcon}
               c="primary-foreground"
             />
@@ -160,7 +156,7 @@ const DefaultItemRenderers = {
             {item.title}
           </Title>
           
-          <Text size="sm" c="secondary-foreground">
+          <Text c="secondary-foreground">
             {item.description}
           </Text>
         </Stack>
@@ -175,13 +171,11 @@ const DefaultItemRenderers = {
         <Box 
           p="sm" 
           bg="primary" 
-          rounded="md" 
+          rounded="lg" 
           className="inline-flex"
           data-class="icon-wrapper"
         >
           <Icon
-            component="span"
-            size="md"
             lucideIcon={item.lucideIcon}
             c="primary-foreground"
           />
@@ -207,13 +201,11 @@ const DefaultItemRenderers = {
         <Box 
           p="sm" 
           bg="primary" 
-          rounded="md" 
+          rounded="lg" 
           className="flex-shrink-0"
           data-class="icon-wrapper"
         >
           <Icon
-            component="span"
-            size="md"
             lucideIcon={item.lucideIcon}
             c="primary-foreground"
           />
@@ -225,7 +217,7 @@ const DefaultItemRenderers = {
           {item.title}
         </Title>
         
-        <Text size="sm" c="secondary-foreground">
+        <Text c="secondary-foreground">
           {item.description}
         </Text>
       </Stack>
@@ -289,7 +281,7 @@ export const LayoutBlock = forwardRef<HTMLElement, LayoutBlockProps>(
     const finalWrap = flexWrap ? "wrap" : wrap;
 
     // Choose default content hooks based on layout
-    const defaultHooks = contentHooks || defaultLayoutContentHooks[layout] || defaultLayoutContentHooks.gridSimple;
+    const defaultHooks = contentHooks || defaultLayoutContentHooks[layout as keyof typeof defaultLayoutContentHooks] || defaultLayoutContentHooks.gridSimple;
 
     // Render header
     const renderHeader = () => {
@@ -337,7 +329,6 @@ export const LayoutBlock = forwardRef<HTMLElement, LayoutBlockProps>(
               align={align} 
               justify={justify}
               wrap={finalWrap}
-              direction={direction}
               data-class="layout-flex"
             >
               {items}
@@ -363,36 +354,10 @@ export const LayoutBlock = forwardRef<HTMLElement, LayoutBlockProps>(
     // Main content
     const mainContent = (
       <Stack gap="3xl" align={headerAlign}>
-        {defaultHooks.beforeHeader?.(content)}
         {renderHeader()}
-        {defaultHooks.afterHeader?.(content)}
-        {defaultHooks.beforeItems?.(content)}
         {renderItems()}
-        {defaultHooks.afterItems?.(content)}
       </Stack>
     );
-
-    // Filter out non-DOM props before spreading
-    const { 
-      layout: _layout,
-      useContainer: _useContainer,
-      containerSize: _containerSize,
-      padding: _padding,
-      cols: _cols,
-      gridCols: _gridCols,
-      gap: _gap,
-      align: _align,
-      justify: _justify,
-      direction: _direction,
-      wrap: _wrap,
-      flexWrap: _flexWrap,
-      stackAlign: _stackAlign,
-      showHeader: _showHeader,
-      headerAlign: _headerAlign,
-      content: _content,
-      contentHooks: _contentHooks,
-      ...domProps
-    } = props;
 
     // Render with or without container
     return (
@@ -403,10 +368,10 @@ export const LayoutBlock = forwardRef<HTMLElement, LayoutBlockProps>(
         py={py}
         className={className}
         data-class="layout-block"
-        {...domProps}
+        {...props}
       >
         {useContainer ? (
-          <Container size={containerSize} px={padding} centered>
+          <Container size={containerSize} centered>
             {mainContent}
           </Container>
         ) : (

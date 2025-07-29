@@ -38,7 +38,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     className,
     variant = 'default',
     size = 'default',
-    rounded = 'md',
+    rounded = 'lg',
     shadow,
     loading = false,
     disabled = false,

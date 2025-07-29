@@ -52,7 +52,7 @@ export const SplitHeroLeftMediaExample = () => {
       variant="media"
       leftMedia={true}
       useContainer={true}
-      py="xl"
+      py="2xl"
       gap="lg"
     />
   );
@@ -127,7 +127,7 @@ export const SplitHeroWithTopButtonExample = () => {
       }
     ],
     primaryButtonText: "Read Announcement",
-    secondaryButtonText: "Join Our Journey",
+    secondaryButtonText: "Join Journey",
     primaryButtonIcon: ExternalLink,
     secondaryButtonIcon: Rocket
   };
@@ -151,10 +151,10 @@ export const SplitHeroSecurityExample = () => {
     title: "Protect your business with enterprise-grade security",
     description: "Our comprehensive security suite provides advanced threat protection, compliance management, and peace of mind for businesses of all sizes.",
     image: {
-      src: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      src: "https://images.unsplash.com/photo-1618477388954-7852f32655ec?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
       alt: "Security dashboard interface"
     },
-    primaryButtonText: "Start Security Audit",
+    primaryButtonText: "Start Audit",
     secondaryButtonText: "View Features",
     primaryButtonIcon: Shield,
     secondaryButtonIcon: Zap

@@ -21,6 +21,7 @@
       "@/*": ["./src/*"],
       "@/core": ["./src/core/index"],
       "@/core/*": ["./src/core/*"],
+      "@ui8kit/theme": ["../theme/index"],
       "@/components": ["./src/components/index"],
       "@/components/*": ["./src/components/*"]
     }

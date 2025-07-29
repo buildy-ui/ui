@@ -56,7 +56,7 @@ const DefaultContentRenderer = ({ content }: { content: any }) => {
   return (
     <Stack gap="lg" align="start">
       {content.badge && (
-        <Badge variant="secondary" size="default" rounded="md">
+        <Badge variant="secondary" rounded="full">
           {content.badge}
         </Badge>
       )}
@@ -73,7 +73,6 @@ const DefaultContentRenderer = ({ content }: { content: any }) => {
 
       {content.description && (
         <Text
-          size="lg"
           c="secondary-foreground"
         >
           {content.description}
@@ -84,12 +83,9 @@ const DefaultContentRenderer = ({ content }: { content: any }) => {
         <Group gap="md" align="center">
           {content.primaryButtonText && (
             <Button
-              size="lg"
               variant="default"
               leftSection={content.primaryButtonIcon ? (
                 <Icon
-                  component="span"
-                  size="md"
                   c="primary-foreground"
                   lucideIcon={content.primaryButtonIcon}
                 />
@@ -102,11 +98,8 @@ const DefaultContentRenderer = ({ content }: { content: any }) => {
           {content.secondaryButtonText && (
             <Button
               variant="outline"
-              size="lg"
               leftSection={content.secondaryButtonIcon ? (
                 <Icon
-                  component="span"
-                  size="md"
                   lucideIcon={content.secondaryButtonIcon}
                 />
               ) : undefined}
@@ -223,7 +216,7 @@ export const defaultContentHooks = {
     content: (content) => (
       <Stack gap="md" align="start">
         {content.badge && (
-          <Badge variant="outline" size="default" rounded="md">
+          <Badge variant="outline" rounded="full">
             {content.badge}
           </Badge>
         )}
@@ -271,7 +264,7 @@ export const advancedContentHooks = {
     content: (content) => (
       <Container size="lg" px="md">
         <Stack gap="lg" align="start">
-          <Badge variant="outline" size="lg" rounded="md">
+          <Badge variant="outline" rounded="full">
             🚀 {content.badge}
           </Badge>
           <Title order={1} size="4xl" fw="bold">
@@ -283,12 +276,12 @@ export const advancedContentHooks = {
           {(content.primaryButtonText || content.secondaryButtonText) && (
             <Group gap="md">
               {content.primaryButtonText && (
-                <Button size="lg" variant="default">
+                <Button>
                   {content.primaryButtonText}
                 </Button>
               )}
               {content.secondaryButtonText && (
-                <Button size="lg" variant="outline">
+                <Button>
                   {content.secondaryButtonText}
                 </Button>
               )}
@@ -304,20 +297,20 @@ export const advancedContentHooks = {
     content: (content) => (
       <Container size="lg" px="md">
         <Stack gap="lg" align="start">
-          <Badge variant="secondary" size="default" rounded="md">
+          <Badge variant="secondary" rounded="full">
             {content.badge}
           </Badge>
           <Title order={2} size="3xl" fw="bold">
             {content.title}
           </Title>
-          <Text size="lg" c="secondary-foreground">
+          <Text c="secondary-foreground">
             {content.description}
           </Text>
           {content.features && (
             <Stack gap="md">
               {content.features.map((feature: any, index: number) => (
                 <Group key={index} gap="sm" align="start">
-                  <Badge variant="default" size="sm" rounded="md">✓</Badge>
+                  <Badge rounded="full">✓</Badge>
                   <Stack gap="xs">
                     <Text fw="semibold">{feature.title}</Text>
                     <Text size="sm" c="secondary-foreground">

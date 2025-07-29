@@ -17,6 +17,15 @@ import {
   SplitBlock,
   createContentHook,
 } from "@ui8kit/core";
+import { skyOSTheme } from "@ui8kit/theme";
+
+export const currentTheme = skyOSTheme; // modernUITheme | skyOSTheme
+
+export const theme = {
+  theme: currentTheme,
+  themeRounded: currentTheme.rounded,
+  themeButtonSize: currentTheme.buttonSize
+}
 
 // Hero data interface
 export interface HeroData {
@@ -60,7 +69,7 @@ const heroContentHooks = {
     content: (content: HeroData) => (
       <Stack gap="xl" align="start">
         {content.badge && (
-          <Badge variant="secondary" size="default" rounded="full">
+          <Badge variant="secondary" rounded={theme?.themeRounded.badge} size={theme?.themeButtonSize.badge}>
             {content.badge}
           </Badge>
         )}
@@ -78,9 +87,10 @@ const heroContentHooks = {
             {content.primaryButtonText && (
               <Button
                 variant="default"
+                rounded={theme?.themeRounded.default}
+                size={theme?.themeButtonSize.default}
                 leftSection={content.primaryButtonIcon ? (
                   <Icon
-                    component="span"
                     c="primary-foreground"
                     lucideIcon={content.primaryButtonIcon || Info}
                   />
@@ -93,9 +103,10 @@ const heroContentHooks = {
             {content.secondaryButtonText && (
               <Button
                 variant="outline"
+                rounded={theme?.themeRounded.default}
+                size={theme?.themeButtonSize.default}
                 leftSection={content.secondaryButtonIcon ? (
                   <Icon
-                    component="span"
                     lucideIcon={content.secondaryButtonIcon || Rocket}
                   />
                 ) : undefined}
@@ -114,7 +125,7 @@ const heroContentHooks = {
     content: (content: HeroData) => (
       <Stack gap="xl" align="start">
         {content.badge && (
-          <Badge variant="secondary" size="default" rounded="full">
+          <Badge variant="secondary" rounded={theme?.themeRounded.badge} size={theme?.themeButtonSize.badge}>
             {content.badge}
           </Badge>
         )}
@@ -132,9 +143,10 @@ const heroContentHooks = {
             {content.primaryButtonText && (
               <Button
                 variant="default"
+                rounded={theme?.themeRounded.default}
+                size={theme?.themeButtonSize.default}
                 leftSection={
                   <Icon
-                    component="span"
                     c="primary-foreground"
                     lucideIcon={BookOpen}
                   />
@@ -147,9 +159,10 @@ const heroContentHooks = {
             {content.secondaryButtonText && (
               <Button
                 variant="outline"
+                rounded={theme?.themeRounded.default}
+                size={theme?.themeButtonSize.default}
                 leftSection={
                   <Icon
-                    component="span"
                     lucideIcon={Code}
                   />
                 }
@@ -167,10 +180,8 @@ const heroContentHooks = {
   withTopButton: createContentHook({
     beforeContent: (content: HeroData) => (
       content.topButton ? (
-        <Button variant="outline" size="sm" rounded="full">
+        <Button variant="outline" rounded={theme?.themeRounded.default}>
           <Icon
-            component="span"
-            size="xs"
             lucideIcon={ExternalLink}
           />
           {content.topButton.text}
@@ -180,7 +191,7 @@ const heroContentHooks = {
     content: (content: HeroData) => (
       <Stack gap="xl" align="center" ta="center">
         {content.badge && (
-          <Badge variant="secondary" size="default" rounded="full">
+          <Badge variant="secondary" rounded={theme?.themeRounded.badge} size={theme?.themeButtonSize.badge}>
             {content.badge}
           </Badge>
         )}
@@ -198,9 +209,10 @@ const heroContentHooks = {
             {content.primaryButtonText && (
               <Button
                 variant="default"
+                rounded={theme?.themeRounded.default}
+                size={theme?.themeButtonSize.default}
                 leftSection={
                   <Icon
-                    component="span"
                     c="primary-foreground"
                     lucideIcon={Info}
                   />
@@ -213,9 +225,10 @@ const heroContentHooks = {
             {content.secondaryButtonText && (
               <Button
                 variant="outline"
+                rounded={theme?.themeRounded.default}
+                size={theme?.themeButtonSize.default}
                 leftSection={
                   <Icon
-                    component="span"
                     lucideIcon={Rocket}
                   />
                 }
@@ -260,8 +273,8 @@ export const SplitHero = forwardRef<HTMLElement, SplitHeroProps>(
                   width="100%"
                   height="100%"
                   fit="cover"
-                  rounded="lg"
-                  className="w-full h-full"
+                  className="h-full w-full"
+                  rounded={theme?.themeRounded.default}
                 />
               </Block>
             ))}
@@ -277,8 +290,8 @@ export const SplitHero = forwardRef<HTMLElement, SplitHeroProps>(
               alt={content.image.alt}
               width="100%"
               height="auto"
-              rounded="lg"
               fit="cover"
+              rounded={theme?.themeRounded.default}
             />
           </Block>
         );
@@ -287,8 +300,9 @@ export const SplitHero = forwardRef<HTMLElement, SplitHeroProps>(
       // Default gradient background
       return (
         <Block
-          className="h-full bg-gradient-to-br from-primary/5 to-secondary/10 relative overflow-hidden"
+          className={`h-full bg-gradient-to-br from-primary/5 to-secondary/10 relative overflow-hidden`}
           data-class="hero-gradient-background"
+          rounded={theme?.themeRounded.default}
         >
           <Box className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10" />
         </Block>

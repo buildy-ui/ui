@@ -20,7 +20,8 @@
       "@/blocks": ["./src/index"],
       "@/blocks/*": ["./src/*"],
       "@ui8kit/core": ["../core/src"],
-      "@ui8kit/hooks": ["../hooks/src"]
+      "@ui8kit/hooks": ["../hooks/src"],
+      "@ui8kit/theme": ["../theme/src"]
     }
   }
 } 
