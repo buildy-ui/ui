@@ -11,8 +11,8 @@ import { useState } from "react";
 // import PostBlocks from "./blocks/post";
 // import GalleryBlocks from "./blocks/gallery";
 // import FeaturesBlocks from "./blocks/features";
-// import TeamBlocks from "./blocks/team";
-import TestimonialBlocks from "./blocks/testimonial"; // Uncommented
+import TeamBlocks from "./blocks/team"; // Uncommented
+// import TestimonialBlocks from "./blocks/testimonial";
 
 // Core UI Examples
 // import CoreUI from "./CoreUI";
@@ -27,12 +27,12 @@ function Blocks() {
             Factory-based component architecture showcase
           </p>
           <div className="mt-2 inline-block px-3 py-1 bg-secondary text-secondary-foreground rounded-md text-sm">
-            Testimonial Blocks Active
+            Team Blocks Active
           </div>
         </div>
 
         <div className="w-full">
-          <TestimonialBlocks />
+          <TeamBlocks />
         </div>
       </div>
     </div>

@@ -1,11 +1,35 @@
-import { TeamGridSection, teamGridSectionTemplate } from "@ui8kit/blocks/team/TeamGridSection";
-import { TeamHiringSection, teamHiringSectionTemplate } from "@ui8kit/blocks/team/TeamHiringSection";
+import {
+  // Split Team Examples
+  SplitTeamLeadershipExample,
+  SplitTeamShowcaseExample,
+  SplitTeamHiringExample,
+  SplitTeamCultureExample,
+  SplitTeamDepartmentsExample,
+  
+  // Grid Team Examples
+  GridTeamGridExample,
+  GridTeamCardsExample,
+  GridTeamMinimalExample,
+  GridTeamShowcaseExample,
+  GridTeamDirectoryExample
+} from "@ui8kit/blocks/team";
 
-export const Team = () => {
+export default function TeamBlocks() {
   return (
     <>
-      <TeamGridSection content={teamGridSectionTemplate.defaultContent} />
-      <TeamHiringSection content={teamHiringSectionTemplate.defaultContent} />
+      {/* Split Team Examples (5 variants) */}
+      <SplitTeamLeadershipExample />
+      <SplitTeamShowcaseExample />
+      <SplitTeamHiringExample />
+      <SplitTeamCultureExample />
+      <SplitTeamDepartmentsExample />
+      
+      {/* Grid Team Examples (5 variants) */}
+      <GridTeamGridExample />
+      <GridTeamCardsExample />
+      <GridTeamMinimalExample />
+      <GridTeamShowcaseExample />
+      <GridTeamDirectoryExample />
     </>
   );
-};
+}
