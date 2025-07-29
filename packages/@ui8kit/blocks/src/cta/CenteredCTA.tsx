@@ -31,7 +31,7 @@ import {
   createLayoutContentHook,
   defaultLayoutContentHooks,
   type LayoutContentHooks
-} from "@ui8kit/core";
+} from "@ui8kit/core/factory/LayoutBlock";
 
 // CTA interfaces
 export interface CTAButton {
@@ -399,7 +399,7 @@ export const CenteredCTA = forwardRef<HTMLElement, CenteredCTAProps>(
         layout="stack"
         useContainer={useContainer}
         py={py}
-        showHeader={false} // We handle header in content hooks
+        showHeader={true} // We use header hooks for content
         content={content}
         contentHooks={contentHooks}
         className={className}

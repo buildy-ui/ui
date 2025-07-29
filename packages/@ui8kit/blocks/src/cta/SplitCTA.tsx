@@ -33,7 +33,7 @@ import {
   defaultContentHooks, 
   advancedContentHooks,
   type ContentHooks 
-} from "@ui8kit/core";
+} from "@ui8kit/core/factory/SplitBlock";
 
 // CTA interfaces (reuse from CenteredCTA)
 export interface CTAButton {
