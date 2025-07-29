@@ -39,7 +39,7 @@ export const HeroSplitWithMedia = forwardRef<HTMLElement, HeroSplitWithMediaProp
           alt={content.image.alt}
           width="100%"
           height="auto"
-          radius="lg"
+          rounded="lg"
         />
       </Box>
     );
@@ -51,9 +51,9 @@ export const HeroSplitWithMedia = forwardRef<HTMLElement, HeroSplitWithMediaProp
         w="full"
         py="lg"
       >
-        <Container size="lg" padding="responsive" centered>
+        <Container size="lg" centered>
           <Grid
-            cols="cols2"
+            cols={2}
             gap="xl"
             align="center"
           >
@@ -75,7 +75,7 @@ export const HeroSplitWithMedia = forwardRef<HTMLElement, HeroSplitWithMediaProp
 
               <Text
                 size="lg"
-                c="muted-foreground"
+                c="secondary-foreground"
               >
                 {content.description}
               </Text>
