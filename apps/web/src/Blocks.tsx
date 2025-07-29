@@ -1,7 +1,5 @@
-import { useState } from "react";
-
 // Import block collections
-// import HeroBlocks from "./blocks/hero";
+import HeroBlocks from "./blocks/hero";
 // import NewHeroBlocks from "./blocks/new-hero";
 // import BlogBlocks from "./blocks/blog";
 // import BusinessBlocks from "./blocks/business";
@@ -13,7 +11,7 @@ import { useState } from "react";
 // import FeaturesBlocks from "./blocks/features";
 // import TeamBlocks from "./blocks/team";
 // import TestimonialBlocks from "./blocks/testimonial";
-import FooterBlocks from "./blocks/footer"; // Uncommented
+// import FooterBlocks from "./blocks/footer"; // Uncommented
 
 // Core UI Examples
 // import CoreUI from "./CoreUI";
@@ -25,15 +23,16 @@ function Blocks() {
         <div className="mb-8 text-center">
           <h1 className="text-4xl font-bold tracking-tight">UI8Kit Blocks</h1>
           <p className="mt-2 text-lg text-muted-foreground">
-            Factory-based component architecture showcase
+            Factory-based core ui component architecture showcase
           </p>
           <div className="mt-2 inline-block px-3 py-1 bg-secondary text-secondary-foreground rounded-md text-sm">
-            Footer Blocks Active
+            The Hero Blocks is Active
           </div>
         </div>
 
-        <div className="w-full">
-          <FooterBlocks />
+        <div className="w-full divide-y divide-border">
+          <HeroBlocks />
+          {/* <FooterBlocks /> */}
         </div>
       </div>
     </div>

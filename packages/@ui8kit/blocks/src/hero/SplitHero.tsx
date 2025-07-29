@@ -50,6 +50,7 @@ export interface SplitHeroProps {
   variant?: "media" | "gallery" | "simple" | "withTopButton";
   leftMedia?: boolean;
   useContainer?: boolean;
+  padding?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
   py?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
   gap?: "none" | "xs" | "sm" | "md" | "lg" | "xl";
   className?: string;
@@ -85,6 +86,7 @@ const heroContentHooks = {
                   <Icon
                     component="span"
                     size="md"
+                    c="primary-foreground"
                     lucideIcon={content.primaryButtonIcon || Info}
                   />
                 ) : undefined}
@@ -142,6 +144,7 @@ const heroContentHooks = {
                   <Icon
                     component="span"
                     size="md"
+                    c="primary-foreground"
                     lucideIcon={BookOpen}
                   />
                 }
@@ -211,6 +214,7 @@ const heroContentHooks = {
                   <Icon
                     component="span"
                     size="md"
+                    c="primary-foreground"
                     lucideIcon={Info}
                   />
                 }
@@ -247,6 +251,7 @@ export const SplitHero = forwardRef<HTMLElement, SplitHeroProps>(
     variant = "media",
     leftMedia = false,
     useContainer = true,
+    padding = "none",
     py = "2xl",
     gap = "xl",
     className,
@@ -270,7 +275,7 @@ export const SplitHero = forwardRef<HTMLElement, SplitHeroProps>(
                   width="100%"
                   height="100%"
                   fit="cover"
-                  rounded="md"
+                  rounded="lg"
                   className="w-full h-full"
                 />
               </Block>
@@ -306,7 +311,7 @@ export const SplitHero = forwardRef<HTMLElement, SplitHeroProps>(
     };
 
     // Choose content hooks based on variant
-    const contentHooks = heroContentHooks[variant] || heroContentHooks.media;
+    const contentHooks = heroContentHooks[variant as keyof typeof heroContentHooks] || heroContentHooks.media;
 
     return (
       <SplitBlock
@@ -316,6 +321,7 @@ export const SplitHero = forwardRef<HTMLElement, SplitHeroProps>(
         contentHooks={contentHooks}
         leftMedia={leftMedia}
         splitSection={!useContainer}
+        padding={padding}
         py={py}
         gap={gap}
         className={className}

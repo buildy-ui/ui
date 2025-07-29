@@ -25,7 +25,7 @@ export const Icon = forwardRef<HTMLElement, IconProps>(
     children,
     className,
     component = 'span',
-    size = 'md',
+    size = 'sm',
     lucideIcon: LucideIcon,
     // Spacing props  
     m, mx, my,

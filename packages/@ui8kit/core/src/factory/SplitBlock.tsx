@@ -90,6 +90,7 @@ const DefaultContentRenderer = ({ content }: { content: any }) => {
                 <Icon
                   component="span"
                   size="md"
+                  c="primary-foreground"
                   lucideIcon={content.primaryButtonIcon}
                 />
               ) : undefined}

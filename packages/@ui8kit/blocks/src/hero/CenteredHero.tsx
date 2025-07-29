@@ -89,6 +89,7 @@ const centeredHeroContentHooks = {
                   <Icon
                     component="span"
                     size="md"
+                    c="primary-foreground"
                     lucideIcon={content.primaryButtonIcon || Info}
                   />
                 ) : undefined}
@@ -169,6 +170,7 @@ const centeredHeroContentHooks = {
                   <Icon
                     component="span"
                     size="md"
+                    c="primary-foreground"
                     lucideIcon={Info}
                   />
                 }
@@ -306,6 +308,7 @@ const centeredHeroContentHooks = {
                   <Icon
                     component="span"
                     size="md"
+                    c="primary-foreground"
                     lucideIcon={ArrowRight}
                   />
                 }

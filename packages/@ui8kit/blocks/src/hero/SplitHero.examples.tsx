@@ -109,6 +109,23 @@ export const SplitHeroWithTopButtonExample = () => {
     badge: "Funding News",
     title: "We raised $50M to accelerate innovation",
     description: "With this new funding, we're doubling down on our mission to democratize technology and make powerful tools accessible to everyone.",
+    images: [
+      {
+        id: "1",
+        src: "https://images.unsplash.com/photo-1618477247222-acbdb0e159b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+        alt: "Portfolio showcase 1"
+      },
+      {
+        id: "2", 
+        src: "https://images.unsplash.com/photo-1618477388954-7852f32655ec?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+        alt: "Portfolio showcase 2"
+      },
+      {
+        id: "3",
+        src: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+        alt: "Portfolio showcase 3"
+      }
+    ],
     primaryButtonText: "Read Announcement",
     secondaryButtonText: "Join Our Journey",
     primaryButtonIcon: ExternalLink,
@@ -118,11 +135,11 @@ export const SplitHeroWithTopButtonExample = () => {
   return (
     <SplitHero
       content={content}
-      variant="withTopButton"
-      useContainer={false}
-      py="none"
-      gap="none"
-      className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-950 dark:to-indigo-950"
+      variant="gallery"
+      useContainer={true}
+      padding="xl"
+      gap="xl"
+      className="min-h-screen bg-gradient-to-br from-primary/10 to-secondary/10"
     />
   );
 };
@@ -147,11 +164,11 @@ export const SplitHeroSecurityExample = () => {
     <SplitHero
       content={content}
       variant="media"
-      leftMedia={false}
-      useContainer={false}
-      py="xl"
-      gap="none"
-      className="bg-gradient-to-r from-slate-900 to-slate-800 text-white"
+      leftMedia={true}
+      useContainer={true}
+      padding="xl"
+      gap="xl"
+      className="bg-gradient-to-r from-secondary to-primary/10"
     />
   );
 };
