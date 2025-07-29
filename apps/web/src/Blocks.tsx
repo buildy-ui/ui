@@ -1,6 +1,6 @@
-import HeroBlocks from "./blocks/hero";
+// import HeroBlocks from "./blocks/hero";
 // import NewHeroBlocks from "./blocks/new-hero";
-// import BlogBlocks from "./blocks/blog";
+import BlogBlocks from "./blocks/blog";
 // import BusinessBlocks from "./blocks/business";
 // import FeaturesBlocks from "./blocks/features";
 // import CTABlocks from "./blocks/cta";
@@ -17,11 +17,11 @@ function Blocks() {
   return (
     <div>
       <hr className=" border-primary/50 border-4 border-dashed" />
-      <HeroBlocks />
+      {/*<HeroBlocks />*/}
       <hr className=" border-primary/50 border-4 border-dashed" />
       {/*<NewHeroBlocks />*/}
       {/*<CoreUI />*/}
-      {/*<BlogBlocks />*/}
+      <BlogBlocks />
       {/*<BusinessBlocks />*/}
       {/*<CTABlocks />*/}
       {/*<Testimonials />*/}
