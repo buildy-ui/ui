@@ -1,18 +1,15 @@
 import { BookOpen, Code, Rocket, Info } from "lucide-react";
 import {
   Block,
-  Container,
   Stack,
   Grid,
   Group,
   Title,
   Text,
   Badge,
-  Button,
-  Image,
-  Icon
+  Image
 } from "@ui8kit/core";
-import { SplitBlock, createContentHook, defaultContentHooks, advancedContentHooks, type ContentHooks } from "@ui8kit/core";
+import { SplitBlock, createContentHook, defaultContentHooks, advancedContentHooks } from "@ui8kit/core";
 
 // ===== EXAMPLES =====
 
@@ -378,9 +375,9 @@ export const FeaturesSplitExample2 = () => {
 export const StackedLayoutExample = () => {
   const content = {
     badge: "Update",
-    title: "Vertical layout",
-    description: "Use a regular Stack instead of Grid for vertical layout.",
-    primaryButtonText: "Try"
+    title: "Split layout",
+    description: "Use a regular Stack instead of Grid for split layout.",
+    primaryButtonText: "Let's go"
   };
 
   const mediaSection = (
@@ -406,88 +403,11 @@ export const StackedLayoutExample = () => {
   );
 };
 
-// ===== FULLY CUSTOM CONTENT WITHOUT CONTAINER =====
-
-export const FullGridExample = () => {
-  const customContentSection = (
-    <Stack gap="xl" align="center">
-      <Title order={1} size="5xl" fw="bold" ta="center">
-        🎨 Full Grid Layout
-      </Title>
-      <Text size="xl" ta="center" c="secondary-foreground">
-        Grid directly after Block without Container
-      </Text>
-      <Block 
-        bg="primary" 
-        rounded="xl"
-        className="w-[200px] h-[100px] flex items-center justify-center"
-        data-class="demo-block"
-      >
-        <Text c="primary-foreground" fw="bold">No Container!</Text>
-      </Block>
-    </Stack>
-  );
-
-  const customMediaSection = (
-    <Stack gap="md" align="center">
-      <Title order={3} ta="center">Direct Grid Media</Title>
-      <Grid cols="1-2-3" gap="sm">
-        {[1, 2, 3, 4, 5, 6].map((i) => (
-          <Block 
-            key={i}
-            p="lg" 
-            bg="secondary" 
-            rounded="md" 
-            className="flex items-center justify-center"
-            data-class="grid-item"
-          >
-            <Text fw="bold">{i}</Text>
-          </Block>
-        ))}
-      </Grid>
-    </Stack>
-  );
-
-  return (
-    <SplitBlock
-      mediaSection={customMediaSection}
-      contentSection={customContentSection}
-      splitSection={true} // Grid directly after Block
-      leftMedia={true}
-    />
-  );
-};
-
-// Using predefined hooks
-export const PresetHooksExample = () => {
-  const content = {
-    badge: "Preset",
-    title: "Using predefined hooks"
-  };
-
-  const mediaSection = (
-    <Block p="xl" bg="muted" rounded="lg">
-      <Text ta="center" fw="bold">Media with Background</Text>
-    </Block>
-  );
-
-  return (
-    <SplitBlock
-      mediaSection={mediaSection}
-      content={content}
-      contentHooks={defaultContentHooks.titleOnly}
-      splitSection={false}
-    />
-  );
-};
-
 // Export all examples
 export const splitBlockExamples = {
   hero: HeroSplitExample,
   gallery: GallerySplitExample,
   features: FeaturesSplitExample,
   features2: FeaturesSplitExample2,
-  stacked: StackedLayoutExample,
-  fullGrid: FullGridExample,
-  presetHooks: PresetHooksExample
+  stacked: StackedLayoutExample
 }; 

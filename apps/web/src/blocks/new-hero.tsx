@@ -4,8 +4,6 @@ import {
   FeaturesSplitExample,
   FeaturesSplitExample2,
   StackedLayoutExample,
-  FullGridExample,
-  PresetHooksExample
  } from "@ui8kit/blocks/factory";
 
 function NewHeroBlocks() {
@@ -16,8 +14,6 @@ function NewHeroBlocks() {
         <FeaturesSplitExample2 />
         <FeaturesSplitExample />
         <StackedLayoutExample />
-        <FullGridExample />
-        <PresetHooksExample />
     </div>
   );
 }

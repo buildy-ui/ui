@@ -1,6 +1,6 @@
 import { forwardRef, ElementType, ReactNode } from "react";
 import { cn } from "../../core/utils";
-import { BaseBox } from "../../core/ui";
+import { Box as BaseBox } from "../../core/ui";
 import {
   spacingVariants,
   roundedVariants,
@@ -9,23 +9,23 @@ import {
   layoutVariants,
   borderVariants,
   flexVariants,
-  type SpacingProps,
+  type VariantSpacingProps,
   type RoundedProps,
   type ShadowProps,
   type ColorProps,
-  type LayoutProps,
+  type VariantLayoutProps,
   type BorderProps,
-  type FlexProps
+  type VariantFlexProps
 } from "../../core/variants";
 
 export interface BoxProps 
-  extends SpacingProps,
+  extends VariantSpacingProps,
     RoundedProps,
     ShadowProps,
     ColorProps,
-    LayoutProps,
+    VariantLayoutProps,
     BorderProps,
-    FlexProps {
+    VariantFlexProps {
   component?: ElementType;
   className?: string;
   children?: ReactNode;
@@ -47,11 +47,11 @@ export const Box = forwardRef<HTMLElement, BoxProps>(
     // Color props
     bg, c, borderColor,
     // Layout props
-    display, w, h, minH, pos, z, overflow,
+    display, w, h, minH, position, z, overflow,
     // Border props
-    border, borderT, borderR, borderB, borderL,
+    border, borderTop, borderBottom, borderLeft, borderRight,
     // Flex props
-    flex, direction, align, justify, wrap, gap,
+    direction, align, justify, wrap, gap,
     ...props 
   }, ref) => {
     return (
@@ -71,11 +71,11 @@ export const Box = forwardRef<HTMLElement, BoxProps>(
           // Apply color variants
           colorVariants({ bg, c, borderColor }),
           // Apply layout variants
-          layoutVariants({ display, w, h, minH, pos, z, overflow }),
+          layoutVariants({ display, w, h, minH, position, z, overflow }),
           // Apply border variants
-          borderVariants({ border, borderT, borderR, borderB, borderL }),
+          borderVariants({ border, borderTop, borderBottom, borderLeft, borderRight }),
           // Apply flex variants
-          flexVariants({ flex, direction, align, justify, wrap, gap }),
+          flexVariants({ direction, align, justify, wrap, gap }),
           className
         )}
         {...props}

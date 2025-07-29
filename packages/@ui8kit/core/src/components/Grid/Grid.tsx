@@ -1,10 +1,11 @@
 import { forwardRef, ReactNode, ElementType } from "react";
 import {
   Grid as BaseGrid,
+  Element as BaseElement,
+  gridVariants,
   spacingVariants,
   colorVariants,
   layoutVariants,
-  gridVariants,
   type VariantSpacingProps,
   type ColorProps,
   type VariantLayoutProps,
@@ -12,49 +13,56 @@ import {
   cn
 } from "../../core";
 
+// Main Grid component interface
 export interface GridProps 
-  extends React.HTMLAttributes<HTMLElement>,
-    Pick<VariantSpacingProps, 'p' | 'px' | 'py' | 'm' | 'mx' | 'my'>,
-    Pick<ColorProps, 'bg' | 'c'>,
-    Pick<VariantLayoutProps, 'w' | 'h'>,
-    VariantGridProps {
-  children: ReactNode;
-  component?: ElementType;
+  extends VariantSpacingProps,
+    ColorProps,
+    VariantLayoutProps {
+  cols?: "1" | "2" | "3" | "4" | "5" | "6" | "1-2" | "1-3" | "1-4" | "1-5" | "1-6" | "2-3" | "2-4" | "2-5" | "2-6" | "3-4" | "3-5" | "3-6" | "4-5" | "4-6" | "5-6" | "1-2-3" | "1-2-4" | "1-3-4" | "2-3-4" | "1-2-3-4";
+  gap?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
+  align?: "start" | "center" | "end" | "stretch";
+  justify?: "start" | "center" | "end" | "between" | "around" | "evenly";
+  className?: string;
+  children?: ReactNode;
+  [key: string]: any;
 }
 
-export const Grid = forwardRef<HTMLElement, GridProps>(
+// Enhanced Grid component with prop forwarding
+const Grid = forwardRef<HTMLElement, GridProps>(
   ({ 
     children, 
     className,
-    component = 'div',
-    cols = '1-2-3',
-    gap = 'md',
-    align = 'stretch',
-    justify = 'stretch',
+    cols = "1",
+    gap = "md",
+    align = "stretch",
+    justify = "start",
     // Spacing props
-    p, px, py,
-    m, mx, my,
+    p, px, py, pt, pb, pl, pr,
+    m, mx, my, mt, mb, ml, mr,
     // Color props
-    bg,
-    c,
+    bg, c,
     // Layout props
-    w,
-    h,
+    w, h,
     ...props 
   }, ref) => {
     return (
       <BaseGrid
         ref={ref}
-        component={component}
-        data-class="grid"
         className={cn(
-          // Apply CVA variants
+          // Apply grid variants
           gridVariants({ cols, gap, align, justify }),
-          spacingVariants({ p, px, py, m, mx, my }),
+          // Apply spacing variants
+          spacingVariants({
+            p, px, py, pt, pb, pl, pr,
+            m, mx, my, mt, mb, ml, mr
+          }),
+          // Apply color variants
           colorVariants({ bg, c }),
+          // Apply layout variants  
           layoutVariants({ w, h }),
           className
         )}
+        data-class="grid"
         {...props}
       >
         {children}
@@ -65,36 +73,26 @@ export const Grid = forwardRef<HTMLElement, GridProps>(
 
 Grid.displayName = "Grid";
 
-// Grid.Col component for spanning columns
-export interface GridColProps 
-  extends React.HTMLAttributes<HTMLElement> {
-  children: ReactNode;
-  component?: ElementType;
-  span?: number | 'full';
-  start?: number | 'auto';
-  end?: number | 'auto';
-  order?: number | 'first' | 'last' | 'none';
+// GridCol component interface
+export interface GridColProps {
+  span?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | "auto" | "full";
+  start?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | "auto";
+  end?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | "auto";
+  order?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | "first" | "last" | "none";
+  className?: string;
+  children?: ReactNode;
+  [key: string]: any;
 }
 
-export const GridCol = forwardRef<HTMLElement, GridColProps>(
-  ({ 
-    children, 
-    className,
-    component = 'div',
-    span,
-    start,
-    end,
-    order,
-    ...props 
-  }, ref) => {
-    const Component = component as ElementType;
-
+// GridCol component for grid items
+const GridCol = forwardRef<HTMLElement, GridColProps>(
+  ({ children, className, span, start, end, order, ...props }, ref) => {
     return (
-      <Component
+      <BaseElement
+        component="div"
         ref={ref}
-        data-class="grid-col"
         className={cn(
-          // Column span utility classes
+          // Span utility classes
           span === 1 && 'col-span-1',
           span === 2 && 'col-span-2',
           span === 3 && 'col-span-3',
@@ -107,9 +105,10 @@ export const GridCol = forwardRef<HTMLElement, GridColProps>(
           span === 10 && 'col-span-10',
           span === 11 && 'col-span-11',
           span === 12 && 'col-span-12',
+          span === 'auto' && 'col-auto',
           span === 'full' && 'col-span-full',
           
-          // Column start utility classes
+          // Start utility classes
           start === 1 && 'col-start-1',
           start === 2 && 'col-start-2',
           start === 3 && 'col-start-3',
@@ -122,9 +121,10 @@ export const GridCol = forwardRef<HTMLElement, GridColProps>(
           start === 10 && 'col-start-10',
           start === 11 && 'col-start-11',
           start === 12 && 'col-start-12',
+          start === 13 && 'col-start-13',
           start === 'auto' && 'col-start-auto',
           
-          // Column end utility classes
+          // End utility classes
           end === 1 && 'col-end-1',
           end === 2 && 'col-end-2',
           end === 3 && 'col-end-3',
@@ -159,10 +159,11 @@ export const GridCol = forwardRef<HTMLElement, GridColProps>(
           
           className
         )}
+        data-class="grid-col"
         {...props}
       >
         {children}
-      </Component>
+      </BaseElement>
     );
   }
 );
@@ -174,5 +175,5 @@ const CompoundGrid = Object.assign(Grid, {
   Col: GridCol,
 });
 
-//export { CompoundGrid as Grid };
-//export { GridCol }; 
+// Export the Grid component and types
+export { CompoundGrid as Grid, GridCol }; 

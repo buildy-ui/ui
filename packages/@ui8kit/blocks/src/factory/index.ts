@@ -4,7 +4,5 @@ export {
   GallerySplitExample,
   FeaturesSplitExample,
   FeaturesSplitExample2,
-  StackedLayoutExample,
-  FullGridExample,
-  PresetHooksExample
+  StackedLayoutExample
 } from "./SplitBlock.examples";
