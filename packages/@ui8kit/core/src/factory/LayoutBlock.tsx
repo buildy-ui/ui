@@ -40,6 +40,7 @@ export interface LayoutBlockProps {
 
   // Grid settings (for layout="grid")
   cols?: "1" | "2" | "3" | "4" | "5" | "6" | "1-2" | "1-3" | "1-4" | "1-5" | "1-6" | "2-3" | "2-4" | "2-5" | "2-6" | "3-4" | "3-5" | "3-6" | "4-5" | "4-6" | "5-6" | "1-2-3" | "1-2-4" | "1-3-4" | "2-3-4" | "1-2-3-4";
+  gridCols?: "1" | "2" | "3" | "4" | "5" | "6" | "1-2" | "1-3" | "1-4" | "1-5" | "1-6" | "2-3" | "2-4" | "2-5" | "2-6" | "3-4" | "3-5" | "3-6" | "4-5" | "4-6" | "5-6" | "1-2-3" | "1-2-4" | "1-3-4" | "2-3-4" | "1-2-3-4";
   gap?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
   align?: "start" | "center" | "end" | "stretch";
   justify?: "start" | "center" | "end" | "between" | "around" | "evenly";
@@ -47,6 +48,7 @@ export interface LayoutBlockProps {
   // Flex settings (for layout="flex")
   direction?: "row" | "col" | "row-reverse" | "col-reverse";
   wrap?: "wrap" | "nowrap" | "wrap-reverse";
+  flexWrap?: boolean;
 
   // Stack settings (for layout="stack")
   stackAlign?: "start" | "center" | "end" | "stretch";
@@ -85,8 +87,10 @@ export interface LayoutBlockProps {
 const DefaultHeaderRenderer = ({ content, align = "center" }: { content: any; align?: "start" | "center" | "end" }) => {
   if (!content) return null;
 
+  const textAlign = align === "start" ? "left" : align === "end" ? "right" : "center";
+
   return (
-    <Stack gap="md" align={align} ta={align} className="max-w-2xl">
+    <Stack gap="md" align={align} ta={textAlign} className="max-w-2xl">
       {content.badge && (
         <Badge variant="secondary" size="default" rounded="md">
           {content.badge}
@@ -98,7 +102,7 @@ const DefaultHeaderRenderer = ({ content, align = "center" }: { content: any; al
           order={2}
           size="3xl"
           fw="bold"
-          ta={align}
+          ta={textAlign}
         >
           {content.title}
         </Title>
@@ -108,7 +112,7 @@ const DefaultHeaderRenderer = ({ content, align = "center" }: { content: any; al
         <Text
           size="lg"
           c="secondary-foreground"
-          ta={align}
+          ta={textAlign}
         >
           {content.description}
         </Text>
@@ -119,9 +123,9 @@ const DefaultHeaderRenderer = ({ content, align = "center" }: { content: any; al
 
 // Default item renderers for different layouts
 const DefaultItemRenderers = {
-  // Grid item with card
+  // Card-based grid item
   gridCard: (item: any, index: number) => (
-    <Card key={item.id || index} p="lg" rounded="lg" shadow="sm" bg="card">
+    <Card p="lg" rounded="md" shadow="sm" className="h-full">
       <Stack gap="md" align="start">
         {item.image && (
           <Image
@@ -130,10 +134,10 @@ const DefaultItemRenderers = {
             width="100%"
             height="200px"
             fit="cover"
-            rounded="md"
+            rounded="sm"
           />
         )}
-        
+
         {item.lucideIcon && (
           <Box 
             p="sm" 
@@ -166,7 +170,7 @@ const DefaultItemRenderers = {
 
   // Simple grid item
   gridSimple: (item: any, index: number) => (
-    <Stack key={item.id || index} gap="md" align="start">
+    <Stack gap="md" align="start">
       {item.lucideIcon && (
         <Box 
           p="sm" 
@@ -198,7 +202,7 @@ const DefaultItemRenderers = {
 
   // Flex/Stack item
   flexItem: (item: any, index: number) => (
-    <Group key={item.id || index} gap="md" align="start">
+    <Group gap="md" align="start">
       {item.lucideIcon && (
         <Box 
           p="sm" 
@@ -257,18 +261,20 @@ export const defaultLayoutContentHooks = {
 };
 
 export const LayoutBlock = forwardRef<HTMLElement, LayoutBlockProps>(
-  ({
+  ({ 
     layout = "grid",
     useContainer = true,
     containerSize = "lg",
-    padding = "md",
-    py = "lg",
-    cols = "1-2-3",
+    padding = "responsive",
+    py = "xl",
+    cols,
+    gridCols, // Add gridCols prop
     gap = "lg",
-    align = "stretch",
+    align = "start",
     justify = "start",
     direction = "row",
     wrap = "wrap",
+    flexWrap, // Add flexWrap prop
     stackAlign = "start",
     showHeader = true,
     headerAlign = "center",
@@ -278,23 +284,16 @@ export const LayoutBlock = forwardRef<HTMLElement, LayoutBlockProps>(
     ...props
   }, ref) => {
 
+    // Use gridCols if provided, fallback to cols
+    const finalCols = gridCols || cols || "1-2-3";
+    const finalWrap = flexWrap ? "wrap" : wrap;
+
     // Choose default content hooks based on layout
-    const defaultHooks = contentHooks || (() => {
-      switch (layout) {
-        case "grid": return defaultLayoutContentHooks.gridSimple;
-        case "flex": return defaultLayoutContentHooks.flex;
-        case "stack": return defaultLayoutContentHooks.stack;
-        default: return defaultLayoutContentHooks.gridSimple;
-      }
-    })();
+    const defaultHooks = contentHooks || defaultLayoutContentHooks[layout] || defaultLayoutContentHooks.gridSimple;
 
     // Render header
     const renderHeader = () => {
-      if (!showHeader || !content) return null;
-      
-      if (defaultHooks.beforeHeader) {
-        return defaultHooks.beforeHeader(content);
-      }
+      if (!showHeader) return null;
       
       if (defaultHooks.header) {
         return defaultHooks.header(content);
@@ -305,19 +304,23 @@ export const LayoutBlock = forwardRef<HTMLElement, LayoutBlockProps>(
 
     // Render items based on layout
     const renderItems = () => {
-      if (!content?.items) return null;
+      if (!content?.items || content.items.length === 0) return null;
 
       const itemRenderer = defaultHooks.item || DefaultItemRenderers.gridSimple;
-      const items = content.items.map((item: any, index: number) => 
-        itemRenderer(item, index)
-      );
+      
+      // Add key prop to mapped items
+      const items = content.items.map((item: any, index: number) => (
+        <div key={item.id || `item-${index}`}>
+          {itemRenderer(item, index)}
+        </div>
+      ));
 
       // Wrap items in appropriate layout component
       switch (layout) {
         case "grid":
           return (
             <Grid 
-              cols={cols} 
+              cols={finalCols} 
               gap={gap} 
               align={align} 
               justify={justify}
@@ -330,11 +333,11 @@ export const LayoutBlock = forwardRef<HTMLElement, LayoutBlockProps>(
         case "flex":
           return (
             <Group 
-              direction={direction}
-              gap={gap}
-              align={align}
+              gap={gap} 
+              align={align} 
               justify={justify}
-              wrap={wrap}
+              wrap={finalWrap}
+              direction={direction}
               data-class="layout-flex"
             >
               {items}
@@ -344,7 +347,7 @@ export const LayoutBlock = forwardRef<HTMLElement, LayoutBlockProps>(
         case "stack":
           return (
             <Stack 
-              gap={gap}
+              gap={gap} 
               align={stackAlign}
               data-class="layout-stack"
             >
@@ -369,6 +372,28 @@ export const LayoutBlock = forwardRef<HTMLElement, LayoutBlockProps>(
       </Stack>
     );
 
+    // Filter out non-DOM props before spreading
+    const { 
+      layout: _layout,
+      useContainer: _useContainer,
+      containerSize: _containerSize,
+      padding: _padding,
+      cols: _cols,
+      gridCols: _gridCols,
+      gap: _gap,
+      align: _align,
+      justify: _justify,
+      direction: _direction,
+      wrap: _wrap,
+      flexWrap: _flexWrap,
+      stackAlign: _stackAlign,
+      showHeader: _showHeader,
+      headerAlign: _headerAlign,
+      content: _content,
+      contentHooks: _contentHooks,
+      ...domProps
+    } = props;
+
     // Render with or without container
     return (
       <Block
@@ -378,7 +403,7 @@ export const LayoutBlock = forwardRef<HTMLElement, LayoutBlockProps>(
         py={py}
         className={className}
         data-class="layout-block"
-        {...props}
+        {...domProps}
       >
         {useContainer ? (
           <Container size={containerSize} px={padding} centered>

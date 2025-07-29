@@ -1,0 +1,385 @@
+import { forwardRef } from "react";
+import { 
+  Camera,
+  Image as ImageIcon,
+  Grid3x3,
+  Play,
+  ZoomIn,
+  Download,
+  Share2,
+  Eye
+} from "lucide-react";
+import {
+  Block,
+  Stack,
+  Group,
+  Title,
+  Text,
+  Badge,
+  Button,
+  Image,
+  Icon,
+  Box,
+  Grid
+} from "@ui8kit/core";
+import { 
+  SplitBlock, 
+  createContentHook, 
+  defaultContentHooks, 
+  advancedContentHooks,
+  type ContentHooks 
+} from "@ui8kit/core/factory/SplitBlock";
+
+// Gallery interfaces
+export interface GalleryImage {
+  id: string;
+  src: string;
+  alt: string;
+  title?: string;
+  description?: string;
+  category?: string;
+}
+
+export interface GalleryStats {
+  totalImages?: string;
+  categories?: string;
+  views?: string;
+}
+
+// Split Gallery data interface
+export interface SplitGalleryData {
+  title: string;
+  subtitle?: string;
+  description?: string;
+  badge?: string;
+  images: GalleryImage[];
+  stats?: GalleryStats;
+  primaryButtonText?: string;
+  secondaryButtonText?: string;
+}
+
+export interface SplitGalleryProps {
+  content: SplitGalleryData;
+  variant?: "showcase" | "portfolio";
+  leftMedia?: boolean;
+  useContainer?: boolean;
+  py?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
+  gap?: "none" | "xs" | "sm" | "md" | "lg" | "xl";
+  className?: string;
+}
+
+// Custom content hooks for different split gallery variants
+const splitGalleryContentHooks = {
+  // Showcase gallery - focused on presentation
+  showcase: createContentHook({
+    content: (content: SplitGalleryData) => (
+      <Stack gap="xl" align="start">
+        {/* Badge */}
+        {content.badge && (
+          <Badge variant="secondary" size="lg" rounded="md" className="px-lg py-sm">
+            <Icon component="span" size="xs" lucideIcon={Camera} />
+            {content.badge}
+          </Badge>
+        )}
+
+        {/* Title */}
+        <Title order={1} size="5xl" fw="bold" className="leading-tight">
+          {content.title}
+        </Title>
+
+        {/* Subtitle */}
+        {content.subtitle && (
+          <Text size="xl" c="secondary-foreground" className="leading-relaxed">
+            {content.subtitle}
+          </Text>
+        )}
+
+        {/* Description */}
+        {content.description && (
+          <Text size="lg" c="secondary-foreground" className="leading-relaxed">
+            {content.description}
+          </Text>
+        )}
+
+        {/* Stats */}
+        {content.stats && (
+          <Group gap="xl" align="center">
+            {content.stats.totalImages && (
+              <Group gap="xs" align="center">
+                <Icon component="span" size="sm" lucideIcon={ImageIcon} c="primary" />
+                <Stack gap="xs" align="start">
+                  <Text size="lg" fw="bold">
+                    {content.stats.totalImages}
+                  </Text>
+                  <Text size="xs" c="secondary-foreground" className="uppercase tracking-wide">
+                    Images
+                  </Text>
+                </Stack>
+              </Group>
+            )}
+            {content.stats.categories && (
+              <Group gap="xs" align="center">
+                <Icon component="span" size="sm" lucideIcon={Grid3x3} c="primary" />
+                <Stack gap="xs" align="start">
+                  <Text size="lg" fw="bold">
+                    {content.stats.categories}
+                  </Text>
+                  <Text size="xs" c="secondary-foreground" className="uppercase tracking-wide">
+                    Categories
+                  </Text>
+                </Stack>
+              </Group>
+            )}
+            {content.stats.views && (
+              <Group gap="xs" align="center">
+                <Icon component="span" size="sm" lucideIcon={Eye} c="primary" />
+                <Stack gap="xs" align="start">
+                  <Text size="lg" fw="bold">
+                    {content.stats.views}
+                  </Text>
+                  <Text size="xs" c="secondary-foreground" className="uppercase tracking-wide">
+                    Views
+                  </Text>
+                </Stack>
+              </Group>
+            )}
+          </Group>
+        )}
+
+        {/* Action Buttons */}
+        <Group gap="md" className="w-full">
+          {content.primaryButtonText && (
+            <Button size="lg" variant="default" className="flex-1">
+              <Icon component="span" size="sm" lucideIcon={ZoomIn} />
+              {content.primaryButtonText}
+            </Button>
+          )}
+          {content.secondaryButtonText && (
+            <Button size="lg" variant="outline">
+              <Icon component="span" size="sm" lucideIcon={Share2} />
+              {content.secondaryButtonText}
+            </Button>
+          )}
+        </Group>
+
+        {/* Quick Actions */}
+        <Group gap="sm">
+          <Button size="sm" variant="ghost">
+            <Icon component="span" size="xs" lucideIcon={Download} />
+            Download All
+          </Button>
+          <Button size="sm" variant="ghost">
+            <Icon component="span" size="xs" lucideIcon={Play} />
+            Slideshow
+          </Button>
+        </Group>
+      </Stack>
+    )
+  }),
+
+  // Portfolio gallery - focused on professional presentation
+  portfolio: createContentHook({
+    content: (content: SplitGalleryData) => (
+      <Stack gap="lg" align="start">
+        {/* Portfolio Header */}
+        <Stack gap="md" align="start">
+          {content.badge && (
+            <Text size="sm" fw="semibold" c="primary" className="uppercase tracking-wide">
+              {content.badge}
+            </Text>
+          )}
+
+          <Title order={1} size="4xl" fw="bold" className="leading-tight">
+            {content.title}
+          </Title>
+
+          {content.description && (
+            <Text size="lg" c="secondary-foreground">
+              {content.description}
+            </Text>
+          )}
+        </Stack>
+
+        {/* Portfolio Meta */}
+        {content.stats && (
+          <Box className="bg-muted p-lg rounded-lg w-full">
+            <Group gap="lg" align="center" justify="between">
+              {content.stats.totalImages && (
+                <Stack gap="xs" align="center">
+                  <Text size="md" fw="semibold">
+                    {content.stats.totalImages}
+                  </Text>
+                  <Text size="xs" c="secondary-foreground">
+                    Projects
+                  </Text>
+                </Stack>
+              )}
+              {content.stats.categories && (
+                <Stack gap="xs" align="center">
+                  <Text size="md" fw="semibold">
+                    {content.stats.categories}
+                  </Text>
+                  <Text size="xs" c="secondary-foreground">
+                    Categories
+                  </Text>
+                </Stack>
+              )}
+              {content.stats.views && (
+                <Stack gap="xs" align="center">
+                  <Text size="md" fw="semibold">
+                    {content.stats.views}
+                  </Text>
+                  <Text size="xs" c="secondary-foreground">
+                    Total Views
+                  </Text>
+                </Stack>
+              )}
+            </Group>
+          </Box>
+        )}
+
+        {/* Featured Categories */}
+        {content.images.length > 0 && (
+          <Stack gap="sm" className="w-full">
+            <Text size="sm" fw="semibold" c="secondary-foreground" className="uppercase tracking-wide">
+              Featured Work
+            </Text>
+            <Group gap="xs" className="flex-wrap">
+              {Array.from(new Set(content.images.map(img => img.category).filter(Boolean))).slice(0, 4).map((category, index) => (
+                <Badge key={index} variant="outline" size="sm" rounded="md">
+                  {category}
+                </Badge>
+              ))}
+            </Group>
+          </Stack>
+        )}
+
+        {/* Portfolio Actions */}
+        <Stack gap="sm" className="w-full">
+          {content.primaryButtonText && (
+            <Button size="lg" variant="default" className="w-full">
+              <Icon component="span" size="sm" lucideIcon={ImageIcon} />
+              {content.primaryButtonText}
+            </Button>
+          )}
+          
+          <Group gap="sm">
+            {content.secondaryButtonText && (
+              <Button size="md" variant="outline" className="flex-1">
+                <Icon component="span" size="xs" lucideIcon={Share2} />
+                {content.secondaryButtonText}
+              </Button>
+            )}
+            <Button size="md" variant="outline" className="flex-1">
+              <Icon component="span" size="xs" lucideIcon={Download} />
+              Export
+            </Button>
+          </Group>
+        </Stack>
+      </Stack>
+    )
+  })
+};
+
+export const SplitGallery = forwardRef<HTMLElement, SplitGalleryProps>(
+  ({ 
+    content, 
+    variant = "showcase",
+    leftMedia = false,
+    useContainer = true,
+    py = "xl",
+    gap = "xl",
+    className,
+    ...props 
+  }, ref) => {
+    
+    // Create gallery media section (inspired by SplitHeroGalleryExample)
+    const createMediaSection = () => {
+      const displayImages = content.images.slice(0, 4); // Show max 4 images in split
+      
+      return (
+        <Grid cols="1-2" gap="md" className="h-full">
+          {displayImages.map((image, index) => (
+            <Block 
+              key={image.id} 
+              className={`relative overflow-hidden group cursor-pointer ${
+                index === 0 ? "row-span-2" : ""
+              }`}
+              data-class="gallery-item"
+            >
+              <Image
+                src={image.src}
+                alt={image.alt}
+                width="100%"
+                height="100%"
+                fit="cover"
+                rounded="md"
+                className="w-full h-full transition-transform duration-300 group-hover:scale-105"
+              />
+              
+              {/* Hover Overlay */}
+              <Box className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <Group gap="sm">
+                  <Button size="sm" variant="secondary" className="bg-white/20 backdrop-blur-sm border-white/30 text-white hover:bg-white/30">
+                    <Icon component="span" size="xs" lucideIcon={ZoomIn} />
+                  </Button>
+                  <Button size="sm" variant="secondary" className="bg-white/20 backdrop-blur-sm border-white/30 text-white hover:bg-white/30">
+                    <Icon component="span" size="xs" lucideIcon={Share2} />
+                  </Button>
+                </Group>
+              </Box>
+
+              {/* Image Title Overlay */}
+              {image.title && (
+                <Box className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-md">
+                  <Text size="sm" fw="medium" c="white">
+                    {image.title}
+                  </Text>
+                </Box>
+              )}
+            </Block>
+          ))}
+        </Grid>
+      );
+    };
+
+    // Choose content hooks based on variant
+    const contentHooks = splitGalleryContentHooks[variant] || splitGalleryContentHooks.showcase;
+
+    return (
+      <SplitBlock
+        ref={ref}
+        mediaSection={createMediaSection()}
+        content={content}
+        contentHooks={contentHooks}
+        leftMedia={leftMedia}
+        splitSection={!useContainer}
+        py={py}
+        gap={gap}
+        className={className}
+        {...props}
+      />
+    );
+  }
+);
+
+SplitGallery.displayName = "SplitGallery";
+
+// Export template configurations
+export const splitGalleryTemplates = {
+  showcase: {
+    id: "splitGalleryShowcase",
+    name: "Showcase Split Gallery",
+    description: "Split layout gallery focused on visual presentation",
+    component: SplitGallery,
+    defaultProps: { variant: "showcase" as const }
+  },
+  
+  portfolio: {
+    id: "splitGalleryPortfolio",
+    name: "Portfolio Split Gallery",
+    description: "Professional split layout for portfolio galleries",
+    component: SplitGallery,
+    defaultProps: { variant: "portfolio" as const }
+  }
+};
