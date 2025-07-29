@@ -8,6 +8,11 @@ export default {
   ],
   prefix: "",
   theme: {
+    fontFamily: {
+      sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
+      mono: ['var(--font-mono)', 'monospace'],
+      serif: ['var(--font-serif)', 'serif'],
+    },
     container: {
       center: true,
       padding: "2rem",

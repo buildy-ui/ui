@@ -40,7 +40,7 @@ export const Icon = forwardRef<HTMLElement, IconProps>(
         data-class="icon"
         className={cn(
           // Base icon styles
-          'inline-block',
+          'inline-block flex items-center justify-center',
           // Apply CVA variants
           iconSizeVariants({ size }),
           spacingVariants({ m, mx, my }),
@@ -49,7 +49,16 @@ export const Icon = forwardRef<HTMLElement, IconProps>(
         )}
         {...props}
       >
-        {LucideIcon ? <LucideIcon /> : children}
+        {LucideIcon ? (
+          <LucideIcon
+            className={cn(
+              iconSizeVariants({ size }),
+              spacingVariants({ m, mx, my }),
+              colorVariants({ c }),
+              className
+            )}
+          />
+        ) : children}
       </BaseIcon>
     );
   }

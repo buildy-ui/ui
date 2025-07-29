@@ -29,6 +29,7 @@ export interface ButtonProps
   rightSection?: ReactNode;
   loading?: boolean;
   disabled?: boolean;
+  mr?: 1 | 2 | 3 | 4 | 0;
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -43,6 +44,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     disabled = false,
     // Spacing props  
     m, mx, my,
+    mr = 1,
     // Layout props
     w,
     // Content props
@@ -65,6 +67,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           roundedVariants({ rounded }),
           shadowVariants({ shadow }),
           layoutVariants({ w }),
+          mr = mr,
           // Loading state
           loading && 'cursor-wait',
           className
@@ -74,17 +77,17 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {loading && (
           <div 
             data-class="button-loading-spinner"
-            className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" 
+            className={`mr-${mr} h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent`} 
           />
         )}
         {!loading && leftSection && (
-          <span data-class="button-left-section" className="mr-2">
+          <span data-class="button-left-section" className={`mr-${mr}`}>
             {leftSection}
           </span>
         )}
         {children}
         {!loading && rightSection && (
-          <span data-class="button-right-section" className="ml-2">
+          <span data-class="button-right-section" className={`ml-${mr}`}>
             {rightSection}
           </span>
         )}

@@ -14,8 +14,6 @@ import {
 import { 
   LayoutBlock,
   createLayoutContentHook,
-  defaultLayoutContentHooks,
-  type LayoutContentHooks
 } from "@ui8kit/core";
 
 // Centered Hero data interface
@@ -55,7 +53,7 @@ const centeredHeroContentHooks = {
     header: (content: CenteredHeroData) => (
       <Stack gap="xl" align="center" ta="center" className="max-w-4xl mx-auto">
         {content.badge && (
-          <Badge variant="secondary" size="default" rounded="md">
+          <Badge variant="secondary" size="default" rounded="full">
             {content.badge}
           </Badge>
         )}
@@ -70,8 +68,7 @@ const centeredHeroContentHooks = {
           {content.title}
         </Title>
 
-        <Text 
-          size="xl" 
+        <Text
           c="secondary-foreground" 
           ta="center" 
           className="max-w-[42rem]"
@@ -83,12 +80,10 @@ const centeredHeroContentHooks = {
           <Group gap="md" align="center">
             {content.primaryButtonText && (
               <Button
-                size="lg"
                 variant="default"
                 leftSection={content.primaryButtonIcon ? (
                   <Icon
                     component="span"
-                    size="md"
                     c="primary-foreground"
                     lucideIcon={content.primaryButtonIcon || Info}
                   />
@@ -101,11 +96,9 @@ const centeredHeroContentHooks = {
             {content.secondaryButtonText && (
               <Button
                 variant="outline"
-                size="lg"
                 leftSection={content.secondaryButtonIcon ? (
                   <Icon
                     component="span"
-                    size="md"
                     lucideIcon={content.secondaryButtonIcon || Rocket}
                   />
                 ) : undefined}
@@ -126,7 +119,6 @@ const centeredHeroContentHooks = {
         <Button variant="outline" size="sm" rounded="full">
           <Icon
             component="span"
-            size="xs"
             lucideIcon={ExternalLink}
           />
           {content.topButton.text}
@@ -136,7 +128,7 @@ const centeredHeroContentHooks = {
     header: (content: CenteredHeroData) => (
       <Stack gap="xl" align="center" ta="center" className="max-w-4xl mx-auto">
         {content.badge && (
-          <Badge variant="secondary" size="default" rounded="md">
+          <Badge variant="secondary" size="default" rounded="lg">
             {content.badge}
           </Badge>
         )}
@@ -151,8 +143,7 @@ const centeredHeroContentHooks = {
           {content.title}
         </Title>
 
-        <Text 
-          size="xl" 
+        <Text
           c="secondary-foreground" 
           ta="center" 
           className="max-w-[42rem]"
@@ -164,12 +155,10 @@ const centeredHeroContentHooks = {
           <Group gap="md" align="center">
             {content.primaryButtonText && (
               <Button
-                size="lg"
                 variant="default"
                 leftSection={
                   <Icon
                     component="span"
-                    size="md"
                     c="primary-foreground"
                     lucideIcon={Info}
                   />
@@ -182,11 +171,9 @@ const centeredHeroContentHooks = {
             {content.secondaryButtonText && (
               <Button
                 variant="outline"
-                size="lg"
                 leftSection={
                   <Icon
                     component="span"
-                    size="md"
                     lucideIcon={Rocket}
                   />
                 }
@@ -214,8 +201,7 @@ const centeredHeroContentHooks = {
           {content.title}
         </Title>
 
-        <Text 
-          size="xl" 
+        <Text
           c="secondary-foreground" 
           ta="center" 
           className="max-w-[42rem]"
@@ -227,7 +213,6 @@ const centeredHeroContentHooks = {
           <Group gap="md" align="center">
             {content.primaryButtonText && (
               <Button
-                size="lg"
                 variant="default"
               >
                 {content.primaryButtonText}
@@ -237,11 +222,9 @@ const centeredHeroContentHooks = {
             {content.secondaryButtonText && (
               <Button
                 variant="outline"
-                size="lg"
                 leftSection={
                   <Icon
                     component="span"
-                    size="md"
                     lucideIcon={Play}
                   />
                 }
@@ -274,7 +257,7 @@ const centeredHeroContentHooks = {
     header: (content: CenteredHeroData) => (
       <Stack gap="xl" align="center" ta="center" className="max-w-4xl mx-auto">
         {content.badge && (
-          <Badge variant="secondary" size="default" rounded="md">
+          <Badge variant="secondary" size="default" rounded="full">
             {content.badge}
           </Badge>
         )}
@@ -289,8 +272,7 @@ const centeredHeroContentHooks = {
           {content.title}
         </Title>
 
-        <Text 
-          size="xl" 
+        <Text
           c="secondary-foreground" 
           ta="center" 
           className="max-w-[42rem]"
@@ -302,12 +284,10 @@ const centeredHeroContentHooks = {
           <Group gap="md" align="center">
             {content.primaryButtonText && (
               <Button
-                size="lg"
                 variant="default"
                 rightSection={
                   <Icon
                     component="span"
-                    size="md"
                     c="primary-foreground"
                     lucideIcon={ArrowRight}
                   />
@@ -318,10 +298,7 @@ const centeredHeroContentHooks = {
             )}
 
             {content.secondaryButtonText && (
-              <Button
-                variant="outline"
-                size="lg"
-              >
+              <Button variant="outline">
                 {content.secondaryButtonText}
               </Button>
             )}

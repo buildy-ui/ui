@@ -149,7 +149,7 @@ export const CenteredHeroMissionExample = () => {
       variant="withStats"
       useContainer={true}
       py="2xl"
-      className="bg-gradient-to-b from-purple-50 to-pink-50 dark:from-purple-950 dark:to-pink-950"
+      className="bg-gradient-to-br from-primary/5 to-primary/25"
     />
   );
 };

@@ -13,12 +13,9 @@ import {
   Icon,
   Box
 } from "@ui8kit/core";
-import { 
-  SplitBlock, 
-  createContentHook, 
-  defaultContentHooks, 
-  advancedContentHooks,
-  type ContentHooks 
+import {
+  SplitBlock,
+  createContentHook,
 } from "@ui8kit/core";
 
 // Hero data interface
@@ -63,7 +60,7 @@ const heroContentHooks = {
     content: (content: HeroData) => (
       <Stack gap="xl" align="start">
         {content.badge && (
-          <Badge variant="secondary" size="default" rounded="md">
+          <Badge variant="secondary" size="default" rounded="full">
             {content.badge}
           </Badge>
         )}
@@ -72,7 +69,7 @@ const heroContentHooks = {
           {content.title}
         </Title>
 
-        <Text size="xl" c="secondary-foreground" className="max-w-[42rem]">
+        <Text c="secondary-foreground" className="max-w-[42rem]">
           {content.description}
         </Text>
 
@@ -80,12 +77,10 @@ const heroContentHooks = {
           <Group gap="md" align="center">
             {content.primaryButtonText && (
               <Button
-                size="lg"
                 variant="default"
                 leftSection={content.primaryButtonIcon ? (
                   <Icon
                     component="span"
-                    size="md"
                     c="primary-foreground"
                     lucideIcon={content.primaryButtonIcon || Info}
                   />
@@ -98,11 +93,9 @@ const heroContentHooks = {
             {content.secondaryButtonText && (
               <Button
                 variant="outline"
-                size="lg"
                 leftSection={content.secondaryButtonIcon ? (
                   <Icon
                     component="span"
-                    size="md"
                     lucideIcon={content.secondaryButtonIcon || Rocket}
                   />
                 ) : undefined}
@@ -121,7 +114,7 @@ const heroContentHooks = {
     content: (content: HeroData) => (
       <Stack gap="xl" align="start">
         {content.badge && (
-          <Badge variant="secondary" size="default" rounded="md">
+          <Badge variant="secondary" size="default" rounded="full">
             {content.badge}
           </Badge>
         )}
@@ -130,7 +123,7 @@ const heroContentHooks = {
           {content.title}
         </Title>
 
-        <Text size="xl" c="secondary-foreground" className="max-w-[42rem]">
+        <Text c="secondary-foreground" className="max-w-[42rem]">
           {content.description}
         </Text>
 
@@ -138,12 +131,10 @@ const heroContentHooks = {
           <Group gap="md" align="center">
             {content.primaryButtonText && (
               <Button
-                size="lg"
                 variant="default"
                 leftSection={
                   <Icon
                     component="span"
-                    size="md"
                     c="primary-foreground"
                     lucideIcon={BookOpen}
                   />
@@ -156,11 +147,9 @@ const heroContentHooks = {
             {content.secondaryButtonText && (
               <Button
                 variant="outline"
-                size="lg"
                 leftSection={
                   <Icon
                     component="span"
-                    size="md"
                     lucideIcon={Code}
                   />
                 }
@@ -191,7 +180,7 @@ const heroContentHooks = {
     content: (content: HeroData) => (
       <Stack gap="xl" align="center" ta="center">
         {content.badge && (
-          <Badge variant="secondary" size="default" rounded="md">
+          <Badge variant="secondary" size="default" rounded="full">
             {content.badge}
           </Badge>
         )}
@@ -200,7 +189,7 @@ const heroContentHooks = {
           {content.title}
         </Title>
 
-        <Text size="xl" c="secondary-foreground" ta="center" className="max-w-[42rem]">
+        <Text c="secondary-foreground" ta="center" className="max-w-[42rem]">
           {content.description}
         </Text>
 
@@ -208,12 +197,10 @@ const heroContentHooks = {
           <Group gap="md" align="center">
             {content.primaryButtonText && (
               <Button
-                size="lg"
                 variant="default"
                 leftSection={
                   <Icon
                     component="span"
-                    size="md"
                     c="primary-foreground"
                     lucideIcon={Info}
                   />
@@ -226,11 +213,9 @@ const heroContentHooks = {
             {content.secondaryButtonText && (
               <Button
                 variant="outline"
-                size="lg"
                 leftSection={
                   <Icon
                     component="span"
-                    size="md"
                     lucideIcon={Rocket}
                   />
                 }
@@ -246,8 +231,8 @@ const heroContentHooks = {
 };
 
 export const SplitHero = forwardRef<HTMLElement, SplitHeroProps>(
-  ({ 
-    content, 
+  ({
+    content,
     variant = "media",
     leftMedia = false,
     useContainer = true,
@@ -255,17 +240,17 @@ export const SplitHero = forwardRef<HTMLElement, SplitHeroProps>(
     py = "2xl",
     gap = "xl",
     className,
-    ...props 
+    ...props
   }, ref) => {
-    
+
     // Create media section based on variant
     const createMediaSection = () => {
       if (variant === "gallery" && content.images) {
         return (
           <Grid cols="1-2" gap="md">
             {content.images.map((image, index) => (
-              <Block 
-                key={image.id} 
+              <Block
+                key={image.id}
                 className={index === 0 ? "row-span-2" : ""}
                 data-class="gallery-item"
               >
@@ -301,7 +286,7 @@ export const SplitHero = forwardRef<HTMLElement, SplitHeroProps>(
 
       // Default gradient background
       return (
-        <Block 
+        <Block
           className="h-full bg-gradient-to-br from-primary/5 to-secondary/10 relative overflow-hidden"
           data-class="hero-gradient-background"
         >
@@ -342,9 +327,9 @@ export const splitHeroTemplates = {
     component: SplitHero,
     defaultProps: { variant: "media" as const }
   },
-  
+
   leftMedia: {
-    id: "splitHeroLeftMedia", 
+    id: "splitHeroLeftMedia",
     name: "Split Hero with Left Media",
     description: "Split layout hero with left image",
     component: SplitHero,
