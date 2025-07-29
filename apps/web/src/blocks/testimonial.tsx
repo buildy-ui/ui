@@ -1,11 +1,35 @@
-import { TestimonialsGridSection, testimonialsGridSectionTemplate } from "@ui8kit/blocks/testimonial/TestimonialsGridSection";
-import { TestimonialsSingleRowSection, testimonialsSingleRowSectionTemplate } from "@ui8kit/blocks/testimonial/TestimonialsSingleRowSection";
+import {
+  // Split Testimonial Examples
+  SplitTestimonialFeaturedExample,
+  SplitTestimonialCarouselExample,
+  SplitTestimonialStatsExample,
+  
+  // Grid Testimonial Examples
+  GridTestimonialGridExample,
+  GridTestimonialMasonryExample,
+  GridTestimonialMinimalExample,
+  GridTestimonialCardsExample,
+  GridTestimonialCompactExample,
+  GridTestimonialSliderExample,
+  GridTestimonialMagazineExample
+} from "@ui8kit/blocks/testimonial";
 
-export const Testimonials = () => {
+export default function TestimonialBlocks() {
   return (
     <>
-      <TestimonialsGridSection content={testimonialsGridSectionTemplate.defaultContent} />
-      <TestimonialsSingleRowSection content={testimonialsSingleRowSectionTemplate.defaultContent} />
+      {/* Split Testimonial Examples (3 variants) */}
+      <SplitTestimonialFeaturedExample />
+      <SplitTestimonialCarouselExample />
+      <SplitTestimonialStatsExample />
+      
+      {/* Grid Testimonial Examples (7 variants) */}
+      <GridTestimonialGridExample />
+      <GridTestimonialMasonryExample />
+      <GridTestimonialMinimalExample />
+      <GridTestimonialCardsExample />
+      <GridTestimonialCompactExample />
+      <GridTestimonialSliderExample />
+      <GridTestimonialMagazineExample />
     </>
   );
-};
+}
