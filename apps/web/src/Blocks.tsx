@@ -7,10 +7,10 @@ import { useState } from "react";
 // import BusinessBlocks from "./blocks/business";
 // import CTABlocks from "./blocks/cta";
 // import FAQBlocks from "./blocks/faq";
-import PortfolioBlocks from "./blocks/portfolio"; // Uncommented
+// import PortfolioBlocks from "./blocks/portfolio";
+import PostBlocks from "./blocks/post"; // Uncommented
 // import FeaturesBlocks from "./blocks/features";
 // import GalleryBlocks from "./blocks/gallery";
-// import PostBlocks from "./blocks/post";
 // import TeamBlocks from "./blocks/team";
 // import TestimonialBlocks from "./blocks/testimonial";
 
@@ -27,12 +27,12 @@ function Blocks() {
             Factory-based component architecture showcase
           </p>
           <div className="mt-2 inline-block px-3 py-1 bg-secondary text-secondary-foreground rounded-md text-sm">
-            Portfolio Blocks Active
+            Post Headers Active
           </div>
         </div>
 
         <div className="w-full">
-          <PortfolioBlocks />
+          <PostBlocks />
         </div>
       </div>
     </div>

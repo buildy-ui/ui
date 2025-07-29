@@ -1,0 +1,493 @@
+import { forwardRef } from "react";
+import { 
+  Calendar,
+  Clock,
+  User,
+  Tag,
+  ArrowLeft,
+  Share2,
+  BookOpen,
+  Eye,
+  Heart,
+  MessageCircle,
+  Bookmark,
+  ChevronRight
+} from "lucide-react";
+import {
+  Stack,
+  Group,
+  Title,
+  Text,
+  Badge,
+  Button,
+  Image,
+  Icon,
+  Box
+} from "@ui8kit/core";
+import { 
+  LayoutBlock,
+  createLayoutContentHook,
+  defaultLayoutContentHooks,
+  type LayoutContentHooks
+} from "@ui8kit/core/factory/LayoutBlock";
+
+// Post interfaces
+export interface PostAuthor {
+  name: string;
+  avatar?: string;
+  role?: string;
+  bio?: string;
+}
+
+export interface PostMeta {
+  category: string;
+  readTime: string;
+  publishedDate: string;
+  views?: string;
+  likes?: string;
+  comments?: string;
+}
+
+// Centered Post data interface
+export interface CenteredPostData {
+  title: string;
+  subtitle?: string;
+  excerpt?: string;
+  author?: PostAuthor;
+  meta: PostMeta;
+  image: {
+    src: string;
+    alt: string;
+  };
+  tags?: string[];
+  breadcrumbs?: {
+    label: string;
+    href?: string;
+  }[];
+}
+
+export interface CenteredPostProps {
+  content: CenteredPostData;
+  variant?: "classic" | "minimal" | "magazine" | "featured" | "editorial";
+  useContainer?: boolean;
+  py?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
+  className?: string;
+}
+
+// Custom content hooks for different centered post header variants
+const centeredPostContentHooks = {
+  // Classic blog post header
+  classic: createLayoutContentHook({
+    header: (content: CenteredPostData) => (
+      <Stack gap="xl" align="center" ta="center" className="max-w-4xl mx-auto">
+        {/* Breadcrumbs */}
+        {content.breadcrumbs && (
+          <Group gap="xs" align="center" c="secondary-foreground">
+            <Icon component="span" size="sm" lucideIcon={ArrowLeft} />
+            <Text size="sm">All Posts</Text>
+          </Group>
+        )}
+
+        {/* Category & Meta */}
+        <Group gap="md" align="center">
+          <Badge variant="secondary" size="default" rounded="md">
+            {content.meta.category}
+          </Badge>
+          <Group gap="xs" align="center" c="secondary-foreground">
+            <Icon component="span" size="xs" lucideIcon={Clock} />
+            <Text size="sm">{content.meta.readTime}</Text>
+          </Group>
+        </Group>
+
+        {/* Title */}
+        <Title order={1} size="5xl" fw="bold" ta="center" className="leading-tight">
+          {content.title}
+        </Title>
+
+        {/* Subtitle */}
+        {content.subtitle && (
+          <Text size="xl" c="secondary-foreground" ta="center" className="max-w-3xl">
+            {content.subtitle}
+          </Text>
+        )}
+
+        {/* Author & Date */}
+        {content.author && (
+          <Group gap="md" align="center">
+            <Group gap="sm" align="center">
+              <Icon component="span" size="sm" lucideIcon={User} c="primary" />
+              <Text size="md" fw="medium">
+                By {content.author.name}
+              </Text>
+            </Group>
+            <Group gap="xs" align="center" c="secondary-foreground">
+              <Icon component="span" size="xs" lucideIcon={Calendar} />
+              <Text size="sm">{content.meta.publishedDate}</Text>
+            </Group>
+          </Group>
+        )}
+
+        {/* Featured Image */}
+        <Box className="w-full max-w-5xl">
+          <Image
+            src={content.image.src}
+            alt={content.image.alt}
+            width="100%"
+            height="400px"
+            fit="cover"
+            rounded="lg"
+            className="shadow-lg"
+          />
+        </Box>
+      </Stack>
+    )
+  }),
+
+  // Minimal clean header
+  minimal: createLayoutContentHook({
+    header: (content: CenteredPostData) => (
+      <Stack gap="lg" align="center" ta="center" className="max-w-3xl mx-auto">
+        {/* Simple Category */}
+        <Text size="sm" fw="semibold" c="primary" className="uppercase tracking-wide">
+          {content.meta.category}
+        </Text>
+
+        {/* Title */}
+        <Title order={1} size="4xl" fw="bold" ta="center" className="leading-tight">
+          {content.title}
+        </Title>
+
+        {/* Meta Line */}
+        <Group gap="md" align="center" c="secondary-foreground">
+          {content.author && (
+            <Text size="sm">{content.author.name}</Text>
+          )}
+          <Text size="sm">•</Text>
+          <Text size="sm">{content.meta.publishedDate}</Text>
+          <Text size="sm">•</Text>
+          <Text size="sm">{content.meta.readTime}</Text>
+        </Group>
+
+        {/* Clean Image */}
+        <Box className="w-full">
+          <Image
+            src={content.image.src}
+            alt={content.image.alt}
+            width="100%"
+            height="300px"
+            fit="cover"
+            rounded="md"
+          />
+        </Box>
+      </Stack>
+    )
+  }),
+
+  // Magazine style header
+  magazine: createLayoutContentHook({
+    header: (content: CenteredPostData) => (
+      <Stack gap="xl" align="center" ta="center" className="max-w-4xl mx-auto">
+        {/* Magazine Header */}
+        <Stack gap="md" align="center">
+          <Group gap="sm" align="center">
+            <Badge variant="default" size="lg" rounded="sm" className="px-lg py-sm">
+              {content.meta.category}
+            </Badge>
+            {content.tags && content.tags.slice(0, 2).map((tag, index) => (
+              <Badge key={index} variant="outline" size="sm" rounded="md">
+                {tag}
+              </Badge>
+            ))}
+          </Group>
+
+          <Title order={1} size="6xl" fw="black" ta="center" className="leading-none">
+            {content.title}
+          </Title>
+
+          {content.excerpt && (
+            <Text size="lg" c="secondary-foreground" ta="center" className="max-w-2xl font-medium">
+              {content.excerpt}
+            </Text>
+          )}
+        </Stack>
+
+        {/* Author Card */}
+        {content.author && (
+          <Group gap="md" align="center" className="bg-muted p-lg rounded-lg">
+            <Icon component="span" size="lg" lucideIcon={User} c="primary" />
+            <Stack gap="xs" align="center">
+              <Text size="md" fw="semibold">
+                {content.author.name}
+              </Text>
+              {content.author.role && (
+                <Text size="sm" c="secondary-foreground">
+                  {content.author.role}
+                </Text>
+              )}
+            </Stack>
+            <Group gap="sm" align="center" c="secondary-foreground">
+              <Icon component="span" size="xs" lucideIcon={Calendar} />
+              <Text size="sm">{content.meta.publishedDate}</Text>
+            </Group>
+          </Group>
+        )}
+
+        {/* Hero Image */}
+        <Box className="w-full">
+          <Image
+            src={content.image.src}
+            alt={content.image.alt}
+            width="100%"
+            height="500px"
+            fit="cover"
+            rounded="lg"
+            className="shadow-xl"
+          />
+        </Box>
+      </Stack>
+    )
+  }),
+
+  // Featured post header
+  featured: createLayoutContentHook({
+    header: (content: CenteredPostData) => (
+      <Stack gap="xl" align="center" ta="center" className="max-w-5xl mx-auto">
+        {/* Featured Badge */}
+        <Group gap="sm" align="center">
+          <Badge variant="default" size="lg" rounded="full" className="bg-gradient-to-r from-primary to-secondary text-primary-foreground">
+            ⭐ Featured Article
+          </Badge>
+          <Badge variant="secondary" size="default" rounded="md">
+            {content.meta.category}
+          </Badge>
+        </Group>
+
+        {/* Title */}
+        <Title order={1} size="6xl" fw="bold" ta="center" className="leading-tight bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+          {content.title}
+        </Title>
+
+        {/* Subtitle */}
+        {content.subtitle && (
+          <Text size="2xl" c="secondary-foreground" ta="center" className="max-w-4xl font-medium">
+            {content.subtitle}
+          </Text>
+        )}
+
+        {/* Stats & Meta */}
+        <Group gap="xl" align="center">
+          {content.meta.views && (
+            <Group gap="xs" align="center">
+              <Icon component="span" size="sm" lucideIcon={Eye} c="primary" />
+              <Text size="sm" fw="medium">{content.meta.views} views</Text>
+            </Group>
+          )}
+          {content.meta.likes && (
+            <Group gap="xs" align="center">
+              <Icon component="span" size="sm" lucideIcon={Heart} c="primary" />
+              <Text size="sm" fw="medium">{content.meta.likes} likes</Text>
+            </Group>
+          )}
+          <Group gap="xs" align="center">
+            <Icon component="span" size="sm" lucideIcon={Clock} c="primary" />
+            <Text size="sm" fw="medium">{content.meta.readTime}</Text>
+          </Group>
+        </Group>
+
+        {/* Author & Actions */}
+        <Group gap="lg" align="center" className="bg-card p-lg rounded-xl shadow-md">
+          {content.author && (
+            <Group gap="sm" align="center">
+              <Icon component="span" size="md" lucideIcon={User} c="primary" />
+              <Stack gap="xs" align="center">
+                <Text size="md" fw="semibold">
+                  {content.author.name}
+                </Text>
+                <Text size="xs" c="secondary-foreground">
+                  {content.meta.publishedDate}
+                </Text>
+              </Stack>
+            </Group>
+          )}
+
+          <Group gap="sm">
+            <Button size="sm" variant="outline">
+              <Icon component="span" size="xs" lucideIcon={Share2} />
+              Share
+            </Button>
+            <Button size="sm" variant="outline">
+              <Icon component="span" size="xs" lucideIcon={Bookmark} />
+              Save
+            </Button>
+          </Group>
+        </Group>
+
+        {/* Hero Image */}
+        <Box className="w-full">
+          <Image
+            src={content.image.src}
+            alt={content.image.alt}
+            width="100%"
+            height="600px"
+            fit="cover"
+            rounded="xl"
+            className="shadow-2xl"
+          />
+        </Box>
+      </Stack>
+    )
+  }),
+
+  // Editorial style header
+  editorial: createLayoutContentHook({
+    header: (content: CenteredPostData) => (
+      <Stack gap="2xl" align="center" ta="center" className="max-w-4xl mx-auto">
+        {/* Editorial Header */}
+        <Stack gap="lg" align="center">
+          <Group gap="xs" align="center" c="secondary-foreground">
+            <Text size="xs" className="uppercase tracking-widest font-semibold">
+              {content.meta.category}
+            </Text>
+            <Text size="xs">—</Text>
+            <Text size="xs" className="uppercase tracking-widest">
+              {content.meta.publishedDate}
+            </Text>
+          </Group>
+
+          <Title order={1} size="5xl" fw="light" ta="center" className="leading-tight font-serif">
+            {content.title}
+          </Title>
+
+          {content.subtitle && (
+            <Text size="lg" c="secondary-foreground" ta="center" className="max-w-2xl italic">
+              {content.subtitle}
+            </Text>
+          )}
+        </Stack>
+
+        {/* Editorial Meta */}
+        <Stack gap="md" align="center" className="border-y border-border py-lg">
+          {content.author && (
+            <Group gap="md" align="center">
+              <Text size="sm" c="secondary-foreground" className="uppercase tracking-wide">
+                Written by
+              </Text>
+              <Text size="sm" fw="semibold" className="font-serif">
+                {content.author.name}
+              </Text>
+              {content.author.role && (
+                <Text size="sm" c="secondary-foreground">
+                  — {content.author.role}
+                </Text>
+              )}
+            </Group>
+          )}
+
+          <Group gap="lg" align="center" c="secondary-foreground">
+            <Group gap="xs" align="center">
+              <Icon component="span" size="xs" lucideIcon={BookOpen} />
+              <Text size="xs" className="uppercase tracking-wide">
+                {content.meta.readTime}
+              </Text>
+            </Group>
+            {content.meta.views && (
+              <Group gap="xs" align="center">
+                <Icon component="span" size="xs" lucideIcon={Eye} />
+                <Text size="xs" className="uppercase tracking-wide">
+                  {content.meta.views}
+                </Text>
+              </Group>
+            )}
+          </Group>
+        </Stack>
+
+        {/* Editorial Image */}
+        <Box className="w-full">
+          <Image
+            src={content.image.src}
+            alt={content.image.alt}
+            width="100%"
+            height="450px"
+            fit="cover"
+            rounded="sm"
+            className="shadow-lg"
+          />
+        </Box>
+      </Stack>
+    )
+  })
+};
+
+export const CenteredPost = forwardRef<HTMLElement, CenteredPostProps>(
+  ({ 
+    content, 
+    variant = "classic",
+    useContainer = true,
+    py = "xl",
+    className,
+    ...props 
+  }, ref) => {
+    
+    // Choose content hooks based on variant
+    const contentHooks = centeredPostContentHooks[variant] || centeredPostContentHooks.classic;
+
+    return (
+      <LayoutBlock
+        ref={ref}
+        layout="stack"
+        useContainer={useContainer}
+        py={py}
+        showHeader={true}
+        content={content}
+        contentHooks={contentHooks}
+        className={className}
+        {...props}
+      />
+    );
+  }
+);
+
+CenteredPost.displayName = "CenteredPost";
+
+// Export template configurations
+export const centeredPostTemplates = {
+  classic: {
+    id: "centeredPostClassic",
+    name: "Classic Post Header",
+    description: "Traditional blog post header with author info and meta",
+    component: CenteredPost,
+    defaultProps: { variant: "classic" as const }
+  },
+  
+  minimal: {
+    id: "centeredPostMinimal",
+    name: "Minimal Post Header",
+    description: "Clean, minimal header focusing on content",
+    component: CenteredPost,
+    defaultProps: { variant: "minimal" as const }
+  },
+
+  magazine: {
+    id: "centeredPostMagazine",
+    name: "Magazine Post Header",
+    description: "Magazine-style header with prominent typography",
+    component: CenteredPost,
+    defaultProps: { variant: "magazine" as const }
+  },
+
+  featured: {
+    id: "centeredPostFeatured",
+    name: "Featured Post Header",
+    description: "Hero-style header for featured articles",
+    component: CenteredPost,
+    defaultProps: { variant: "featured" as const }
+  },
+
+  editorial: {
+    id: "centeredPostEditorial",
+    name: "Editorial Post Header",
+    description: "Sophisticated editorial-style header",
+    component: CenteredPost,
+    defaultProps: { variant: "editorial" as const }
+  }
+};
