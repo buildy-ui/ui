@@ -1,21 +1,32 @@
-import { HeroBlock, heroBlockTemplate } from "@ui8kit/blocks/hero/HeroBlock";
-import { HeroWithImageSection, heroWithImageSectionTemplate } from "@ui8kit/blocks/hero/HeroWithImageSection";
-import { HeroCenteredSection, heroCenteredSectionTemplate } from "@ui8kit/blocks/hero/HeroCenteredSection";
-import { HeroCenteredWithTopButton, heroCenteredWithTopButtonTemplate } from "@ui8kit/blocks/hero/HeroCenteredWithTopButton";
-import { HeroSplitWithMedia, heroSplitWithMediaTemplate } from "@ui8kit/blocks/hero/HeroSplitWithMedia";
-import { HeroSplitWithGallery, heroSplitWithGalleryTemplate } from "@ui8kit/blocks/hero/HeroSplitWithGallery";
+import { splitHeroExamples } from "@ui8kit/blocks/hero/SplitHero.examples";
+import { centeredHeroExamples } from "@ui8kit/blocks/hero/CenteredHero.examples";
+
+export const SplitHeroMediaExample = splitHeroExamples.media;
+export const SplitHeroLeftMediaExample = splitHeroExamples.leftMedia;
+export const SplitHeroGalleryExample = splitHeroExamples.gallery;
+export const SplitHeroWithTopButtonExample = splitHeroExamples.withTopButton;
+export const SplitHeroSecurityExample = splitHeroExamples.security;
+
+export const CenteredHeroSimpleExample = centeredHeroExamples.simple;
+export const CenteredHeroWithTopButtonExample = centeredHeroExamples.withTopButton;
+export const CenteredHeroWithImageExample = centeredHeroExamples.withImage;
+export const CenteredHeroWithStatsExample = centeredHeroExamples.withStats;
+export const CenteredHeroMissionExample = centeredHeroExamples.mission;
+
 
 function HeroBlocks() {
   return (
     <div className="flex flex-col divide-y divide-border">
-      <HeroBlock content={heroBlockTemplate.defaultContent} />
-      <HeroWithImageSection content={heroWithImageSectionTemplate.defaultContent} />
-      <HeroCenteredSection content={heroCenteredSectionTemplate.defaultContent} />
-      <HeroCenteredWithTopButton content={heroCenteredWithTopButtonTemplate.defaultContent} />
-      <HeroSplitWithMedia content={heroSplitWithMediaTemplate.defaultContent} />
-      <HeroSplitWithMedia content={heroSplitWithMediaTemplate.defaultContent} leftImage />
-      <HeroSplitWithGallery content={heroSplitWithGalleryTemplate.defaultContent} />
-      <HeroSplitWithGallery content={heroSplitWithGalleryTemplate.defaultContent} leftImage />
+      <SplitHeroMediaExample />
+      <SplitHeroLeftMediaExample />
+      <SplitHeroGalleryExample />
+      <SplitHeroWithTopButtonExample />
+      <SplitHeroSecurityExample />
+      <CenteredHeroSimpleExample />
+      <CenteredHeroWithTopButtonExample />
+      <CenteredHeroWithImageExample />
+      <CenteredHeroWithStatsExample />
+      <CenteredHeroMissionExample />
     </div>
   );
 }
