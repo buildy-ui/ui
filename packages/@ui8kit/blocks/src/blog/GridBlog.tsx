@@ -478,6 +478,12 @@ export const GridBlog = forwardRef<HTMLElement, GridBlogProps>(
 
     const config = getVariantConfig();
 
+    // Transform posts to items for LayoutBlock
+    const layoutContent = {
+      ...content,
+      items: content.posts
+    };
+
     return (
       <LayoutBlock
         ref={ref}
@@ -486,7 +492,7 @@ export const GridBlog = forwardRef<HTMLElement, GridBlogProps>(
         py={py}
         cols={cols || config.cols}
         gap={gap || config.gap}
-        content={content}
+        content={layoutContent}
         contentHooks={config.contentHooks}
         className={className}
         {...props}
