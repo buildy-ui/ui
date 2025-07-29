@@ -1,20 +1,35 @@
-import { CallToActionCenteredSection, callToActionCenteredSectionTemplate } from "@ui8kit/blocks/cta/CallToActionCenteredSection";
-import { CallToActionSection, callToActionSectionTemplate } from "@ui8kit/blocks/cta/CallToActionSection";
-import { CallToActionCenteredWithLogos, callToActionCenteredWithLogosTemplate } from "@ui8kit/blocks/cta/CallToActionCenteredWithLogos";
-import { CallToActionCenteredWithBackground, callToActionCenteredWithBackgroundTemplate } from "@ui8kit/blocks/cta/CallToActionCenteredWithBackground";
-import { CallToActionWithBackground, callToActionWithBackgroundTemplate } from "@ui8kit/blocks/cta/CallToActionWithBackground";
-import { CallToActionSplitWithImage, callToActionSplitWithImageTemplate } from "@ui8kit/blocks/cta/CallToActionSplitWithImage";
-import { CallToActionWithBackgroundGradient, callToActionWithBackgroundGradientTemplate } from "@ui8kit/blocks/cta/CallToActionWithBackgroundGradient";
+// import { centeredCTAExamples } from "@ui8kit/blocks/cta/CenteredCTA.examples";
+import { splitCTAExamples } from "@ui8kit/blocks/cta/SplitCTA.examples";
+
+// New Factory-based CTA Examples
+// export const CenteredCTASimpleExample = centeredCTAExamples.simple;
+// export const CenteredCTAWithLogosExample = centeredCTAExamples.withLogos;
+// export const CenteredCTAWithBackgroundExample = centeredCTAExamples.withBackground;
+// export const CenteredCTAWithFeaturesExample = centeredCTAExamples.withFeatures;
+// export const CenteredCTAWithStatsExample = centeredCTAExamples.withStats;
+
+export const SplitCTAWithImageExample = splitCTAExamples.withImage;
+export const SplitCTAWithBackgroundExample = splitCTAExamples.withBackground;
+export const SplitCTAWithStatsExample = splitCTAExamples.withStats;
+export const SplitCTAWithDevicesExample = splitCTAExamples.withDevices;
+export const SplitCTAWithFeaturesExample = splitCTAExamples.withFeatures;
+
 function CTABlocks() {
   return (
-    <div>
-      <CallToActionCenteredSection content={callToActionCenteredSectionTemplate.defaultContent} />
-      <CallToActionSection content={callToActionSectionTemplate.defaultContent} />
-      <CallToActionCenteredWithLogos content={callToActionCenteredWithLogosTemplate.defaultContent} />
-      <CallToActionCenteredWithBackground content={callToActionCenteredWithBackgroundTemplate.defaultContent} />
-      <CallToActionWithBackground content={callToActionWithBackgroundTemplate.defaultContent} />
-      <CallToActionSplitWithImage content={callToActionSplitWithImageTemplate.defaultContent} />
-      <CallToActionWithBackgroundGradient content={callToActionWithBackgroundGradientTemplate.defaultContent} />
+    <div className="flex flex-col divide-y divide-border">
+      {/* Centered CTA Examples */}
+      {/*<CenteredCTASimpleExample />
+      <CenteredCTAWithLogosExample />
+      <CenteredCTAWithBackgroundExample />
+      <CenteredCTAWithFeaturesExample />*/}
+      {/*<CenteredCTAWithStatsExample />*/}
+      
+      {/* Split CTA Examples */}
+      <SplitCTAWithImageExample />
+      <SplitCTAWithBackgroundExample />
+      <SplitCTAWithStatsExample />
+      <SplitCTAWithDevicesExample />
+      <SplitCTAWithFeaturesExample />
     </div>
   );
 }

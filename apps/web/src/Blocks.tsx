@@ -1,36 +1,40 @@
+import { useState } from "react";
+
+// Import block collections
 // import HeroBlocks from "./blocks/hero";
 // import NewHeroBlocks from "./blocks/new-hero";
 // import BlogBlocks from "./blocks/blog";
-import BusinessBlocks from "./blocks/business";
+// import BusinessBlocks from "./blocks/business";
+import CTABlocks from "./blocks/cta"; // Uncommented
 // import FeaturesBlocks from "./blocks/features";
-// import CTABlocks from "./blocks/cta";
-// import { FooterFourColumns, footerFourColumnsTemplate } from "@ui8kit/blocks/footer/FooterFourColumns";
-// import { Faq } from "./blocks/faq";
-// import { Testimonials } from "./blocks/testimonial";
-// import { Team } from "./blocks/team";
-// import { Post } from "./blocks/post";
-// import { Portfolio } from "./blocks/portfolio";
-// import { Gallery } from "./blocks/gallery";
+// import GalleryBlocks from "./blocks/gallery";
+// import PortfolioBlocks from "./blocks/portfolio";
+// import PostBlocks from "./blocks/post";
+// import TeamBlocks from "./blocks/team";
+// import TestimonialBlocks from "./blocks/testimonial";
+// import FAQBlocks from "./blocks/faq";
+
+// Core UI Examples
 // import CoreUI from "./CoreUI";
 
 function Blocks() {
   return (
-    <div>
-      <hr className=" border-primary/50 border-4 border-dashed" />
-      {/*<HeroBlocks />*/}
-      {/*<NewHeroBlocks />*/}
-      {/*<CoreUI />*/}
-      {/*<BlogBlocks />*/}
-      <BusinessBlocks />
-      {/*<CTABlocks />*/}
-      {/*<Testimonials />*/}
-      {/*<Team />*/}
-      {/*<Post />*/}
-      {/*<Portfolio />*/}
-      {/*<Gallery />*/}
-      {/* <Faq /> */}
-      {/*<hr className=" border-primary/50 border-4 border-dashed" />
-      <FooterFourColumns content={footerFourColumnsTemplate.defaultContent} />*/}
+    <div className="min-h-screen bg-background">
+      <div className="container mx-auto px-4 py-8">
+        <div className="mb-8 text-center">
+          <h1 className="text-4xl font-bold tracking-tight">UI8Kit Blocks</h1>
+          <p className="mt-2 text-lg text-muted-foreground">
+            Factory-based component architecture showcase
+          </p>
+          <div className="mt-2 inline-block px-3 py-1 bg-secondary text-secondary-foreground rounded-md text-sm">
+            CTA Blocks Active
+          </div>
+        </div>
+
+        <div className="w-full">
+          <CTABlocks />
+        </div>
+      </div>
     </div>
   );
 }
