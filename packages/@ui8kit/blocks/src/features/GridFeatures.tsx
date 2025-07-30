@@ -90,7 +90,7 @@ const gridFeaturesContentHooks = {
             {item.title}
           </Title>
           
-          <Text size="sm" c="secondary-foreground">
+          <Text c="secondary-foreground">
             {item.description}
           </Text>
         </Stack>
@@ -106,7 +106,7 @@ const gridFeaturesContentHooks = {
           <Box 
             p="sm" 
             bg="primary" 
-            rounded="md" 
+            rounded={theme?.themeRounded.default}
             className="inline-flex"
             data-class="feature-icon"
           >
@@ -124,7 +124,7 @@ const gridFeaturesContentHooks = {
             {item.title}
           </Title>
           
-          <Text size="sm" c="secondary-foreground">
+          <Text c="secondary-foreground">
             {item.description}
           </Text>
         </Stack>
@@ -135,7 +135,7 @@ const gridFeaturesContentHooks = {
   // Grid with media cards
   gridMediaCards: createLayoutContentHook({
     item: (item: any, index: number) => (
-      <Card key={item.id || index} p="lg" rounded="lg" shadow="sm" bg="card">
+      <Card key={item.id || index} p="lg" rounded={theme?.themeRounded.default} shadow="sm" bg="card">
         <Stack gap="md" align="start">
           {item.image && (
             <Box className="relative overflow-hidden rounded-md">
@@ -145,7 +145,7 @@ const gridFeaturesContentHooks = {
                 width="100%"
                 height="200px"
                 fit="cover"
-                rounded="md"
+                rounded={theme?.themeRounded.default}
               />
               
               {item.lucideIcon && (
@@ -153,7 +153,7 @@ const gridFeaturesContentHooks = {
                   className="absolute top-3 right-3"
                   p="xs" 
                   bg="primary" 
-                  rounded="md"
+                  rounded={theme?.themeRounded.default}
                   data-class="overlay-icon"
                 >
                   <Icon
@@ -172,7 +172,7 @@ const gridFeaturesContentHooks = {
               {item.title}
             </Title>
             
-            <Text size="sm" c="secondary-foreground">
+            <Text c="secondary-foreground">
               {item.description}
             </Text>
           </Stack>
@@ -196,7 +196,7 @@ const gridFeaturesContentHooks = {
   // Career positions
   careerPositions: createLayoutContentHook({
     item: (item: any, index: number) => (
-      <Card key={item.id || index} p="lg" rounded="lg" shadow="sm" bg="card" className="hover:shadow-md transition-shadow">
+      <Card key={item.id || index} p="lg" rounded={theme?.themeRounded.default} shadow="sm" bg="card" className="hover:shadow-md transition-shadow">
         <Stack gap="md" align="start">
           <Group gap="md" align="start" justify="between" className="w-full">
             <Stack gap="xs" className="flex-1">
@@ -204,7 +204,7 @@ const gridFeaturesContentHooks = {
                 {item.title}
               </Title>
               
-              <Text size="sm" c="secondary-foreground">
+              <Text c="secondary-foreground">
                 {item.description}
               </Text>
             </Stack>
@@ -213,7 +213,7 @@ const gridFeaturesContentHooks = {
               <Box 
                 p="sm" 
                 bg="secondary" 
-                rounded="md" 
+                rounded={theme?.themeRounded.default} 
                 className="flex-shrink-0"
                 data-class="position-icon"
               >
@@ -291,7 +291,7 @@ const gridFeaturesContentHooks = {
   // Career stats
   careerStats: createLayoutContentHook({
     item: (item: any, index: number) => (
-      <Card key={item.id || index} p="xl" rounded="lg" shadow="sm" bg="card" className="text-center">
+      <Card key={item.id || index} p="xl" rounded={theme?.themeRounded.default} shadow="sm" bg="card" className="text-center">
         <Stack gap="lg" align="center">
           {item.lucideIcon && (
             <Box 
@@ -321,7 +321,7 @@ const gridFeaturesContentHooks = {
               {item.title}
             </Title>
             
-            <Text size="sm" c="secondary-foreground" ta="center">
+            <Text c="secondary-foreground" ta="center">
               {item.description}
             </Text>
           </Stack>

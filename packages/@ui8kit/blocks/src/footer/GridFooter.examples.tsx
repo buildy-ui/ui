@@ -121,7 +121,7 @@ export const GridFooterMegaExample = () => {
       content={sampleFooterData}
       variant="mega"
       useContainer={true}
-      py="2xl"
+      py="xl"
     />
   );
 };
@@ -151,7 +151,7 @@ export const GridFooterNewsletterExample = () => {
       }}
       variant="newsletter"
       useContainer={true}
-      py="2xl"
+      py="xl"
     />
   );
 };

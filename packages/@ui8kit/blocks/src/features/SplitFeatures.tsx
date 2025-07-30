@@ -67,7 +67,7 @@ const featuresContentHooks = {
   media: createContentHook({
     content: (content: FeaturesData) => (
       <Stack gap="lg" align="start">
-        <Badge variant="secondary" size="default" rounded="md">
+        <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
           {content.badge}
         </Badge>
 
@@ -82,7 +82,7 @@ const featuresContentHooks = {
         {content.features && (
           <Stack gap="md" className="w-full" data-class="features-list">
             {content.features.map((feature, index) => (
-              <Group key={feature.id || index} gap="sm" align="start">
+              <Group key={feature.id || index} gap="md" align="start">
                 <Icon
                   component="span"
                   size="sm"
@@ -92,7 +92,7 @@ const featuresContentHooks = {
                 />
                 <Stack gap="2xs">
                   <Text fw="semibold">{feature.title}</Text>
-                  <Text size="sm" c="secondary-foreground">
+                  <Text c="secondary-foreground">
                     {feature.description}
                   </Text>
                 </Stack>
@@ -144,7 +144,7 @@ const featuresContentHooks = {
   features: createContentHook({
     content: (content: FeaturesData) => (
       <Stack gap="lg" align="start">
-        <Badge variant="secondary" size="default" rounded="md">
+        <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
           {content.badge}
         </Badge>
 
@@ -164,7 +164,7 @@ const featuresContentHooks = {
                   <Box 
                     p="sm" 
                     bg="primary" 
-                    rounded="md" 
+                    rounded={theme?.themeRounded.default} 
                     className="flex-shrink-0"
                     data-class="feature-icon"
                   >
@@ -180,7 +180,7 @@ const featuresContentHooks = {
                   <Title order={4} size="md" fw="semibold">
                     {feature.title}
                   </Title>
-                  <Text size="sm" c="secondary-foreground">
+                  <Text c="secondary-foreground">
                     {feature.description}
                   </Text>
                 </Stack>
@@ -201,7 +201,7 @@ const featuresContentHooks = {
         className="p-6 sm:p-8 lg:p-12 max-w-lg"
         data-class="analytics-content"
       >
-        <Badge variant="secondary" size="default" rounded="md">
+        <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
           {content.badge}
         </Badge>
 
@@ -227,7 +227,7 @@ const featuresContentHooks = {
           <Box 
             p="lg" 
             bg="card" 
-            rounded="xl" 
+            rounded={theme?.themeRounded.default} 
             border="1px" 
             borderColor="border" 
             className="shadow"
@@ -242,7 +242,7 @@ const featuresContentHooks = {
           <Box 
             p="lg" 
             bg="card" 
-            rounded="xl" 
+            rounded={theme?.themeRounded.default} 
             border="1px" 
             borderColor="border" 
             className="shadow"
@@ -259,11 +259,11 @@ const featuresContentHooks = {
         {content.features && (
           <Stack gap="md" className="w-full" data-class="features-list">
             {content.features.map((feature, index) => (
-              <Group key={feature.id || index} gap="sm" align="start">
-                <Badge variant="default" size="sm" rounded="md">✓</Badge>
+              <Group key={feature.id || index} gap="md" align="start">
+                <Badge variant="default" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>✓</Badge>
                 <Stack gap="xs">
                   <Text fw="semibold">{feature.title}</Text>
-                  <Text size="sm" c="secondary-foreground">
+                  <Text c="secondary-foreground">
                     {feature.description}
                   </Text>
                 </Stack>
@@ -296,7 +296,7 @@ export const SplitFeatures = forwardRef<HTMLElement, SplitFeaturesProps>(
           alt={content.image.alt}
           width="100%"
           height="auto"
-          rounded="lg"
+          rounded={theme?.themeRounded.default}
           fit="cover"
         />
       </Block>

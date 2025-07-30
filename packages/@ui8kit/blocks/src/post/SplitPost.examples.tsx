@@ -174,7 +174,7 @@ export const SplitPostHeroExample = () => {
       content={heroData}
       variant="hero"
       leftMedia={false}
-      py="2xl"
+      py="xl"
       className="bg-gradient-to-r from-primary/5 to-secondary/5"
     />
   );

@@ -193,7 +193,7 @@ export const GridTeamCardsExample = () => {
       content={content}
       variant="cards"
       useContainer={true}
-      py="2xl"
+      py="xl"
     />
   );
 };
@@ -235,7 +235,7 @@ export const GridTeamShowcaseExample = () => {
       content={content}
       variant="showcase"
       useContainer={true}
-      py="2xl"
+      py="xl"
     />
   );
 };

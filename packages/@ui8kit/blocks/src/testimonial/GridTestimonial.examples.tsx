@@ -128,7 +128,7 @@ export const GridTestimonialMasonryExample = () => {
       content={content}
       variant="masonry"
       useContainer={true}
-      py="2xl"
+      py="xl"
     />
   );
 };
@@ -169,7 +169,7 @@ export const GridTestimonialCardsExample = () => {
       content={content}
       variant="cards"
       useContainer={true}
-      py="2xl"
+      py="xl"
     />
   );
 };
@@ -229,7 +229,7 @@ export const GridTestimonialMagazineExample = () => {
       content={content}
       variant="magazine"
       useContainer={true}
-      py="2xl"
+      py="xl"
     />
   );
 };

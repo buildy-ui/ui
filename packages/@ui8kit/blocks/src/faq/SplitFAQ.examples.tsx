@@ -186,7 +186,7 @@ export const SplitFAQSupportExample = () => {
       content={content}
       variant="support"
       leftMedia={true}
-      py="2xl"
+      py="xl"
     />
   );
 };

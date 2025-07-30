@@ -93,14 +93,14 @@ const gridFAQContentHooks = {
   // FAQ cards grid
   cards: createLayoutContentHook({
     item: (faq: FAQItem) => (
-      <Card key={faq.id} p="lg" rounded="lg" shadow="sm" bg="card">
+      <Card key={faq.id} p="lg" rounded={theme?.themeRounded.default} shadow="sm" bg="card">
         <Stack gap="md" align="start">
-          <Group gap="sm" align="center">
+          <Group gap="md" align="center">
             {faq.lucideIcon && (
               <Box 
                 p="sm" 
                 bg="primary" 
-                rounded="md" 
+                rounded={theme?.themeRounded.default}
                 className="flex-shrink-0"
                 data-class="faq-icon"
               >
@@ -113,18 +113,18 @@ const gridFAQContentHooks = {
               </Box>
             )}
             {faq.category && (
-              <Badge variant="secondary" size="sm" rounded="md">
+              <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}> 
                 {faq.category}
               </Badge>
             )}
           </Group>
 
-          <Stack gap="sm">
+          <Stack gap="md">
             <Title order={3} size="lg" fw="semibold">
               {faq.question}
             </Title>
             
-            <Text size="sm" c="secondary-foreground" className="line-clamp-3">
+            <Text c="secondary-foreground" className="line-clamp-3">
               {faq.answer}
             </Text>
           </Stack>
@@ -140,11 +140,11 @@ const gridFAQContentHooks = {
   // Accordion style FAQ
   accordion: createLayoutContentHook({
     item: (faq: FAQItem, index: number) => (
-      <Card key={faq.id} rounded="lg" shadow="sm" bg="card" className="overflow-hidden">
+      <Card key={faq.id} rounded={theme?.themeRounded.default} shadow="sm" bg="card" className="overflow-hidden">
         <Accordion type="single" collapsible>
           <AccordionItem value={`faq-${index}`} className="border-none">
             <AccordionTrigger className="px-lg py-md hover:no-underline">
-              <Group gap="sm" align="center" className="flex-1 text-left">
+              <Group gap="md" align="center" className="flex-1 text-left">
                 {faq.lucideIcon && (
                   <Icon
                     component="span"
@@ -160,7 +160,7 @@ const gridFAQContentHooks = {
               </Group>
             </AccordionTrigger>
             <AccordionContent className="px-lg pb-md">
-              <Text size="sm" c="secondary-foreground">
+              <Text c="secondary-foreground">
                 {faq.answer}
               </Text>
             </AccordionContent>
@@ -173,8 +173,8 @@ const gridFAQContentHooks = {
   // Categorized FAQ
   categories: createLayoutContentHook({
     item: (faq: FAQItem) => (
-      <Card key={faq.id} p="md" rounded="lg" shadow="sm" bg="card" className="h-full">
-        <Stack gap="sm" align="start" className="h-full">
+      <Card key={faq.id} p="md" rounded={theme?.themeRounded.default} shadow="sm" bg="card" className="h-full">
+        <Stack gap="md" align="start" className="h-full">
           <Group gap="xs" align="center">
             {faq.lucideIcon && (
               <Icon
@@ -185,12 +185,12 @@ const gridFAQContentHooks = {
               />
             )}
             {faq.category && (
-              <Badge variant="outline" size="xs" rounded="md">
+              <Badge variant="outline" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
                 {faq.category}
               </Badge>
             )}
             {faq.priority === "high" && (
-              <Badge variant="destructive" size="xs" rounded="md">
+              <Badge variant="destructive" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
                 Priority
               </Badge>
             )}
@@ -205,7 +205,7 @@ const gridFAQContentHooks = {
           </Text>
 
           <Button rounded={theme?.themeRounded.default} variant="ghost" size="xs" className="w-full">
-            <Icon component="span" size="xs" lucideIcon={MessageSquare} />
+            <Icon lucideIcon={MessageSquare} />
             View Details
           </Button>
         </Stack>
@@ -216,7 +216,7 @@ const gridFAQContentHooks = {
   // Compact FAQ list
   compact: createLayoutContentHook({
     item: (faq: FAQItem) => (
-      <Card key={faq.id} p="md" rounded="md" shadow="sm" bg="card">
+      <Card key={faq.id} p="md" rounded={theme?.themeRounded.default} shadow="sm" bg="card">
         <Group gap="md" align="start">
           {faq.lucideIcon && (
             <Icon
@@ -238,7 +238,7 @@ const gridFAQContentHooks = {
             </Text>
 
             {faq.category && (
-              <Badge variant="secondary" size="xs" rounded="md" className="w-fit">
+              <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="w-fit">
                 {faq.category}
               </Badge>
             )}
@@ -251,7 +251,7 @@ const gridFAQContentHooks = {
   // Support center FAQ
   support: createLayoutContentHook({
     item: (faq: FAQItem) => (
-      <Card key={faq.id} p="lg" rounded="lg" shadow="md" bg="card" className="h-full hover:shadow-lg transition-shadow">
+      <Card key={faq.id} p="lg" rounded={theme?.themeRounded.default} shadow="md" bg="card" className="h-full hover:shadow-lg transition-shadow">
         <Stack gap="md" align="center" ta="center" className="h-full">
           {faq.lucideIcon && (
             <Box 
@@ -269,9 +269,9 @@ const gridFAQContentHooks = {
             </Box>
           )}
 
-          <Stack gap="sm" align="center" ta="center" className="flex-1">
+          <Stack gap="md" align="center" ta="center" className="flex-1">
             {faq.category && (
-              <Badge variant="secondary" size="sm" rounded="md">
+              <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
                 {faq.category}
               </Badge>
             )}
@@ -280,17 +280,17 @@ const gridFAQContentHooks = {
               {faq.question}
             </Title>
             
-            <Text size="sm" c="secondary-foreground" ta="center" className="line-clamp-3">
+            <Text c="secondary-foreground" ta="center" className="line-clamp-3">
               {faq.answer}
             </Text>
           </Stack>
 
-          <Group gap="sm" className="w-full">
+          <Group gap="md" className="w-full">
             <Button rounded={theme?.themeRounded.default} variant="outline" size="sm" className="flex-1">
               Learn More
             </Button>
             <Button rounded={theme?.themeRounded.default} variant="ghost" size="sm">
-              <Icon component="span" size="xs" lucideIcon={LifeBuoy} />
+              <Icon lucideIcon={LifeBuoy} />
             </Button>
           </Group>
         </Stack>

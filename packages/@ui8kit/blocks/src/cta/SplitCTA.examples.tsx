@@ -68,7 +68,7 @@ export const SplitCTAWithImageExample = () => (
     content={splitCTAWithImageData} 
     variant="withImage"
     leftMedia={false}
-    py="2xl"
+    py="xl"
   />
 );
 
@@ -104,7 +104,7 @@ export const SplitCTAWithBackgroundExample = () => (
     content={splitCTAWithBackgroundData} 
     variant="withBackground"
     leftMedia={true}
-    py="2xl"
+    py="xl"
   />
 );
 
@@ -138,7 +138,7 @@ export const SplitCTAWithStatsExample = () => (
     content={splitCTAWithStatsData} 
     variant="withStats"
     leftMedia={false}
-    py="2xl"
+    py="xl"
   />
 );
 
@@ -173,7 +173,7 @@ export const SplitCTAWithDevicesExample = () => (
     content={splitCTAWithDevicesData} 
     variant="withDevices"
     leftMedia={true}
-    py="2xl"
+    py="xl"
   />
 );
 
@@ -229,7 +229,7 @@ export const SplitCTAWithFeaturesExample = () => (
     content={splitCTAWithFeaturesData} 
     variant="withFeatures"
     leftMedia={false}
-    py="2xl"
+    py="xl"
   />
 );
 

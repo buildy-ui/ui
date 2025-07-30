@@ -87,7 +87,7 @@ export const SplitFooterBrandExample = () => {
       variant="brand"
       mediaPosition="right"
       useContainer={true}
-      py="2xl"
+      py="xl"
     />
   );
 };
@@ -113,7 +113,7 @@ export const SplitFooterContactExample = () => {
       variant="contact"
       mediaPosition="right"
       useContainer={true}
-      py="2xl"
+      py="xl"
     />
   );
 };

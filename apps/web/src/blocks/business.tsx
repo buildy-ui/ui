@@ -1,5 +1,6 @@
 import { gridBusinessExamples } from "@ui8kit/blocks/business/GridBusiness.examples";
 import { splitBusinessExamples } from "@ui8kit/blocks/business/SplitBusiness.examples";
+import { Divider } from "./ui/divider";
 
 export const GridBusinessCardsGalleryExample = gridBusinessExamples.cardsGallery;
 export const GridBusinessSolutionsGridExample = gridBusinessExamples.solutionsGrid;
@@ -16,15 +17,25 @@ export const SplitBusinessAboutExample = splitBusinessExamples.about;
 function BusinessBlocks() {
   return (
     <div className="flex flex-col divide-y divide-border">
+      <Divider text="1. GridBusinessCardsGalleryExample" />
       <GridBusinessCardsGalleryExample />
+      <Divider text="2. GridBusinessSolutionsGridExample" />
       <GridBusinessSolutionsGridExample />
+      <Divider text="3. GridBusinessPricingExample" />
       <GridBusinessPricingExample />
+      <Divider text="4. GridBusinessPricingYearExample" />
       <GridBusinessPricingYearExample />
+      <Divider text="5. GridBusinessCareerExample" />
       <GridBusinessCareerExample />
+      <Divider text="6. SplitBusinessSolutionsExample" />
       <SplitBusinessSolutionsExample />
+      <Divider text="7. SplitBusinessMetricsExample" />
       <SplitBusinessMetricsExample />
+      <Divider text="8. SplitBusinessTestimonialExample" />
       <SplitBusinessTestimonialExample />
+      <Divider text="9. SplitBusinessFeaturesExample" />
       <SplitBusinessFeaturesExample />
+      <Divider text="10. SplitBusinessAboutExample" />
       <SplitBusinessAboutExample />
     </div>
   );

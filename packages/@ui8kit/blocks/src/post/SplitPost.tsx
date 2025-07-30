@@ -103,18 +103,18 @@ const splitPostContentHooks = {
         {/* Breadcrumbs */}
         {content.breadcrumbs && (
           <Group gap="xs" align="center" c="secondary-foreground">
-            <Icon component="span" size="sm" lucideIcon={ArrowLeft} />
+            <Icon lucideIcon={ArrowLeft} />
             <Text size="sm">Back to Blog</Text>
           </Group>
         )}
 
         {/* Category & Meta */}
         <Group gap="md" align="center">
-          <Badge variant="secondary" size="default" rounded="md">
+          <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
             {content.meta.category}
           </Badge>
           <Group gap="xs" align="center" c="secondary-foreground">
-            <Icon component="span" size="xs" lucideIcon={Clock} />
+            <Icon lucideIcon={Clock} />
             <Text size="sm">{content.meta.readTime}</Text>
           </Group>
         </Group>
@@ -134,8 +134,8 @@ const splitPostContentHooks = {
         {/* Author & Date */}
         {content.author && (
           <Group gap="lg" align="center">
-            <Group gap="sm" align="center">
-              <Icon component="span" size="sm" lucideIcon={User} c="primary" />
+            <Group gap="md" align="center">
+              <Icon lucideIcon={User} c="primary" />
               <Stack gap="xs">
                 <Text size="md" fw="medium">
                   {content.author.name}
@@ -148,7 +148,7 @@ const splitPostContentHooks = {
               </Stack>
             </Group>
             <Group gap="xs" align="center" c="secondary-foreground">
-              <Icon component="span" size="xs" lucideIcon={Calendar} />
+              <Icon lucideIcon={Calendar} />
               <Text size="sm">{content.meta.publishedDate}</Text>
             </Group>
           </Group>
@@ -158,7 +158,7 @@ const splitPostContentHooks = {
         {content.tags && (
           <Group gap="xs" className="flex-wrap">
             {content.tags.map((tag, index) => (
-              <Badge key={index} variant="outline" size="sm" rounded="md">
+              <Badge key={index} variant="outline" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
                 {tag}
               </Badge>
             ))}
@@ -166,13 +166,13 @@ const splitPostContentHooks = {
         )}
 
         {/* Actions */}
-        <Group gap="sm">
+        <Group gap="md">
           <Button rounded={theme?.themeRounded.default} size="md" variant="default">
-            <Icon component="span" size="xs" c="primary-foreground" lucideIcon={Share2} />
+            <Icon c="primary-foreground" lucideIcon={Share2} />
             Share Article
           </Button>
           <Button rounded={theme?.themeRounded.default} size="md" variant="outline">
-            <Icon component="span" size="xs" lucideIcon={Bookmark} />
+            <Icon lucideIcon={Bookmark} />
             Save
           </Button>
         </Group>
@@ -185,7 +185,7 @@ const splitPostContentHooks = {
     content: (content: SplitPostData) => (
       <Stack gap="xl" align="start">
         {/* Category */}
-        <Badge variant="secondary" size="lg" rounded="md" className="px-lg py-sm">
+        <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="px-lg py-sm">
           {content.meta.category}
         </Badge>
 
@@ -206,27 +206,27 @@ const splitPostContentHooks = {
           <Box className="bg-muted p-lg rounded-lg w-full">
             <Stack gap="md">
               <Group gap="md" align="start">
-                <Icon component="span" size="xl" lucideIcon={User} c="primary" />
-                <Stack gap="sm" className="flex-1">
-                  <Group gap="sm" align="center" justify="between">
+                <Icon size="xl" lucideIcon={User} c="primary" />
+                <Stack gap="md" className="flex-1">
+                  <Group gap="md" align="center" justify="between">
                     <Stack gap="xs">
                       <Text size="lg" fw="semibold">
                         {content.author.name}
                       </Text>
                       {content.author.role && (
-                        <Text size="sm" c="secondary-foreground">
+                        <Text c="secondary-foreground">
                           {content.author.role}
                         </Text>
                       )}
                     </Stack>
                     <Group gap="xs" align="center" c="secondary-foreground">
-                      <Icon component="span" size="xs" lucideIcon={Calendar} />
+                      <Icon lucideIcon={Calendar} />
                       <Text size="sm">{content.meta.publishedDate}</Text>
                     </Group>
                   </Group>
                   
                   {content.author.bio && (
-                    <Text size="sm" c="secondary-foreground">
+                    <Text c="secondary-foreground">
                       {content.author.bio}
                     </Text>
                   )}
@@ -239,18 +239,18 @@ const splitPostContentHooks = {
         {/* Meta Stats */}
         <Group gap="xl" align="center">
           <Group gap="xs" align="center">
-            <Icon component="span" size="sm" lucideIcon={Clock} c="primary" />
+            <Icon lucideIcon={Clock} c="primary" />
             <Text size="sm" fw="medium">{content.meta.readTime}</Text>
           </Group>
           {content.meta.views && (
             <Group gap="xs" align="center">
-              <Icon component="span" size="sm" lucideIcon={Eye} c="primary" />
+              <Icon lucideIcon={Eye} c="primary" />
               <Text size="sm" fw="medium">{content.meta.views}</Text>
             </Group>
           )}
           {content.meta.likes && (
             <Group gap="xs" align="center">
-              <Icon component="span" size="sm" lucideIcon={Heart} c="primary" />
+              <Icon lucideIcon={Heart} c="primary" />
               <Text size="sm" fw="medium">{content.meta.likes}</Text>
             </Group>
           )}
@@ -272,7 +272,7 @@ const splitPostContentHooks = {
           <Text size="sm" fw="semibold" c="primary" className="uppercase tracking-wide">
             {content.meta.category}
           </Text>
-          <Text size="sm" c="secondary-foreground">
+          <Text c="secondary-foreground">
             {content.meta.readTime}
           </Text>
         </Group>
@@ -299,16 +299,16 @@ const splitPostContentHooks = {
         )}
 
         {/* Media Actions */}
-        <Group gap="sm" className="w-full">
+        <Group gap="md" className="w-full">
           <Button rounded={theme?.themeRounded.default} size="md" variant="default" className="flex-1">
-            <Icon component="span" size="xs" c="primary-foreground" lucideIcon={Play} />
+            <Icon c="primary-foreground" lucideIcon={Play} />
             Read Article
           </Button>
           <Button rounded={theme?.themeRounded.default} size="md" variant="outline">
-            <Icon component="span" size="xs" lucideIcon={Share2} />
+            <Icon lucideIcon={Share2} />
           </Button>
           <Button rounded={theme?.themeRounded.default} size="md" variant="outline">
-            <Icon component="span" size="xs" lucideIcon={Bookmark} />
+            <Icon lucideIcon={Bookmark} />
           </Button>
         </Group>
 
@@ -332,12 +332,12 @@ const splitPostContentHooks = {
       <Stack gap="lg" align="start">
         {/* Navigation */}
         <Group gap="xs" align="center" c="secondary-foreground">
-          <Icon component="span" size="sm" lucideIcon={ArrowLeft} />
+          <Icon lucideIcon={ArrowLeft} />
           <Text size="sm">All Articles</Text>
         </Group>
 
         {/* Category Badge */}
-        <Badge variant="default" size="default" rounded="md">
+        <Badge variant="default" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
           {content.meta.category}
         </Badge>
 
@@ -347,27 +347,27 @@ const splitPostContentHooks = {
         </Title>
 
         {/* Meta Info */}
-        <Stack gap="sm" className="w-full">
+        <Stack gap="md" className="w-full">
           {content.author && (
-            <Group gap="sm" align="center">
-              <Icon component="span" size="sm" lucideIcon={User} c="primary" />
+            <Group gap="md" align="center">
+              <Icon lucideIcon={User} c="primary" />
               <Text size="sm" fw="medium">{content.author.name}</Text>
             </Group>
           )}
           
-          <Group gap="sm" align="center">
-            <Icon component="span" size="sm" lucideIcon={Calendar} c="primary" />
+          <Group gap="md" align="center">
+            <Icon lucideIcon={Calendar} c="primary" />
             <Text size="sm">{content.meta.publishedDate}</Text>
           </Group>
           
-          <Group gap="sm" align="center">
-            <Icon component="span" size="sm" lucideIcon={Clock} c="primary" />
+          <Group gap="md" align="center">
+            <Icon lucideIcon={Clock} c="primary" />
             <Text size="sm">{content.meta.readTime}</Text>
           </Group>
 
           {content.meta.views && (
-            <Group gap="sm" align="center">
-              <Icon component="span" size="sm" lucideIcon={Eye} c="primary" />
+            <Group gap="md" align="center">
+              <Icon lucideIcon={Eye} c="primary" />
               <Text size="sm">{content.meta.views} views</Text>
             </Group>
           )}
@@ -375,13 +375,13 @@ const splitPostContentHooks = {
 
         {/* Related Links */}
         {content.relatedLinks && (
-          <Stack gap="sm" className="w-full">
+          <Stack gap="md" className="w-full">
             <Text size="sm" fw="semibold" c="secondary-foreground" className="uppercase tracking-wide">
               Related
             </Text>
             {content.relatedLinks.slice(0, 3).map((link, index) => (
-              <Group key={index} gap="sm" align="center" className="hover:bg-muted p-sm rounded-md cursor-pointer">
-                <Icon component="span" size="xs" lucideIcon={ChevronRight} c="secondary-foreground" />
+              <Group key={index} gap="md" align="center" className="hover:bg-muted p-sm rounded-md cursor-pointer">
+                <Icon lucideIcon={ChevronRight} c="secondary-foreground" />
                 <Text size="sm" className="line-clamp-1">
                   {link.title}
                 </Text>
@@ -391,17 +391,17 @@ const splitPostContentHooks = {
         )}
 
         {/* Action Buttons */}
-        <Stack gap="sm" className="w-full">
+        <Stack gap="md" className="w-full">
           <Button rounded={theme?.themeRounded.default} size="md" variant="default" className="w-full">
             Start Reading
           </Button>
-          <Group gap="sm">
+          <Group gap="md">
             <Button rounded={theme?.themeRounded.default} size="sm" variant="outline" className="flex-1">
-              <Icon component="span" size="xs" c="primary-foreground" lucideIcon={Share2} />
+              <Icon c="primary-foreground" lucideIcon={Share2} />
               Share
             </Button>
             <Button rounded={theme?.themeRounded.default} size="sm" variant="outline" className="flex-1">
-              <Icon component="span" size="xs" lucideIcon={Download} />
+              <Icon lucideIcon={Download} />
               Save
             </Button>
           </Group>
@@ -415,12 +415,12 @@ const splitPostContentHooks = {
     content: (content: SplitPostData) => (
       <Stack gap="xl" align="start">
         {/* Hero Badge */}
-        <Group gap="sm" align="center">
-          <Badge variant="default" size="lg" rounded="full" className="bg-gradient-to-r from-primary to-secondary text-primary-foreground">
-            <Icon component="span" size="xs" c="primary-foreground" lucideIcon={Star} />
+        <Group gap="md" align="center">
+          <Badge variant="default" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="bg-gradient-to-r from-primary to-secondary text-primary-foreground">
+            <Icon c="primary-foreground" lucideIcon={Star} />
             Featured Story
           </Badge>
-          <Badge variant="secondary" size="default" rounded="md">
+          <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
             {content.meta.category}
           </Badge>
         </Group>
@@ -440,18 +440,18 @@ const splitPostContentHooks = {
         {/* Hero Stats */}
         <Group gap="xl" align="center">
           <Group gap="xs" align="center">
-            <Icon component="span" size="sm" lucideIcon={Clock} c="primary" />
+            <Icon lucideIcon={Clock} c="primary" />
             <Text size="md" fw="medium">{content.meta.readTime}</Text>
           </Group>
           {content.meta.views && (
             <Group gap="xs" align="center">
-              <Icon component="span" size="sm" lucideIcon={Eye} c="primary" />
+              <Icon lucideIcon={Eye} c="primary" />
               <Text size="md" fw="medium">{content.meta.views}</Text>
             </Group>
           )}
           {content.meta.likes && (
             <Group gap="xs" align="center">
-              <Icon component="span" size="sm" lucideIcon={Heart} c="primary" />
+              <Icon lucideIcon={Heart} c="primary" />
               <Text size="md" fw="medium">{content.meta.likes}</Text>
             </Group>
           )}
@@ -461,13 +461,13 @@ const splitPostContentHooks = {
         {content.author && (
           <Box className="bg-gradient-to-r from-primary/10 to-secondary/10 p-lg rounded-xl w-full">
             <Group gap="md" align="center">
-              <Icon component="span" size="xl" lucideIcon={User} c="primary" />
+              <Icon size="xl" lucideIcon={User} c="primary" />
               <Stack gap="xs" className="flex-1">
                 <Text size="lg" fw="semibold">
                   {content.author.name}
                 </Text>
                 {content.author.role && (
-                  <Text size="sm" c="secondary-foreground">
+                  <Text c="secondary-foreground">
                     {content.author.role}
                   </Text>
                 )}
@@ -482,11 +482,11 @@ const splitPostContentHooks = {
         {/* Hero Actions */}
         <Group gap="md" className="w-full">
           <Button rounded={theme?.themeRounded.default} size="lg" variant="default" className="flex-1">
-            <Icon component="span" size="sm" c="primary-foreground" lucideIcon={BookOpen} />
+            <Icon c="primary-foreground" lucideIcon={BookOpen} />
             Read Full Story
           </Button>
           <Button rounded={theme?.themeRounded.default} size="lg" variant="outline">
-            <Icon component="span" size="sm" lucideIcon={Share2} />
+            <Icon lucideIcon={Share2} />
             Share
           </Button>
         </Group>
@@ -495,7 +495,7 @@ const splitPostContentHooks = {
         {content.tags && (
           <Group gap="xs" className="flex-wrap">
             {content.tags.map((tag, index) => (
-              <Badge key={index} variant="outline" size="sm" rounded="full">
+              <Badge key={index} variant="outline" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
                 {tag}
               </Badge>
             ))}

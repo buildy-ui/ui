@@ -164,7 +164,7 @@ export const GridFAQCategoriesExample = () => {
       content={content}
       variant="categories"
       cols="1-2-4"
-      gap="sm"
+      gap="md"
       py="xl"
     />
   );
@@ -184,7 +184,7 @@ export const GridFAQCompactExample = () => {
       content={content}
       variant="compact"
       cols="1"
-      gap="sm"
+      gap="md"
       py="lg"
       useContainer={true}
     />
@@ -213,7 +213,7 @@ export const GridFAQSupportExample = () => {
       variant="support"
       cols="1-2-3"
       gap="xl"
-      py="2xl"
+      py="xl"
       className="bg-gradient-to-b from-muted/30 to-background"
     />
   );

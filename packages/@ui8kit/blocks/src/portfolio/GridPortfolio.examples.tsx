@@ -248,7 +248,7 @@ export const GridPortfolioDetailedExample = () => {
       variant="detailed"
       cols="1-2-3"
       gap="xl"
-      py="2xl"
+      py="xl"
     />
   );
 };
@@ -270,7 +270,7 @@ export const GridPortfolioShowcaseExample = () => {
       variant="showcase"
       cols="1-2-4"
       gap="lg"
-      py="2xl"
+      py="xl"
       className="bg-gradient-to-r from-primary/5 to-secondary/5"
     />
   );

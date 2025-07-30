@@ -137,8 +137,8 @@ const splitFooterContentHooks = {
     content: (content: SplitFooterData) => (
       <Stack gap="xl" align="start">
         <Stack gap="lg">
-          <Group gap="sm" align="center">
-            <Icon component="span" size="xl" lucideIcon={Building2} c="primary" />
+          <Group gap="md" align="center">
+            <Icon size="xl" lucideIcon={Building2} c="primary" />
             <Title order={2} size="2xl" fw="bold">
               {content.brand}
             </Title>
@@ -151,7 +151,7 @@ const splitFooterContentHooks = {
           )}
           
           {content.description && (
-            <Text size="sm" c="secondary-foreground" className="max-w-md">
+            <Text c="secondary-foreground" className="max-w-md">
               {content.description}
             </Text>
           )}
@@ -163,11 +163,11 @@ const splitFooterContentHooks = {
             <Text size="sm" fw="semibold" c="foreground">
               {content.features.title || "Why Choose Us"}
             </Text>
-            <Stack gap="sm">
+            <Stack gap="md">
               {content.features.items?.slice(0, 4).map((feature, index) => (
-                <Group key={index} gap="sm" align="center">
-                  <Icon component="span" size="sm" lucideIcon={Award} c="primary" />
-                  <Text size="sm" c="secondary-foreground">
+                <Group key={index} gap="md" align="center">
+                  <Icon lucideIcon={Award} c="primary" />
+                  <Text c="secondary-foreground">
                     {feature}
                   </Text>
                 </Group>
@@ -186,7 +186,7 @@ const splitFooterContentHooks = {
 
         {/* Copyright */}
         <Box className="pt-lg border-t border-border w-full">
-          <Text size="sm" c="secondary-foreground">
+          <Text c="secondary-foreground">
             {content.copyright}
           </Text>
         </Box>
@@ -209,22 +209,22 @@ const splitFooterContentHooks = {
         </Stack>
 
         {/* Newsletter Signup */}
-        <Card p="lg" rounded="lg" shadow="sm" className="bg-card border w-full max-w-md">
+        <Card p="lg" rounded={theme?.themeRounded.default} shadow="sm" className="bg-card border w-full max-w-md">
           <Stack gap="md">
-            <Group gap="sm" align="center">
-              <Icon component="span" size="sm" lucideIcon={Mail} c="primary" />
+            <Group gap="md" align="center">
+              <Icon lucideIcon={Mail} c="primary" />
               <Text size="sm" fw="semibold">
                 Newsletter Signup
               </Text>
             </Group>
             
-            <Stack gap="sm">
+            <Stack gap="md">
               <Text
                 size="sm"
                 className="w-full"
               >Enter your email</Text>
               <Button rounded={theme?.themeRounded.default} size="sm" variant="default" className="w-full">
-                <Icon component="span" size="sm" c="primary-foreground" lucideIcon={Send} />
+                <Icon c="primary-foreground" lucideIcon={Send} />
                 {content.newsletter?.buttonText || "Subscribe"}
               </Button>
             </Stack>
@@ -242,7 +242,7 @@ const splitFooterContentHooks = {
           </Text>
           <Group gap="lg" className="flex-wrap">
             {content.sections.slice(0, 2).map((section) => (
-              <Stack key={section.title} gap="sm">
+              <Stack key={section.title} gap="md">
                 <Text size="sm" fw="semibold" c="foreground">
                   {section.title}
                 </Text>
@@ -265,7 +265,7 @@ const splitFooterContentHooks = {
 
         {/* Copyright */}
         <Box className="pt-lg border-t border-border w-full">
-          <Text size="sm" c="secondary-foreground">
+          <Text c="secondary-foreground">
             {content.copyright}
           </Text>
         </Box>
@@ -293,7 +293,7 @@ const splitFooterContentHooks = {
             {content.contact.email && (
               <Group gap="md" align="center">
                 <Box className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                  <Icon component="span" size="sm" lucideIcon={Mail} c="primary" />
+                  <Icon lucideIcon={Mail} c="primary" />
                 </Box>
                 <Stack gap="xs">
                   <Text size="sm" fw="semibold">
@@ -313,7 +313,7 @@ const splitFooterContentHooks = {
             {content.contact.phone && (
               <Group gap="md" align="center">
                 <Box className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                  <Icon component="span" size="sm" lucideIcon={Phone} c="primary" />
+                  <Icon lucideIcon={Phone} c="primary" />
                 </Box>
                 <Stack gap="xs">
                   <Text size="sm" fw="semibold">
@@ -334,13 +334,13 @@ const splitFooterContentHooks = {
             {content.contact.address && (
               <Group gap="md" align="center">
                 <Box className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                  <Icon component="span" size="sm" lucideIcon={MapPin} c="primary" />
+                  <Icon lucideIcon={MapPin} c="primary" />
                 </Box>
                 <Stack gap="xs">
                   <Text size="sm" fw="semibold">
                     Address
                   </Text>
-                  <Text size="sm" c="secondary-foreground">
+                  <Text c="secondary-foreground">
                     {content.contact.address}
                   </Text>
                 </Stack>
@@ -350,7 +350,7 @@ const splitFooterContentHooks = {
             {content.contact.website && (
               <Group gap="md" align="center">
                 <Box className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                  <Icon component="span" size="sm" lucideIcon={Globe} c="primary" />
+                  <Icon lucideIcon={Globe} c="primary" />
                 </Box>
                 <Stack gap="xs">
                   <Text size="sm" fw="semibold">
@@ -373,7 +373,7 @@ const splitFooterContentHooks = {
         {/* CTA Button */}
         <Group gap="md" align="center">
           <Button rounded={theme?.themeRounded.default} size="lg" variant="default">
-            <Icon component="span" size="sm" c="primary-foreground" lucideIcon={ArrowRight} />
+            <Icon c="primary-foreground" lucideIcon={ArrowRight} />
             Start a Project
           </Button>
           <Button rounded={theme?.themeRounded.default} size="lg" variant="outline">
@@ -383,7 +383,7 @@ const splitFooterContentHooks = {
 
         {/* Copyright */}
         <Box className="pt-lg border-t border-border w-full">
-          <Text size="sm" c="secondary-foreground">
+          <Text c="secondary-foreground">
             {content.copyright}
           </Text>
         </Box>
@@ -410,9 +410,9 @@ const splitFooterContentHooks = {
           {content.social && (
             <Group gap="md" className="flex-wrap">
               {content.social.twitter && (
-                <Card p="md" rounded="lg" shadow="sm" className="bg-card border hover:shadow-md transition-shadow cursor-pointer">
+                <Card p="md" rounded={theme?.themeRounded.default} shadow="sm" className="bg-card border hover:shadow-md transition-shadow cursor-pointer">
                   <Group gap="md" align="center">
-                    <Icon component="span" size="lg" lucideIcon={Twitter} c="primary" />
+                    <Icon size="lg" lucideIcon={Twitter} c="primary" />
                     <Stack gap="xs">
                       <Text size="sm" fw="semibold">
                         Twitter
@@ -426,9 +426,9 @@ const splitFooterContentHooks = {
               )}
 
               {content.social.linkedin && (
-                <Card p="md" rounded="lg" shadow="sm" className="bg-card border hover:shadow-md transition-shadow cursor-pointer">
+                <Card p="md" rounded={theme?.themeRounded.default} shadow="sm" className="bg-card border hover:shadow-md transition-shadow cursor-pointer">
                   <Group gap="md" align="center">
-                    <Icon component="span" size="lg" lucideIcon={Linkedin} c="primary" />
+                    <Icon size="lg" lucideIcon={Linkedin} c="primary" />
                     <Stack gap="xs">
                       <Text size="sm" fw="semibold">
                         LinkedIn
@@ -442,9 +442,9 @@ const splitFooterContentHooks = {
               )}
 
               {content.social.github && (
-                <Card p="md" rounded="lg" shadow="sm" className="bg-card border hover:shadow-md transition-shadow cursor-pointer">
+                <Card p="md" rounded={theme?.themeRounded.default} shadow="sm" className="bg-card border hover:shadow-md transition-shadow cursor-pointer">
                   <Group gap="md" align="center">
-                    <Icon component="span" size="lg" lucideIcon={Github} c="foreground" />
+                    <Icon size="lg" lucideIcon={Github} c="foreground" />
                     <Stack gap="xs">
                       <Text size="sm" fw="semibold">
                         GitHub
@@ -466,7 +466,7 @@ const splitFooterContentHooks = {
             <Text size="2xl" fw="bold" c="primary">
               10K+
             </Text>
-            <Text size="sm" c="secondary-foreground" className="text-center">
+            <Text c="secondary-foreground" className="text-center">
               Followers
             </Text>
           </Stack>
@@ -475,7 +475,7 @@ const splitFooterContentHooks = {
             <Text size="2xl" fw="bold" c="primary">
               500+
             </Text>
-            <Text size="sm" c="secondary-foreground" className="text-center">
+            <Text c="secondary-foreground" className="text-center">
               Contributors
             </Text>
           </Stack>
@@ -484,7 +484,7 @@ const splitFooterContentHooks = {
             <Text size="2xl" fw="bold" c="primary">
               50+
             </Text>
-            <Text size="sm" c="secondary-foreground" className="text-center">
+            <Text c="secondary-foreground" className="text-center">
               Countries
             </Text>
           </Stack>
@@ -511,7 +511,7 @@ const splitFooterContentHooks = {
 
         {/* Copyright */}
         <Box className="pt-lg border-t border-border w-full">
-          <Text size="sm" c="secondary-foreground">
+          <Text c="secondary-foreground">
             {content.copyright}
           </Text>
         </Box>
@@ -524,15 +524,15 @@ const splitFooterContentHooks = {
     content: (content: SplitFooterData) => (
       <Stack gap="lg" align="start">
         <Stack gap="md">
-          <Group gap="sm" align="center">
-            <Icon component="span" size="lg" lucideIcon={Zap} c="primary" />
+          <Group gap="md" align="center">
+            <Icon size="lg" lucideIcon={Zap} c="primary" />
             <Title order={3} size="xl" fw="bold">
               {content.brand}
             </Title>
           </Group>
           
           {content.tagline && (
-            <Text size="sm" c="secondary-foreground" className="max-w-sm">
+            <Text c="secondary-foreground" className="max-w-sm">
               {content.tagline}
             </Text>
           )}
@@ -541,7 +541,7 @@ const splitFooterContentHooks = {
         {/* Essential Links */}
         <Group gap="lg" className="flex-wrap">
           {content.sections.slice(0, 3).map((section) => (
-            <Stack key={section.title} gap="sm">
+            <Stack key={section.title} gap="md">
               <Text size="sm" fw="semibold" c="foreground">
                 {section.title}
               </Text>
@@ -563,7 +563,7 @@ const splitFooterContentHooks = {
 
         {/* Bottom Section */}
         <Group gap="md" align="center" justify="between" className="w-full pt-md border-t border-border">
-          <Text size="sm" c="secondary-foreground">
+          <Text c="secondary-foreground">
             {content.copyright}
           </Text>
           
@@ -596,9 +596,9 @@ export const SplitFooter = forwardRef<HTMLElement, SplitFooterProps>(
             <Box className="relative min-h-[400px] bg-gradient-to-br from-primary/20 via-primary/10 to-transparent rounded-lg overflow-hidden flex items-center justify-center">
               <Stack gap="xl" align="center" className="relative z-10">
                 <Box className="w-32 h-32 bg-primary/10 rounded-full flex items-center justify-center">
-                  <Icon component="span" size="sm" lucideIcon={Building2} c="primary" />
+                  <Icon lucideIcon={Building2} c="primary" />
                 </Box>
-                <Stack gap="sm" align="center">
+                <Stack gap="md" align="center">
                   <Text size="lg" fw="semibold" c="primary">
                     Trusted Brand
                   </Text>
@@ -615,9 +615,9 @@ export const SplitFooter = forwardRef<HTMLElement, SplitFooterProps>(
             <Box className="relative min-h-[400px] bg-gradient-to-br from-blue-500/20 via-indigo-500/20 to-purple-500/20 rounded-lg overflow-hidden flex items-center justify-center">
               <Stack gap="xl" align="center" className="relative z-10">
                 <Box className="w-32 h-32 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center">
-                  <Icon component="span" size="sm" lucideIcon={Mail} c="secondary-foreground" />
+                  <Icon lucideIcon={Mail} c="secondary-foreground" />
                 </Box>
-                <Stack gap="sm" align="center">
+                <Stack gap="md" align="center">
                   <Text size="lg" fw="semibold" c="secondary-foreground">
                     Stay Connected
                   </Text>
@@ -639,7 +639,7 @@ export const SplitFooter = forwardRef<HTMLElement, SplitFooterProps>(
                       key={index}
                       className="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center"
                     >
-                      <Icon component="span" size="lg" lucideIcon={LucideIcon} c="secondary-foreground" />
+                      <Icon size="lg" lucideIcon={LucideIcon} c="secondary-foreground" />
                     </Box>
                   ))}
                 </Box>
@@ -663,9 +663,9 @@ export const SplitFooter = forwardRef<HTMLElement, SplitFooterProps>(
                     { icon: Youtube, label: "YouTube" },
                     { icon: Github, label: "GitHub" }
                   ].map((item, index) => (
-                    <Stack key={index} gap="sm" align="center">
+                    <Stack key={index} gap="md" align="center">
                       <Box className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
-                        <Icon component="span" size="sm" lucideIcon={item.icon} c="secondary-foreground" />
+                        <Icon lucideIcon={item.icon} c="secondary-foreground" />
                       </Box>
                       <Text size="xs" c="secondary-foreground" ta="center">
                         {item.label}
@@ -685,9 +685,9 @@ export const SplitFooter = forwardRef<HTMLElement, SplitFooterProps>(
             <Box className="relative min-h-[400px] bg-gradient-to-br from-gray-500/20 via-slate-500/20 to-zinc-500/20 rounded-lg overflow-hidden flex items-center justify-center">
               <Stack gap="xl" align="center" className="relative z-10">
                 <Box className="w-32 h-32 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center">
-                  <Icon component="span" size="sm" lucideIcon={Zap} c="secondary-foreground" />
+                  <Icon lucideIcon={Zap} c="secondary-foreground" />
                 </Box>
-                <Stack gap="sm" align="center">
+                <Stack gap="md" align="center">
                   <Text size="lg" fw="semibold" c="secondary-foreground">
                     Simple & Effective
                   </Text>
@@ -702,7 +702,7 @@ export const SplitFooter = forwardRef<HTMLElement, SplitFooterProps>(
         default:
           return (
             <Box className="relative min-h-[400px] bg-gradient-to-br from-primary/20 to-transparent rounded-lg flex items-center justify-center">
-              <Icon component="span" size="sm" lucideIcon={Building2} c="primary" className="opacity-20" />
+              <Icon lucideIcon={Building2} c="primary" className="opacity-20" />
             </Box>
           );
       }

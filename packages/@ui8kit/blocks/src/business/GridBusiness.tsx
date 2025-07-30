@@ -1,19 +1,7 @@
 import { forwardRef } from "react";
 import { 
   ArrowRight, 
-  CircleCheck, 
-  Bookmark, 
-  BookmarkCheck, 
-  Zap, 
-  Shield, 
-  Rocket, 
-  Users, 
-  BarChart, 
-  Globe,
-  Building,
-  Target,
-  TrendingUp,
-  Award,
+  CircleCheck,
   Briefcase,
   MapPin,
   Clock,
@@ -21,7 +9,6 @@ import {
 } from "lucide-react";
 import {
   Stack,
-  Grid,
   Group,
   Title,
   Text,
@@ -43,9 +30,7 @@ export const theme = {
 }
 import { 
   LayoutBlock,
-  createLayoutContentHook,
-  defaultLayoutContentHooks,
-  type LayoutContentHooks
+  createLayoutContentHook
 } from "@ui8kit/core";
 
 // Business item interfaces
@@ -133,7 +118,7 @@ const gridBusinessContentHooks = {
       <Card 
         key={card.id} 
         p="lg" 
-        rounded="lg" 
+        rounded={theme?.themeRounded.default}
         shadow="sm" 
         bg="card" 
         className={`hover:shadow-md transition-shadow ${
@@ -145,25 +130,23 @@ const gridBusinessContentHooks = {
             <Box 
               p="sm" 
               bg="primary" 
-              rounded="md" 
+              rounded={theme?.themeRounded.default} 
               className="inline-flex"
               data-class="business-icon"
             >
               <Icon
-                component="span"
-                size="md"
                 lucideIcon={card.lucideIcon}
                 c="primary-foreground"
               />
             </Box>
           )}
 
-          <Stack gap="sm" className="flex-1">
+          <Stack gap="md" className="flex-1">
             <Title order={3} size="lg" fw="semibold">
               {card.title}
             </Title>
             
-            <Text size="sm" c="secondary-foreground" className="leading-relaxed">
+            <Text c="secondary-foreground" className="leading-relaxed">
               {card.description}
             </Text>
           </Stack>
@@ -174,19 +157,18 @@ const gridBusinessContentHooks = {
 
   // Solutions grid variant
   solutionsGrid: createLayoutContentHook({
-    item: (solution: Solution, index: number) => (
-      <Card key={solution.id} p="xl" rounded="lg" shadow="sm" bg="card" className="hover:shadow-lg transition-all duration-300 group">
+    item: (solution: Solution) => (
+      <Card key={solution.id} p="xl" rounded={theme?.themeRounded.default} shadow="sm" bg="card" className="hover:shadow-lg transition-all duration-300 group">
         <Stack gap="lg" align="start">
           {solution.lucideIcon && (
             <Box 
               p="lg" 
               bg="primary" 
-              rounded="lg" 
+              rounded={theme?.themeRounded.default} 
               className="inline-flex group-hover:scale-110 transition-transform duration-300"
               data-class="solution-icon"
             >
               <Icon
-                component="span"
                 size="xl"
                 lucideIcon={solution.lucideIcon}
                 c="primary-foreground"
@@ -201,7 +183,7 @@ const gridBusinessContentHooks = {
               width="100%"
               height="200px"
               fit="cover"
-              rounded="md"
+              rounded={theme?.themeRounded.default}
             />
           )}
 
@@ -210,7 +192,7 @@ const gridBusinessContentHooks = {
               {solution.title}
             </Title>
             
-            <Text size="md" c="secondary-foreground" className="leading-relaxed">
+            <Text c="secondary-foreground" className="leading-relaxed">
               {solution.description}
             </Text>
           </Stack>
@@ -219,7 +201,7 @@ const gridBusinessContentHooks = {
             <Box 
               p="md" 
               bg="secondary" 
-              rounded="md" 
+              rounded={theme?.themeRounded.default} 
               className="w-full"
               data-class="solution-stats"
             >
@@ -227,7 +209,7 @@ const gridBusinessContentHooks = {
                 <Text size="2xl" fw="bold" c="primary">
                   {solution.stats.value}
                 </Text>
-                <Text size="sm" c="secondary-foreground">
+                <Text c="secondary-foreground">
                   {solution.stats.label}
                 </Text>
               </Stack>
@@ -240,11 +222,11 @@ const gridBusinessContentHooks = {
 
   // Pricing variant
   pricing: createLayoutContentHook({
-    item: (plan: PricingPlan, index: number) => (
+    item: (plan: PricingPlan) => (
       <Card 
         key={plan.id} 
         p="xl" 
-        rounded="lg" 
+        rounded={theme?.themeRounded.default} 
         shadow={plan.isPopular ? "lg" : "sm"} 
         bg="card" 
         className={`hover:shadow-xl transition-all duration-300 relative ${
@@ -254,8 +236,8 @@ const gridBusinessContentHooks = {
         {plan.isPopular && (
           <Badge 
             variant="default" 
-            size="sm" 
-            rounded="full" 
+            size={theme?.themeButtonSize.badge}
+            rounded={theme?.themeRounded.default} 
             className="absolute -top-3 left-1/2 transform -translate-x-1/2"
           >
             Most Popular
@@ -263,12 +245,12 @@ const gridBusinessContentHooks = {
         )}
 
         <Stack gap="lg" align="start">
-          <Stack gap="sm">
+          <Stack gap="md">
             <Title order={3} size="xl" fw="bold">
               {plan.name}
             </Title>
             
-            <Text size="sm" c="secondary-foreground">
+            <Text c="secondary-foreground">
               {plan.description}
             </Text>
           </Stack>
@@ -277,17 +259,15 @@ const gridBusinessContentHooks = {
             <Title order={2} size="3xl" fw="bold" c="primary">
               {plan.price}
             </Title>
-            <Text size="sm" c="secondary-foreground">
+            <Text c="secondary-foreground">
               /month
             </Text>
           </Group>
 
-          <Stack gap="sm" className="w-full">
+          <Stack gap="md" className="w-full">
             {plan.features.map((feature, idx) => (
-              <Group key={idx} gap="sm" align="start">
+              <Group key={idx} gap="md" align="start">
                 <Icon
-                  component="span"
-                  size="sm"
                   lucideIcon={CircleCheck}
                   c="primary"
                   className="mt-0.5 flex-shrink-0"
@@ -299,12 +279,13 @@ const gridBusinessContentHooks = {
             ))}
           </Stack>
 
-          <Button rounded={theme?.themeRounded.default} 
+          <Button
             variant={plan.buttonVariant || "default"}
-            size="lg" 
+            rounded={theme?.themeRounded.default} 
+            size={theme?.themeButtonSize.default}
             className="w-full"
             rightSection={
-              <Icon component="span" size="sm" lucideIcon={ArrowRight} />
+              <Icon lucideIcon={ArrowRight} />
             }
           >
             {plan.buttonText}
@@ -317,22 +298,27 @@ const gridBusinessContentHooks = {
   // Pricing with year toggle variant
   pricingYear: createLayoutContentHook({
     beforeItems: (content: GridBusinessData) => (
-      <Group gap="sm" align="center" justify="center" className="mb-lg">
-        <Text size="sm" c="secondary-foreground">Monthly</Text>
-        <Button rounded={theme?.themeRounded.default} variant="outline" size="sm" className="px-1">
+      <Group gap="md" align="center" justify="center" className="mb-lg">
+        <Text c="secondary-foreground">Monthly</Text>
+        <Button
+            rounded={theme?.themeRounded.default}
+            variant="outline"
+            size={theme?.themeButtonSize.default}
+            className="px-1"
+          >
           <Box className="w-6 h-3 bg-primary rounded-full relative">
             <Box className="w-2.5 h-2.5 bg-white rounded-full absolute top-0.5 right-0.5" />
           </Box>
         </Button>
-        <Text size="sm" c="secondary-foreground">Yearly</Text>
-        <Badge variant="secondary" size="xs" rounded="md">Save 20%</Badge>
+        <Text c="secondary-foreground">Yearly</Text>
+        <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>Save 20%</Badge>
       </Group>
     ),
-    item: (plan: PricingPlan, index: number) => (
+    item: (plan: PricingPlan) => (
       <Card 
         key={plan.id} 
         p="xl" 
-        rounded="lg" 
+        rounded={theme?.themeRounded.default} 
         shadow={plan.isPopular ? "lg" : "sm"} 
         bg="card" 
         className={`hover:shadow-xl transition-all duration-300 relative ${
@@ -342,8 +328,8 @@ const gridBusinessContentHooks = {
         {plan.isPopular && (
           <Badge 
             variant="default" 
-            size="sm" 
-            rounded="full" 
+            size={theme?.themeButtonSize.badge}
+            rounded={theme?.themeRounded.badge}
             className="absolute -top-3 left-1/2 transform -translate-x-1/2"
           >
             Most Popular
@@ -351,12 +337,12 @@ const gridBusinessContentHooks = {
         )}
 
         <Stack gap="lg" align="start">
-          <Stack gap="sm">
+          <Stack gap="md">
             <Title order={3} size="xl" fw="bold">
               {plan.name}
             </Title>
             
-            <Text size="sm" c="secondary-foreground">
+            <Text c="secondary-foreground">
               {plan.description}
             </Text>
           </Stack>
@@ -366,7 +352,7 @@ const gridBusinessContentHooks = {
               <Title order={2} size="3xl" fw="bold" c="primary">
                 {plan.yearlyPrice || plan.price}
               </Title>
-              <Text size="sm" c="secondary-foreground">
+              <Text c="secondary-foreground">
                 /month
               </Text>
             </Group>
@@ -377,12 +363,10 @@ const gridBusinessContentHooks = {
             )}
           </Stack>
 
-          <Stack gap="sm" className="w-full">
+          <Stack gap="md" className="w-full">
             {plan.features.map((feature, idx) => (
-              <Group key={idx} gap="sm" align="start">
+              <Group key={idx} gap="md" align="start">
                 <Icon
-                  component="span"
-                  size="sm"
                   lucideIcon={CircleCheck}
                   c="primary"
                   className="mt-0.5 flex-shrink-0"
@@ -394,12 +378,13 @@ const gridBusinessContentHooks = {
             ))}
           </Stack>
 
-          <Button rounded={theme?.themeRounded.default} 
+          <Button
+            rounded={theme?.themeRounded.default} 
             variant={plan.buttonVariant || "default"}
-            size="lg" 
+            size={theme?.themeButtonSize.default}
             className="w-full"
             rightSection={
-              <Icon component="span" size="sm" lucideIcon={ArrowRight} />
+              <Icon lucideIcon={ArrowRight} />
             }
           >
             {plan.buttonText}
@@ -411,8 +396,8 @@ const gridBusinessContentHooks = {
 
   // Career openings variant
   career: createLayoutContentHook({
-    item: (opening: CareerOpening, index: number) => (
-      <Card key={opening.id} p="lg" rounded="lg" shadow="sm" bg="card" className="hover:shadow-md transition-shadow">
+    item: (opening: CareerOpening) => (
+      <Card key={opening.id} p="lg" rounded={theme?.themeRounded.default} shadow="sm" bg="card" className="hover:shadow-md transition-shadow">
         <Stack gap="md" align="start">
           <Group gap="md" align="start" justify="between" className="w-full">
             <Stack gap="xs" className="flex-1">
@@ -423,24 +408,24 @@ const gridBusinessContentHooks = {
               <Group gap="lg" align="center" className="flex-wrap">
                 {opening.department && (
                   <Group gap="xs" align="center">
-                    <Icon component="span" size="xs" lucideIcon={Briefcase} c="secondary-foreground" />
-                    <Text size="sm" c="secondary-foreground">
+                    <Icon lucideIcon={Briefcase} c="secondary-foreground" />
+                    <Text c="secondary-foreground">
                       {opening.department}
                     </Text>
                   </Group>
                 )}
 
                 <Group gap="xs" align="center">
-                  <Icon component="span" size="xs" lucideIcon={MapPin} c="secondary-foreground" />
-                  <Text size="sm" c="secondary-foreground">
+                  <Icon lucideIcon={MapPin} c="secondary-foreground" />
+                  <Text c="secondary-foreground">
                     {opening.location}
                   </Text>
                 </Group>
 
                 {opening.type && (
                   <Group gap="xs" align="center">
-                    <Icon component="span" size="xs" lucideIcon={Clock} c="secondary-foreground" />
-                    <Text size="sm" c="secondary-foreground">
+                    <Icon lucideIcon={Clock} c="secondary-foreground" />
+                    <Text c="secondary-foreground">
                       {opening.type}
                     </Text>
                   </Group>
@@ -448,8 +433,8 @@ const gridBusinessContentHooks = {
 
                 {opening.salary && (
                   <Group gap="xs" align="center">
-                    <Icon component="span" size="xs" lucideIcon={DollarSign} c="secondary-foreground" />
-                    <Text size="sm" c="secondary-foreground">
+                    <Icon lucideIcon={DollarSign} c="secondary-foreground" />
+                    <Text c="secondary-foreground">
                       {opening.salary}
                     </Text>
                   </Group>
@@ -457,17 +442,18 @@ const gridBusinessContentHooks = {
               </Group>
             </Stack>
 
-            <Badge variant="outline" size="sm" rounded="md">
+            <Badge variant="outline" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
               Open
             </Badge>
           </Group>
 
-          <Button rounded={theme?.themeRounded.default} 
-            variant="outline" 
-            size="sm" 
+          <Button
+            variant="outline"
+            rounded={theme?.themeRounded.default}
+            size={theme?.themeButtonSize.default}
             className="w-full"
             rightSection={
-              <Icon component="span" size="xs" lucideIcon={ArrowRight} />
+              <Icon lucideIcon={ArrowRight} />
             }
           >
             Apply Now

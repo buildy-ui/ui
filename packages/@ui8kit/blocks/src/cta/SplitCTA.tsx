@@ -103,7 +103,7 @@ const splitCTAContentHooks = {
       <Stack gap="xl" align="start">
         <Stack gap="md" align="start">
           {content.badge && (
-            <Badge variant="secondary" size="default" rounded="md">
+            <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
               {content.badge}
             </Badge>
           )}
@@ -124,7 +124,7 @@ const splitCTAContentHooks = {
               size="lg"
               variant={button.variant || "default"}
               leftSection={button.lucideIcon ? (
-                <Icon component="span" size="md" lucideIcon={button.lucideIcon} />
+                <Icon lucideIcon={button.lucideIcon} />
               ) : undefined}
             >
               {button.text}
@@ -136,7 +136,7 @@ const splitCTAContentHooks = {
         {content.features && (
           <Stack gap="md" className="w-full">
             {content.features.slice(0, 3).map((feature) => (
-              <Group key={feature.id} gap="sm" align="start">
+              <Group key={feature.id} gap="md" align="start">
                 <Icon
                   component="span"
                   size="sm"
@@ -168,7 +168,7 @@ const splitCTAContentHooks = {
       <Stack gap="xl" align="start">
         <Stack gap="md" align="start">
           {content.badge && (
-            <Badge variant="secondary" size="default" rounded="md" className="bg-white/20 text-white border-white/30">
+            <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="bg-white/20 text-white border-white/30">
               {content.badge}
             </Badge>
           )}
@@ -189,7 +189,7 @@ const splitCTAContentHooks = {
               size="lg"
               variant={button.variant || "default"}
               leftSection={button.lucideIcon ? (
-                <Icon component="span" size="md" lucideIcon={button.lucideIcon} />
+                <Icon lucideIcon={button.lucideIcon} />
               ) : undefined}
               className={button.variant === "outline" ? "border-white text-white hover:bg-white hover:text-black" : ""}
             >
@@ -215,7 +215,7 @@ const splitCTAContentHooks = {
                 <Text size="2xl" fw="bold" c="primary-foreground">
                   {content.stats.rating}
                 </Text>
-                <Icon component="span" size="sm" lucideIcon={Star} c="primary-foreground" className="fill-current" />
+                <Icon lucideIcon={Star} c="primary-foreground" className="fill-current" />
               </Group>
               <Text size="xs" c="primary-foreground" className="opacity-80">
                 Rating
@@ -242,7 +242,7 @@ const splitCTAContentHooks = {
       <Stack gap="xl" align="start">
         <Stack gap="md" align="start">
           {content.badge && (
-            <Badge variant="secondary" size="default" rounded="md">
+            <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
               {content.badge}
             </Badge>
           )}
@@ -259,37 +259,37 @@ const splitCTAContentHooks = {
         {/* Stats Cards */}
         {content.stats && (
           <Grid cols="1-3" gap="md" className="w-full">
-            <Card p="lg" rounded="lg" shadow="sm" bg="card">
+            <Card p="lg" rounded={theme?.themeRounded.default} shadow="sm" bg="card">
               <Stack gap="xs" align="center" ta="center">
                 <Text size="3xl" fw="bold" c="primary">
                   {content.stats.users}
                 </Text>
-                <Text size="sm" c="secondary-foreground">
+                <Text c="secondary-foreground">
                   Active Users
                 </Text>
               </Stack>
             </Card>
             
-            <Card p="lg" rounded="lg" shadow="sm" bg="card">
+            <Card p="lg" rounded={theme?.themeRounded.default} shadow="sm" bg="card">
               <Stack gap="xs" align="center" ta="center">
                 <Group gap="xs" align="center">
                   <Text size="3xl" fw="bold" c="primary">
                     {content.stats.rating}
                   </Text>
-                  <Icon component="span" size="md" lucideIcon={Star} c="primary" className="fill-current" />
+                  <Icon lucideIcon={Star} c="primary" className="fill-current" />
                 </Group>
-                <Text size="sm" c="secondary-foreground">
+                <Text c="secondary-foreground">
                   User Rating
                 </Text>
               </Stack>
             </Card>
             
-            <Card p="lg" rounded="lg" shadow="sm" bg="card">
+            <Card p="lg" rounded={theme?.themeRounded.default} shadow="sm" bg="card">
               <Stack gap="xs" align="center" ta="center">
                 <Text size="3xl" fw="bold" c="primary">
                   {content.stats.downloads}
                 </Text>
-                <Text size="sm" c="secondary-foreground">
+                <Text c="secondary-foreground">
                   Total Downloads
                 </Text>
               </Stack>
@@ -304,7 +304,7 @@ const splitCTAContentHooks = {
               size="lg"
               variant={button.variant || "default"}
               leftSection={button.lucideIcon ? (
-                <Icon component="span" size="md" lucideIcon={button.lucideIcon} />
+                <Icon lucideIcon={button.lucideIcon} />
               ) : undefined}
             >
               {button.text}
@@ -321,7 +321,7 @@ const splitCTAContentHooks = {
       <Stack gap="xl" align="start">
         <Stack gap="md" align="start">
           {content.badge && (
-            <Badge variant="secondary" size="default" rounded="md">
+            <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
               {content.badge}
             </Badge>
           )}
@@ -338,8 +338,8 @@ const splitCTAContentHooks = {
         {/* Device Stats */}
         {content.devices && (
           <Grid cols="3" gap="md" className="w-full">
-            <Group gap="sm" align="center">
-              <Icon component="span" size="lg" lucideIcon={Monitor} c="primary" />
+            <Group gap="md" align="center">
+              <Icon size="lg" lucideIcon={Monitor} c="primary" />
               <Stack gap="none">
                 <Text size="lg" fw="bold">
                   {content.devices.desktop}
@@ -350,8 +350,8 @@ const splitCTAContentHooks = {
               </Stack>
             </Group>
             
-            <Group gap="sm" align="center">
-              <Icon component="span" size="lg" lucideIcon={Smartphone} c="primary" />
+            <Group gap="md" align="center">
+              <Icon size="lg" lucideIcon={Smartphone} c="primary" />
               <Stack gap="none">
                 <Text size="lg" fw="bold">
                   {content.devices.mobile}
@@ -362,8 +362,8 @@ const splitCTAContentHooks = {
               </Stack>
             </Group>
             
-            <Group gap="sm" align="center">
-              <Icon component="span" size="lg" lucideIcon={Tablet} c="primary" />
+            <Group gap="md" align="center">
+              <Icon size="lg" lucideIcon={Tablet} c="primary" />
               <Stack gap="none">
                 <Text size="lg" fw="bold">
                   {content.devices.tablet}
@@ -383,7 +383,7 @@ const splitCTAContentHooks = {
               size="lg"
               variant={button.variant || "default"}
               leftSection={button.lucideIcon ? (
-                <Icon component="span" size="md" lucideIcon={button.lucideIcon} />
+                <Icon lucideIcon={button.lucideIcon} />
               ) : undefined}
             >
               {button.text}
@@ -391,7 +391,7 @@ const splitCTAContentHooks = {
           ))}
         </Group>
 
-        <Text size="sm" c="secondary-foreground">
+        <Text c="secondary-foreground">
           Available on all devices • Free download • No signup required
         </Text>
       </Stack>
@@ -404,7 +404,7 @@ const splitCTAContentHooks = {
       <Stack gap="xl" align="start">
         <Stack gap="md" align="start">
           {content.badge && (
-            <Badge variant="secondary" size="default" rounded="md">
+            <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
               {content.badge}
             </Badge>
           )}
@@ -427,13 +427,11 @@ const splitCTAContentHooks = {
                   <Box 
                     p="sm" 
                     bg="primary" 
-                    rounded="md" 
+                    rounded={theme?.themeRounded.default} 
                     className="flex-shrink-0"
                     data-class="feature-icon"
                   >
                     <Icon
-                      component="span"
-                      size="md"
                       lucideIcon={feature.lucideIcon}
                       c="primary-foreground"
                     />
@@ -462,7 +460,7 @@ const splitCTAContentHooks = {
               size="lg"
               variant={button.variant || "default"}
               leftSection={button.lucideIcon ? (
-                <Icon component="span" size="md" lucideIcon={button.lucideIcon} />
+                <Icon lucideIcon={button.lucideIcon} />
               ) : undefined}
             >
               {button.text}
@@ -513,7 +511,7 @@ export const SplitCTA = forwardRef<HTMLElement, SplitCTAProps>(
               alt={content.image.alt}
               width="100%"
               height="auto"
-              rounded="lg"
+              rounded={theme?.themeRounded.default}
               fit="cover"
             />
           </Block>

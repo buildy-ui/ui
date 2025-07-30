@@ -24,7 +24,7 @@ export const SplitHeroMediaExample = () => {
       content={content}
       variant="media"
       useContainer={true}
-      py="2xl"
+      py="xl"
       gap="xl"
     />
   );
@@ -52,7 +52,7 @@ export const SplitHeroLeftMediaExample = () => {
       variant="media"
       leftMedia={true}
       useContainer={true}
-      py="2xl"
+      py="xl"
       gap="lg"
     />
   );
@@ -93,7 +93,7 @@ export const SplitHeroGalleryExample = () => {
       variant="gallery"
       leftMedia={true}
       useContainer={true}
-      py="2xl"
+      py="xl"
       gap="xl"
     />
   );

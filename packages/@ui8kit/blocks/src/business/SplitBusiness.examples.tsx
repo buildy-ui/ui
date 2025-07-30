@@ -139,7 +139,7 @@ export const SplitBusinessSolutionsExample = () => {
       variant="solutions"
       leftMedia={false}
       useContainer={true}
-      py="2xl"
+      py="xl"
       gap="xl"
     />
   );
@@ -218,7 +218,7 @@ export const SplitBusinessFeaturesExample = () => {
       variant="features"
       leftMedia={true}
       useContainer={true}
-      py="2xl"
+      py="xl"
       gap="xl"
     />
   );

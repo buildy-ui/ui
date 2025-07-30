@@ -240,7 +240,7 @@ export const SplitPortfolioTestimonialExample = () => {
       content={content}
       variant="testimonial"
       leftMedia={true}
-      py="2xl"
+      py="xl"
     />
   );
 };

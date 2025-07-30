@@ -97,8 +97,8 @@ const gridTestimonialContentHooks = {
     header: (content: GridTestimonialData) => (
       <Stack gap="lg" align="center" ta="center" className="max-w-3xl mx-auto">
         {content.badge && (
-          <Badge variant="secondary" size="lg" rounded="md">
-            <Icon component="span" size="xs" lucideIcon={MessageSquare} />
+          <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
+            <Icon lucideIcon={MessageSquare} />
             {content.badge}
           </Badge>
         )}
@@ -116,7 +116,7 @@ const gridTestimonialContentHooks = {
         {content.stats && (
           <Group gap="xl" align="center">
             {content.stats.averageRating && (
-              <Group gap="sm" align="center">
+              <Group gap="md" align="center">
                 <RenderStars rating={Math.floor(parseFloat(content.stats.averageRating))} size="md" />
                 <Text size="lg" fw="semibold">{content.stats.averageRating} out of 5</Text>
               </Group>
@@ -132,11 +132,11 @@ const gridTestimonialContentHooks = {
     ),
     
     item: (testimonial: TestimonialItem) => (
-      <Card p="lg" rounded="lg" shadow="sm" className="h-full">
+      <Card p="lg" rounded={theme?.themeRounded.default} shadow="sm" className="h-full">
         <Stack gap="md" align="start">
           <Group gap="md" align="start" justify="between">
             <RenderStars rating={testimonial.rating} />
-            <Icon component="span" size="lg" lucideIcon={Quote} c="primary" className="opacity-30" />
+            <Icon size="lg" lucideIcon={Quote} c="primary" className="opacity-30" />
           </Group>
           
           <Text size="md" className="leading-relaxed">
@@ -158,17 +158,17 @@ const gridTestimonialContentHooks = {
                 className="w-[50px] h-[50px] bg-primary/10 rounded-full flex items-center justify-center"
                 data-class="avatar-placeholder"
               >
-                <Icon component="span" size="md" lucideIcon={User} c="primary" />
+                <Icon lucideIcon={User} c="primary" />
               </Box>
             )}
             
             <Stack gap="xs">
-              <Group gap="sm" align="center">
+              <Group gap="md" align="center">
                 <Text size="sm" fw="semibold">
                   {testimonial.author}
                 </Text>
                 {testimonial.verified && (
-                  <Icon component="span" size="sm" lucideIcon={CheckCircle} c="green-500" />
+                  <Icon lucideIcon={CheckCircle} c="green-500" />
                 )}
               </Group>
               <Text size="xs" c="secondary-foreground">
@@ -203,7 +203,7 @@ const gridTestimonialContentHooks = {
       return (
         <Card 
           p={isLarge ? "xl" : "lg"} 
-          rounded="lg" 
+          rounded={theme?.themeRounded.default} 
           shadow="md" 
           className={`${isLarge ? "row-span-2" : ""} bg-gradient-to-br from-card to-card/80`}
         >
@@ -211,8 +211,8 @@ const gridTestimonialContentHooks = {
             <Group gap="md" align="center" justify="between">
               <RenderStars rating={testimonial.rating} size={isLarge ? "md" : "sm"} />
               {testimonial.verified && (
-                <Badge variant="secondary" size="xs" rounded="full">
-                  <Icon component="span" size="xs" lucideIcon={Verified} />
+                <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
+                  <Icon lucideIcon={Verified} />
                   Verified
                 </Badge>
               )}
@@ -237,7 +237,7 @@ const gridTestimonialContentHooks = {
                   className={`${isLarge ? "w-[60px] h-[60px]" : "w-[45px] h-[45px]"} bg-primary/10 rounded-full flex items-center justify-center`}
                   data-class="avatar-placeholder"
                 >
-                  <Icon component="span" size={isLarge ? "lg" : "md"} lucideIcon={User} c="primary" />
+                  <Icon size={isLarge ? "lg" : "md"} lucideIcon={User} c="primary" />
                 </Box>
               )}
               
@@ -269,7 +269,7 @@ const gridTestimonialContentHooks = {
         </Title>
         
         {content.subtitle && (
-          <Text size="md" c="secondary-foreground" ta="center" className="italic">
+          <Text c="secondary-foreground" ta="center" className="italic">
             {content.subtitle}
           </Text>
         )}
@@ -304,8 +304,8 @@ const gridTestimonialContentHooks = {
   cards: createLayoutContentHook({
     header: (content: GridTestimonialData) => (
       <Stack gap="lg" align="center" ta="center">
-        <Badge variant="secondary" size="lg" rounded="md" className="px-lg py-sm">
-          <Icon component="span" size="xs" lucideIcon={Users} />
+        <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="px-lg py-sm">
+          <Icon lucideIcon={Users} />
           {content.badge || "Customer Reviews"}
         </Badge>
         
@@ -314,7 +314,7 @@ const gridTestimonialContentHooks = {
         </Title>
         
         {content.stats && (
-          <Group gap="2xl" align="center">
+          <Group gap="xl" align="center">
             {content.stats.totalReviews && (
               <Stack gap="xs" align="center">
                 <Text size="2xl" fw="bold" c="primary">
@@ -331,7 +331,7 @@ const gridTestimonialContentHooks = {
                   <Text size="2xl" fw="bold" c="primary">
                     {content.stats.averageRating}
                   </Text>
-                  <Icon component="span" size="lg" lucideIcon={Star} className="text-yellow-500 fill-yellow-500" />
+                  <Icon size="lg" lucideIcon={Star} className="text-yellow-500 fill-yellow-500" />
                 </Group>
                 <Text size="xs" c="secondary-foreground" className="uppercase tracking-wide">
                   Average Rating
@@ -344,12 +344,12 @@ const gridTestimonialContentHooks = {
     ),
     
     item: (testimonial: TestimonialItem) => (
-      <Card p="xl" rounded="xl" shadow="lg" className="h-full bg-card border hover:shadow-xl transition-shadow">
+      <Card p="xl" rounded={theme?.themeRounded.default} shadow="lg" className="h-full bg-card border hover:shadow-xl transition-shadow">
         <Stack gap="lg" align="start">
           {/* Header with rating and quote icon */}
           <Group gap="md" align="center" justify="between">
             <RenderStars rating={testimonial.rating} size="md" />
-            <Icon component="span" size="xl" lucideIcon={Quote} c="primary" className="opacity-20" />
+            <Icon size="xl" lucideIcon={Quote} c="primary" className="opacity-20" />
           </Group>
           
           {/* Quote */}
@@ -374,23 +374,23 @@ const gridTestimonialContentHooks = {
                 className="w-[70px] h-[70px] bg-primary/10 rounded-full flex items-center justify-center border-4 border-primary/20"
                 data-class="avatar-placeholder"
               >
-                <Icon component="span" size="xl" lucideIcon={User} c="primary" />
+                <Icon size="xl" lucideIcon={User} c="primary" />
               </Box>
             )}
             
-            <Stack gap="sm">
-              <Group gap="sm" align="center">
+            <Stack gap="md">
+              <Group gap="md" align="center">
                 <Text size="md" fw="bold">
                   {testimonial.author}
                 </Text>
                 {testimonial.verified && (
-                  <Badge variant="secondary" size="xs" rounded="full">
-                    <Icon component="span" size="xs" lucideIcon={Shield} />
+                  <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
+                    <Icon lucideIcon={Shield} />
                     Verified
                   </Badge>
                 )}
               </Group>
-              <Text size="sm" c="secondary-foreground">
+              <Text c="secondary-foreground">
                 {testimonial.position}
                 {testimonial.company && ` at ${testimonial.company}`}
               </Text>
@@ -409,7 +409,7 @@ const gridTestimonialContentHooks = {
           {content.title}
         </Title>
         {content.description && (
-          <Text size="md" c="secondary-foreground" ta="center" className="max-w-xl">
+          <Text c="secondary-foreground" ta="center" className="max-w-xl">
             {content.description}
           </Text>
         )}
@@ -418,17 +418,17 @@ const gridTestimonialContentHooks = {
     
     item: (testimonial: TestimonialItem) => (
       <Box className="p-md bg-card rounded-md border hover:bg-card/80 transition-colors">
-        <Stack gap="sm" align="start">
-          <Group gap="sm" align="center" justify="between">
+        <Stack gap="md" align="start">
+          <Group gap="md" align="center" justify="between">
             <RenderStars rating={testimonial.rating} size="xs" />
-            <Icon component="span" size="sm" lucideIcon={Quote} c="primary" className="opacity-40" />
+            <Icon lucideIcon={Quote} c="primary" className="opacity-40" />
           </Group>
           
           <Text size="sm" className="leading-relaxed line-clamp-3">
             "{testimonial.quote}"
           </Text>
           
-          <Group gap="sm" align="center">
+          <Group gap="md" align="center">
             <Text size="xs" fw="semibold">
               {testimonial.author}
             </Text>
@@ -449,7 +449,7 @@ const gridTestimonialContentHooks = {
     header: (content: GridTestimonialData) => (
       <Stack gap="lg" align="start">
         <Group gap="md" align="center" justify="between" className="w-full">
-          <Stack gap="sm">
+          <Stack gap="md">
             <Title order={1} size="3xl" fw="bold">
               {content.title}
             </Title>
@@ -460,9 +460,9 @@ const gridTestimonialContentHooks = {
             )}
           </Stack>
           
-          <Group gap="sm">
+          <Group gap="md">
             <Button rounded={theme?.themeRounded.default} size="sm" variant="outline">
-              <Icon component="span" size="xs" lucideIcon={ThumbsUp} />
+              <Icon lucideIcon={ThumbsUp} />
               All Reviews
             </Button>
           </Group>
@@ -471,7 +471,7 @@ const gridTestimonialContentHooks = {
     ),
     
     item: (testimonial: TestimonialItem) => (
-      <Card p="lg" rounded="lg" shadow="sm" className="min-w-[300px] bg-card">
+      <Card p="lg"rounded={theme?.themeRounded.default} shadow="sm" className="min-w-[300px] bg-card">
         <Stack gap="md" align="start">
           <RenderStars rating={testimonial.rating} size="sm" />
           
@@ -479,7 +479,7 @@ const gridTestimonialContentHooks = {
             "{testimonial.quote}"
           </Text>
           
-          <Group gap="sm" align="center">
+          <Group gap="md" align="center">
             {testimonial.avatar ? (
               <Image
                 src={testimonial.avatar.src}
@@ -494,7 +494,7 @@ const gridTestimonialContentHooks = {
                 className="w-[35px] h-[35px] bg-primary/10 rounded-full flex items-center justify-center"
                 data-class="avatar-placeholder"
               >
-                <Icon component="span" size="sm" lucideIcon={User} c="primary" />
+                <Icon lucideIcon={User} c="primary" />
               </Box>
             )}
             
@@ -550,7 +550,7 @@ const gridTestimonialContentHooks = {
                   <Text size="3xl" fw="bold" c="primary">
                     {content.stats.averageRating}
                   </Text>
-                  <Icon component="span" size="xl" lucideIcon={Star} className="text-yellow-500 fill-yellow-500" />
+                  <Icon size="xl" lucideIcon={Star} className="text-yellow-500 fill-yellow-500" />
                 </Group>
                 <Text size="xs" c="secondary-foreground" className="uppercase tracking-wide">
                   Average
@@ -578,7 +578,7 @@ const gridTestimonialContentHooks = {
       return (
         <Card 
           p={isFeatured ? "2xl" : "lg"} 
-          rounded="lg" 
+          rounded={theme?.themeRounded.default} 
           shadow={isFeatured ? "xl" : "md"} 
           className={`${isFeatured ? "col-span-2 row-span-2 bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20" : "bg-card"} hover:shadow-lg transition-shadow`}
         >
@@ -586,8 +586,8 @@ const gridTestimonialContentHooks = {
             <Group gap="md" align="center" justify="between">
               <RenderStars rating={testimonial.rating} size={isFeatured ? "md" : "sm"} />
               {isFeatured && (
-                <Badge variant="secondary" size="sm" rounded="md">
-                  <Icon component="span" size="xs" lucideIcon={Award} />
+                <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
+                  <Icon lucideIcon={Award} />
                   Featured
                 </Badge>
               )}
@@ -620,7 +620,7 @@ const gridTestimonialContentHooks = {
                   className={`${isFeatured ? "w-[60px] h-[60px]" : "w-[45px] h-[45px]"} bg-primary/10 rounded-full flex items-center justify-center`}
                   data-class="avatar-placeholder"
                 >
-                  <Icon component="span" size={isFeatured ? "lg" : "md"} lucideIcon={User} c="primary" />
+                  <Icon size={isFeatured ? "lg" : "md"} lucideIcon={User} c="primary" />
                 </Box>
               )}
               

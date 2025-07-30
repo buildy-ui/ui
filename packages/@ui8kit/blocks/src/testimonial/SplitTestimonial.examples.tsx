@@ -77,7 +77,7 @@ export const SplitTestimonialFeaturedExample = () => {
       variant="featured"
       mediaPosition="right"
       useContainer={true}
-      py="2xl"
+      py="xl"
     />
   );
 };
@@ -122,7 +122,7 @@ export const SplitTestimonialStatsExample = () => {
       variant="stats"
       mediaPosition="right"
       useContainer={true}
-      py="2xl"
+      py="xl"
     />
   );
 };

@@ -125,7 +125,7 @@ const splitPortfolioContentHooks = {
       <Stack gap="xl" align="start">
         <Stack gap="md" align="start">
           {content.badge && (
-            <Badge variant="secondary" size="default" rounded="md">
+            <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
               {content.badge}
             </Badge>
           )}
@@ -145,9 +145,9 @@ const splitPortfolioContentHooks = {
             Featured Work
           </Title>
           
-          <Stack gap="sm">
+          <Stack gap="md">
             {content.projects.slice(0, 3).map((project) => (
-              <Card key={project.id} p="md" rounded="lg" shadow="sm" bg="card" className="hover:shadow-md transition-shadow cursor-pointer">
+              <Card key={project.id} p="md" rounded={theme?.themeRounded.default} shadow="sm" bg="card" className="hover:shadow-md transition-shadow cursor-pointer">
                 <Group gap="md" align="center">
                   <Box className="relative overflow-hidden rounded-md flex-shrink-0">
                     <Image
@@ -160,7 +160,7 @@ const splitPortfolioContentHooks = {
                   </Box>
                   
                   <Stack gap="xs" className="flex-1">
-                    <Group gap="sm" align="center" justify="between">
+                    <Group gap="md" align="center" justify="between">
                       <Title order={4} size="md" fw="semibold" className="line-clamp-1">
                         {project.title}
                       </Title>
@@ -177,14 +177,14 @@ const splitPortfolioContentHooks = {
 
                     <Group gap="xs">
                       {project.tags.slice(0, 2).map((tag, index) => (
-                        <Badge key={index} variant="outline" size="xs" rounded="md">
+                        <Badge key={index} variant="outline" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
                           {tag}
                         </Badge>
                       ))}
                     </Group>
                   </Stack>
 
-                  <Icon component="span" size="sm" lucideIcon={ArrowRight} c="secondary-foreground" />
+                  <Icon lucideIcon={ArrowRight} c="secondary-foreground" />
                 </Group>
               </Card>
             ))}
@@ -198,7 +198,7 @@ const splitPortfolioContentHooks = {
               <Text size="3xl" fw="bold" c="primary">
                 {content.stats.totalProjects}
               </Text>
-              <Text size="sm" c="secondary-foreground">
+              <Text c="secondary-foreground">
                 Projects Completed
               </Text>
             </Stack>
@@ -207,7 +207,7 @@ const splitPortfolioContentHooks = {
               <Text size="3xl" fw="bold" c="primary">
                 {content.stats.yearsExperience}
               </Text>
-              <Text size="sm" c="secondary-foreground">
+              <Text c="secondary-foreground">
                 Years Experience
               </Text>
             </Stack>
@@ -229,7 +229,7 @@ const splitPortfolioContentHooks = {
       <Stack gap="xl" align="start">
         <Stack gap="md" align="start">
           {content.badge && (
-            <Badge variant="secondary" size="default" rounded="md">
+            <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
               {content.badge}
             </Badge>
           )}
@@ -246,24 +246,24 @@ const splitPortfolioContentHooks = {
         {/* Experience Stats */}
         {content.stats && (
           <Grid cols="1" gap="md" className="w-full">
-            <Group gap="sm" align="center" justify="between">
-              <Text size="sm" c="secondary-foreground">Experience</Text>
+            <Group gap="md" align="center" justify="between">
+              <Text c="secondary-foreground">Experience</Text>
               <Text size="sm" fw="semibold">{content.stats.yearsExperience} years</Text>
             </Group>
             
-            <Group gap="sm" align="center" justify="between">
-              <Text size="sm" c="secondary-foreground">Projects</Text>
+            <Group gap="md" align="center" justify="between">
+              <Text c="secondary-foreground">Projects</Text>
               <Text size="sm" fw="semibold">{content.stats.totalProjects}+ completed</Text>
             </Group>
             
-            <Group gap="sm" align="center" justify="between">
-              <Text size="sm" c="secondary-foreground">Clients</Text>
+            <Group gap="md" align="center" justify="between">
+              <Text c="secondary-foreground">Clients</Text>
               <Text size="sm" fw="semibold">{content.stats.happyClients} happy clients</Text>
             </Group>
 
             {content.stats.awards && (
-              <Group gap="sm" align="center" justify="between">
-                <Text size="sm" c="secondary-foreground">Awards</Text>
+              <Group gap="md" align="center" justify="between">
+                <Text c="secondary-foreground">Awards</Text>
                 <Text size="sm" fw="semibold">{content.stats.awards} awards</Text>
               </Group>
             )}
@@ -277,11 +277,11 @@ const splitPortfolioContentHooks = {
               Specializations
             </Title>
             
-            <Grid cols="2" gap="sm">
+            <Grid cols="2" gap="md">
               {content.categories.map((category) => (
-                <Group key={category.id} gap="sm" align="center">
+                <Group key={category.id} gap="md" align="center">
                   {category.lucideIcon && (
-                    <Icon component="span" size="sm" lucideIcon={category.lucideIcon} c="primary" />
+                    <Icon lucideIcon={category.lucideIcon} c="primary" />
                   )}
                   <Text size="sm" fw="medium">
                     {category.name}
@@ -292,7 +292,7 @@ const splitPortfolioContentHooks = {
           </Stack>
         )}
 
-        <Group gap="sm">
+        <Group gap="md">
           <Button rounded={theme?.themeRounded.default} size="md" variant="default">
             View Portfolio
           </Button>
@@ -310,7 +310,7 @@ const splitPortfolioContentHooks = {
       <Stack gap="xl" align="start">
         <Stack gap="md" align="start">
           {content.badge && (
-            <Badge variant="secondary" size="default" rounded="md">
+            <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
               {content.badge}
             </Badge>
           )}
@@ -331,9 +331,9 @@ const splitPortfolioContentHooks = {
               Technical Skills
             </Title>
             
-            <Group gap="sm" className="flex-wrap">
+            <Group gap="md" className="flex-wrap">
               {content.skills.map((skill, index) => (
-                <Badge key={index} variant="secondary" size="default" rounded="md" className="px-md py-xs">
+                <Badge key={index} variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="px-md py-xs">
                   {skill}
                 </Badge>
               ))}
@@ -348,12 +348,12 @@ const splitPortfolioContentHooks = {
               Areas of Expertise
             </Title>
             
-            <Stack gap="sm">
+            <Stack gap="md">
               {content.categories.map((category) => (
-                <Card key={category.id} p="md" rounded="lg" shadow="sm" bg="card">
+                <Card key={category.id} p="md" rounded={theme?.themeRounded.default} shadow="sm" bg="card">
                   <Group gap="md" align="center">
                     {category.lucideIcon && (
-                      <Box p="sm" bg="primary" rounded="md" data-class="skill-icon">
+                      <Box p="sm" bg="primary" rounded={theme?.themeRounded.default} data-class="skill-icon">
                         <Icon
                           component="span"
                           size="sm"
@@ -393,7 +393,7 @@ const splitPortfolioContentHooks = {
       <Stack gap="xl" align="start">
         <Stack gap="md" align="start">
           {content.badge && (
-            <Badge variant="secondary" size="default" rounded="md">
+            <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
               {content.badge}
             </Badge>
           )}
@@ -409,10 +409,10 @@ const splitPortfolioContentHooks = {
 
         {/* Testimonial */}
         {content.testimonial && (
-          <Card p="lg" rounded="lg" shadow="md" bg="card" className="w-full">
+          <Card p="lg" rounded={theme?.themeRounded.default} shadow="md" bg="card" className="w-full">
             <Stack gap="md">
-              <Group gap="sm" align="start">
-                <Icon component="span" size="lg" lucideIcon={MessageSquare} c="primary" className="flex-shrink-0 mt-xs" />
+              <Group gap="md" align="start">
+                <Icon size="lg" lucideIcon={MessageSquare} c="primary" className="flex-shrink-0 mt-xs" />
                 <Text size="lg" className="italic line-height-relaxed">
                   "{content.testimonial.text}"
                 </Text>
@@ -422,7 +422,7 @@ const splitPortfolioContentHooks = {
                 <Text size="md" fw="semibold">
                   {content.testimonial.author}
                 </Text>
-                <Text size="sm" c="secondary-foreground">
+                <Text c="secondary-foreground">
                   {content.testimonial.role}
                   {content.testimonial.company && ` at ${content.testimonial.company}`}
                 </Text>
@@ -437,7 +437,7 @@ const splitPortfolioContentHooks = {
             Recent Work
           </Title>
           
-          <Grid cols="2" gap="sm">
+          <Grid cols="2" gap="md">
             {content.projects.slice(0, 4).map((project) => (
               <Box key={project.id} className="relative overflow-hidden rounded-md group cursor-pointer">
                 <Image
@@ -450,7 +450,7 @@ const splitPortfolioContentHooks = {
                 />
                 
                 <Box className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <Icon component="span" size="md" lucideIcon={Eye} c="primary-foreground" />
+                  <Icon lucideIcon={Eye} c="primary-foreground" />
                 </Box>
 
                 <Box className="absolute bottom-0 left-0 right-0 p-sm bg-gradient-to-t from-black/80 to-transparent">
@@ -463,7 +463,7 @@ const splitPortfolioContentHooks = {
           </Grid>
         </Stack>
 
-        <Group gap="sm">
+        <Group gap="md">
           <Button rounded={theme?.themeRounded.default} size="md" variant="default">
             View All Work
           </Button>
@@ -481,7 +481,7 @@ const splitPortfolioContentHooks = {
       <Stack gap="xl" align="start">
         <Stack gap="md" align="start">
           {content.badge && (
-            <Badge variant="secondary" size="default" rounded="md">
+            <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
               {content.badge}
             </Badge>
           )}
@@ -516,13 +516,13 @@ const splitPortfolioContentHooks = {
                   </Text>
                 </Box>
                 
-                <Icon component="span" size="sm" lucideIcon={process.icon} c="primary" className="flex-shrink-0 mt-xs" />
+                <Icon lucideIcon={process.icon} c="primary" className="flex-shrink-0 mt-xs" />
                 
                 <Stack gap="xs" className="flex-1">
                   <Text size="md" fw="semibold">
                     {process.title}
                   </Text>
-                  <Text size="sm" c="secondary-foreground">
+                  <Text c="secondary-foreground">
                     {process.desc}
                   </Text>
                 </Stack>
@@ -540,7 +540,7 @@ const splitPortfolioContentHooks = {
             
             <Group gap="xs" className="flex-wrap">
               {content.skills.slice(0, 8).map((skill, index) => (
-                <Badge key={index} variant="outline" size="sm" rounded="md">
+                <Badge key={index} variant="outline" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
                   {skill}
                 </Badge>
               ))}
@@ -591,9 +591,9 @@ export const SplitPortfolio = forwardRef<HTMLElement, SplitPortfolioProps>(
             
             {/* Featured Project Info */}
             <Box className="absolute bottom-0 left-0 right-0 p-lg text-white">
-              <Stack gap="sm">
-                <Group gap="sm" align="center">
-                  <Badge variant="secondary" size="sm" rounded="md" className="bg-white/20 text-white border-white/30">
+              <Stack gap="md">
+                <Group gap="md" align="center">
+                  <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="bg-white/20 text-white border-white/30">
                     Featured
                   </Badge>
                   {firstProject.year && (

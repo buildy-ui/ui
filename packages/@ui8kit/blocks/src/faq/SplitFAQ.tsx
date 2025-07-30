@@ -111,7 +111,7 @@ const splitFAQContentHooks = {
       <Stack gap="xl" align="start">
         <Stack gap="md" align="start">
           {content.badge && (
-            <Badge variant="secondary" size="default" rounded="md">
+            <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
               {content.badge}
             </Badge>
           )}
@@ -127,34 +127,34 @@ const splitFAQContentHooks = {
 
         {/* Contact Information */}
         {content.contactInfo && (
-          <Card p="lg" rounded="lg" shadow="sm" bg="card" className="w-full">
+          <Card p="lg" rounded={theme?.themeRounded.default} shadow="sm" bg="card" className="w-full">
             <Stack gap="md">
               <Title order={3} size="lg" fw="semibold">
                 {content.contactInfo.title}
               </Title>
               
-              <Text size="sm" c="secondary-foreground">
+              <Text c="secondary-foreground">
                 {content.contactInfo.description}
               </Text>
 
-              <Stack gap="sm">
+              <Stack gap="md">
                 {content.contactInfo.email && (
-                  <Group gap="sm" align="center">
-                    <Icon component="span" size="sm" lucideIcon={Mail} c="primary" />
+                  <Group gap="md" align="center">
+                    <Icon lucideIcon={Mail} c="primary" />
                     <Text size="sm">{content.contactInfo.email}</Text>
                   </Group>
                 )}
                 
                 {content.contactInfo.phone && (
-                  <Group gap="sm" align="center">
-                    <Icon component="span" size="sm" lucideIcon={Phone} c="primary" />
+                  <Group gap="md" align="center">
+                    <Icon lucideIcon={Phone} c="primary" />
                     <Text size="sm">{content.contactInfo.phone}</Text>
                   </Group>
                 )}
                 
                 {content.contactInfo.hours && (
-                  <Group gap="sm" align="center">
-                    <Icon component="span" size="sm" lucideIcon={Clock} c="primary" />
+                  <Group gap="md" align="center">
+                    <Icon lucideIcon={Clock} c="primary" />
                     <Text size="sm">{content.contactInfo.hours}</Text>
                   </Group>
                 )}
@@ -170,12 +170,12 @@ const splitFAQContentHooks = {
         )}
 
         {/* Quick FAQ List */}
-        <Stack gap="sm" className="w-full">
+        <Stack gap="md" className="w-full">
           <Title order={4} size="md" fw="semibold">
             Popular Questions
           </Title>
           {content.faqs.slice(0, 3).map((faq) => (
-            <Group key={faq.id} gap="sm" align="start" className="p-sm hover:bg-muted rounded-md cursor-pointer">
+            <Group key={faq.id} gap="md" align="start" className="p-sm hover:bg-muted rounded-md cursor-pointer">
               <Icon
                 component="span"
                 size="xs"
@@ -204,7 +204,7 @@ const splitFAQContentHooks = {
       <Stack gap="xl" align="start">
         <Stack gap="md" align="start">
           {content.badge && (
-            <Badge variant="secondary" size="default" rounded="md">
+            <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
               {content.badge}
             </Badge>
           )}
@@ -219,9 +219,9 @@ const splitFAQContentHooks = {
         </Stack>
 
         {/* Search Box */}
-        <Card p="md" rounded="lg" shadow="sm" bg="card" className="w-full">
-          <Group gap="sm">
-            <Text className="flex-1" >Search FAQ... <Icon component="span" size="sm" lucideIcon={Search} /></Text>
+        <Card p="md" rounded={theme?.themeRounded.default} shadow="sm" bg="card" className="w-full">
+          <Group gap="md">
+            <Text className="flex-1" >Search FAQ... <Icon lucideIcon={Search} /></Text>
             <Button rounded={theme?.themeRounded.default} size="sm">
               Search
             </Button>
@@ -230,18 +230,18 @@ const splitFAQContentHooks = {
 
         {/* Categories */}
         {content.categories && (
-          <Stack gap="sm" className="w-full">
+          <Stack gap="md" className="w-full">
             <Title order={4} size="md" fw="semibold">
               Browse by Category
             </Title>
-            <Grid cols="2" gap="sm">
+            <Grid cols="2" gap="md">
               {content.categories.slice(0, 4).map((category) => (
                 <Button rounded={theme?.themeRounded.default}
                   key={category.id}
                   variant="outline"
                   size="sm"
                   leftSection={category.lucideIcon ? (
-                    <Icon component="span" size="xs" lucideIcon={category.lucideIcon} />
+                    <Icon lucideIcon={category.lucideIcon} />
                   ) : undefined}
                   className="justify-start"
                 >
@@ -254,17 +254,17 @@ const splitFAQContentHooks = {
 
         {/* Stats */}
         {content.stats && (
-          <Grid cols="1" gap="sm" className="w-full">
-            <Group gap="sm" align="center">
-              <Icon component="span" size="sm" lucideIcon={FileText} c="primary" />
+          <Grid cols="1" gap="md" className="w-full">
+            <Group gap="md" align="center">
+              <Icon lucideIcon={FileText} c="primary" />
               <Text size="sm">{content.stats.totalQuestions} Questions</Text>
             </Group>
-            <Group gap="sm" align="center">
-              <Icon component="span" size="sm" lucideIcon={Clock} c="primary" />
+            <Group gap="md" align="center">
+              <Icon lucideIcon={Clock} c="primary" />
               <Text size="sm">{content.stats.avgResponseTime} Avg Response</Text>
             </Group>
-            <Group gap="sm" align="center">
-              <Icon component="span" size="sm" lucideIcon={CheckCircle} c="primary" />
+            <Group gap="md" align="center">
+              <Icon lucideIcon={CheckCircle} c="primary" />
               <Text size="sm">{content.stats.satisfactionRate} Satisfaction</Text>
             </Group>
           </Grid>
@@ -279,7 +279,7 @@ const splitFAQContentHooks = {
       <Stack gap="xl" align="start">
         <Stack gap="md" align="start">
           {content.badge && (
-            <Badge variant="secondary" size="default" rounded="md">
+            <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
               {content.badge}
             </Badge>
           )}
@@ -299,12 +299,12 @@ const splitFAQContentHooks = {
             <Title order={4} size="md" fw="semibold">
               Help Categories
             </Title>
-            <Stack gap="sm">
+            <Stack gap="md">
               {content.categories.map((category) => (
-                <Card key={category.id} p="md" rounded="lg" shadow="sm" bg="card" className="hover:shadow-md transition-shadow cursor-pointer">
+                <Card key={category.id} p="md" rounded={theme?.themeRounded.default} shadow="sm" bg="card" className="hover:shadow-md transition-shadow cursor-pointer">
                   <Group gap="md" align="center">
                     {category.lucideIcon && (
-                      <Box p="sm" bg="primary" rounded="md" data-class="category-icon">
+                      <Box p="sm" bg="primary" rounded={theme?.themeRounded.default} data-class="category-icon">
                         <Icon
                           component="span"
                           size="sm"
@@ -323,7 +323,7 @@ const splitFAQContentHooks = {
                       </Text>
                     </Stack>
 
-                    <Icon component="span" size="sm" lucideIcon={ArrowRight} c="secondary-foreground" />
+                    <Icon lucideIcon={ArrowRight} c="secondary-foreground" />
                   </Group>
                 </Card>
               ))}
@@ -346,7 +346,7 @@ const splitFAQContentHooks = {
       <Stack gap="xl" align="start">
         <Stack gap="md" align="start">
           {content.badge && (
-            <Badge variant="secondary" size="default" rounded="md">
+            <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
               {content.badge}
             </Badge>
           )}
@@ -366,21 +366,21 @@ const splitFAQContentHooks = {
             Get Help
           </Title>
           
-          <Grid cols="1" gap="sm">
+          <Grid cols="1" gap="md">
             <Button rounded={theme?.themeRounded.default} variant="outline" size="lg" leftSection={
-              <Icon component="span" size="sm" lucideIcon={MessageSquare} />
+              <Icon lucideIcon={MessageSquare} />
             }>
               Live Chat Support
             </Button>
             
             <Button rounded={theme?.themeRounded.default} variant="outline" size="lg" leftSection={
-              <Icon component="span" size="sm" lucideIcon={Mail} />
+              <Icon lucideIcon={Mail} />
             }>
               Email Support
             </Button>
             
             <Button rounded={theme?.themeRounded.default} variant="outline" size="lg" leftSection={
-              <Icon component="span" size="sm" lucideIcon={Phone} />
+              <Icon lucideIcon={Phone} />
             }>
               Phone Support
             </Button>
@@ -389,25 +389,25 @@ const splitFAQContentHooks = {
 
         {/* Support Stats */}
         {content.stats && (
-          <Card p="lg" rounded="lg" shadow="sm" bg="card" className="w-full">
+          <Card p="lg" rounded={theme?.themeRounded.default} shadow="sm" bg="card" className="w-full">
             <Stack gap="md">
               <Title order={4} size="md" fw="semibold">
                 Support Statistics
               </Title>
               
               <Grid cols="1" gap="md">
-                <Group gap="sm" align="center" justify="between">
-                  <Text size="sm" c="secondary-foreground">Response Time</Text>
+                <Group gap="md" align="center" justify="between">
+                  <Text c="secondary-foreground">Response Time</Text>
                   <Text size="sm" fw="semibold">{content.stats.avgResponseTime}</Text>
                 </Group>
                 
-                <Group gap="sm" align="center" justify="between">
-                  <Text size="sm" c="secondary-foreground">Satisfaction Rate</Text>
+                <Group gap="md" align="center" justify="between">
+                  <Text c="secondary-foreground">Satisfaction Rate</Text>
                   <Text size="sm" fw="semibold">{content.stats.satisfactionRate}</Text>
                 </Group>
                 
-                <Group gap="sm" align="center" justify="between">
-                  <Text size="sm" c="secondary-foreground">Total Questions</Text>
+                <Group gap="md" align="center" justify="between">
+                  <Text c="secondary-foreground">Total Questions</Text>
                   <Text size="sm" fw="semibold">{content.stats.totalQuestions}</Text>
                 </Group>
               </Grid>
@@ -424,7 +424,7 @@ const splitFAQContentHooks = {
       <Stack gap="xl" align="start">
         <Stack gap="md" align="start">
           {content.badge && (
-            <Badge variant="secondary" size="default" rounded="md">
+            <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
               {content.badge}
             </Badge>
           )}
@@ -439,7 +439,7 @@ const splitFAQContentHooks = {
         </Stack>
 
         {/* FAQ Accordion */}
-        <Stack gap="sm" className="w-full">
+        <Stack gap="md" className="w-full">
           <Title order={4} size="md" fw="semibold">
             Frequently Asked Questions
           </Title>
@@ -448,7 +448,7 @@ const splitFAQContentHooks = {
             {content.faqs.slice(0, 5).map((faq, index) => (
               <AccordionItem key={faq.id} value={`faq-${index}`}>
                 <AccordionTrigger>
-                  <Group gap="sm" align="center" className="flex-1 text-left">
+                  <Group gap="md" align="center" className="flex-1 text-left">
                     {faq.lucideIcon && (
                       <Icon
                         component="span"
@@ -464,7 +464,7 @@ const splitFAQContentHooks = {
                   </Group>
                 </AccordionTrigger>
                 <AccordionContent>
-                  <Text size="sm" c="secondary-foreground">
+                  <Text c="secondary-foreground">
                     {faq.answer}
                   </Text>
                 </AccordionContent>

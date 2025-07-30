@@ -58,7 +58,7 @@ export const SplitGalleryShowcaseExample = () => {
       content={sampleGalleryData}
       variant="showcase"
       leftMedia={false}
-      py="2xl"
+      py="xl"
       gap="xl"
     />
   );

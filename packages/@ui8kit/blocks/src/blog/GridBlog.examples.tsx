@@ -194,7 +194,7 @@ export const GridBlogCompactExample = () => {
       content={content}
       variant="compact"
       cols="1"
-      gap="sm"
+      gap="md"
       py="lg"
       useContainer={true}
     />

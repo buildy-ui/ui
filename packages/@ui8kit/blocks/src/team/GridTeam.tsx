@@ -99,7 +99,7 @@ const RenderSocialLinks = ({ social, size = "sm" }: { social?: TeamMember['socia
   if (!social) return null;
   
   return (
-    <Group gap="sm" align="center">
+    <Group gap="md" align="center">
       {social.linkedin && (
         <Icon 
           component="a" 
@@ -157,8 +157,8 @@ const gridTeamContentHooks = {
     header: (content: GridTeamData) => (
       <Stack gap="lg" align="center" ta="center" className="max-w-3xl mx-auto">
         {content.badge && (
-          <Badge variant="secondary" size="lg" rounded="md">
-            <Icon component="span" size="xs" lucideIcon={Users} />
+          <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
+            <Icon lucideIcon={Users} />
             {content.badge}
           </Badge>
         )}
@@ -180,7 +180,7 @@ const gridTeamContentHooks = {
                 <Text size="2xl" fw="bold" c="primary">
                   {content.stats.totalMembers}
                 </Text>
-                <Text size="sm" c="secondary-foreground" className="text-center">
+                <Text c="secondary-foreground" className="text-center">
                   Team Members
                 </Text>
               </Stack>
@@ -190,7 +190,7 @@ const gridTeamContentHooks = {
                 <Text size="2xl" fw="bold" c="primary">
                   {content.stats.departments}
                 </Text>
-                <Text size="sm" c="secondary-foreground" className="text-center">
+                <Text c="secondary-foreground" className="text-center">
                   Departments
                 </Text>
               </Stack>
@@ -200,7 +200,7 @@ const gridTeamContentHooks = {
                 <Text size="2xl" fw="bold" c="primary">
                   {content.stats.locations}
                 </Text>
-                <Text size="sm" c="secondary-foreground" className="text-center">
+                <Text c="secondary-foreground" className="text-center">
                   Locations
                 </Text>
               </Stack>
@@ -211,7 +211,7 @@ const gridTeamContentHooks = {
     ),
     
     item: (member: TeamMember) => (
-      <Card p="lg" rounded="lg" shadow="sm" className="h-full text-center">
+      <Card p="lg" rounded={theme?.themeRounded.default} shadow="sm" className="h-full text-center">
         <Stack gap="md" align="center">
           {member.avatar ? (
             <Image
@@ -228,7 +228,7 @@ const gridTeamContentHooks = {
               className="w-[80px] h-[80px] bg-primary/10 rounded-full flex items-center justify-center border-4 border-primary/20"
               data-class="avatar-placeholder"
             >
-              <Icon component="span" size="xl" lucideIcon={User} c="primary" />
+              <Icon size="xl" lucideIcon={User} c="primary" />
             </Box>
           )}
           
@@ -247,7 +247,7 @@ const gridTeamContentHooks = {
           </Stack>
           
           {member.bio && (
-            <Text size="sm" c="secondary-foreground" ta="center" className="line-clamp-3">
+            <Text c="secondary-foreground" ta="center" className="line-clamp-3">
               {member.bio}
             </Text>
           )}
@@ -264,8 +264,8 @@ const gridTeamContentHooks = {
   cards: createLayoutContentHook({
     header: (content: GridTeamData) => (
       <Stack gap="lg" align="center" ta="center">
-        <Badge variant="secondary" size="lg" rounded="md" className="px-lg py-sm">
-          <Icon component="span" size="xs" lucideIcon={Award} />
+        <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="px-lg py-sm">
+          <Icon lucideIcon={Award} />
           {content.badge || "Our Team"}
         </Badge>
         
@@ -282,7 +282,7 @@ const gridTeamContentHooks = {
     ),
     
     item: (member: TeamMember) => (
-      <Card p="xl" rounded="xl" shadow="lg" className="h-full bg-card border hover:shadow-xl transition-shadow">
+      <Card p="xl" rounded={theme?.themeRounded.default} shadow="lg" className="h-full bg-card border hover:shadow-xl transition-shadow">
         <Stack gap="lg" align="center">
           {/* Avatar */}
           {member.avatar ? (
@@ -300,12 +300,12 @@ const gridTeamContentHooks = {
               className="w-[100px] h-[100px] bg-primary/10 rounded-full flex items-center justify-center border-4 border-primary/20"
               data-class="avatar-placeholder"
             >
-              <Icon component="span" size="2xl" lucideIcon={User} c="primary" />
+              <Icon size="2xl" lucideIcon={User} c="primary" />
             </Box>
           )}
           
           {/* Member Info */}
-          <Stack gap="sm" align="center">
+          <Stack gap="md" align="center">
             <Stack gap="xs" align="center">
               <Title order={3} size="xl" fw="bold">
                 {member.name}
@@ -314,7 +314,7 @@ const gridTeamContentHooks = {
                 {member.position}
               </Text>
               {member.department && (
-                <Badge variant="secondary" size="sm" rounded="md">
+                <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
                   {member.department}
                 </Badge>
               )}
@@ -322,15 +322,15 @@ const gridTeamContentHooks = {
             
             {member.location && (
               <Group gap="xs" align="center">
-                <Icon component="span" size="xs" lucideIcon={MapPin} c="secondary-foreground" />
-                <Text size="sm" c="secondary-foreground">{member.location}</Text>
+                <Icon lucideIcon={MapPin} c="secondary-foreground" />
+                <Text c="secondary-foreground">{member.location}</Text>
               </Group>
             )}
           </Stack>
           
           {/* Bio */}
           {member.bio && (
-            <Text size="sm" c="secondary-foreground" ta="center" className="leading-relaxed">
+            <Text c="secondary-foreground" ta="center" className="leading-relaxed">
               {member.bio}
             </Text>
           )}
@@ -339,7 +339,7 @@ const gridTeamContentHooks = {
           {member.skills && (
             <Group gap="xs" className="flex-wrap justify-center">
               {member.skills.slice(0, 4).map((skill, index) => (
-                <Badge key={index} variant="outline" size="xs" rounded="md">
+                <Badge key={index} variant="outline" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
                   {skill}
                 </Badge>
               ))}
@@ -368,7 +368,7 @@ const gridTeamContentHooks = {
         </Title>
         
         {content.subtitle && (
-          <Text size="md" c="secondary-foreground" ta="center" className="italic">
+          <Text c="secondary-foreground" ta="center" className="italic">
             {content.subtitle}
           </Text>
         )}
@@ -393,7 +393,7 @@ const gridTeamContentHooks = {
               className="w-[60px] h-[60px] bg-primary/10 rounded-full flex items-center justify-center border-2 border-primary/20"
               data-class="avatar-placeholder"
             >
-              <Icon component="span" size="lg" lucideIcon={User} c="primary" />
+              <Icon size="lg" lucideIcon={User} c="primary" />
             </Box>
           )}
           
@@ -401,7 +401,7 @@ const gridTeamContentHooks = {
             <Text size="md" fw="semibold">
               {member.name}
             </Text>
-            <Text size="sm" c="secondary-foreground" className="font-light">
+            <Text c="secondary-foreground" className="font-light">
               {member.position}
             </Text>
           </Stack>
@@ -426,16 +426,16 @@ const gridTeamContentHooks = {
         )}
         
         {content.hiring && (
-          <Card p="lg" rounded="lg" shadow="md" className="bg-primary/5 border-primary/20 max-w-md">
+          <Card p="lg" rounded={theme?.themeRounded.default} shadow="md" className="bg-primary/5 border-primary/20 max-w-md">
             <Stack gap="md" align="center">
-              <Group gap="sm" align="center">
-                <Icon component="span" size="md" lucideIcon={Briefcase} c="primary" />
+              <Group gap="md" align="center">
+                <Icon lucideIcon={Briefcase} c="primary" />
                 <Text size="md" fw="semibold" c="primary">
                   {content.hiring.title || "We're Hiring!"}
                 </Text>
               </Group>
               {content.hiring.openPositions && (
-                <Badge variant="secondary" size="md" rounded="md">
+                <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
                   {content.hiring.openPositions} Open Positions
                 </Badge>
               )}
@@ -451,14 +451,14 @@ const gridTeamContentHooks = {
       return (
         <Card 
           p={isFeatured ? "xl" : "lg"} 
-          rounded="lg" 
+          rounded={theme?.themeRounded.default} 
           shadow={isFeatured ? "xl" : "sm"} 
           className={`${isFeatured ? "bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20" : "bg-card"} hover:shadow-lg transition-shadow`}
         >
           <Stack gap="md" align="center">
             {isFeatured && (
-              <Badge variant="secondary" size="xs" rounded="full">
-                <Icon component="span" size="xs" lucideIcon={Star} />
+              <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
+                <Icon lucideIcon={Star} />
                 Featured
               </Badge>
             )}
@@ -478,7 +478,7 @@ const gridTeamContentHooks = {
                 className={`${isFeatured ? "w-[90px] h-[90px]" : "w-[70px] h-[70px]"} bg-primary/10 rounded-full flex items-center justify-center border-4 ${isFeatured ? "border-primary/20" : "border-primary/10"}`}
                 data-class="avatar-placeholder"
               >
-                <Icon component="span" size={isFeatured ? "xl" : "lg"} lucideIcon={User} c="primary" />
+                <Icon size={isFeatured ? "xl" : "lg"} lucideIcon={User} c="primary" />
               </Box>
             )}
             
@@ -499,7 +499,7 @@ const gridTeamContentHooks = {
             {member.skills && isFeatured && (
               <Group gap="xs" className="flex-wrap justify-center">
                 {member.skills.slice(0, 3).map((skill, skillIndex) => (
-                  <Badge key={skillIndex} variant="secondary" size="xs" rounded="md">
+                  <Badge key={skillIndex} variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
                     {skill}
                   </Badge>
                 ))}
@@ -518,7 +518,7 @@ const gridTeamContentHooks = {
     header: (content: GridTeamData) => (
       <Stack gap="lg" align="start">
         <Group gap="md" align="center" justify="between" className="w-full">
-          <Stack gap="sm">
+          <Stack gap="md">
             <Title order={1} size="3xl" fw="bold">
               {content.title}
             </Title>
@@ -529,13 +529,13 @@ const gridTeamContentHooks = {
             )}
           </Stack>
           
-          <Group gap="sm">
+          <Group gap="md">
             <Button rounded={theme?.themeRounded.default} size="sm" variant="outline">
-              <Icon component="span" size="xs" lucideIcon={Users} />
+              <Icon lucideIcon={Users} />
               All Members
             </Button>
             <Button rounded={theme?.themeRounded.default} size="sm" variant="outline">
-              <Icon component="span" size="xs" lucideIcon={Target} />
+              <Icon lucideIcon={Target} />
               Departments
             </Button>
           </Group>
@@ -545,19 +545,19 @@ const gridTeamContentHooks = {
           <Group gap="lg" align="center">
             {content.stats.totalMembers && (
               <Group gap="xs" align="center">
-                <Icon component="span" size="sm" lucideIcon={Users} c="primary" />
+                <Icon lucideIcon={Users} c="primary" />
                 <Text size="sm" fw="medium">{content.stats.totalMembers} Members</Text>
               </Group>
             )}
             {content.stats.departments && (
               <Group gap="xs" align="center">
-                <Icon component="span" size="sm" lucideIcon={Target} c="primary" />
+                <Icon lucideIcon={Target} c="primary" />
                 <Text size="sm" fw="medium">{content.stats.departments} Departments</Text>
               </Group>
             )}
             {content.stats.locations && (
               <Group gap="xs" align="center">
-                <Icon component="span" size="sm" lucideIcon={MapPin} c="primary" />
+                <Icon lucideIcon={MapPin} c="primary" />
                 <Text size="sm" fw="medium">{content.stats.locations} Locations</Text>
               </Group>
             )}
@@ -567,7 +567,7 @@ const gridTeamContentHooks = {
     ),
     
     item: (member: TeamMember) => (
-      <Card p="md" rounded="md" shadow="sm" className="bg-card border hover:bg-card/80 transition-colors">
+      <Card p="md" rounded={theme?.themeRounded.default} shadow="sm" className="bg-card border hover:bg-card/80 transition-colors">
         <Group gap="md" align="center">
           {member.avatar ? (
             <Image
@@ -583,7 +583,7 @@ const gridTeamContentHooks = {
               className="w-[50px] h-[50px] bg-primary/10 rounded-full flex items-center justify-center"
               data-class="avatar-placeholder"
             >
-              <Icon component="span" size="md" lucideIcon={User} c="primary" />
+              <Icon lucideIcon={User} c="primary" />
             </Box>
           )}
           
@@ -597,16 +597,16 @@ const gridTeamContentHooks = {
                   {member.position}
                 </Text>
                 {member.department && (
-                  <Badge variant="secondary" size="xs" rounded="md">
+                  <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
                     {member.department}
                   </Badge>
                 )}
               </Stack>
               
-              <Group gap="sm" align="center">
+              <Group gap="md" align="center">
                 {member.location && (
                   <Group gap="xs" align="center">
-                    <Icon component="span" size="xs" lucideIcon={MapPin} c="secondary-foreground" />
+                    <Icon lucideIcon={MapPin} c="secondary-foreground" />
                     <Text size="xs" c="secondary-foreground">{member.location}</Text>
                   </Group>
                 )}

@@ -96,7 +96,7 @@ export const GridGalleryCarouselExample = () => {
     <GridGallery
       content={carouselData}
       variant="carousel"
-      py="2xl"
+      py="xl"
     />
   );
 };
@@ -166,7 +166,7 @@ export const GridGalleryPolaroidExample = () => {
     <GridGallery
       content={polaroidData}
       variant="polaroid"
-      py="2xl"
+      py="xl"
       className="bg-gradient-to-b from-amber-50/50 to-background"
     />
   );
@@ -185,7 +185,7 @@ export const GridGalleryMagazineExample = () => {
     <GridGallery
       content={magazineData}
       variant="magazine"
-      py="2xl"
+      py="xl"
     />
   );
 };

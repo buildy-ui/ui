@@ -85,8 +85,8 @@ const gridGalleryContentHooks = {
     header: (content: GridGalleryData) => (
       <Stack gap="lg" align="center" ta="center" className="max-w-3xl mx-auto">
         {content.badge && (
-          <Badge variant="secondary" size="lg" rounded="md">
-            <Icon component="span" size="xs" lucideIcon={Camera} />
+          <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
+            <Icon lucideIcon={Camera} />
             {content.badge}
           </Badge>
         )}
@@ -105,13 +105,13 @@ const gridGalleryContentHooks = {
           <Group gap="xl" align="center">
             {content.stats.totalImages && (
               <Group gap="xs" align="center">
-                <Icon component="span" size="sm" lucideIcon={ImageIcon} c="primary" />
+                <Icon lucideIcon={ImageIcon} c="primary" />
                 <Text size="sm" fw="medium">{content.stats.totalImages} Images</Text>
               </Group>
             )}
             {content.stats.categories && (
               <Group gap="xs" align="center">
-                <Icon component="span" size="sm" lucideIcon={Grid3x3} c="primary" />
+                <Icon lucideIcon={Grid3x3} c="primary" />
                 <Text size="sm" fw="medium">{content.stats.categories} Categories</Text>
               </Group>
             )}
@@ -128,13 +128,13 @@ const gridGalleryContentHooks = {
           width="100%"
           height="300px"
           fit="cover"
-          rounded="md"
+          rounded={theme?.themeRounded.default}
           className="transition-transform duration-300 group-hover:scale-105"
         />
         
         <Box className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
           <Button rounded={theme?.themeRounded.default} size="sm" variant="secondary" className="bg-white/20 backdrop-blur-sm">
-            <Icon component="span" size="xs" lucideIcon={ZoomIn} />
+            <Icon lucideIcon={ZoomIn} />
           </Button>
         </Box>
       </Box>
@@ -166,7 +166,7 @@ const gridGalleryContentHooks = {
           width="100%"
           height="100%"
           fit="cover"
-          rounded="lg"
+          rounded={theme?.themeRounded.default}
           className="transition-all duration-300 group-hover:scale-105"
         />
         
@@ -191,8 +191,8 @@ const gridGalleryContentHooks = {
     header: (content: GridGalleryData) => (
       <Stack gap="xl" align="center" ta="center">
         <Stack gap="md" align="center">
-          <Badge variant="default" size="lg" rounded="full">
-            <Icon component="span" size="xs" c="primary-foreground" lucideIcon={Play} />
+          <Badge variant="default" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
+            <Icon c="primary-foreground" lucideIcon={Play} />
             Interactive Gallery
           </Badge>
           
@@ -226,12 +226,12 @@ const gridGalleryContentHooks = {
                     </Text>
                   )}
                 </Stack>
-                <Group gap="sm">
+                <Group gap="md">
                   <Button rounded={theme?.themeRounded.default} size="sm" variant="secondary" className="bg-white/20 backdrop-blur-sm">
-                    <Icon component="span" size="xs" lucideIcon={Maximize2} />
+                    <Icon lucideIcon={Maximize2} />
                   </Button>
                   <Button rounded={theme?.themeRounded.default} size="sm" variant="secondary" className="bg-white/20 backdrop-blur-sm">
-                    <Icon component="span" size="xs" lucideIcon={Share2} />
+                    <Icon lucideIcon={Share2} />
                   </Button>
                 </Group>
               </Group>
@@ -252,7 +252,7 @@ const gridGalleryContentHooks = {
             width="100%"
             height="200px"
             fit="cover"
-            rounded="md"
+            rounded={theme?.themeRounded.default}
             className="transition-transform duration-300 group-hover:scale-105"
           />
           
@@ -267,7 +267,7 @@ const gridGalleryContentHooks = {
     header: (content: GridGalleryData) => (
       <Stack gap="lg" align="start">
         <Group gap="md" align="center" justify="between" className="w-full">
-          <Stack gap="sm">
+          <Stack gap="md">
             <Title order={1} size="3xl" fw="bold">
               {content.title}
             </Title>
@@ -278,13 +278,13 @@ const gridGalleryContentHooks = {
             )}
           </Stack>
           
-          <Group gap="sm">
+          <Group gap="md">
             <Button rounded={theme?.themeRounded.default} size="sm" variant="outline">
-              <Icon component="span" size="xs" lucideIcon={Filter} />
+              <Icon lucideIcon={Filter} />
               Filter
             </Button>
             <Button rounded={theme?.themeRounded.default} size="sm" variant="outline">
-              <Icon component="span" size="xs" lucideIcon={Grid3x3} />
+              <Icon lucideIcon={Grid3x3} />
               View
             </Button>
           </Group>
@@ -305,13 +305,13 @@ const gridGalleryContentHooks = {
             width="100%"
             height="100%"
             fit="cover"
-            rounded="sm"
+            rounded={theme?.themeRounded.default}
             className="transition-all duration-300 group-hover:scale-105"
           />
           
           <Box className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <Box className="absolute bottom-0 left-0 right-0 p-md">
-              <Group gap="sm" align="center" justify="between">
+              <Group gap="md" align="center" justify="between">
                 {image.title && (
                   <Text size="sm" fw="medium" c="white">
                     {image.title}
@@ -320,12 +320,12 @@ const gridGalleryContentHooks = {
                 <Group gap="xs">
                   {image.likes && (
                     <Group gap="xs" align="center">
-                      <Icon component="span" size="xs" lucideIcon={Heart} c="white" />
+                      <Icon lucideIcon={Heart} c="white" />
                       <Text size="xs" c="white">{image.likes}</Text>
                     </Group>
                   )}
                   <Button rounded={theme?.themeRounded.default} size="xs" variant="ghost" className="text-white hover:bg-white/20">
-                    <Icon component="span" size="xs" lucideIcon={MoreHorizontal} />
+                    <Icon lucideIcon={MoreHorizontal} />
                   </Button>
                 </Group>
               </Group>
@@ -349,7 +349,7 @@ const gridGalleryContentHooks = {
         </Title>
         
         {content.subtitle && (
-          <Text size="md" c="secondary-foreground" ta="center" className="italic">
+          <Text c="secondary-foreground" ta="center" className="italic">
             {content.subtitle}
           </Text>
         )}
@@ -383,8 +383,8 @@ const gridGalleryContentHooks = {
   cards: createLayoutContentHook({
     header: (content: GridGalleryData) => (
       <Stack gap="lg" align="center" ta="center">
-        <Badge variant="secondary" size="lg" rounded="md" className="px-lg py-sm">
-          <Icon component="span" size="xs" lucideIcon={ImageIcon} />
+        <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="px-lg py-sm">
+          <Icon lucideIcon={ImageIcon} />
           {content.badge || "Photo Collection"}
         </Badge>
         
@@ -395,7 +395,7 @@ const gridGalleryContentHooks = {
         {content.categories && (
           <Group gap="xs" className="flex-wrap justify-center">
             {content.categories.map((category, index) => (
-              <Badge key={index} variant="outline" size="sm" rounded="full">
+              <Badge key={index} variant="outline" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
                 {category}
               </Badge>
             ))}
@@ -415,7 +415,7 @@ const gridGalleryContentHooks = {
         />
         
         <Box className="p-md">
-          <Stack gap="sm">
+          <Stack gap="md">
             {image.title && (
               <Text size="md" fw="semibold">
                 {image.title}
@@ -424,21 +424,21 @@ const gridGalleryContentHooks = {
             
             <Group gap="md" align="center" justify="between">
               {image.category && (
-                <Badge variant="secondary" size="xs" rounded="md">
+                <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
                   {image.category}
                 </Badge>
               )}
               
-              <Group gap="sm">
+              <Group gap="md">
                 {image.likes && (
                   <Group gap="xs" align="center">
-                    <Icon component="span" size="xs" lucideIcon={Heart} c="secondary-foreground" />
+                    <Icon lucideIcon={Heart} c="secondary-foreground" />
                     <Text size="xs" c="secondary-foreground">{image.likes}</Text>
                   </Group>
                 )}
                 {image.views && (
                   <Group gap="xs" align="center">
-                    <Icon component="span" size="xs" lucideIcon={Eye} c="secondary-foreground" />
+                    <Icon lucideIcon={Eye} c="secondary-foreground" />
                     <Text size="xs" c="secondary-foreground">{image.views}</Text>
                   </Group>
                 )}
@@ -517,7 +517,7 @@ const gridGalleryContentHooks = {
         </Stack>
 
         {content.stats && (
-          <Group gap="2xl" align="center">
+          <Group gap="xl" align="center">
             {content.stats.totalImages && (
               <Stack gap="xs" align="center">
                 <Text size="2xl" fw="bold" c="primary">

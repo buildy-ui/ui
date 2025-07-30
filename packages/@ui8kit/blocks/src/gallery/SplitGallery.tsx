@@ -85,8 +85,8 @@ const splitGalleryContentHooks = {
       <Stack gap="xl" align="start">
         {/* Badge */}
         {content.badge && (
-          <Badge variant="secondary" size="lg" rounded="md" className="px-lg py-sm">
-            <Icon component="span" size="xs" lucideIcon={Camera} />
+          <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="px-lg py-sm">
+            <Icon lucideIcon={Camera} />
             {content.badge}
           </Badge>
         )}
@@ -115,7 +115,7 @@ const splitGalleryContentHooks = {
           <Group gap="xl" align="center">
             {content.stats.totalImages && (
               <Group gap="xs" align="center">
-                <Icon component="span" size="sm" lucideIcon={ImageIcon} c="primary" />
+                <Icon lucideIcon={ImageIcon} c="primary" />
                 <Stack gap="xs" align="start">
                   <Text size="lg" fw="bold">
                     {content.stats.totalImages}
@@ -128,7 +128,7 @@ const splitGalleryContentHooks = {
             )}
             {content.stats.categories && (
               <Group gap="xs" align="center">
-                <Icon component="span" size="sm" lucideIcon={Grid3x3} c="primary" />
+                <Icon lucideIcon={Grid3x3} c="primary" />
                 <Stack gap="xs" align="start">
                   <Text size="lg" fw="bold">
                     {content.stats.categories}
@@ -141,7 +141,7 @@ const splitGalleryContentHooks = {
             )}
             {content.stats.views && (
               <Group gap="xs" align="center">
-                <Icon component="span" size="sm" lucideIcon={Eye} c="primary" />
+                <Icon lucideIcon={Eye} c="primary" />
                 <Stack gap="xs" align="start">
                   <Text size="lg" fw="bold">
                     {content.stats.views}
@@ -159,26 +159,26 @@ const splitGalleryContentHooks = {
         <Group gap="md" className="w-full">
           {content.primaryButtonText && (
             <Button rounded={theme?.themeRounded.default} size="lg" variant="default" className="flex-1">
-              <Icon component="span" size="sm" c="primary-foreground" lucideIcon={ZoomIn} />
+              <Icon c="primary-foreground" lucideIcon={ZoomIn} />
               {content.primaryButtonText}
             </Button>
           )}
           {content.secondaryButtonText && (
             <Button rounded={theme?.themeRounded.default} size="lg" variant="outline">
-              <Icon component="span" size="sm" lucideIcon={Share2} />
+              <Icon lucideIcon={Share2} />
               {content.secondaryButtonText}
             </Button>
           )}
         </Group>
 
         {/* Quick Actions */}
-        <Group gap="sm">
+        <Group gap="md">
           <Button rounded={theme?.themeRounded.default} size="sm" variant="ghost">
-            <Icon component="span" size="xs" lucideIcon={Download} />
+            <Icon lucideIcon={Download} />
             Download All
           </Button>
           <Button rounded={theme?.themeRounded.default} size="sm" variant="ghost">
-            <Icon component="span" size="xs" lucideIcon={Play} />
+            <Icon lucideIcon={Play} />
             Slideshow
           </Button>
         </Group>
@@ -249,13 +249,13 @@ const splitGalleryContentHooks = {
 
         {/* Featured Categories */}
         {content.images.length > 0 && (
-          <Stack gap="sm" className="w-full">
+          <Stack gap="md" className="w-full">
             <Text size="sm" fw="semibold" c="secondary-foreground" className="uppercase tracking-wide">
               Featured Work
             </Text>
             <Group gap="xs" className="flex-wrap">
               {Array.from(new Set(content.images.map(img => img.category).filter(Boolean))).slice(0, 4).map((category, index) => (
-                <Badge key={index} variant="outline" size="sm" rounded="md">
+                <Badge key={index} variant="outline" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
                   {category}
                 </Badge>
               ))}
@@ -264,23 +264,23 @@ const splitGalleryContentHooks = {
         )}
 
         {/* Portfolio Actions */}
-        <Stack gap="sm" className="w-full">
+        <Stack gap="md" className="w-full">
           {content.primaryButtonText && (
             <Button rounded={theme?.themeRounded.default} size="lg" variant="default" className="w-full">
-              <Icon component="span" size="sm" c="primary-foreground" lucideIcon={ImageIcon} />
+              <Icon c="primary-foreground" lucideIcon={ImageIcon} />
               {content.primaryButtonText}
             </Button>
           )}
           
-          <Group gap="sm">
+          <Group gap="md">
             {content.secondaryButtonText && (
               <Button rounded={theme?.themeRounded.default} size="md" variant="outline" className="flex-1">
-                <Icon component="span" size="xs" lucideIcon={Share2} />
+                <Icon lucideIcon={Share2} />
                 {content.secondaryButtonText}
               </Button>
             )}
             <Button rounded={theme?.themeRounded.default} size="md" variant="outline" className="flex-1">
-              <Icon component="span" size="xs" lucideIcon={Download} />
+              <Icon lucideIcon={Download} />
               Export
             </Button>
           </Group>
@@ -322,18 +322,18 @@ export const SplitGallery = forwardRef<HTMLElement, SplitGalleryProps>(
                 width="100%"
                 height="100%"
                 fit="cover"
-                rounded="md"
+                rounded={theme?.themeRounded.default}
                 className="w-full h-full transition-transform duration-300 group-hover:scale-105"
               />
               
               {/* Hover Overlay */}
               <Box className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <Group gap="sm">
+                <Group gap="md">
                   <Button rounded={theme?.themeRounded.default} size="sm" variant="secondary" className="bg-white/20 backdrop-blur-sm border-white/30 text-white hover:bg-white/30">
-                    <Icon component="span" size="xs" lucideIcon={ZoomIn} />
+                    <Icon lucideIcon={ZoomIn} />
                   </Button>
                   <Button rounded={theme?.themeRounded.default} size="sm" variant="secondary" className="bg-white/20 backdrop-blur-sm border-white/30 text-white hover:bg-white/30">
-                    <Icon component="span" size="xs" lucideIcon={Share2} />
+                    <Icon lucideIcon={Share2} />
                   </Button>
                 </Group>
               </Box>

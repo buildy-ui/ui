@@ -105,7 +105,7 @@ const sideArticlesContentHooks = {
                       {article.title}
                     </Title>
                     
-                    <Group gap="sm" align="center" className="text-xs">
+                    <Group gap="md" align="center" className="text-xs">
                       <Text size="xs" c="secondary-foreground">
                         {article.author.name}
                       </Text>
@@ -167,7 +167,7 @@ const splitBlogContentHooks = {
                   />
                 )}
 
-                <Stack gap="sm">
+                <Stack gap="md">
                   <Badge variant="outline" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
                     {mainPost.category}
                   </Badge>
@@ -183,22 +183,22 @@ const splitBlogContentHooks = {
 
                 <Group gap="md" align="center" className="w-full">
                   <Group gap="xs" align="center">
-                    <Icon component="span" size="xs" lucideIcon={User} />
-                    <Text size="sm" c="secondary-foreground">
+                    <Icon lucideIcon={User} />
+                    <Text c="secondary-foreground">
                       {mainPost.author.name}
                     </Text>
                   </Group>
                   
                   <Group gap="xs" align="center">
-                    <Icon component="span" size="xs" lucideIcon={Calendar} />
-                    <Text size="sm" c="secondary-foreground">
+                    <Icon lucideIcon={Calendar} />
+                    <Text c="secondary-foreground">
                       {mainPost.date}
                     </Text>
                   </Group>
                   
                   <Group gap="xs" align="center">
-                    <Icon component="span" size="xs" lucideIcon={Clock} />
-                    <Text size="sm" c="secondary-foreground">
+                    <Icon lucideIcon={Clock} />
+                    <Text c="secondary-foreground">
                       {mainPost.readTime}
                     </Text>
                   </Group>
@@ -217,7 +217,7 @@ const splitBlogContentHooks = {
       <Stack gap="xl" align="start">
         <Stack gap="md" align="start">
           {content.tagline && (
-            <Text size="sm" c="secondary-foreground" fw="medium">
+            <Text c="secondary-foreground" fw="medium">
               {content.tagline}
             </Text>
           )}
@@ -240,7 +240,7 @@ const splitBlogContentHooks = {
         )}
 
         {/* Navigation Controls */}
-        <Group gap="sm" align="center">
+        <Group gap="md" align="center">
           <Button rounded={theme?.themeRounded.default} variant="outline" size={theme?.themeButtonSize.default} className="p-2">
             <Icon lucideIcon={ChevronLeft} />
           </Button>
@@ -291,7 +291,7 @@ const splitBlogContentHooks = {
               </Stack>
 
               <Group gap="lg" align="center">
-                <Group gap="sm" align="center">
+                <Group gap="md" align="center">
                   {featuredPost.author.avatar && (
                     <Image
                       src={featuredPost.author.avatar}
@@ -357,9 +357,9 @@ const splitBlogContentHooks = {
             Latest Posts
           </Title>
           
-          <Stack gap="sm">
+          <Stack gap="md">
             {content.posts.slice(0, 3).map((post) => (
-              <Group key={post.id} gap="sm" align="center" className="p-2 rounded hover:bg-muted/50 transition-colors">
+              <Group key={post.id} gap="md" align="center" className="p-2 rounded hover:bg-muted/50 transition-colors">
                 <Box className="w-2 h-2 bg-primary rounded-full flex-shrink-0" />
                 <Stack gap="none" className="flex-1 min-w-0">
                   <Text size="sm" fw="medium" className="line-clamp-1">
@@ -418,7 +418,7 @@ const splitBlogContentHooks = {
               </Box>
 
               {/* Post Content */}
-              <Stack gap="sm" className="flex-1 pb-4">
+              <Stack gap="md" className="flex-1 pb-4">
                 <Stack gap="xs">
                   <Badge variant="outline" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
                     {post.category}
@@ -428,12 +428,12 @@ const splitBlogContentHooks = {
                     {post.title}
                   </Title>
                   
-                  <Text size="sm" c="secondary-foreground" className="line-clamp-2">
+                  <Text c="secondary-foreground" className="line-clamp-2">
                     {post.description}
                   </Text>
                 </Stack>
 
-                <Group gap="sm" align="center" className="text-xs">
+                <Group gap="md" align="center" className="text-xs">
                   <Text size="xs" c="secondary-foreground">
                     {post.author.name}
                   </Text>
@@ -493,7 +493,7 @@ export const SplitBlog = forwardRef<HTMLElement, SplitBlogProps>(
               fit="cover"
             />
             {/* Side Articles */}
-            <Stack py="md">
+            <Stack py="lg">
             {sideContentHooks?.content(content)}
             </Stack>
           </Block>
@@ -506,7 +506,7 @@ export const SplitBlog = forwardRef<HTMLElement, SplitBlogProps>(
           <Grid cols="1-2" gap="md">
             {content.posts.slice(0, 4).map((post) => (
               <Card key={post.id} p="md" rounded={theme?.themeRounded.default} shadow="sm" bg="card" className="hover:shadow-md transition-shadow">
-                <Stack gap="sm" align="start">
+                <Stack gap="md" align="start">
                   {post.image && (
                     <Image
                       src={post.image.src}

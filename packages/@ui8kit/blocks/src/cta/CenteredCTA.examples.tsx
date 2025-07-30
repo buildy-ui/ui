@@ -41,7 +41,7 @@ export const SimpleCenteredCTAExample = () => (
   <CenteredCTA 
     content={simpleCTAData} 
     variant="simple"
-    py="2xl"
+    py="xl"
   />
 );
 
@@ -100,7 +100,7 @@ export const CTAWithLogosExample = () => (
   <CenteredCTA 
     content={ctaWithLogosData} 
     variant="withLogos"
-    py="2xl"
+    py="xl"
   />
 );
 
@@ -131,7 +131,7 @@ export const CTAWithBackgroundExample = () => (
   <CenteredCTA 
     content={ctaWithBackgroundData} 
     variant="withBackground"
-    py="2xl"
+    py="xl"
   />
 );
 
@@ -197,7 +197,7 @@ export const CTAWithFeaturesExample = () => (
   <CenteredCTA 
     content={ctaWithFeaturesData} 
     variant="withFeatures"
-    py="2xl"
+    py="xl"
   />
 );
 
@@ -231,7 +231,7 @@ export const CTAWithStatsExample = () => (
   <CenteredCTA 
     content={ctaWithStatsData} 
     variant="withStats"
-    py="2xl"
+    py="xl"
   />
 );
 

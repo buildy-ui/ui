@@ -92,18 +92,18 @@ const centeredPostContentHooks = {
         {/* Breadcrumbs */}
         {content.breadcrumbs && (
           <Group gap="xs" align="center" c="secondary-foreground">
-            <Icon component="span" size="sm" lucideIcon={ArrowLeft} />
+            <Icon lucideIcon={ArrowLeft} />
             <Text size="sm">All Posts</Text>
           </Group>
         )}
 
         {/* Category & Meta */}
         <Group gap="md" align="center">
-          <Badge variant="secondary" size="default" rounded="md">
+          <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
             {content.meta.category}
           </Badge>
           <Group gap="xs" align="center" c="secondary-foreground">
-            <Icon component="span" size="xs" lucideIcon={Clock} />
+            <Icon lucideIcon={Clock} />
             <Text size="sm">{content.meta.readTime}</Text>
           </Group>
         </Group>
@@ -123,14 +123,14 @@ const centeredPostContentHooks = {
         {/* Author & Date */}
         {content.author && (
           <Group gap="md" align="center">
-            <Group gap="sm" align="center">
-              <Icon component="span" size="sm" lucideIcon={User} c="primary" />
+            <Group gap="md" align="center">
+              <Icon lucideIcon={User} c="primary" />
               <Text size="md" fw="medium">
                 By {content.author.name}
               </Text>
             </Group>
             <Group gap="xs" align="center" c="secondary-foreground">
-              <Icon component="span" size="xs" lucideIcon={Calendar} />
+              <Icon lucideIcon={Calendar} />
               <Text size="sm">{content.meta.publishedDate}</Text>
             </Group>
           </Group>
@@ -144,7 +144,7 @@ const centeredPostContentHooks = {
             width="100%"
             height="400px"
             fit="cover"
-            rounded="lg"
+            rounded={theme?.themeRounded.default}
             className="shadow-lg"
           />
         </Box>
@@ -185,7 +185,7 @@ const centeredPostContentHooks = {
             width="100%"
             height="300px"
             fit="cover"
-            rounded="md"
+            rounded={theme?.themeRounded.default}
           />
         </Box>
       </Stack>
@@ -198,12 +198,12 @@ const centeredPostContentHooks = {
       <Stack gap="xl" align="center" ta="center" className="max-w-4xl mx-auto">
         {/* Magazine Header */}
         <Stack gap="md" align="center">
-          <Group gap="sm" align="center">
-            <Badge variant="default" size="lg" rounded="sm" className="px-lg py-sm">
+          <Group gap="md" align="center">
+            <Badge variant="default" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="px-lg py-sm">
               {content.meta.category}
             </Badge>
             {content.tags && content.tags.slice(0, 2).map((tag, index) => (
-              <Badge key={index} variant="outline" size="sm" rounded="md">
+              <Badge key={index} variant="outline" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
                 {tag}
               </Badge>
             ))}
@@ -223,19 +223,19 @@ const centeredPostContentHooks = {
         {/* Author Card */}
         {content.author && (
           <Group gap="md" align="center" className="bg-muted p-lg rounded-lg">
-            <Icon component="span" size="lg" lucideIcon={User} c="primary" />
+            <Icon size="lg" lucideIcon={User} c="primary" />
             <Stack gap="xs" align="center">
               <Text size="md" fw="semibold">
                 {content.author.name}
               </Text>
               {content.author.role && (
-                <Text size="sm" c="secondary-foreground">
+                <Text c="secondary-foreground">
                   {content.author.role}
                 </Text>
               )}
             </Stack>
-            <Group gap="sm" align="center" c="secondary-foreground">
-              <Icon component="span" size="xs" lucideIcon={Calendar} />
+            <Group gap="md" align="center" c="secondary-foreground">
+              <Icon lucideIcon={Calendar} />
               <Text size="sm">{content.meta.publishedDate}</Text>
             </Group>
           </Group>
@@ -249,7 +249,7 @@ const centeredPostContentHooks = {
             width="100%"
             height="500px"
             fit="cover"
-            rounded="lg"
+            rounded={theme?.themeRounded.default}
             className="shadow-xl"
           />
         </Box>
@@ -262,11 +262,11 @@ const centeredPostContentHooks = {
     header: (content: CenteredPostData) => (
       <Stack gap="xl" align="center" ta="center" className="max-w-5xl mx-auto">
         {/* Featured Badge */}
-        <Group gap="sm" align="center">
-          <Badge variant="default" size="lg" rounded="full" className="bg-gradient-to-r from-primary to-secondary text-primary-foreground">
+        <Group gap="md" align="center">
+          <Badge variant="default" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="bg-gradient-to-r from-primary to-secondary text-primary-foreground">
             ⭐ Featured Article
           </Badge>
-          <Badge variant="secondary" size="default" rounded="md">
+          <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
             {content.meta.category}
           </Badge>
         </Group>
@@ -287,18 +287,18 @@ const centeredPostContentHooks = {
         <Group gap="xl" align="center">
           {content.meta.views && (
             <Group gap="xs" align="center">
-              <Icon component="span" size="sm" lucideIcon={Eye} c="primary" />
+              <Icon lucideIcon={Eye} c="primary" />
               <Text size="sm" fw="medium">{content.meta.views} views</Text>
             </Group>
           )}
           {content.meta.likes && (
             <Group gap="xs" align="center">
-              <Icon component="span" size="sm" lucideIcon={Heart} c="primary" />
+              <Icon lucideIcon={Heart} c="primary" />
               <Text size="sm" fw="medium">{content.meta.likes} likes</Text>
             </Group>
           )}
           <Group gap="xs" align="center">
-            <Icon component="span" size="sm" lucideIcon={Clock} c="primary" />
+            <Icon lucideIcon={Clock} c="primary" />
             <Text size="sm" fw="medium">{content.meta.readTime}</Text>
           </Group>
         </Group>
@@ -306,8 +306,8 @@ const centeredPostContentHooks = {
         {/* Author & Actions */}
         <Group gap="lg" align="center" className="bg-card p-lg rounded-xl shadow-md">
           {content.author && (
-            <Group gap="sm" align="center">
-              <Icon component="span" size="md" lucideIcon={User} c="primary" />
+            <Group gap="md" align="center">
+              <Icon lucideIcon={User} c="primary" />
               <Stack gap="xs" align="center">
                 <Text size="md" fw="semibold">
                   {content.author.name}
@@ -319,13 +319,13 @@ const centeredPostContentHooks = {
             </Group>
           )}
 
-          <Group gap="sm">
+          <Group gap="md">
             <Button rounded={theme?.themeRounded.default} size="sm" variant="outline">
-              <Icon component="span" size="xs" lucideIcon={Share2} />
+              <Icon lucideIcon={Share2} />
               Share
             </Button>
             <Button rounded={theme?.themeRounded.default} size="sm" variant="outline">
-              <Icon component="span" size="xs" lucideIcon={Bookmark} />
+              <Icon lucideIcon={Bookmark} />
               Save
             </Button>
           </Group>
@@ -339,7 +339,7 @@ const centeredPostContentHooks = {
             width="100%"
             height="600px"
             fit="cover"
-            rounded="xl"
+            rounded={theme?.themeRounded.default}
             className="shadow-2xl"
           />
         </Box>
@@ -350,7 +350,7 @@ const centeredPostContentHooks = {
   // Editorial style header
   editorial: createLayoutContentHook({
     header: (content: CenteredPostData) => (
-      <Stack gap="2xl" align="center" ta="center" className="max-w-4xl mx-auto">
+      <Stack gap="xl" align="center" ta="center" className="max-w-4xl mx-auto">
         {/* Editorial Header */}
         <Stack gap="lg" align="center">
           <Group gap="xs" align="center" c="secondary-foreground">
@@ -378,14 +378,14 @@ const centeredPostContentHooks = {
         <Stack gap="md" align="center" className="border-y border-border py-lg">
           {content.author && (
             <Group gap="md" align="center">
-              <Text size="sm" c="secondary-foreground" className="uppercase tracking-wide">
+              <Text c="secondary-foreground" className="uppercase tracking-wide">
                 Written by
               </Text>
               <Text size="sm" fw="semibold" className="font-serif">
                 {content.author.name}
               </Text>
               {content.author.role && (
-                <Text size="sm" c="secondary-foreground">
+                <Text c="secondary-foreground">
                   — {content.author.role}
                 </Text>
               )}
@@ -394,14 +394,14 @@ const centeredPostContentHooks = {
 
           <Group gap="lg" align="center" c="secondary-foreground">
             <Group gap="xs" align="center">
-              <Icon component="span" size="xs" lucideIcon={BookOpen} />
+              <Icon lucideIcon={BookOpen} />
               <Text size="xs" className="uppercase tracking-wide">
                 {content.meta.readTime}
               </Text>
             </Group>
             {content.meta.views && (
               <Group gap="xs" align="center">
-                <Icon component="span" size="xs" lucideIcon={Eye} />
+                <Icon lucideIcon={Eye} />
                 <Text size="xs" className="uppercase tracking-wide">
                   {content.meta.views}
                 </Text>
@@ -418,7 +418,7 @@ const centeredPostContentHooks = {
             width="100%"
             height="450px"
             fit="cover"
-            rounded="sm"
+            rounded={theme?.themeRounded.default}
             className="shadow-lg"
           />
         </Box>

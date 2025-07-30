@@ -330,7 +330,7 @@ const centeredHeroContentHooks = {
               <Text size="3xl" fw="bold" c="primary" className="leading-none">
                 {stat.value}
               </Text>
-              <Text size="sm" c="secondary-foreground" ta="center">
+              <Text c="secondary-foreground" ta="center">
                 {stat.label}
               </Text>
             </Stack>

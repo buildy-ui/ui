@@ -205,7 +205,7 @@ export const GridFeaturesMediaCardsExample = () => {
       variant="gridMediaCards"
       cols="1-2-3"
       gap="xl"
-      py="2xl"
+      py="xl"
     />
   );
 };
@@ -355,7 +355,7 @@ export const GridFeaturesCareerStatsExample = () => {
       variant="careerStats"
       cols="1-2-3"
       gap="xl"
-      py="2xl"
+      py="xl"
     />
   );
 };

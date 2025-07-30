@@ -76,8 +76,8 @@ export interface GridBlogProps {
 const gridBlogContentHooks = {
   // Blog cards variant
   cards: createLayoutContentHook({
-    item: (post: BlogPost, index: number) => (
-      <Card key={post.id} p="lg" rounded="lg" shadow="sm" bg="card" className="hover:shadow-md transition-shadow">
+    item: (post: BlogPost) => (
+      <Card key={post.id} p="lg" rounded={theme?.themeRounded.default} shadow="sm" bg="card" className="hover:shadow-md transition-shadow">
         <Stack gap="md" align="start">
           {post.image && (
             <Box className="relative overflow-hidden rounded-md">
@@ -90,12 +90,12 @@ const gridBlogContentHooks = {
                 rounded={theme?.themeRounded.default}
               />
               
-              <Box 
-                className="absolute top-3 left-3"
+              <Box
                 p="xs" 
                 bg="primary" 
-                rounded="md"
+                rounded={theme?.themeRounded.default}
                 data-class="category-badge"
+                className="absolute top-3 left-3"
               >
                 <Text size="xs" c="primary-foreground" fw="medium">
                   {post.category}
@@ -104,33 +104,33 @@ const gridBlogContentHooks = {
             </Box>
           )}
 
-          <Stack gap="sm" className="flex-1">
+          <Stack gap="md" className="flex-1">
             <Title order={3} size="lg" fw="semibold" className="line-clamp-2">
               {post.title}
             </Title>
             
-            <Text size="sm" c="secondary-foreground" className="line-clamp-3">
+            <Text c="secondary-foreground" className="line-clamp-3">
               {post.description}
             </Text>
           </Stack>
 
-          <Group gap="sm" align="center" className="w-full text-xs text-muted-foreground">
+          <Group gap="md" align="center" className="w-full text-xs text-muted-foreground">
             <Group gap="xs" align="center">
-              <Icon component="span" size="xs" lucideIcon={User} />
+              <Icon lucideIcon={User} />
               <Text size="xs" c="secondary-foreground">
                 {post.author.name}
               </Text>
             </Group>
             
             <Group gap="xs" align="center">
-              <Icon component="span" size="xs" lucideIcon={Calendar} />
+              <Icon lucideIcon={Calendar} />
               <Text size="xs" c="secondary-foreground">
                 {post.date}
               </Text>
             </Group>
             
             <Group gap="xs" align="center">
-              <Icon component="span" size="xs" lucideIcon={Clock} />
+              <Icon lucideIcon={Clock} />
               <Text size="xs" c="secondary-foreground">
                 {post.readTime}
               </Text>
@@ -147,16 +147,20 @@ const gridBlogContentHooks = {
       content.buttonText ? (
         <Group justify="between" align="center" className="w-full">
           <Box /> {/* Spacer */}
-          <Button rounded={theme?.themeRounded.default} variant="outline" size={theme?.themeButtonSize.default} rightSection={
-            <Icon lucideIcon={ArrowRight} />
-          }>
+          <Button
+            variant="outline"
+            rounded={theme?.themeRounded.default}
+            size={theme?.themeButtonSize.default}
+            rightSection={
+              <Icon lucideIcon={ArrowRight} />
+            }>
             {content.buttonText}
           </Button>
         </Group>
       ) : null
     ),
-    item: (post: BlogPost, index: number) => (
-      <Card key={post.id} p="lg" rounded="lg" shadow="sm" bg="card" className="hover:shadow-md transition-shadow">
+    item: (post: BlogPost) => (
+      <Card key={post.id} p="lg" rounded={theme?.themeRounded.default} shadow="sm" bg="card" className="hover:shadow-md transition-shadow">
         <Stack gap="md" align="start">
           {post.image && (
             <Image
@@ -178,7 +182,7 @@ const gridBlogContentHooks = {
               {post.title}
             </Title>
             
-            <Text size="sm" c="secondary-foreground" className="line-clamp-2">
+            <Text c="secondary-foreground" className="line-clamp-2">
               {post.description}
             </Text>
           </Stack>
@@ -200,7 +204,7 @@ const gridBlogContentHooks = {
               </Text>
             </Group>
             
-            <Group gap="sm" align="center">
+            <Group gap="md" align="center">
               <Text size="xs" c="secondary-foreground">
                 {post.date}
               </Text>
@@ -220,18 +224,20 @@ const gridBlogContentHooks = {
       const [activeCategory, setActiveCategory] = useState("all");
       
       return content.categories ? (
-        <Group gap="sm" align="center" justify="center" className="flex-wrap">
-          <Button rounded={theme?.themeRounded.default}
+        <Group gap="md" align="center" justify="center" className="flex-wrap">
+          <Button
             variant={activeCategory === "all" ? "default" : "outline"}
+            rounded={theme?.themeRounded.default}
             size={theme?.themeButtonSize.default}
             onClick={() => setActiveCategory("all")}
           >
             All
           </Button>
           {content.categories.map((category) => (
-            <Button rounded={theme?.themeRounded.default}
+            <Button
               key={category.id}
               variant={activeCategory === category.id ? "default" : "outline"}
+              rounded={theme?.themeRounded.default}
               size={theme?.themeButtonSize.default}
               onClick={() => setActiveCategory(category.id)}
             >
@@ -242,8 +248,8 @@ const gridBlogContentHooks = {
       ) : null;
     },
     item: (post: BlogPost, index: number) => (
-      <Card key={post.id} p="md" rounded="lg" shadow="sm" bg="card" className="hover:shadow-md transition-shadow">
-        <Stack gap="sm" align="start">
+      <Card key={post.id} p="md" rounded={theme?.themeRounded.default} shadow="sm" bg="card" className="hover:shadow-md transition-shadow">
+        <Stack gap="md" align="start">
           {post.image && (
             <Image
               src={post.image.src}
@@ -257,7 +263,7 @@ const gridBlogContentHooks = {
 
           <Stack gap="xs" className="flex-1">
             <Group gap="xs" align="center">
-              <Icon component="span" size="xs" lucideIcon={Tag} c="primary" />
+              <Icon lucideIcon={Tag} c="primary" />
               <Text size="xs" c="primary" fw="medium">
                 {post.category}
               </Text>
@@ -272,7 +278,7 @@ const gridBlogContentHooks = {
             </Text>
           </Stack>
 
-          <Group gap="sm" align="center" className="w-full text-xs">
+          <Group gap="md" align="center" className="w-full text-xs">
             <Text size="xs" c="secondary-foreground">
               {post.author.name}
             </Text>
@@ -290,9 +296,9 @@ const gridBlogContentHooks = {
 
   // Compact variant
   compact: createLayoutContentHook({
-    item: (post: BlogPost, index: number) => (
-      <Card key={post.id} p="sm" rounded="md" shadow="sm" bg="card" className="hover:shadow-md transition-shadow">
-        <Group gap="sm" align="start">
+    item: (post: BlogPost) => (
+      <Card key={post.id} p="sm" rounded={theme?.themeRounded.default} shadow="sm" bg="card" className="hover:shadow-md transition-shadow">
+        <Group gap="md" align="start">
           {post.image && (
             <Image
               src={post.image.src}
@@ -314,7 +320,7 @@ const gridBlogContentHooks = {
               {post.title}
             </Title>
             
-            <Group gap="sm" align="center" className="text-xs">
+            <Group gap="md" align="center" className="text-xs">
               <Text size="xs" c="secondary-foreground">
                 {post.author.name}
               </Text>
@@ -340,7 +346,7 @@ const gridBlogContentHooks = {
         <Card 
           key={post.id} 
           p={isFeatured ? "xl" : "lg"} 
-          rounded="lg" 
+          rounded={theme?.themeRounded.default}
           shadow={isFeatured ? "md" : "sm"} 
           bg="card" 
           className={`hover:shadow-lg transition-shadow ${isFeatured ? "col-span-2 row-span-2" : ""}`}
@@ -357,7 +363,7 @@ const gridBlogContentHooks = {
               />
             )}
 
-            <Stack gap="sm" className="flex-1">
+            <Stack gap="md" className="flex-1">
               <Badge variant="secondary" size={isFeatured ? theme?.themeButtonSize.default : theme?.themeButtonSize.badge} rounded={isFeatured ? theme?.themeRounded.default : theme?.themeRounded.badge}>
                 {post.category}
               </Badge>
@@ -381,7 +387,7 @@ const gridBlogContentHooks = {
             </Stack>
 
             <Group gap="md" align="center" justify="between" className="w-full">
-              <Group gap="sm" align="center">
+              <Group gap="md" align="center">
                 {post.author.avatar && (
                   <Image
                     src={post.author.avatar}

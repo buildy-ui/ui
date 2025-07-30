@@ -102,7 +102,7 @@ const gridPortfolioContentHooks = {
   // Portfolio cards grid
   cards: createLayoutContentHook({
     item: (project: PortfolioProject) => (
-      <Card key={project.id} rounded="lg" shadow="md" bg="card" className="overflow-hidden group hover:shadow-lg transition-all duration-300">
+      <Card key={project.id} rounded={theme?.themeRounded.default} shadow="md" bg="card" className="overflow-hidden group hover:shadow-lg transition-all duration-300">
         <Box className="relative overflow-hidden">
           <Image
             src={project.image.src}
@@ -115,16 +115,16 @@ const gridPortfolioContentHooks = {
           
           {/* Overlay */}
           <Box className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-            <Group gap="sm">
+            <Group gap="md">
               {project.links?.live && (
                 <Button rounded={theme?.themeRounded.default} size="sm" variant="secondary" className="bg-white/20 text-white hover:bg-white hover:text-black">
-                  <Icon component="span" size="xs" lucideIcon={Eye} />
+                  <Icon lucideIcon={Eye} />
                   View
                 </Button>
               )}
               {project.links?.github && (
                 <Button rounded={theme?.themeRounded.default} size="sm" variant="secondary" className="bg-white/20 text-white hover:bg-white hover:text-black">
-                  <Icon component="span" size="xs" lucideIcon={Github} />
+                  <Icon lucideIcon={Github} />
                   Code
                 </Button>
               )}
@@ -133,16 +133,16 @@ const gridPortfolioContentHooks = {
 
           {/* Status Badge */}
           {project.status === "featured" && (
-            <Badge variant="default" size="sm" rounded="md" className="absolute top-2 right-2">
+            <Badge variant="default" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="absolute top-2 right-2">
               Featured
             </Badge>
           )}
         </Box>
 
         <Stack gap="md" p="lg">
-          <Group gap="sm" align="center" justify="between">
+          <Group gap="md" align="center" justify="between">
             {project.category && (
-              <Badge variant="secondary" size="sm" rounded="md">
+              <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
                 {project.category}
               </Badge>
             )}
@@ -153,12 +153,12 @@ const gridPortfolioContentHooks = {
             )}
           </Group>
 
-          <Stack gap="sm">
+          <Stack gap="md">
             <Title order={3} size="lg" fw="semibold" className="line-clamp-1">
               {project.title}
             </Title>
             
-            <Text size="sm" c="secondary-foreground" className="line-clamp-2">
+            <Text c="secondary-foreground" className="line-clamp-2">
               {project.description}
             </Text>
           </Stack>
@@ -167,7 +167,7 @@ const gridPortfolioContentHooks = {
           {project.tags.length > 0 && (
             <Group gap="xs" className="flex-wrap">
               {project.tags.slice(0, 3).map((tag, index) => (
-                <Badge key={index} variant="outline" size="xs" rounded="md">
+                <Badge key={index} variant="outline" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
                   {tag}
                 </Badge>
               ))}
@@ -184,7 +184,7 @@ const gridPortfolioContentHooks = {
             <Group gap="md" align="center" justify="between" className="pt-sm border-t border-border">
               {project.stats.views && (
                 <Group gap="xs" align="center">
-                  <Icon component="span" size="xs" lucideIcon={Eye} c="secondary-foreground" />
+                  <Icon lucideIcon={Eye} c="secondary-foreground" />
                   <Text size="xs" c="secondary-foreground">{project.stats.views}</Text>
                 </Group>
               )}
@@ -207,7 +207,7 @@ const gridPortfolioContentHooks = {
       const height = heights[index % heights.length];
       
       return (
-        <Card key={project.id} rounded="lg" shadow="md" bg="card" className="overflow-hidden group hover:shadow-xl transition-all duration-300">
+        <Card key={project.id} rounded={theme?.themeRounded.default} shadow="md" bg="card" className="overflow-hidden group hover:shadow-xl transition-all duration-300">
           <Box className="relative overflow-hidden" style={{ height }}>
             <Image
               src={project.image.src}
@@ -223,15 +223,15 @@ const gridPortfolioContentHooks = {
             
             {/* Content Overlay */}
             <Box className="absolute bottom-0 left-0 right-0 p-lg text-white">
-              <Stack gap="sm">
-                <Group gap="sm" align="center">
+              <Stack gap="md">
+                <Group gap="md" align="center">
                   {project.category && (
-                    <Badge variant="secondary" size="xs" rounded="md" className="bg-white/20 text-white border-white/30">
+                    <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="bg-white/20 text-white border-white/30">
                       {project.category}
                     </Badge>
                   )}
                   {project.lucideIcon && (
-                    <Icon component="span" size="xs" lucideIcon={project.lucideIcon} c="primary-foreground" />
+                    <Icon lucideIcon={project.lucideIcon} c="primary-foreground" />
                   )}
                 </Group>
                 
@@ -278,7 +278,7 @@ const gridPortfolioContentHooks = {
           </Box>
 
           <Stack gap="xs">
-            <Group gap="sm" align="center" justify="between">
+            <Group gap="md" align="center" justify="between">
               <Title order={4} size="md" fw="semibold" className="line-clamp-1">
                 {project.title}
               </Title>
@@ -311,7 +311,7 @@ const gridPortfolioContentHooks = {
   // Detailed portfolio
   detailed: createLayoutContentHook({
     item: (project: PortfolioProject) => (
-      <Card key={project.id} p="lg" rounded="lg" shadow="lg" bg="card" className="h-full hover:shadow-xl transition-shadow duration-300">
+      <Card key={project.id} p="lg" rounded={theme?.themeRounded.default} shadow="lg" bg="card" className="h-full hover:shadow-xl transition-shadow duration-300">
         <Stack gap="lg" className="h-full">
           <Box className="relative overflow-hidden rounded-md">
             <Image
@@ -335,47 +335,47 @@ const gridPortfolioContentHooks = {
           </Box>
 
           <Stack gap="md" className="flex-1">
-            <Group gap="sm" align="center" justify="between">
+            <Group gap="md" align="center" justify="between">
               {project.category && (
-                <Badge variant="secondary" size="sm" rounded="md">
+                <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
                   {project.category}
                 </Badge>
               )}
               {project.status === "featured" && (
-                <Badge variant="default" size="sm" rounded="md">
-                  <Icon component="span" size="xs" c="primary-foreground" lucideIcon={Award} />
+                <Badge variant="default" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
+                  <Icon c="primary-foreground" lucideIcon={Award} />
                   Featured
                 </Badge>
               )}
             </Group>
 
-            <Stack gap="sm">
+            <Stack gap="md">
               <Title order={3} size="lg" fw="semibold">
                 {project.title}
               </Title>
               
-              <Text size="sm" c="secondary-foreground">
+              <Text c="secondary-foreground">
                 {project.description}
               </Text>
             </Stack>
 
             {/* Project Details */}
-            <Stack gap="sm" className="text-xs">
+            <Stack gap="md" className="text-xs">
               {project.client && (
-                <Group gap="sm" align="center">
-                  <Icon component="span" size="xs" lucideIcon={User} c="primary" />
+                <Group gap="md" align="center">
+                  <Icon lucideIcon={User} c="primary" />
                   <Text size="xs" c="secondary-foreground">Client: {project.client}</Text>
                 </Group>
               )}
               {project.year && (
-                <Group gap="sm" align="center">
-                  <Icon component="span" size="xs" lucideIcon={Calendar} c="primary" />
+                <Group gap="md" align="center">
+                  <Icon lucideIcon={Calendar} c="primary" />
                   <Text size="xs" c="secondary-foreground">Year: {project.year}</Text>
                 </Group>
               )}
               {project.stats?.duration && (
-                <Group gap="sm" align="center">
-                  <Icon component="span" size="xs" lucideIcon={Calendar} c="primary" />
+                <Group gap="md" align="center">
+                  <Icon lucideIcon={Calendar} c="primary" />
                   <Text size="xs" c="secondary-foreground">Duration: {project.stats.duration}</Text>
                 </Group>
               )}
@@ -384,7 +384,7 @@ const gridPortfolioContentHooks = {
             {/* Tags */}
             <Group gap="xs" className="flex-wrap">
               {project.tags.map((tag, index) => (
-                <Badge key={index} variant="outline" size="xs" rounded="md">
+                <Badge key={index} variant="outline" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
                   {tag}
                 </Badge>
               ))}
@@ -392,10 +392,10 @@ const gridPortfolioContentHooks = {
           </Stack>
 
           {/* Action Buttons */}
-          <Group gap="sm">
+          <Group gap="md">
             {project.links?.live && (
               <Button rounded={theme?.themeRounded.default} size="sm" variant="outline" className="flex-1">
-                <Icon component="span" size="xs" lucideIcon={ExternalLink} />
+                <Icon lucideIcon={ExternalLink} />
                 View Live
               </Button>
             )}
@@ -418,7 +418,7 @@ const gridPortfolioContentHooks = {
       return (
         <Card 
           key={project.id} 
-          rounded="lg" 
+          rounded={theme?.themeRounded.default} 
           shadow="xl" 
           bg="card" 
           className={`overflow-hidden group hover:shadow-2xl transition-all duration-500 ${
@@ -441,15 +441,15 @@ const gridPortfolioContentHooks = {
             {/* Content Overlay */}
             <Box className="absolute inset-0 p-lg flex flex-col justify-end text-white">
               <Stack gap={isFeatured ? "md" : "sm"}>
-                <Group gap="sm" align="center">
+                <Group gap="md" align="center">
                   {project.category && (
-                    <Badge variant="secondary" size={isFeatured ? "default" : "sm"} rounded="md" className="bg-white/20 text-white border-white/30">
+                    <Badge variant="secondary" size={isFeatured ? "default" : "sm"} rounded={theme?.themeRounded.badge} className="bg-white/20 text-white border-white/30">
                       {project.category}
                     </Badge>
                   )}
                   {project.status === "featured" && (
-                    <Badge variant="default" size={isFeatured ? "default" : "sm"} rounded="md">
-                      <Icon component="span" size="xs" c="primary-foreground" lucideIcon={Award} />
+                    <Badge variant="default" size={isFeatured ? "default" : "sm"} rounded={theme?.themeRounded.badge}>
+                      <Icon c="primary-foreground" lucideIcon={Award} />
                       Featured
                     </Badge>
                   )}
@@ -483,10 +483,10 @@ const gridPortfolioContentHooks = {
                 </Group>
 
                 {/* Action Buttons */}
-                <Group gap="sm" className="mt-sm">
+                <Group gap="md" className="mt-sm">
                   {project.links?.live && (
                     <Button rounded={theme?.themeRounded.default} size={isFeatured ? "md" : "sm"} variant="secondary" className="bg-white/20 text-white hover:bg-white hover:text-black">
-                      <Icon component="span" size="xs" lucideIcon={ExternalLink} />
+                      <Icon lucideIcon={ExternalLink} />
                       View Project
                     </Button>
                   )}

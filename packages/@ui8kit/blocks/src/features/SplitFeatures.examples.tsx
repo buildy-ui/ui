@@ -233,7 +233,7 @@ export const SplitFeaturesPerformanceExample = () => {
       variant="media"
       leftMedia={true}
       useContainer={true}
-      py="2xl"
+      py="xl"
       gap="xl"
     />
   );

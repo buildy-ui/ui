@@ -239,7 +239,7 @@ export const GridBusinessSolutionsGridExample = () => {
       variant="solutionsGrid"
       cols="1-2-3"
       gap="xl"
-      py="2xl"
+      py="xl"
       className="bg-gradient-to-b from-muted/30 to-background"
     />
   );

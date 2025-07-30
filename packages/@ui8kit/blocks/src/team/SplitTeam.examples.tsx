@@ -149,7 +149,7 @@ export const SplitTeamLeadershipExample = () => {
       variant="leadership"
       mediaPosition="right"
       useContainer={true}
-      py="2xl"
+      py="xl"
     />
   );
 };
@@ -194,7 +194,7 @@ export const SplitTeamHiringExample = () => {
       variant="hiring"
       mediaPosition="right"
       useContainer={true}
-      py="2xl"
+      py="xl"
     />
   );
 };
@@ -243,7 +243,7 @@ export const SplitTeamDepartmentsExample = () => {
       variant="departments"
       mediaPosition="right"
       useContainer={true}
-      py="2xl"
+      py="xl"
     />
   );
 };

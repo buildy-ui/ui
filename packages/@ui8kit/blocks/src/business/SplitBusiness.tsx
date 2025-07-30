@@ -3,18 +3,9 @@ import {
   ArrowRight, 
   TrendingUp, 
   Users, 
-  Target, 
-  Award, 
   Building, 
-  BarChart, 
-  Globe,
-  Zap,
-  Shield,
   Rocket,
-  CheckCircle,
   Star,
-  Briefcase,
-  MapPin,
   ExternalLink
 } from "lucide-react";
 import {
@@ -42,10 +33,7 @@ export const theme = {
 }
 import { 
   SplitBlock, 
-  createContentHook, 
-  defaultContentHooks, 
-  advancedContentHooks,
-  type ContentHooks 
+  createContentHook
 } from "@ui8kit/core";
 
 // Business interfaces (reuse from GridBusiness)
@@ -124,7 +112,7 @@ const splitBusinessContentHooks = {
     content: (content: SplitBusinessData) => (
       <Stack gap="xl" align="start">
         <Stack gap="md" align="start">
-          <Badge variant="secondary" size="default" rounded="md">
+          <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
             {content.badge || "Solutions"}
           </Badge>
 
@@ -141,19 +129,17 @@ const splitBusinessContentHooks = {
         {content.metrics && (
           <Grid cols="1-2" gap="md" className="w-full">
             {content.metrics.slice(0, 4).map((metric) => (
-              <Card key={metric.id} p="lg" rounded="lg" shadow="sm" bg="card">
+              <Card key={metric.id} p="lg" rounded={theme?.themeRounded.default} shadow="sm" bg="card">
                 <Group gap="md" align="center">
                   {metric.lucideIcon && (
                     <Box 
                       p="sm" 
                       bg="primary" 
-                      rounded="md" 
+                      rounded={theme?.themeRounded.default} 
                       className="inline-flex"
                       data-class="metric-icon"
                     >
                       <Icon
-                        component="span"
-                        size="md"
                         lucideIcon={metric.lucideIcon}
                         c="primary-foreground"
                       />
@@ -166,12 +152,12 @@ const splitBusinessContentHooks = {
                         {metric.value}
                       </Text>
                       {metric.change && (
-                        <Badge variant="secondary" size="xs" rounded="sm">
+                        <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
                           {metric.change}
                         </Badge>
                       )}
                     </Group>
-                    <Text size="sm" c="secondary-foreground">
+                    <Text c="secondary-foreground">
                       {metric.label}
                     </Text>
                   </Stack>
@@ -185,10 +171,10 @@ const splitBusinessContentHooks = {
           <Group gap="md" align="center">
             {content.buttonText && (
               <Button rounded={theme?.themeRounded.default}
-                size="lg"
+                size={theme?.themeButtonSize.default}
                 variant="default"
                 rightSection={
-                  <Icon component="span" size="md" c="primary-foreground" lucideIcon={ArrowRight} />
+                  <Icon c="primary-foreground" lucideIcon={ArrowRight} />
                 }
               >
                 {content.buttonText}
@@ -198,9 +184,9 @@ const splitBusinessContentHooks = {
             {content.secondaryButtonText && (
               <Button rounded={theme?.themeRounded.default}
                 variant="outline"
-                size="lg"
+                size={theme?.themeButtonSize.default}
                 rightSection={
-                  <Icon component="span" size="md" lucideIcon={ExternalLink} />
+                  <Icon lucideIcon={ExternalLink} />
                 }
               >
                 {content.secondaryButtonText}
@@ -217,7 +203,7 @@ const splitBusinessContentHooks = {
     content: (content: SplitBusinessData) => (
       <Stack gap="xl" align="start">
         <Stack gap="md" align="start">
-          <Badge variant="secondary" size="default" rounded="md">
+          <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
             {content.badge || "Performance"}
           </Badge>
 
@@ -243,7 +229,7 @@ const splitBusinessContentHooks = {
               <Text size="3xl" fw="bold" c="primary">
                 {content.stats.clients}
               </Text>
-              <Text size="sm" c="secondary-foreground">
+              <Text c="secondary-foreground">
                 Satisfied Clients
               </Text>
             </Stack>
@@ -252,7 +238,7 @@ const splitBusinessContentHooks = {
               <Text size="3xl" fw="bold" c="primary">
                 {content.stats.projects}
               </Text>
-              <Text size="sm" c="secondary-foreground">
+              <Text c="secondary-foreground">
                 Projects Completed
               </Text>
             </Stack>
@@ -261,7 +247,7 @@ const splitBusinessContentHooks = {
               <Text size="3xl" fw="bold" c="primary">
                 {content.stats.satisfaction}
               </Text>
-              <Text size="sm" c="secondary-foreground">
+              <Text c="secondary-foreground">
                 Satisfaction Rate
               </Text>
             </Stack>
@@ -270,18 +256,19 @@ const splitBusinessContentHooks = {
               <Text size="3xl" fw="bold" c="primary">
                 {content.stats.years}
               </Text>
-              <Text size="sm" c="secondary-foreground">
+              <Text c="secondary-foreground">
                 Years Experience
               </Text>
             </Stack>
           </Grid>
         )}
 
-        <Button rounded={theme?.themeRounded.default}
-          size="lg"
+        <Button
           variant="default"
+          rounded={theme?.themeRounded.default}
+          size={theme?.themeButtonSize.default}
           rightSection={
-            <Icon component="span" size="md" lucideIcon={TrendingUp} />
+            <Icon lucideIcon={TrendingUp} />
           }
         >
           {content.buttonText || "View Our Results"}
@@ -298,7 +285,7 @@ const splitBusinessContentHooks = {
       return (
         <Stack gap="xl" align="start">
           <Stack gap="md" align="start">
-            <Badge variant="secondary" size="default" rounded="md">
+            <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
               {content.badge || "Testimonial"}
             </Badge>
 
@@ -313,7 +300,7 @@ const splitBusinessContentHooks = {
 
           {/* Featured Testimonial */}
           {testimonial && (
-            <Card p="xl" rounded="lg" shadow="md" bg="card" className="w-full">
+            <Card p="xl" rounded={theme?.themeRounded.default} shadow="md" bg="card" className="w-full">
               <Stack gap="lg" align="start">
                 {/* Rating */}
                 {testimonial.rating && (
@@ -321,8 +308,6 @@ const splitBusinessContentHooks = {
                     {Array.from({ length: testimonial.rating }, (_, i) => (
                       <Icon
                         key={i}
-                        component="span"
-                        size="sm"
                         lucideIcon={Star}
                         c="primary"
                         className="fill-current"
@@ -362,11 +347,12 @@ const splitBusinessContentHooks = {
             </Card>
           )}
 
-          <Button rounded={theme?.themeRounded.default}
-            size="lg"
+          <Button
             variant="outline"
+            rounded={theme?.themeRounded.default}
+            size={theme?.themeButtonSize.default}
             rightSection={
-              <Icon component="span" size="md" lucideIcon={ArrowRight} />
+              <Icon lucideIcon={ArrowRight} />
             }
           >
             {content.buttonText || "Read More Reviews"}
@@ -381,7 +367,7 @@ const splitBusinessContentHooks = {
     content: (content: SplitBusinessData) => (
       <Stack gap="xl" align="start">
         <Stack gap="md" align="start">
-          <Badge variant="secondary" size="default" rounded="md">
+          <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
             {content.badge || "Features"}
           </Badge>
 
@@ -403,13 +389,11 @@ const splitBusinessContentHooks = {
                   <Box 
                     p="sm" 
                     bg="primary" 
-                    rounded="md" 
+                    rounded={theme?.themeRounded.default} 
                     className="flex-shrink-0"
                     data-class="feature-icon"
                   >
                     <Icon
-                      component="span"
-                      size="md"
                       lucideIcon={feature.lucideIcon}
                       c="primary-foreground"
                     />
@@ -430,22 +414,24 @@ const splitBusinessContentHooks = {
         )}
 
         <Group gap="md" align="center">
-          <Button rounded={theme?.themeRounded.default}
-            size="lg"
+          <Button
             variant="default"
+            rounded={theme?.themeRounded.default}
+            size={theme?.themeButtonSize.default}
             rightSection={
-              <Icon component="span" size="md" c="primary-foreground" lucideIcon={Rocket} />
+              <Icon c="primary-foreground" lucideIcon={Rocket} />
             }
           >
             {content.buttonText || "Get Started"}
           </Button>
 
           {content.secondaryButtonText && (
-            <Button rounded={theme?.themeRounded.default}
+            <Button
               variant="ghost"
-              size="lg"
+              rounded={theme?.themeRounded.default}
+              size="icon"
               rightSection={
-                <Icon component="span" size="md" lucideIcon={ArrowRight} />
+                <Icon lucideIcon={ArrowRight} />
               }
             >
               {content.secondaryButtonText}
@@ -461,7 +447,7 @@ const splitBusinessContentHooks = {
     content: (content: SplitBusinessData) => (
       <Stack gap="xl" align="start">
         <Stack gap="md" align="start">
-          <Badge variant="secondary" size="default" rounded="md">
+          <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
             {content.badge || "About Us"}
           </Badge>
 
@@ -484,16 +470,16 @@ const splitBusinessContentHooks = {
         {content.cards && (
           <Grid cols="1-2" gap="md" className="w-full">
             {content.cards.slice(0, 4).map((card) => (
-              <Card key={card.id} p="md" rounded="md" shadow="sm" bg="secondary/50">
-                <Group gap="sm" align="start">
+              <Card key={card.id} p="md" rounded={theme?.themeRounded.default} shadow="sm" bg="secondary/50">
+                <Group gap="md" align="start">
                   {card.lucideIcon && (
-                    <Icon
-                      component="span"
-                      size="md"
-                      lucideIcon={card.lucideIcon}
-                      c="primary"
-                      className="flex-shrink-0 mt-1"
-                    />
+                    <Box>
+                      <Icon
+                        lucideIcon={card.lucideIcon}
+                        c="primary"
+                        className="flex-shrink-0 mt-1"
+                      />
+                    </Box>
                   )}
                   
                   <Stack gap="xs">
@@ -511,22 +497,24 @@ const splitBusinessContentHooks = {
         )}
 
         <Group gap="md" align="center">
-          <Button rounded={theme?.themeRounded.default}
-            size="lg"
+          <Button
             variant="default"
+            rounded={theme?.themeRounded.default}
+            size={theme?.themeButtonSize.default}
             rightSection={
-              <Icon component="span" size="md" c="primary-foreground" lucideIcon={Users} />
+              <Icon c="primary-foreground" lucideIcon={Users} />
             }
           >
             {content.buttonText || "Join Our Team"}
           </Button>
 
           {content.secondaryButtonText && (
-            <Button rounded={theme?.themeRounded.default}
+            <Button
               variant="outline"
-              size="lg"
+              rounded={theme?.themeRounded.default}
+              size={theme?.themeButtonSize.default}
               rightSection={
-                <Icon component="span" size="md" lucideIcon={Building} />
+                <Icon lucideIcon={Building} />
               }
             >
               {content.secondaryButtonText}
@@ -560,7 +548,7 @@ export const SplitBusiness = forwardRef<HTMLElement, SplitBusinessProps>(
               alt={content.image.alt}
               width="100%"
               height="auto"
-              rounded="lg"
+              rounded={theme?.themeRounded.default}
               fit="cover"
             />
           </Block>

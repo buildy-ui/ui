@@ -97,8 +97,8 @@ const splitTestimonialContentHooks = {
     content: (content: SplitTestimonialData) => (
       <Stack gap="xl" align="start">
         {content.badge && (
-          <Badge variant="secondary" size="lg" rounded="md">
-            <Icon component="span" size="xs" lucideIcon={MessageSquare} />
+          <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
+            <Icon lucideIcon={MessageSquare} />
             {content.badge}
           </Badge>
         )}
@@ -115,7 +115,7 @@ const splitTestimonialContentHooks = {
 
         {/* Featured Testimonial */}
         {content.testimonials[0] && (
-          <Card p="xl" rounded="lg" shadow="md" className="bg-card border">
+          <Card p="xl" rounded={theme?.themeRounded.default} shadow="md" className="bg-card border">
             <Stack gap="lg">
               <Icon component="div" size="xl" lucideIcon={Quote} c="primary" className="opacity-20" />
               
@@ -138,20 +138,20 @@ const splitTestimonialContentHooks = {
                     className="w-[60px] h-[60px] bg-primary/10 rounded-full flex items-center justify-center"
                     data-class="avatar-placeholder"
                   >
-                    <Icon component="span" size="lg" lucideIcon={User} c="primary" />
+                    <Icon size="lg" lucideIcon={User} c="primary" />
                   </Box>
                 )}
                 
                 <Stack gap="xs">
-                  <Group gap="sm" align="center">
+                  <Group gap="md" align="center">
                     <Text size="md" fw="semibold">
                       {content.testimonials[0].author}
                     </Text>
                     {content.testimonials[0].verified && (
-                      <Icon component="span" size="sm" lucideIcon={CheckCircle} c="green-500" />
+                      <Icon lucideIcon={CheckCircle} c="green-500" />
                     )}
                   </Group>
-                  <Text size="sm" c="secondary-foreground">
+                  <Text c="secondary-foreground">
                     {content.testimonials[0].position}
                     {content.testimonials[0].company && ` at ${content.testimonials[0].company}`}
                   </Text>
@@ -177,8 +177,8 @@ const splitTestimonialContentHooks = {
       <Stack gap="xl" align="start">
         <Stack gap="lg">
           {content.badge && (
-            <Badge variant="outline" size="md" rounded="full">
-              <Icon component="span" size="xs" lucideIcon={Users} />
+            <Badge variant="outline" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
+              <Icon lucideIcon={Users} />
               {content.badge}
             </Badge>
           )}
@@ -197,18 +197,17 @@ const splitTestimonialContentHooks = {
         {/* Testimonials Stack */}
         <Stack gap="lg" className="w-full">
           {content.testimonials.slice(0, 3).map((testimonial, index) => (
-            <Card key={testimonial.id} p="lg" rounded="md" shadow="sm" className="bg-card/50 border">
-              <Stack gap="md">
+            <Card key={testimonial.id} p="lg" rounded={theme?.themeRounded.default} shadow="sm" className="bg-card border">
                 <Group gap="md" align="start" justify="between">
                   <RenderStars rating={testimonial.rating} />
-                  <Icon component="span" size="md" lucideIcon={Quote} c="primary" className="opacity-50" />
+                  <Icon lucideIcon={Quote} c="primary" className="opacity-50" />
                 </Group>
                 
                 <Text size="md" className="leading-relaxed">
                   "{testimonial.quote}"
                 </Text>
                 
-                <Group gap="sm" align="center">
+                <Group gap="md" align="center">
                   {testimonial.avatar ? (
                     <Image
                       src={testimonial.avatar.src}
@@ -223,7 +222,7 @@ const splitTestimonialContentHooks = {
                       className="w-[40px] h-[40px] bg-primary/10 rounded-full flex items-center justify-center"
                       data-class="avatar-placeholder"
                     >
-                      <Icon component="span" size="sm" lucideIcon={User} c="primary" />
+                      <Icon lucideIcon={User} c="primary" />
                     </Box>
                   )}
                   
@@ -242,7 +241,7 @@ const splitTestimonialContentHooks = {
         </Stack>
 
         {content.testimonials.length > 3 && (
-          <Text size="sm" c="secondary-foreground">
+          <Text c="secondary-foreground">
             +{content.testimonials.length - 3} more satisfied customers
           </Text>
         )}
@@ -274,7 +273,7 @@ const splitTestimonialContentHooks = {
                 <Text size="3xl" fw="bold" c="primary">
                   {content.stats.totalReviews}
                 </Text>
-                <Text size="sm" c="secondary-foreground" className="text-center">
+                <Text c="secondary-foreground" className="text-center">
                   Total Reviews
                 </Text>
               </Stack>
@@ -286,9 +285,9 @@ const splitTestimonialContentHooks = {
                   <Text size="3xl" fw="bold" c="primary">
                     {content.stats.averageRating}
                   </Text>
-                  <Icon component="span" size="lg" lucideIcon={Star} className="text-yellow-500 fill-yellow-500" />
+                  <Icon size="lg" lucideIcon={Star} className="text-yellow-500 fill-yellow-500" />
                 </Group>
-                <Text size="sm" c="secondary-foreground" className="text-center">
+                <Text c="secondary-foreground" className="text-center">
                   Average Rating
                 </Text>
               </Stack>
@@ -299,7 +298,7 @@ const splitTestimonialContentHooks = {
                 <Text size="3xl" fw="bold" c="primary">
                   {content.stats.satisfied}
                 </Text>
-                <Text size="sm" c="secondary-foreground" className="text-center">
+                <Text c="secondary-foreground" className="text-center">
                   Satisfied Customers
                 </Text>
               </Stack>
@@ -309,11 +308,11 @@ const splitTestimonialContentHooks = {
 
         {/* Featured Testimonial */}
         {content.testimonials[0] && (
-          <Card p="lg" rounded="lg" shadow="sm" className="bg-primary/5 border-primary/20">
+          <Card p="lg" rounded={theme?.themeRounded.default} shadow="sm" className="bg-primary/5 border-primary/20">
             <Stack gap="md">
               <Group gap="md" align="center" justify="between">
-                <Group gap="sm" align="center">
-                  <Icon component="span" size="md" lucideIcon={Award} c="primary" />
+                <Group gap="md" align="center">
+                  <Icon lucideIcon={Award} c="primary" />
                   <Text size="sm" fw="semibold" c="primary">
                     Featured Review
                   </Text>
@@ -325,11 +324,11 @@ const splitTestimonialContentHooks = {
                 "{content.testimonials[0].quote}"
               </Text>
               
-              <Group gap="sm" align="center">
+              <Group gap="md" align="center">
                 <Text size="sm" fw="medium">
                   — {content.testimonials[0].author}
                 </Text>
-                <Text size="sm" c="secondary-foreground">
+                <Text c="secondary-foreground">
                   {content.testimonials[0].position}
                 </Text>
               </Group>
@@ -343,7 +342,7 @@ const splitTestimonialContentHooks = {
               {content.ctaText}
             </Button>
             <Button rounded={theme?.themeRounded.default} size="lg" variant="outline">
-              <Icon component="span" size="sm" c="primary-foreground" lucideIcon={Heart} />
+              <Icon c="primary-foreground" lucideIcon={Heart} />
               Read All Reviews
             </Button>
           </Group>
@@ -375,9 +374,9 @@ export const SplitTestimonial = forwardRef<HTMLElement, SplitTestimonialProps>(
             <Box className="relative min-h-[400px] bg-gradient-to-br from-primary/20 via-primary/10 to-transparent rounded-lg overflow-hidden flex items-center justify-center">
               <Stack gap="xl" align="center" className="relative z-10">
                 <Box className="w-32 h-32 bg-primary/10 rounded-full flex items-center justify-center">
-                  <Icon component="span" size="3xl" lucideIcon={Quote} c="primary" />
+                  <Icon size="3xl" lucideIcon={Quote} c="primary" />
                 </Box>
-                <Stack gap="sm" align="center">
+                <Stack gap="md" align="center">
                   <Text size="lg" fw="semibold" c="primary">
                     Trusted by thousands
                   </Text>
@@ -402,7 +401,7 @@ export const SplitTestimonial = forwardRef<HTMLElement, SplitTestimonialProps>(
                       key={index}
                       className="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center"
                     >
-                      <Icon component="span" size="lg" lucideIcon={LucideIcon} c="white" />
+                      <Icon size="lg" lucideIcon={LucideIcon} c="white" />
                     </Box>
                   ))}
                 </Box>
@@ -423,9 +422,9 @@ export const SplitTestimonial = forwardRef<HTMLElement, SplitTestimonialProps>(
                     { icon: Users, value: "10K+", label: "Reviews" },
                     { icon: Award, value: "99%", label: "Satisfied" }
                   ].map((stat, index) => (
-                    <Stack key={index} gap="sm" align="center">
+                    <Stack key={index} gap="md" align="center">
                       <Box className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
-                        <Icon component="span" size="md" lucideIcon={stat.icon} c="white" />
+                        <Icon lucideIcon={stat.icon} c="white" />
                       </Box>
                       <Text size="lg" fw="bold" c="white">
                         {stat.value}
@@ -443,7 +442,7 @@ export const SplitTestimonial = forwardRef<HTMLElement, SplitTestimonialProps>(
         default:
           return (
             <Box className="relative min-h-[400px] bg-gradient-to-br from-primary/20 to-transparent rounded-lg flex items-center justify-center">
-              <Icon component="span" size="3xl" lucideIcon={Quote} c="primary" className="opacity-20" />
+              <Icon size="3xl" lucideIcon={Quote} c="primary" className="opacity-20" />
             </Box>
           );
       }

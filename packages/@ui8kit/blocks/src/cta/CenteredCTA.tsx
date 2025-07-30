@@ -1,17 +1,6 @@
 import { forwardRef } from "react";
-import { 
-  ArrowRight, 
-  Play, 
-  Download, 
-  ExternalLink, 
-  Star, 
-  Rocket, 
-  Globe, 
-  Heart,
-  Zap,
-  Shield,
-  Users,
-  CheckCircle
+import {
+  Star,
 } from "lucide-react";
 import {
   Stack,
@@ -29,8 +18,6 @@ import {
 import { 
   LayoutBlock,
   createLayoutContentHook,
-  defaultLayoutContentHooks,
-  type LayoutContentHooks
 } from "@ui8kit/core/factory/LayoutBlock";
 
 // CTA interfaces
@@ -89,10 +76,10 @@ const centeredCTAContentHooks = {
   // Simple centered CTA
   simple: createLayoutContentHook({
     header: (content: CenteredCTAData) => (
-      <Card p="2xl" rounded="lg" bg="accent" shadow="lg" className="w-full max-w-4xl mx-auto">
+      <Card p="2xl" rounded={theme?.themeRounded.default} bg="accent" shadow="lg" className="w-full max-w-4xl mx-auto">
         <Stack gap="xl" align="center" ta="center">
           {content.badge && (
-            <Badge variant="secondary" size="default" rounded="md">
+            <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
               {content.badge}
             </Badge>
           )}
@@ -101,7 +88,7 @@ const centeredCTAContentHooks = {
             {content.title}
           </Title>
 
-          <Text size="lg" c="secondary-foreground" ta="center" className="max-w-2xl">
+          <Text c="secondary-foreground" ta="center" className="max-w-2xl">
             {content.description}
           </Text>
 
@@ -112,7 +99,7 @@ const centeredCTAContentHooks = {
                 size="lg"
                 variant={button.variant || "default"}
                 leftSection={button.lucideIcon ? (
-                  <Icon component="span" size="md" lucideIcon={button.lucideIcon} />
+                  <Icon lucideIcon={button.lucideIcon} />
                 ) : undefined}
               >
                 {button.text}
@@ -127,13 +114,13 @@ const centeredCTAContentHooks = {
   // CTA with logos/brands
   withLogos: createLayoutContentHook({
     header: (content: CenteredCTAData) => (
-      <Card p="2xl" rounded="lg" bg="accent" shadow="lg" className="w-full max-w-4xl mx-auto">
+      <Card p="2xl" rounded={theme?.themeRounded.default} bg="accent" shadow="lg" className="w-full max-w-4xl mx-auto">
         <Stack gap="xl" align="center" ta="center">
           <Title order={1} size="4xl" fw="bold" ta="center">
             {content.title}
           </Title>
 
-          <Text size="lg" c="secondary-foreground" ta="center" className="max-w-2xl">
+          <Text c="secondary-foreground" ta="center" className="max-w-2xl">
             {content.description}
           </Text>
 
@@ -144,7 +131,7 @@ const centeredCTAContentHooks = {
                 size="lg"
                 variant={button.variant || "default"}
                 leftSection={button.lucideIcon ? (
-                  <Icon component="span" size="md" lucideIcon={button.lucideIcon} />
+                  <Icon lucideIcon={button.lucideIcon} />
                 ) : undefined}
               >
                 {button.text}
@@ -155,13 +142,13 @@ const centeredCTAContentHooks = {
           {/* Brands/Logos */}
           {content.brands && (
             <Stack gap="md" align="center" className="w-full">
-              <Text size="sm" c="secondary-foreground" ta="center">
+              <Text c="secondary-foreground" ta="center">
                 Trusted by leading companies
               </Text>
               
               <Grid cols="3-4-6" gap="lg" align="center" justify="center" className="w-full">
                 {content.brands.map((brand) => (
-                  <Group key={brand.id} gap="sm" align="center" justify="center" className="opacity-60 hover:opacity-100 transition-opacity">
+                  <Group key={brand.id} gap="md" align="center" justify="center" className="opacity-60 hover:opacity-100 transition-opacity">
                     {brand.lucideIcon && (
                       <Icon
                         component="span"
@@ -179,7 +166,7 @@ const centeredCTAContentHooks = {
                         fit="contain"
                       />
                     )}
-                    <Text size="sm" c="secondary-foreground" fw="medium">
+                    <Text c="secondary-foreground" fw="medium">
                       {brand.name}
                     </Text>
                   </Group>
@@ -209,7 +196,7 @@ const centeredCTAContentHooks = {
         <Box className="relative z-10" p="2xl">
           <Stack gap="xl" align="center" ta="center">
             {content.badge && (
-              <Badge variant="secondary" size="default" rounded="md" className="bg-white/20 text-white border-white/30">
+              <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="bg-white/20 text-white border-white/30">
                 {content.badge}
               </Badge>
             )}
@@ -229,7 +216,7 @@ const centeredCTAContentHooks = {
                   size="lg"
                   variant={button.variant || "default"}
                   leftSection={button.lucideIcon ? (
-                    <Icon component="span" size="md" lucideIcon={button.lucideIcon} />
+                    <Icon lucideIcon={button.lucideIcon} />
                   ) : undefined}
                   className={button.variant === "outline" ? "border-white text-white hover:bg-white hover:text-black" : ""}
                 >
@@ -246,13 +233,13 @@ const centeredCTAContentHooks = {
   // CTA with features
   withFeatures: createLayoutContentHook({
     header: (content: CenteredCTAData) => (
-      <Card p="2xl" rounded="lg" bg="accent" shadow="lg" className="w-full max-w-5xl mx-auto">
+      <Card p="2xl" rounded={theme?.themeRounded.default} bg="accent" shadow="lg" className="w-full max-w-5xl mx-auto">
         <Stack gap="xl" align="center" ta="center">
           <Title order={1} size="4xl" fw="bold" ta="center">
             {content.title}
           </Title>
 
-          <Text size="lg" c="secondary-foreground" ta="center" className="max-w-2xl">
+          <Text c="secondary-foreground" ta="center" className="max-w-2xl">
             {content.description}
           </Text>
 
@@ -260,7 +247,7 @@ const centeredCTAContentHooks = {
           {content.features && (
             <Grid cols="1-2-3" gap="lg" className="w-full max-w-3xl">
               {content.features.map((feature) => (
-                <Stack key={feature.id} gap="sm" align="center" ta="center">
+                <Stack key={feature.id} gap="md" align="center" ta="center">
                   {feature.lucideIcon && (
                     <Box 
                       p="sm" 
@@ -300,7 +287,7 @@ const centeredCTAContentHooks = {
                 size="lg"
                 variant={button.variant || "default"}
                 leftSection={button.lucideIcon ? (
-                  <Icon component="span" size="md" lucideIcon={button.lucideIcon} />
+                  <Icon lucideIcon={button.lucideIcon} />
                 ) : undefined}
               >
                 {button.text}
@@ -315,13 +302,13 @@ const centeredCTAContentHooks = {
   // CTA with stats
   withStats: createLayoutContentHook({
     header: (content: CenteredCTAData) => (
-      <Card p="2xl" rounded="lg" bg="accent" shadow="lg" className="w-full max-w-4xl mx-auto">
+      <Card p="2xl" rounded={theme?.themeRounded.default} bg="accent" shadow="lg" className="w-full max-w-4xl mx-auto">
         <Stack gap="xl" align="center" ta="center">
           <Title order={1} size="4xl" fw="bold" ta="center">
             {content.title}
           </Title>
 
-          <Text size="lg" c="secondary-foreground" ta="center" className="max-w-2xl">
+          <Text c="secondary-foreground" ta="center" className="max-w-2xl">
             {content.description}
           </Text>
 
@@ -332,7 +319,7 @@ const centeredCTAContentHooks = {
                 <Text size="3xl" fw="bold" c="primary">
                   {content.stats.users}
                 </Text>
-                <Text size="sm" c="secondary-foreground">
+                <Text c="secondary-foreground">
                   Active Users
                 </Text>
               </Stack>
@@ -342,9 +329,9 @@ const centeredCTAContentHooks = {
                   <Text size="3xl" fw="bold" c="primary">
                     {content.stats.rating}
                   </Text>
-                  <Icon component="span" size="md" lucideIcon={Star} c="primary" className="fill-current" />
+                  <Icon lucideIcon={Star} c="primary" className="fill-current" />
                 </Group>
-                <Text size="sm" c="secondary-foreground">
+                <Text c="secondary-foreground">
                   User Rating
                 </Text>
               </Stack>
@@ -353,7 +340,7 @@ const centeredCTAContentHooks = {
                 <Text size="3xl" fw="bold" c="primary">
                   {content.stats.downloads}
                 </Text>
-                <Text size="sm" c="secondary-foreground">
+                <Text c="secondary-foreground">
                   Downloads
                 </Text>
               </Stack>
@@ -367,7 +354,7 @@ const centeredCTAContentHooks = {
                 size="lg"
                 variant={button.variant || "default"}
                 leftSection={button.lucideIcon ? (
-                  <Icon component="span" size="md" lucideIcon={button.lucideIcon} />
+                  <Icon lucideIcon={button.lucideIcon} />
                 ) : undefined}
               >
                 {button.text}
