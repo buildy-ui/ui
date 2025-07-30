@@ -26,6 +26,15 @@ import {
   Icon,
   Box
 } from "@ui8kit/core";
+import { skyOSTheme } from "@ui8kit/theme";
+
+export const currentTheme = skyOSTheme;
+
+export const theme = {
+  theme: currentTheme,
+  themeRounded: currentTheme.rounded,
+  themeButtonSize: currentTheme.buttonSize
+}
 import { 
   LayoutBlock,
   createLayoutContentHook,
@@ -108,13 +117,13 @@ const gridPortfolioContentHooks = {
           <Box className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
             <Group gap="sm">
               {project.links?.live && (
-                <Button size="sm" variant="secondary" className="bg-white/20 text-white hover:bg-white hover:text-black">
+                <Button rounded={theme?.themeRounded.default} size="sm" variant="secondary" className="bg-white/20 text-white hover:bg-white hover:text-black">
                   <Icon component="span" size="xs" lucideIcon={Eye} />
                   View
                 </Button>
               )}
               {project.links?.github && (
-                <Button size="sm" variant="secondary" className="bg-white/20 text-white hover:bg-white hover:text-black">
+                <Button rounded={theme?.themeRounded.default} size="sm" variant="secondary" className="bg-white/20 text-white hover:bg-white hover:text-black">
                   <Icon component="span" size="xs" lucideIcon={Github} />
                   Code
                 </Button>
@@ -334,7 +343,7 @@ const gridPortfolioContentHooks = {
               )}
               {project.status === "featured" && (
                 <Badge variant="default" size="sm" rounded="md">
-                  <Icon component="span" size="xs" lucideIcon={Award} />
+                  <Icon component="span" size="xs" c="primary-foreground" lucideIcon={Award} />
                   Featured
                 </Badge>
               )}
@@ -385,13 +394,13 @@ const gridPortfolioContentHooks = {
           {/* Action Buttons */}
           <Group gap="sm">
             {project.links?.live && (
-              <Button size="sm" variant="outline" className="flex-1">
+              <Button rounded={theme?.themeRounded.default} size="sm" variant="outline" className="flex-1">
                 <Icon component="span" size="xs" lucideIcon={ExternalLink} />
                 View Live
               </Button>
             )}
             {project.links?.case_study && (
-              <Button size="sm" variant="ghost" className="flex-1">
+              <Button rounded={theme?.themeRounded.default} size="sm" variant="ghost" className="flex-1">
                 Case Study
               </Button>
             )}
@@ -440,7 +449,7 @@ const gridPortfolioContentHooks = {
                   )}
                   {project.status === "featured" && (
                     <Badge variant="default" size={isFeatured ? "default" : "sm"} rounded="md">
-                      <Icon component="span" size="xs" lucideIcon={Award} />
+                      <Icon component="span" size="xs" c="primary-foreground" lucideIcon={Award} />
                       Featured
                     </Badge>
                   )}
@@ -476,13 +485,13 @@ const gridPortfolioContentHooks = {
                 {/* Action Buttons */}
                 <Group gap="sm" className="mt-sm">
                   {project.links?.live && (
-                    <Button size={isFeatured ? "md" : "sm"} variant="secondary" className="bg-white/20 text-white hover:bg-white hover:text-black">
+                    <Button rounded={theme?.themeRounded.default} size={isFeatured ? "md" : "sm"} variant="secondary" className="bg-white/20 text-white hover:bg-white hover:text-black">
                       <Icon component="span" size="xs" lucideIcon={ExternalLink} />
                       View Project
                     </Button>
                   )}
                   {project.links?.case_study && (
-                    <Button size={isFeatured ? "md" : "sm"} variant="ghost" className="text-white hover:bg-white/20">
+                    <Button rounded={theme?.themeRounded.default} size={isFeatured ? "md" : "sm"} variant="ghost" className="text-white hover:bg-white/20">
                       Case Study
                     </Button>
                   )}

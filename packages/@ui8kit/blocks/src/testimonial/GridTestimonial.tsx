@@ -24,6 +24,15 @@ import {
   Box,
   Card
 } from "@ui8kit/core";
+import { skyOSTheme } from "@ui8kit/theme";
+
+export const currentTheme = skyOSTheme;
+
+export const theme = {
+  theme: currentTheme,
+  themeRounded: currentTheme.rounded,
+  themeButtonSize: currentTheme.buttonSize
+}
 import { 
   LayoutBlock,
   createLayoutContentHook,
@@ -99,7 +108,7 @@ const gridTestimonialContentHooks = {
         </Title>
         
         {content.description && (
-          <Text size="lg" c="secondary-foreground" ta="center">
+          <Text c="secondary-foreground" ta="center">
             {content.description}
           </Text>
         )}
@@ -181,7 +190,7 @@ const gridTestimonialContentHooks = {
           {content.title}
         </Title>
         {content.subtitle && (
-          <Text size="xl" c="secondary-foreground" ta="center" className="max-w-2xl">
+          <Text c="secondary-foreground" ta="center" className="max-w-2xl">
             {content.subtitle}
           </Text>
         )}
@@ -452,7 +461,7 @@ const gridTestimonialContentHooks = {
           </Stack>
           
           <Group gap="sm">
-            <Button size="sm" variant="outline">
+            <Button rounded={theme?.themeRounded.default} size="sm" variant="outline">
               <Icon component="span" size="xs" lucideIcon={ThumbsUp} />
               All Reviews
             </Button>
@@ -517,7 +526,7 @@ const gridTestimonialContentHooks = {
           </Title>
           
           {content.subtitle && (
-            <Text size="xl" c="secondary-foreground" ta="center" className="font-light max-w-3xl">
+            <Text c="secondary-foreground" ta="center" className="font-light max-w-3xl">
               {content.subtitle}
             </Text>
           )}

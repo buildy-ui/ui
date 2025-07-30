@@ -24,6 +24,15 @@ import {
   Icon,
   Box
 } from "@ui8kit/core";
+import { skyOSTheme } from "@ui8kit/theme";
+
+export const currentTheme = skyOSTheme;
+
+export const theme = {
+  theme: currentTheme,
+  themeRounded: currentTheme.rounded,
+  themeButtonSize: currentTheme.buttonSize
+}
 import { 
   LayoutBlock,
   createLayoutContentHook,
@@ -106,7 +115,7 @@ const centeredPostContentHooks = {
 
         {/* Subtitle */}
         {content.subtitle && (
-          <Text size="xl" c="secondary-foreground" ta="center" className="max-w-3xl">
+          <Text c="secondary-foreground" ta="center" className="max-w-3xl">
             {content.subtitle}
           </Text>
         )}
@@ -205,7 +214,7 @@ const centeredPostContentHooks = {
           </Title>
 
           {content.excerpt && (
-            <Text size="lg" c="secondary-foreground" ta="center" className="max-w-2xl font-medium">
+            <Text c="secondary-foreground" ta="center" className="max-w-2xl font-medium">
               {content.excerpt}
             </Text>
           )}
@@ -311,11 +320,11 @@ const centeredPostContentHooks = {
           )}
 
           <Group gap="sm">
-            <Button size="sm" variant="outline">
+            <Button rounded={theme?.themeRounded.default} size="sm" variant="outline">
               <Icon component="span" size="xs" lucideIcon={Share2} />
               Share
             </Button>
-            <Button size="sm" variant="outline">
+            <Button rounded={theme?.themeRounded.default} size="sm" variant="outline">
               <Icon component="span" size="xs" lucideIcon={Bookmark} />
               Save
             </Button>
@@ -359,7 +368,7 @@ const centeredPostContentHooks = {
           </Title>
 
           {content.subtitle && (
-            <Text size="lg" c="secondary-foreground" ta="center" className="max-w-2xl italic">
+            <Text c="secondary-foreground" ta="center" className="max-w-2xl italic">
               {content.subtitle}
             </Text>
           )}

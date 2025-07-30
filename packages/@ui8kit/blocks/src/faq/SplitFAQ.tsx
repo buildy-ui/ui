@@ -36,6 +36,15 @@ import {
   AccordionTrigger,
   AccordionContent
 } from "@ui8kit/core";
+import { skyOSTheme } from "@ui8kit/theme";
+
+export const currentTheme = skyOSTheme;
+
+export const theme = {
+  theme: currentTheme,
+  themeRounded: currentTheme.rounded,
+  themeButtonSize: currentTheme.buttonSize
+}
 import { 
   SplitBlock, 
   createContentHook, 
@@ -111,7 +120,7 @@ const splitFAQContentHooks = {
             {content.title}
           </Title>
 
-          <Text size="xl" c="secondary-foreground">
+          <Text c="secondary-foreground">
             {content.description}
           </Text>
         </Stack>
@@ -152,7 +161,7 @@ const splitFAQContentHooks = {
               </Stack>
 
               {content.buttonText && (
-                <Button size="sm" className="w-full">
+                <Button rounded={theme?.themeRounded.default} size="sm" className="w-full">
                   {content.buttonText}
                 </Button>
               )}
@@ -204,7 +213,7 @@ const splitFAQContentHooks = {
             {content.title}
           </Title>
 
-          <Text size="xl" c="secondary-foreground">
+          <Text c="secondary-foreground">
             {content.description}
           </Text>
         </Stack>
@@ -213,7 +222,7 @@ const splitFAQContentHooks = {
         <Card p="md" rounded="lg" shadow="sm" bg="card" className="w-full">
           <Group gap="sm">
             <Text className="flex-1" >Search FAQ... <Icon component="span" size="sm" lucideIcon={Search} /></Text>
-            <Button size="sm">
+            <Button rounded={theme?.themeRounded.default} size="sm">
               Search
             </Button>
           </Group>
@@ -227,7 +236,7 @@ const splitFAQContentHooks = {
             </Title>
             <Grid cols="2" gap="sm">
               {content.categories.slice(0, 4).map((category) => (
-                <Button
+                <Button rounded={theme?.themeRounded.default}
                   key={category.id}
                   variant="outline"
                   size="sm"
@@ -279,7 +288,7 @@ const splitFAQContentHooks = {
             {content.title}
           </Title>
 
-          <Text size="xl" c="secondary-foreground">
+          <Text c="secondary-foreground">
             {content.description}
           </Text>
         </Stack>
@@ -323,7 +332,7 @@ const splitFAQContentHooks = {
         )}
 
         {content.buttonText && (
-          <Button size="lg" className="w-full">
+          <Button rounded={theme?.themeRounded.default} size="lg" className="w-full">
             {content.buttonText}
           </Button>
         )}
@@ -346,7 +355,7 @@ const splitFAQContentHooks = {
             {content.title}
           </Title>
 
-          <Text size="xl" c="secondary-foreground">
+          <Text c="secondary-foreground">
             {content.description}
           </Text>
         </Stack>
@@ -358,19 +367,19 @@ const splitFAQContentHooks = {
           </Title>
           
           <Grid cols="1" gap="sm">
-            <Button variant="outline" size="lg" leftSection={
+            <Button rounded={theme?.themeRounded.default} variant="outline" size="lg" leftSection={
               <Icon component="span" size="sm" lucideIcon={MessageSquare} />
             }>
               Live Chat Support
             </Button>
             
-            <Button variant="outline" size="lg" leftSection={
+            <Button rounded={theme?.themeRounded.default} variant="outline" size="lg" leftSection={
               <Icon component="span" size="sm" lucideIcon={Mail} />
             }>
               Email Support
             </Button>
             
-            <Button variant="outline" size="lg" leftSection={
+            <Button rounded={theme?.themeRounded.default} variant="outline" size="lg" leftSection={
               <Icon component="span" size="sm" lucideIcon={Phone} />
             }>
               Phone Support
@@ -424,7 +433,7 @@ const splitFAQContentHooks = {
             {content.title}
           </Title>
 
-          <Text size="xl" c="secondary-foreground">
+          <Text c="secondary-foreground">
             {content.description}
           </Text>
         </Stack>
@@ -465,7 +474,7 @@ const splitFAQContentHooks = {
         </Stack>
 
         {content.buttonText && (
-          <Button size="lg" variant="outline" className="w-full">
+          <Button rounded={theme?.themeRounded.default} size="lg" variant="outline" className="w-full">
             {content.buttonText}
           </Button>
         )}
@@ -481,7 +490,7 @@ export const SplitFAQ = forwardRef<HTMLElement, SplitFAQProps>(
     leftMedia = false,
     useContainer = true,
     py = "xl",
-    gap = "xl",
+    gap = "md",
     className,
     ...props 
   }, ref) => {
@@ -490,11 +499,11 @@ export const SplitFAQ = forwardRef<HTMLElement, SplitFAQProps>(
     const createMediaSection = () => {
       // Default gradient based on variant
       const gradientMap = {
-        contact: "from-blue-50 to-indigo-100 dark:from-blue-950 dark:to-indigo-950",
-        search: "from-green-50 to-emerald-100 dark:from-green-950 dark:to-emerald-950",
-        categories: "from-purple-50 to-pink-100 dark:from-purple-950 dark:to-pink-950",
-        support: "from-orange-50 to-red-100 dark:from-orange-950 dark:to-red-950",
-        accordion: "from-gray-50 to-slate-100 dark:from-gray-950 dark:to-slate-950"
+        contact: "from-primary/5 to-secondary/10",
+        search: "from-primary/5 to-secondary/10",
+        categories: "from-primary/5 to-secondary/10",
+        support: "from-primary/5 to-secondary/10",
+        accordion: "from-primary/5 to-secondary/10"
       };
 
       // Icon map for decorative elements

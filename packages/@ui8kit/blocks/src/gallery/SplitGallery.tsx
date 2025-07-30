@@ -22,6 +22,15 @@ import {
   Box,
   Grid
 } from "@ui8kit/core";
+import { skyOSTheme } from "@ui8kit/theme";
+
+export const currentTheme = skyOSTheme;
+
+export const theme = {
+  theme: currentTheme,
+  themeRounded: currentTheme.rounded,
+  themeButtonSize: currentTheme.buttonSize
+}
 import { 
   SplitBlock, 
   createContentHook, 
@@ -89,14 +98,14 @@ const splitGalleryContentHooks = {
 
         {/* Subtitle */}
         {content.subtitle && (
-          <Text size="xl" c="secondary-foreground" className="leading-relaxed">
+          <Text c="secondary-foreground" className="leading-relaxed">
             {content.subtitle}
           </Text>
         )}
 
         {/* Description */}
         {content.description && (
-          <Text size="lg" c="secondary-foreground" className="leading-relaxed">
+          <Text c="secondary-foreground" className="leading-relaxed">
             {content.description}
           </Text>
         )}
@@ -149,13 +158,13 @@ const splitGalleryContentHooks = {
         {/* Action Buttons */}
         <Group gap="md" className="w-full">
           {content.primaryButtonText && (
-            <Button size="lg" variant="default" className="flex-1">
-              <Icon component="span" size="sm" lucideIcon={ZoomIn} />
+            <Button rounded={theme?.themeRounded.default} size="lg" variant="default" className="flex-1">
+              <Icon component="span" size="sm" c="primary-foreground" lucideIcon={ZoomIn} />
               {content.primaryButtonText}
             </Button>
           )}
           {content.secondaryButtonText && (
-            <Button size="lg" variant="outline">
+            <Button rounded={theme?.themeRounded.default} size="lg" variant="outline">
               <Icon component="span" size="sm" lucideIcon={Share2} />
               {content.secondaryButtonText}
             </Button>
@@ -164,11 +173,11 @@ const splitGalleryContentHooks = {
 
         {/* Quick Actions */}
         <Group gap="sm">
-          <Button size="sm" variant="ghost">
+          <Button rounded={theme?.themeRounded.default} size="sm" variant="ghost">
             <Icon component="span" size="xs" lucideIcon={Download} />
             Download All
           </Button>
-          <Button size="sm" variant="ghost">
+          <Button rounded={theme?.themeRounded.default} size="sm" variant="ghost">
             <Icon component="span" size="xs" lucideIcon={Play} />
             Slideshow
           </Button>
@@ -194,7 +203,7 @@ const splitGalleryContentHooks = {
           </Title>
 
           {content.description && (
-            <Text size="lg" c="secondary-foreground">
+            <Text c="secondary-foreground">
               {content.description}
             </Text>
           )}
@@ -257,20 +266,20 @@ const splitGalleryContentHooks = {
         {/* Portfolio Actions */}
         <Stack gap="sm" className="w-full">
           {content.primaryButtonText && (
-            <Button size="lg" variant="default" className="w-full">
-              <Icon component="span" size="sm" lucideIcon={ImageIcon} />
+            <Button rounded={theme?.themeRounded.default} size="lg" variant="default" className="w-full">
+              <Icon component="span" size="sm" c="primary-foreground" lucideIcon={ImageIcon} />
               {content.primaryButtonText}
             </Button>
           )}
           
           <Group gap="sm">
             {content.secondaryButtonText && (
-              <Button size="md" variant="outline" className="flex-1">
+              <Button rounded={theme?.themeRounded.default} size="md" variant="outline" className="flex-1">
                 <Icon component="span" size="xs" lucideIcon={Share2} />
                 {content.secondaryButtonText}
               </Button>
             )}
-            <Button size="md" variant="outline" className="flex-1">
+            <Button rounded={theme?.themeRounded.default} size="md" variant="outline" className="flex-1">
               <Icon component="span" size="xs" lucideIcon={Download} />
               Export
             </Button>
@@ -288,7 +297,7 @@ export const SplitGallery = forwardRef<HTMLElement, SplitGalleryProps>(
     leftMedia = false,
     useContainer = true,
     py = "xl",
-    gap = "xl",
+    gap = "md",
     className,
     ...props 
   }, ref) => {
@@ -320,10 +329,10 @@ export const SplitGallery = forwardRef<HTMLElement, SplitGalleryProps>(
               {/* Hover Overlay */}
               <Box className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                 <Group gap="sm">
-                  <Button size="sm" variant="secondary" className="bg-white/20 backdrop-blur-sm border-white/30 text-white hover:bg-white/30">
+                  <Button rounded={theme?.themeRounded.default} size="sm" variant="secondary" className="bg-white/20 backdrop-blur-sm border-white/30 text-white hover:bg-white/30">
                     <Icon component="span" size="xs" lucideIcon={ZoomIn} />
                   </Button>
-                  <Button size="sm" variant="secondary" className="bg-white/20 backdrop-blur-sm border-white/30 text-white hover:bg-white/30">
+                  <Button rounded={theme?.themeRounded.default} size="sm" variant="secondary" className="bg-white/20 backdrop-blur-sm border-white/30 text-white hover:bg-white/30">
                     <Icon component="span" size="xs" lucideIcon={Share2} />
                   </Button>
                 </Group>

@@ -21,6 +21,15 @@ import {
   Box,
   Card
 } from "@ui8kit/core";
+import { skyOSTheme } from "@ui8kit/theme";
+
+export const currentTheme = skyOSTheme;
+
+export const theme = {
+  theme: currentTheme,
+  themeRounded: currentTheme.rounded,
+  themeButtonSize: currentTheme.buttonSize
+}
 import { 
   SplitBlock,
   createContentHook,
@@ -99,7 +108,7 @@ const splitTestimonialContentHooks = {
         </Title>
         
         {content.description && (
-          <Text size="lg" c="secondary-foreground">
+          <Text c="secondary-foreground">
             {content.description}
           </Text>
         )}
@@ -154,7 +163,7 @@ const splitTestimonialContentHooks = {
         )}
 
         {content.ctaText && (
-          <Button size="lg" className="mt-md">
+          <Button rounded={theme?.themeRounded.default} size="lg" className="mt-md">
             {content.ctaText}
           </Button>
         )}
@@ -179,7 +188,7 @@ const splitTestimonialContentHooks = {
           </Title>
           
           {content.subtitle && (
-            <Text size="lg" c="secondary-foreground">
+            <Text c="secondary-foreground">
               {content.subtitle}
             </Text>
           )}
@@ -251,7 +260,7 @@ const splitTestimonialContentHooks = {
           </Title>
           
           {content.description && (
-            <Text size="lg" c="secondary-foreground">
+            <Text c="secondary-foreground">
               {content.description}
             </Text>
           )}
@@ -330,11 +339,11 @@ const splitTestimonialContentHooks = {
 
         {content.ctaText && (
           <Group gap="md" align="center">
-            <Button size="lg" variant="default">
+            <Button rounded={theme?.themeRounded.default} size="lg" variant="default">
               {content.ctaText}
             </Button>
-            <Button size="lg" variant="outline">
-              <Icon component="span" size="sm" lucideIcon={Heart} />
+            <Button rounded={theme?.themeRounded.default} size="lg" variant="outline">
+              <Icon component="span" size="sm" c="primary-foreground" lucideIcon={Heart} />
               Read All Reviews
             </Button>
           </Group>

@@ -13,6 +13,15 @@ import {
   Icon,
   Box
 } from "@ui8kit/core";
+import { skyOSTheme } from "@ui8kit/theme";
+
+export const currentTheme = skyOSTheme;
+
+export const theme = {
+  theme: currentTheme,
+  themeRounded: currentTheme.rounded,
+  themeButtonSize: currentTheme.buttonSize
+}
 import { 
   SplitBlock, 
   createContentHook, 
@@ -66,7 +75,7 @@ const featuresContentHooks = {
           {content.title}
         </Title>
 
-        <Text size="lg" c="secondary-foreground">
+        <Text c="secondary-foreground">
           {content.description}
         </Text>
 
@@ -95,14 +104,14 @@ const featuresContentHooks = {
         {(content.primaryButtonText || content.secondaryButtonText) && (
           <Group gap="md" align="center">
             {content.primaryButtonText && (
-              <Button
+              <Button rounded={theme?.themeRounded.default}
                 size="lg"
                 variant="default"
                 leftSection={content.primaryButtonIcon ? (
                   <Icon
                     component="span"
                     size="md"
-                    lucideIcon={content.primaryButtonIcon}
+                    c="primary-foreground" lucideIcon={content.primaryButtonIcon}
                   />
                 ) : undefined}
               >
@@ -111,7 +120,7 @@ const featuresContentHooks = {
             )}
 
             {content.secondaryButtonText && (
-              <Button
+              <Button rounded={theme?.themeRounded.default}
                 variant="outline"
                 size="lg"
                 leftSection={content.secondaryButtonIcon ? (
@@ -143,7 +152,7 @@ const featuresContentHooks = {
           {content.title}
         </Title>
 
-        <Text size="lg" c="secondary-foreground">
+        <Text c="secondary-foreground">
           {content.description}
         </Text>
 
@@ -273,8 +282,8 @@ export const SplitFeatures = forwardRef<HTMLElement, SplitFeaturesProps>(
     variant = "media",
     leftMedia = false,
     useContainer = true,
-    py = "lg",
-    gap = "xl",
+    py = "xl",
+    gap = "md",
     className,
     ...props 
   }, ref) => {

@@ -29,6 +29,15 @@ import {
   Box,
   Card
 } from "@ui8kit/core";
+import { skyOSTheme } from "@ui8kit/theme";
+
+export const currentTheme = skyOSTheme;
+
+export const theme = {
+  theme: currentTheme,
+  themeRounded: currentTheme.rounded,
+  themeButtonSize: currentTheme.buttonSize
+}
 import { 
   SplitBlock,
   createContentHook,
@@ -194,7 +203,7 @@ const splitFooterContentHooks = {
             {content.newsletter?.title || "Stay Updated"}
           </Title>
           
-          <Text size="lg" c="secondary-foreground" className="max-w-md">
+          <Text c="secondary-foreground" className="max-w-md">
             {content.newsletter?.description || "Get the latest updates and news delivered to your inbox."}
           </Text>
         </Stack>
@@ -214,8 +223,8 @@ const splitFooterContentHooks = {
                 size="sm"
                 className="w-full"
               >Enter your email</Text>
-              <Button size="sm" variant="default" className="w-full">
-                <Icon component="span" size="sm" lucideIcon={Send} />
+              <Button rounded={theme?.themeRounded.default} size="sm" variant="default" className="w-full">
+                <Icon component="span" size="sm" c="primary-foreground" lucideIcon={Send} />
                 {content.newsletter?.buttonText || "Subscribe"}
               </Button>
             </Stack>
@@ -273,7 +282,7 @@ const splitFooterContentHooks = {
             Get in Touch
           </Title>
           
-          <Text size="lg" c="secondary-foreground" className="max-w-md">
+          <Text c="secondary-foreground" className="max-w-md">
             Ready to start your project? Contact us today and let's build something amazing together.
           </Text>
         </Stack>
@@ -363,11 +372,11 @@ const splitFooterContentHooks = {
 
         {/* CTA Button */}
         <Group gap="md" align="center">
-          <Button size="lg" variant="default">
-            <Icon component="span" size="sm" lucideIcon={ArrowRight} />
+          <Button rounded={theme?.themeRounded.default} size="lg" variant="default">
+            <Icon component="span" size="sm" c="primary-foreground" lucideIcon={ArrowRight} />
             Start a Project
           </Button>
-          <Button size="lg" variant="outline">
+          <Button rounded={theme?.themeRounded.default} size="lg" variant="outline">
             View Portfolio
           </Button>
         </Group>
@@ -391,7 +400,7 @@ const splitFooterContentHooks = {
             Join Our Community
           </Title>
           
-          <Text size="lg" c="secondary-foreground" className="max-w-md">
+          <Text c="secondary-foreground" className="max-w-md">
             Connect with us on social media and be part of our growing community of creators and innovators.
           </Text>
         </Stack>

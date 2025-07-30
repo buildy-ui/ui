@@ -13,6 +13,15 @@ import {
   Icon,
   Box
 } from "@ui8kit/core";
+import { skyOSTheme } from "@ui8kit/theme";
+
+export const currentTheme = skyOSTheme;
+
+export const theme = {
+  theme: currentTheme,
+  themeRounded: currentTheme.rounded,
+  themeButtonSize: currentTheme.buttonSize
+}
 import { 
   LayoutBlock,
   createLayoutContentHook,
@@ -138,7 +147,7 @@ const gridBlogContentHooks = {
       content.buttonText ? (
         <Group justify="between" align="center" className="w-full">
           <Box /> {/* Spacer */}
-          <Button variant="outline" size="sm" rightSection={
+          <Button rounded={theme?.themeRounded.default} variant="outline" size="sm" rightSection={
             <Icon component="span" size="xs" lucideIcon={ArrowRight} />
           }>
             {content.buttonText}
@@ -212,7 +221,7 @@ const gridBlogContentHooks = {
       
       return content.categories ? (
         <Group gap="sm" align="center" justify="center" className="flex-wrap">
-          <Button
+          <Button rounded={theme?.themeRounded.default}
             variant={activeCategory === "all" ? "default" : "outline"}
             size="sm"
             onClick={() => setActiveCategory("all")}
@@ -220,7 +229,7 @@ const gridBlogContentHooks = {
             All
           </Button>
           {content.categories.map((category) => (
-            <Button
+            <Button rounded={theme?.themeRounded.default}
               key={category.id}
               variant={activeCategory === category.id ? "default" : "outline"}
               size="sm"
@@ -402,7 +411,7 @@ const gridBlogContentHooks = {
               </Group>
               
               {isFeatured && (
-                <Button variant="outline" size="sm" rightSection={
+                <Button rounded={theme?.themeRounded.default} variant="outline" size="sm" rightSection={
                   <Icon component="span" size="xs" lucideIcon={ArrowRight} />
                 }>
                   Read More
@@ -423,7 +432,7 @@ export const GridBlog = forwardRef<HTMLElement, GridBlogProps>(
     cols = "1-2-3",
     gap = "lg",
     useContainer = true,
-    py = "lg",
+    py = "xl",
     showFilters = false,
     className,
     ...props 

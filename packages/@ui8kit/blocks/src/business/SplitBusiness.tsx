@@ -31,6 +31,15 @@ import {
   Icon,
   Box
 } from "@ui8kit/core";
+import { skyOSTheme } from "@ui8kit/theme";
+
+export const currentTheme = skyOSTheme;
+
+export const theme = {
+  theme: currentTheme,
+  themeRounded: currentTheme.rounded,
+  themeButtonSize: currentTheme.buttonSize
+}
 import { 
   SplitBlock, 
   createContentHook, 
@@ -123,7 +132,7 @@ const splitBusinessContentHooks = {
             {content.title}
           </Title>
 
-          <Text size="xl" c="secondary-foreground">
+          <Text c="secondary-foreground">
             {content.description}
           </Text>
         </Stack>
@@ -175,11 +184,11 @@ const splitBusinessContentHooks = {
         {(content.buttonText || content.secondaryButtonText) && (
           <Group gap="md" align="center">
             {content.buttonText && (
-              <Button
+              <Button rounded={theme?.themeRounded.default}
                 size="lg"
                 variant="default"
                 rightSection={
-                  <Icon component="span" size="md" lucideIcon={ArrowRight} />
+                  <Icon component="span" size="md" c="primary-foreground" lucideIcon={ArrowRight} />
                 }
               >
                 {content.buttonText}
@@ -187,7 +196,7 @@ const splitBusinessContentHooks = {
             )}
 
             {content.secondaryButtonText && (
-              <Button
+              <Button rounded={theme?.themeRounded.default}
                 variant="outline"
                 size="lg"
                 rightSection={
@@ -222,7 +231,7 @@ const splitBusinessContentHooks = {
             </Title>
           )}
 
-          <Text size="lg" c="secondary-foreground">
+          <Text c="secondary-foreground">
             {content.description}
           </Text>
         </Stack>
@@ -268,7 +277,7 @@ const splitBusinessContentHooks = {
           </Grid>
         )}
 
-        <Button
+        <Button rounded={theme?.themeRounded.default}
           size="lg"
           variant="default"
           rightSection={
@@ -297,7 +306,7 @@ const splitBusinessContentHooks = {
               {content.title}
             </Title>
 
-            <Text size="lg" c="secondary-foreground">
+            <Text c="secondary-foreground">
               {content.description}
             </Text>
           </Stack>
@@ -353,7 +362,7 @@ const splitBusinessContentHooks = {
             </Card>
           )}
 
-          <Button
+          <Button rounded={theme?.themeRounded.default}
             size="lg"
             variant="outline"
             rightSection={
@@ -380,7 +389,7 @@ const splitBusinessContentHooks = {
             {content.title}
           </Title>
 
-          <Text size="xl" c="secondary-foreground">
+          <Text c="secondary-foreground">
             {content.description}
           </Text>
         </Stack>
@@ -421,18 +430,18 @@ const splitBusinessContentHooks = {
         )}
 
         <Group gap="md" align="center">
-          <Button
+          <Button rounded={theme?.themeRounded.default}
             size="lg"
             variant="default"
             rightSection={
-              <Icon component="span" size="md" lucideIcon={Rocket} />
+              <Icon component="span" size="md" c="primary-foreground" lucideIcon={Rocket} />
             }
           >
             {content.buttonText || "Get Started"}
           </Button>
 
           {content.secondaryButtonText && (
-            <Button
+            <Button rounded={theme?.themeRounded.default}
               variant="ghost"
               size="lg"
               rightSection={
@@ -466,7 +475,7 @@ const splitBusinessContentHooks = {
             </Title>
           )}
 
-          <Text size="lg" c="secondary-foreground" className="leading-relaxed">
+          <Text c="secondary-foreground" className="leading-relaxed">
             {content.description}
           </Text>
         </Stack>
@@ -502,18 +511,18 @@ const splitBusinessContentHooks = {
         )}
 
         <Group gap="md" align="center">
-          <Button
+          <Button rounded={theme?.themeRounded.default}
             size="lg"
             variant="default"
             rightSection={
-              <Icon component="span" size="md" lucideIcon={Users} />
+              <Icon component="span" size="md" c="primary-foreground" lucideIcon={Users} />
             }
           >
             {content.buttonText || "Join Our Team"}
           </Button>
 
           {content.secondaryButtonText && (
-            <Button
+            <Button rounded={theme?.themeRounded.default}
               variant="outline"
               size="lg"
               rightSection={
@@ -536,7 +545,7 @@ export const SplitBusiness = forwardRef<HTMLElement, SplitBusinessProps>(
     leftMedia = false,
     useContainer = true,
     py = "xl",
-    gap = "xl",
+    gap = "md",
     className,
     ...props 
   }, ref) => {
@@ -560,11 +569,11 @@ export const SplitBusiness = forwardRef<HTMLElement, SplitBusinessProps>(
 
       // Default gradient based on variant
       const gradientMap = {
-        solutions: "from-blue-50 to-indigo-100 dark:from-blue-950 dark:to-indigo-950",
-        metrics: "from-green-50 to-emerald-100 dark:from-green-950 dark:to-emerald-950",
-        testimonial: "from-purple-50 to-pink-100 dark:from-purple-950 dark:to-pink-950",
-        features: "from-orange-50 to-red-100 dark:from-orange-950 dark:to-red-950",
-        about: "from-gray-50 to-slate-100 dark:from-gray-950 dark:to-slate-950"
+        solutions: "from-primary/5 to-secondary/10",
+        metrics: "from-primary/5 to-secondary/10",
+        testimonial: "from-primary/5 to-secondary/10",
+        features: "from-primary/5 to-secondary/10",
+        about: "from-primary/5 to-secondary/10"
       };
 
       return (

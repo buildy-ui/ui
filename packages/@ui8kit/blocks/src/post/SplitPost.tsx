@@ -28,6 +28,15 @@ import {
   Icon,
   Box
 } from "@ui8kit/core";
+import { skyOSTheme } from "@ui8kit/theme";
+
+export const currentTheme = skyOSTheme;
+
+export const theme = {
+  theme: currentTheme,
+  themeRounded: currentTheme.rounded,
+  themeButtonSize: currentTheme.buttonSize
+}
 import { 
   SplitBlock, 
   createContentHook, 
@@ -117,7 +126,7 @@ const splitPostContentHooks = {
 
         {/* Subtitle */}
         {content.subtitle && (
-          <Text size="lg" c="secondary-foreground" className="leading-relaxed">
+          <Text c="secondary-foreground" className="leading-relaxed">
             {content.subtitle}
           </Text>
         )}
@@ -158,11 +167,11 @@ const splitPostContentHooks = {
 
         {/* Actions */}
         <Group gap="sm">
-          <Button size="md" variant="default">
-            <Icon component="span" size="xs" lucideIcon={Share2} />
+          <Button rounded={theme?.themeRounded.default} size="md" variant="default">
+            <Icon component="span" size="xs" c="primary-foreground" lucideIcon={Share2} />
             Share Article
           </Button>
-          <Button size="md" variant="outline">
+          <Button rounded={theme?.themeRounded.default} size="md" variant="outline">
             <Icon component="span" size="xs" lucideIcon={Bookmark} />
             Save
           </Button>
@@ -187,7 +196,7 @@ const splitPostContentHooks = {
 
         {/* Excerpt */}
         {content.excerpt && (
-          <Text size="xl" c="secondary-foreground" className="leading-relaxed">
+          <Text c="secondary-foreground" className="leading-relaxed">
             {content.excerpt}
           </Text>
         )}
@@ -247,7 +256,7 @@ const splitPostContentHooks = {
           )}
         </Group>
 
-        <Button size="lg" className="w-full">
+        <Button rounded={theme?.themeRounded.default} size="lg" className="w-full">
           Continue Reading
         </Button>
       </Stack>
@@ -275,7 +284,7 @@ const splitPostContentHooks = {
 
         {/* Subtitle */}
         {content.subtitle && (
-          <Text size="lg" c="secondary-foreground">
+          <Text c="secondary-foreground">
             {content.subtitle}
           </Text>
         )}
@@ -291,14 +300,14 @@ const splitPostContentHooks = {
 
         {/* Media Actions */}
         <Group gap="sm" className="w-full">
-          <Button size="md" variant="default" className="flex-1">
-            <Icon component="span" size="xs" lucideIcon={Play} />
+          <Button rounded={theme?.themeRounded.default} size="md" variant="default" className="flex-1">
+            <Icon component="span" size="xs" c="primary-foreground" lucideIcon={Play} />
             Read Article
           </Button>
-          <Button size="md" variant="outline">
+          <Button rounded={theme?.themeRounded.default} size="md" variant="outline">
             <Icon component="span" size="xs" lucideIcon={Share2} />
           </Button>
-          <Button size="md" variant="outline">
+          <Button rounded={theme?.themeRounded.default} size="md" variant="outline">
             <Icon component="span" size="xs" lucideIcon={Bookmark} />
           </Button>
         </Group>
@@ -383,15 +392,15 @@ const splitPostContentHooks = {
 
         {/* Action Buttons */}
         <Stack gap="sm" className="w-full">
-          <Button size="md" variant="default" className="w-full">
+          <Button rounded={theme?.themeRounded.default} size="md" variant="default" className="w-full">
             Start Reading
           </Button>
           <Group gap="sm">
-            <Button size="sm" variant="outline" className="flex-1">
-              <Icon component="span" size="xs" lucideIcon={Share2} />
+            <Button rounded={theme?.themeRounded.default} size="sm" variant="outline" className="flex-1">
+              <Icon component="span" size="xs" c="primary-foreground" lucideIcon={Share2} />
               Share
             </Button>
-            <Button size="sm" variant="outline" className="flex-1">
+            <Button rounded={theme?.themeRounded.default} size="sm" variant="outline" className="flex-1">
               <Icon component="span" size="xs" lucideIcon={Download} />
               Save
             </Button>
@@ -408,7 +417,7 @@ const splitPostContentHooks = {
         {/* Hero Badge */}
         <Group gap="sm" align="center">
           <Badge variant="default" size="lg" rounded="full" className="bg-gradient-to-r from-primary to-secondary text-primary-foreground">
-            <Icon component="span" size="xs" lucideIcon={Star} />
+            <Icon component="span" size="xs" c="primary-foreground" lucideIcon={Star} />
             Featured Story
           </Badge>
           <Badge variant="secondary" size="default" rounded="md">
@@ -472,11 +481,11 @@ const splitPostContentHooks = {
 
         {/* Hero Actions */}
         <Group gap="md" className="w-full">
-          <Button size="lg" variant="default" className="flex-1">
-            <Icon component="span" size="sm" lucideIcon={BookOpen} />
+          <Button rounded={theme?.themeRounded.default} size="lg" variant="default" className="flex-1">
+            <Icon component="span" size="sm" c="primary-foreground" lucideIcon={BookOpen} />
             Read Full Story
           </Button>
-          <Button size="lg" variant="outline">
+          <Button rounded={theme?.themeRounded.default} size="lg" variant="outline">
             <Icon component="span" size="sm" lucideIcon={Share2} />
             Share
           </Button>
@@ -504,7 +513,7 @@ export const SplitPost = forwardRef<HTMLElement, SplitPostProps>(
     leftMedia = false,
     useContainer = true,
     py = "xl",
-    gap = "xl",
+    gap = "md",
     className,
     ...props 
   }, ref) => {

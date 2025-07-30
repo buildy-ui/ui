@@ -27,6 +27,15 @@ import {
   Box,
   Card
 } from "@ui8kit/core";
+import { skyOSTheme } from "@ui8kit/theme";
+
+export const currentTheme = skyOSTheme;
+
+export const theme = {
+  theme: currentTheme,
+  themeRounded: currentTheme.rounded,
+  themeButtonSize: currentTheme.buttonSize
+}
 import { 
   LayoutBlock,
   createLayoutContentHook,
@@ -260,7 +269,7 @@ const gridFeaturesContentHooks = {
             </Group>
           </Group>
 
-          <Button 
+          <Button rounded={theme?.themeRounded.default} 
             variant="outline" 
             size="sm" 
             className="w-full"
@@ -330,7 +339,7 @@ export const GridFeatures = forwardRef<HTMLElement, GridFeaturesProps>(
     cols = "1-2-3",
     gap = "lg",
     useContainer = true,
-    py = "lg",
+    py = "xl",
     className,
     ...props 
   }, ref) => {

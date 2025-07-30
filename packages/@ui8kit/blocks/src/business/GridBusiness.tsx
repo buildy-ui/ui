@@ -32,6 +32,15 @@ import {
   Icon,
   Box
 } from "@ui8kit/core";
+import { skyOSTheme } from "@ui8kit/theme";
+
+export const currentTheme = skyOSTheme;
+
+export const theme = {
+  theme: currentTheme,
+  themeRounded: currentTheme.rounded,
+  themeButtonSize: currentTheme.buttonSize
+}
 import { 
   LayoutBlock,
   createLayoutContentHook,
@@ -290,7 +299,7 @@ const gridBusinessContentHooks = {
             ))}
           </Stack>
 
-          <Button 
+          <Button rounded={theme?.themeRounded.default} 
             variant={plan.buttonVariant || "default"}
             size="lg" 
             className="w-full"
@@ -310,7 +319,7 @@ const gridBusinessContentHooks = {
     beforeItems: (content: GridBusinessData) => (
       <Group gap="sm" align="center" justify="center" className="mb-lg">
         <Text size="sm" c="secondary-foreground">Monthly</Text>
-        <Button variant="outline" size="sm" className="px-1">
+        <Button rounded={theme?.themeRounded.default} variant="outline" size="sm" className="px-1">
           <Box className="w-6 h-3 bg-primary rounded-full relative">
             <Box className="w-2.5 h-2.5 bg-white rounded-full absolute top-0.5 right-0.5" />
           </Box>
@@ -385,7 +394,7 @@ const gridBusinessContentHooks = {
             ))}
           </Stack>
 
-          <Button 
+          <Button rounded={theme?.themeRounded.default} 
             variant={plan.buttonVariant || "default"}
             size="lg" 
             className="w-full"
@@ -453,7 +462,7 @@ const gridBusinessContentHooks = {
             </Badge>
           </Group>
 
-          <Button 
+          <Button rounded={theme?.themeRounded.default} 
             variant="outline" 
             size="sm" 
             className="w-full"
@@ -476,7 +485,7 @@ export const GridBusiness = forwardRef<HTMLElement, GridBusinessProps>(
     cols = "1-2-3",
     gap = "lg",
     useContainer = true,
-    py = "lg",
+    py = "xl",
     showYearlyToggle = false,
     className,
     ...props 

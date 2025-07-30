@@ -29,6 +29,15 @@ import {
   AccordionTrigger,
   AccordionContent
 } from "@ui8kit/core";
+import { skyOSTheme } from "@ui8kit/theme";
+
+export const currentTheme = skyOSTheme;
+
+export const theme = {
+  theme: currentTheme,
+  themeRounded: currentTheme.rounded,
+  themeButtonSize: currentTheme.buttonSize
+}
 import { 
   LayoutBlock,
   createLayoutContentHook,
@@ -120,7 +129,7 @@ const gridFAQContentHooks = {
             </Text>
           </Stack>
 
-          <Button variant="ghost" size="sm" className="w-full mt-auto">
+          <Button rounded={theme?.themeRounded.default} variant="ghost" size="sm" className="w-full mt-auto">
             Read Full Answer
           </Button>
         </Stack>
@@ -195,7 +204,7 @@ const gridFAQContentHooks = {
             {faq.answer}
           </Text>
 
-          <Button variant="ghost" size="xs" className="w-full">
+          <Button rounded={theme?.themeRounded.default} variant="ghost" size="xs" className="w-full">
             <Icon component="span" size="xs" lucideIcon={MessageSquare} />
             View Details
           </Button>
@@ -277,10 +286,10 @@ const gridFAQContentHooks = {
           </Stack>
 
           <Group gap="sm" className="w-full">
-            <Button variant="outline" size="sm" className="flex-1">
+            <Button rounded={theme?.themeRounded.default} variant="outline" size="sm" className="flex-1">
               Learn More
             </Button>
-            <Button variant="ghost" size="sm">
+            <Button rounded={theme?.themeRounded.default} variant="ghost" size="sm">
               <Icon component="span" size="xs" lucideIcon={LifeBuoy} />
             </Button>
           </Group>

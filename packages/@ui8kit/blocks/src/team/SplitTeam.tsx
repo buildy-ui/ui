@@ -27,6 +27,15 @@ import {
   Box,
   Card
 } from "@ui8kit/core";
+import { skyOSTheme } from "@ui8kit/theme";
+
+export const currentTheme = skyOSTheme;
+
+export const theme = {
+  theme: currentTheme,
+  themeRounded: currentTheme.rounded,
+  themeButtonSize: currentTheme.buttonSize
+}
 import { 
   SplitBlock,
   createContentHook,
@@ -158,7 +167,7 @@ const splitTeamContentHooks = {
         </Title>
         
         {content.description && (
-          <Text size="lg" c="secondary-foreground">
+          <Text c="secondary-foreground">
             {content.description}
           </Text>
         )}
@@ -243,7 +252,7 @@ const splitTeamContentHooks = {
           </Title>
           
           {content.subtitle && (
-            <Text size="lg" c="secondary-foreground">
+            <Text c="secondary-foreground">
               {content.subtitle}
             </Text>
           )}
@@ -319,7 +328,7 @@ const splitTeamContentHooks = {
           </Title>
           
           {content.description && (
-            <Text size="lg" c="secondary-foreground">
+            <Text c="secondary-foreground">
               {content.description}
             </Text>
           )}
@@ -389,11 +398,11 @@ const splitTeamContentHooks = {
 
         {content.hiring?.ctaText && (
           <Group gap="md" align="center">
-            <Button size="lg" variant="default">
+            <Button rounded={theme?.themeRounded.default} size="lg" variant="default">
               {content.hiring.ctaText}
             </Button>
-            <Button size="lg" variant="outline">
-              <Icon component="span" size="sm" lucideIcon={Users} />
+            <Button rounded={theme?.themeRounded.default} size="lg" variant="outline">
+              <Icon component="span" size="sm" c="primary-foreground" lucideIcon={Users} />
               Meet the Team
             </Button>
           </Group>
@@ -417,7 +426,7 @@ const splitTeamContentHooks = {
           </Title>
           
           {content.subtitle && (
-            <Text size="lg" c="secondary-foreground">
+            <Text c="secondary-foreground">
               {content.subtitle}
             </Text>
           )}
@@ -501,7 +510,7 @@ const splitTeamContentHooks = {
           </Title>
           
           {content.description && (
-            <Text size="lg" c="secondary-foreground">
+            <Text c="secondary-foreground">
               {content.description}
             </Text>
           )}

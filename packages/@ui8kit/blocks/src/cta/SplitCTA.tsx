@@ -27,6 +27,15 @@ import {
   Icon,
   Box
 } from "@ui8kit/core";
+import { skyOSTheme } from "@ui8kit/theme";
+
+export const currentTheme = skyOSTheme;
+
+export const theme = {
+  theme: currentTheme,
+  themeRounded: currentTheme.rounded,
+  themeButtonSize: currentTheme.buttonSize
+}
 import { 
   SplitBlock, 
   createContentHook, 
@@ -103,14 +112,14 @@ const splitCTAContentHooks = {
             {content.title}
           </Title>
 
-          <Text size="xl" c="secondary-foreground">
+          <Text c="secondary-foreground">
             {content.description}
           </Text>
         </Stack>
 
         <Group gap="md" align="center" className="flex-wrap">
           {content.buttons.map((button) => (
-            <Button
+            <Button rounded={theme?.themeRounded.default}
               key={button.id}
               size="lg"
               variant={button.variant || "default"}
@@ -175,7 +184,7 @@ const splitCTAContentHooks = {
 
         <Group gap="md" align="center" className="flex-wrap">
           {content.buttons.map((button) => (
-            <Button
+            <Button rounded={theme?.themeRounded.default}
               key={button.id}
               size="lg"
               variant={button.variant || "default"}
@@ -242,7 +251,7 @@ const splitCTAContentHooks = {
             {content.title}
           </Title>
 
-          <Text size="xl" c="secondary-foreground">
+          <Text c="secondary-foreground">
             {content.description}
           </Text>
         </Stack>
@@ -290,7 +299,7 @@ const splitCTAContentHooks = {
 
         <Group gap="md" align="center" className="flex-wrap">
           {content.buttons.map((button) => (
-            <Button
+            <Button rounded={theme?.themeRounded.default}
               key={button.id}
               size="lg"
               variant={button.variant || "default"}
@@ -321,7 +330,7 @@ const splitCTAContentHooks = {
             {content.title}
           </Title>
 
-          <Text size="xl" c="secondary-foreground">
+          <Text c="secondary-foreground">
             {content.description}
           </Text>
         </Stack>
@@ -369,7 +378,7 @@ const splitCTAContentHooks = {
 
         <Group gap="md" align="center" className="flex-wrap">
           {content.buttons.map((button) => (
-            <Button
+            <Button rounded={theme?.themeRounded.default}
               key={button.id}
               size="lg"
               variant={button.variant || "default"}
@@ -404,7 +413,7 @@ const splitCTAContentHooks = {
             {content.title}
           </Title>
 
-          <Text size="xl" c="secondary-foreground">
+          <Text c="secondary-foreground">
             {content.description}
           </Text>
         </Stack>
@@ -448,7 +457,7 @@ const splitCTAContentHooks = {
 
         <Group gap="md" align="center" className="flex-wrap">
           {content.buttons.map((button) => (
-            <Button
+            <Button rounded={theme?.themeRounded.default}
               key={button.id}
               size="lg"
               variant={button.variant || "default"}
@@ -472,7 +481,7 @@ export const SplitCTA = forwardRef<HTMLElement, SplitCTAProps>(
     leftMedia = false,
     useContainer = true,
     py = "xl",
-    gap = "xl",
+    gap = "md",
     className,
     ...props 
   }, ref) => {
@@ -513,11 +522,11 @@ export const SplitCTA = forwardRef<HTMLElement, SplitCTAProps>(
 
       // Default gradient based on variant
       const gradientMap = {
-        withImage: "from-blue-50 to-indigo-100 dark:from-blue-950 dark:to-indigo-950",
+        withImage: "from-primary/5 to-secondary/10",
         withBackground: "from-primary to-secondary",
-        withStats: "from-green-50 to-emerald-100 dark:from-green-950 dark:to-emerald-950",
-        withDevices: "from-purple-50 to-pink-100 dark:from-purple-950 dark:to-pink-950",
-        withFeatures: "from-orange-50 to-red-100 dark:from-orange-950 dark:to-red-950"
+        withStats: "from-primary/5 to-secondary/10",
+        withDevices: "from-primary/5 to-secondary/10",
+        withFeatures: "from-primary/5 to-secondary/10"
       };
 
       return (

@@ -25,6 +25,15 @@ import {
   Box,
   Grid
 } from "@ui8kit/core";
+import { skyOSTheme } from "@ui8kit/theme";
+
+export const currentTheme = skyOSTheme;
+
+export const theme = {
+  theme: currentTheme,
+  themeRounded: currentTheme.rounded,
+  themeButtonSize: currentTheme.buttonSize
+}
 import { 
   LayoutBlock,
   createLayoutContentHook,
@@ -87,7 +96,7 @@ const gridGalleryContentHooks = {
         </Title>
         
         {content.description && (
-          <Text size="lg" c="secondary-foreground" ta="center">
+          <Text c="secondary-foreground" ta="center">
             {content.description}
           </Text>
         )}
@@ -124,7 +133,7 @@ const gridGalleryContentHooks = {
         />
         
         <Box className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-          <Button size="sm" variant="secondary" className="bg-white/20 backdrop-blur-sm">
+          <Button rounded={theme?.themeRounded.default} size="sm" variant="secondary" className="bg-white/20 backdrop-blur-sm">
             <Icon component="span" size="xs" lucideIcon={ZoomIn} />
           </Button>
         </Box>
@@ -140,7 +149,7 @@ const gridGalleryContentHooks = {
           {content.title}
         </Title>
         {content.subtitle && (
-          <Text size="xl" c="secondary-foreground" ta="center" className="max-w-2xl">
+          <Text c="secondary-foreground" ta="center" className="max-w-2xl">
             {content.subtitle}
           </Text>
         )}
@@ -183,7 +192,7 @@ const gridGalleryContentHooks = {
       <Stack gap="xl" align="center" ta="center">
         <Stack gap="md" align="center">
           <Badge variant="default" size="lg" rounded="full">
-            <Icon component="span" size="xs" lucideIcon={Play} />
+            <Icon component="span" size="xs" c="primary-foreground" lucideIcon={Play} />
             Interactive Gallery
           </Badge>
           
@@ -218,10 +227,10 @@ const gridGalleryContentHooks = {
                   )}
                 </Stack>
                 <Group gap="sm">
-                  <Button size="sm" variant="secondary" className="bg-white/20 backdrop-blur-sm">
+                  <Button rounded={theme?.themeRounded.default} size="sm" variant="secondary" className="bg-white/20 backdrop-blur-sm">
                     <Icon component="span" size="xs" lucideIcon={Maximize2} />
                   </Button>
-                  <Button size="sm" variant="secondary" className="bg-white/20 backdrop-blur-sm">
+                  <Button rounded={theme?.themeRounded.default} size="sm" variant="secondary" className="bg-white/20 backdrop-blur-sm">
                     <Icon component="span" size="xs" lucideIcon={Share2} />
                   </Button>
                 </Group>
@@ -270,11 +279,11 @@ const gridGalleryContentHooks = {
           </Stack>
           
           <Group gap="sm">
-            <Button size="sm" variant="outline">
+            <Button rounded={theme?.themeRounded.default} size="sm" variant="outline">
               <Icon component="span" size="xs" lucideIcon={Filter} />
               Filter
             </Button>
-            <Button size="sm" variant="outline">
+            <Button rounded={theme?.themeRounded.default} size="sm" variant="outline">
               <Icon component="span" size="xs" lucideIcon={Grid3x3} />
               View
             </Button>
@@ -315,7 +324,7 @@ const gridGalleryContentHooks = {
                       <Text size="xs" c="white">{image.likes}</Text>
                     </Group>
                   )}
-                  <Button size="xs" variant="ghost" className="text-white hover:bg-white/20">
+                  <Button rounded={theme?.themeRounded.default} size="xs" variant="ghost" className="text-white hover:bg-white/20">
                     <Icon component="span" size="xs" lucideIcon={MoreHorizontal} />
                   </Button>
                 </Group>
@@ -450,7 +459,7 @@ const gridGalleryContentHooks = {
         </Title>
         
         {content.description && (
-          <Text size="lg" c="secondary-foreground" ta="center" className="max-w-2xl italic">
+          <Text c="secondary-foreground" ta="center" className="max-w-2xl italic">
             {content.description}
           </Text>
         )}
@@ -501,7 +510,7 @@ const gridGalleryContentHooks = {
           </Title>
           
           {content.subtitle && (
-            <Text size="xl" c="secondary-foreground" ta="center" className="font-light max-w-3xl">
+            <Text c="secondary-foreground" ta="center" className="font-light max-w-3xl">
               {content.subtitle}
             </Text>
           )}

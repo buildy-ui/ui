@@ -30,6 +30,15 @@ import {
   Box,
   Card
 } from "@ui8kit/core";
+import { skyOSTheme } from "@ui8kit/theme";
+
+export const currentTheme = skyOSTheme;
+
+export const theme = {
+  theme: currentTheme,
+  themeRounded: currentTheme.rounded,
+  themeButtonSize: currentTheme.buttonSize
+}
 import { 
   LayoutBlock,
   createLayoutContentHook,
@@ -223,8 +232,8 @@ const gridFooterContentHooks = {
                     size="sm"
                     className="flex-1"
                   >{content.newsletter.placeholder || "Email"}</Text>
-                  <Button size="sm" variant="default">
-                    <Icon component="span" size="xs" lucideIcon={Send} />
+                  <Button rounded={theme?.themeRounded.default} size="sm" variant="default">
+                    <Icon component="span" size="xs" c="primary-foreground" lucideIcon={Send} />
                   </Button>
                 </Group>
               </Stack>
@@ -411,8 +420,8 @@ const gridFooterContentHooks = {
               <Text
                 className="w-full"
               >{content.newsletter?.placeholder || "Enter your email"}</Text>
-              <Button size="lg" variant="default" className="w-full">
-                <Icon component="span" size="sm" lucideIcon={Send} />
+              <Button rounded={theme?.themeRounded.default} size="lg" variant="default" className="w-full">
+                <Icon component="span" size="sm" c="primary-foreground" lucideIcon={Send} />
                 {content.newsletter?.buttonText || "Subscribe"}
               </Button>
             </Stack>
@@ -491,7 +500,7 @@ const gridFooterContentHooks = {
             )}
           </Stack>
           
-          <Button size="sm" variant="outline">
+          <Button rounded={theme?.themeRounded.default} size="sm" variant="outline">
             <Icon component="span" size="sm" lucideIcon={ArrowRight} />
             View Sitemap
           </Button>

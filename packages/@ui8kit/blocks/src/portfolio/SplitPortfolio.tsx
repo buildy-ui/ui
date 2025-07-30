@@ -33,6 +33,15 @@ import {
   Icon,
   Box
 } from "@ui8kit/core";
+import { skyOSTheme } from "@ui8kit/theme";
+
+export const currentTheme = skyOSTheme;
+
+export const theme = {
+  theme: currentTheme,
+  themeRounded: currentTheme.rounded,
+  themeButtonSize: currentTheme.buttonSize
+}
 import { 
   SplitBlock, 
   createContentHook, 
@@ -125,7 +134,7 @@ const splitPortfolioContentHooks = {
             {content.title}
           </Title>
 
-          <Text size="xl" c="secondary-foreground">
+          <Text c="secondary-foreground">
             {content.description}
           </Text>
         </Stack>
@@ -206,7 +215,7 @@ const splitPortfolioContentHooks = {
         )}
 
         {content.buttonText && (
-          <Button size="lg" className="w-full">
+          <Button rounded={theme?.themeRounded.default} size="lg" className="w-full">
             {content.buttonText}
           </Button>
         )}
@@ -229,7 +238,7 @@ const splitPortfolioContentHooks = {
             {content.title}
           </Title>
 
-          <Text size="xl" c="secondary-foreground">
+          <Text c="secondary-foreground">
             {content.description}
           </Text>
         </Stack>
@@ -284,10 +293,10 @@ const splitPortfolioContentHooks = {
         )}
 
         <Group gap="sm">
-          <Button size="md" variant="default">
+          <Button rounded={theme?.themeRounded.default} size="md" variant="default">
             View Portfolio
           </Button>
-          <Button size="md" variant="outline">
+          <Button rounded={theme?.themeRounded.default} size="md" variant="outline">
             Download CV
           </Button>
         </Group>
@@ -310,7 +319,7 @@ const splitPortfolioContentHooks = {
             {content.title}
           </Title>
 
-          <Text size="xl" c="secondary-foreground">
+          <Text c="secondary-foreground">
             {content.description}
           </Text>
         </Stack>
@@ -370,7 +379,7 @@ const splitPortfolioContentHooks = {
         )}
 
         {content.buttonText && (
-          <Button size="lg" className="w-full">
+          <Button rounded={theme?.themeRounded.default} size="lg" className="w-full">
             {content.buttonText}
           </Button>
         )}
@@ -393,7 +402,7 @@ const splitPortfolioContentHooks = {
             {content.title}
           </Title>
 
-          <Text size="xl" c="secondary-foreground">
+          <Text c="secondary-foreground">
             {content.description}
           </Text>
         </Stack>
@@ -455,10 +464,10 @@ const splitPortfolioContentHooks = {
         </Stack>
 
         <Group gap="sm">
-          <Button size="md" variant="default">
+          <Button rounded={theme?.themeRounded.default} size="md" variant="default">
             View All Work
           </Button>
-          <Button size="md" variant="outline">
+          <Button rounded={theme?.themeRounded.default} size="md" variant="outline">
             Get in Touch
           </Button>
         </Group>
@@ -481,7 +490,7 @@ const splitPortfolioContentHooks = {
             {content.title}
           </Title>
 
-          <Text size="xl" c="secondary-foreground">
+          <Text c="secondary-foreground">
             {content.description}
           </Text>
         </Stack>
@@ -540,7 +549,7 @@ const splitPortfolioContentHooks = {
         )}
 
         {content.buttonText && (
-          <Button size="lg" className="w-full">
+          <Button rounded={theme?.themeRounded.default} size="lg" className="w-full">
             {content.buttonText}
           </Button>
         )}
@@ -556,7 +565,7 @@ export const SplitPortfolio = forwardRef<HTMLElement, SplitPortfolioProps>(
     leftMedia = false,
     useContainer = true,
     py = "xl",
-    gap = "xl",
+    gap = "md",
     className,
     ...props 
   }, ref) => {
@@ -617,11 +626,11 @@ export const SplitPortfolio = forwardRef<HTMLElement, SplitPortfolioProps>(
 
       // Default gradient based on variant
       const gradientMap = {
-        showcase: "from-purple-50 to-pink-100 dark:from-purple-950 dark:to-pink-950",
-        about: "from-blue-50 to-indigo-100 dark:from-blue-950 dark:to-indigo-950",
-        skills: "from-green-50 to-emerald-100 dark:from-green-950 dark:to-emerald-950",
-        testimonial: "from-orange-50 to-red-100 dark:from-orange-950 dark:to-red-950",
-        process: "from-gray-50 to-slate-100 dark:from-gray-950 dark:to-slate-950"
+        showcase: "from-primary/5 to-secondary/10",
+        about: "from-primary/5 to-secondary/10",
+        skills: "from-primary/5 to-secondary/10",
+        testimonial: "from-primary/5 to-secondary/10",
+        process: "from-primary/5 to-secondary/10"
       };
 
       // Icon map for decorative elements

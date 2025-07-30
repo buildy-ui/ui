@@ -29,6 +29,15 @@ import {
   Box,
   Card
 } from "@ui8kit/core";
+import { skyOSTheme } from "@ui8kit/theme";
+
+export const currentTheme = skyOSTheme;
+
+export const theme = {
+  theme: currentTheme,
+  themeRounded: currentTheme.rounded,
+  themeButtonSize: currentTheme.buttonSize
+}
 import { 
   LayoutBlock,
   createLayoutContentHook,
@@ -159,7 +168,7 @@ const gridTeamContentHooks = {
         </Title>
         
         {content.description && (
-          <Text size="lg" c="secondary-foreground" ta="center">
+          <Text c="secondary-foreground" ta="center">
             {content.description}
           </Text>
         )}
@@ -265,7 +274,7 @@ const gridTeamContentHooks = {
         </Title>
         
         {content.subtitle && (
-          <Text size="lg" c="secondary-foreground" ta="center" className="max-w-2xl">
+          <Text c="secondary-foreground" ta="center" className="max-w-2xl">
             {content.subtitle}
           </Text>
         )}
@@ -411,7 +420,7 @@ const gridTeamContentHooks = {
           {content.title}
         </Title>
         {content.description && (
-          <Text size="xl" c="secondary-foreground" ta="center" className="max-w-3xl">
+          <Text c="secondary-foreground" ta="center" className="max-w-3xl">
             {content.description}
           </Text>
         )}
@@ -521,11 +530,11 @@ const gridTeamContentHooks = {
           </Stack>
           
           <Group gap="sm">
-            <Button size="sm" variant="outline">
+            <Button rounded={theme?.themeRounded.default} size="sm" variant="outline">
               <Icon component="span" size="xs" lucideIcon={Users} />
               All Members
             </Button>
-            <Button size="sm" variant="outline">
+            <Button rounded={theme?.themeRounded.default} size="sm" variant="outline">
               <Icon component="span" size="xs" lucideIcon={Target} />
               Departments
             </Button>

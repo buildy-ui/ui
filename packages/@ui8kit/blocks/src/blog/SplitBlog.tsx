@@ -14,6 +14,15 @@ import {
   Icon,
   Box
 } from "@ui8kit/core";
+import { skyOSTheme } from "@ui8kit/theme";
+
+export const currentTheme = skyOSTheme;
+
+export const theme = {
+  theme: currentTheme,
+  themeRounded: currentTheme.rounded,
+  themeButtonSize: currentTheme.buttonSize
+}
 import { 
   SplitBlock, 
   createContentHook, 
@@ -83,7 +92,7 @@ const splitBlogContentHooks = {
             </Title>
 
             {content.subtitle && (
-              <Text size="lg" c="secondary-foreground">
+              <Text c="secondary-foreground">
                 {content.subtitle}
               </Text>
             )}
@@ -210,13 +219,13 @@ const splitBlogContentHooks = {
             {content.title}
           </Title>
 
-          <Text size="lg" c="secondary-foreground">
+          <Text c="secondary-foreground">
             {content.description}
           </Text>
         </Stack>
 
         {content.viewAllText && (
-          <Button variant="outline" size="lg" rightSection={
+          <Button rounded={theme?.themeRounded.default} variant="outline" size="lg" rightSection={
             <Icon component="span" size="md" lucideIcon={ArrowRight} />
           }>
             {content.viewAllText}
@@ -225,10 +234,10 @@ const splitBlogContentHooks = {
 
         {/* Navigation Controls */}
         <Group gap="sm" align="center">
-          <Button variant="outline" size="sm" className="p-2">
+          <Button rounded={theme?.themeRounded.default} variant="outline" size="sm" className="p-2">
             <Icon component="span" size="sm" lucideIcon={ChevronLeft} />
           </Button>
-          <Button variant="outline" size="sm" className="p-2">
+          <Button rounded={theme?.themeRounded.default} variant="outline" size="sm" className="p-2">
             <Icon component="span" size="sm" lucideIcon={ChevronRight} />
           </Button>
         </Group>
@@ -252,7 +261,7 @@ const splitBlogContentHooks = {
               {content.title}
             </Title>
 
-            <Text size="xl" c="secondary-foreground">
+            <Text c="secondary-foreground">
               {content.description}
             </Text>
           </Stack>
@@ -269,7 +278,7 @@ const splitBlogContentHooks = {
                   {featuredPost.title}
                 </Title>
                 
-                <Text size="lg" c="secondary-foreground">
+                <Text c="secondary-foreground">
                   {featuredPost.description}
                 </Text>
               </Stack>
@@ -305,7 +314,7 @@ const splitBlogContentHooks = {
                 </Group>
               </Group>
 
-              <Button size="lg" variant="default" rightSection={
+              <Button rounded={theme?.themeRounded.default} size="lg" variant="default" rightSection={
                 <Icon component="span" size="md" lucideIcon={ArrowRight} />
               }>
                 Read Full Article
@@ -330,7 +339,7 @@ const splitBlogContentHooks = {
             {content.title}
           </Title>
 
-          <Text size="lg" c="secondary-foreground">
+          <Text c="secondary-foreground">
             {content.description}
           </Text>
         </Stack>
@@ -358,7 +367,7 @@ const splitBlogContentHooks = {
           </Stack>
         </Stack>
 
-        <Button size="lg" variant="default" className="w-full" rightSection={
+        <Button rounded={theme?.themeRounded.default} size="lg" variant="default" className="w-full" rightSection={
           <Icon component="span" size="md" lucideIcon={ArrowRight} />
         }>
           Subscribe to Newsletter
@@ -380,7 +389,7 @@ const splitBlogContentHooks = {
             {content.title}
           </Title>
 
-          <Text size="lg" c="secondary-foreground">
+          <Text c="secondary-foreground">
             {content.description}
           </Text>
         </Stack>
@@ -434,7 +443,7 @@ const splitBlogContentHooks = {
         </Stack>
 
         {content.viewAllText && (
-          <Button variant="outline" size="lg" rightSection={
+          <Button rounded={theme?.themeRounded.default} variant="outline" size="lg" rightSection={
             <Icon component="span" size="md" lucideIcon={ArrowRight} />
           }>
             {content.viewAllText}
@@ -451,8 +460,8 @@ export const SplitBlog = forwardRef<HTMLElement, SplitBlogProps>(
     variant = "news",
     leftMedia = false,
     useContainer = true,
-    py = "lg",
-    gap = "xl",
+    py = "xl",
+    gap = "md",
     className,
     ...props 
   }, ref) => {
@@ -525,7 +534,7 @@ export const SplitBlog = forwardRef<HTMLElement, SplitBlogProps>(
       // Default gradient background
       return (
         <Block 
-          className="h-full bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-950 dark:to-indigo-950 relative overflow-hidden"
+          className="h-full bg-gradient-to-br from-primary/5 to-secondary/10 relative overflow-hidden"
           data-class="blog-gradient-background"
         >
           <Box className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10" />

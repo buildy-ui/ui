@@ -1,5 +1,5 @@
 // Import block collections
-import HeroBlocks from "./blocks/hero";
+// import HeroBlocks from "./blocks/hero";
 // import NewHeroBlocks from "./blocks/new-hero";
 // import BlogBlocks from "./blocks/blog";
 // import BusinessBlocks from "./blocks/business";
@@ -10,7 +10,7 @@ import HeroBlocks from "./blocks/hero";
 // import GalleryBlocks from "./blocks/gallery";
 // import FeaturesBlocks from "./blocks/features";
 // import TeamBlocks from "./blocks/team";
-// import TestimonialBlocks from "./blocks/testimonial";
+import TestimonialBlocks from "./blocks/testimonial";
 // import FooterBlocks from "./blocks/footer"; // Uncommented
 
 // Core UI Examples
@@ -25,13 +25,10 @@ function Blocks() {
           <p className="mt-2 text-lg text-muted-foreground">
             Factory-based core ui component architecture showcase
           </p>
-          <div className="mt-2 inline-block px-3 py-1 bg-secondary text-secondary-foreground rounded-md text-sm">
-            The Hero Blocks is Active
-          </div>
         </div>
 
         <div className="w-full divide-y divide-border">
-          <HeroBlocks />
+          <TestimonialBlocks />
           {/* <FooterBlocks /> */}
         </div>
       </div>
