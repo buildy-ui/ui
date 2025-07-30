@@ -1,7 +1,7 @@
 // Import block collections
 // import HeroBlocks from "./blocks/hero";
 // import NewHeroBlocks from "./blocks/new-hero";
-// import BlogBlocks from "./blocks/blog";
+import BlogBlocks from "./blocks/blog";
 // import BusinessBlocks from "./blocks/business";
 // import CTABlocks from "./blocks/cta";
 // import FAQBlocks from "./blocks/faq";
@@ -10,11 +10,11 @@
 // import GalleryBlocks from "./blocks/gallery";
 // import FeaturesBlocks from "./blocks/features";
 // import TeamBlocks from "./blocks/team";
-import TestimonialBlocks from "./blocks/testimonial";
+// import TestimonialBlocks from "./blocks/testimonial";
 // import FooterBlocks from "./blocks/footer"; // Uncommented
 
 // Core UI Examples
-// import CoreUI from "./CoreUI";
+// import CoreUI from "./CoreUI"; 
 
 function Blocks() {
   return (
@@ -28,7 +28,7 @@ function Blocks() {
         </div>
 
         <div className="w-full divide-y divide-border">
-          <TestimonialBlocks />
+          <BlogBlocks />
           {/* <FooterBlocks /> */}
         </div>
       </div>

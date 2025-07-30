@@ -87,7 +87,7 @@ const gridBlogContentHooks = {
                 width="100%"
                 height="200px"
                 fit="cover"
-                rounded="md"
+                rounded={theme?.themeRounded.default}
               />
               
               <Box 
@@ -147,8 +147,8 @@ const gridBlogContentHooks = {
       content.buttonText ? (
         <Group justify="between" align="center" className="w-full">
           <Box /> {/* Spacer */}
-          <Button rounded={theme?.themeRounded.default} variant="outline" size="sm" rightSection={
-            <Icon component="span" size="xs" lucideIcon={ArrowRight} />
+          <Button rounded={theme?.themeRounded.default} variant="outline" size={theme?.themeButtonSize.default} rightSection={
+            <Icon lucideIcon={ArrowRight} />
           }>
             {content.buttonText}
           </Button>
@@ -165,12 +165,12 @@ const gridBlogContentHooks = {
               width="100%"
               height="180px"
               fit="cover"
-              rounded="md"
+              rounded={theme?.themeRounded.default}
             />
           )}
 
           <Stack gap="xs" className="flex-1">
-            <Badge variant="secondary" size="sm" rounded="md">
+            <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
               {post.category}
             </Badge>
             
@@ -192,7 +192,7 @@ const gridBlogContentHooks = {
                   width="24px"
                   height="24px"
                   fit="cover"
-                  rounded="full"
+                  rounded={theme?.themeRounded.default}
                 />
               )}
               <Text size="xs" c="secondary-foreground">
@@ -223,7 +223,7 @@ const gridBlogContentHooks = {
         <Group gap="sm" align="center" justify="center" className="flex-wrap">
           <Button rounded={theme?.themeRounded.default}
             variant={activeCategory === "all" ? "default" : "outline"}
-            size="sm"
+            size={theme?.themeButtonSize.default}
             onClick={() => setActiveCategory("all")}
           >
             All
@@ -232,7 +232,7 @@ const gridBlogContentHooks = {
             <Button rounded={theme?.themeRounded.default}
               key={category.id}
               variant={activeCategory === category.id ? "default" : "outline"}
-              size="sm"
+              size={theme?.themeButtonSize.default}
               onClick={() => setActiveCategory(category.id)}
             >
               {category.name}
@@ -251,7 +251,7 @@ const gridBlogContentHooks = {
               width="100%"
               height="160px"
               fit="cover"
-              rounded="md"
+              rounded={theme?.themeRounded.default}
             />
           )}
 
@@ -300,13 +300,13 @@ const gridBlogContentHooks = {
               width="80px"
               height="80px"
               fit="cover"
-              rounded="md"
+              rounded={theme?.themeRounded.default}
               className="flex-shrink-0"
             />
           )}
 
           <Stack gap="xs" className="flex-1 min-w-0">
-            <Badge variant="outline" size="xs" rounded="sm">
+            <Badge variant="outline" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
               {post.category}
             </Badge>
             
@@ -353,12 +353,12 @@ const gridBlogContentHooks = {
                 width="100%"
                 height={isFeatured ? "300px" : "200px"}
                 fit="cover"
-                rounded="md"
+                rounded={theme?.themeRounded.default}
               />
             )}
 
             <Stack gap="sm" className="flex-1">
-              <Badge variant="secondary" size={isFeatured ? "default" : "sm"} rounded="md">
+              <Badge variant="secondary" size={isFeatured ? theme?.themeButtonSize.default : theme?.themeButtonSize.badge} rounded={isFeatured ? theme?.themeRounded.default : theme?.themeRounded.badge}>
                 {post.category}
               </Badge>
               
@@ -411,8 +411,8 @@ const gridBlogContentHooks = {
               </Group>
               
               {isFeatured && (
-                <Button rounded={theme?.themeRounded.default} variant="outline" size="sm" rightSection={
-                  <Icon component="span" size="xs" lucideIcon={ArrowRight} />
+                <Button rounded={theme?.themeRounded.default} variant="outline" size={theme?.themeButtonSize.default} rightSection={
+                  <Icon lucideIcon={ArrowRight} />
                 }>
                   Read More
                 </Button>

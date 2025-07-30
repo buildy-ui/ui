@@ -72,18 +72,72 @@ export interface SplitBlogProps {
   className?: string;
 }
 
+
+const sideArticlesContentHooks = {
+  // News variant - side articles for media section
+  news: createContentHook({
+    content: (content: SplitBlogData) => {
+      const sideArticles = content.posts.slice(1, 4);
+      return (
+        <Stack gap="md" className="w-full h-full">
+          <Title order={3} size="lg" fw="semibold">
+            Related Articles
+          </Title>
+          
+          <Stack gap="md" className="flex-1">
+            {sideArticles.map((article) => (
+              <Card key={article.id} p="md" rounded={theme?.themeRounded.default} shadow="sm" bg="card" className="hover:shadow-md transition-shadow">
+                <Group gap="md" align="start">
+                  {article.image && (
+                    <Image
+                      src={article.image.src}
+                      alt={article.image.alt}
+                      width="80px"
+                      height="80px"
+                      fit="cover"
+                      rounded={theme?.themeRounded.default}
+                      className="flex-shrink-0"
+                    />
+                  )}
+                  
+                  <Stack gap="xs" className="flex-1 min-w-0">
+                    <Title order={4} size="sm" fw="semibold" className="line-clamp-2">
+                      {article.title}
+                    </Title>
+                    
+                    <Group gap="sm" align="center" className="text-xs">
+                      <Text size="xs" c="secondary-foreground">
+                        {article.author.name}
+                      </Text>
+                      <Text size="xs" c="secondary-foreground">
+                        •
+                      </Text>
+                      <Text size="xs" c="secondary-foreground">
+                        {article.readTime}
+                      </Text>
+                    </Group>
+                  </Stack>
+                </Group>
+              </Card>
+            ))}
+          </Stack>
+        </Stack>
+      );
+    }
+  })
+};
+
 // Custom content hooks for different blog split variants
 const splitBlogContentHooks = {
-  // News variant - main article with side articles
+  // News variant - main article only (side articles moved to media section)
   news: createContentHook({
     content: (content: SplitBlogData) => {
       const mainPost = content.posts[0];
-      const sideArticles = content.posts.slice(1, 4);
 
       return (
         <Stack gap="xl" align="start">
-          <Stack gap="md" align="start">
-            <Badge variant="secondary" size="default" rounded="md">
+          <Stack gap="lg" align="start">
+            <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
               {content.badge || "News"}
             </Badge>
 
@@ -92,7 +146,7 @@ const splitBlogContentHooks = {
             </Title>
 
             {content.subtitle && (
-              <Text c="secondary-foreground">
+              <Text c="secondary-foreground" className="max-w-[42rem]">
                 {content.subtitle}
               </Text>
             )}
@@ -100,7 +154,7 @@ const splitBlogContentHooks = {
 
           {/* Main Article */}
           {mainPost && (
-            <Card p="lg" rounded="lg" shadow="sm" bg="card" className="w-full">
+            <Card p="lg" rounded={theme?.themeRounded.default} shadow="sm" bg="card" className="w-full">
               <Stack gap="md" align="start">
                 {mainPost.image && (
                   <Image
@@ -109,12 +163,12 @@ const splitBlogContentHooks = {
                     width="100%"
                     height="200px"
                     fit="cover"
-                    rounded="md"
+                    rounded={theme?.themeRounded.default}
                   />
                 )}
 
                 <Stack gap="sm">
-                  <Badge variant="outline" size="sm" rounded="md">
+                  <Badge variant="outline" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
                     {mainPost.category}
                   </Badge>
                   
@@ -152,53 +206,6 @@ const splitBlogContentHooks = {
               </Stack>
             </Card>
           )}
-
-          {/* Side Articles */}
-          {sideArticles.length > 0 && (
-            <Stack gap="md" className="w-full">
-              <Title order={3} size="lg" fw="semibold">
-                Related Articles
-              </Title>
-              
-              <Stack gap="sm">
-                {sideArticles.map((article) => (
-                  <Card key={article.id} p="md" rounded="md" shadow="sm" bg="card" className="hover:shadow-md transition-shadow">
-                    <Group gap="md" align="start">
-                      {article.image && (
-                        <Image
-                          src={article.image.src}
-                          alt={article.image.alt}
-                          width="80px"
-                          height="80px"
-                          fit="cover"
-                          rounded="md"
-                          className="flex-shrink-0"
-                        />
-                      )}
-                      
-                      <Stack gap="xs" className="flex-1 min-w-0">
-                        <Title order={4} size="sm" fw="semibold" className="line-clamp-2">
-                          {article.title}
-                        </Title>
-                        
-                        <Group gap="sm" align="center" className="text-xs">
-                          <Text size="xs" c="secondary-foreground">
-                            {article.author.name}
-                          </Text>
-                          <Text size="xs" c="secondary-foreground">
-                            •
-                          </Text>
-                          <Text size="xs" c="secondary-foreground">
-                            {article.readTime}
-                          </Text>
-                        </Group>
-                      </Stack>
-                    </Group>
-                  </Card>
-                ))}
-              </Stack>
-            </Stack>
-          )}
         </Stack>
       );
     }
@@ -225,8 +232,8 @@ const splitBlogContentHooks = {
         </Stack>
 
         {content.viewAllText && (
-          <Button rounded={theme?.themeRounded.default} variant="outline" size="lg" rightSection={
-            <Icon component="span" size="md" lucideIcon={ArrowRight} />
+          <Button rounded={theme?.themeRounded.default} variant="outline" size={theme?.themeButtonSize.default} rightSection={
+            <Icon lucideIcon={ArrowRight} />
           }>
             {content.viewAllText}
           </Button>
@@ -234,11 +241,11 @@ const splitBlogContentHooks = {
 
         {/* Navigation Controls */}
         <Group gap="sm" align="center">
-          <Button rounded={theme?.themeRounded.default} variant="outline" size="sm" className="p-2">
-            <Icon component="span" size="sm" lucideIcon={ChevronLeft} />
+          <Button rounded={theme?.themeRounded.default} variant="outline" size={theme?.themeButtonSize.default} className="p-2">
+            <Icon lucideIcon={ChevronLeft} />
           </Button>
-          <Button rounded={theme?.themeRounded.default} variant="outline" size="sm" className="p-2">
-            <Icon component="span" size="sm" lucideIcon={ChevronRight} />
+          <Button rounded={theme?.themeRounded.default} variant="outline" size={theme?.themeButtonSize.default} className="p-2">
+            <Icon lucideIcon={ChevronRight} />
           </Button>
         </Group>
       </Stack>
@@ -253,7 +260,7 @@ const splitBlogContentHooks = {
       return (
         <Stack gap="xl" align="start">
           <Stack gap="md" align="start">
-            <Badge variant="secondary" size="default" rounded="md">
+            <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
               {content.badge || "Featured"}
             </Badge>
 
@@ -270,7 +277,7 @@ const splitBlogContentHooks = {
           {featuredPost && (
             <Stack gap="lg" className="w-full">
               <Stack gap="md">
-                <Badge variant="outline" size="default" rounded="md">
+                <Badge variant="outline" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
                   {featuredPost.category}
                 </Badge>
                 
@@ -314,8 +321,8 @@ const splitBlogContentHooks = {
                 </Group>
               </Group>
 
-              <Button rounded={theme?.themeRounded.default} size="lg" variant="default" rightSection={
-                <Icon component="span" size="md" lucideIcon={ArrowRight} />
+              <Button rounded={theme?.themeRounded.default} size={theme?.themeButtonSize.default} variant="default" rightSection={
+                <Icon c="primary-foreground" lucideIcon={ArrowRight} />
               }>
                 Read Full Article
               </Button>
@@ -331,7 +338,7 @@ const splitBlogContentHooks = {
     content: (content: SplitBlogData) => (
       <Stack gap="xl" align="start">
         <Stack gap="md" align="start">
-          <Badge variant="secondary" size="default" rounded="md">
+          <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
             {content.badge || "Newsletter"}
           </Badge>
 
@@ -367,8 +374,8 @@ const splitBlogContentHooks = {
           </Stack>
         </Stack>
 
-        <Button rounded={theme?.themeRounded.default} size="lg" variant="default" className="w-full" rightSection={
-          <Icon component="span" size="md" lucideIcon={ArrowRight} />
+        <Button rounded={theme?.themeRounded.default} size={theme?.themeButtonSize.default} variant="default" className="w-full" rightSection={
+          <Icon c="primary-foreground" lucideIcon={ArrowRight} />
         }>
           Subscribe to Newsletter
         </Button>
@@ -381,7 +388,7 @@ const splitBlogContentHooks = {
     content: (content: SplitBlogData) => (
       <Stack gap="xl" align="start">
         <Stack gap="md" align="start">
-          <Badge variant="secondary" size="default" rounded="md">
+          <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
             {content.badge || "Timeline"}
           </Badge>
 
@@ -413,7 +420,7 @@ const splitBlogContentHooks = {
               {/* Post Content */}
               <Stack gap="sm" className="flex-1 pb-4">
                 <Stack gap="xs">
-                  <Badge variant="outline" size="xs" rounded="sm">
+                  <Badge variant="outline" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
                     {post.category}
                   </Badge>
                   
@@ -443,8 +450,8 @@ const splitBlogContentHooks = {
         </Stack>
 
         {content.viewAllText && (
-          <Button rounded={theme?.themeRounded.default} variant="outline" size="lg" rightSection={
-            <Icon component="span" size="md" lucideIcon={ArrowRight} />
+          <Button rounded={theme?.themeRounded.default} variant="outline" size={theme?.themeButtonSize.default} rightSection={
+            <Icon lucideIcon={ArrowRight} />
           }>
             {content.viewAllText}
           </Button>
@@ -468,12 +475,37 @@ export const SplitBlog = forwardRef<HTMLElement, SplitBlogProps>(
     
     // Create media section based on variant and content
     const createMediaSection = () => {
+
+      // Default: show first post image or gradient
+      const firstPost = content.posts[2];
+
+      if (variant === "news" && content.posts.length > 1) {
+        // Show side articles for news variant
+        const sideContentHooks = sideArticlesContentHooks.news as any;
+        return (
+          <Block className="h-full" data-class="news-side-articles">
+            <Image
+              src={firstPost?.image?.src}
+              alt={firstPost?.image?.alt}
+              width="100%"
+              height="auto"
+              rounded={theme?.themeRounded.default}
+              fit="cover"
+            />
+            {/* Side Articles */}
+            <Stack py="md">
+            {sideContentHooks?.content(content)}
+            </Stack>
+          </Block>
+        );
+      }
+
       if (variant === "slider" && content.posts.length > 0) {
         // Show multiple posts in a grid for slider
         return (
           <Grid cols="1-2" gap="md">
             {content.posts.slice(0, 4).map((post) => (
-              <Card key={post.id} p="md" rounded="lg" shadow="sm" bg="card" className="hover:shadow-md transition-shadow">
+              <Card key={post.id} p="md" rounded={theme?.themeRounded.default} shadow="sm" bg="card" className="hover:shadow-md transition-shadow">
                 <Stack gap="sm" align="start">
                   {post.image && (
                     <Image
@@ -482,12 +514,12 @@ export const SplitBlog = forwardRef<HTMLElement, SplitBlogProps>(
                       width="100%"
                       height="120px"
                       fit="cover"
-                      rounded="md"
+                      rounded={theme?.themeRounded.default}
                     />
                   )}
 
                   <Stack gap="xs" className="flex-1">
-                    <Badge variant="outline" size="xs" rounded="sm">
+                    <Badge variant="outline" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
                       {post.category}
                     </Badge>
                     
@@ -514,8 +546,6 @@ export const SplitBlog = forwardRef<HTMLElement, SplitBlogProps>(
         );
       }
 
-      // Default: show first post image or gradient
-      const firstPost = content.posts[0];
       if (firstPost?.image) {
         return (
           <Block>
@@ -524,7 +554,7 @@ export const SplitBlog = forwardRef<HTMLElement, SplitBlogProps>(
               alt={firstPost.image.alt}
               width="100%"
               height="auto"
-              rounded="lg"
+              rounded={theme?.themeRounded.default}
               fit="cover"
             />
           </Block>
@@ -536,8 +566,9 @@ export const SplitBlog = forwardRef<HTMLElement, SplitBlogProps>(
         <Block 
           className="h-full bg-gradient-to-br from-primary/5 to-secondary/10 relative overflow-hidden"
           data-class="blog-gradient-background"
+          rounded={theme?.themeRounded.default}
         >
-          <Box className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10" />
+          <Box className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10" />
         </Block>
       );
     };

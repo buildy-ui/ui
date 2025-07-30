@@ -108,7 +108,7 @@ export const SplitBlogNewsExample = () => {
       leftMedia={false}
       useContainer={true}
       py="xl"
-      gap="xl"
+      gap="lg"
     />
   );
 };
@@ -129,7 +129,7 @@ export const SplitBlogSliderExample = () => {
       variant="slider"
       leftMedia={true}
       useContainer={true}
-      py="lg"
+      py="xl"
       gap="lg"
     />
   );
@@ -168,9 +168,9 @@ export const SplitBlogFeaturedExample = () => {
       content={content}
       variant="featured"
       leftMedia={true}
-      useContainer={false}
+      useContainer={true}
       py="xl"
-      gap="none"
+      gap="lg"
       className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950 dark:to-indigo-950"
     />
   );
@@ -191,8 +191,8 @@ export const SplitBlogNewsletterExample = () => {
       variant="newsletter"
       leftMedia={false}
       useContainer={true}
-      py="2xl"
-      gap="xl"
+      py="xl"
+      gap="lg"
       className="bg-gradient-to-br from-primary/5 to-secondary/5"
     />
   );

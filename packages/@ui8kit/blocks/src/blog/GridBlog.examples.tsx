@@ -214,9 +214,9 @@ export const GridBlogFeaturedExample = () => {
     <GridBlog
       content={content}
       variant="featured"
-      cols="1-2-4"
-      gap="lg"
-      py="2xl"
+      cols="1-2-3"
+      gap="md"
+      py="xl"
       className="bg-gradient-to-b from-muted/30 to-background"
     />
   );
