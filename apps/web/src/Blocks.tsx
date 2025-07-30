@@ -1,11 +1,10 @@
 // Import block collections
 // import HeroBlocks from "./blocks/hero";
-// import NewHeroBlocks from "./blocks/new-hero";
 // import BlogBlocks from "./blocks/blog";
-import BusinessBlocks from "./blocks/business";
+// import BusinessBlocks from "./blocks/business";
 // import CTABlocks from "./blocks/cta";
 // import FAQBlocks from "./blocks/faq";
-// import PortfolioBlocks from "./blocks/portfolio";
+import PortfolioBlocks from "./blocks/portfolio";
 // import PostBlocks from "./blocks/post";
 // import GalleryBlocks from "./blocks/gallery";
 // import FeaturesBlocks from "./blocks/features";
@@ -19,7 +18,12 @@ import BusinessBlocks from "./blocks/business";
 function Blocks() {
   return (
     <div className="w-full divide-y divide-border">
-      <BusinessBlocks />
+      {/* <HeroBlocks /> */}
+      {/* <BlogBlocks /> */}
+      {/* <CTABlocks /> */}
+      {/* <FAQBlocks /> */}
+      <PortfolioBlocks />
+      {/* <BusinessBlocks /> */}
       {/* <FooterBlocks /> */}
     </div>
   );

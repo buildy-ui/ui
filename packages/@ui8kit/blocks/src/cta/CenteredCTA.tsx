@@ -15,10 +15,20 @@ import {
   Icon,
   Box
 } from "@ui8kit/core";
+import { skyOSTheme } from "@ui8kit/theme";
+
+export const currentTheme = skyOSTheme;
+
+export const theme = {
+  theme: currentTheme,
+  themeRounded: currentTheme.rounded,
+  themeButtonSize: currentTheme.buttonSize
+}
+
 import { 
   LayoutBlock,
   createLayoutContentHook,
-} from "@ui8kit/core/factory/LayoutBlock";
+} from "@ui8kit/core";
 
 // CTA interfaces
 export interface CTAButton {
@@ -96,10 +106,11 @@ const centeredCTAContentHooks = {
             {content.buttons.map((button) => (
               <Button
                 key={button.id}
-                size="lg"
+                rounded={theme?.themeRounded.default}
+                size={theme?.themeButtonSize.default}
                 variant={button.variant || "default"}
                 leftSection={button.lucideIcon ? (
-                  <Icon lucideIcon={button.lucideIcon} />
+                  <Icon c="primary-foreground" lucideIcon={button.lucideIcon} />
                 ) : undefined}
               >
                 {button.text}
@@ -128,10 +139,11 @@ const centeredCTAContentHooks = {
             {content.buttons.map((button) => (
               <Button
                 key={button.id}
-                size="lg"
+                rounded={theme?.themeRounded.default}
+                size={theme?.themeButtonSize.default}
                 variant={button.variant || "default"}
                 leftSection={button.lucideIcon ? (
-                  <Icon lucideIcon={button.lucideIcon} />
+                  <Icon c="primary-foreground" lucideIcon={button.lucideIcon} />
                 ) : undefined}
               >
                 {button.text}
@@ -146,7 +158,7 @@ const centeredCTAContentHooks = {
                 Trusted by leading companies
               </Text>
               
-              <Grid cols="3-4-6" gap="lg" align="center" justify="center" className="w-full">
+              <Grid gap="sm" align="center" justify="center" className="w-full justify-center grid-cols-2 sm:grid-cols-3 md:grid-cols-6">
                 {content.brands.map((brand) => (
                   <Group key={brand.id} gap="md" align="center" justify="center" className="opacity-60 hover:opacity-100 transition-opacity">
                     {brand.lucideIcon && (
@@ -213,12 +225,12 @@ const centeredCTAContentHooks = {
               {content.buttons.map((button) => (
                 <Button
                   key={button.id}
-                  size="lg"
-                  variant={button.variant || "default"}
+                  rounded={theme?.themeRounded.default}
+                  size={theme?.themeButtonSize.default}
+                  variant="outline"
                   leftSection={button.lucideIcon ? (
                     <Icon lucideIcon={button.lucideIcon} />
                   ) : undefined}
-                  className={button.variant === "outline" ? "border-white text-white hover:bg-white hover:text-black" : ""}
                 >
                   {button.text}
                 </Button>
@@ -284,10 +296,11 @@ const centeredCTAContentHooks = {
             {content.buttons.map((button) => (
               <Button
                 key={button.id}
-                size="lg"
+                rounded={theme?.themeRounded.default}
+                size={theme?.themeButtonSize.default}
                 variant={button.variant || "default"}
                 leftSection={button.lucideIcon ? (
-                  <Icon lucideIcon={button.lucideIcon} />
+                  <Icon c="primary-foreground" lucideIcon={button.lucideIcon} />
                 ) : undefined}
               >
                 {button.text}
@@ -314,7 +327,7 @@ const centeredCTAContentHooks = {
 
           {/* Stats */}
           {content.stats && (
-            <Grid cols="1-3" gap="xl" className="w-full max-w-2xl">
+            <Grid gap="xl" align="center" justify="center" className="w-full max-w-2xl grid-cols-1 sm:grid-cols-3">
               <Stack gap="xs" align="center" ta="center">
                 <Text size="3xl" fw="bold" c="primary">
                   {content.stats.users}
@@ -351,10 +364,11 @@ const centeredCTAContentHooks = {
             {content.buttons.map((button) => (
               <Button
                 key={button.id}
-                size="lg"
+                rounded={theme?.themeRounded.default}
+                size={theme?.themeButtonSize.default}
                 variant={button.variant || "default"}
                 leftSection={button.lucideIcon ? (
-                  <Icon lucideIcon={button.lucideIcon} />
+                  <Icon c="primary-foreground" lucideIcon={button.lucideIcon} />
                 ) : undefined}
               >
                 {button.text}

@@ -1,4 +1,4 @@
-import { forwardRef, ReactNode, ElementType } from "react";
+import { forwardRef, ReactNode } from "react";
 import {
   Grid as BaseGrid,
   Element as BaseElement,
@@ -9,7 +9,6 @@ import {
   type VariantSpacingProps,
   type ColorProps,
   type VariantLayoutProps,
-  type VariantGridProps,
   cn
 } from "../../core";
 

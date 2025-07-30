@@ -1,5 +1,6 @@
 import { gridPortfolioExamples } from "@ui8kit/blocks/portfolio/GridPortfolio.examples";
 import { splitPortfolioExamples } from "@ui8kit/blocks/portfolio/SplitPortfolio.examples";
+import { Divider } from "./ui/divider";
 
 // New Factory-based Portfolio Examples
 export const GridPortfolioCardsExample = gridPortfolioExamples.cards;
@@ -18,17 +19,27 @@ function PortfolioBlocks() {
   return (
     <div className="flex flex-col divide-y divide-border">
       {/* Grid Portfolio Examples */}
+      <Divider text="1. GridPortfolioCardsExample" />
       <GridPortfolioCardsExample />
+      <Divider text="2. GridPortfolioMasonryExample" />
       <GridPortfolioMasonryExample />
+      <Divider text="3. GridPortfolioMinimalExample" />
       <GridPortfolioMinimalExample />
+      <Divider text="4. GridPortfolioDetailedExample" />
       <GridPortfolioDetailedExample />
+      <Divider text="5. GridPortfolioShowcaseExample" />
       <GridPortfolioShowcaseExample />
       
       {/* Split Portfolio Examples */}
+      <Divider text="6. SplitPortfolioShowcaseExample" />
       <SplitPortfolioShowcaseExample />
+      <Divider text="7. SplitPortfolioAboutExample" />
       <SplitPortfolioAboutExample />
+      <Divider text="8. SplitPortfolioSkillsExample" />
       <SplitPortfolioSkillsExample />
+      <Divider text="9. SplitPortfolioTestimonialExample" />
       <SplitPortfolioTestimonialExample />
+      <Divider text="10. SplitPortfolioProcessExample" />
       <SplitPortfolioProcessExample />
     </div>
   );

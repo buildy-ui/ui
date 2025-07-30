@@ -1,17 +1,10 @@
 import { forwardRef } from "react";
-import { 
-  ArrowRight, 
-  Play, 
-  Download, 
-  ExternalLink, 
+import {
   Smartphone,
   Monitor,
   Tablet,
   CheckCircle,
-  Star,
-  Users,
-  TrendingUp,
-  Award
+  Star
 } from "lucide-react";
 import {
   Block,
@@ -36,13 +29,11 @@ export const theme = {
   themeRounded: currentTheme.rounded,
   themeButtonSize: currentTheme.buttonSize
 }
+
 import { 
   SplitBlock, 
-  createContentHook, 
-  defaultContentHooks, 
-  advancedContentHooks,
-  type ContentHooks 
-} from "@ui8kit/core/factory/SplitBlock";
+  createContentHook,
+} from "@ui8kit/core";
 
 // CTA interfaces (reuse from CenteredCTA)
 export interface CTAButton {
@@ -184,12 +175,13 @@ const splitCTAContentHooks = {
 
         <Group gap="md" align="center" className="flex-wrap">
           {content.buttons.map((button) => (
-            <Button rounded={theme?.themeRounded.default}
+            <Button
               key={button.id}
-              size="lg"
+              rounded={theme?.themeRounded.default}
+              size={theme?.themeButtonSize.default}
               variant={button.variant || "default"}
               leftSection={button.lucideIcon ? (
-                <Icon lucideIcon={button.lucideIcon} />
+                <Icon c="primary-foreground" lucideIcon={button.lucideIcon} />
               ) : undefined}
               className={button.variant === "outline" ? "border-white text-white hover:bg-white hover:text-black" : ""}
             >
@@ -299,12 +291,13 @@ const splitCTAContentHooks = {
 
         <Group gap="md" align="center" className="flex-wrap">
           {content.buttons.map((button) => (
-            <Button rounded={theme?.themeRounded.default}
+            <Button
               key={button.id}
-              size="lg"
+              rounded={theme?.themeRounded.default}
+              size={theme?.themeButtonSize.default}
               variant={button.variant || "default"}
               leftSection={button.lucideIcon ? (
-                <Icon lucideIcon={button.lucideIcon} />
+                <Icon c="primary-foreground" lucideIcon={button.lucideIcon} />
               ) : undefined}
             >
               {button.text}
@@ -378,12 +371,13 @@ const splitCTAContentHooks = {
 
         <Group gap="md" align="center" className="flex-wrap">
           {content.buttons.map((button) => (
-            <Button rounded={theme?.themeRounded.default}
+            <Button
               key={button.id}
-              size="lg"
+              rounded={theme?.themeRounded.default}
+              size={theme?.themeButtonSize.default}
               variant={button.variant || "default"}
               leftSection={button.lucideIcon ? (
-                <Icon lucideIcon={button.lucideIcon} />
+                <Icon c="primary-foreground" lucideIcon={button.lucideIcon} />
               ) : undefined}
             >
               {button.text}
@@ -455,12 +449,13 @@ const splitCTAContentHooks = {
 
         <Group gap="md" align="center" className="flex-wrap">
           {content.buttons.map((button) => (
-            <Button rounded={theme?.themeRounded.default}
+            <Button
               key={button.id}
-              size="lg"
+              rounded={theme?.themeRounded.default}
+              size={theme?.themeButtonSize.default}
               variant={button.variant || "default"}
               leftSection={button.lucideIcon ? (
-                <Icon lucideIcon={button.lucideIcon} />
+                <Icon c="primary-foreground" lucideIcon={button.lucideIcon} />
               ) : undefined}
             >
               {button.text}
