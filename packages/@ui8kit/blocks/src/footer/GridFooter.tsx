@@ -4,7 +4,6 @@ import {
   Mail,
   Phone,
   MapPin,
-  Globe,
   Twitter,
   Instagram,
   Linkedin,
@@ -13,11 +12,7 @@ import {
   Github,
   ArrowRight,
   Send,
-  Heart,
-  Shield,
   Award,
-  Users,
-  Zap,
   ExternalLink
 } from "lucide-react";
 import {
@@ -41,8 +36,7 @@ export const theme = {
 }
 import { 
   LayoutBlock,
-  createLayoutContentHook,
-  type LayoutContentHooks
+  createLayoutContentHook
 } from "@ui8kit/core";
 
 // Reuse footer interfaces from SplitFooter
@@ -134,7 +128,7 @@ const gridFooterContentHooks = {
   // 1. Classic Columns Layout
   columns: createLayoutContentHook({
     header: (content: GridFooterData) => (
-      <Stack gap="lg" align="start" className="col-span-full">
+      <Stack gap="lg" align="start" className="col-span-full w-full">
         <Group gap="md" align="center">
           <Icon size="xl" lucideIcon={Building2} c="primary" />
           <Title order={2} size="2xl" fw="bold">
@@ -143,7 +137,7 @@ const gridFooterContentHooks = {
         </Group>
         
         {content.description && (
-          <Text c="secondary-foreground" className="max-w-md">
+          <Text c="secondary-foreground">
             {content.description}
           </Text>
         )}
@@ -179,18 +173,18 @@ const gridFooterContentHooks = {
     ),
     
     item: (section: FooterSection) => (
-      <Stack gap="md">
+      <Stack gap="md" className="w-full">
         <Title order={4} size="md" fw="semibold">
           {section.title}
         </Title>
         
-        <Stack gap="md">
+        <Stack gap="md" className="w-full">
           {section.links.map((link) => (
             <Text
               key={link.name}
               size="sm"
               c="secondary-foreground"
-              className="hover:text-primary transition-colors"
+              className="hover:text-primary transition-colors w-full"
             >
               {link.name}
             </Text>
@@ -203,7 +197,7 @@ const gridFooterContentHooks = {
   // 2. Mega Footer Layout
   mega: createLayoutContentHook({
     header: (content: GridFooterData) => (
-      <Stack gap="xl" align="start" className="col-span-full">
+      <Stack gap="xl" align="start" className="col-span-full w-full">
         {/* Top Section */}
         <Group gap="md" align="center" justify="between" className="w-full">
           <Group gap="md" align="center">
@@ -222,7 +216,7 @@ const gridFooterContentHooks = {
           
           {/* Newsletter Signup */}
           {content.newsletter && (
-            <Card p="md" rounded={theme?.themeRounded.default} shadow="sm" className="bg-card border max-w-sm">
+            <Card p="md" rounded={theme?.themeRounded.default} shadow="sm" className="bg-card border w-full">
               <Stack gap="md">
                 <Text size="sm" fw="semibold">
                   {content.newsletter.title || "Newsletter"}
@@ -243,7 +237,7 @@ const gridFooterContentHooks = {
 
         {/* Description and Features */}
         <Group gap="xl" align="start" className="w-full">
-          <Stack gap="md" className="flex-1 max-w-md">
+          <Stack gap="md" className="flex-1">
             {content.description && (
               <Text size="md" c="secondary-foreground">
                 {content.description}
@@ -271,7 +265,7 @@ const gridFooterContentHooks = {
 
           {/* Contact Info */}
           {content.contact && (
-            <Stack gap="md" className="min-w-[200px]">
+            <Stack gap="md" className="flex-shrink-0">
               <Text size="sm" fw="semibold">
                 Contact Info
               </Text>
@@ -327,18 +321,18 @@ const gridFooterContentHooks = {
     ),
     
     item: (section: FooterSection) => (
-      <Stack gap="md">
+      <Stack gap="md" className="w-full">
         <Title order={4} size="md" fw="semibold">
           {section.title}
         </Title>
         
-        <Stack gap="md">
+        <Stack gap="md" className="w-full">
           {section.links.map((link) => (
-            <Group key={link.name} gap="xs" align="center">
+            <Group key={link.name} gap="xs" align="center" className="w-full">
               <Text
                 size="sm"
                 c="secondary-foreground"
-                className="hover:text-primary transition-colors"
+                className="hover:text-primary transition-colors flex-1"
               >
                 {link.name}
               </Text>
@@ -353,7 +347,7 @@ const gridFooterContentHooks = {
   // 3. Compact Layout
   compact: createLayoutContentHook({
     header: (content: GridFooterData) => (
-      <Stack gap="md" align="center" ta="center" className="col-span-full">
+      <Stack gap="md" align="center" ta="center" className="col-span-full w-full">
         <Group gap="md" align="center">
           <Icon size="lg" lucideIcon={Building2} c="primary" />
           <Title order={3} size="lg" fw="bold">
@@ -377,12 +371,12 @@ const gridFooterContentHooks = {
     ),
     
     item: (section: FooterSection) => (
-      <Stack gap="md" align="center" ta="center">
+      <Stack gap="md" align="center" ta="center" className="w-full">
         <Text size="sm" fw="semibold">
           {section.title}
         </Text>
         
-        <Group gap="md" align="center" className="flex-wrap justify-center">
+        <Group gap="md" align="center" className="flex-wrap justify-center w-full">
           {section.links.slice(0, 4).map((link) => (
             <Text
               key={link.name}
@@ -401,9 +395,9 @@ const gridFooterContentHooks = {
   // 4. Newsletter Focused Layout
   newsletter: createLayoutContentHook({
     header: (content: GridFooterData) => (
-      <Stack gap="xl" align="center" ta="center" className="col-span-full">
+      <Stack gap="xl" align="center" ta="center" className="col-span-full w-full">
         {/* Newsletter Section */}
-        <Card p="xl" rounded={theme?.themeRounded.default} shadow="lg" className="bg-primary/5 border-primary/20 max-w-lg w-full">
+        <Card p="xl" rounded={theme?.themeRounded.default} shadow="lg" className="bg-primary/5 border-primary/20 w-full">
           <Stack gap="lg" align="center">
             <Group gap="md" align="center">
               <Icon size="xl" lucideIcon={Mail} c="primary" />
@@ -442,7 +436,7 @@ const gridFooterContentHooks = {
           </Group>
           
           {content.description && (
-            <Text c="secondary-foreground" ta="center" className="max-w-md">
+            <Text c="secondary-foreground" ta="center">
               {content.description}
             </Text>
           )}
@@ -459,18 +453,18 @@ const gridFooterContentHooks = {
     ),
     
     item: (section: FooterSection) => (
-      <Stack gap="md" align="center" ta="center">
+      <Stack gap="md" align="center" ta="center" className="w-full">
         <Text size="sm" fw="semibold">
           {section.title}
         </Text>
         
-        <Stack gap="xs" align="center">
+        <Stack gap="xs" align="center" className="w-full">
           {section.links.slice(0, 3).map((link) => (
             <Text
               key={link.name}
               size="sm"
               c="secondary-foreground"
-              className="hover:text-primary transition-colors"
+              className="hover:text-primary transition-colors w-full"
             >
               {link.name}
             </Text>
@@ -483,7 +477,7 @@ const gridFooterContentHooks = {
   // 5. Sitemap Layout
   sitemap: createLayoutContentHook({
     header: (content: GridFooterData) => (
-      <Stack gap="lg" align="start" className="col-span-full">
+      <Stack gap="lg" align="start" className="col-span-full w-full">
         <Group gap="md" align="center" justify="between" className="w-full">
           <Stack gap="md">
             <Group gap="md" align="center">
@@ -494,7 +488,7 @@ const gridFooterContentHooks = {
             </Group>
             
             {content.description && (
-              <Text c="secondary-foreground" className="max-w-md">
+              <Text c="secondary-foreground">
                 {content.description}
               </Text>
             )}
@@ -549,27 +543,27 @@ const gridFooterContentHooks = {
     ),
     
     item: (section: FooterSection, index: number) => (
-      <Card p="md" rounded={theme?.themeRounded.default} shadow="sm" className="bg-card border h-full">
-        <Stack gap="md">
-          <Group gap="md" align="center">
+      <Card p="md" rounded={theme?.themeRounded.default} shadow="sm" className="bg-card border h-full w-full">
+        <Stack gap="md" className="w-full">
+          <Group gap="md" align="center" className="w-full">
             <Box className="w-8 h-8 bg-primary/10 rounded-md flex items-center justify-center">
               <Text size="xs" fw="bold" c="primary">
                 {section.links.length}
               </Text>
             </Box>
-            <Title order={4} size="md" fw="semibold">
+            <Title order={4} size="md" fw="semibold" className="flex-1">
               {section.title}
             </Title>
           </Group>
           
-          <Stack gap="xs">
+          <Stack gap="xs" className="w-full">
             {section.links.map((link) => (
-              <Group key={link.name} gap="xs" align="center">
+              <Group key={link.name} gap="xs" align="center" className="w-full">
                 <Box className="w-1 h-1 bg-secondary-foreground rounded-full" />
                 <Text
                   size="sm"
                   c="secondary-foreground"
-                  className="hover:text-primary transition-colors"
+                  className="hover:text-primary transition-colors flex-1"
                 >
                   {link.name}
                 </Text>
@@ -581,7 +575,7 @@ const gridFooterContentHooks = {
             <Text
               size="xs"
               c="primary"
-              className="hover:underline"
+              className="hover:underline w-full"
             >
               View all {section.links.length} items →
             </Text>
@@ -609,15 +603,15 @@ export const GridFooter = forwardRef<HTMLElement, GridFooterProps>(
     const getLayoutConfig = () => {
       switch (variant) {
         case "mega":
-          return { layout: "grid" as const, cols: "1-2-4" };
+          return { layout: "grid" as const, cols: "1-3-6", containerSize: "6xl" as const };
         case "compact":
-          return { layout: "grid" as const, cols: "1-2-4" };
+          return { layout: "grid" as const, cols: "1-2-4", containerSize: "4xl" as const };
         case "newsletter":
-          return { layout: "grid" as const, cols: "1-2-4" };
+          return { layout: "grid" as const, cols: "1-2-4", containerSize: "4xl" as const };
         case "sitemap":
-          return { layout: "grid" as const, cols: "1-2-3" };
+          return { layout: "grid" as const, cols: "1-2-4", containerSize: "6xl" as const };
         default: // columns
-          return { layout: "grid" as const, cols: "1-2-4" };
+          return { layout: "grid" as const, cols: "1-2-6", containerSize: "4xl" as const };
       }
     };
 
@@ -626,13 +620,20 @@ export const GridFooter = forwardRef<HTMLElement, GridFooterProps>(
     return (
       <LayoutBlock
         ref={ref}
-        component="footer"
         layout={layoutConfig.layout}
-        cols={layoutConfig.cols}
+        gridCols={layoutConfig.cols as "1-2-3" | "1-2-3-4" | "1-2" | "1" | "2" | "3" | "4" | "5" | "6" | "1-3" | "1-4" | "1-5" | "1-6" | "2-3" | "2-4" | "2-5" | "2-6" | "3-4" | "3-5" | "3-6" | "4-5" | "4-6" | "5-6" | "1-2-4" | "1-2-6" | "1-3-4" | "1-3-6" | "2-3-4" | undefined}
         useContainer={useContainer}
+        containerSize={layoutConfig.containerSize}
         py={py}
         showHeader={true}
-        content={{ ...content, items: content.sections }}
+        content={{ 
+          ...content, 
+          items: content.sections.map((section, index) => ({
+            ...section,
+            id: `section-${index}`,
+            description: `${section.links.length} links`
+          }))
+        }}
         contentHooks={contentHooks}
         className={className}
         {...props}

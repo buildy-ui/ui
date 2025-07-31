@@ -13,10 +13,7 @@ import {
   Github,
   ArrowRight,
   Send,
-  Heart,
-  Shield,
   Award,
-  Users,
   Zap
 } from "lucide-react";
 import {
@@ -40,9 +37,8 @@ export const theme = {
 }
 import { 
   SplitBlock,
-  createContentHook,
-  type ContentHooks
-} from "@ui8kit/core/factory/SplitBlock";
+  createContentHook
+} from "@ui8kit/core";
 
 // Footer interfaces
 export interface FooterLink {
@@ -593,7 +589,7 @@ export const SplitFooter = forwardRef<HTMLElement, SplitFooterProps>(
       switch (variant) {
         case "brand":
           return (
-            <Box className="relative min-h-[400px] bg-gradient-to-br from-primary/20 via-primary/10 to-transparent rounded-lg overflow-hidden flex items-center justify-center">
+            <Box className="relative h-full w-full p-6 bg-gradient-to-br from-primary/20 via-primary/10 to-transparent rounded-lg overflow-hidden flex items-center justify-center">
               <Stack gap="xl" align="center" className="relative z-10">
                 <Box className="w-32 h-32 bg-primary/10 rounded-full flex items-center justify-center">
                   <Icon lucideIcon={Building2} c="primary" />
@@ -612,7 +608,7 @@ export const SplitFooter = forwardRef<HTMLElement, SplitFooterProps>(
 
         case "newsletter":
           return (
-            <Box className="relative min-h-[400px] bg-gradient-to-br from-blue-500/20 via-indigo-500/20 to-purple-500/20 rounded-lg overflow-hidden flex items-center justify-center">
+            <Box className="relative h-full w-full p-6 bg-gradient-to-br from-blue-500/20 via-indigo-500/20 to-purple-500/20 rounded-lg overflow-hidden flex items-center justify-center">
               <Stack gap="xl" align="center" className="relative z-10">
                 <Box className="w-32 h-32 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center">
                   <Icon lucideIcon={Mail} c="secondary-foreground" />
@@ -631,7 +627,7 @@ export const SplitFooter = forwardRef<HTMLElement, SplitFooterProps>(
 
         case "contact":
           return (
-            <Box className="relative min-h-[400px] bg-gradient-to-br from-green-500/20 via-teal-500/20 to-blue-500/20 rounded-lg overflow-hidden flex items-center justify-center">
+            <Box className="relative h-full w-full p-6 bg-gradient-to-br from-green-500/20 via-teal-500/20 to-blue-500/20 rounded-lg overflow-hidden flex items-center justify-center">
               <Stack gap="lg" align="center" className="relative z-10">
                 <Box className="grid grid-cols-2 gap-md max-w-sm">
                   {[Phone, Mail, MapPin, Globe].map((LucideIcon, index) => (
@@ -652,7 +648,7 @@ export const SplitFooter = forwardRef<HTMLElement, SplitFooterProps>(
 
         case "social":
           return (
-            <Box className="relative min-h-[400px] bg-gradient-to-br from-pink-500/20 via-purple-500/20 to-indigo-500/20 rounded-lg overflow-hidden flex items-center justify-center">
+            <Box className="relative h-full w-full p-6 bg-gradient-to-br from-pink-500/20 via-purple-500/20 to-indigo-500/20 rounded-lg overflow-hidden flex items-center justify-center">
               <Stack gap="lg" align="center" className="relative z-10">
                 <Box className="grid grid-cols-3 gap-md max-w-md">
                   {[
@@ -682,7 +678,7 @@ export const SplitFooter = forwardRef<HTMLElement, SplitFooterProps>(
 
         case "minimal":
           return (
-            <Box className="relative min-h-[400px] bg-gradient-to-br from-gray-500/20 via-slate-500/20 to-zinc-500/20 rounded-lg overflow-hidden flex items-center justify-center">
+            <Box className="relative h-full w-full p-6 bg-gradient-to-br from-gray-500/20 via-slate-500/20 to-zinc-500/20 rounded-lg overflow-hidden flex items-center justify-center">
               <Stack gap="xl" align="center" className="relative z-10">
                 <Box className="w-32 h-32 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center">
                   <Icon lucideIcon={Zap} c="secondary-foreground" />
@@ -701,7 +697,7 @@ export const SplitFooter = forwardRef<HTMLElement, SplitFooterProps>(
 
         default:
           return (
-            <Box className="relative min-h-[400px] bg-gradient-to-br from-primary/20 to-transparent rounded-lg flex items-center justify-center">
+            <Box className="relative h-full w-full p-6 bg-gradient-to-br from-primary/20 to-transparent rounded-lg flex items-center justify-center">
               <Icon lucideIcon={Building2} c="primary" className="opacity-20" />
             </Box>
           );
@@ -718,7 +714,7 @@ export const SplitFooter = forwardRef<HTMLElement, SplitFooterProps>(
         splitSection={!useContainer}
         containerSize="lg"
         py={py}
-        gap="none"
+        gap="lg"
         className={className}
         {...props}
       />

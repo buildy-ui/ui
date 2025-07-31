@@ -9,8 +9,8 @@
 // import FeaturesBlocks from "./blocks/features";
 // import GalleryBlocks from "./blocks/gallery";
 // import TeamBlocks from "./blocks/team";
-import TestimonialBlocks from "./blocks/testimonial";
-// import FooterBlocks from "./blocks/footer"; // Uncommented
+// import TestimonialBlocks from "./blocks/testimonial";
+import FooterBlocks from "./blocks/footer"; // Uncommented
 
 // Core UI Examples
 // import CoreUI from "./CoreUI"; 
@@ -27,9 +27,9 @@ function Blocks() {
       {/* <FeaturesBlocks /> */}
       {/* <GalleryBlocks /> */}
       {/* <TeamBlocks /> */}
-      <TestimonialBlocks />
+      {/* <TestimonialBlocks /> */}
       {/* <BusinessBlocks /> */}
-      {/* <FooterBlocks /> */}
+      <FooterBlocks />
     </div>
   );
 }
