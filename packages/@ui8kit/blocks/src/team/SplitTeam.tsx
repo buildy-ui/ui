@@ -92,7 +92,7 @@ interface SplitTeamProps {
 }
 
 // Render social links component
-const RenderSocialLinks = ({ social, size = "sm" }: { social?: TeamMember['social']; size?: "xs" | "sm" | "md" }) => {
+const RenderSocialLinks = ({ social, size: _size = "sm" }: { social?: TeamMember['social']; size?: "xs" | "sm" | "md" }) => {
   if (!social) return null;
   
   return (

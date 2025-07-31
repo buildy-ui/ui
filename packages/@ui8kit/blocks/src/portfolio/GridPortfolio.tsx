@@ -5,17 +5,10 @@ import {
   Github,
   Calendar,
   User,
-  Tag,
-  Award,
-  Briefcase,
-  Code,
-  Palette,
-  Camera,
-  Monitor
+  Award
 } from "lucide-react";
 import {
   Stack,
-  Grid,
   Group,
   Title,
   Text,
@@ -37,9 +30,7 @@ const theme = {
 }
 import { 
   LayoutBlock,
-  createLayoutContentHook,
-  defaultLayoutContentHooks,
-  type LayoutContentHooks
+  createLayoutContentHook
 } from "@ui8kit/core";
 
 // Portfolio interfaces

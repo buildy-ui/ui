@@ -1,20 +1,13 @@
 import { GridBusiness, type GridBusinessData } from "./GridBusiness";
 import { 
-  Zap, 
   Shield, 
-  Rocket, 
   Users, 
   BarChart, 
-  Globe,
   Building,
-  Target,
   TrendingUp,
-  Award,
-  Briefcase,
   Code,
   Database,
   Cloud,
-  Lock,
   Smartphone
 } from "lucide-react";
 
@@ -279,7 +272,7 @@ export const GridBusinessPricingYearExample = () => {
       cols="1-2-3"
       gap="lg"
       py="xl"
-      showYearlyToggle={true}
+      _showYearlyToggle={true}
       className="bg-gradient-to-br from-primary/5 to-secondary/5"
     />
   );

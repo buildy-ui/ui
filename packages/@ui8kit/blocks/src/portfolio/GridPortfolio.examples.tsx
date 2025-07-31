@@ -6,9 +6,9 @@ import {
   Smartphone,
   Globe,
   Award,
-  Briefcase,
-  User,
-  Calendar
+
+
+
 } from "lucide-react";
 import { GridPortfolio, type GridPortfolioData } from "./GridPortfolio";
 

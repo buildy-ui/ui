@@ -1,4 +1,4 @@
-import { forwardRef, useState } from "react";
+import { forwardRef } from "react";
 import { ArrowRight, Calendar, Clock, User, Tag } from "lucide-react";
 import {
   Stack,
@@ -65,7 +65,7 @@ export interface GridBlogProps {
   gap?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
   useContainer?: boolean;
   py?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
-  showFilters?: boolean;
+  _showFilters?: boolean;
   className?: string;
 }
 
@@ -215,28 +215,24 @@ const gridBlogContentHooks = {
     )
   }),
 
-  // Filtered variant
+  // Filtered variant - Note: State management should be handled at component level
   filtered: createLayoutContentHook({
     beforeItems: (content: GridBlogData) => {
-      const [activeCategory, setActiveCategory] = useState("all");
-      
       return content.categories ? (
         <Group gap="md" align="center" justify="center" className="flex-wrap">
           <Button
-            variant={activeCategory === "all" ? "default" : "outline"}
+            variant="default"
             rounded={theme?.themeRounded.default}
             size={theme?.themeButtonSize.default}
-            onClick={() => setActiveCategory("all")}
           >
             All
           </Button>
           {content.categories.map((category) => (
             <Button
               key={category.id}
-              variant={activeCategory === category.id ? "default" : "outline"}
+              variant="outline"
               rounded={theme?.themeRounded.default}
               size={theme?.themeButtonSize.default}
-              onClick={() => setActiveCategory(category.id)}
             >
               {category.name}
             </Button>
@@ -244,7 +240,7 @@ const gridBlogContentHooks = {
         </Group>
       ) : null;
     },
-    item: (post: BlogPost, index: number) => (
+    item: (post: BlogPost, _index: number) => (
       <Card key={post.id} p="md" rounded={theme?.themeRounded.default} shadow="sm" bg="card" className="hover:shadow-md transition-shadow">
         <Stack gap="md" align="start">
           {post.image && (
@@ -436,7 +432,7 @@ export const GridBlog = forwardRef<HTMLElement, GridBlogProps>(
     gap = "lg",
     useContainer = true,
     py = "xl",
-    showFilters = false,
+    _showFilters = false,
     className,
     ...props 
   }, ref) => {
@@ -538,7 +534,7 @@ export const gridBlogTemplates = {
     name: "Filtered Blog Grid",
     description: "Grid layout with category filters",
     component: GridBlog,
-    defaultProps: { variant: "filtered" as const, showFilters: true }
+    defaultProps: { variant: "filtered" as const, _showFilters: true }
   },
 
   compact: {

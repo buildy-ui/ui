@@ -4,11 +4,11 @@ import {
   Camera,
   Monitor,
   Smartphone,
-  Globe,
+
   Award,
-  Briefcase,
-  User,
-  Calendar
+
+
+
 } from "lucide-react";
 import { SplitPortfolio, type SplitPortfolioData } from "./SplitPortfolio";
 

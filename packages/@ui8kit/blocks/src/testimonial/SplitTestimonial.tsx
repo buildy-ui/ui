@@ -198,7 +198,7 @@ const splitTestimonialContentHooks = {
 
         {/* Testimonials Stack */}
         <Stack gap="lg" className="w-full">
-          {content.testimonials.slice(0, 3).map((testimonial, index) => (
+          {content.testimonials.slice(0, 3).map((testimonial, _index) => (
             <Card key={testimonial.id} p="lg" rounded={theme?.themeRounded.default} shadow="sm" className="bg-card border flex flex-col gap-4">
                 <Group gap="md" align="start" justify="between">
                   <RenderStars rating={testimonial.rating} />

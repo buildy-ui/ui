@@ -1,11 +1,11 @@
 import { 
-  HelpCircle,
-  MessageSquare,
+
+
   Shield,
   Zap,
   Users,
   Settings,
-  FileText,
+
   CreditCard,
   Smartphone,
   Globe,

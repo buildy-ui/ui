@@ -1,13 +1,13 @@
 import { 
-  Zap, 
+ 
   Shield, 
-  Rocket, 
+ 
   Users, 
   BarChart, 
   Globe,
   ZoomIn,
-  BarChartHorizontal,
-  CircleHelp,
+
+
   Code,
   Database,
   Cloud,

@@ -1,0 +1,19 @@
+# Development files
+node_modules/
+dist/
+*.tsbuildinfo
+tsconfig*.json
+.vscode/
+.git/
+
+# Test files
+**/*.test.*
+**/*.spec.*
+__tests__/
+
+# Documentation (if you don't want to include)
+docs/
+
+# Build artifacts
+*.log
+*.tmp

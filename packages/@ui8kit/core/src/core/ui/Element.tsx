@@ -1,4 +1,5 @@
-import { forwardRef, ElementType, ReactNode } from "react";
+import type { ElementType, ReactNode } from "react";
+import { forwardRef } from "react";
 import { cn } from "../utils";
 
 export interface ElementProps {

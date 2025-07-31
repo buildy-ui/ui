@@ -1,4 +1,5 @@
-import { forwardRef, ImgHTMLAttributes } from "react";
+import type { ImgHTMLAttributes } from "react";
+import { forwardRef } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../utils";
 

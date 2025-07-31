@@ -175,7 +175,7 @@ export const GridBlogFilteredExample = () => {
       cols="1-2-3"
       gap="lg"
       py="xl"
-      showFilters={true}
+      _showFilters={true}
     />
   );
 };

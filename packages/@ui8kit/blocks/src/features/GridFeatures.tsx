@@ -1,14 +1,5 @@
 import { forwardRef } from "react";
 import { 
-  Zap, 
-  Shield, 
-  Rocket, 
-  Users, 
-  BarChart, 
-  Globe,
-  ZoomIn,
-  BarChartHorizontal,
-  CircleHelp,
   ArrowRight,
   Briefcase,
   MapPin,
@@ -16,11 +7,9 @@ import {
 } from "lucide-react";
 import {
   Stack,
-  Grid,
   Group,
   Title,
   Text,
-  Badge,
   Button,
   Image,
   Icon,
@@ -39,8 +28,6 @@ const theme = {
 import { 
   LayoutBlock,
   createLayoutContentHook,
-  defaultLayoutContentHooks,
-  type LayoutContentHooks,
   type LayoutType
 } from "@ui8kit/core";
 

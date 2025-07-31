@@ -1,7 +1,0 @@
-{
-  "extends": "./tsconfig.json",
-  "exclude": ["./esm", "./cjs", "**/*.test.tsx", "**/*.test.ts"],
-  "compilerOptions": {
-    "declarationDir": "./lib"
-  }
-}

@@ -1,10 +1,11 @@
 {
   "name": "@ui8kit/core",
-  "version": "0.1.0",
+  "version": "0.1.4",
   "description": "Open source React UI components library with Tailwind utility-first and semantic classes",
   "homepage": "https://buildy.tw/",
   "license": "MIT",
   "author": "buildy-ui",
+  "type": "module",
   "keywords": [
     "components",
     "design",
@@ -17,23 +18,21 @@
     "ui",
     "ui8kit"
   ],
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "import": {
-        "types": "./dist/index.d.mts",
-        "default": "./dist/index.mjs"
-      },
-      "require": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.cjs"
-      }
-    },
-    "./styles.css": "./styles.css",
-    "./styles/*": "./styles/*"
+  "scripts": {
+    "lint": "eslint src --ext .ts,.tsx",
+    "lint:fix": "eslint src --ext .ts,.tsx --fix"
   },
+  "sideEffects": false,
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "files": [
+    "src/**/*",
+    "README.md",
+    "LICENSE"
+  ],
   "repository": {
     "url": "https://github.com/buildy-ui/ui.git",
     "type": "git",

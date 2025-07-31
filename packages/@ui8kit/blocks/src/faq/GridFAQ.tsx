@@ -1,21 +1,10 @@
 import { forwardRef } from "react";
 import { 
-  HelpCircle,
-  MessageSquare,
-  Shield,
-  Zap,
-  Users,
-  Settings,
-  FileText,
-  CreditCard,
-  Smartphone,
-  Globe,
-  Lock,
-  LifeBuoy
+  LifeBuoy,
+  MessageSquare
 } from "lucide-react";
 import {
   Stack,
-  Grid,
   Group,
   Title,
   Text,
@@ -40,9 +29,7 @@ const theme = {
 }
 import { 
   LayoutBlock,
-  createLayoutContentHook,
-  defaultLayoutContentHooks,
-  type LayoutContentHooks
+  createLayoutContentHook
 } from "@ui8kit/core";
 
 // FAQ interfaces

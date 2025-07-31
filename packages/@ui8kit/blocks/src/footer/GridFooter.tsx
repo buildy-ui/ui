@@ -109,7 +109,7 @@ const RenderSocialLinks = ({ social, size = "md" }: { social?: FooterSocial; siz
 
   return (
     <Group gap="md" align="center">
-      {socialLinks.map(({ key, icon: LucideIcon, url }) => (
+      {socialLinks.map(({ key, icon: LucideIcon, url: _url }) => (
         <Icon 
           key={key}
           rel="noopener noreferrer"
@@ -542,7 +542,7 @@ const gridFooterContentHooks = {
       </Stack>
     ),
     
-    item: (section: FooterSection, index: number) => (
+    item: (section: FooterSection, _index: number) => (
       <Card p="md" rounded={theme?.themeRounded.default} shadow="sm" className="bg-card border h-full w-full">
         <Stack gap="md" className="w-full">
           <Group gap="md" align="center" className="w-full">

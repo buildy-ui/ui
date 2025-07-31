@@ -1,4 +1,5 @@
-import { forwardRef, ReactNode } from "react";
+import type { ReactNode } from "react";
+import { forwardRef } from "react";
 import {
   Grid as BaseGrid,
   Element as BaseElement,

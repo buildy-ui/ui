@@ -1,4 +1,5 @@
-import { forwardRef, ReactNode } from "react";
+import type { ReactNode } from "react";
+import { forwardRef } from "react";
 import {
   Button as BaseButton,
   spacingVariants,
@@ -67,7 +68,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           roundedVariants({ rounded }),
           shadowVariants({ shadow }),
           layoutVariants({ w }),
-          mr = mr,
+          // Apply mr spacing for icons
+          `mr-${mr}`,
           // Loading state
           loading && 'cursor-wait',
           className

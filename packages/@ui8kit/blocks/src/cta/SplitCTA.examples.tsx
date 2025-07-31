@@ -3,11 +3,11 @@ import {
   Play, 
   Download, 
   ExternalLink, 
-  Smartphone,
-  Monitor,
-  Tablet,
-  CheckCircle,
-  Star,
+
+
+
+
+
   Users,
   TrendingUp,
   Award,

@@ -1,7 +1,7 @@
 import { 
   ArrowRight, 
   Play, 
-  Download, 
+ 
   ExternalLink, 
   Star, 
   Rocket, 

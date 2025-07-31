@@ -1,10 +1,11 @@
 {
   "name": "@ui8kit/blocks",
-  "version": "0.1.0",
+  "version": "0.1.7",
   "description": "A collection of 50+ blocks for state and UI management for buildy",
   "homepage": "https://buildy.tw",
   "license": "MIT",
   "author": "buildy-ui",
+  "type": "module",
   "keywords": [
     "frontend",
     "blocks",
@@ -16,6 +17,10 @@
     "react-blocks",
     "state"
   ],
+  "scripts": {
+    "lint": "eslint src --ext .ts,.tsx",
+    "lint:fix": "eslint src --ext .ts,.tsx --fix"
+  },
   "sideEffects": false,
   "main": "./src/index.ts",
   "types": "./src/index.ts",
@@ -44,8 +49,12 @@
     "type": "git",
     "directory": "packages/@ui8kit/blocks"
   },
+  "dependencies": {
+    "@ui8kit/core": "^0.1.4",
+    "@ui8kit/theme": "^0.1.2"
+  },
   "peerDependencies": {
-    "react": "^19.1.0",
+    "react": "19.1.0",
     "react-dom": "^19.1.0",
     "lucide-react": "^0.525.0"
   },

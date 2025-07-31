@@ -106,7 +106,7 @@ export interface GridBusinessProps {
   gap?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
   useContainer?: boolean;
   py?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
-  showYearlyToggle?: boolean;
+  _showYearlyToggle?: boolean;
   className?: string;
 }
 
@@ -114,7 +114,7 @@ export interface GridBusinessProps {
 const gridBusinessContentHooks = {
   // Business cards gallery variant
   cardsGallery: createLayoutContentHook({
-    item: (card: BusinessCard, index: number) => (
+    item: (card: BusinessCard, _index: number) => (
       <Card 
         key={card.id} 
         p="lg" 
@@ -297,7 +297,7 @@ const gridBusinessContentHooks = {
 
   // Pricing with year toggle variant
   pricingYear: createLayoutContentHook({
-    beforeItems: (content: GridBusinessData) => (
+    beforeItems: (_content: GridBusinessData) => (
       <Group gap="md" align="center" justify="center" className="mb-lg">
         <Text c="secondary-foreground">Monthly</Text>
         <Button
@@ -472,7 +472,7 @@ export const GridBusiness = forwardRef<HTMLElement, GridBusinessProps>(
     gap = "lg",
     useContainer = true,
     py = "xl",
-    showYearlyToggle = false,
+    _showYearlyToggle = false,
     className,
     ...props 
   }, ref) => {
@@ -588,7 +588,7 @@ export const gridBusinessTemplates = {
     name: "Pricing Grid with Yearly Toggle",
     description: "Grid layout with monthly/yearly pricing toggle",
     component: GridBusiness,
-    defaultProps: { variant: "pricingYear" as const, showYearlyToggle: true }
+    defaultProps: { variant: "pricingYear" as const, _showYearlyToggle: true }
   },
 
   career: {

@@ -111,7 +111,7 @@ const RenderSocialLinks = ({ social, size = "md" }: { social?: FooterSocial; siz
 
   return (
     <Group gap="md" align="center">
-      {socialLinks.map(({ key, icon: LucideIcon, url }) => (
+      {socialLinks.map(({ key, icon: LucideIcon, url: _url }) => (
         <Icon 
           key={key}
           component="a" 

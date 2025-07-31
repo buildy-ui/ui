@@ -1,4 +1,4 @@
-import { Info, Rocket, ExternalLink, Play, ArrowRight, Users, Globe, Heart } from "lucide-react";
+import { Info, Rocket, Play, ArrowRight, Heart } from "lucide-react";
 import { CenteredHero, type CenteredHeroData } from "./CenteredHero";
 
 // ===== CENTERED HERO EXAMPLES =====

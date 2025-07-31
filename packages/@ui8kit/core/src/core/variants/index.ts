@@ -21,8 +21,8 @@ import type { ShadowProps } from './shadow';
 import type { ColorProps } from './colors';
 import type { BorderProps } from './border';
 import type { VariantLayoutProps } from './layout';
-import type { VariantFlexProps, VariantGridProps } from './flex';
-import type { SizingProps, ContainerSizingProps, IconSizingProps } from './sizing';
+import type { VariantGridProps } from './flex';
+import type {  } from './sizing';
 
 import type {
   ButtonSizeProps,

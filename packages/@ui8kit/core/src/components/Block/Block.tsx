@@ -1,4 +1,5 @@
-import { forwardRef, ReactNode, ElementType } from "react";
+import type { ReactNode, ElementType } from "react";
+import { forwardRef } from "react";
 import {
   Block as BaseBlock,
   spacingVariants,

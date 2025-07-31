@@ -1,4 +1,5 @@
-import { forwardRef, ReactNode } from "react";
+import type { ReactNode, ElementType } from "react";
+import { forwardRef } from "react";
 import {
   Element,
   spacingVariants,
@@ -52,7 +53,7 @@ export const Title = forwardRef<HTMLHeadingElement, TitleProps>(
     w,
     ...props 
   }, ref) => {
-    const headingTag = `h${order}` as keyof JSX.IntrinsicElements;
+    const headingTag = `h${order}` as ElementType;
 
     return (
       <Element

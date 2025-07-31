@@ -1,4 +1,5 @@
-import { forwardRef, ReactNode } from "react";
+import type { ReactNode } from "react";
+import { forwardRef } from "react";
 import {
   Block,
   Container,
@@ -34,7 +35,7 @@ export interface LayoutBlockProps {
   // Container settings
   useContainer?: boolean;
   containerSize?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "4xl" | "6xl" | "full";
-  padding?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
+  padding?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | null;
   py?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
 
   // Grid settings (for layout="grid")
@@ -45,7 +46,6 @@ export interface LayoutBlockProps {
   justify?: "start" | "center" | "end" | "between" | "around" | "evenly";
 
   // Flex settings (for layout="flex")
-  direction?: "row" | "col" | "row-reverse" | "col-reverse";
   wrap?: "wrap" | "nowrap" | "wrap-reverse";
   flexWrap?: boolean;
 
@@ -122,7 +122,7 @@ const DefaultHeaderRenderer = ({ content, align = "center" }: { content: any; al
 // Default item renderers for different layouts
 const DefaultItemRenderers = {
   // Card-based grid item
-  gridCard: (item: any, index: number) => (
+  gridCard: (item: any, _index: number) => (
     <Card p="lg" rounded="lg" shadow="sm" className="h-full">
       <Stack gap="md" align="start">
         {item.image && (
@@ -165,7 +165,7 @@ const DefaultItemRenderers = {
   ),
 
   // Simple grid item
-  gridSimple: (item: any, index: number) => (
+  gridSimple: (item: any, _index: number) => (
     <Stack gap="md" align="start">
       {item.lucideIcon && (
         <Box 
@@ -195,7 +195,7 @@ const DefaultItemRenderers = {
   ),
 
   // Flex/Stack item
-  flexItem: (item: any, index: number) => (
+  flexItem: (item: any, _index: number) => (
     <Group gap="md" align="start">
       {item.lucideIcon && (
         <Box 
@@ -257,14 +257,14 @@ export const LayoutBlock = forwardRef<HTMLElement, LayoutBlockProps>(
     layout = "grid",
     useContainer = true,
     containerSize = "lg",
-    padding = "responsive",
+    padding = "md",
     py = "xl",
     cols,
     gridCols, // Add gridCols prop
     gap = "lg",
     align = "start",
     justify = "start",
-    direction = "row",
+
     wrap = "wrap",
     flexWrap, // Add flexWrap prop
     stackAlign = "start",
@@ -371,7 +371,7 @@ export const LayoutBlock = forwardRef<HTMLElement, LayoutBlockProps>(
         {...props}
       >
         {useContainer ? (
-          <Container size={containerSize} centered>
+          <Container size={containerSize} px={padding} centered>
             {mainContent}
           </Container>
         ) : (
