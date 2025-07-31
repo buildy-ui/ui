@@ -16,23 +16,20 @@ import {
 } from "@ui8kit/core";
 import { skyOSTheme } from "@ui8kit/theme";
 
-export const currentTheme = skyOSTheme;
+const currentTheme = skyOSTheme;
 
-export const theme = {
+const theme = {
   theme: currentTheme,
   themeRounded: currentTheme.rounded,
   themeButtonSize: currentTheme.buttonSize
 }
 import { 
   SplitBlock, 
-  createContentHook, 
-  defaultContentHooks, 
-  advancedContentHooks,
-  type ContentHooks 
+  createContentHook
 } from "@ui8kit/core";
 
 // Blog post interface (reuse from GridBlog)
-export interface BlogPost {
+interface BlogPost {
   id: string;
   title: string;
   description: string;

@@ -2,7 +2,6 @@ import { forwardRef, useState } from "react";
 import { ArrowRight, Calendar, Clock, User, Tag } from "lucide-react";
 import {
   Stack,
-  Grid,
   Group,
   Title,
   Text,
@@ -15,18 +14,16 @@ import {
 } from "@ui8kit/core";
 import { skyOSTheme } from "@ui8kit/theme";
 
-export const currentTheme = skyOSTheme;
+const currentTheme = skyOSTheme;
 
-export const theme = {
+const theme = {
   theme: currentTheme,
   themeRounded: currentTheme.rounded,
   themeButtonSize: currentTheme.buttonSize
 }
 import { 
   LayoutBlock,
-  createLayoutContentHook,
-  defaultLayoutContentHooks,
-  type LayoutContentHooks
+  createLayoutContentHook
 } from "@ui8kit/core";
 
 // Blog post interface

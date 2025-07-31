@@ -11,9 +11,7 @@ import {
   Briefcase,
   Heart,
   Coffee,
-  MapPin,
-  Calendar,
-  Image as ImageIcon
+  MapPin
 } from "lucide-react";
 import {
   Stack,
@@ -29,9 +27,9 @@ import {
 } from "@ui8kit/core";
 import { skyOSTheme } from "@ui8kit/theme";
 
-export const currentTheme = skyOSTheme;
+const currentTheme = skyOSTheme;
 
-export const theme = {
+const theme = {
   theme: currentTheme,
   themeRounded: currentTheme.rounded,
   themeButtonSize: currentTheme.buttonSize
@@ -39,14 +37,14 @@ export const theme = {
 import { 
   SplitBlock,
   createContentHook,
-  type ContentHooks
-} from "@ui8kit/core/factory/SplitBlock";
+} from "@ui8kit/core";
 
 // Team member interfaces
-export interface TeamMember {
+interface TeamMember {
   id: string;
   name: string;
   position: string;
+  description: string;
   department?: string;
   bio?: string;
   avatar?: {
@@ -84,7 +82,7 @@ export interface SplitTeamData {
   };
 }
 
-export interface SplitTeamProps {
+interface SplitTeamProps {
   content: SplitTeamData;
   variant?: "leadership" | "showcase" | "hiring" | "culture" | "departments";
   mediaPosition?: "left" | "right";
@@ -100,46 +98,28 @@ const RenderSocialLinks = ({ social, size = "sm" }: { social?: TeamMember['socia
   return (
     <Group gap="md" align="center">
       {social.linkedin && (
-        <Icon 
-          component="a" 
-          href={social.linkedin} 
-          target="_blank" 
-          rel="noopener noreferrer"
-          size={size} 
+        <Icon
           lucideIcon={Linkedin} 
           c="secondary-foreground"
           className="hover:text-primary transition-colors cursor-pointer"
         />
       )}
       {social.twitter && (
-        <Icon 
-          component="a" 
-          href={social.twitter} 
-          target="_blank" 
-          rel="noopener noreferrer"
-          size={size} 
+        <Icon
           lucideIcon={Twitter} 
           c="secondary-foreground"
           className="hover:text-primary transition-colors cursor-pointer"
         />
       )}
       {social.website && (
-        <Icon 
-          component="a" 
-          href={social.website} 
-          target="_blank" 
-          rel="noopener noreferrer"
-          size={size} 
+        <Icon
           lucideIcon={Globe} 
           c="secondary-foreground"
           className="hover:text-primary transition-colors cursor-pointer"
         />
       )}
       {social.email && (
-        <Icon 
-          component="a" 
-          href={`mailto:${social.email}`}
-          size={size} 
+        <Icon
           lucideIcon={Mail} 
           c="secondary-foreground"
           className="hover:text-primary transition-colors cursor-pointer"
@@ -365,7 +345,7 @@ const splitTeamContentHooks = {
         {/* Sample Team Members */}
         <Stack gap="md" className="w-full">
           {content.members.slice(0, 3).map((member) => (
-            <Group key={member.id} gap="md" align="center" className="bg-card" p="sm" rounded={theme?.themeRounded.default} data-class="hiring-member-card">
+            <Group key={member.id} gap="md" align="center" className="bg-card rounded-lg" p="sm"  data-class="hiring-member-card">
               {member.avatar ? (
                 <Image
                   src={member.avatar.src}
@@ -472,7 +452,7 @@ const splitTeamContentHooks = {
 
         {/* Featured Culture Highlights */}
         <Stack gap="md" className="w-full">
-          <Group gap="md" align="center" className="bg-card border" p="md" rounded={theme?.themeRounded.default} data-class="culture-feature">
+          <Group gap="md" align="center" className="bg-card border rounded-lg" p="md"  data-class="culture-feature">
             <Icon size="lg" lucideIcon={Coffee} c="primary" />
             <Stack gap="xs">
               <Text size="sm" fw="semibold">Remote-First Culture</Text>
@@ -480,7 +460,7 @@ const splitTeamContentHooks = {
             </Stack>
           </Group>
           
-          <Group gap="md" align="center" className="bg-card border" p="md" rounded={theme?.themeRounded.default} data-class="culture-feature">
+          <Group gap="md" align="center" className="bg-card border rounded-lg" p="md"  data-class="culture-feature">
             <Icon size="lg" lucideIcon={Target} c="primary" />
             <Stack gap="xs">
               <Text size="sm" fw="semibold">Growth Mindset</Text>
@@ -488,7 +468,7 @@ const splitTeamContentHooks = {
             </Stack>
           </Group>
           
-          <Group gap="md" align="center" className="bg-card border" p="md" rounded={theme?.themeRounded.default} data-class="culture-feature">
+          <Group gap="md" align="center" className="bg-card border rounded-lg" p="md"  data-class="culture-feature">
             <Icon size="lg" lucideIcon={Users} c="primary" />
             <Stack gap="xs">
               <Text size="sm" fw="semibold">Collaborative Spirit</Text>
@@ -604,13 +584,13 @@ export const SplitTeam = forwardRef<HTMLElement, SplitTeamProps>(
             <Box className="relative h-full w-full bg-gradient-to-br from-primary/20 via-primary/10 to-transparent overflow-hidden flex items-center justify-center" rounded={theme?.themeRounded.default} p="xl" data-class="leadership-media">
               <Stack gap="xl" align="center" className="relative z-10">
                 <Box className="w-32 h-32 bg-primary/10 rounded-full flex items-center justify-center">
-                  <Icon size="3xl" lucideIcon={Award} c="primary" />
+                  <Icon size="lg" lucideIcon={Award} c="primary" />
                 </Box>
                 <Stack gap="md" align="center">
                   <Text size="lg" fw="semibold" c="primary">
                     Leadership Excellence
                   </Text>
-                  <Text size="sm" c="primary/80" ta="center" className="max-w-xs">
+                  <Text size="sm" c="primary" ta="center" className="max-w-xs">
                     Experienced leaders driving innovation and growth
                   </Text>
                 </Stack>
@@ -628,11 +608,11 @@ export const SplitTeam = forwardRef<HTMLElement, SplitTeamProps>(
                       key={index}
                       className="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center"
                     >
-                      <Icon size="lg" lucideIcon={LucideIcon} c="white" />
+                      <Icon size="lg" lucideIcon={LucideIcon} c="primary-foreground" />
                     </Box>
                   ))}
                 </Box>
-                <Text size="md" fw="medium" c="white" ta="center">
+                <Text size="md" fw="medium" c="primary-foreground" ta="center">
                   Talented professionals working together
                 </Text>
               </Stack>
@@ -644,13 +624,13 @@ export const SplitTeam = forwardRef<HTMLElement, SplitTeamProps>(
             <Box className="relative h-full w-full bg-gradient-to-br from-green-500/20 via-blue-500/20 to-indigo-500/20 overflow-hidden flex items-center justify-center" rounded={theme?.themeRounded.default} p="xl" data-class="hiring-media">
               <Stack gap="xl" align="center" className="relative z-10">
                 <Box className="w-32 h-32 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center">
-                  <Icon size="3xl" lucideIcon={Briefcase} c="white" />
+                  <Icon size="lg" lucideIcon={Briefcase} c="primary-foreground" />
                 </Box>
                 <Stack gap="md" align="center">
-                  <Text size="lg" fw="semibold" c="white">
+                  <Text size="lg" fw="semibold" c="primary-foreground">
                     Join Our Team
                   </Text>
-                  <Text size="sm" c="white/80" ta="center" className="max-w-xs">
+                  <Text size="sm" c="primary-foreground" ta="center" className="max-w-xs">
                     Exciting opportunities for passionate professionals
                   </Text>
                 </Stack>
@@ -670,15 +650,15 @@ export const SplitTeam = forwardRef<HTMLElement, SplitTeamProps>(
                   ].map((item, index) => (
                     <Stack key={index} gap="md" align="center">
                       <Box className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
-                        <Icon lucideIcon={item.icon} c="white" />
+                        <Icon lucideIcon={item.icon} c="primary-foreground" />
                       </Box>
-                      <Text size="xs" c="white/80" ta="center">
+                      <Text size="xs" c="primary-foreground" ta="center">
                         {item.label}
                       </Text>
                     </Stack>
                   ))}
                 </Box>
-                <Text size="md" fw="medium" c="white" ta="center">
+                <Text size="md" fw="medium" c="primary-foreground" ta="center">
                   Building an amazing workplace culture
                 </Text>
               </Stack>
@@ -690,13 +670,13 @@ export const SplitTeam = forwardRef<HTMLElement, SplitTeamProps>(
             <Box className="relative h-full w-full bg-gradient-to-br from-indigo-500/20 via-purple-500/20 to-pink-500/20 overflow-hidden flex items-center justify-center" rounded={theme?.themeRounded.default} p="xl" data-class="departments-media">
               <Stack gap="xl" align="center" className="relative z-10">
                 <Box className="w-32 h-32 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center">
-                  <Icon size="3xl" lucideIcon={Target} c="white" />
+                  <Icon size="lg" lucideIcon={Target} c="primary-foreground" />
                 </Box>
                 <Stack gap="md" align="center">
-                  <Text size="lg" fw="semibold" c="white">
+                  <Text size="lg" fw="semibold" c="primary-foreground">
                     Cross-Functional Teams
                   </Text>
-                  <Text size="sm" c="white/80" ta="center" className="max-w-xs">
+                  <Text size="sm" c="primary-foreground" ta="center" className="max-w-xs">
                     Diverse expertise across all departments
                   </Text>
                 </Stack>
@@ -707,7 +687,7 @@ export const SplitTeam = forwardRef<HTMLElement, SplitTeamProps>(
         default:
           return (
             <Box className="relative h-full w-full bg-gradient-to-br from-primary/20 to-transparent flex items-center justify-center" rounded={theme?.themeRounded.default} p="xl" data-class="default-media">
-              <Icon size="3xl" lucideIcon={Users} c="primary" className="opacity-20" />
+              <Icon size="lg" lucideIcon={Users} c="primary" className="opacity-20" />
             </Box>
           );
       }

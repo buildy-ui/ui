@@ -5,7 +5,3 @@ export { GridGallery, gridGalleryTemplates, type GridGalleryProps, type GridGall
 // Examples
 export { splitGalleryExamples } from './SplitGallery.examples';
 export { gridGalleryExamples } from './GridGallery.examples';
-
-// Deprecated - Old individual Gallery blocks (commented out)
-// export * from "./ImageGalleryGridSection";
-// export * from "./ImageGalleryMasonrySection"; 

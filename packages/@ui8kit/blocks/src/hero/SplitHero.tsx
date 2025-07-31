@@ -19,16 +19,16 @@ import {
 } from "@ui8kit/core";
 import { skyOSTheme } from "@ui8kit/theme";
 
-export const currentTheme = skyOSTheme; // modernUITheme | skyOSTheme
+const currentTheme = skyOSTheme; // modernUITheme | skyOSTheme
 
-export const theme = {
+const theme = {
   theme: currentTheme,
   themeRounded: currentTheme.rounded,
   themeButtonSize: currentTheme.buttonSize
 }
 
 // Hero data interface
-export interface HeroData {
+interface HeroData {
   badge?: string;
   title: string;
   description: string;
@@ -51,7 +51,7 @@ export interface HeroData {
   };
 }
 
-export interface SplitHeroProps {
+interface SplitHeroProps {
   content: HeroData;
   variant?: "media" | "gallery" | "simple" | "withTopButton";
   leftMedia?: boolean;

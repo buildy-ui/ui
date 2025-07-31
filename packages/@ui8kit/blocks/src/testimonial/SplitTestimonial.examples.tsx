@@ -8,6 +8,7 @@ const sampleTestimonials = [
     quote: "This product has completely transformed how our team works. The intuitive design and powerful features make complex tasks feel effortless. I can't imagine going back to our old workflow.",
     author: "Sarah Johnson",
     position: "Product Manager",
+    description: "This product has completely transformed how our team works.",
     company: "TechStart Inc",
     avatar: {
       src: "https://images.unsplash.com/photo-1494790108755-2616b9e6e4ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=80",
@@ -21,6 +22,7 @@ const sampleTestimonials = [
     quote: "Outstanding customer service and product quality. The support team went above and beyond to ensure we had everything set up correctly. Highly recommend to anyone looking for a reliable solution.",
     author: "Michael Chen",
     position: "CTO",
+    description: "Outstanding customer service and product quality.",
     company: "Digital Solutions Co",
     verified: true
   },
@@ -28,6 +30,7 @@ const sampleTestimonials = [
     id: "testimonial-3",
     rating: 4,
     quote: "Great value for money. The features are comprehensive and the learning curve is minimal. Our productivity has increased significantly since implementation.",
+    description: "Great value for money with comprehensive features.",
     author: "Emily Rodriguez",
     position: "Operations Director",
     company: "Growth Partners LLC",
@@ -43,6 +46,7 @@ const sampleTestimonials = [
     quote: "Exceptional quality and attention to detail. The team clearly cares about delivering a superior user experience. This has become an essential tool in our daily operations.",
     author: "David Park",
     position: "Senior Developer",
+    description: "Exceptional quality and attention to detail.",
     company: "CodeCraft Studios",
     verified: true
   },
@@ -52,6 +56,7 @@ const sampleTestimonials = [
     quote: "Seamless integration and fantastic results. The ROI was evident within the first month of usage. Couldn't be happier with our decision.",
     author: "Lisa Thompson",
     position: "Marketing Director",
+    description: "Seamless integration and fantastic results.",
     company: "Creative Agency Pro",
     avatar: {
       src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=80",

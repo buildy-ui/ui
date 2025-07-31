@@ -8,6 +8,7 @@ const sampleTestimonials = [
     quote: "This product has completely transformed how our team works. The intuitive design and powerful features make complex tasks feel effortless.",
     author: "Sarah Johnson",
     position: "Product Manager",
+    description: "This product has completely transformed how our team works.",
     company: "TechStart Inc",
     avatar: {
       src: "https://images.unsplash.com/photo-1494790108755-2616b9e6e4ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=80",
@@ -21,6 +22,7 @@ const sampleTestimonials = [
     quote: "Outstanding customer service and product quality. The support team went above and beyond to ensure we had everything set up correctly.",
     author: "Michael Chen",
     position: "CTO",
+    description: "Outstanding customer service and product quality.",
     company: "Digital Solutions Co",
     verified: true
   },
@@ -30,6 +32,7 @@ const sampleTestimonials = [
     quote: "Great value for money. The features are comprehensive and the learning curve is minimal. Our productivity has increased significantly.",
     author: "Emily Rodriguez",
     position: "Operations Director",
+    description: "Great value for money with comprehensive features.",
     company: "Growth Partners LLC",
     avatar: {
       src: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=80",
@@ -43,6 +46,7 @@ const sampleTestimonials = [
     quote: "Exceptional quality and attention to detail. The team clearly cares about delivering a superior user experience.",
     author: "David Park",
     position: "Senior Developer",
+    description: "Exceptional quality and attention to detail.",
     company: "CodeCraft Studios",
     verified: true
   },
@@ -52,6 +56,7 @@ const sampleTestimonials = [
     quote: "Seamless integration and fantastic results. The ROI was evident within the first month of usage.",
     author: "Lisa Thompson",
     position: "Marketing Director",
+    description: "Seamless integration and fantastic results.",
     company: "Creative Agency Pro",
     avatar: {
       src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=80",
@@ -65,6 +70,7 @@ const sampleTestimonials = [
     quote: "Reliable and efficient solution that has streamlined our entire workflow. Highly recommended for growing businesses.",
     author: "Alex Kumar",
     position: "Business Analyst",
+    description: "Reliable and efficient solution that has streamlined our workflow.",
     company: "Data Insights Ltd",
     verified: true
   },
@@ -74,6 +80,7 @@ const sampleTestimonials = [
     quote: "The best investment we've made this year. Customer support is responsive and the platform is incredibly user-friendly.",
     author: "Maria Santos",
     position: "Project Manager",
+    description: "The best investment we've made this year.",
     company: "Innovation Hub",
     avatar: {
       src: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=80",
@@ -87,6 +94,7 @@ const sampleTestimonials = [
     quote: "Outstanding performance and reliability. This tool has become indispensable for our daily operations.",
     author: "James Wilson",
     position: "Tech Lead",
+    description: "Outstanding performance and reliability.",
     company: "Future Systems",
     verified: false
   }

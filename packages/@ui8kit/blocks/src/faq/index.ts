@@ -5,9 +5,3 @@ export { SplitFAQ, splitFAQTemplates, type SplitFAQProps, type SplitFAQData } fr
 // Examples
 export { gridFAQExamples } from './GridFAQ.examples';
 export { splitFAQExamples } from './SplitFAQ.examples';
-
-// Deprecated - Old individual FAQ blocks (commented out)
-// export * from "./FaqSimpleListSection";
-// export * from "./FaqTwoColumnsAccordionSection";
-// export * from "./FaqCenteredAccordionSection";
-// export * from "./FaqGridCardsSection";

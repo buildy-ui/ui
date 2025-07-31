@@ -63,7 +63,7 @@ export interface LayoutBlockProps {
     description?: string;
     items?: Array<{
       id: string;
-      title: string;
+      title?: string;
       description: string;
       image?: {
         src: string;

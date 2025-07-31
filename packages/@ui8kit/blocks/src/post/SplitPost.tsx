@@ -3,13 +3,11 @@ import {
   Calendar,
   Clock,
   User,
-  Tag,
   ArrowLeft,
   Share2,
   BookOpen,
   Eye,
   Heart,
-  MessageCircle,
   Bookmark,
   ChevronRight,
   Play,
@@ -30,9 +28,9 @@ import {
 } from "@ui8kit/core";
 import { skyOSTheme } from "@ui8kit/theme";
 
-export const currentTheme = skyOSTheme;
+const currentTheme = skyOSTheme;
 
-export const theme = {
+const theme = {
   theme: currentTheme,
   themeRounded: currentTheme.rounded,
   themeButtonSize: currentTheme.buttonSize
@@ -40,10 +38,7 @@ export const theme = {
 import { 
   SplitBlock, 
   createContentHook, 
-  defaultContentHooks, 
-  advancedContentHooks,
-  type ContentHooks 
-} from "@ui8kit/core/factory/SplitBlock";
+} from "@ui8kit/core";
 
 // Post interfaces (reuse from CenteredPost)
 export interface PostAuthor {

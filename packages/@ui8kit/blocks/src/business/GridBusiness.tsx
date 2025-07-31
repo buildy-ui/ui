@@ -21,9 +21,9 @@ import {
 } from "@ui8kit/core";
 import { skyOSTheme } from "@ui8kit/theme";
 
-export const currentTheme = skyOSTheme;
+const currentTheme = skyOSTheme;
 
-export const theme = {
+const theme = {
   theme: currentTheme,
   themeRounded: currentTheme.rounded,
   themeButtonSize: currentTheme.buttonSize
@@ -546,7 +546,7 @@ export const GridBusiness = forwardRef<HTMLElement, GridBusinessProps>(
         py={py}
         cols={cols || config.cols}
         gap={gap || config.gap}
-        content={layoutContent}
+        content={layoutContent as any}
         contentHooks={config.contentHooks}
         className={className}
         {...props}

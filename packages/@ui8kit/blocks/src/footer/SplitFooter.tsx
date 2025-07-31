@@ -28,9 +28,9 @@ import {
 } from "@ui8kit/core";
 import { skyOSTheme } from "@ui8kit/theme";
 
-export const currentTheme = skyOSTheme;
+const currentTheme = skyOSTheme;
 
-export const theme = {
+const theme = {
   theme: currentTheme,
   themeRounded: currentTheme.rounded,
   themeButtonSize: currentTheme.buttonSize
@@ -41,24 +41,24 @@ import {
 } from "@ui8kit/core";
 
 // Footer interfaces
-export interface FooterLink {
+interface FooterLink {
   name: string;
   href: string;
 }
 
-export interface FooterSection {
+interface FooterSection {
   title: string;
   links: FooterLink[];
 }
 
-export interface FooterContact {
+interface FooterContact {
   email?: string;
   phone?: string;
   address?: string;
   website?: string;
 }
 
-export interface FooterSocial {
+interface FooterSocial {
   twitter?: string;
   instagram?: string;
   linkedin?: string;
@@ -67,7 +67,7 @@ export interface FooterSocial {
   github?: string;
 }
 
-export interface SplitFooterData {
+interface SplitFooterData {
   brand: string;
   tagline?: string;
   description?: string;

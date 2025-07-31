@@ -3,15 +3,12 @@ import {
   Calendar,
   Clock,
   User,
-  Tag,
   ArrowLeft,
   Share2,
   BookOpen,
   Eye,
   Heart,
-  MessageCircle,
-  Bookmark,
-  ChevronRight
+  Bookmark
 } from "lucide-react";
 import {
   Stack,
@@ -26,9 +23,9 @@ import {
 } from "@ui8kit/core";
 import { skyOSTheme } from "@ui8kit/theme";
 
-export const currentTheme = skyOSTheme;
+const currentTheme = skyOSTheme;
 
-export const theme = {
+const theme = {
   theme: currentTheme,
   themeRounded: currentTheme.rounded,
   themeButtonSize: currentTheme.buttonSize
@@ -36,8 +33,6 @@ export const theme = {
 import { 
   LayoutBlock,
   createLayoutContentHook,
-  defaultLayoutContentHooks,
-  type LayoutContentHooks
 } from "@ui8kit/core";
 
 // Post interfaces
@@ -209,7 +204,7 @@ const centeredPostContentHooks = {
             ))}
           </Group>
 
-          <Title order={1} size="6xl" fw="black" ta="center" className="leading-none">
+          <Title order={1} size="5xl" fw="bold" ta="center" className="leading-none">
             {content.title}
           </Title>
 
@@ -272,7 +267,7 @@ const centeredPostContentHooks = {
         </Group>
 
         {/* Title */}
-        <Title order={1} size="6xl" fw="bold" ta="center" className="leading-tight bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+        <Title order={1} size="5xl" fw="bold" ta="center" className="leading-tight bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
           {content.title}
         </Title>
 
@@ -363,7 +358,7 @@ const centeredPostContentHooks = {
             </Text>
           </Group>
 
-          <Title order={1} size="5xl" fw="light" ta="center" className="leading-tight font-serif">
+          <Title order={1} size="5xl" fw="normal" ta="center" className="leading-tight font-serif">
             {content.title}
           </Title>
 

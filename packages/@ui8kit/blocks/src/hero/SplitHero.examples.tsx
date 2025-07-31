@@ -1,11 +1,11 @@
 import { Info, Rocket, BookOpen, Code, ExternalLink, Zap, Shield } from "lucide-react";
-import { SplitHero, type HeroData } from "./SplitHero";
+import { SplitHero } from "./SplitHero";
 
 // ===== SPLIT HERO EXAMPLES =====
 
 // 1. Basic split hero with media
 export const SplitHeroMediaExample = () => {
-  const content: HeroData = {
+  const content = {
     badge: "New Release",
     title: "Build the future with modern technology",
     description: "Transform your ideas into reality with our cutting-edge platform. Experience unparalleled performance, security, and scalability that grows with your business.",
@@ -32,7 +32,7 @@ export const SplitHeroMediaExample = () => {
 
 // 2. Left media split hero
 export const SplitHeroLeftMediaExample = () => {
-  const content: HeroData = {
+  const content = {
     badge: "Developer Tools",
     title: "Code faster, deploy smarter, scale better",
     description: "Our comprehensive developer platform provides everything you need to build, test, and deploy applications with confidence. Join thousands of developers who trust our tools.",
@@ -60,7 +60,7 @@ export const SplitHeroLeftMediaExample = () => {
 
 // 3. Gallery split hero
 export const SplitHeroGalleryExample = () => {
-  const content: HeroData = {
+  const content = {
     badge: "Portfolio",
     title: "Showcase your work beautifully",
     description: "Create stunning portfolios and galleries that captivate your audience. Our platform makes it easy to present your work in the best possible light.",
@@ -101,7 +101,7 @@ export const SplitHeroGalleryExample = () => {
 
 // 4. Split hero with top button (no container)
 export const SplitHeroWithTopButtonExample = () => {
-  const content: HeroData = {
+  const content = {
     topButton: {
       text: "🎉 Announcing our Series A funding",
       href: "#"
@@ -146,7 +146,7 @@ export const SplitHeroWithTopButtonExample = () => {
 
 // 5. Security-focused split hero
 export const SplitHeroSecurityExample = () => {
-  const content: HeroData = {
+  const content = {
     badge: "Enterprise Security",
     title: "Protect your business with enterprise-grade security",
     description: "Our comprehensive security suite provides advanced threat protection, compliance management, and peace of mind for businesses of all sizes.",

@@ -23,9 +23,9 @@ import {
 } from "@ui8kit/core";
 import { skyOSTheme } from "@ui8kit/theme";
 
-export const currentTheme = skyOSTheme;
+const currentTheme = skyOSTheme;
 
-export const theme = {
+const theme = {
   theme: currentTheme,
   themeRounded: currentTheme.rounded,
   themeButtonSize: currentTheme.buttonSize
@@ -36,12 +36,13 @@ import {
 } from "@ui8kit/core";
 
 // Testimonial interfaces
-export interface TestimonialItem {
+interface TestimonialItem {
   id: string;
   rating: number;
   quote: string;
   author: string;
   position: string;
+  description: string;
   company?: string;
   avatar?: {
     src: string;
@@ -65,7 +66,7 @@ export interface SplitTestimonialData {
   ctaLink?: string;
 }
 
-export interface SplitTestimonialProps {
+interface SplitTestimonialProps {
   content: SplitTestimonialData;
   variant?: "featured" | "carousel" | "stats";
   mediaPosition?: "left" | "right";

@@ -1,7 +1,7 @@
-import { SplitFooter, type SplitFooterData } from "./SplitFooter";
+import { SplitFooter } from "./SplitFooter";
 
 // Sample footer data
-const sampleFooterData: SplitFooterData = {
+const sampleFooterData = {
   brand: "BuildY UI",
   tagline: "Building beautiful interfaces with ease",
   description: "A comprehensive UI component library designed to help developers create stunning, accessible, and performant web applications.",

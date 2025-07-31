@@ -5,10 +5,3 @@ export { SplitPortfolio, splitPortfolioTemplates, type SplitPortfolioProps, type
 // Examples
 export { gridPortfolioExamples } from './GridPortfolio.examples';
 export { splitPortfolioExamples } from './SplitPortfolio.examples';
-
-// Deprecated - Old individual Portfolio blocks (commented out)
-// export * from "./PortfolioGridSection";
-// export * from "./PortfolioTwoColumnsSection";
-// export * from "./PortfolioWithButtonsSection";
-// export * from "./PortfolioDetailsSection";
-// export * from "./PortfolioHorizontalSection"; 

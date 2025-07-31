@@ -2,15 +2,7 @@ import { forwardRef } from "react";
 import { 
   HelpCircle,
   MessageSquare,
-  Shield,
-  Zap,
-  Users,
-  Settings,
   FileText,
-  CreditCard,
-  Smartphone,
-  Globe,
-  Lock,
   LifeBuoy,
   Phone,
   Mail,
@@ -38,20 +30,17 @@ import {
 } from "@ui8kit/core";
 import { skyOSTheme } from "@ui8kit/theme";
 
-export const currentTheme = skyOSTheme;
+const currentTheme = skyOSTheme;
 
-export const theme = {
+const theme = {
   theme: currentTheme,
   themeRounded: currentTheme.rounded,
   themeButtonSize: currentTheme.buttonSize
 }
 import { 
   SplitBlock, 
-  createContentHook, 
-  defaultContentHooks, 
-  advancedContentHooks,
-  type ContentHooks 
-} from "@ui8kit/core/factory/SplitBlock";
+  createContentHook
+} from "@ui8kit/core";
 
 // FAQ interfaces (reuse from GridFAQ)
 export interface FAQItem {

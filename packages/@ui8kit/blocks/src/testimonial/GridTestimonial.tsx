@@ -25,9 +25,9 @@ import {
 } from "@ui8kit/core";
 import { skyOSTheme } from "@ui8kit/theme";
 
-export const currentTheme = skyOSTheme;
+const currentTheme = skyOSTheme;
 
-export const theme = {
+const theme = {
   theme: currentTheme,
   themeRounded: currentTheme.rounded,
   themeButtonSize: currentTheme.buttonSize
@@ -44,6 +44,7 @@ export interface TestimonialItem {
   quote: string;
   author: string;
   position: string;
+  description: string;
   company?: string;
   avatar?: {
     src: string;

@@ -5,9 +5,3 @@ export { SplitPost, splitPostTemplates, type SplitPostProps, type SplitPostData 
 // Examples
 export { centeredPostExamples } from './CenteredPost.examples';
 export { splitPostExamples } from './SplitPost.examples';
-
-// Deprecated - Old individual Post blocks (commented out)
-// export * from "./BlogPostCenteredImageSection";
-// export * from "./BlogPostTwoColumnsSection";
-// export * from "./BlogPostNoAuthorSection";
-// export * from "./BlogPostTwoColumnsNoAuthorSection"; 

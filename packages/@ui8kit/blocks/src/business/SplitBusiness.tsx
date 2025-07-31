@@ -24,9 +24,9 @@ import {
 } from "@ui8kit/core";
 import { skyOSTheme } from "@ui8kit/theme";
 
-export const currentTheme = skyOSTheme;
+const currentTheme = skyOSTheme;
 
-export const theme = {
+const theme = {
   theme: currentTheme,
   themeRounded: currentTheme.rounded,
   themeButtonSize: currentTheme.buttonSize
@@ -37,7 +37,7 @@ import {
 } from "@ui8kit/core";
 
 // Business interfaces (reuse from GridBusiness)
-export interface BusinessCard {
+interface BusinessCard {
   id: string;
   title: string;
   description: string;
@@ -470,7 +470,7 @@ const splitBusinessContentHooks = {
         {content.cards && (
           <Grid cols="1-2" gap="md" className="w-full">
             {content.cards.slice(0, 4).map((card) => (
-              <Card key={card.id} p="md" rounded={theme?.themeRounded.default} shadow="sm" bg="secondary/50">
+              <Card key={card.id} p="md" rounded={theme?.themeRounded.default} shadow="sm" bg="secondary">
                 <Group gap="md" align="start">
                   {card.lucideIcon && (
                     <Box>

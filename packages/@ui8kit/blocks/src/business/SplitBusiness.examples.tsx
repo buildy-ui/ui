@@ -1,6 +1,5 @@
 import { SplitBusiness, type SplitBusinessData } from "./SplitBusiness";
 import { 
-  TrendingUp, 
   Users, 
   Target, 
   Award, 
@@ -10,9 +9,6 @@ import {
   Zap,
   Shield,
   Rocket,
-  CheckCircle,
-  Star,
-  Briefcase,
   Clock,
   DollarSign
 } from "lucide-react";

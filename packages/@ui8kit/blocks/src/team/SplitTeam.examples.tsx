@@ -6,6 +6,7 @@ const sampleTeamMembers = [
     id: "member-1",
     name: "Sarah Johnson",
     position: "CEO & Founder",
+    description: "Visionary leader with 15+ years of experience in technology and business development.",
     department: "Leadership",
     bio: "Visionary leader with 15+ years of experience in technology and business development. Passionate about building innovative solutions that make a real impact.",
     avatar: {
@@ -26,6 +27,7 @@ const sampleTeamMembers = [
     id: "member-2",
     name: "Michael Chen",
     position: "CTO",
+    description: "Technical architect and engineering leader focused on scalable systems and team growth.",
     department: "Engineering",
     bio: "Technical architect and engineering leader focused on scalable systems and team growth. Expert in cloud infrastructure and modern development practices.",
     social: {
@@ -40,6 +42,7 @@ const sampleTeamMembers = [
     id: "member-3",
     name: "Emily Rodriguez",
     position: "Head of Product",
+    description: "Product strategist with a passion for user experience and data-driven decision making.",
     department: "Product",
     bio: "Product strategist with a passion for user experience and data-driven decision making. Leads product development from concept to launch.",
     avatar: {
@@ -58,6 +61,7 @@ const sampleTeamMembers = [
     id: "member-4",
     name: "David Park",
     position: "Senior Developer",
+    description: "Full-stack developer with expertise in React, Node.js, and cloud technologies.",
     department: "Engineering",
     bio: "Full-stack developer with expertise in React, Node.js, and cloud technologies. Passionate about clean code and mentoring junior developers.",
     social: {
@@ -71,6 +75,7 @@ const sampleTeamMembers = [
     id: "member-5",
     name: "Lisa Thompson",
     position: "Marketing Director",
+    description: "Creative marketing professional specializing in digital campaigns and brand development.",
     department: "Marketing",
     bio: "Creative marketing professional specializing in digital campaigns and brand development. Expert in growth marketing and customer acquisition.",
     avatar: {
@@ -88,6 +93,7 @@ const sampleTeamMembers = [
     id: "member-6",
     name: "Alex Kumar",
     position: "Data Scientist",
+    description: "Data scientist with expertise in machine learning and statistical analysis.",
     department: "Analytics",
     bio: "Data scientist with expertise in machine learning and statistical analysis. Transforms complex data into actionable business insights.",
     social: {
@@ -101,6 +107,7 @@ const sampleTeamMembers = [
     id: "member-7",
     name: "Maria Santos",
     position: "UX Designer",
+    description: "User experience designer passionate about creating intuitive and accessible digital experiences.",
     department: "Design",
     bio: "User experience designer passionate about creating intuitive and accessible digital experiences. Specializes in user research and design systems.",
     avatar: {
@@ -118,6 +125,7 @@ const sampleTeamMembers = [
     id: "member-8",
     name: "James Wilson",
     position: "DevOps Engineer",
+    description: "DevOps specialist focused on automation, monitoring, and reliable deployment pipelines.",
     department: "Engineering",
     bio: "DevOps specialist focused on automation, monitoring, and reliable deployment pipelines. Expert in containerization and infrastructure as code.",
     social: {

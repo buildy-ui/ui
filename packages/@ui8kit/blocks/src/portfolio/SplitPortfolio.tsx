@@ -2,21 +2,12 @@ import { forwardRef } from "react";
 import { 
   Eye,
   ExternalLink,
-  Github,
   Calendar,
   User,
-  Tag,
-  Award,
   Briefcase,
   Code,
   Palette,
-  Camera,
-  Monitor,
   ArrowRight,
-  Play,
-  Download,
-  Star,
-  Heart,
   MessageSquare
 } from "lucide-react";
 import {
@@ -35,9 +26,9 @@ import {
 } from "@ui8kit/core";
 import { skyOSTheme } from "@ui8kit/theme";
 
-export const currentTheme = skyOSTheme;
+const currentTheme = skyOSTheme;
 
-export const theme = {
+const theme = {
   theme: currentTheme,
   themeRounded: currentTheme.rounded,
   themeButtonSize: currentTheme.buttonSize
@@ -45,10 +36,7 @@ export const theme = {
 import { 
   SplitBlock, 
   createContentHook, 
-  defaultContentHooks, 
-  advancedContentHooks,
-  type ContentHooks 
-} from "@ui8kit/core/factory/SplitBlock";
+} from "@ui8kit/core";
 
 // Portfolio interfaces (reuse from GridPortfolio)
 export interface PortfolioProject {
@@ -663,7 +651,7 @@ export const SplitPortfolio = forwardRef<HTMLElement, SplitPortfolioProps>(
             >
               <Icon
                 component="span"
-                size="4xl"
+                size="lg"
                 lucideIcon={iconMap[variant]}
                 c="primary"
                 className="opacity-30"
