@@ -37,7 +37,7 @@ import {
   LayoutBlock,
   createLayoutContentHook,
   type LayoutContentHooks
-} from "@ui8kit/core/factory/LayoutBlock";
+} from "@ui8kit/core";
 
 // Reuse testimonial interfaces from SplitTestimonial
 export interface TestimonialItem {

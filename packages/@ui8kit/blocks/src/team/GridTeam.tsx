@@ -9,13 +9,8 @@ import {
   Award,
   Target,
   Briefcase,
-  Heart,
-  Coffee,
   MapPin,
-  Calendar,
-  Star,
-  Badge as BadgeIcon,
-  Image as ImageIcon
+  Star
 } from "lucide-react";
 import {
   Stack,
@@ -40,9 +35,8 @@ export const theme = {
 }
 import { 
   LayoutBlock,
-  createLayoutContentHook,
-  type LayoutContentHooks
-} from "@ui8kit/core/factory/LayoutBlock";
+  createLayoutContentHook
+} from "@ui8kit/core";
 
 // Reuse team member interfaces from SplitTeam
 export interface TeamMember {
@@ -101,11 +95,7 @@ const RenderSocialLinks = ({ social, size = "sm" }: { social?: TeamMember['socia
   return (
     <Group gap="md" align="center">
       {social.linkedin && (
-        <Icon 
-          component="a" 
-          href={social.linkedin} 
-          target="_blank" 
-          rel="noopener noreferrer"
+        <Icon
           size={size} 
           lucideIcon={Linkedin} 
           c="secondary-foreground"
@@ -113,11 +103,7 @@ const RenderSocialLinks = ({ social, size = "sm" }: { social?: TeamMember['socia
         />
       )}
       {social.twitter && (
-        <Icon 
-          component="a" 
-          href={social.twitter} 
-          target="_blank" 
-          rel="noopener noreferrer"
+        <Icon
           size={size} 
           lucideIcon={Twitter} 
           c="secondary-foreground"
@@ -125,11 +111,7 @@ const RenderSocialLinks = ({ social, size = "sm" }: { social?: TeamMember['socia
         />
       )}
       {social.website && (
-        <Icon 
-          component="a" 
-          href={social.website} 
-          target="_blank" 
-          rel="noopener noreferrer"
+        <Icon
           size={size} 
           lucideIcon={Globe} 
           c="secondary-foreground"
@@ -137,9 +119,7 @@ const RenderSocialLinks = ({ social, size = "sm" }: { social?: TeamMember['socia
         />
       )}
       {social.email && (
-        <Icon 
-          component="a" 
-          href={`mailto:${social.email}`}
+        <Icon
           size={size} 
           lucideIcon={Mail} 
           c="secondary-foreground"
@@ -363,7 +343,7 @@ const gridTeamContentHooks = {
           {content.badge || "Team"}
         </Text>
         
-        <Title order={1} size="3xl" fw="light" ta="center" className="font-serif">
+        <Title order={1} size="3xl" fw="normal" ta="center" className="font-serif">
           {content.title}
         </Title>
         
@@ -655,11 +635,11 @@ export const GridTeam = forwardRef<HTMLElement, GridTeamProps>(
       <LayoutBlock
         ref={ref}
         layout={layoutConfig.layout}
-        cols={layoutConfig.cols}
+        gridCols={layoutConfig.cols as "1-2-3" | "1-2-3-4" | "1-2" | "1" | "2" | "3" | "4" | "5" | "6" | "1-3" | "1-4" | "1-5" | "1-6" | "2-3" | "2-4" | "2-5" | "2-6" | "3-4" | "3-5" | "3-6" | "4-5" | "4-6" | "5-6" | "1-2-4" | "1-3-4" | "2-3-4" | undefined}
         useContainer={useContainer}
         py={py}
         showHeader={true}
-        content={{ ...content, items: content.members }}
+        content={{ ...content, items: content.members as TeamMember[] }}
         contentHooks={contentHooks}
         className={className}
         {...props}

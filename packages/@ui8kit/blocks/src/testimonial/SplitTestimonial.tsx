@@ -32,9 +32,8 @@ export const theme = {
 }
 import { 
   SplitBlock,
-  createContentHook,
-  type ContentHooks
-} from "@ui8kit/core/factory/SplitBlock";
+  createContentHook
+} from "@ui8kit/core";
 
 // Testimonial interfaces
 export interface TestimonialItem {
@@ -71,6 +70,7 @@ export interface SplitTestimonialProps {
   variant?: "featured" | "carousel" | "stats";
   mediaPosition?: "left" | "right";
   useContainer?: boolean;
+  gap?: "none" | "xs" | "sm" | "md" | "lg" | "xl";
   py?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
   className?: string;
 }
@@ -148,7 +148,7 @@ const splitTestimonialContentHooks = {
                       {content.testimonials[0].author}
                     </Text>
                     {content.testimonials[0].verified && (
-                      <Icon lucideIcon={CheckCircle} c="green-500" />
+                      <Icon lucideIcon={CheckCircle} c="primary" />
                     )}
                   </Group>
                   <Text c="secondary-foreground">
@@ -235,10 +235,9 @@ const splitTestimonialContentHooks = {
                     </Text>
                   </Stack>
                 </Group>
-              </Stack>
-            </Card>
-          ))}
-        </Stack>
+              </Card>
+            ))}
+          </Stack>
 
         {content.testimonials.length > 3 && (
           <Text c="secondary-foreground">
@@ -359,6 +358,7 @@ export const SplitTestimonial = forwardRef<HTMLElement, SplitTestimonialProps>(
     mediaPosition = "right",
     useContainer = true,
     py = "xl",
+    gap = "md",
     className,
     ...props 
   }, ref) => {
@@ -371,10 +371,10 @@ export const SplitTestimonial = forwardRef<HTMLElement, SplitTestimonialProps>(
       switch (variant) {
         case "featured":
           return (
-            <Box className="relative min-h-[400px] bg-gradient-to-br from-primary/20 via-primary/10 to-transparent rounded-lg overflow-hidden flex items-center justify-center">
+            <Box className="relative w-full h-full bg-gradient-to-br from-primary/20 via-primary/10 to-transparent overflow-hidden flex items-center justify-center" rounded={theme?.themeRounded.default}>
               <Stack gap="xl" align="center" className="relative z-10">
                 <Box className="w-32 h-32 bg-primary/10 rounded-full flex items-center justify-center">
-                  <Icon size="3xl" lucideIcon={Quote} c="primary" />
+                  <Icon size="2xl" lucideIcon={Quote} c="primary" />
                 </Box>
                 <Stack gap="md" align="center">
                   <Text size="lg" fw="semibold" c="primary">
@@ -393,7 +393,7 @@ export const SplitTestimonial = forwardRef<HTMLElement, SplitTestimonialProps>(
 
         case "carousel":
           return (
-            <Box className="relative min-h-[400px] bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-lg overflow-hidden flex items-center justify-center">
+            <Box className="relative w-full h-full bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 overflow-hidden flex items-center justify-center" rounded={theme?.themeRounded.default}>
               <Stack gap="lg" align="center" className="relative z-10">
                 <Box className="grid grid-cols-2 gap-md max-w-sm">
                   {[Quote, Star, Heart, Users].map((LucideIcon, index) => (
@@ -401,11 +401,11 @@ export const SplitTestimonial = forwardRef<HTMLElement, SplitTestimonialProps>(
                       key={index}
                       className="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center"
                     >
-                      <Icon size="lg" lucideIcon={LucideIcon} c="white" />
+                      <Icon size="lg" lucideIcon={LucideIcon} c="primary-foreground" />
                     </Box>
                   ))}
                 </Box>
-                <Text size="md" fw="medium" c="white" ta="center">
+                <Text size="md" fw="medium" c="primary-foreground" ta="center">
                   Join thousands of happy customers
                 </Text>
               </Stack>
@@ -414,7 +414,7 @@ export const SplitTestimonial = forwardRef<HTMLElement, SplitTestimonialProps>(
 
         case "stats":
           return (
-            <Box className="relative min-h-[400px] bg-gradient-to-br from-green-500/20 via-blue-500/20 to-purple-500/20 rounded-lg overflow-hidden flex items-center justify-center">
+            <Box className="relative w-full h-full bg-gradient-to-br from-green-500/20 via-blue-500/20 to-purple-500/20 overflow-hidden flex items-center justify-center" rounded={theme?.themeRounded.default}>
               <Stack gap="xl" align="center" className="relative z-10">
                 <Box className="grid grid-cols-3 gap-lg max-w-md">
                   {[
@@ -424,12 +424,12 @@ export const SplitTestimonial = forwardRef<HTMLElement, SplitTestimonialProps>(
                   ].map((stat, index) => (
                     <Stack key={index} gap="md" align="center">
                       <Box className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
-                        <Icon lucideIcon={stat.icon} c="white" />
+                        <Icon lucideIcon={stat.icon} c="primary-foreground" />
                       </Box>
-                      <Text size="lg" fw="bold" c="white">
+                      <Text size="lg" fw="bold" c="primary-foreground">
                         {stat.value}
                       </Text>
-                      <Text size="xs" c="white/80" ta="center">
+                      <Text size="xs" c="primary-foreground" ta="center">
                         {stat.label}
                       </Text>
                     </Stack>
@@ -441,8 +441,8 @@ export const SplitTestimonial = forwardRef<HTMLElement, SplitTestimonialProps>(
 
         default:
           return (
-            <Box className="relative min-h-[400px] bg-gradient-to-br from-primary/20 to-transparent rounded-lg flex items-center justify-center">
-              <Icon size="3xl" lucideIcon={Quote} c="primary" className="opacity-20" />
+            <Box className="relative w-full h-full bg-gradient-to-br from-primary/20 to-transparent flex items-center justify-center" rounded={theme?.themeRounded.default}>
+              <Icon size="2xl" lucideIcon={Quote} c="primary" className="opacity-20" />
             </Box>
           );
       }
@@ -458,7 +458,7 @@ export const SplitTestimonial = forwardRef<HTMLElement, SplitTestimonialProps>(
         splitSection={!useContainer}
         containerSize="lg"
         py={py}
-        gap="none"
+        gap={gap}
         className={className}
         {...props}
       />

@@ -43,7 +43,7 @@ import {
   LayoutBlock,
   createLayoutContentHook,
   type LayoutContentHooks
-} from "@ui8kit/core/factory/LayoutBlock";
+} from "@ui8kit/core";
 
 // Reuse footer interfaces from SplitFooter
 export interface FooterLink {

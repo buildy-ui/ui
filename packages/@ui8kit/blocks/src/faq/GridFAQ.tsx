@@ -43,7 +43,7 @@ import {
   createLayoutContentHook,
   defaultLayoutContentHooks,
   type LayoutContentHooks
-} from "@ui8kit/core/factory/LayoutBlock";
+} from "@ui8kit/core";
 
 // FAQ interfaces
 export interface FAQItem {

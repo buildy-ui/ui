@@ -261,7 +261,7 @@ const splitTeamContentHooks = {
         {/* Team Members Showcase */}
         <Stack gap="md" className="w-full">
           {content.members.slice(0, 4).map((member) => (
-            <Box key={member.id} className="p-4 bg-card/50 rounded-md border hover:bg-card transition-colors">
+            <Box key={member.id} className="bg-card/50 border hover:bg-card transition-colors" p="md" rounded={theme?.themeRounded.default} data-class="member-card">
               <Group gap="md" align="center">
                 {member.avatar ? (
                   <Image
@@ -365,7 +365,7 @@ const splitTeamContentHooks = {
         {/* Sample Team Members */}
         <Stack gap="md" className="w-full">
           {content.members.slice(0, 3).map((member) => (
-            <Group key={member.id} gap="md" align="center" className="p-2 bg-card rounded-md">
+            <Group key={member.id} gap="md" align="center" className="bg-card" p="sm" rounded={theme?.themeRounded.default} data-class="hiring-member-card">
               {member.avatar ? (
                 <Image
                   src={member.avatar.src}
@@ -472,7 +472,7 @@ const splitTeamContentHooks = {
 
         {/* Featured Culture Highlights */}
         <Stack gap="md" className="w-full">
-          <Group gap="md" align="center" className="p-4 bg-card rounded-md border">
+          <Group gap="md" align="center" className="bg-card border" p="md" rounded={theme?.themeRounded.default} data-class="culture-feature">
             <Icon size="lg" lucideIcon={Coffee} c="primary" />
             <Stack gap="xs">
               <Text size="sm" fw="semibold">Remote-First Culture</Text>
@@ -480,7 +480,7 @@ const splitTeamContentHooks = {
             </Stack>
           </Group>
           
-          <Group gap="md" align="center" className="p-4 bg-card rounded-md border">
+          <Group gap="md" align="center" className="bg-card border" p="md" rounded={theme?.themeRounded.default} data-class="culture-feature">
             <Icon size="lg" lucideIcon={Target} c="primary" />
             <Stack gap="xs">
               <Text size="sm" fw="semibold">Growth Mindset</Text>
@@ -488,7 +488,7 @@ const splitTeamContentHooks = {
             </Stack>
           </Group>
           
-          <Group gap="md" align="center" className="p-4 bg-card rounded-md border">
+          <Group gap="md" align="center" className="bg-card border" p="md" rounded={theme?.themeRounded.default} data-class="culture-feature">
             <Icon size="lg" lucideIcon={Users} c="primary" />
             <Stack gap="xs">
               <Text size="sm" fw="semibold">Collaborative Spirit</Text>
@@ -601,7 +601,7 @@ export const SplitTeam = forwardRef<HTMLElement, SplitTeamProps>(
       switch (variant) {
         case "leadership":
           return (
-            <Box className="relative min-h-[400px] bg-gradient-to-br from-primary/20 via-primary/10 to-transparent rounded-lg overflow-hidden flex items-center justify-center">
+            <Box className="relative h-full w-full bg-gradient-to-br from-primary/20 via-primary/10 to-transparent overflow-hidden flex items-center justify-center" rounded={theme?.themeRounded.default} p="xl" data-class="leadership-media">
               <Stack gap="xl" align="center" className="relative z-10">
                 <Box className="w-32 h-32 bg-primary/10 rounded-full flex items-center justify-center">
                   <Icon size="3xl" lucideIcon={Award} c="primary" />
@@ -620,7 +620,7 @@ export const SplitTeam = forwardRef<HTMLElement, SplitTeamProps>(
 
         case "showcase":
           return (
-            <Box className="relative min-h-[400px] bg-gradient-to-br from-blue-500/20 via-green-500/20 to-purple-500/20 rounded-lg overflow-hidden flex items-center justify-center">
+            <Box className="relative h-full w-full bg-gradient-to-br from-blue-500/20 via-green-500/20 to-purple-500/20 overflow-hidden flex items-center justify-center" rounded={theme?.themeRounded.default} p="xl" data-class="showcase-media">
               <Stack gap="lg" align="center" className="relative z-10">
                 <Box className="grid grid-cols-2 gap-md max-w-sm">
                   {[Users, Target, Briefcase, Heart].map((LucideIcon, index) => (
@@ -641,7 +641,7 @@ export const SplitTeam = forwardRef<HTMLElement, SplitTeamProps>(
 
         case "hiring":
           return (
-            <Box className="relative min-h-[400px] bg-gradient-to-br from-green-500/20 via-blue-500/20 to-indigo-500/20 rounded-lg overflow-hidden flex items-center justify-center">
+            <Box className="relative h-full w-full bg-gradient-to-br from-green-500/20 via-blue-500/20 to-indigo-500/20 overflow-hidden flex items-center justify-center" rounded={theme?.themeRounded.default} p="xl" data-class="hiring-media">
               <Stack gap="xl" align="center" className="relative z-10">
                 <Box className="w-32 h-32 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center">
                   <Icon size="3xl" lucideIcon={Briefcase} c="white" />
@@ -660,7 +660,7 @@ export const SplitTeam = forwardRef<HTMLElement, SplitTeamProps>(
 
         case "culture":
           return (
-            <Box className="relative min-h-[400px] bg-gradient-to-br from-pink-500/20 via-orange-500/20 to-yellow-500/20 rounded-lg overflow-hidden flex items-center justify-center">
+            <Box className="relative h-full w-full bg-gradient-to-br from-pink-500/20 via-orange-500/20 to-yellow-500/20 overflow-hidden flex items-center justify-center" rounded={theme?.themeRounded.default} p="xl" data-class="culture-media">
               <Stack gap="lg" align="center" className="relative z-10">
                 <Box className="grid grid-cols-3 gap-md max-w-md">
                   {[
@@ -687,7 +687,7 @@ export const SplitTeam = forwardRef<HTMLElement, SplitTeamProps>(
 
         case "departments":
           return (
-            <Box className="relative min-h-[400px] bg-gradient-to-br from-indigo-500/20 via-purple-500/20 to-pink-500/20 rounded-lg overflow-hidden flex items-center justify-center">
+            <Box className="relative h-full w-full bg-gradient-to-br from-indigo-500/20 via-purple-500/20 to-pink-500/20 overflow-hidden flex items-center justify-center" rounded={theme?.themeRounded.default} p="xl" data-class="departments-media">
               <Stack gap="xl" align="center" className="relative z-10">
                 <Box className="w-32 h-32 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center">
                   <Icon size="3xl" lucideIcon={Target} c="white" />
@@ -706,7 +706,7 @@ export const SplitTeam = forwardRef<HTMLElement, SplitTeamProps>(
 
         default:
           return (
-            <Box className="relative min-h-[400px] bg-gradient-to-br from-primary/20 to-transparent rounded-lg flex items-center justify-center">
+            <Box className="relative h-full w-full bg-gradient-to-br from-primary/20 to-transparent flex items-center justify-center" rounded={theme?.themeRounded.default} p="xl" data-class="default-media">
               <Icon size="3xl" lucideIcon={Users} c="primary" className="opacity-20" />
             </Box>
           );
@@ -723,8 +723,8 @@ export const SplitTeam = forwardRef<HTMLElement, SplitTeamProps>(
         splitSection={!useContainer}
         containerSize="lg"
         py={py}
-        gap="none"
-        className={className}
+        gap="lg"
+        className={`min-h-[500px] ${className || ''}`}
         {...props}
       />
     );

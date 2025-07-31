@@ -77,6 +77,7 @@ export const SplitTestimonialFeaturedExample = () => {
       variant="featured"
       mediaPosition="right"
       useContainer={true}
+      gap="lg"
       py="xl"
     />
   );
