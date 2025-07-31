@@ -439,12 +439,12 @@ const splitPortfolioContentHooks = {
           
           <Grid cols="2" gap="md">
             {content.projects.slice(0, 4).map((project) => (
-              <Box key={project.id} className="relative overflow-hidden rounded-md group cursor-pointer">
+              <Box key={project.id} className="relative overflow-hidden group cursor-pointer" rounded={theme?.themeRounded.default}>
                 <Image
                   src={project.image.src}
                   alt={project.image.alt}
                   width="100%"
-                  height="120px"
+                  height="150px"
                   fit="cover"
                   className="group-hover:scale-105 transition-transform duration-300"
                 />
@@ -453,7 +453,7 @@ const splitPortfolioContentHooks = {
                   <Icon lucideIcon={Eye} c="primary-foreground" />
                 </Box>
 
-                <Box className="absolute bottom-0 left-0 right-0 p-sm bg-gradient-to-t from-black/80 to-transparent">
+                <Box className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent" p="sm" data-class="testimonial-card-content">
                   <Text size="xs" c="primary-foreground" fw="medium" className="line-clamp-1">
                     {project.title}
                   </Text>
@@ -577,7 +577,7 @@ export const SplitPortfolio = forwardRef<HTMLElement, SplitPortfolioProps>(
       
       if (variant === "showcase" && firstProject) {
         return (
-          <Block className="h-full relative overflow-hidden">
+          <Block className="h-full relative overflow-hidden" rounded={theme?.themeRounded.default}>
             <Image
               src={firstProject.image.src}
               alt={firstProject.image.alt}
@@ -590,7 +590,7 @@ export const SplitPortfolio = forwardRef<HTMLElement, SplitPortfolioProps>(
             <Box className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
             
             {/* Featured Project Info */}
-            <Box className="absolute bottom-0 left-0 right-0 p-lg text-white">
+            <Box className="absolute bottom-0 left-0 right-0 text-white" p="lg" data-class="showcase-media-content">
               <Stack gap="md">
                 <Group gap="md" align="center">
                   <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="bg-white/20 text-white border-white/30">

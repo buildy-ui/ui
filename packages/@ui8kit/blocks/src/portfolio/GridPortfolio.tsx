@@ -139,7 +139,7 @@ const gridPortfolioContentHooks = {
           )}
         </Box>
 
-        <Stack gap="md" p="lg">
+        <Stack gap="md" p="md">
           <Group gap="md" align="center" justify="between">
             {project.category && (
               <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
@@ -153,7 +153,7 @@ const gridPortfolioContentHooks = {
             )}
           </Group>
 
-          <Stack gap="md">
+          <Stack gap="sm">
             <Title order={3} size="lg" fw="semibold" className="line-clamp-1">
               {project.title}
             </Title>
@@ -207,7 +207,7 @@ const gridPortfolioContentHooks = {
       const height = heights[index % heights.length];
       
       return (
-        <Card key={project.id} rounded={theme?.themeRounded.default} shadow="md" bg="card" className="overflow-hidden group hover:shadow-xl transition-all duration-300">
+        <Card key={project.id} rounded={theme?.themeRounded.default} shadow="md" bg="card" className="overflow-hidden group hover:shadow-xl transition-all duration-300" p="none">
           <Box className="relative overflow-hidden" style={{ height }}>
             <Image
               src={project.image.src}
@@ -222,7 +222,7 @@ const gridPortfolioContentHooks = {
             <Box className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
             
             {/* Content Overlay */}
-            <Box className="absolute bottom-0 left-0 right-0 p-lg text-white">
+            <Box className="absolute bottom-0 left-0 right-0 text-white" p="lg" data-class="masonry-content">
               <Stack gap="md">
                 <Group gap="md" align="center">
                   {project.category && (
@@ -421,6 +421,7 @@ const gridPortfolioContentHooks = {
           rounded={theme?.themeRounded.default} 
           shadow="xl" 
           bg="card" 
+          p="none"
           className={`overflow-hidden group hover:shadow-2xl transition-all duration-500 ${
             isFeatured ? "md:col-span-2 md:row-span-2" : ""
           }`}
@@ -439,7 +440,7 @@ const gridPortfolioContentHooks = {
             <Box className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300" />
             
             {/* Content Overlay */}
-            <Box className="absolute inset-0 p-lg flex flex-col justify-end text-white">
+            <Box className="absolute inset-0 flex flex-col justify-end text-white" p="lg" data-class="showcase-content">
               <Stack gap={isFeatured ? "md" : "sm"}>
                 <Group gap="md" align="center">
                   {project.category && (
