@@ -203,7 +203,7 @@ const splitPostContentHooks = {
 
         {/* Author Card */}
         {content.author && (
-          <Box className="bg-muted p-lg rounded-lg w-full">
+          <Box className="bg-muted w-full" p="lg" rounded={theme?.themeRounded.default} data-class="author-bio-card">
             <Stack gap="md">
               <Group gap="md" align="start">
                 <Icon size="xl" lucideIcon={User} c="primary" />
@@ -459,7 +459,7 @@ const splitPostContentHooks = {
 
         {/* Author Hero Card */}
         {content.author && (
-          <Box className="bg-gradient-to-r from-primary/10 to-secondary/10 p-lg rounded-xl w-full">
+          <Box className="bg-gradient-to-r from-primary/10 to-secondary/10 w-full" p="lg" rounded={theme?.themeRounded.default} data-class="author-hero-card">
             <Group gap="md" align="center">
               <Icon size="xl" lucideIcon={User} c="primary" />
               <Stack gap="xs" className="flex-1">
@@ -521,13 +521,14 @@ export const SplitPost = forwardRef<HTMLElement, SplitPostProps>(
     // Create media section - always use the post image
     const createMediaSection = () => {
       return (
-        <Block className="h-full relative overflow-hidden">
+        <Block className="h-full w-full relative overflow-hidden flex items-center justify-center" rounded={theme?.themeRounded.default} data-class="split-post-media">
           <Image
             src={content.image.src}
             alt={content.image.alt}
             width="100%"
             height="100%"
             fit="cover"
+            className="absolute inset-0 object-cover w-full h-full"
           />
           
           {/* Overlay for better text readability */}

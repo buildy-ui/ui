@@ -4,8 +4,8 @@
 // import BusinessBlocks from "./blocks/business";
 // import CTABlocks from "./blocks/cta";
 // import FAQBlocks from "./blocks/faq";
-import PortfolioBlocks from "./blocks/portfolio";
-// import PostBlocks from "./blocks/post";
+// import PortfolioBlocks from "./blocks/portfolio";
+import PostBlocks from "./blocks/post";
 // import GalleryBlocks from "./blocks/gallery";
 // import FeaturesBlocks from "./blocks/features";
 // import TeamBlocks from "./blocks/team";
@@ -22,7 +22,8 @@ function Blocks() {
       {/* <BlogBlocks /> */}
       {/* <CTABlocks /> */}
       {/* <FAQBlocks /> */}
-      <PortfolioBlocks />
+      {/* <PortfolioBlocks /> */}
+      <PostBlocks />
       {/* <BusinessBlocks /> */}
       {/* <FooterBlocks /> */}
     </div>
