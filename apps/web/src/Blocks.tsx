@@ -6,8 +6,8 @@
 // import FAQBlocks from "./blocks/faq";
 // import PortfolioBlocks from "./blocks/portfolio";
 // import PostBlocks from "./blocks/post";
-import FeaturesBlocks from "./blocks/features";
-// import GalleryBlocks from "./blocks/gallery";
+// import FeaturesBlocks from "./blocks/features";
+import GalleryBlocks from "./blocks/gallery";
 // import TeamBlocks from "./blocks/team";
 // import TestimonialBlocks from "./blocks/testimonial";
 // import FooterBlocks from "./blocks/footer"; // Uncommented
@@ -24,7 +24,8 @@ function Blocks() {
       {/* <FAQBlocks /> */}
       {/* <PortfolioBlocks /> */}
       {/* <PostBlocks /> */}
-      <FeaturesBlocks />
+      {/* <FeaturesBlocks /> */}
+      <GalleryBlocks />
       {/* <BusinessBlocks /> */}
       {/* <FooterBlocks /> */}
     </div>

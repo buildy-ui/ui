@@ -380,7 +380,7 @@ const splitPostContentHooks = {
               Related
             </Text>
             {content.relatedLinks.slice(0, 3).map((link, index) => (
-              <Group key={index} gap="md" align="center" className="hover:bg-muted p-sm rounded-md cursor-pointer">
+              <Group key={index} gap="md" align="center" className="hover:bg-muted p-2 rounded-md cursor-pointer">
                 <Icon lucideIcon={ChevronRight} c="secondary-foreground" />
                 <Text size="sm" className="line-clamp-1">
                   {link.title}

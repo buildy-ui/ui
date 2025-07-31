@@ -323,7 +323,7 @@ const gridPortfolioContentHooks = {
             />
             
             {project.lucideIcon && (
-              <Box className="absolute top-2 left-2 p-sm bg-primary rounded-md" data-class="project-icon">
+              <Box className="absolute top-2 left-2 p-2 bg-primary rounded-md" data-class="project-icon">
                 <Icon
                   component="span"
                   size="sm"

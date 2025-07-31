@@ -33,11 +33,8 @@ export const theme = {
 }
 import { 
   SplitBlock, 
-  createContentHook, 
-  defaultContentHooks, 
-  advancedContentHooks,
-  type ContentHooks 
-} from "@ui8kit/core/factory/SplitBlock";
+  createContentHook
+} from "@ui8kit/core";
 
 // Gallery interfaces
 export interface GalleryImage {
@@ -86,7 +83,7 @@ const splitGalleryContentHooks = {
         {/* Badge */}
         {content.badge && (
           <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="px-lg py-sm">
-            <Icon lucideIcon={Camera} />
+            <Icon lucideIcon={Camera} className="mr-0.5" />
             {content.badge}
           </Badge>
         )}
@@ -115,7 +112,7 @@ const splitGalleryContentHooks = {
           <Group gap="xl" align="center">
             {content.stats.totalImages && (
               <Group gap="xs" align="center">
-                <Icon lucideIcon={ImageIcon} c="primary" />
+                <Icon size="2xl" lucideIcon={ImageIcon} c="primary" />
                 <Stack gap="xs" align="start">
                   <Text size="lg" fw="bold">
                     {content.stats.totalImages}
@@ -128,7 +125,7 @@ const splitGalleryContentHooks = {
             )}
             {content.stats.categories && (
               <Group gap="xs" align="center">
-                <Icon lucideIcon={Grid3x3} c="primary" />
+                <Icon size="2xl" lucideIcon={Grid3x3} c="primary" />
                 <Stack gap="xs" align="start">
                   <Text size="lg" fw="bold">
                     {content.stats.categories}
@@ -141,7 +138,7 @@ const splitGalleryContentHooks = {
             )}
             {content.stats.views && (
               <Group gap="xs" align="center">
-                <Icon lucideIcon={Eye} c="primary" />
+                <Icon size="2xl" lucideIcon={Eye} c="primary" />
                 <Stack gap="xs" align="start">
                   <Text size="lg" fw="bold">
                     {content.stats.views}
@@ -211,7 +208,7 @@ const splitGalleryContentHooks = {
 
         {/* Portfolio Meta */}
         {content.stats && (
-          <Box className="bg-muted p-lg rounded-lg w-full">
+          <Box className="bg-muted p-6 w-full" rounded={theme?.themeRounded.default}>
             <Group gap="lg" align="center" justify="between">
               {content.stats.totalImages && (
                 <Stack gap="xs" align="center">
@@ -314,6 +311,7 @@ export const SplitGallery = forwardRef<HTMLElement, SplitGalleryProps>(
               className={`relative overflow-hidden group cursor-pointer ${
                 index === 0 ? "row-span-2" : ""
               }`}
+              rounded={theme?.themeRounded.default}
               data-class="gallery-item"
             >
               <Image
@@ -340,8 +338,8 @@ export const SplitGallery = forwardRef<HTMLElement, SplitGalleryProps>(
 
               {/* Image Title Overlay */}
               {image.title && (
-                <Box className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-md">
-                  <Text size="sm" fw="medium" c="white">
+                <Box className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4 mb-2">
+                  <Text size="sm" fw="medium" c="primary-foreground">
                     {image.title}
                   </Text>
                 </Box>

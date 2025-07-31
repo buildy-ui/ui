@@ -277,7 +277,7 @@ const gridTestimonialContentHooks = {
     ),
     
     item: (testimonial: TestimonialItem) => (
-      <Box className="relative p-lg border-l-4 border-primary/20 bg-card/30 rounded-r-md hover:border-primary/50 transition-colors">
+      <Box className="relative p-6 border-l-4 border-primary/20 bg-card/30 rounded-r-md hover:border-primary/50 transition-colors">
         <Stack gap="md" align="start">
           <Text size="md" className="leading-relaxed font-light">
             "{testimonial.quote}"   
@@ -417,7 +417,7 @@ const gridTestimonialContentHooks = {
     ),
     
     item: (testimonial: TestimonialItem) => (
-      <Box className="p-md bg-card rounded-md border hover:bg-card/80 transition-colors">
+      <Box className="p-4 bg-card rounded-md border hover:bg-card/80 transition-colors">
         <Stack gap="md" align="start">
           <Group gap="md" align="center" justify="between">
             <RenderStars rating={testimonial.rating} size="xs" />

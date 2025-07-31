@@ -376,7 +376,7 @@ const gridTeamContentHooks = {
     ),
     
     item: (member: TeamMember) => (
-      <Box className="text-center p-lg hover:bg-card/30 rounded-md transition-colors">
+      <Box className="text-center p-6 hover:bg-card/30 rounded-md transition-colors">
         <Stack gap="md" align="center">
           {member.avatar ? (
             <Image

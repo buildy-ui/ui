@@ -175,7 +175,7 @@ const splitFAQContentHooks = {
             Popular Questions
           </Title>
           {content.faqs.slice(0, 3).map((faq) => (
-            <Group key={faq.id} gap="md" align="start" className="p-sm hover:bg-muted rounded-md cursor-pointer">
+            <Group key={faq.id} gap="md" align="start" className="p-2 hover:bg-muted rounded-md cursor-pointer">
               <Icon
                 component="span"
                 size="xs"

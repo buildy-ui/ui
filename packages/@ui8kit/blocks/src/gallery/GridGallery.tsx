@@ -5,7 +5,6 @@ import {
   Grid3x3,
   Filter,
   ZoomIn,
-  Download,
   Share2,
   Eye,
   Heart,
@@ -23,7 +22,6 @@ import {
   Image,
   Icon,
   Box,
-  Grid
 } from "@ui8kit/core";
 import { skyOSTheme } from "@ui8kit/theme";
 
@@ -36,10 +34,8 @@ export const theme = {
 }
 import { 
   LayoutBlock,
-  createLayoutContentHook,
-  defaultLayoutContentHooks,
-  type LayoutContentHooks
-} from "@ui8kit/core/factory/LayoutBlock";
+  createLayoutContentHook
+} from "@ui8kit/core";
 
 // Gallery interfaces (reuse from SplitGallery)
 export interface GalleryImage {
@@ -121,7 +117,9 @@ const gridGalleryContentHooks = {
     ),
     
     item: (image: GalleryImage) => (
-      <Box className="relative overflow-hidden group cursor-pointer">
+      <Box
+      className="relative overflow-hidden group cursor-pointer"
+      rounded={theme?.themeRounded.default}>
         <Image
           src={image.src}
           alt={image.alt}
@@ -159,7 +157,8 @@ const gridGalleryContentHooks = {
     item: (image: GalleryImage, index: number) => (
       <Box className={`relative overflow-hidden group cursor-pointer ${
         index % 5 === 0 ? "row-span-2" : index % 3 === 0 ? "col-span-2" : ""
-      }`}>
+      }`}
+      rounded={theme?.themeRounded.default}>
         <Image
           src={image.src}
           alt={image.alt}
@@ -171,12 +170,12 @@ const gridGalleryContentHooks = {
         />
         
         {image.title && (
-          <Box className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-md">
-            <Text size="md" fw="semibold" c="white">
+          <Box className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+            <Text size="md" fw="semibold" c="primary-foreground">
               {image.title}
             </Text>
             {image.category && (
-              <Text size="xs" c="white/80" className="uppercase tracking-wide">
+              <Text size="xs" c="primary-foreground" className="uppercase tracking-wide">
                 {image.category}
               </Text>
             )}
@@ -203,7 +202,7 @@ const gridGalleryContentHooks = {
 
         {/* Featured Image */}
         {content.images[0] && (
-          <Box className="relative overflow-hidden rounded-xl shadow-2xl max-w-4xl">
+          <Box className="relative overflow-hidden rounded-xl shadow-2xl max-w-4xl" rounded={theme?.themeRounded.default}>
             <Image
               src={content.images[0].src}
               alt={content.images[0].alt}
@@ -212,16 +211,16 @@ const gridGalleryContentHooks = {
               fit="cover"
             />
             <Box className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-            <Box className="absolute bottom-0 left-0 right-0 p-xl">
+            <Box className="absolute bottom-0 left-0 right-0 p-6">
               <Group gap="lg" align="center" justify="between">
                 <Stack gap="xs">
                   {content.images[0].title && (
-                    <Text size="xl" fw="bold" c="white">
+                    <Text size="xl" fw="bold" c="primary-foreground">
                       {content.images[0].title}
                     </Text>
                   )}
                   {content.images[0].category && (
-                    <Text size="sm" c="white/80">
+                    <Text size="sm" c="primary-foreground">
                       {content.images[0].category}
                     </Text>
                   )}
@@ -245,7 +244,7 @@ const gridGalleryContentHooks = {
       if (index === 0) return null; // Skip first image as it's featured
       
       return (
-        <Box className="relative overflow-hidden group cursor-pointer">
+        <Box className="relative overflow-hidden group cursor-pointer" rounded={theme?.themeRounded.default}>
           <Image
             src={image.src}
             alt={image.alt}
@@ -298,7 +297,7 @@ const gridGalleryContentHooks = {
                       index % 3 === 0 ? "row-span-2" : "";
       
       return (
-        <Box className={`relative overflow-hidden group cursor-pointer ${sizeClass}`}>
+        <Box className={`relative overflow-hidden group cursor-pointer ${sizeClass}`} rounded={theme?.themeRounded.default}>
           <Image
             src={image.src}
             alt={image.alt}
@@ -310,18 +309,18 @@ const gridGalleryContentHooks = {
           />
           
           <Box className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <Box className="absolute bottom-0 left-0 right-0 p-md">
+            <Box className="absolute bottom-0 left-0 right-0 p-4">
               <Group gap="md" align="center" justify="between">
                 {image.title && (
-                  <Text size="sm" fw="medium" c="white">
+                  <Text size="sm" fw="medium" c="primary-foreground">
                     {image.title}
                   </Text>
                 )}
                 <Group gap="xs">
                   {image.likes && (
                     <Group gap="xs" align="center">
-                      <Icon lucideIcon={Heart} c="white" />
-                      <Text size="xs" c="white">{image.likes}</Text>
+                      <Icon lucideIcon={Heart} c="primary-foreground" />
+                      <Text size="xs" c="primary-foreground">{image.likes}</Text>
                     </Group>
                   )}
                   <Button rounded={theme?.themeRounded.default} size="xs" variant="ghost" className="text-white hover:bg-white/20">
@@ -344,7 +343,7 @@ const gridGalleryContentHooks = {
           {content.badge || "Gallery"}
         </Text>
         
-        <Title order={1} size="3xl" fw="light" ta="center" className="font-serif">
+        <Title order={1} size="3xl" fw="normal" ta="center" className="font-serif">
           {content.title}
         </Title>
         
@@ -357,7 +356,7 @@ const gridGalleryContentHooks = {
     ),
     
     item: (image: GalleryImage) => (
-      <Box className="relative overflow-hidden group cursor-pointer">
+      <Box className="relative overflow-hidden group cursor-pointer" rounded={theme?.themeRounded.default}>
         <Image
           src={image.src}
           alt={image.alt}
@@ -369,7 +368,7 @@ const gridGalleryContentHooks = {
         />
         
         {image.title && (
-          <Box className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm p-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <Box className="absolute bottom-0 left-0 right-0 bg-background backdrop-blur-sm p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <Text size="xs" fw="medium" ta="center" className="uppercase tracking-wide">
               {image.title}
             </Text>
@@ -405,7 +404,7 @@ const gridGalleryContentHooks = {
     ),
     
     item: (image: GalleryImage) => (
-      <Box className="bg-card rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+      <Box className="bg-card rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300" rounded={theme?.themeRounded.default}>
         <Image
           src={image.src}
           alt={image.alt}
@@ -414,7 +413,7 @@ const gridGalleryContentHooks = {
           fit="cover"
         />
         
-        <Box className="p-md">
+        <Box className="p-4">
           <Stack gap="md">
             {image.title && (
               <Text size="md" fw="semibold">
@@ -471,7 +470,7 @@ const gridGalleryContentHooks = {
       
       return (
         <Box 
-          className="bg-white p-sm shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer group"
+          className="bg-white p-2 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer group"
           style={{ transform: `rotate(${rotation}deg)` }}
         >
           <Image
@@ -484,7 +483,7 @@ const gridGalleryContentHooks = {
             className="group-hover:scale-105 transition-transform duration-300"
           />
           
-          <Box className="p-sm bg-white">
+          <Box className="p-2 bg-white">
             {image.title && (
               <Text size="sm" fw="medium" ta="center" className="handwriting">
                 {image.title}
@@ -505,12 +504,12 @@ const gridGalleryContentHooks = {
             {content.badge || "Featured"}
           </Text>
           
-          <Title order={1} size="6xl" fw="black" ta="center" className="leading-none">
+          <Title order={1} size="5xl" fw="bold" ta="center" className="leading-none">
             {content.title}
           </Title>
           
           {content.subtitle && (
-            <Text c="secondary-foreground" ta="center" className="font-light max-w-3xl">
+            <Text c="secondary-foreground" ta="center" className="max-w-3xl">
               {content.subtitle}
             </Text>
           )}
@@ -559,7 +558,8 @@ const gridGalleryContentHooks = {
       return (
         <Box className={`relative overflow-hidden group cursor-pointer ${
           isFeatured ? "col-span-2 row-span-2" : ""
-        }`}>
+        }`}
+        rounded={theme?.themeRounded.default}>
           <Image
             src={image.src}
             alt={image.alt}
@@ -571,20 +571,20 @@ const gridGalleryContentHooks = {
           />
           
           <Box className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <Box className="absolute bottom-0 left-0 right-0 p-lg">
+            <Box className="absolute bottom-0 left-0 right-0 p-6">
               <Stack gap="xs">
                 {image.category && (
-                  <Text size="xs" c="white/80" className="uppercase tracking-widest font-bold">
+                  <Text size="xs" c="primary-foreground" className="uppercase tracking-widest font-bold">
                     {image.category}
                   </Text>
                 )}
                 {image.title && (
-                  <Text size={isFeatured ? "xl" : "md"} fw="bold" c="white">
+                  <Text size={isFeatured ? "xl" : "md"} fw="bold" c="primary-foreground">
                     {image.title}
                   </Text>
                 )}
                 {image.description && isFeatured && (
-                  <Text size="sm" c="white/90">
+                  <Text size="sm" c="primary-foreground">
                     {image.description}
                   </Text>
                 )}
@@ -638,12 +638,12 @@ export const GridGallery = forwardRef<HTMLElement, GridGalleryProps>(
       <LayoutBlock
         ref={ref}
         layout={layoutConfig.layout}
-        gridCols={layoutConfig.gridCols}
+        gridCols={layoutConfig.gridCols as "1-2-3" | "1-2-4" | "2-3-4" | "1" | "2" | "3" | "4" | "5" | "6" | "1-2" | "1-3" | "1-4" | "1-5" | "1-6" | "2-3" | "2-4" | "2-5" | "2-6" | "3-4" | "3-5" | "3-6" | "4-5" | "4-6" | "5-6" | "1-3-4" | "1-2-3-4" | undefined}
         flexWrap={layoutConfig.flexWrap}
         useContainer={useContainer}
         py={py}
         showHeader={true}
-        content={{ ...content, items: content.images }}
+        content={{ ...content, items: content.images as GalleryImage[] }}
         contentHooks={contentHooks}
         className={className}
         {...props}

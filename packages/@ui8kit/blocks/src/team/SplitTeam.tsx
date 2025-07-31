@@ -261,7 +261,7 @@ const splitTeamContentHooks = {
         {/* Team Members Showcase */}
         <Stack gap="md" className="w-full">
           {content.members.slice(0, 4).map((member) => (
-            <Box key={member.id} className="p-md bg-card/50 rounded-md border hover:bg-card transition-colors">
+            <Box key={member.id} className="p-4 bg-card/50 rounded-md border hover:bg-card transition-colors">
               <Group gap="md" align="center">
                 {member.avatar ? (
                   <Image
@@ -365,7 +365,7 @@ const splitTeamContentHooks = {
         {/* Sample Team Members */}
         <Stack gap="md" className="w-full">
           {content.members.slice(0, 3).map((member) => (
-            <Group key={member.id} gap="md" align="center" className="p-sm bg-card rounded-md">
+            <Group key={member.id} gap="md" align="center" className="p-2 bg-card rounded-md">
               {member.avatar ? (
                 <Image
                   src={member.avatar.src}
@@ -472,7 +472,7 @@ const splitTeamContentHooks = {
 
         {/* Featured Culture Highlights */}
         <Stack gap="md" className="w-full">
-          <Group gap="md" align="center" className="p-md bg-card rounded-md border">
+          <Group gap="md" align="center" className="p-4 bg-card rounded-md border">
             <Icon size="lg" lucideIcon={Coffee} c="primary" />
             <Stack gap="xs">
               <Text size="sm" fw="semibold">Remote-First Culture</Text>
@@ -480,7 +480,7 @@ const splitTeamContentHooks = {
             </Stack>
           </Group>
           
-          <Group gap="md" align="center" className="p-md bg-card rounded-md border">
+          <Group gap="md" align="center" className="p-4 bg-card rounded-md border">
             <Icon size="lg" lucideIcon={Target} c="primary" />
             <Stack gap="xs">
               <Text size="sm" fw="semibold">Growth Mindset</Text>
@@ -488,7 +488,7 @@ const splitTeamContentHooks = {
             </Stack>
           </Group>
           
-          <Group gap="md" align="center" className="p-md bg-card rounded-md border">
+          <Group gap="md" align="center" className="p-4 bg-card rounded-md border">
             <Icon size="lg" lucideIcon={Users} c="primary" />
             <Stack gap="xs">
               <Text size="sm" fw="semibold">Collaborative Spirit</Text>

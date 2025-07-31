@@ -222,7 +222,7 @@ const centeredPostContentHooks = {
 
         {/* Author Card */}
         {content.author && (
-          <Group gap="md" align="center" className="bg-muted p-lg rounded-lg">
+          <Group gap="md" align="center" className="bg-muted p-6 rounded-lg">
             <Icon size="lg" lucideIcon={User} c="primary" />
             <Stack gap="xs" align="center">
               <Text size="md" fw="semibold">
@@ -304,7 +304,7 @@ const centeredPostContentHooks = {
         </Group>
 
         {/* Author & Actions */}
-        <Group gap="lg" align="center" className="bg-card p-lg rounded-xl shadow-md">
+        <Group gap="lg" align="center" className="bg-card p-6 rounded-xl shadow-md">
           {content.author && (
             <Group gap="md" align="center">
               <Icon lucideIcon={User} c="primary" />
