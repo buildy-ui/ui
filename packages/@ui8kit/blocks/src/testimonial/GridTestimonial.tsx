@@ -4,7 +4,6 @@ import {
   Quote,
   User,
   Award,
-  Heart,
   CheckCircle,
   MessageSquare,
   Users,
@@ -35,8 +34,7 @@ export const theme = {
 }
 import { 
   LayoutBlock,
-  createLayoutContentHook,
-  type LayoutContentHooks
+  createLayoutContentHook
 } from "@ui8kit/core";
 
 // Reuse testimonial interfaces from SplitTestimonial
@@ -152,6 +150,7 @@ const gridTestimonialContentHooks = {
                 height="50px"
                 fit="cover"
                 rounded="full"
+                className="h-12 w-12"
               />
             ) : (
               <Box 
@@ -168,7 +167,7 @@ const gridTestimonialContentHooks = {
                   {testimonial.author}
                 </Text>
                 {testimonial.verified && (
-                  <Icon lucideIcon={CheckCircle} c="green-500" />
+                  <Icon lucideIcon={CheckCircle} c="primary" />
                 )}
               </Group>
               <Text size="xs" c="secondary-foreground">
@@ -212,7 +211,7 @@ const gridTestimonialContentHooks = {
               <RenderStars rating={testimonial.rating} size={isLarge ? "md" : "sm"} />
               {testimonial.verified && (
                 <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
-                  <Icon lucideIcon={Verified} />
+                  <Icon size="sm" lucideIcon={Verified} className="mr-0.5" />
                   Verified
                 </Badge>
               )}
@@ -231,6 +230,7 @@ const gridTestimonialContentHooks = {
                   height={isLarge ? "60px" : "45px"}
                   fit="cover"
                   rounded="full"
+                  className="h-12 w-12"
                 />
               ) : (
                 <Box 
@@ -264,7 +264,7 @@ const gridTestimonialContentHooks = {
           {content.badge || "Testimonials"}
         </Text>
         
-        <Title order={1} size="3xl" fw="light" ta="center" className="font-serif">
+        <Title order={1} size="3xl" fw="normal" ta="center" className="font-serif">
           {content.title}
         </Title>
         
@@ -305,7 +305,7 @@ const gridTestimonialContentHooks = {
     header: (content: GridTestimonialData) => (
       <Stack gap="lg" align="center" ta="center">
         <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="px-lg py-sm">
-          <Icon lucideIcon={Users} />
+          <Icon size="sm" lucideIcon={Users} className="mr-0.5" />
           {content.badge || "Customer Reviews"}
         </Badge>
         
@@ -358,20 +358,20 @@ const gridTestimonialContentHooks = {
           </Text>
           
           {/* Author section */}
-          <Group gap="lg" align="center" className="mt-auto">
+          <Group gap="lg" align="center">
             {testimonial.avatar ? (
               <Image
                 src={testimonial.avatar.src}
                 alt={testimonial.avatar.alt}
-                width="70px"
-                height="70px"
+                width="40px"
+                height="40px"
                 fit="cover"
                 rounded="full"
-                className="border-4 border-primary/10"
+                className="h-12 w-12"
               />
             ) : (
               <Box 
-                className="w-[70px] h-[70px] bg-primary/10 rounded-full flex items-center justify-center border-4 border-primary/20"
+                className="w-[40px] h-[40px] bg-primary/10 rounded-full flex items-center justify-center border-4 border-primary/20"
                 data-class="avatar-placeholder"
               >
                 <Icon size="xl" lucideIcon={User} c="primary" />
@@ -385,7 +385,7 @@ const gridTestimonialContentHooks = {
                 </Text>
                 {testimonial.verified && (
                   <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
-                    <Icon lucideIcon={Shield} />
+                    <Icon size="sm" lucideIcon={Shield} className="mr-0.5" />
                     Verified
                   </Badge>
                 )}
@@ -488,6 +488,7 @@ const gridTestimonialContentHooks = {
                 height="35px"
                 fit="cover"
                 rounded="full"
+                className="h-12 w-12"
               />
             ) : (
               <Box 
@@ -521,7 +522,7 @@ const gridTestimonialContentHooks = {
             {content.badge || "Featured Reviews"}
           </Text>
           
-          <Title order={1} size="6xl" fw="black" ta="center" className="leading-none">
+          <Title order={1} size="5xl" fw="bold" ta="center" className="leading-none">
             {content.title}
           </Title>
           
@@ -587,7 +588,7 @@ const gridTestimonialContentHooks = {
               <RenderStars rating={testimonial.rating} size={isFeatured ? "md" : "sm"} />
               {isFeatured && (
                 <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
-                  <Icon lucideIcon={Award} />
+                  <Icon size="sm" lucideIcon={Award} className="mr-0.5" />
                   Featured
                 </Badge>
               )}
@@ -614,6 +615,7 @@ const gridTestimonialContentHooks = {
                   height={isFeatured ? "60px" : "45px"}
                   fit="cover"
                   rounded="full"
+                  className="h-12 w-12"
                 />
               ) : (
                 <Box 
@@ -680,12 +682,12 @@ export const GridTestimonial = forwardRef<HTMLElement, GridTestimonialProps>(
       <LayoutBlock
         ref={ref}
         layout={layoutConfig.layout}
-        cols={layoutConfig.cols}
-        wrap={layoutConfig.wrap}
+        gridCols={layoutConfig.cols as "1-2-3" | "1-2-3-4" | "1-2" | "1" | "2" | "3" | "4" | "5" | "6" | "1-3" | "1-4" | "1-5" | "1-6" | "2-3" | "2-4" | "2-5" | "2-6" | "3-4" | "3-5" | "3-6" | "4-5" | "4-6" | "5-6" | "1-2-4" | "1-3-4" | "2-3-4" | undefined}
+        wrap={layoutConfig.wrap as "nowrap" | "wrap" | "wrap-reverse" | undefined}
         useContainer={useContainer}
         py={py}
         showHeader={true}
-        content={{ ...content, items: content.testimonials }}
+        content={{ ...content, items: content.testimonials as TestimonialItem[] }}
         contentHooks={contentHooks}
         className={className}
         {...props}

@@ -8,8 +8,8 @@
 // import PostBlocks from "./blocks/post";
 // import FeaturesBlocks from "./blocks/features";
 // import GalleryBlocks from "./blocks/gallery";
-import TeamBlocks from "./blocks/team";
-// import TestimonialBlocks from "./blocks/testimonial";
+// import TeamBlocks from "./blocks/team";
+import TestimonialBlocks from "./blocks/testimonial";
 // import FooterBlocks from "./blocks/footer"; // Uncommented
 
 // Core UI Examples
@@ -26,7 +26,8 @@ function Blocks() {
       {/* <PostBlocks /> */}
       {/* <FeaturesBlocks /> */}
       {/* <GalleryBlocks /> */}
-      <TeamBlocks />
+      {/* <TeamBlocks /> */}
+      <TestimonialBlocks />
       {/* <BusinessBlocks /> */}
       {/* <FooterBlocks /> */}
     </div>
