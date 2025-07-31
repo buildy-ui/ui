@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import { Check, ArrowRight, Zap, Shield, Rocket } from "lucide-react";
+import { Check } from "lucide-react";
 import {
   Block,
   Stack,
@@ -24,10 +24,7 @@ export const theme = {
 }
 import { 
   SplitBlock, 
-  createContentHook, 
-  defaultContentHooks, 
-  advancedContentHooks,
-  type ContentHooks 
+  createContentHook,
 } from "@ui8kit/core";
 
 // Features data interface
@@ -66,7 +63,7 @@ const featuresContentHooks = {
   // Media variant - simple image + content
   media: createContentHook({
     content: (content: FeaturesData) => (
-      <Stack gap="lg" align="start">
+      <Stack gap="lg" align="start" p="md">
         <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
           {content.badge}
         </Badge>
@@ -80,7 +77,7 @@ const featuresContentHooks = {
         </Text>
 
         {content.features && (
-          <Stack gap="md" className="w-full" data-class="features-list">
+          <Stack gap="md">
             {content.features.map((feature, index) => (
               <Group key={feature.id || index} gap="md" align="start">
                 <Icon
@@ -90,7 +87,7 @@ const featuresContentHooks = {
                   c="primary"
                   className="mt-1 flex-shrink-0"
                 />
-                <Stack gap="2xs">
+                <Stack gap="xs">
                   <Text fw="semibold">{feature.title}</Text>
                   <Text c="secondary-foreground">
                     {feature.description}
@@ -143,7 +140,7 @@ const featuresContentHooks = {
   // Features variant - with feature icons
   features: createContentHook({
     content: (content: FeaturesData) => (
-      <Stack gap="lg" align="start">
+      <Stack gap="lg" align="start" p="md">
         <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
           {content.badge}
         </Badge>
@@ -304,13 +301,14 @@ export const SplitFeatures = forwardRef<HTMLElement, SplitFeaturesProps>(
       <Block 
         className="h-full bg-gradient-to-br from-primary/5 to-primary/10 relative overflow-hidden"
         data-class="gradient-background"
+        rounded={theme?.themeRounded.default}
       >
         <Box className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10" />
       </Block>
     );
 
     // Choose content hooks based on variant
-    const contentHooks = featuresContentHooks[variant] || featuresContentHooks.media;
+    const contentHooks = featuresContentHooks[variant as keyof typeof featuresContentHooks] || featuresContentHooks.media;
 
     return (
       <SplitBlock
