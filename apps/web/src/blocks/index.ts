@@ -12,11 +12,12 @@ import { allTeamTemplates } from "./team";
 import { allTestimonialTemplates } from "./testimonial";
  
 export const allTemplates = [
-  ...allBlogTemplates
+  ...allBusinessTemplates
   /*
   ...allHeroTemplates,
   ...allBlogTemplates,
   ...allBusinessTemplates,
+
   ...allCTATemplates,
   ...allFAQTemplates,
   ...allFeaturesTemplates,

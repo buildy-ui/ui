@@ -135,8 +135,6 @@ export const SplitBusinessSolutionsExample = () => {
       variant="solutions"
       leftMedia={false}
       useContainer={true}
-      py="xl"
-      gap="xl"
     />
   );
 };
@@ -163,9 +161,7 @@ export const SplitBusinessMetricsExample = () => {
       variant="metrics"
       leftMedia={true}
       useContainer={true}
-      py="xl"
-      gap="lg"
-      className="bg-gradient-to-br from-green-50 to-emerald-100 dark:from-green-950 dark:to-emerald-950"
+      className="bg-gradient-to-br from-primary/50 to-primary/10"
     />
   );
 };
@@ -189,10 +185,8 @@ export const SplitBusinessTestimonialExample = () => {
       content={content}
       variant="testimonial"
       leftMedia={false}
-      useContainer={false}
-      py="xl"
-      gap="none"
-      className="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-950 dark:to-pink-950"
+      useContainer={true}
+      className="bg-gradient-to-r from-primary/50 to-primary/10"
     />
   );
 };
@@ -214,8 +208,6 @@ export const SplitBusinessFeaturesExample = () => {
       variant="features"
       leftMedia={true}
       useContainer={true}
-      py="xl"
-      gap="xl"
     />
   );
 };
@@ -242,8 +234,6 @@ export const SplitBusinessAboutExample = () => {
       variant="about"
       leftMedia={false}
       useContainer={true}
-      py="xl"
-      gap="lg"
     />
   );
 };

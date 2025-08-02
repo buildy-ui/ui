@@ -211,8 +211,6 @@ export const GridBusinessCardsGalleryExample = () => {
       content={content}
       variant="cardsGallery"
       cols="1-2-3"
-      gap="lg"
-      py="xl"
     />
   );
 };
@@ -231,9 +229,7 @@ export const GridBusinessSolutionsGridExample = () => {
       content={content}
       variant="solutionsGrid"
       cols="1-2-3"
-      gap="xl"
-      py="xl"
-      className="bg-gradient-to-b from-muted/30 to-background"
+      className="bg-gradient-to-b from-primary/50 to-primary/10"
     />
   );
 };
@@ -251,8 +247,6 @@ export const GridBusinessPricingExample = () => {
       content={content}
       variant="pricing"
       cols="1-2-3"
-      gap="lg"
-      py="xl"
     />
   );
 };
@@ -270,8 +264,6 @@ export const GridBusinessPricingYearExample = () => {
       content={content}
       variant="pricingYear"
       cols="1-2-3"
-      gap="lg"
-      py="xl"
       _showYearlyToggle={true}
       className="bg-gradient-to-br from-primary/5 to-secondary/5"
     />
@@ -292,8 +284,6 @@ export const GridBusinessCareerExample = () => {
       content={content}
       variant="career"
       cols="1-2"
-      gap="md"
-      py="lg"
       useContainer={true}
     />
   );
