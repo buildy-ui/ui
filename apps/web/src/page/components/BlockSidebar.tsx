@@ -1,4 +1,4 @@
-import { Plus, Loader2, Moon, Sun, ChevronLeft } from "lucide-react";
+import { Plus, Loader2, Moon, Sun, ChevronLeft, BetweenHorizontalStart } from "lucide-react";
 import { Suspense, useCallback, memo } from "react";
 import { Card, Button } from "@ui8kit/core";
 import type { Block, Template } from "@/types";
@@ -29,6 +29,17 @@ export default function BlockSidebar({
       order: blocks.length
     };
     setBlocks(prev => [...prev, newBlock]);
+  }, [blocks.length, setBlocks]);
+
+  // Add all blocks at once for quick layout testing
+  const addAllBlocks = useCallback(() => {
+    const newBlocks: Block[] = allTemplates.map((template, index) => ({
+      id: `${template.id}_${Date.now()}_${index}`,
+      type: template.id,
+      content: {},
+      order: blocks.length + index
+    }));
+    setBlocks(prev => [...prev, ...newBlocks]);
   }, [blocks.length, setBlocks]);
 
   const BlockPreview = memo(({ template }: { template: Template }) => {
@@ -91,6 +102,15 @@ export default function BlockSidebar({
             ) : (
               <Moon className="h-4 w-4" />
             )}
+          </Button>
+          <Button
+            size="icon"
+            variant="ghost"
+            onClick={addAllBlocks}
+            className="h-8 w-8"
+            title="Add all blocks for layout testing"
+          >
+            <BetweenHorizontalStart className="h-4 w-4" />
           </Button>
         </div>
       </div>

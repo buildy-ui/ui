@@ -1,4 +1,4 @@
-import PageBuilder from '@/PageBuilder'
+import PageBuilder from '@/page/PageBuilder'
 
 function App() {
   return <PageBuilder />

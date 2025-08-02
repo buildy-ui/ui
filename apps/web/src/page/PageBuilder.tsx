@@ -3,8 +3,8 @@ import { ChevronRight } from "lucide-react";
 import { Button } from "@ui8kit/core";
 import type { Block } from "@/types";
 
-import BlockSidebar from "@/BlockSidebar";
-import BuilderCanvas from "@/BuilderCanvas";
+import BlockSidebar from "./components/BlockSidebar";
+import BuilderCanvas from "./components/BuilderCanvas";
 
 export default function PageBuilder() {
   const [blocks, setBlocks] = useState<Block[]>([]);
