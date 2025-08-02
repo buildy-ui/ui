@@ -293,7 +293,7 @@ export const GridFAQ = forwardRef<HTMLElement, GridFAQProps>(
     cols,
     gap,
     useContainer = true,
-    py = "xl",
+    py = "lg",
     className,
     ...props 
   }, ref) => {

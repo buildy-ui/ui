@@ -25,7 +25,6 @@ export const CenteredHeroSimpleExample = () => {
       content={content}
       variant="simple"
       useContainer={true}
-      py="xl"
       className="relative z-10"
     />
     </div>
@@ -53,7 +52,6 @@ export const CenteredHeroWithTopButtonExample = () => {
       content={content}
       variant="withTopButton"
       useContainer={true}
-      py="xl"
     />
   );
 };
@@ -88,7 +86,6 @@ export const CenteredHeroWithImageExample = () => {
       content={content}
       variant="withImage"
       useContainer={true}
-      py="xl"
       className="relative z-10"
     />
 </div>
@@ -133,7 +130,6 @@ export const CenteredHeroWithStatsExample = () => {
       content={content}
       variant="withStats"
       useContainer={true}
-      py="xl"
     />
   );
 };
@@ -171,7 +167,6 @@ export const CenteredHeroMissionExample = () => {
       content={content}
       variant="withStats"
       useContainer={true}
-      py="xl"
       className="bg-gradient-to-t from-primary/10 to-secondary/15"
     />
   );

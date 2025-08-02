@@ -114,7 +114,6 @@ export const SplitFAQContactExample = () => {
       content={content}
       variant="contact"
       leftMedia={false}
-      py="xl"
     />
   );
 };
@@ -140,7 +139,6 @@ export const SplitFAQSearchExample = () => {
       content={content}
       variant="search"
       leftMedia={true}
-      py="xl"
     />
   );
 };
@@ -161,7 +159,6 @@ export const SplitFAQCategoriesExample = () => {
       content={content}
       variant="categories"
       leftMedia={false}
-      py="xl"
     />
   );
 };
@@ -186,7 +183,6 @@ export const SplitFAQSupportExample = () => {
       content={content}
       variant="support"
       leftMedia={true}
-      py="xl"
     />
   );
 };
@@ -206,7 +202,6 @@ export const SplitFAQAccordionExample = () => {
       content={content}
       variant="accordion"
       leftMedia={false}
-      py="xl"
     />
   );
 };

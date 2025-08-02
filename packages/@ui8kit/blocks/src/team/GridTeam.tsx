@@ -606,7 +606,7 @@ export const GridTeam = forwardRef<HTMLElement, GridTeamProps>(
     content, 
     variant = "grid",
     useContainer = true,
-    py = "xl",
+    py = "lg",
     className,
     ...props 
   }, ref) => {

@@ -602,7 +602,7 @@ export const GridGallery = forwardRef<HTMLElement, GridGalleryProps>(
     content, 
     variant = "grid",
     useContainer = true,
-    py = "xl",
+    py = "lg",
     className,
     ...props 
   }, ref) => {

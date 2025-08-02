@@ -427,7 +427,7 @@ export const CenteredPost = forwardRef<HTMLElement, CenteredPostProps>(
     content, 
     variant = "classic",
     useContainer = true,
-    py = "xl",
+    py = "lg",
     className,
     ...props 
   }, ref) => {

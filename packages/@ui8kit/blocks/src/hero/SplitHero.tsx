@@ -302,7 +302,7 @@ export const SplitHero = forwardRef<HTMLElement, SplitHeroProps>(
           data-class="hero-gradient-background"
           rounded={theme?.themeRounded.default}
         >
-          <Box className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10" />
+          <Box className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10" />
         </Block>
       );
     };

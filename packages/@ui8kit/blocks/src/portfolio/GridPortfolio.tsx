@@ -504,7 +504,7 @@ export const GridPortfolio = forwardRef<HTMLElement, GridPortfolioProps>(
     cols,
     gap,
     useContainer = true,
-    py = "xl",
+    py = "lg",
     className,
     ...props 
   }, ref) => {

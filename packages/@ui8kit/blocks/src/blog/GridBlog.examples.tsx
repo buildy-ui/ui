@@ -207,7 +207,7 @@ export const GridBlogFeaturedExample = () => {
       content={content}
       variant="featured"
       cols="1-2-3"
-      className="bg-gradient-to-b from-muted/30 to-background"
+      className="bg-gradient-to-b from-secondary/30 to-background"
     />
   );
 };

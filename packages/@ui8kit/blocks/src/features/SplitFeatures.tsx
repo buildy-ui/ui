@@ -279,8 +279,8 @@ export const SplitFeatures = forwardRef<HTMLElement, SplitFeaturesProps>(
     variant = "media",
     leftMedia = false,
     useContainer = true,
-    py = "xl",
-    gap = "md",
+    py = "lg",
+    gap = "xl",
     className,
     ...props 
   }, ref) => {

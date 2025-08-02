@@ -184,7 +184,6 @@ export const GridTeamGridExample = () => {
       content={content}
       variant="grid"
       useContainer={true}
-      py="xl"
     />
   );
 };
@@ -203,7 +202,6 @@ export const GridTeamCardsExample = () => {
       content={content}
       variant="cards"
       useContainer={true}
-      py="xl"
     />
   );
 };
@@ -222,7 +220,6 @@ export const GridTeamMinimalExample = () => {
       content={content}
       variant="minimal"
       useContainer={true}
-      py="xl"
     />
   );
 };
@@ -245,7 +242,6 @@ export const GridTeamShowcaseExample = () => {
       content={content}
       variant="showcase"
       useContainer={true}
-      py="xl"
     />
   );
 };
@@ -268,7 +264,6 @@ export const GridTeamDirectoryExample = () => {
       content={content}
       variant="directory"
       useContainer={true}
-      py="lg"
     />
   );
 };

@@ -649,7 +649,7 @@ export const GridTestimonial = forwardRef<HTMLElement, GridTestimonialProps>(
     content, 
     variant = "grid",
     useContainer = true,
-    py = "xl",
+    py = "lg",
     className,
     ...props 
   }, ref) => {

@@ -82,8 +82,6 @@ export const SplitTestimonialFeaturedExample = () => {
       variant="featured"
       mediaPosition="right"
       useContainer={true}
-      gap="lg"
-      py="xl"
     />
   );
 };
@@ -103,7 +101,6 @@ export const SplitTestimonialCarouselExample = () => {
       variant="carousel"
       mediaPosition="left"
       useContainer={true}
-      py="xl"
     />
   );
 };
@@ -128,7 +125,6 @@ export const SplitTestimonialStatsExample = () => {
       variant="stats"
       mediaPosition="right"
       useContainer={true}
-      py="xl"
     />
   );
 };

@@ -57,7 +57,7 @@ export default function BlockSidebar({
           </Suspense>
         </div>
         
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent pointer-events-none" />
         <div className="absolute bottom-2 left-2 text-white pointer-events-none">
           <h4 className="font-semibold text-sm">{template.name}</h4>
           <p className="text-xs opacity-90">{template.description}</p>

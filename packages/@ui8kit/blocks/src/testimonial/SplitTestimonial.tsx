@@ -360,8 +360,8 @@ export const SplitTestimonial = forwardRef<HTMLElement, SplitTestimonialProps>(
     variant = "featured",
     mediaPosition = "right",
     useContainer = true,
-    py = "xl",
-    gap = "md",
+    py = "lg",
+    gap = "xl",
     className,
     ...props 
   }, ref) => {
@@ -396,7 +396,7 @@ export const SplitTestimonial = forwardRef<HTMLElement, SplitTestimonialProps>(
 
         case "carousel":
           return (
-            <Box className="relative w-full h-full bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 overflow-hidden flex items-center justify-center" rounded={theme?.themeRounded.default}>
+            <Box className="relative w-full h-full bg-gradient-to-br from-primary/20 via-secondary/20 to-tertiary/20 overflow-hidden flex items-center justify-center" rounded={theme?.themeRounded.default}>
               <Stack gap="lg" align="center" className="relative z-10">
                 <Box className="grid grid-cols-2 gap-md max-w-sm">
                   {[Quote, Star, Heart, Users].map((LucideIcon, index) => (
@@ -417,7 +417,7 @@ export const SplitTestimonial = forwardRef<HTMLElement, SplitTestimonialProps>(
 
         case "stats":
           return (
-            <Box className="relative w-full h-full bg-gradient-to-br from-green-500/20 via-blue-500/20 to-purple-500/20 overflow-hidden flex items-center justify-center" rounded={theme?.themeRounded.default}>
+            <Box className="relative w-full h-full bg-gradient-to-br from-primary/20 via-secondary/20 to-tertiary/20 overflow-hidden flex items-center justify-center" rounded={theme?.themeRounded.default}>
               <Stack gap="xl" align="center" className="relative z-10">
                 <Box className="grid grid-cols-3 max-w-md">
                   {[

@@ -62,7 +62,6 @@ export const GridGalleryGridExample = () => {
     <GridGallery
       content={gridData}
       variant="grid"
-      py="xl"
     />
   );
 };
@@ -79,7 +78,6 @@ export const GridGalleryMasonryExample = () => {
     <GridGallery
       content={masonryData}
       variant="masonry"
-      py="xl"
     />
   );
 };
@@ -96,7 +94,6 @@ export const GridGalleryCarouselExample = () => {
     <GridGallery
       content={carouselData}
       variant="carousel"
-      py="xl"
     />
   );
 };
@@ -113,7 +110,6 @@ export const GridGalleryMosaicExample = () => {
     <GridGallery
       content={mosaicData}
       variant="mosaic"
-      py="lg"
     />
   );
 };
@@ -131,7 +127,6 @@ export const GridGalleryMinimalExample = () => {
     <GridGallery
       content={minimalData}
       variant="minimal"
-      py="xl"
     />
   );
 };
@@ -148,7 +143,6 @@ export const GridGalleryCardsExample = () => {
     <GridGallery
       content={cardsData}
       variant="cards"
-      py="xl"
     />
   );
 };
@@ -166,8 +160,7 @@ export const GridGalleryPolaroidExample = () => {
     <GridGallery
       content={polaroidData}
       variant="polaroid"
-      py="xl"
-      className="bg-gradient-to-b from-amber-50/50 to-background"
+      className="bg-gradient-to-b from-primary/50 to-primary/10"
     />
   );
 };
@@ -185,7 +178,6 @@ export const GridGalleryMagazineExample = () => {
     <GridGallery
       content={magazineData}
       variant="magazine"
-      py="xl"
     />
   );
 };

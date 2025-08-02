@@ -165,7 +165,7 @@ export const SplitBlogFeaturedExample = () => {
       variant="featured"
       leftMedia={true}
       useContainer={true}
-      className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950 dark:to-indigo-950"
+      className="bg-gradient-to-r from-primary/10 to-secondary/10"
     />
   );
 };

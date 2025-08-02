@@ -99,7 +99,7 @@ export default function BuilderCanvas({ blocks, setBlocks }: BuilderCanvasProps)
   const EmptyState = () => (
     <div className="w-full h-full flex items-center justify-center bg-muted/10">
       <div className="text-center max-w-md">
-        <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-sky-500/20 to-purple-500/20 rounded-full flex items-center justify-center">
+        <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-primary/50 to-primary/10 rounded-full flex items-center justify-center">
           <div className="w-12 h-12 bg-muted-foreground/20 rounded-lg" />
         </div>
         <h3 className="text-xl font-semibold mb-2">Start Building</h3>

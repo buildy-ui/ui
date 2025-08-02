@@ -552,8 +552,8 @@ export const SplitPortfolio = forwardRef<HTMLElement, SplitPortfolioProps>(
     variant = "showcase",
     leftMedia = false,
     useContainer = true,
-    py = "xl",
-    gap = "md",
+    py = "lg",
+    gap = "xl",
     className,
     ...props 
   }, ref) => {

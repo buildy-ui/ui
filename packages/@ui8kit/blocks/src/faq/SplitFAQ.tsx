@@ -478,8 +478,8 @@ export const SplitFAQ = forwardRef<HTMLElement, SplitFAQProps>(
     variant = "contact",
     leftMedia = false,
     useContainer = true,
-    py = "xl",
-    gap = "md",
+    py = "lg",
+    gap = "xl",
     className,
     ...props 
   }, ref) => {

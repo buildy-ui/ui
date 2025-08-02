@@ -293,8 +293,8 @@ export const SplitGallery = forwardRef<HTMLElement, SplitGalleryProps>(
     variant = "showcase",
     leftMedia = false,
     useContainer = true,
-    py = "xl",
-    gap = "md",
+    py = "lg",
+    gap = "xl",
     className,
     ...props 
   }, ref) => {
