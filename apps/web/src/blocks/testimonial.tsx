@@ -1,46 +1,79 @@
-import {
-  // Split Testimonial Examples
-  SplitTestimonialFeaturedExample,
-  SplitTestimonialCarouselExample,
-  SplitTestimonialStatsExample,
-  
-  // Grid Testimonial Examples
-  GridTestimonialGridExample,
-  GridTestimonialMasonryExample,
-  GridTestimonialMinimalExample,
-  GridTestimonialCardsExample,
-  GridTestimonialCompactExample,
-  GridTestimonialSliderExample,
-  GridTestimonialMagazineExample
-} from "@ui8kit/blocks/testimonial";
-import { Divider } from "./ui/divider";
+// Simplified imports using @ui8kit/blocks library
+import { splitTestimonialExamples, gridTestimonialExamples } from "@ui8kit/blocks";
 
-export default function TestimonialBlocks() {
-  return (
-    <>
-      {/* Split Testimonial Examples (3 variants) */}
-      <Divider text="1. SplitTestimonialFeaturedExample" />
-      <SplitTestimonialFeaturedExample />
-      <Divider text="2. SplitTestimonialCarouselExample" />
-      <SplitTestimonialCarouselExample />
-      <Divider text="3. SplitTestimonialStatsExample" />
-      <SplitTestimonialStatsExample />
-      
-      {/* Grid Testimonial Examples (7 variants) */}
-      <Divider text="4. GridTestimonialGridExample" />
-      <GridTestimonialGridExample />
-      <Divider text="5. GridTestimonialMasonryExample" />
-      <GridTestimonialMasonryExample />
-      <Divider text="6. GridTestimonialMinimalExample" />
-      <GridTestimonialMinimalExample />
-      <Divider text="7. GridTestimonialCardsExample" />
-      <GridTestimonialCardsExample />
-      <Divider text="8. GridTestimonialCompactExample" />
-      <GridTestimonialCompactExample />
-      <Divider text="9. GridTestimonialSliderExample" />
-      <GridTestimonialSliderExample />
-      <Divider text="10. GridTestimonialMagazineExample" />
-      <GridTestimonialMagazineExample />
-    </>
-  );
-}
+// Simplified template structure using @ui8kit/blocks
+export const allTestimonialTemplates = [
+  // Split Testimonial templates
+  {
+    id: "testimonialSplitFeatured",
+    name: "Testimonial Split Featured",
+    description: "Split layout featured testimonial",
+    component: splitTestimonialExamples.featured,
+    defaultContent: {}
+  },
+  {
+    id: "testimonialSplitCarousel",
+    name: "Testimonial Split Carousel",
+    description: "Split layout testimonial carousel",
+    component: splitTestimonialExamples.carousel,
+    defaultContent: {}
+  },
+  {
+    id: "testimonialSplitStats",
+    name: "Testimonial Split Stats",
+    description: "Split layout testimonial with stats",
+    component: splitTestimonialExamples.stats,
+    defaultContent: {}
+  },
+  
+  // Grid Testimonial templates
+  {
+    id: "testimonialGridGrid",
+    name: "Testimonial Grid Grid",
+    description: "Grid layout testimonial grid",
+    component: gridTestimonialExamples.grid,
+    defaultContent: {}
+  },
+  {
+    id: "testimonialGridMasonry",
+    name: "Testimonial Grid Masonry",
+    description: "Grid layout masonry testimonials",
+    component: gridTestimonialExamples.masonry,
+    defaultContent: {}
+  },
+  {
+    id: "testimonialGridMinimal",
+    name: "Testimonial Grid Minimal",
+    description: "Grid layout minimal testimonials",
+    component: gridTestimonialExamples.minimal,
+    defaultContent: {}
+  },
+  {
+    id: "testimonialGridCards",
+    name: "Testimonial Grid Cards",
+    description: "Grid layout testimonial cards",
+    component: gridTestimonialExamples.cards,
+    defaultContent: {}
+  },
+  {
+    id: "testimonialGridCompact",
+    name: "Testimonial Grid Compact",
+    description: "Grid layout compact testimonials",
+    component: gridTestimonialExamples.compact,
+    defaultContent: {}
+  },
+  {
+    id: "testimonialGridSlider",
+    name: "Testimonial Grid Slider",
+    description: "Grid layout testimonial slider",
+    component: gridTestimonialExamples.slider,
+    defaultContent: {}
+  },
+  {
+    id: "testimonialGridMagazine",
+    name: "Testimonial Grid Magazine",
+    description: "Grid layout magazine testimonials",
+    component: gridTestimonialExamples.magazine,
+    defaultContent: {}
+  }
+];

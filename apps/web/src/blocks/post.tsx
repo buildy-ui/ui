@@ -1,48 +1,80 @@
-import { centeredPostExamples } from "@ui8kit/blocks/post/CenteredPost.examples";
-import { splitPostExamples } from "@ui8kit/blocks/post/SplitPost.examples";
-import { Divider } from "./ui/divider";
+// Simplified imports using @ui8kit/blocks library
+import { centeredPostExamples, splitPostExamples } from "@ui8kit/blocks";
 
-// New Factory-based Post Examples
-export const CenteredPostClassicExample = centeredPostExamples.classic;
-export const CenteredPostMinimalExample = centeredPostExamples.minimal;
-export const CenteredPostMagazineExample = centeredPostExamples.magazine;
-export const CenteredPostFeaturedExample = centeredPostExamples.featured;
-export const CenteredPostEditorialExample = centeredPostExamples.editorial;
+// Simplified template structure using @ui8kit/blocks
+export const allPostTemplates = [
+  // Centered Post templates
+  {
+    id: "postCenteredClassic",
+    name: "Post Centered Classic",
+    description: "Centered layout classic post",
+    component: centeredPostExamples.classic,
+    defaultContent: {}
+  },
+  {
+    id: "postCenteredMinimal",
+    name: "Post Centered Minimal",
+    description: "Centered layout minimal post",
+    component: centeredPostExamples.minimal,
+    defaultContent: {}
+  },
+  {
+    id: "postCenteredMagazine",
+    name: "Post Centered Magazine",
+    description: "Centered layout magazine post",
+    component: centeredPostExamples.magazine,
+    defaultContent: {}
+  },
+  {
+    id: "postCenteredFeatured",
+    name: "Post Centered Featured",
+    description: "Centered layout featured post",
+    component: centeredPostExamples.featured,
+    defaultContent: {}
+  },
+  {
+    id: "postCenteredEditorial",
+    name: "Post Centered Editorial",
+    description: "Centered layout editorial post",
+    component: centeredPostExamples.editorial,
+    defaultContent: {}
+  },
+  
+  // Split Post templates
+  {
+    id: "postSplitStandard",
+    name: "Post Split Standard",
+    description: "Split layout standard post",
+    component: splitPostExamples.standard,
+    defaultContent: {}
+  },
+  {
+    id: "postSplitAuthor",
+    name: "Post Split Author",
+    description: "Split layout post with author",
+    component: splitPostExamples.author,
+    defaultContent: {}
+  },
+  {
+    id: "postSplitMedia",
+    name: "Post Split Media",
+    description: "Split layout post with media",
+    component: splitPostExamples.media,
+    defaultContent: {}
+  },
+  {
+    id: "postSplitSidebar",
+    name: "Post Split Sidebar",
+    description: "Split layout post with sidebar",
+    component: splitPostExamples.sidebar,
+    defaultContent: {}
+  },
+  {
+    id: "postSplitHero",
+    name: "Post Split Hero",
+    description: "Split layout post with hero",
+    component: splitPostExamples.hero,
+    defaultContent: {}
+  }
+];
 
-export const SplitPostStandardExample = splitPostExamples.standard;
-export const SplitPostAuthorExample = splitPostExamples.author;
-export const SplitPostMediaExample = splitPostExamples.media;
-export const SplitPostSidebarExample = splitPostExamples.sidebar;
-export const SplitPostHeroExample = splitPostExamples.hero;
-
-function PostBlocks() {
-  return (
-    <div className="flex flex-col divide-y divide-border">
-      {/* Centered Post Examples */}
-      <Divider text="1. CenteredPostClassicExample" />
-      <CenteredPostClassicExample />
-      <Divider text="2. CenteredPostMinimalExample" />
-      <CenteredPostMinimalExample />
-      <Divider text="3. CenteredPostMagazineExample" />
-      <CenteredPostMagazineExample />
-      <Divider text="4. CenteredPostFeaturedExample" />
-      <CenteredPostFeaturedExample />
-      <Divider text="5. CenteredPostEditorialExample" />
-      <CenteredPostEditorialExample />
-      
-      {/* Split Post Examples */}
-      <Divider text="6. SplitPostStandardExample" />
-      <SplitPostStandardExample />
-      <Divider text="7. SplitPostAuthorExample" />
-      <SplitPostAuthorExample />
-      <Divider text="8. SplitPostMediaExample" />
-      <SplitPostMediaExample />
-      <Divider text="9. SplitPostSidebarExample" />
-      <SplitPostSidebarExample />
-      <Divider text="10. SplitPostHeroExample" />
-      <SplitPostHeroExample />
-    </div>
-  );
-}
-
-export default PostBlocks;

@@ -1,46 +1,79 @@
-import {
-  // Split Team Examples
-  SplitTeamLeadershipExample,
-  SplitTeamShowcaseExample,
-  SplitTeamHiringExample,
-  SplitTeamCultureExample,
-  SplitTeamDepartmentsExample,
-  
-  // Grid Team Examples
-  GridTeamGridExample,
-  GridTeamCardsExample,
-  GridTeamMinimalExample,
-  GridTeamShowcaseExample,
-  GridTeamDirectoryExample
-} from "@ui8kit/blocks/team";
-import { Divider } from "./ui/divider";
+// Simplified imports using @ui8kit/blocks library
+import { splitTeamExamples, gridTeamExamples } from "@ui8kit/blocks";
 
-export default function TeamBlocks() {
-  return (
-    <>
-      {/* Split Team Examples (5 variants) */}
-      <Divider text="1. SplitTeamLeadershipExample" />
-      <SplitTeamLeadershipExample />
-      <Divider text="2. SplitTeamShowcaseExample" />
-      <SplitTeamShowcaseExample />
-      <Divider text="3. SplitTeamHiringExample" />
-      <SplitTeamHiringExample />
-      <Divider text="4. SplitTeamCultureExample" />
-      <SplitTeamCultureExample />
-      <Divider text="5. SplitTeamDepartmentsExample" />
-      <SplitTeamDepartmentsExample />
-      
-      {/* Grid Team Examples (5 variants) */}
-      <Divider text="6. GridTeamGridExample" />
-      <GridTeamGridExample />
-      <Divider text="7. GridTeamCardsExample" />
-      <GridTeamCardsExample />
-      <Divider text="8. GridTeamMinimalExample" />
-      <GridTeamMinimalExample />
-      <Divider text="9. GridTeamShowcaseExample" />
-      <GridTeamShowcaseExample />
-      <Divider text="10. GridTeamDirectoryExample" />
-      <GridTeamDirectoryExample />
-    </>
-  );
-}
+// Simplified template structure using @ui8kit/blocks
+export const allTeamTemplates = [
+  // Split Team templates
+  {
+    id: "teamSplitLeadership",
+    name: "Team Split Leadership",
+    description: "Split layout team leadership",
+    component: splitTeamExamples.leadership,
+    defaultContent: {}
+  },
+  {
+    id: "teamSplitShowcase",
+    name: "Team Split Showcase",
+    description: "Split layout team showcase",
+    component: splitTeamExamples.showcase,
+    defaultContent: {}
+  },
+  {
+    id: "teamSplitHiring",
+    name: "Team Split Hiring",
+    description: "Split layout team hiring",
+    component: splitTeamExamples.hiring,
+    defaultContent: {}
+  },
+  {
+    id: "teamSplitCulture",
+    name: "Team Split Culture",
+    description: "Split layout team culture",
+    component: splitTeamExamples.culture,
+    defaultContent: {}
+  },
+  {
+    id: "teamSplitDepartments",
+    name: "Team Split Departments",
+    description: "Split layout team departments",
+    component: splitTeamExamples.departments,
+    defaultContent: {}
+  },
+  
+  // Grid Team templates
+  {
+    id: "teamGridGrid",
+    name: "Team Grid Grid",
+    description: "Grid layout team grid",
+    component: gridTeamExamples.grid,
+    defaultContent: {}
+  },
+  {
+    id: "teamGridCards",
+    name: "Team Grid Cards",
+    description: "Grid layout team cards",
+    component: gridTeamExamples.cards,
+    defaultContent: {}
+  },
+  {
+    id: "teamGridMinimal",
+    name: "Team Grid Minimal",
+    description: "Grid layout minimal team",
+    component: gridTeamExamples.minimal,
+    defaultContent: {}
+  },
+  {
+    id: "teamGridShowcase",
+    name: "Team Grid Showcase",
+    description: "Grid layout team showcase",
+    component: gridTeamExamples.showcase,
+    defaultContent: {}
+  },
+  {
+    id: "teamGridDirectory",
+    name: "Team Grid Directory",
+    description: "Grid layout team directory",
+    component: gridTeamExamples.directory,
+    defaultContent: {}
+  }
+];

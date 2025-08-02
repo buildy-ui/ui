@@ -1,45 +1,79 @@
-import { splitFeaturesExamples } from "@ui8kit/blocks/features/SplitFeatures.examples";
-import { gridFeaturesExamples } from "@ui8kit/blocks/features/GridFeatures.examples";
+// Simplified imports using @ui8kit/blocks library
+import { splitFeaturesExamples, gridFeaturesExamples } from "@ui8kit/blocks";
 
-export const SplitFeaturesMediaExample = splitFeaturesExamples.media;
-export const SplitFeaturesLeftMediaExample = splitFeaturesExamples.leftMedia;
-export const SplitFeaturesAnalyticsExample = splitFeaturesExamples.analytics;
-export const SplitFeaturesSecurityExample = splitFeaturesExamples.security;
-export const SplitFeaturesPerformanceExample = splitFeaturesExamples.performance;
-
-
-export const GridFeaturesThreeColumnsExample = gridFeaturesExamples.threeColumns;
-export const GridFeaturesThreeColumnsIconsExample = gridFeaturesExamples.threeColumnsIcons;
-export const GridFeaturesMediaCardsExample = gridFeaturesExamples.mediaCards;
-export const GridFeaturesCareerPositionsExample = gridFeaturesExamples.careerPositions;
-export const GridFeaturesCareerStatsExample = gridFeaturesExamples.careerStats;
-import { Divider } from "./ui/divider";
-
-function Blocks() {
-  return (
-    <div>
-      <Divider text="1. SplitFeaturesMediaExample" />
-      <SplitFeaturesMediaExample />
-      <Divider text="2. SplitFeaturesLeftMediaExample" />
-      <SplitFeaturesLeftMediaExample />
-      <Divider text="3. SplitFeaturesAnalyticsExample" />
-      <SplitFeaturesAnalyticsExample />
-      <Divider text="4. SplitFeaturesSecurityExample" />
-      <SplitFeaturesSecurityExample />
-      <Divider text="5. SplitFeaturesPerformanceExample" />
-      <SplitFeaturesPerformanceExample />
-      <Divider text="6. GridFeaturesThreeColumnsExample" />
-      <GridFeaturesThreeColumnsExample />
-      <Divider text="7. GridFeaturesThreeColumnsIconsExample" />
-      <GridFeaturesThreeColumnsIconsExample />
-      <Divider text="8. GridFeaturesMediaCardsExample" />
-      <GridFeaturesMediaCardsExample />
-      <Divider text="9. GridFeaturesCareerPositionsExample" />
-      <GridFeaturesCareerPositionsExample />
-      <Divider text="10. GridFeaturesCareerStatsExample" />
-      <GridFeaturesCareerStatsExample />
-    </div>
-  );
-}
-
-export default Blocks;
+// Simplified template structure using @ui8kit/blocks
+export const allFeaturesTemplates = [
+  // Split Features templates
+  {
+    id: "featuresSplitMedia",
+    name: "Features Split Media",
+    description: "Split layout features with media",
+    component: splitFeaturesExamples.media,
+    defaultContent: {}
+  },
+  {
+    id: "featuresSplitLeftMedia",
+    name: "Features Split Left Media",
+    description: "Split layout features with left media",
+    component: splitFeaturesExamples.leftMedia,
+    defaultContent: {}
+  },
+  {
+    id: "featuresSplitAnalytics",
+    name: "Features Split Analytics",
+    description: "Split layout features for analytics",
+    component: splitFeaturesExamples.analytics,
+    defaultContent: {}
+  },
+  {
+    id: "featuresSplitSecurity",
+    name: "Features Split Security",
+    description: "Split layout features for security",
+    component: splitFeaturesExamples.security,
+    defaultContent: {}
+  },
+  {
+    id: "featuresSplitPerformance",
+    name: "Features Split Performance",
+    description: "Split layout features for performance",
+    component: splitFeaturesExamples.performance,
+    defaultContent: {}
+  },
+  
+  // Grid Features templates
+  {
+    id: "featuresGridThreeColumns",
+    name: "Features Grid Three Columns",
+    description: "Grid layout features in three columns",
+    component: gridFeaturesExamples.threeColumns,
+    defaultContent: {}
+  },
+  {
+    id: "featuresGridThreeColumnsIcons",
+    name: "Features Grid Three Columns Icons",
+    description: "Grid layout features with icons",
+    component: gridFeaturesExamples.threeColumnsIcons,
+    defaultContent: {}
+  },
+  {
+    id: "featuresGridMediaCards",
+    name: "Features Grid Media Cards",
+    description: "Grid layout features with media cards",
+    component: gridFeaturesExamples.mediaCards,
+    defaultContent: {}
+  },
+  {
+    id: "featuresGridCareerPositions",
+    name: "Features Grid Career Positions",
+    description: "Grid layout features for career positions",
+    component: gridFeaturesExamples.careerPositions,
+    defaultContent: {}
+  },
+  {
+    id: "featuresGridCareerStats",
+    name: "Features Grid Career Stats",
+    description: "Grid layout features with career stats",
+    component: gridFeaturesExamples.careerStats,
+    defaultContent: {}
+  }
+];

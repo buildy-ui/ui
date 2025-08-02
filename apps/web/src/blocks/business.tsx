@@ -1,44 +1,77 @@
-import { gridBusinessExamples } from "@ui8kit/blocks/business/GridBusiness.examples";
-import { splitBusinessExamples } from "@ui8kit/blocks/business/SplitBusiness.examples";
-import { Divider } from "./ui/divider";
+// Simplified imports using @ui8kit/blocks library
+import { splitBusinessExamples, gridBusinessExamples } from "@ui8kit/blocks";
 
-export const GridBusinessCardsGalleryExample = gridBusinessExamples.cardsGallery;
-export const GridBusinessSolutionsGridExample = gridBusinessExamples.solutionsGrid;
-export const GridBusinessPricingExample = gridBusinessExamples.pricing;
-export const GridBusinessPricingYearExample = gridBusinessExamples.pricingYear;
-export const GridBusinessCareerExample = gridBusinessExamples.career;
+// Simplified template structure using @ui8kit/blocks
+export const allBusinessTemplates = [
+  {
+    id: "gridBusinessCardsGallery",
+    name: "Grid Business Cards Gallery",
+    description: "Grid layout business cards gallery",
+    component: gridBusinessExamples.cardsGallery,
+    defaultContent: {}
+  },
+  {
+    id: "gridBusinessSolutionsGrid",
+    name: "Grid Business Solutions Grid",
+    description: "Grid layout business solutions grid",
+    component: gridBusinessExamples.solutionsGrid,
+    defaultContent: {}
+  },
+  {
+    id: "gridBusinessPricing",
+    name: "Grid Business Pricing",
+    description: "Grid layout business pricing",
+    component: gridBusinessExamples.pricing,
+    defaultContent: {}
+  },
+  {
+    id: "gridBusinessPricingYear",
+    name: "Grid Business Pricing Year",
+    description: "Grid layout business pricing year",
+    component: gridBusinessExamples.pricingYear,
+    defaultContent: {}
+  },
+  {
+    id: "gridBusinessCareer",
+    name: "Grid Business Career",
+    description: "Grid layout business career",
+    component: gridBusinessExamples.career,
+    defaultContent: {}
+  },
+  {
+    id: "splitBusinessSolutions",
+    name: "Split Business Solutions",
+    description: "Split layout business solutions",
+    component: splitBusinessExamples.solutions,
+    defaultContent: {}
+  },
+  {
+    id: "splitBusinessMetrics",
+    name: "Split Business Metrics",
+    description: "Split layout business metrics",
+    component: splitBusinessExamples.metrics,
+    defaultContent: {}
+  },
+  {
+    id: "splitBusinessTestimonial",
+    name: "Split Business Testimonial",
+    description: "Split layout business testimonial",
+    component: splitBusinessExamples.testimonial,
+    defaultContent: {}
+  },
+  {
+    id: "splitBusinessFeatures",
+    name: "Split Business Features",
+    description: "Split layout business features",
+    component: splitBusinessExamples.features,
+    defaultContent: {}
+  },
+  {
+    id: "splitBusinessAbout",
+    name: "Split Business About",
+    description: "Split layout business about",
+    component: splitBusinessExamples.about,
+    defaultContent: {}
+  }
+]
 
-export const SplitBusinessSolutionsExample = splitBusinessExamples.solutions;
-export const SplitBusinessMetricsExample = splitBusinessExamples.metrics;
-export const SplitBusinessTestimonialExample = splitBusinessExamples.testimonial;
-export const SplitBusinessFeaturesExample = splitBusinessExamples.features;
-export const SplitBusinessAboutExample = splitBusinessExamples.about;
-
-function BusinessBlocks() {
-  return (
-    <div className="flex flex-col divide-y divide-border">
-      <Divider text="1. GridBusinessCardsGalleryExample" />
-      <GridBusinessCardsGalleryExample />
-      <Divider text="2. GridBusinessSolutionsGridExample" />
-      <GridBusinessSolutionsGridExample />
-      <Divider text="3. GridBusinessPricingExample" />
-      <GridBusinessPricingExample />
-      <Divider text="4. GridBusinessPricingYearExample" />
-      <GridBusinessPricingYearExample />
-      <Divider text="5. GridBusinessCareerExample" />
-      <GridBusinessCareerExample />
-      <Divider text="6. SplitBusinessSolutionsExample" />
-      <SplitBusinessSolutionsExample />
-      <Divider text="7. SplitBusinessMetricsExample" />
-      <SplitBusinessMetricsExample />
-      <Divider text="8. SplitBusinessTestimonialExample" />
-      <SplitBusinessTestimonialExample />
-      <Divider text="9. SplitBusinessFeaturesExample" />
-      <SplitBusinessFeaturesExample />
-      <Divider text="10. SplitBusinessAboutExample" />
-      <SplitBusinessAboutExample />
-    </div>
-  );
-}
-
-export default BusinessBlocks;

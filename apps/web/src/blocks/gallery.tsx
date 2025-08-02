@@ -1,51 +1,80 @@
-import { splitGalleryExamples } from "@ui8kit/blocks/gallery/SplitGallery.examples";
-import { gridGalleryExamples } from "@ui8kit/blocks/gallery/GridGallery.examples";
-import { Divider } from "./ui/divider";
+// Simplified imports using @ui8kit/blocks library
+import { splitGalleryExamples, gridGalleryExamples } from "@ui8kit/blocks";
 
-// New Factory-based Gallery Examples
+// Simplified template structure using @ui8kit/blocks
+export const allGalleryTemplates = [
+  // Split Gallery templates
+  {
+    id: "gallerySplitShowcase",
+    name: "Gallery Split Showcase",
+    description: "Split layout gallery showcase",
+    component: splitGalleryExamples.showcase,
+    defaultContent: {}
+  },
+  {
+    id: "gallerySplitPortfolio",
+    name: "Gallery Split Portfolio",
+    description: "Split layout gallery portfolio",
+    component: splitGalleryExamples.portfolio,
+    defaultContent: {}
+  },
+  
+  // Grid Gallery templates
+  {
+    id: "galleryGridGrid",
+    name: "Gallery Grid Grid",
+    description: "Grid layout gallery",
+    component: gridGalleryExamples.grid,
+    defaultContent: {}
+  },
+  {
+    id: "galleryGridMasonry",
+    name: "Gallery Grid Masonry",
+    description: "Grid layout masonry gallery",
+    component: gridGalleryExamples.masonry,
+    defaultContent: {}
+  },
+  {
+    id: "galleryGridCarousel",
+    name: "Gallery Grid Carousel",
+    description: "Grid layout carousel gallery",
+    component: gridGalleryExamples.carousel,
+    defaultContent: {}
+  },
+  {
+    id: "galleryGridMosaic",
+    name: "Gallery Grid Mosaic",
+    description: "Grid layout mosaic gallery",
+    component: gridGalleryExamples.mosaic,
+    defaultContent: {}
+  },
+  {
+    id: "galleryGridMinimal",
+    name: "Gallery Grid Minimal",
+    description: "Grid layout minimal gallery",
+    component: gridGalleryExamples.minimal,
+    defaultContent: {}
+  },
+  {
+    id: "galleryGridCards",
+    name: "Gallery Grid Cards",
+    description: "Grid layout cards gallery",
+    component: gridGalleryExamples.cards,
+    defaultContent: {}
+  },
+  {
+    id: "galleryGridPolaroid",
+    name: "Gallery Grid Polaroid",
+    description: "Grid layout polaroid gallery",
+    component: gridGalleryExamples.polaroid,
+    defaultContent: {}
+  },
+  {
+    id: "galleryGridMagazine",
+    name: "Gallery Grid Magazine",
+    description: "Grid layout magazine gallery",
+    component: gridGalleryExamples.magazine,
+    defaultContent: {}
+  }
+];
 
-// Split Gallery Examples (2)
-export const SplitGalleryShowcaseExample = splitGalleryExamples.showcase;
-export const SplitGalleryPortfolioExample = splitGalleryExamples.portfolio;
-
-// Grid Gallery Examples (8)
-export const GridGalleryGridExample = gridGalleryExamples.grid;
-export const GridGalleryMasonryExample = gridGalleryExamples.masonry;
-export const GridGalleryCarouselExample = gridGalleryExamples.carousel;
-export const GridGalleryMosaicExample = gridGalleryExamples.mosaic;
-export const GridGalleryMinimalExample = gridGalleryExamples.minimal;
-export const GridGalleryCardsExample = gridGalleryExamples.cards;
-export const GridGalleryPolaroidExample = gridGalleryExamples.polaroid;
-export const GridGalleryMagazineExample = gridGalleryExamples.magazine;
-
-function GalleryBlocks() {
-  return (
-    <div className="flex flex-col divide-y divide-border">
-      {/* Split Gallery Examples */}
-      <Divider text="1. SplitGalleryShowcaseExample" />
-      <SplitGalleryShowcaseExample />
-      <Divider text="2. SplitGalleryPortfolioExample" />
-      <SplitGalleryPortfolioExample />
-      
-      {/* Grid Gallery Examples */}
-      <Divider text="3. GridGalleryGridExample" />
-      <GridGalleryGridExample />
-      <Divider text="4. GridGalleryMasonryExample" />
-      <GridGalleryMasonryExample />
-      <Divider text="5. GridGalleryCarouselExample" />
-      <GridGalleryCarouselExample />
-      <Divider text="6. GridGalleryMosaicExample" />
-      <GridGalleryMosaicExample />
-      <Divider text="7. GridGalleryMinimalExample" />
-      <GridGalleryMinimalExample />
-      <Divider text="8. GridGalleryCardsExample" />
-      <GridGalleryCardsExample />
-      <Divider text="9. GridGalleryPolaroidExample" />
-      <GridGalleryPolaroidExample />
-      <Divider text="10. GridGalleryMagazineExample" />
-      <GridGalleryMagazineExample />
-    </div>
-  );
-}
-
-export default GalleryBlocks;

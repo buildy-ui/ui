@@ -1,48 +1,80 @@
-import { gridFAQExamples } from "@ui8kit/blocks/faq/GridFAQ.examples";
-import { splitFAQExamples } from "@ui8kit/blocks/faq/SplitFAQ.examples";
-import { Divider } from "./ui/divider";
+// Simplified imports using @ui8kit/blocks library
+import { gridFAQExamples, splitFAQExamples } from "@ui8kit/blocks";
 
-// New Factory-based FAQ Examples
-export const GridFAQCardsExample = gridFAQExamples.cards;
-export const GridFAQAccordionExample = gridFAQExamples.accordion;
-export const GridFAQCategoriesExample = gridFAQExamples.categories;
-export const GridFAQCompactExample = gridFAQExamples.compact;
-export const GridFAQSupportExample = gridFAQExamples.support;
+// Simplified template structure using @ui8kit/blocks
+export const allFAQTemplates = [
+  // Grid FAQ templates
+  {
+    id: "faqGridCards",
+    name: "FAQ Grid Cards",
+    description: "Grid layout FAQ with cards",
+    component: gridFAQExamples.cards,
+    defaultContent: {}
+  },
+  {
+    id: "faqGridAccordion",
+    name: "FAQ Grid Accordion",
+    description: "Grid layout FAQ with accordion",
+    component: gridFAQExamples.accordion,
+    defaultContent: {}
+  },
+  {
+    id: "faqGridCategories",
+    name: "FAQ Grid Categories",
+    description: "Grid layout FAQ with categories",
+    component: gridFAQExamples.categories,
+    defaultContent: {}
+  },
+  {
+    id: "faqGridCompact",
+    name: "FAQ Grid Compact",
+    description: "Grid layout compact FAQ",
+    component: gridFAQExamples.compact,
+    defaultContent: {}
+  },
+  {
+    id: "faqGridSupport",
+    name: "FAQ Grid Support",
+    description: "Grid layout FAQ for support",
+    component: gridFAQExamples.support,
+    defaultContent: {}
+  },
+  
+  // Split FAQ templates
+  {
+    id: "faqSplitContact",
+    name: "FAQ Split Contact",
+    description: "Split layout FAQ with contact",
+    component: splitFAQExamples.contact,
+    defaultContent: {}
+  },
+  {
+    id: "faqSplitSearch",
+    name: "FAQ Split Search",
+    description: "Split layout FAQ with search",
+    component: splitFAQExamples.search,
+    defaultContent: {}
+  },
+  {
+    id: "faqSplitCategories",
+    name: "FAQ Split Categories",
+    description: "Split layout FAQ with categories",
+    component: splitFAQExamples.categories,
+    defaultContent: {}
+  },
+  {
+    id: "faqSplitSupport",
+    name: "FAQ Split Support",
+    description: "Split layout FAQ for support",
+    component: splitFAQExamples.support,
+    defaultContent: {}
+  },
+  {
+    id: "faqSplitAccordion",
+    name: "FAQ Split Accordion",
+    description: "Split layout FAQ with accordion",
+    component: splitFAQExamples.accordion,
+    defaultContent: {}
+  }
+];
 
-export const SplitFAQContactExample = splitFAQExamples.contact;
-export const SplitFAQSearchExample = splitFAQExamples.search;
-export const SplitFAQCategoriesExample = splitFAQExamples.categories;
-export const SplitFAQSupportExample = splitFAQExamples.support;
-export const SplitFAQAccordionExample = splitFAQExamples.accordion;
-
-function FAQBlocks() {
-  return (
-    <div className="flex flex-col divide-y divide-border">
-      {/* Grid FAQ Examples */}
-      <Divider text="1. GridFAQCardsExample" />
-      <GridFAQCardsExample />
-      <Divider text="2. GridFAQAccordionExample" />
-      <GridFAQAccordionExample />
-      <Divider text="3. GridFAQCategoriesExample" />
-      <GridFAQCategoriesExample />
-      <Divider text="4. GridFAQCompactExample" />
-      <GridFAQCompactExample />
-      <Divider text="5. GridFAQSupportExample" />
-      <GridFAQSupportExample />
-      
-      {/* Split FAQ Examples */}
-      <Divider text="6. SplitFAQContactExample" />
-      <SplitFAQContactExample />
-      <Divider text="7. SplitFAQSearchExample" />
-      <SplitFAQSearchExample />
-      <Divider text="8. SplitFAQCategoriesExample" />
-      <SplitFAQCategoriesExample />
-      <Divider text="9. SplitFAQSupportExample" />
-      <SplitFAQSupportExample />
-      <Divider text="10. SplitFAQAccordionExample" />
-      <SplitFAQAccordionExample />
-    </div>
-  );
-}
-
-export default FAQBlocks;
