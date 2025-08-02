@@ -16,7 +16,7 @@ export const CenteredHeroSimpleExample = () => {
   };
 
   return (
-    <div className="min-h-screen w-full relative">
+    <div className="w-full relative">
   {/* Radial Gradient Background */}
   <div
     className="absolute inset-0 z-0 bg-gradient-to-t from-primary/10 to-secondary/10"
@@ -70,7 +70,7 @@ export const CenteredHeroWithImageExample = () => {
   };
 
   return (
-<div className="min-h-screen w-full bg-background dark:bg-secondary/5 relative">
+<div className="w-full bg-background dark:bg-secondary/5 relative">
   {/* Bottom Fade Grid Background */}
   <div
     className="absolute inset-0 z-0 

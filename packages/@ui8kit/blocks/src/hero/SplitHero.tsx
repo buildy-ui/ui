@@ -56,7 +56,6 @@ interface SplitHeroProps {
   variant?: "media" | "gallery" | "simple" | "withTopButton";
   leftMedia?: boolean;
   useContainer?: boolean;
-  padding?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
   py?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
   gap?: "none" | "xs" | "sm" | "md" | "lg" | "xl";
   className?: string;
@@ -249,8 +248,7 @@ export const SplitHero = forwardRef<HTMLElement, SplitHeroProps>(
     variant = "media",
     leftMedia = false,
     useContainer = true,
-    padding = "none",
-    py = "2xl",
+    py = "lg",
     gap = "xl",
     className,
     ...props
@@ -320,7 +318,6 @@ export const SplitHero = forwardRef<HTMLElement, SplitHeroProps>(
         contentHooks={contentHooks}
         leftMedia={leftMedia}
         splitSection={!useContainer}
-        padding={padding}
         py={py}
         gap={gap}
         className={className}

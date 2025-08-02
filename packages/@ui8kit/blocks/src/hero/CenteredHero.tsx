@@ -346,7 +346,7 @@ export const CenteredHero = forwardRef<HTMLElement, CenteredHeroProps>(
     content,
     variant = "simple",
     useContainer = true,
-    py = "2xl",
+    py = "lg",
     className,
     ...props
   }, ref) => {
