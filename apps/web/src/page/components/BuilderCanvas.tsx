@@ -2,7 +2,7 @@ import { Trash2, AlertCircle } from "lucide-react";
 import { Button } from "@ui8kit/core";
 import { useMemo, useCallback, memo } from "react";
 import type { Block } from "@/types";
-import { allComponents } from "@/blocks";
+import { allComponents, allTemplates } from "@/blocks";
 
 interface BuilderCanvasProps {
   blocks: Block[];
@@ -13,13 +13,26 @@ interface BuilderCanvasProps {
 const BlockItem = memo(({ block, onRemove }: { block: Block; onRemove: (id: string) => void }) => {
   const BlockComponent = allComponents[block.type as keyof typeof allComponents];
   
+  // Get block name from templates
+  const getBlockName = useCallback(() => {
+    const template = allTemplates.find(t => t.id === block.type);
+    return template?.name || block.type;
+  }, [block.type]);
+  
   const handleRemove = useCallback(() => {
     onRemove(block.id);
   }, [block.id, onRemove]);
   
   if (!BlockComponent) {
     return (
-      <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 m-2">
+      <div className="group relative bg-yellow-50 border border-yellow-200 rounded-lg p-4 m-2">
+        {/* Block Name for unknown blocks */}
+        <div className="absolute top-2 left-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
+          <div className="bg-yellow-600/90 backdrop-blur-sm rounded px-2 py-1">
+            <span className="text-white text-xs font-medium">{getBlockName()}</span>
+          </div>
+        </div>
+
         <div className="flex items-center gap-2 text-yellow-700">
           <AlertCircle className="h-5 w-5" />
           <span className="font-medium">Unknown Block Type</span>
@@ -41,7 +54,14 @@ const BlockItem = memo(({ block, onRemove }: { block: Block; onRemove: (id: stri
   
   return (
     <div className="group relative transition-all duration-200">
-      {/* Block Controls */}
+      {/* Block Name - Top Left */}
+      <div className="absolute top-4 left-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
+        <div className="bg-black/80 backdrop-blur-sm rounded-lg px-3 py-1">
+          <span className="text-white text-sm font-medium">{getBlockName()}</span>
+        </div>
+      </div>
+
+      {/* Block Controls - Top Right */}
       <div className="absolute top-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
         <div className="bg-black/80 backdrop-blur-sm rounded-lg p-2">
           <Button
