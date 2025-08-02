@@ -632,7 +632,7 @@ export const SplitPortfolio = forwardRef<HTMLElement, SplitPortfolioProps>(
 
       return (
         <Block 
-          className={`h-full bg-gradient-to-br ${gradientMap[variant]} relative overflow-hidden`}
+          className={`h-full bg-gradient-to-br ${gradientMap[variant]} relative overflow-hidden rounded-${theme?.themeRounded.default}`}
           data-class="portfolio-gradient-background"
         >
           <Box className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10" />

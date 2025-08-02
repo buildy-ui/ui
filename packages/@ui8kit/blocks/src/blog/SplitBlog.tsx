@@ -562,7 +562,7 @@ export const SplitBlog = forwardRef<HTMLElement, SplitBlogProps>(
       // Default gradient background
       return (
         <Block 
-          className="h-full bg-gradient-to-br from-primary/5 to-secondary/10 relative overflow-hidden"
+          className={`h-full bg-gradient-to-br from-primary/5 to-secondary/10 relative overflow-hidden rounded-${theme?.themeRounded.default}`}
           data-class="blog-gradient-background"
           rounded={theme?.themeRounded.default}
         >

@@ -299,7 +299,7 @@ export const SplitFeatures = forwardRef<HTMLElement, SplitFeaturesProps>(
       </Block>
     ) : (
       <Block 
-        className="h-full bg-gradient-to-br from-primary/5 to-primary/10 relative overflow-hidden"
+        className={`h-full bg-gradient-to-br from-primary/5 to-primary/10 relative overflow-hidden rounded-${theme?.themeRounded.default}`}
         data-class="gradient-background"
         rounded={theme?.themeRounded.default}
       >
