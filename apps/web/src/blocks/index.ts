@@ -12,10 +12,10 @@ import { allTeamTemplates } from "./team";
 import { allTestimonialTemplates } from "./testimonial";
  
 export const allTemplates = [
-  ...allHeroTemplates,
+  ...allTeamTemplates
+/*  ...allHeroTemplates,
   ...allBlogTemplates,
   ...allBusinessTemplates,
-
   ...allCTATemplates,
   ...allFAQTemplates,
   ...allFeaturesTemplates,
@@ -24,7 +24,7 @@ export const allTemplates = [
   ...allPortfolioTemplates,
   ...allPostTemplates,
   ...allTeamTemplates,
-  ...allTestimonialTemplates
+  ...allTestimonialTemplates*/
 ];
 
 export const allComponents = allTemplates.reduce((acc, template) => {

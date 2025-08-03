@@ -331,6 +331,7 @@ const splitBusinessContentHooks = {
                       height="48px"
                       fit="cover"
                       rounded="full"
+                      className="w-20 h-20"
                     />
                   )}
                   

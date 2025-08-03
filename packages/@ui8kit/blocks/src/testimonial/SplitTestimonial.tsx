@@ -398,7 +398,7 @@ export const SplitTestimonial = forwardRef<HTMLElement, SplitTestimonialProps>(
           return (
             <Box className="relative w-full h-full bg-gradient-to-br from-primary/20 via-secondary/20 to-tertiary/20 overflow-hidden flex items-center justify-center" rounded={theme?.themeRounded.default}>
               <Stack gap="lg" align="center" className="relative z-10">
-                <Box className="grid grid-cols-2 gap-md max-w-sm">
+                <Box className="grid grid-cols-2 max-w-sm" gap="md">
                   {[Quote, Star, Heart, Users].map((LucideIcon, index) => (
                     <Box 
                       key={index}

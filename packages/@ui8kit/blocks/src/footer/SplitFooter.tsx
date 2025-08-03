@@ -629,7 +629,7 @@ export const SplitFooter = forwardRef<HTMLElement, SplitFooterProps>(
           return (
             <Box className="relative h-full w-full p-6 bg-gradient-to-br from-primary/20 via-secondary/20 to-tertiary/20 rounded-lg overflow-hidden flex items-center justify-center">
               <Stack gap="lg" align="center" className="relative z-10">
-                <Box className="grid grid-cols-2 gap-md max-w-sm">
+                <Box className="grid grid-cols-2 max-w-sm" gap="md">
                   {[Phone, Mail, MapPin, Globe].map((LucideIcon, index) => (
                     <Box 
                       key={index}
