@@ -288,7 +288,7 @@ const splitFAQContentHooks = {
             <Title order={4} size="md" fw="semibold">
               Help Categories
             </Title>
-            <Stack gap="md">
+            <Stack gap="lg">
               {content.categories.map((category) => (
                 <Card key={category.id} p="md" rounded={theme?.themeRounded.default} shadow="sm" bg="card" className="hover:shadow-md transition-shadow cursor-pointer">
                   <Group gap="md" align="center">

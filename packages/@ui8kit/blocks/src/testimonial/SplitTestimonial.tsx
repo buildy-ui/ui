@@ -98,8 +98,8 @@ const splitTestimonialContentHooks = {
     content: (content: SplitTestimonialData) => (
       <Stack gap="xl" align="start">
         {content.badge && (
-          <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
-            <Icon size="sm" lucideIcon={MessageSquare} className="mr-0.5" />
+          <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="w-fit gap-1">
+            <Icon size="xs" lucideIcon={MessageSquare} />
             {content.badge}
           </Badge>
         )}
@@ -179,8 +179,8 @@ const splitTestimonialContentHooks = {
       <Stack gap="xl" align="start">
         <Stack gap="lg">
           {content.badge && (
-            <Badge variant="outline" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
-              <Icon size="sm" lucideIcon={Users} className="mr-0.5" />
+            <Badge variant="outline" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="w-fit gap-1">
+              <Icon size="xs" lucideIcon={Users} />
               {content.badge}
             </Badge>
           )}

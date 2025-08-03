@@ -10,7 +10,7 @@ const sampleTeamMembers = [
     department: "Leadership",
     bio: "Visionary leader with 15+ years of experience in technology and business development. Passionate about building innovative solutions that make a real impact.",
     avatar: {
-      src: "https://images.unsplash.com/photo-1494790108755-2616b9e6e4ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=80",
+      src: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=80",
       alt: "Sarah Johnson"
     },
     social: {
