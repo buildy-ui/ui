@@ -1,13 +1,9 @@
-import { 
- 
-  Shield, 
- 
+import {
+  Shield,
   Users, 
   BarChart, 
   Globe,
   ZoomIn,
-
-
   Code,
   Database,
   Cloud,
@@ -66,8 +62,6 @@ export const GridFeaturesThreeColumnsExample = () => {
       content={content}
       variant="threeColumns"
       cols="1-2-3"
-      gap="lg"
-      py="xl"
     />
   );
 };
@@ -123,8 +117,6 @@ export const GridFeaturesThreeColumnsIconsExample = () => {
       content={content}
       variant="threeColumnsIcons"
       cols="1-2-3"
-      gap="xl"
-      py="lg"
     />
   );
 };
@@ -204,8 +196,6 @@ export const GridFeaturesMediaCardsExample = () => {
       content={content}
       variant="gridMediaCards"
       cols="1-2-3"
-      gap="xl"
-      py="xl"
     />
   );
 };
@@ -273,8 +263,6 @@ export const GridFeaturesCareerPositionsExample = () => {
       content={content}
       variant="careerPositions"
       cols="1-2"
-      gap="lg"
-      py="xl"
     />
   );
 };
@@ -354,8 +342,6 @@ export const GridFeaturesCareerStatsExample = () => {
       content={content}
       variant="careerStats"
       cols="1-2-3"
-      gap="xl"
-      py="xl"
     />
   );
 };
@@ -364,7 +350,8 @@ export const GridFeaturesCareerStatsExample = () => {
 export const gridFeaturesExamples = {
   threeColumns: GridFeaturesThreeColumnsExample,
   threeColumnsIcons: GridFeaturesThreeColumnsIconsExample,
-  mediaCards: GridFeaturesMediaCardsExample,
+  gridMediaCards: GridFeaturesMediaCardsExample, // Исправлен ключ
+  mediaCards: GridFeaturesMediaCardsExample, // Для обратной совместимости
   careerPositions: GridFeaturesCareerPositionsExample,
   careerStats: GridFeaturesCareerStatsExample
 };

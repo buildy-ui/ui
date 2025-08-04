@@ -38,7 +38,6 @@ export const CenteredPostClassicExample = () => {
     <CenteredPost
       content={samplePostData}
       variant="classic"
-      py="xl"
     />
   );
 };
@@ -56,7 +55,6 @@ export const CenteredPostMinimalExample = () => {
     <CenteredPost
       content={minimalData}
       variant="minimal"
-      py="lg"
     />
   );
 };
@@ -81,7 +79,6 @@ export const CenteredPostMagazineExample = () => {
     <CenteredPost
       content={magazineData}
       variant="magazine"
-      py="xl"
     />
   );
 };
@@ -109,7 +106,6 @@ export const CenteredPostFeaturedExample = () => {
     <CenteredPost
       content={featuredData}
       variant="featured"
-      py="xl"
       className="bg-gradient-to-b from-muted/30 to-background"
     />
   );
@@ -140,7 +136,6 @@ export const CenteredPostEditorialExample = () => {
     <CenteredPost
       content={editorialData}
       variant="editorial"
-      py="xl"
     />
   );
 };

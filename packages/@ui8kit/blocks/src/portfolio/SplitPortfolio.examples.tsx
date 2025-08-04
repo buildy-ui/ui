@@ -4,11 +4,7 @@ import {
   Camera,
   Monitor,
   Smartphone,
-
   Award,
-
-
-
 } from "lucide-react";
 import { SplitPortfolio, type SplitPortfolioData } from "./SplitPortfolio";
 
@@ -164,7 +160,6 @@ export const SplitPortfolioShowcaseExample = () => {
       content={content}
       variant="showcase"
       leftMedia={false}
-      py="xl"
     />
   );
 };
@@ -190,7 +185,6 @@ export const SplitPortfolioAboutExample = () => {
       content={content}
       variant="about"
       leftMedia={true}
-      py="xl"
     />
   );
 };
@@ -215,7 +209,6 @@ export const SplitPortfolioSkillsExample = () => {
       content={content}
       variant="skills"
       leftMedia={false}
-      py="xl"
     />
   );
 };
@@ -240,7 +233,6 @@ export const SplitPortfolioTestimonialExample = () => {
       content={content}
       variant="testimonial"
       leftMedia={true}
-      py="xl"
     />
   );
 };
@@ -264,7 +256,6 @@ export const SplitPortfolioProcessExample = () => {
       content={content}
       variant="process"
       leftMedia={false}
-      py="xl"
     />
   );
 };

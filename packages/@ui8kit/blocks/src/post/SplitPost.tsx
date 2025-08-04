@@ -411,8 +411,8 @@ const splitPostContentHooks = {
       <Stack gap="xl" align="start">
         {/* Hero Badge */}
         <Group gap="md" align="center">
-          <Badge variant="default" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="bg-gradient-to-r from-primary to-secondary text-primary-foreground">
-            <Icon c="primary-foreground" lucideIcon={Star} />
+          <Badge variant="default" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="w-fit gap-1 bg-gradient-to-r from-primary to-secondary text-primary-foreground">
+            <Icon size="xs" c="primary-foreground" lucideIcon={Star} />
             Featured Story
           </Badge>
           <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
@@ -507,8 +507,8 @@ export const SplitPost = forwardRef<HTMLElement, SplitPostProps>(
     variant = "standard",
     leftMedia = false,
     useContainer = true,
-    py = "xl",
-    gap = "md",
+    py = "lg",
+    gap = "xl",
     className,
     ...props 
   }, ref) => {

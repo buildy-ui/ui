@@ -138,8 +138,8 @@ const gridTeamContentHooks = {
     header: (content: GridTeamData) => (
       <Stack gap="lg" align="center" ta="center" className="max-w-3xl mx-auto">
         {content.badge && (
-          <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
-            <Icon lucideIcon={Users} />
+          <Badge variant="secondary" className="w-fit gap-1" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
+            <Icon size="xs" lucideIcon={Users} />
             {content.badge}
           </Badge>
         )}
@@ -202,7 +202,7 @@ const gridTeamContentHooks = {
               height="80px"
               fit="cover"
               rounded="full"
-              className="border-4 border-primary/10"
+              className="border-4 border-primary/10 min-w-[80px] min-h-[80px] w-[80px] h-[80px]"
             />
           ) : (
             <Box 
@@ -245,8 +245,8 @@ const gridTeamContentHooks = {
   cards: createLayoutContentHook({
     header: (content: GridTeamData) => (
       <Stack gap="lg" align="center" ta="center">
-        <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="px-lg py-sm">
-          <Icon lucideIcon={Award} />
+        <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="w-fit gap-1">
+          <Icon size="xs" lucideIcon={Award} />
           {content.badge || "Our Team"}
         </Badge>
         
@@ -270,15 +270,15 @@ const gridTeamContentHooks = {
             <Image
               src={member.avatar.src}
               alt={member.avatar.alt}
-              width="100px"
-              height="100px"
+              width="90px"
+              height="90px"
               fit="cover"
               rounded="full"
-              className="border-4 border-primary/10"
+              className="border-4 border-primary/10 min-w-[90px] min-h-[90px] w-[90px] h-[90px]"
             />
           ) : (
             <Box 
-              className="w-[100px] h-[100px] bg-primary/10 rounded-full flex items-center justify-center border-4 border-primary/20"
+              className="w-[90px] h-[90px] bg-primary/10 rounded-full flex items-center justify-center border-4 border-primary/20"
               data-class="avatar-placeholder"
             >
               <Icon size="2xl" lucideIcon={User} c="primary" />
@@ -367,7 +367,7 @@ const gridTeamContentHooks = {
               height="60px"
               fit="cover"
               rounded="full"
-              className="border-2 border-primary/20"
+              className="border-2 border-primary/20 min-w-[60px] min-h-[60px] w-[60px] h-[60px]"
             />
           ) : (
             <Box 
@@ -438,8 +438,8 @@ const gridTeamContentHooks = {
         >
           <Stack gap="md" align="center">
             {isFeatured && (
-              <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
-                <Icon lucideIcon={Star} />
+              <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="w-fit gap-1">
+                <Icon size="xs" lucideIcon={Star} />
                 Featured
               </Badge>
             )}
@@ -452,7 +452,7 @@ const gridTeamContentHooks = {
                 height={isFeatured ? "90px" : "70px"}
                 fit="cover"
                 rounded="full"
-                className={`border-4 ${isFeatured ? "border-primary/20" : "border-primary/10"}`}
+                className={`border-4 ${isFeatured ? "border-primary/20 w-[90px] h-[90px]" : "border-primary/10 w-[70px] h-[70px]"}`}
               />
             ) : (
               <Box 
@@ -558,6 +558,7 @@ const gridTeamContentHooks = {
               height="50px"
               fit="cover"
               rounded="full"
+              className="min-w-[50px] min-h-[50px] w-[50px] h-[50px]"
             />
           ) : (
             <Box 
@@ -606,7 +607,7 @@ export const GridTeam = forwardRef<HTMLElement, GridTeamProps>(
     content, 
     variant = "grid",
     useContainer = true,
-    py = "xl",
+    py = "lg",
     className,
     ...props 
   }, ref) => {

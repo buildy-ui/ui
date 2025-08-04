@@ -10,7 +10,7 @@ const sampleTeamMembers = [
     department: "Leadership",
     bio: "Visionary leader with 15+ years of experience in technology and business development.",
     avatar: {
-      src: "https://images.unsplash.com/photo-1494790108755-2616b9e6e4ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=80",
+      src: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=80",
       alt: "Sarah Johnson"
     },
     social: {
@@ -184,7 +184,6 @@ export const GridTeamGridExample = () => {
       content={content}
       variant="grid"
       useContainer={true}
-      py="xl"
     />
   );
 };
@@ -203,7 +202,6 @@ export const GridTeamCardsExample = () => {
       content={content}
       variant="cards"
       useContainer={true}
-      py="xl"
     />
   );
 };
@@ -222,7 +220,6 @@ export const GridTeamMinimalExample = () => {
       content={content}
       variant="minimal"
       useContainer={true}
-      py="xl"
     />
   );
 };
@@ -245,7 +242,6 @@ export const GridTeamShowcaseExample = () => {
       content={content}
       variant="showcase"
       useContainer={true}
-      py="xl"
     />
   );
 };
@@ -268,7 +264,6 @@ export const GridTeamDirectoryExample = () => {
       content={content}
       variant="directory"
       useContainer={true}
-      py="lg"
     />
   );
 };

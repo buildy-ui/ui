@@ -1,7 +1,7 @@
-// New Factory-based FAQ Components
-export { GridFAQ, gridFAQTemplates, type GridFAQProps, type GridFAQData } from './GridFAQ';
-export { SplitFAQ, splitFAQTemplates, type SplitFAQProps, type SplitFAQData } from './SplitFAQ';
+// New factory-based components - replace old blocks with powerful factories
+export * from './GridFAQ';
+export * from './SplitFAQ';
 
-// Examples
-export { gridFAQExamples } from './GridFAQ.examples';
-export { splitFAQExamples } from './SplitFAQ.examples';
+// Examples for the new factories
+export * from './GridFAQ.examples';
+export * from './SplitFAQ.examples';

@@ -56,7 +56,6 @@ interface SplitHeroProps {
   variant?: "media" | "gallery" | "simple" | "withTopButton";
   leftMedia?: boolean;
   useContainer?: boolean;
-  padding?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
   py?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
   gap?: "none" | "xs" | "sm" | "md" | "lg" | "xl";
   className?: string;
@@ -249,8 +248,7 @@ export const SplitHero = forwardRef<HTMLElement, SplitHeroProps>(
     variant = "media",
     leftMedia = false,
     useContainer = true,
-    padding = "none",
-    py = "2xl",
+    py = "lg",
     gap = "xl",
     className,
     ...props
@@ -300,11 +298,11 @@ export const SplitHero = forwardRef<HTMLElement, SplitHeroProps>(
       // Default gradient background
       return (
         <Block
-          className={`h-full bg-gradient-to-br from-primary/5 to-secondary/10 relative overflow-hidden`}
+          className={`h-full bg-gradient-to-br from-primary/5 to-secondary/10 relative overflow-hidden rounded-${theme?.themeRounded.default}`}
           data-class="hero-gradient-background"
           rounded={theme?.themeRounded.default}
         >
-          <Box className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10" />
+          <Box className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10" />
         </Block>
       );
     };
@@ -320,7 +318,6 @@ export const SplitHero = forwardRef<HTMLElement, SplitHeroProps>(
         contentHooks={contentHooks}
         leftMedia={leftMedia}
         splitSection={!useContainer}
-        padding={padding}
         py={py}
         gap={gap}
         className={className}
@@ -364,5 +361,13 @@ export const splitHeroTemplates = {
     description: "Split layout hero with top announcement button",
     component: SplitHero,
     defaultProps: { variant: "withTopButton" as const, useContainer: false }
+  },
+
+  security: {
+    id: "splitHeroSecurity",
+    name: "Split Hero Security",
+    description: "Split layout hero focused on security features",
+    component: SplitHero,
+    defaultProps: { variant: "security" as const }
   }
 };

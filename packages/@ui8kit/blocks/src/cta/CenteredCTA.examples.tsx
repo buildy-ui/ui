@@ -1,11 +1,10 @@
 import { 
-  ArrowRight, 
-  Play, 
- 
-  ExternalLink, 
-  Star, 
-  Rocket, 
-  Globe, 
+  ArrowRight,
+  Play,
+  ExternalLink,
+  Star,
+  Rocket,
+  Globe,
   Heart,
   Zap,
   Shield,
@@ -41,7 +40,6 @@ export const SimpleCenteredCTAExample = () => (
   <CenteredCTA 
     content={simpleCTAData} 
     variant="simple"
-    py="xl"
   />
 );
 
@@ -100,7 +98,6 @@ export const CTAWithLogosExample = () => (
   <CenteredCTA 
     content={ctaWithLogosData} 
     variant="withLogos"
-    py="xl"
   />
 );
 
@@ -124,14 +121,13 @@ const ctaWithBackgroundData: CenteredCTAData = {
     }
   ],
   backgroundImage: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1200&h=600&fit=crop",
-  gradient: "bg-gradient-to-br from-blue-600 to-purple-700"
+  gradient: "bg-gradient-to-br from-primary/50 to-primary/10"
 };
 
 export const CTAWithBackgroundExample = () => (
   <CenteredCTA 
     content={ctaWithBackgroundData} 
     variant="withBackground"
-    py="xl"
   />
 );
 
@@ -197,7 +193,6 @@ export const CTAWithFeaturesExample = () => (
   <CenteredCTA 
     content={ctaWithFeaturesData} 
     variant="withFeatures"
-    py="xl"
   />
 );
 
@@ -231,7 +226,6 @@ export const CTAWithStatsExample = () => (
   <CenteredCTA 
     content={ctaWithStatsData} 
     variant="withStats"
-    py="xl"
   />
 );
 

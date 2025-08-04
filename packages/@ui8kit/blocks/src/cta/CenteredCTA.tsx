@@ -386,7 +386,7 @@ export const CenteredCTA = forwardRef<HTMLElement, CenteredCTAProps>(
     content, 
     variant = "simple",
     useContainer = true,
-    py = "xl",
+    py = "lg",
     className,
     ...props 
   }, ref) => {

@@ -1,7 +1,7 @@
-// New Factory-based Portfolio Components
-export { GridPortfolio, gridPortfolioTemplates, type GridPortfolioProps, type GridPortfolioData } from './GridPortfolio';
-export { SplitPortfolio, splitPortfolioTemplates, type SplitPortfolioProps, type SplitPortfolioData } from './SplitPortfolio';
+// New factory-based components - replace old blocks with powerful factories
+export * from './GridPortfolio';
+export * from './SplitPortfolio';
 
-// Examples
-export { gridPortfolioExamples } from './GridPortfolio.examples';
-export { splitPortfolioExamples } from './SplitPortfolio.examples';
+// Examples for the new factories
+export * from './GridPortfolio.examples';
+export * from './SplitPortfolio.examples';

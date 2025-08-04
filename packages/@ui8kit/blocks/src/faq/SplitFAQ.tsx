@@ -288,7 +288,7 @@ const splitFAQContentHooks = {
             <Title order={4} size="md" fw="semibold">
               Help Categories
             </Title>
-            <Stack gap="md">
+            <Stack gap="lg">
               {content.categories.map((category) => (
                 <Card key={category.id} p="md" rounded={theme?.themeRounded.default} shadow="sm" bg="card" className="hover:shadow-md transition-shadow cursor-pointer">
                   <Group gap="md" align="center">
@@ -478,8 +478,8 @@ export const SplitFAQ = forwardRef<HTMLElement, SplitFAQProps>(
     variant = "contact",
     leftMedia = false,
     useContainer = true,
-    py = "xl",
-    gap = "md",
+    py = "lg",
+    gap = "xl",
     className,
     ...props 
   }, ref) => {
@@ -506,7 +506,7 @@ export const SplitFAQ = forwardRef<HTMLElement, SplitFAQProps>(
 
       return (
         <Block 
-          className={`h-full bg-gradient-to-br ${gradientMap[variant]} relative overflow-hidden`}
+          className={`h-full bg-gradient-to-br ${gradientMap[variant]} relative overflow-hidden rounded-${theme?.themeRounded.default}`}
           data-class="faq-gradient-background"
         >
           <Box className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10" />

@@ -324,9 +324,9 @@ export const GridFeatures = forwardRef<HTMLElement, GridFeaturesProps>(
     variant = "threeColumns",
     layout = "grid",
     cols = "1-2-3",
-    gap = "lg",
+    py = "lg",
+    gap = "xl",
     useContainer = true,
-    py = "xl",
     className,
     ...props 
   }, ref) => {

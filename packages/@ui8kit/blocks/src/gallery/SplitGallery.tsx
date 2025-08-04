@@ -82,8 +82,8 @@ const splitGalleryContentHooks = {
       <Stack gap="xl" align="start">
         {/* Badge */}
         {content.badge && (
-          <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="px-lg py-sm">
-            <Icon lucideIcon={Camera} className="mr-0.5" />
+          <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="w-fit gap-1">
+            <Icon size="xs" lucideIcon={Camera} className="mr-0.5" />
             {content.badge}
           </Badge>
         )}
@@ -293,8 +293,8 @@ export const SplitGallery = forwardRef<HTMLElement, SplitGalleryProps>(
     variant = "showcase",
     leftMedia = false,
     useContainer = true,
-    py = "xl",
-    gap = "md",
+    py = "lg",
+    gap = "xl",
     className,
     ...props 
   }, ref) => {

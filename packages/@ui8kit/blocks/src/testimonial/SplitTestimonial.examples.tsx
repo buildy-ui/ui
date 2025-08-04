@@ -11,7 +11,7 @@ const sampleTestimonials = [
     description: "This product has completely transformed how our team works.",
     company: "TechStart Inc",
     avatar: {
-      src: "https://images.unsplash.com/photo-1494790108755-2616b9e6e4ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=80",
+      src: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=80",
       alt: "Sarah Johnson"
     },
     verified: true
@@ -82,8 +82,6 @@ export const SplitTestimonialFeaturedExample = () => {
       variant="featured"
       mediaPosition="right"
       useContainer={true}
-      gap="lg"
-      py="xl"
     />
   );
 };
@@ -103,7 +101,6 @@ export const SplitTestimonialCarouselExample = () => {
       variant="carousel"
       mediaPosition="left"
       useContainer={true}
-      py="xl"
     />
   );
 };
@@ -128,7 +125,6 @@ export const SplitTestimonialStatsExample = () => {
       variant="stats"
       mediaPosition="right"
       useContainer={true}
-      py="xl"
     />
   );
 };

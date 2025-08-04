@@ -81,8 +81,8 @@ const gridGalleryContentHooks = {
     header: (content: GridGalleryData) => (
       <Stack gap="lg" align="center" ta="center" className="max-w-3xl mx-auto">
         {content.badge && (
-          <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
-            <Icon lucideIcon={Camera} />
+          <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="w-fit gap-1">
+            <Icon size="xs" lucideIcon={Camera} />
             {content.badge}
           </Badge>
         )}
@@ -190,8 +190,8 @@ const gridGalleryContentHooks = {
     header: (content: GridGalleryData) => (
       <Stack gap="xl" align="center" ta="center">
         <Stack gap="md" align="center">
-          <Badge variant="default" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
-            <Icon c="primary-foreground" lucideIcon={Play} />
+          <Badge variant="default" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="w-fit gap-1">
+            <Icon size="xs" c="primary-foreground" lucideIcon={Play} />
             Interactive Gallery
           </Badge>
           
@@ -382,8 +382,8 @@ const gridGalleryContentHooks = {
   cards: createLayoutContentHook({
     header: (content: GridGalleryData) => (
       <Stack gap="lg" align="center" ta="center">
-        <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="px-lg py-sm">
-          <Icon lucideIcon={ImageIcon} />
+        <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="w-fit gap-1">
+          <Icon size="xs" lucideIcon={ImageIcon} />
           {content.badge || "Photo Collection"}
         </Badge>
         
@@ -602,7 +602,7 @@ export const GridGallery = forwardRef<HTMLElement, GridGalleryProps>(
     content, 
     variant = "grid",
     useContainer = true,
-    py = "xl",
+    py = "lg",
     className,
     ...props 
   }, ref) => {

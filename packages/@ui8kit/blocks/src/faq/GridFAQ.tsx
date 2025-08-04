@@ -293,7 +293,7 @@ export const GridFAQ = forwardRef<HTMLElement, GridFAQProps>(
     cols,
     gap,
     useContainer = true,
-    py = "xl",
+    py = "lg",
     className,
     ...props 
   }, ref) => {
@@ -312,28 +312,28 @@ export const GridFAQ = forwardRef<HTMLElement, GridFAQProps>(
           return {
             contentHooks: gridFAQContentHooks.accordion,
             cols: "1" as const,
-            gap: "md" as const
+            gap: "lg" as const
           };
         
         case "categories":
           return {
             contentHooks: gridFAQContentHooks.categories,
             cols: "1-2-4" as const,
-            gap: "sm" as const
+            gap: "lg" as const
           };
         
         case "compact":
           return {
             contentHooks: gridFAQContentHooks.compact,
             cols: "1" as const,
-            gap: "sm" as const
+            gap: "lg" as const
           };
         
         case "support":
           return {
             contentHooks: gridFAQContentHooks.support,
             cols: "1-2-3" as const,
-            gap: "xl" as const
+            gap: "lg" as const
           };
         
         default:

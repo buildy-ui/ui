@@ -43,7 +43,6 @@ export const SplitPostStandardExample = () => {
       content={samplePostData}
       variant="standard"
       leftMedia={false}
-      py="xl"
     />
   );
 };
@@ -75,7 +74,6 @@ export const SplitPostAuthorExample = () => {
       content={authorData}
       variant="author"
       leftMedia={true}
-      py="xl"
     />
   );
 };
@@ -103,7 +101,6 @@ export const SplitPostMediaExample = () => {
       content={mediaData}
       variant="media"
       leftMedia={false}
-      py="lg"
     />
   );
 };
@@ -139,7 +136,6 @@ export const SplitPostSidebarExample = () => {
       content={sidebarData}
       variant="sidebar"
       leftMedia={true}
-      py="xl"
     />
   );
 };
@@ -174,7 +170,6 @@ export const SplitPostHeroExample = () => {
       content={heroData}
       variant="hero"
       leftMedia={false}
-      py="xl"
       className="bg-gradient-to-r from-primary/5 to-secondary/5"
     />
   );

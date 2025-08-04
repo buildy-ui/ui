@@ -469,9 +469,9 @@ export const GridBusiness = forwardRef<HTMLElement, GridBusinessProps>(
     content, 
     variant = "cardsGallery",
     cols = "1-2-3",
-    gap = "lg",
     useContainer = true,
-    py = "xl",
+    py = "lg",
+    gap = "xl",
     _showYearlyToggle = false,
     className,
     ...props 

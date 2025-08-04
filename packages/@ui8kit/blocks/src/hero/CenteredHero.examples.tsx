@@ -16,7 +16,7 @@ export const CenteredHeroSimpleExample = () => {
   };
 
   return (
-    <div className="min-h-screen w-full relative">
+    <div className="w-full relative">
   {/* Radial Gradient Background */}
   <div
     className="absolute inset-0 z-0 bg-gradient-to-t from-primary/10 to-secondary/10"
@@ -25,7 +25,6 @@ export const CenteredHeroSimpleExample = () => {
       content={content}
       variant="simple"
       useContainer={true}
-      py="xl"
       className="relative z-10"
     />
     </div>
@@ -53,7 +52,6 @@ export const CenteredHeroWithTopButtonExample = () => {
       content={content}
       variant="withTopButton"
       useContainer={true}
-      py="xl"
     />
   );
 };
@@ -70,7 +68,7 @@ export const CenteredHeroWithImageExample = () => {
   };
 
   return (
-<div className="min-h-screen w-full bg-background dark:bg-secondary/5 relative">
+<div className="w-full bg-background dark:bg-secondary/5 relative">
   {/* Bottom Fade Grid Background */}
   <div
     className="absolute inset-0 z-0 
@@ -88,7 +86,6 @@ export const CenteredHeroWithImageExample = () => {
       content={content}
       variant="withImage"
       useContainer={true}
-      py="xl"
       className="relative z-10"
     />
 </div>
@@ -133,7 +130,6 @@ export const CenteredHeroWithStatsExample = () => {
       content={content}
       variant="withStats"
       useContainer={true}
-      py="xl"
     />
   );
 };
@@ -171,7 +167,6 @@ export const CenteredHeroMissionExample = () => {
       content={content}
       variant="withStats"
       useContainer={true}
-      py="xl"
       className="bg-gradient-to-t from-primary/10 to-secondary/15"
     />
   );

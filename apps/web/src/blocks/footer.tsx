@@ -1,46 +1,19 @@
-import {
-  // Split Footer Examples
-  SplitFooterBrandExample,
-  SplitFooterNewsletterExample,
-  SplitFooterContactExample,
-  SplitFooterSocialExample,
-  SplitFooterMinimalExample,
-  
-  // Grid Footer Examples
-  GridFooterColumnsExample,
-  GridFooterMegaExample,
-  GridFooterCompactExample,
-  GridFooterNewsletterExample,
-  GridFooterSitemapExample
-} from "@ui8kit/blocks/footer";
-import { Divider } from "./ui/divider";
+// Import built-in template objects and examples from @ui8kit/blocks library
+import { 
+  splitFooterTemplates, 
+  gridFooterTemplates,
+  splitFooterExamples,
+  gridFooterExamples 
+} from "@ui8kit/blocks";
 
-export default function FooterBlocks() {
-  return (
-    <>
-      {/* Split Footer Examples (5 variants) */}
-      <Divider text="1. SplitFooterBrandExample" />
-      <SplitFooterBrandExample />
-      <Divider text="2. SplitFooterNewsletterExample" />
-      <SplitFooterNewsletterExample />
-      <Divider text="3. SplitFooterContactExample" />
-      <SplitFooterContactExample />
-      <Divider text="4. SplitFooterSocialExample" />
-      <SplitFooterSocialExample />
-      <Divider text="5. SplitFooterMinimalExample" />
-      <SplitFooterMinimalExample />
-      
-      {/* Grid Footer Examples (5 variants) */}
-      <Divider text="6. GridFooterColumnsExample" />
-      <GridFooterColumnsExample />
-      <Divider text="7. GridFooterMegaExample" />
-      <GridFooterMegaExample />
-      <Divider text="8. GridFooterCompactExample" />
-      <GridFooterCompactExample />
-      <Divider text="9. GridFooterNewsletterExample" />
-      <GridFooterNewsletterExample />
-      <Divider text="10. GridFooterSitemapExample" />
-      <GridFooterSitemapExample />
-    </>
-  );
-}
+// Create template objects using Examples components but Templates metadata
+export const allFooterTemplates = [
+  ...Object.keys(splitFooterTemplates).map(key => ({
+    ...splitFooterTemplates[key as keyof typeof splitFooterTemplates],
+    component: splitFooterExamples[key as keyof typeof splitFooterExamples]
+  })),
+  ...Object.keys(gridFooterTemplates).map(key => ({
+    ...gridFooterTemplates[key as keyof typeof gridFooterTemplates], 
+    component: gridFooterExamples[key as keyof typeof gridFooterExamples]
+  }))
+];

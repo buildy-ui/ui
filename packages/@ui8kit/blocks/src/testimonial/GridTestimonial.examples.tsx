@@ -11,7 +11,7 @@ const sampleTestimonials = [
     description: "This product has completely transformed how our team works.",
     company: "TechStart Inc",
     avatar: {
-      src: "https://images.unsplash.com/photo-1494790108755-2616b9e6e4ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=80",
+      src: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=80",
       alt: "Sarah Johnson"
     },
     verified: true
@@ -118,7 +118,6 @@ export const GridTestimonialGridExample = () => {
       content={content}
       variant="grid"
       useContainer={true}
-      py="xl"
     />
   );
 };
@@ -136,7 +135,6 @@ export const GridTestimonialMasonryExample = () => {
       content={content}
       variant="masonry"
       useContainer={true}
-      py="xl"
     />
   );
 };
@@ -155,7 +153,6 @@ export const GridTestimonialMinimalExample = () => {
       content={content}
       variant="minimal"
       useContainer={true}
-      py="xl"
     />
   );
 };
@@ -177,7 +174,6 @@ export const GridTestimonialCardsExample = () => {
       content={content}
       variant="cards"
       useContainer={true}
-      py="xl"
     />
   );
 };
@@ -195,7 +191,6 @@ export const GridTestimonialCompactExample = () => {
       content={content}
       variant="compact"
       useContainer={true}
-      py="lg"
     />
   );
 };
@@ -213,7 +208,6 @@ export const GridTestimonialSliderExample = () => {
       content={content}
       variant="slider"
       useContainer={true}
-      py="xl"
     />
   );
 };
@@ -237,7 +231,6 @@ export const GridTestimonialMagazineExample = () => {
       content={content}
       variant="magazine"
       useContainer={true}
-      py="xl"
     />
   );
 };

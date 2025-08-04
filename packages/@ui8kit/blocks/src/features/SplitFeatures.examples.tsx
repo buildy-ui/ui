@@ -46,8 +46,6 @@ export const SplitFeaturesMediaExample = () => {
       content={content}
       variant="media"
       useContainer={true}
-      py="xl"
-      gap="lg"
     />
   );
 };
@@ -96,8 +94,6 @@ export const SplitFeaturesLeftMediaExample = () => {
       variant="features"
       leftMedia={true}
       useContainer={true}
-      py="lg"
-      gap="xl"
     />
   );
 };
@@ -182,9 +178,8 @@ export const SplitFeaturesSecurityExample = () => {
       variant="features"
       leftMedia={false}
       useContainer={false}
-      py="xl"
       gap="none"
-      className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-950 dark:to-indigo-950"
+      className="bg-gradient-to-br from-primary/50 to-primary/10"
     />
   );
 };
@@ -233,8 +228,6 @@ export const SplitFeaturesPerformanceExample = () => {
       variant="media"
       leftMedia={true}
       useContainer={true}
-      py="xl"
-      gap="xl"
     />
   );
 };
@@ -243,6 +236,7 @@ export const SplitFeaturesPerformanceExample = () => {
 export const splitFeaturesExamples = {
   media: SplitFeaturesMediaExample,
   leftMedia: SplitFeaturesLeftMediaExample,
+  features: SplitFeaturesAnalyticsExample, // Используем analytics как features
   analytics: SplitFeaturesAnalyticsExample,
   security: SplitFeaturesSecurityExample,
   performance: SplitFeaturesPerformanceExample

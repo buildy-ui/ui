@@ -96,8 +96,8 @@ const gridTestimonialContentHooks = {
     header: (content: GridTestimonialData) => (
       <Stack gap="lg" align="center" ta="center" className="max-w-3xl mx-auto">
         {content.badge && (
-          <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
-            <Icon lucideIcon={MessageSquare} />
+          <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="w-fit gap-1">
+            <Icon size="xs" lucideIcon={MessageSquare} />
             {content.badge}
           </Badge>
         )}
@@ -211,8 +211,8 @@ const gridTestimonialContentHooks = {
             <Group gap="md" align="center" justify="between">
               <RenderStars rating={testimonial.rating} size={isLarge ? "md" : "sm"} />
               {testimonial.verified && (
-                <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
-                  <Icon size="sm" lucideIcon={Verified} className="mr-0.5" />
+                <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="w-fit gap-1">
+                  <Icon size="xs" lucideIcon={Verified} className="mr-0.5" />
                   Verified
                 </Badge>
               )}
@@ -305,8 +305,8 @@ const gridTestimonialContentHooks = {
   cards: createLayoutContentHook({
     header: (content: GridTestimonialData) => (
       <Stack gap="lg" align="center" ta="center">
-        <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="px-lg py-sm">
-          <Icon size="sm" lucideIcon={Users} className="mr-0.5" />
+        <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="w-fit gap-1">
+          <Icon size="xs" lucideIcon={Users} className="mr-0.5" />
           {content.badge || "Customer Reviews"}
         </Badge>
         
@@ -385,8 +385,8 @@ const gridTestimonialContentHooks = {
                   {testimonial.author}
                 </Text>
                 {testimonial.verified && (
-                  <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
-                    <Icon size="sm" lucideIcon={Shield} className="mr-0.5" />
+                  <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="w-fit gap-1">
+                    <Icon size="xs" lucideIcon={Shield} className="mr-0.5" />
                     Verified
                   </Badge>
                 )}
@@ -588,8 +588,8 @@ const gridTestimonialContentHooks = {
             <Group gap="md" align="center" justify="between">
               <RenderStars rating={testimonial.rating} size={isFeatured ? "md" : "sm"} />
               {isFeatured && (
-                <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
-                  <Icon size="sm" lucideIcon={Award} className="mr-0.5" />
+                <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="w-fit gap-1">
+                  <Icon size="xs" lucideIcon={Award} className="mr-0.5" />
                   Featured
                 </Badge>
               )}
@@ -649,7 +649,7 @@ export const GridTestimonial = forwardRef<HTMLElement, GridTestimonialProps>(
     content, 
     variant = "grid",
     useContainer = true,
-    py = "xl",
+    py = "lg",
     className,
     ...props 
   }, ref) => {

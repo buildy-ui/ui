@@ -58,8 +58,6 @@ export const SplitGalleryShowcaseExample = () => {
       content={sampleGalleryData}
       variant="showcase"
       leftMedia={false}
-      py="xl"
-      gap="xl"
     />
   );
 };
@@ -114,8 +112,6 @@ export const SplitGalleryPortfolioExample = () => {
       content={portfolioData}
       variant="portfolio"
       leftMedia={true}
-      py="xl"
-      gap="lg"
     />
   );
 };

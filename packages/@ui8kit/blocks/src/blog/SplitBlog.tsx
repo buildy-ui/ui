@@ -89,11 +89,11 @@ const sideArticlesContentHooks = {
                     <Image
                       src={article.image.src}
                       alt={article.image.alt}
-                      width="80px"
-                      height="80px"
+                      width="24px"
+                      height="24px"
                       fit="cover"
-                      rounded={theme?.themeRounded.default}
-                      className="flex-shrink-0"
+                      rounded="full"
+                      className="w-10 h-10"
                     />
                   )}
                   
@@ -179,21 +179,21 @@ const splitBlogContentHooks = {
                 </Stack>
 
                 <Group gap="md" align="center" className="w-full">
-                  <Group gap="xs" align="center">
+                  <Group gap="sm" align="center">
                     <Icon lucideIcon={User} />
                     <Text c="secondary-foreground">
                       {mainPost.author.name}
                     </Text>
                   </Group>
                   
-                  <Group gap="xs" align="center">
+                  <Group gap="sm" align="center">
                     <Icon lucideIcon={Calendar} />
                     <Text c="secondary-foreground">
                       {mainPost.date}
                     </Text>
                   </Group>
                   
-                  <Group gap="xs" align="center">
+                  <Group gap="sm" align="center">
                     <Icon lucideIcon={Clock} />
                     <Text c="secondary-foreground">
                       {mainPost.readTime}
@@ -293,10 +293,11 @@ const splitBlogContentHooks = {
                     <Image
                       src={featuredPost.author.avatar}
                       alt={featuredPost.author.name}
-                      width="40px"
-                      height="40px"
+                      width="24px"
+                      height="24px"
                       fit="cover"
                       rounded="full"
+                      className="w-10 h-10"
                     />
                   )}
                   <Stack gap="none">
@@ -464,8 +465,8 @@ export const SplitBlog = forwardRef<HTMLElement, SplitBlogProps>(
     variant = "news",
     leftMedia = false,
     useContainer = true,
-    py = "xl",
-    gap = "md",
+    py = "lg",
+    gap = "xl",
     className,
     ...props 
   }, ref) => {
@@ -561,7 +562,7 @@ export const SplitBlog = forwardRef<HTMLElement, SplitBlogProps>(
       // Default gradient background
       return (
         <Block 
-          className="h-full bg-gradient-to-br from-primary/5 to-secondary/10 relative overflow-hidden"
+          className={`h-full bg-gradient-to-br from-primary/5 to-secondary/10 relative overflow-hidden rounded-${theme?.themeRounded.default}`}
           data-class="blog-gradient-background"
           rounded={theme?.themeRounded.default}
         >

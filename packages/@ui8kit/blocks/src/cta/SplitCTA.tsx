@@ -473,8 +473,8 @@ export const SplitCTA = forwardRef<HTMLElement, SplitCTAProps>(
     variant = "withImage",
     leftMedia = false,
     useContainer = true,
-    py = "xl",
-    gap = "md",
+    py = "lg",
+    gap = "xl",
     className,
     ...props 
   }, ref) => {
@@ -489,7 +489,7 @@ export const SplitCTA = forwardRef<HTMLElement, SplitCTAProps>(
         
         return (
           <Block 
-            className={`h-full ${backgroundClass} relative overflow-hidden`}
+            className={`h-full ${backgroundClass} relative overflow-hidden rounded-${theme?.themeRounded.default}`}
             data-class="cta-background"
           >
             <Box className="absolute inset-0 bg-black/30" />
@@ -524,7 +524,7 @@ export const SplitCTA = forwardRef<HTMLElement, SplitCTAProps>(
 
       return (
         <Block 
-          className={`h-full bg-gradient-to-br ${gradientMap[variant]} relative overflow-hidden`}
+          className={`h-full bg-gradient-to-br ${gradientMap[variant]} relative overflow-hidden rounded-${theme?.themeRounded.default}`}
           data-class="cta-gradient-background"
         >
           <Box className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10" />

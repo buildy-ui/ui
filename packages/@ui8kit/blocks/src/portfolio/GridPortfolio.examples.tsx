@@ -182,8 +182,6 @@ export const GridPortfolioCardsExample = () => {
       content={content}
       variant="cards"
       cols="1-2-3"
-      gap="lg"
-      py="xl"
     />
   );
 };
@@ -203,8 +201,6 @@ export const GridPortfolioMasonryExample = () => {
       content={content}
       variant="masonry"
       cols="1-2-3"
-      gap="md"
-      py="xl"
       className="bg-gradient-to-b from-muted/30 to-background"
     />
   );
@@ -224,8 +220,6 @@ export const GridPortfolioMinimalExample = () => {
       content={content}
       variant="minimal"
       cols="1-2-4"
-      gap="lg"
-      py="lg"
     />
   );
 };
@@ -247,8 +241,6 @@ export const GridPortfolioDetailedExample = () => {
       content={content}
       variant="detailed"
       cols="1-2-3"
-      gap="xl"
-      py="xl"
     />
   );
 };
@@ -269,8 +261,6 @@ export const GridPortfolioShowcaseExample = () => {
       content={content}
       variant="showcase"
       cols="1-2-4"
-      gap="lg"
-      py="xl"
       className="bg-gradient-to-r from-primary/5 to-secondary/5"
     />
   );

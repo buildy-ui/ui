@@ -110,7 +110,7 @@ const splitBusinessContentHooks = {
   // Solutions variant - business solutions with metrics
   solutions: createContentHook({
     content: (content: SplitBusinessData) => (
-      <Stack gap="xl" align="start">
+      <Stack gap="lg" align="start">
         <Stack gap="md" align="start">
           <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
             {content.badge || "Solutions"}
@@ -127,13 +127,13 @@ const splitBusinessContentHooks = {
 
         {/* Key Metrics */}
         {content.metrics && (
-          <Grid cols="1-2" gap="md" className="w-full">
+          <Grid cols="1-2" gap="md">
             {content.metrics.slice(0, 4).map((metric) => (
-              <Card key={metric.id} p="lg" rounded={theme?.themeRounded.default} shadow="sm" bg="card">
+              <Card key={metric.id} rounded={theme?.themeRounded.default} shadow="sm" bg="card" className="w-full">
                 <Group gap="md" align="center">
                   {metric.lucideIcon && (
                     <Box 
-                      p="sm" 
+                      p="xs" 
                       bg="primary" 
                       rounded={theme?.themeRounded.default} 
                       className="inline-flex"
@@ -146,9 +146,9 @@ const splitBusinessContentHooks = {
                     </Box>
                   )}
                   
-                  <Stack gap="xs">
+                  <Stack gap="sm">
                     <Group gap="xs" align="baseline">
-                      <Text size="2xl" fw="bold" c="primary">
+                      <Text size="lg" fw="bold" c="primary">
                         {metric.value}
                       </Text>
                       {metric.change && (
@@ -157,7 +157,7 @@ const splitBusinessContentHooks = {
                         </Badge>
                       )}
                     </Group>
-                    <Text c="secondary-foreground">
+                    <Text size="xs" c="secondary-foreground">
                       {metric.label}
                     </Text>
                   </Stack>
@@ -331,6 +331,7 @@ const splitBusinessContentHooks = {
                       height="48px"
                       fit="cover"
                       rounded="full"
+                      className="w-20 h-20"
                     />
                   )}
                   
@@ -427,9 +428,9 @@ const splitBusinessContentHooks = {
 
           {content.secondaryButtonText && (
             <Button
-              variant="ghost"
+              variant="outline"
               rounded={theme?.themeRounded.default}
-              size="icon"
+              size={theme?.themeButtonSize.default}
               rightSection={
                 <Icon lucideIcon={ArrowRight} />
               }
@@ -532,8 +533,8 @@ export const SplitBusiness = forwardRef<HTMLElement, SplitBusinessProps>(
     variant = "solutions",
     leftMedia = false,
     useContainer = true,
-    py = "xl",
-    gap = "md",
+    py = "lg",
+    gap = "xl",
     className,
     ...props 
   }, ref) => {
@@ -566,7 +567,7 @@ export const SplitBusiness = forwardRef<HTMLElement, SplitBusinessProps>(
 
       return (
         <Block 
-          className={`h-full bg-gradient-to-br ${gradientMap[variant]} relative overflow-hidden`}
+          className={`h-full bg-gradient-to-br ${gradientMap[variant]} relative overflow-hidden rounded-${theme?.themeRounded.default}`}
           data-class="business-gradient-background"
         >
           <Box className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10" />

@@ -24,8 +24,6 @@ export const SplitHeroMediaExample = () => {
       content={content}
       variant="media"
       useContainer={true}
-      py="xl"
-      gap="xl"
     />
   );
 };
@@ -52,8 +50,6 @@ export const SplitHeroLeftMediaExample = () => {
       variant="media"
       leftMedia={true}
       useContainer={true}
-      py="xl"
-      gap="lg"
     />
   );
 };
@@ -93,8 +89,6 @@ export const SplitHeroGalleryExample = () => {
       variant="gallery"
       leftMedia={true}
       useContainer={true}
-      py="xl"
-      gap="xl"
     />
   );
 };
@@ -137,9 +131,7 @@ export const SplitHeroWithTopButtonExample = () => {
       content={content}
       variant="gallery"
       useContainer={true}
-      padding="xl"
-      gap="xl"
-      className="min-h-screen bg-gradient-to-br from-primary/10 to-secondary/10"
+      className="bg-gradient-to-br from-primary/10 to-secondary/10"
     />
   );
 };
@@ -166,8 +158,6 @@ export const SplitHeroSecurityExample = () => {
       variant="media"
       leftMedia={true}
       useContainer={true}
-      padding="xl"
-      gap="xl"
       className="bg-gradient-to-r from-secondary to-primary/10"
     />
   );

@@ -279,8 +279,8 @@ export const SplitFeatures = forwardRef<HTMLElement, SplitFeaturesProps>(
     variant = "media",
     leftMedia = false,
     useContainer = true,
-    py = "xl",
-    gap = "md",
+    py = "lg",
+    gap = "xl",
     className,
     ...props 
   }, ref) => {
@@ -299,7 +299,7 @@ export const SplitFeatures = forwardRef<HTMLElement, SplitFeaturesProps>(
       </Block>
     ) : (
       <Block 
-        className="h-full bg-gradient-to-br from-primary/5 to-primary/10 relative overflow-hidden"
+        className={`h-full bg-gradient-to-br from-primary/5 to-primary/10 relative overflow-hidden rounded-${theme?.themeRounded.default}`}
         data-class="gradient-background"
         rounded={theme?.themeRounded.default}
       >
@@ -361,5 +361,21 @@ export const splitFeaturesTemplates = {
     description: "Split layout with analytics cards",
     component: SplitFeatures,
     defaultProps: { variant: "analytics" as const, useContainer: false, gap: "none" as const }
+  },
+
+  security: {
+    id: "splitFeaturesSecurity",
+    name: "Split Features Security",
+    description: "Split layout with security features",
+    component: SplitFeatures,
+    defaultProps: { variant: "security" as const }
+  },
+
+  performance: {
+    id: "splitFeaturesPerformance",
+    name: "Split Features Performance",
+    description: "Split layout with performance features",
+    component: SplitFeatures,
+    defaultProps: { variant: "performance" as const }
   }
 };

@@ -131,8 +131,6 @@ export const GridBlogCardsExample = () => {
       content={content}
       variant="cards"
       cols="1-2-3"
-      gap="xl"
-      py="xl"
     />
   );
 };
@@ -152,8 +150,6 @@ export const GridBlogPostsGridExample = () => {
       content={content}
       variant="postsGrid"
       cols="1-2-3"
-      gap="lg"
-      py="lg"
     />
   );
 };
@@ -173,8 +169,6 @@ export const GridBlogFilteredExample = () => {
       content={content}
       variant="filtered"
       cols="1-2-3"
-      gap="lg"
-      py="xl"
       _showFilters={true}
     />
   );
@@ -194,8 +188,6 @@ export const GridBlogCompactExample = () => {
       content={content}
       variant="compact"
       cols="1"
-      gap="md"
-      py="lg"
       useContainer={true}
     />
   );
@@ -215,9 +207,7 @@ export const GridBlogFeaturedExample = () => {
       content={content}
       variant="featured"
       cols="1-2-3"
-      gap="md"
-      py="xl"
-      className="bg-gradient-to-b from-muted/30 to-background"
+      className="bg-gradient-to-b from-secondary/30 to-background"
     />
   );
 };

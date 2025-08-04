@@ -346,7 +346,7 @@ export const CenteredHero = forwardRef<HTMLElement, CenteredHeroProps>(
     content,
     variant = "simple",
     useContainer = true,
-    py = "2xl",
+    py = "lg",
     className,
     ...props
   }, ref) => {
@@ -404,5 +404,13 @@ export const centeredHeroTemplates = {
     description: "Centered hero with statistics display below content",
     component: CenteredHero,
     defaultProps: { variant: "withStats" as const }
+  },
+
+  mission: {
+    id: "centeredHeroMission",
+    name: "Centered Hero Mission",
+    description: "Centered hero for mission/vision statements",
+    component: CenteredHero,
+    defaultProps: { variant: "mission" as const }
   }
 };

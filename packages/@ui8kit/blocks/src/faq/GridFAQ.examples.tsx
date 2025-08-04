@@ -1,6 +1,4 @@
-import { 
-
-
+import {
   Shield,
   Zap,
   Users,
@@ -122,8 +120,6 @@ export const GridFAQCardsExample = () => {
       content={content}
       variant="cards"
       cols="1-2-3"
-      gap="lg"
-      py="xl"
     />
   );
 };
@@ -143,8 +139,6 @@ export const GridFAQAccordionExample = () => {
       content={content}
       variant="accordion"
       cols="1"
-      gap="md"
-      py="lg"
     />
   );
 };
@@ -164,8 +158,6 @@ export const GridFAQCategoriesExample = () => {
       content={content}
       variant="categories"
       cols="1-2-4"
-      gap="md"
-      py="xl"
     />
   );
 };
@@ -184,8 +176,6 @@ export const GridFAQCompactExample = () => {
       content={content}
       variant="compact"
       cols="1"
-      gap="md"
-      py="lg"
       useContainer={true}
     />
   );
@@ -212,9 +202,7 @@ export const GridFAQSupportExample = () => {
       content={content}
       variant="support"
       cols="1-2-3"
-      gap="xl"
-      py="xl"
-      className="bg-gradient-to-b from-muted/30 to-background"
+      className="bg-gradient-to-b from-primary/50 to-primary/10"
     />
   );
 };

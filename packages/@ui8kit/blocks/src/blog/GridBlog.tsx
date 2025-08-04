@@ -112,22 +112,22 @@ const gridBlogContentHooks = {
           </Stack>
 
           <Group gap="md" align="center" className="w-full text-xs text-muted-foreground">
-            <Group gap="xs" align="center">
-              <Icon lucideIcon={User} />
+            <Group gap="sm" align="center">
+              <Icon size="lg" lucideIcon={User} />
               <Text size="xs" c="secondary-foreground">
                 {post.author.name}
               </Text>
             </Group>
             
-            <Group gap="xs" align="center">
-              <Icon lucideIcon={Calendar} />
+            <Group gap="sm" align="center">
+              <Icon size="lg" lucideIcon={Calendar} />
               <Text size="xs" c="secondary-foreground">
                 {post.date}
               </Text>
             </Group>
             
-            <Group gap="xs" align="center">
-              <Icon lucideIcon={Clock} />
+            <Group gap="sm" align="center">
+              <Icon size="lg" lucideIcon={Clock} />
               <Text size="xs" c="secondary-foreground">
                 {post.readTime}
               </Text>
@@ -171,7 +171,7 @@ const gridBlogContentHooks = {
           )}
 
           <Stack gap="xs" className="flex-1">
-            <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
+            <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="max-w-fit">
               {post.category}
             </Badge>
             
@@ -185,7 +185,7 @@ const gridBlogContentHooks = {
           </Stack>
 
           <Group gap="md" align="center" justify="between" className="w-full">
-            <Group gap="xs" align="center">
+            <Group gap="sm" align="center">
               {post.author.avatar && (
                 <Image
                   src={post.author.avatar}
@@ -193,7 +193,8 @@ const gridBlogContentHooks = {
                   width="24px"
                   height="24px"
                   fit="cover"
-                  rounded={theme?.themeRounded.default}
+                  rounded="full"
+                  className="w-10 h-10"
                 />
               )}
               <Text size="xs" c="secondary-foreground">
@@ -299,13 +300,13 @@ const gridBlogContentHooks = {
               width="80px"
               height="80px"
               fit="cover"
-              rounded={theme?.themeRounded.default}
-              className="flex-shrink-0"
+              rounded="full"
+              className="w-10 h-10"
             />
           )}
 
-          <Stack gap="xs" className="flex-1 min-w-0">
-            <Badge variant="outline" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
+          <Stack gap="xs" className="flex-1">
+            <Badge variant="outline" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="max-w-fit">
               {post.category}
             </Badge>
             
@@ -357,7 +358,7 @@ const gridBlogContentHooks = {
             )}
 
             <Stack gap="md" className="flex-1">
-              <Badge variant="secondary" size={isFeatured ? theme?.themeButtonSize.default : theme?.themeButtonSize.badge} rounded={isFeatured ? theme?.themeRounded.default : theme?.themeRounded.badge}>
+              <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="max-w-fit">
                 {post.category}
               </Badge>
               
@@ -389,6 +390,7 @@ const gridBlogContentHooks = {
                     height={isFeatured ? "32px" : "24px"}
                     fit="cover"
                     rounded="full"
+                    className="w-10 h-10"
                   />
                 )}
                 <Stack gap="none">
@@ -429,9 +431,9 @@ export const GridBlog = forwardRef<HTMLElement, GridBlogProps>(
     content, 
     variant = "cards",
     cols = "1-2-3",
-    gap = "lg",
+    py = "lg",
+    gap = "xl",
     useContainer = true,
-    py = "xl",
     _showFilters = false,
     className,
     ...props 

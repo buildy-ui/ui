@@ -333,8 +333,8 @@ const gridPortfolioContentHooks = {
                 </Badge>
               )}
               {project.status === "featured" && (
-                <Badge variant="default" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
-                  <Icon c="primary-foreground" lucideIcon={Award} />
+                <Badge variant="default" className="w-fit gap-1" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
+                  <Icon size="xs" c="primary-foreground" lucideIcon={Award} />
                   Featured
                 </Badge>
               )}
@@ -440,8 +440,8 @@ const gridPortfolioContentHooks = {
                     </Badge>
                   )}
                   {project.status === "featured" && (
-                    <Badge variant="default" size={isFeatured ? "default" : "sm"} rounded={theme?.themeRounded.badge}>
-                      <Icon c="primary-foreground" lucideIcon={Award} />
+                    <Badge variant="default" size={isFeatured ? "default" : "sm"} rounded={theme?.themeRounded.badge} className="w-fit gap-1">
+                      <Icon size="xs" c="primary-foreground" lucideIcon={Award} />
                       Featured
                     </Badge>
                   )}
@@ -504,7 +504,7 @@ export const GridPortfolio = forwardRef<HTMLElement, GridPortfolioProps>(
     cols,
     gap,
     useContainer = true,
-    py = "xl",
+    py = "lg",
     className,
     ...props 
   }, ref) => {

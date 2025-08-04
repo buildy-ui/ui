@@ -136,8 +136,8 @@ const splitTeamContentHooks = {
     content: (content: SplitTeamData) => (
       <Stack gap="xl" align="start">
         {content.badge && (
-          <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
-            <Icon lucideIcon={Award} />
+          <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="w-fit gap-1">
+            <Icon size="xs" lucideIcon={Award} />
             {content.badge}
           </Badge>
         )}
@@ -165,7 +165,7 @@ const splitTeamContentHooks = {
                     height="80px"
                     fit="cover"
                     rounded="full"
-                    className="border-4 border-primary/10"
+                    className="border-4 border-primary/10 min-w-[80px] min-h-[80px] w-[80px] h-[80px]"
                   />
                 ) : (
                   <Box 
@@ -221,8 +221,8 @@ const splitTeamContentHooks = {
       <Stack gap="xl" align="start">
         <Stack gap="lg">
           {content.badge && (
-            <Badge variant="outline" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
-              <Icon lucideIcon={Users} />
+            <Badge variant="outline" className="w-fit gap-1" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
+              <Icon size="xs" lucideIcon={Users} />
               {content.badge}
             </Badge>
           )}
@@ -251,6 +251,7 @@ const splitTeamContentHooks = {
                     height="50px"
                     fit="cover"
                     rounded="full"
+                    className="min-w-[50px] min-h-[50px] w-[50px] h-[50px]"
                   />
                 ) : (
                   <Box 
@@ -354,6 +355,7 @@ const splitTeamContentHooks = {
                   height="40px"
                   fit="cover"
                   rounded="full"
+                  className="min-w-[40px] min-h-[40px] w-[40px] h-[40px]"
                 />
               ) : (
                 <Box 
@@ -396,8 +398,8 @@ const splitTeamContentHooks = {
     content: (content: SplitTeamData) => (
       <Stack gap="xl" align="start">
         <Stack gap="lg">
-          <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
-            <Icon lucideIcon={Heart} />
+          <Badge variant="secondary" className="w-fit gap-1" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge}>
+            <Icon size="xs" lucideIcon={Heart} />
             {content.badge || "Our Culture"}
           </Badge>
           
@@ -525,6 +527,7 @@ const splitTeamContentHooks = {
                             height="30px"
                             fit="cover"
                             rounded="full"
+                            className="min-w-[30px] min-h-[30px] w-[30px] h-[30px]"
                           />
                         ) : (
                           <Box 
@@ -568,7 +571,7 @@ export const SplitTeam = forwardRef<HTMLElement, SplitTeamProps>(
     variant = "leadership",
     mediaPosition = "right",
     useContainer = true,
-    py = "xl",
+    py = "lg",
     className,
     ...props 
   }, ref) => {
@@ -600,9 +603,9 @@ export const SplitTeam = forwardRef<HTMLElement, SplitTeamProps>(
 
         case "showcase":
           return (
-            <Box className="relative h-full w-full bg-gradient-to-br from-blue-500/20 via-green-500/20 to-purple-500/20 overflow-hidden flex items-center justify-center" rounded={theme?.themeRounded.default} p="xl" data-class="showcase-media">
+            <Box className="relative h-full w-full bg-gradient-to-br from-primary/20 via-secondary/20 to-tertiary/20 overflow-hidden flex items-center justify-center" rounded={theme?.themeRounded.default} p="xl" data-class="showcase-media">
               <Stack gap="lg" align="center" className="relative z-10">
-                <Box className="grid grid-cols-2 gap-md max-w-sm">
+                <Box className="grid grid-cols-2 max-w-sm" gap="md">
                   {[Users, Target, Briefcase, Heart].map((LucideIcon, index) => (
                     <Box 
                       key={index}
@@ -621,7 +624,7 @@ export const SplitTeam = forwardRef<HTMLElement, SplitTeamProps>(
 
         case "hiring":
           return (
-            <Box className="relative h-full w-full bg-gradient-to-br from-green-500/20 via-blue-500/20 to-indigo-500/20 overflow-hidden flex items-center justify-center" rounded={theme?.themeRounded.default} p="xl" data-class="hiring-media">
+            <Box className="relative h-full w-full bg-gradient-to-br from-primary/20 via-secondary/20 to-tertiary/20 overflow-hidden flex items-center justify-center" rounded={theme?.themeRounded.default} p="xl" data-class="hiring-media">
               <Stack gap="xl" align="center" className="relative z-10">
                 <Box className="w-32 h-32 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center">
                   <Icon size="lg" lucideIcon={Briefcase} c="primary-foreground" />
@@ -640,15 +643,15 @@ export const SplitTeam = forwardRef<HTMLElement, SplitTeamProps>(
 
         case "culture":
           return (
-            <Box className="relative h-full w-full bg-gradient-to-br from-pink-500/20 via-orange-500/20 to-yellow-500/20 overflow-hidden flex items-center justify-center" rounded={theme?.themeRounded.default} p="xl" data-class="culture-media">
+            <Box className="relative h-full w-full bg-gradient-to-br from-primary/20 via-secondary/20 to-tertiary/20 overflow-hidden flex items-center justify-center" rounded={theme?.themeRounded.default} p="xl" data-class="culture-media">
               <Stack gap="lg" align="center" className="relative z-10">
-                <Box className="grid grid-cols-3 gap-md max-w-md">
+                <Box className="grid grid-cols-3 max-w-md" gap="md">
                   {[
                     { icon: Heart, label: "Culture" },
                     { icon: Coffee, label: "Remote" },
                     { icon: Users, label: "Team" }
                   ].map((item, index) => (
-                    <Stack key={index} gap="md" align="center">
+                    <Stack key={index} align="center">
                       <Box className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
                         <Icon lucideIcon={item.icon} c="primary-foreground" />
                       </Box>
@@ -667,7 +670,7 @@ export const SplitTeam = forwardRef<HTMLElement, SplitTeamProps>(
 
         case "departments":
           return (
-            <Box className="relative h-full w-full bg-gradient-to-br from-indigo-500/20 via-purple-500/20 to-pink-500/20 overflow-hidden flex items-center justify-center" rounded={theme?.themeRounded.default} p="xl" data-class="departments-media">
+            <Box className="relative h-full w-full bg-gradient-to-br from-primary/20 via-secondary/20 to-tertiary/20 overflow-hidden flex items-center justify-center" rounded={theme?.themeRounded.default} p="xl" data-class="departments-media">
               <Stack gap="xl" align="center" className="relative z-10">
                 <Box className="w-32 h-32 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center">
                   <Icon size="lg" lucideIcon={Target} c="primary-foreground" />
@@ -703,7 +706,7 @@ export const SplitTeam = forwardRef<HTMLElement, SplitTeamProps>(
         splitSection={!useContainer}
         containerSize="lg"
         py={py}
-        gap="lg"
+        gap="xl"
         className={`min-h-[500px] ${className || ''}`}
         {...props}
       />
