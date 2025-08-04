@@ -45,6 +45,19 @@ export default function BlockSidebar({
   const BlockPreview = memo(({ template }: { template: Template }) => {
     const PreviewComponent = template.component;
     
+    // Debug: log undefined components
+    if (!PreviewComponent) {
+      console.error('❌ Undefined component for template:', template.id, template);
+      console.log('Template keys:', Object.keys(template));
+      console.log('Component type:', typeof template.component);
+      return (
+        <div className="p-4 bg-red-100 border border-red-300 rounded">
+          <p className="text-red-700 text-sm">❌ Component not found</p>
+          <p className="text-red-600 text-xs">{template.id}</p>
+        </div>
+      );
+    }
+    
     return (
       <div className="relative overflow-hidden bg-background rounded-lg border border-transparent hover:border-accent transition-all duration-300 aspect-video group">
         <div className="transform scale-[0.2] origin-top-left w-[500%] h-auto overflow-hidden">

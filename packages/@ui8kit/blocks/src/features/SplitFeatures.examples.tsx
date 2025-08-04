@@ -236,6 +236,7 @@ export const SplitFeaturesPerformanceExample = () => {
 export const splitFeaturesExamples = {
   media: SplitFeaturesMediaExample,
   leftMedia: SplitFeaturesLeftMediaExample,
+  features: SplitFeaturesAnalyticsExample, // Используем analytics как features
   analytics: SplitFeaturesAnalyticsExample,
   security: SplitFeaturesSecurityExample,
   performance: SplitFeaturesPerformanceExample

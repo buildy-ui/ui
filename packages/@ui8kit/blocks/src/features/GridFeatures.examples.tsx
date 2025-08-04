@@ -350,7 +350,8 @@ export const GridFeaturesCareerStatsExample = () => {
 export const gridFeaturesExamples = {
   threeColumns: GridFeaturesThreeColumnsExample,
   threeColumnsIcons: GridFeaturesThreeColumnsIconsExample,
-  mediaCards: GridFeaturesMediaCardsExample,
+  gridMediaCards: GridFeaturesMediaCardsExample, // Исправлен ключ
+  mediaCards: GridFeaturesMediaCardsExample, // Для обратной совместимости
   careerPositions: GridFeaturesCareerPositionsExample,
   careerStats: GridFeaturesCareerStatsExample
 };

@@ -1,7 +1,7 @@
-// New Factory-based CTA Components
-export { CenteredCTA, centeredCTATemplates, type CenteredCTAProps, type CenteredCTAData } from './CenteredCTA';
-export { SplitCTA, splitCTATemplates, type SplitCTAProps, type SplitCTAData } from './SplitCTA';
+// New factory-based components - replace old blocks with powerful factories
+export * from './CenteredCTA';
+export * from './SplitCTA';
 
-// Examples
-export { centeredCTAExamples } from './CenteredCTA.examples';
-export { splitCTAExamples } from './SplitCTA.examples';
+// Examples for the new factories
+export * from './CenteredCTA.examples';
+export * from './SplitCTA.examples';

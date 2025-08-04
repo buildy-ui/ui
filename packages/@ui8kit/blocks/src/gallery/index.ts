@@ -1,7 +1,7 @@
-// New Factory-based Gallery Components
-export { SplitGallery, splitGalleryTemplates, type SplitGalleryProps, type SplitGalleryData } from './SplitGallery';
-export { GridGallery, gridGalleryTemplates, type GridGalleryProps, type GridGalleryData } from './GridGallery';
+// New factory-based components - replace old blocks with powerful factories
+export * from './SplitGallery';
+export * from './GridGallery';
 
-// Examples
-export { splitGalleryExamples } from './SplitGallery.examples';
-export { gridGalleryExamples } from './GridGallery.examples';
+// Examples for the new factories
+export * from './SplitGallery.examples';
+export * from './GridGallery.examples';

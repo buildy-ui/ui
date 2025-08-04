@@ -361,5 +361,21 @@ export const splitFeaturesTemplates = {
     description: "Split layout with analytics cards",
     component: SplitFeatures,
     defaultProps: { variant: "analytics" as const, useContainer: false, gap: "none" as const }
+  },
+
+  security: {
+    id: "splitFeaturesSecurity",
+    name: "Split Features Security",
+    description: "Split layout with security features",
+    component: SplitFeatures,
+    defaultProps: { variant: "security" as const }
+  },
+
+  performance: {
+    id: "splitFeaturesPerformance",
+    name: "Split Features Performance",
+    description: "Split layout with performance features",
+    component: SplitFeatures,
+    defaultProps: { variant: "performance" as const }
   }
 };

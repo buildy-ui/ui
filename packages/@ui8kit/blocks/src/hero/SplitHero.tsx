@@ -361,5 +361,13 @@ export const splitHeroTemplates = {
     description: "Split layout hero with top announcement button",
     component: SplitHero,
     defaultProps: { variant: "withTopButton" as const, useContainer: false }
+  },
+
+  security: {
+    id: "splitHeroSecurity",
+    name: "Split Hero Security",
+    description: "Split layout hero focused on security features",
+    component: SplitHero,
+    defaultProps: { variant: "security" as const }
   }
 };
