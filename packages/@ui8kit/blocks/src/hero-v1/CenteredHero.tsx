@@ -26,7 +26,7 @@ const theme = {
 }
 
 // Centered Hero data interface (internal)
-interface CenteredHeroData {
+export interface CenteredHeroData {
   badge?: string;
   title: string;
   description: string;

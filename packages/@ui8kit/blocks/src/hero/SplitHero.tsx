@@ -28,7 +28,7 @@ const theme = {
 }
 
 // Hero data interface
-interface HeroData {
+export interface HeroData {
   badge?: string;
   title: string;
   description: string;

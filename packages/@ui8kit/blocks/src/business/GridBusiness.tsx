@@ -82,7 +82,7 @@ interface Solution {
 }
 
 // Business data interface
-interface GridBusinessData {
+export interface GridBusinessData {
   badge?: string;
   promo?: string;
   title: string;

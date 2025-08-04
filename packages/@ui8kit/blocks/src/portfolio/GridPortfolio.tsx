@@ -68,7 +68,7 @@ interface PortfolioCategory {
 }
 
 // Grid Portfolio data interface
-interface GridPortfolioData {
+export interface GridPortfolioData {
   badge?: string;
   title: string;
   description: string;

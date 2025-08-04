@@ -46,7 +46,7 @@ interface BlogPost {
 }
 
 // Blog data interface
-interface GridBlogData {
+export interface GridBlogData {
   badge?: string;
   title: string;
   description: string;

@@ -53,7 +53,7 @@ interface PostMeta {
 }
 
 // Centered Post data interface
-interface CenteredPostData {
+export interface CenteredPostData {
   title: string;
   subtitle?: string;
   excerpt?: string;

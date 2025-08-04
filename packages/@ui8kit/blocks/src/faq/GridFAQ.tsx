@@ -50,7 +50,7 @@ interface FAQCategory {
 }
 
 // Grid FAQ data interface
-interface GridFAQData {
+export interface GridFAQData {
   badge?: string;
   title: string;
   description: string;

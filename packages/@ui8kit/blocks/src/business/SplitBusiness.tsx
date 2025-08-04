@@ -72,7 +72,7 @@ interface BusinessTestimonial {
 }
 
 // Split Business data interface
-interface SplitBusinessData {
+export interface SplitBusinessData {
   badge?: string;
   title: string;
   subtitle?: string;

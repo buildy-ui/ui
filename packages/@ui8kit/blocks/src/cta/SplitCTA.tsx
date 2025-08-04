@@ -52,7 +52,7 @@ interface CTAFeature {
 }
 
 // Split CTA data interface
-interface SplitCTAData {
+export interface SplitCTAData {
   badge?: string;
   title: string;
   description: string;

@@ -73,7 +73,7 @@ interface PortfolioCategory {
 }
 
 // Split Portfolio data interface
-interface SplitPortfolioData {
+export interface SplitPortfolioData {
   badge?: string;
   title: string;
   description: string;

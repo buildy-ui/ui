@@ -53,7 +53,7 @@ interface TestimonialItem {
   verified?: boolean;
 }
 
-interface GridTestimonialData {
+export interface GridTestimonialData {
   title: string;
   subtitle?: string;
   description?: string;

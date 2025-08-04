@@ -57,7 +57,7 @@ interface CTAFeature {
 }
 
 // Centered CTA data interface
-interface CenteredCTAData {
+export interface CenteredCTAData {
   badge?: string;
   title: string;
   description: string;

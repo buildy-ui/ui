@@ -58,7 +58,7 @@ interface PostMeta {
 }
 
 // Split Post data interface
-interface SplitPostData {
+export interface SplitPostData {
   title: string;
   subtitle?: string;
   excerpt?: string;

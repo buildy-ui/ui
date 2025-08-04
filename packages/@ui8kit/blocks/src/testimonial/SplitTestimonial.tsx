@@ -51,7 +51,7 @@ interface TestimonialItem {
   verified?: boolean;
 }
 
-interface SplitTestimonialData {
+export interface SplitTestimonialData {
   title: string;
   subtitle?: string;
   description?: string;

@@ -60,7 +60,7 @@ interface FAQCategory {
 }
 
 // Split FAQ data interface
-interface SplitFAQData {
+export interface SplitFAQData {
   badge?: string;
   title: string;
   description: string;

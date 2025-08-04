@@ -66,7 +66,7 @@ interface FooterSocial {
   github?: string;
 }
 
-interface GridFooterData {
+export interface GridFooterData {
   brand: string;
   tagline?: string;
   description?: string;

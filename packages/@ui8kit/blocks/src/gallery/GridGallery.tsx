@@ -56,7 +56,7 @@ interface GalleryStats {
 }
 
 // Grid Gallery data interface
-interface GridGalleryData {
+export interface GridGalleryData {
   title: string;
   subtitle?: string;
   description?: string;

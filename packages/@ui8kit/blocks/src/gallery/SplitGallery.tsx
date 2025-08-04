@@ -53,7 +53,7 @@ interface GalleryStats {
 }
 
 // Split Gallery data interface
-interface SplitGalleryData {
+export interface SplitGalleryData {
   title: string;
   subtitle?: string;
   description?: string;

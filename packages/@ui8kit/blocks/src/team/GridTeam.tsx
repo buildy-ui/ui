@@ -62,7 +62,7 @@ interface TeamMember {
   featured?: boolean;
 }
 
-interface GridTeamData {
+export interface GridTeamData {
   title: string;
   subtitle?: string;
   description?: string;

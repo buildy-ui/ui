@@ -32,7 +32,7 @@ import {
 } from "@ui8kit/core";
 
 // Features data interface
-interface GridFeaturesData {
+export interface GridFeaturesData {
   badge: string;
   title: string;
   description: string;

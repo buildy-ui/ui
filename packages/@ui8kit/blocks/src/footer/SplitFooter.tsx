@@ -67,7 +67,7 @@ interface FooterSocial {
   github?: string;
 }
 
-interface SplitFooterData {
+export interface SplitFooterData {
   brand: string;
   tagline?: string;
   description?: string;

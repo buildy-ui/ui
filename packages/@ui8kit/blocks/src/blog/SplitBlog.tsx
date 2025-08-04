@@ -48,7 +48,7 @@ interface BlogPost {
 }
 
 // Split Blog data interface
-interface SplitBlogData {
+export interface SplitBlogData {
   badge?: string;
   title: string;
   subtitle?: string;

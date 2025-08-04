@@ -28,7 +28,7 @@ import {
 } from "@ui8kit/core";
 
 // Features data interface
-interface FeaturesData {
+export interface FeaturesData {
   badge: string;
   title: string;
   description: string;
