@@ -15,11 +15,10 @@ import type { HeroData } from "../types";
 interface CenteredHeroProps {
   content?: Partial<HeroData>;
   variant?: "simple" | "withImage" | "withStats";
-  className?: string;
 }
 
 export const CenteredHero = forwardRef<HTMLElement, CenteredHeroProps>(
-  ({ content = {}, variant = "simple", className, ...props }, ref) => {
+  ({ content = {}, variant = "simple", ...props }, ref) => {
     // Get default content based on variant
     const defaultContent = useMemo(() => {
       switch (variant) {
@@ -43,7 +42,7 @@ export const CenteredHero = forwardRef<HTMLElement, CenteredHeroProps>(
     }, [content, defaultContent]);
 
     return (
-      <HeroSection ref={ref} layout="centered" className={className} {...props}>
+      <HeroSection ref={ref} layout="centered" {...props}>
         <HeroContent align="center">
           {mergedContent.badge && (
             <HeroBadge>{mergedContent.badge}</HeroBadge>
@@ -58,7 +57,7 @@ export const CenteredHero = forwardRef<HTMLElement, CenteredHeroProps>(
               {mergedContent.primaryButtonText && (
                 <HeroButton 
                   variant="default"
-                  icon={mergedContent.primaryButtonIcon || ArrowRight}
+                  icon={(mergedContent as any).primaryButtonIcon ?? ArrowRight}
                 >
                   {mergedContent.primaryButtonText}
                 </HeroButton>
@@ -66,7 +65,7 @@ export const CenteredHero = forwardRef<HTMLElement, CenteredHeroProps>(
               {mergedContent.secondaryButtonText && (
                 <HeroButton 
                   variant="outline"
-                  icon={mergedContent.secondaryButtonIcon || Play}
+                  icon={(mergedContent as any).secondaryButtonIcon ?? Play}
                 >
                   {mergedContent.secondaryButtonText}
                 </HeroButton>
@@ -76,16 +75,16 @@ export const CenteredHero = forwardRef<HTMLElement, CenteredHeroProps>(
         </HeroContent>
         
         {/* Optional image */}
-        {variant === "withImage" && (mergedContent.imageUrl || mergedContent.image) && (
+        {variant === "withImage" && ((mergedContent as any).imageUrl ?? (mergedContent as any).image) && (
           <HeroMedia
-            src={mergedContent.imageUrl || mergedContent.image?.src}
-            alt={mergedContent.imageAlt || mergedContent.image?.alt}
+            src={(mergedContent as any).imageUrl ?? (mergedContent as any).image?.src}
+            alt={(mergedContent as any).imageAlt ?? (mergedContent as any).image?.alt}
           />
         )}
         
         {/* Optional stats */}
-        {variant === "withStats" && mergedContent.stats && (
-          <HeroStats stats={mergedContent.stats} />
+        {variant === "withStats" && (mergedContent as any).stats && (
+          <HeroStats stats={(mergedContent as any).stats} />
         )}
       </HeroSection>
     );

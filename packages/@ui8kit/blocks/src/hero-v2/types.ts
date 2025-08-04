@@ -32,30 +32,25 @@ export interface HeroData {
 // UI component props
 export interface HeroBadgeProps {
   children: React.ReactNode;
-  className?: string;
 }
 
 export interface HeroTitleProps {
   children: React.ReactNode;
-  className?: string;
 }
 
 export interface HeroDescriptionProps {
   children: React.ReactNode;
-  className?: string;
 }
 
 export interface HeroButtonProps {
   children: React.ReactNode;
   variant?: "default" | "outline" | "secondary" | "ghost";
   icon?: any;
-  className?: string;
   onClick?: () => void;
 }
 
 export interface HeroActionsProps {
   children: React.ReactNode;
-  className?: string;
 }
 
 export interface HeroStatsProps {
@@ -64,20 +59,17 @@ export interface HeroStatsProps {
     value: string;
     label: string;
   }>;
-  className?: string;
 }
 
 // Component props
 export interface HeroSectionProps {
   children: React.ReactNode;
   layout?: "split" | "centered";
-  className?: string;
 }
 
 export interface HeroContentProps {
   children: React.ReactNode;
   align?: "left" | "center";
-  className?: string;
 }
 
 export interface HeroMediaProps {
@@ -89,5 +81,4 @@ export interface HeroMediaProps {
     alt: string;
   }>;
   variant?: "single" | "gallery";
-  className?: string;
 }

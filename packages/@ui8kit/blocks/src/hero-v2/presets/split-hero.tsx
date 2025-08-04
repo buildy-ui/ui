@@ -14,11 +14,10 @@ import type { HeroData } from "../types";
 interface SplitHeroProps {
   content?: Partial<HeroData>;
   variant?: "media" | "leftMedia" | "gallery";
-  className?: string;
 }
 
 export const SplitHero = forwardRef<HTMLElement, SplitHeroProps>(
-  ({ content = {}, variant = "media", className, ...props }, ref) => {
+  ({ content = {}, variant = "media", ...props }, ref) => {
     // Get default content based on variant
     const defaultContent = useMemo(() => {
       switch (variant) {
@@ -43,17 +42,17 @@ export const SplitHero = forwardRef<HTMLElement, SplitHeroProps>(
       return defaultContent;
     }, [content, defaultContent]);
 
-    const mediaVariant = mergedContent.images ? "gallery" : "single";
+    const mediaVariant = (mergedContent as any).images ? "gallery" : "single";
     const isLeftMedia = variant === "leftMedia";
 
     return (
-      <HeroSection ref={ref} layout="split" className={className} {...props}>
+      <HeroSection ref={ref} layout="split" {...props}>
         {/* Conditionally render media first for left layout */}
         {isLeftMedia && (
           <HeroMedia
-            src={mergedContent.image?.src}
-            alt={mergedContent.image?.alt}
-            images={mergedContent.images}
+            src={(mergedContent as any).image?.src}
+            alt={(mergedContent as any).image?.alt}
+            images={(mergedContent as any).images}
             variant={mediaVariant}
           />
         )}
@@ -72,7 +71,7 @@ export const SplitHero = forwardRef<HTMLElement, SplitHeroProps>(
               {mergedContent.primaryButtonText && (
                 <HeroButton 
                   variant="default"
-                  icon={mergedContent.primaryButtonIcon || Rocket}
+                  icon={(mergedContent as any).primaryButtonIcon ?? Rocket}
                 >
                   {mergedContent.primaryButtonText}
                 </HeroButton>
@@ -80,7 +79,7 @@ export const SplitHero = forwardRef<HTMLElement, SplitHeroProps>(
               {mergedContent.secondaryButtonText && (
                 <HeroButton 
                   variant="outline"
-                  icon={mergedContent.secondaryButtonIcon || Info}
+                  icon={(mergedContent as any).secondaryButtonIcon ?? Info}
                 >
                   {mergedContent.secondaryButtonText}
                 </HeroButton>
@@ -92,9 +91,9 @@ export const SplitHero = forwardRef<HTMLElement, SplitHeroProps>(
         {/* Render media second for normal layout */}
         {!isLeftMedia && (
           <HeroMedia
-            src={mergedContent.image?.src}
-            alt={mergedContent.image?.alt}
-            images={mergedContent.images}
+            src={(mergedContent as any).image?.src}
+            alt={(mergedContent as any).image?.alt}
+            images={(mergedContent as any).images}
             variant={mediaVariant}
           />
         )}

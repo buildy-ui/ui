@@ -6,7 +6,7 @@ import type { HeroButtonProps } from "../types";
 const theme = skyOSTheme;
 
 export const HeroButton = forwardRef<HTMLButtonElement, HeroButtonProps>(
-  ({ children, variant = "default", icon, className, onClick, ...props }, ref) => {
+  ({ children, variant = "default", icon, onClick, ...props }, ref) => {
     return (
       <Button
         ref={ref}
@@ -19,7 +19,6 @@ export const HeroButton = forwardRef<HTMLButtonElement, HeroButtonProps>(
             c={variant === "default" ? "primary-foreground" : undefined}
           />
         ) : undefined}
-        className={className}
         onClick={onClick}
         {...props}
       >

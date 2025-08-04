@@ -3,13 +3,12 @@ import { Badge } from "@ui8kit/core";
 import type { HeroBadgeProps } from "../types";
 
 export const HeroBadge = forwardRef<HTMLDivElement, HeroBadgeProps>(
-  ({ children, className, ...props }, ref) => {
+  ({ children, ...props }, ref) => {
     return (
       <Badge 
         ref={ref}
         variant="secondary" 
         rounded="full"
-        className={className}
         {...props}
       >
         {children}

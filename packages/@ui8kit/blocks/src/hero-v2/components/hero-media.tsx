@@ -6,7 +6,7 @@ import type { HeroMediaProps } from "../types";
 const theme = skyOSTheme;
 
 export const HeroMedia = forwardRef<HTMLDivElement, HeroMediaProps>(
-  ({ src, alt, images, variant = "single", className, ...props }, ref) => {
+  ({ src, alt, images, variant = "single", ...props }, ref) => {
     // Gallery variant with multiple images
     if (variant === "gallery" && images && images.length > 0) {
       return (
@@ -14,13 +14,12 @@ export const HeroMedia = forwardRef<HTMLDivElement, HeroMediaProps>(
           ref={ref}
           cols="1-2"
           gap="md"
-          className={className}
           {...props}
         >
           {images.map((image, index) => (
             <Block
               key={image.id}
-              className={index === 0 ? "row-span-2" : ""}
+              style={index === 0 ? { gridRowEnd: "span 2" } : undefined}
             >
               <Image
                 src={image.src}
@@ -29,7 +28,7 @@ export const HeroMedia = forwardRef<HTMLDivElement, HeroMediaProps>(
                 height="100%"
                 fit="cover"
                 rounded={theme.rounded.default}
-                className="h-full w-full"
+                style={{ height: "100%", width: "100%" }}
               />
             </Block>
           ))}
@@ -40,7 +39,7 @@ export const HeroMedia = forwardRef<HTMLDivElement, HeroMediaProps>(
     // Single image variant
     if (src && alt) {
       return (
-        <Block ref={ref} className={className} {...props}>
+        <Block ref={ref} {...props}>
           <Image
             src={src}
             alt={alt}
@@ -48,7 +47,7 @@ export const HeroMedia = forwardRef<HTMLDivElement, HeroMediaProps>(
             height="auto"
             fit="cover"
             rounded={theme.rounded.default}
-            className="shadow-2xl"
+            shadow="2xl"
           />
         </Block>
       );
@@ -58,9 +57,13 @@ export const HeroMedia = forwardRef<HTMLDivElement, HeroMediaProps>(
     return (
       <Block
         ref={ref}
-        className={`bg-muted rounded-lg h-64 ${className || ""}`}
+        bg="muted"
+        rounded="lg"
+        style={{ height: "16rem" }}
         {...props}
-      />
+      >
+        <div style={{ width: "100%", height: "100%" }} />
+      </Block>
     );
   }
 );
