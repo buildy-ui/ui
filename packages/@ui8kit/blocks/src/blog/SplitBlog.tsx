@@ -48,7 +48,7 @@ interface BlogPost {
 }
 
 // Split Blog data interface
-export interface SplitBlogData {
+interface SplitBlogData {
   badge?: string;
   title: string;
   subtitle?: string;
@@ -59,7 +59,7 @@ export interface SplitBlogData {
   featuredPost?: BlogPost;
 }
 
-export interface SplitBlogProps {
+interface SplitBlogProps {
   content: SplitBlogData;
   variant?: "news" | "slider" | "featured" | "newsletter" | "timeline";
   leftMedia?: boolean;

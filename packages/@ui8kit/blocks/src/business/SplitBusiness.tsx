@@ -44,7 +44,7 @@ interface BusinessCard {
   lucideIcon?: any;
 }
 
-export interface BusinessMetric {
+interface BusinessMetric {
   id: string;
   value: string;
   label: string;
@@ -52,14 +52,14 @@ export interface BusinessMetric {
   lucideIcon?: any;
 }
 
-export interface BusinessFeature {
+interface BusinessFeature {
   id: string;
   title: string;
   description: string;
   lucideIcon?: any;
 }
 
-export interface BusinessTestimonial {
+interface BusinessTestimonial {
   id: string;
   quote: string;
   author: {
@@ -72,7 +72,7 @@ export interface BusinessTestimonial {
 }
 
 // Split Business data interface
-export interface SplitBusinessData {
+interface SplitBusinessData {
   badge?: string;
   title: string;
   subtitle?: string;
@@ -95,7 +95,7 @@ export interface SplitBusinessData {
   };
 }
 
-export interface SplitBusinessProps {
+interface SplitBusinessProps {
   content: SplitBusinessData;
   variant?: "solutions" | "metrics" | "testimonial" | "features" | "about";
   leftMedia?: boolean;

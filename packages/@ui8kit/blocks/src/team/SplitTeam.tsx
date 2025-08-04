@@ -63,7 +63,7 @@ interface TeamMember {
   featured?: boolean;
 }
 
-export interface SplitTeamData {
+interface SplitTeamData {
   title: string;
   subtitle?: string;
   description?: string;

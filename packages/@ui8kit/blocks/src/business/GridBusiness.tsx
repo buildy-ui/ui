@@ -34,7 +34,7 @@ import {
 } from "@ui8kit/core";
 
 // Business item interfaces
-export interface BusinessCard {
+interface BusinessCard {
   id: string;
   title: string;
   description: string;
@@ -43,7 +43,7 @@ export interface BusinessCard {
   rowSpan?: number;
 }
 
-export interface PricingPlan {
+interface PricingPlan {
   id: string;
   name: string;
   description: string;
@@ -56,7 +56,7 @@ export interface PricingPlan {
   isPopular?: boolean;
 }
 
-export interface CareerOpening {
+interface CareerOpening {
   id: string;
   title: string;
   location: string;
@@ -66,7 +66,7 @@ export interface CareerOpening {
   link?: string;
 }
 
-export interface Solution {
+interface Solution {
   id: string;
   title: string;
   description: string;
@@ -82,7 +82,7 @@ export interface Solution {
 }
 
 // Business data interface
-export interface GridBusinessData {
+interface GridBusinessData {
   badge?: string;
   promo?: string;
   title: string;
@@ -99,7 +99,7 @@ export interface GridBusinessData {
   }>;
 }
 
-export interface GridBusinessProps {
+interface GridBusinessProps {
   content: GridBusinessData;
   variant?: "cardsGallery" | "solutionsGrid" | "pricing" | "pricingYear" | "career";
   cols?: "1" | "2" | "3" | "4" | "1-2" | "1-2-3" | "1-2-4";

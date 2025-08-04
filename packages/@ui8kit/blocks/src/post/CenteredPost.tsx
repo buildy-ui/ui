@@ -36,14 +36,14 @@ import {
 } from "@ui8kit/core";
 
 // Post interfaces
-export interface PostAuthor {
+interface PostAuthor {
   name: string;
   avatar?: string;
   role?: string;
   bio?: string;
 }
 
-export interface PostMeta {
+interface PostMeta {
   category: string;
   readTime: string;
   publishedDate: string;
@@ -53,7 +53,7 @@ export interface PostMeta {
 }
 
 // Centered Post data interface
-export interface CenteredPostData {
+interface CenteredPostData {
   title: string;
   subtitle?: string;
   excerpt?: string;
@@ -70,7 +70,7 @@ export interface CenteredPostData {
   }[];
 }
 
-export interface CenteredPostProps {
+interface CenteredPostProps {
   content: CenteredPostData;
   variant?: "classic" | "minimal" | "magazine" | "featured" | "editorial";
   useContainer?: boolean;

@@ -27,7 +27,7 @@ import {
 } from "@ui8kit/core";
 
 // Blog post interface
-export interface BlogPost {
+interface BlogPost {
   id: string;
   title: string;
   description: string;
@@ -46,7 +46,7 @@ export interface BlogPost {
 }
 
 // Blog data interface
-export interface GridBlogData {
+interface GridBlogData {
   badge?: string;
   title: string;
   description: string;
@@ -58,7 +58,7 @@ export interface GridBlogData {
   posts: BlogPost[];
 }
 
-export interface GridBlogProps {
+interface GridBlogProps {
   content: GridBlogData;
   variant?: "cards" | "postsGrid" | "filtered" | "compact" | "featured";
   cols?: "1" | "2" | "3" | "4" | "1-2" | "1-2-3" | "1-2-4";

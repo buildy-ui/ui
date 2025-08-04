@@ -43,7 +43,7 @@ import {
 } from "@ui8kit/core";
 
 // FAQ interfaces (reuse from GridFAQ)
-export interface FAQItem {
+interface FAQItem {
   id: string;
   question: string;
   answer: string;
@@ -52,7 +52,7 @@ export interface FAQItem {
   priority?: "high" | "medium" | "low";
 }
 
-export interface FAQCategory {
+interface FAQCategory {
   id: string;
   name: string;
   lucideIcon?: any;
@@ -60,7 +60,7 @@ export interface FAQCategory {
 }
 
 // Split FAQ data interface
-export interface SplitFAQData {
+interface SplitFAQData {
   badge?: string;
   title: string;
   description: string;
@@ -82,7 +82,7 @@ export interface SplitFAQData {
   };
 }
 
-export interface SplitFAQProps {
+interface SplitFAQProps {
   content: SplitFAQData;
   variant?: "contact" | "search" | "categories" | "support" | "accordion";
   leftMedia?: boolean;

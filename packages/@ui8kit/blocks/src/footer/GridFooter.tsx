@@ -40,24 +40,24 @@ import {
 } from "@ui8kit/core";
 
 // Reuse footer interfaces from SplitFooter
-export interface FooterLink {
+interface FooterLink {
   name: string;
   href: string;
 }
 
-export interface FooterSection {
+interface FooterSection {
   title: string;
   links: FooterLink[];
 }
 
-export interface FooterContact {
+interface FooterContact {
   email?: string;
   phone?: string;
   address?: string;
   website?: string;
 }
 
-export interface FooterSocial {
+interface FooterSocial {
   twitter?: string;
   instagram?: string;
   linkedin?: string;
@@ -66,7 +66,7 @@ export interface FooterSocial {
   github?: string;
 }
 
-export interface GridFooterData {
+interface GridFooterData {
   brand: string;
   tagline?: string;
   description?: string;
@@ -86,7 +86,7 @@ export interface GridFooterData {
   };
 }
 
-export interface GridFooterProps {
+interface GridFooterProps {
   content: GridFooterData;
   variant?: "columns" | "mega" | "compact" | "newsletter" | "sitemap";
   useContainer?: boolean;

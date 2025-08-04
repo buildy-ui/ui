@@ -38,7 +38,7 @@ import {
 } from "@ui8kit/core";
 
 // Gallery interfaces (reuse from SplitGallery)
-export interface GalleryImage {
+interface GalleryImage {
   id: string;
   src: string;
   alt: string;
@@ -49,14 +49,14 @@ export interface GalleryImage {
   views?: string;
 }
 
-export interface GalleryStats {
+interface GalleryStats {
   totalImages?: string;
   categories?: string;
   views?: string;
 }
 
 // Grid Gallery data interface
-export interface GridGalleryData {
+interface GridGalleryData {
   title: string;
   subtitle?: string;
   description?: string;
@@ -66,7 +66,7 @@ export interface GridGalleryData {
   categories?: string[];
 }
 
-export interface GridGalleryProps {
+interface GridGalleryProps {
   content: GridGalleryData;
   variant?: "grid" | "masonry" | "carousel" | "mosaic" | "minimal" | "cards" | "polaroid" | "magazine";
   useContainer?: boolean;

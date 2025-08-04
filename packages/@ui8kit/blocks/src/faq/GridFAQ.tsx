@@ -33,7 +33,7 @@ import {
 } from "@ui8kit/core";
 
 // FAQ interfaces
-export interface FAQItem {
+interface FAQItem {
   id: string;
   question: string;
   answer: string;
@@ -42,7 +42,7 @@ export interface FAQItem {
   priority?: "high" | "medium" | "low";
 }
 
-export interface FAQCategory {
+interface FAQCategory {
   id: string;
   name: string;
   lucideIcon?: any;
@@ -50,7 +50,7 @@ export interface FAQCategory {
 }
 
 // Grid FAQ data interface
-export interface GridFAQData {
+interface GridFAQData {
   badge?: string;
   title: string;
   description: string;
@@ -65,7 +65,7 @@ export interface GridFAQData {
   };
 }
 
-export interface GridFAQProps {
+interface GridFAQProps {
   content: GridFAQData;
   variant?: "cards" | "accordion" | "categories" | "compact" | "support";
   cols?: "1" | "2" | "3" | "4" | "1-2" | "1-2-3" | "1-2-4";

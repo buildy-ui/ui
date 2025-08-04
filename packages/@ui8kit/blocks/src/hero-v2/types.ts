@@ -1,5 +1,5 @@
 // Hero component types
-export interface HeroData {
+interface HeroData {
   badge?: string;
   title: string;
   description: string;
@@ -30,30 +30,30 @@ export interface HeroData {
 }
 
 // UI component props
-export interface HeroBadgeProps {
+interface HeroBadgeProps {
   children: React.ReactNode;
 }
 
-export interface HeroTitleProps {
+interface HeroTitleProps {
   children: React.ReactNode;
 }
 
-export interface HeroDescriptionProps {
+interface HeroDescriptionProps {
   children: React.ReactNode;
 }
 
-export interface HeroButtonProps {
+interface HeroButtonProps {
   children: React.ReactNode;
   variant?: "default" | "outline" | "secondary" | "ghost";
   icon?: any;
   onClick?: () => void;
 }
 
-export interface HeroActionsProps {
+interface HeroActionsProps {
   children: React.ReactNode;
 }
 
-export interface HeroStatsProps {
+interface HeroStatsProps {
   stats: Array<{
     id: string;
     value: string;
@@ -62,17 +62,17 @@ export interface HeroStatsProps {
 }
 
 // Component props
-export interface HeroSectionProps {
+interface HeroSectionProps {
   children: React.ReactNode;
   layout?: "split" | "centered";
 }
 
-export interface HeroContentProps {
+interface HeroContentProps {
   children: React.ReactNode;
   align?: "left" | "center";
 }
 
-export interface HeroMediaProps {
+interface HeroMediaProps {
   src?: string;
   alt?: string;
   images?: Array<{

@@ -39,7 +39,7 @@ import {
 } from "@ui8kit/core";
 
 // Reuse team member interfaces from SplitTeam
-export interface TeamMember {
+interface TeamMember {
   id: string;
   name: string;
   position: string;
@@ -62,7 +62,7 @@ export interface TeamMember {
   featured?: boolean;
 }
 
-export interface GridTeamData {
+interface GridTeamData {
   title: string;
   subtitle?: string;
   description?: string;
@@ -81,7 +81,7 @@ export interface GridTeamData {
   };
 }
 
-export interface GridTeamProps {
+interface GridTeamProps {
   content: GridTeamData;
   variant?: "grid" | "cards" | "minimal" | "showcase" | "directory";
   useContainer?: boolean;

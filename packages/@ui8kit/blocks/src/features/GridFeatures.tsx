@@ -32,7 +32,7 @@ import {
 } from "@ui8kit/core";
 
 // Features data interface
-export interface GridFeaturesData {
+interface GridFeaturesData {
   badge: string;
   title: string;
   description: string;
@@ -55,7 +55,7 @@ export interface GridFeaturesData {
   }>;
 }
 
-export interface GridFeaturesProps {
+interface GridFeaturesProps {
   content: GridFeaturesData;
   variant?: "threeColumns" | "threeColumnsIcons" | "gridMediaCards" | "careerPositions" | "careerStats";
   layout?: LayoutType;

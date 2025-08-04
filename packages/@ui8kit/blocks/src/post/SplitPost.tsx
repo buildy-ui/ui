@@ -41,14 +41,14 @@ import {
 } from "@ui8kit/core";
 
 // Post interfaces (reuse from CenteredPost)
-export interface PostAuthor {
+interface PostAuthor {
   name: string;
   avatar?: string;
   role?: string;
   bio?: string;
 }
 
-export interface PostMeta {
+interface PostMeta {
   category: string;
   readTime: string;
   publishedDate: string;
@@ -58,7 +58,7 @@ export interface PostMeta {
 }
 
 // Split Post data interface
-export interface SplitPostData {
+interface SplitPostData {
   title: string;
   subtitle?: string;
   excerpt?: string;
@@ -79,7 +79,7 @@ export interface SplitPostData {
   }[];
 }
 
-export interface SplitPostProps {
+interface SplitPostProps {
   content: SplitPostData;
   variant?: "standard" | "author" | "media" | "sidebar" | "hero";
   leftMedia?: boolean;

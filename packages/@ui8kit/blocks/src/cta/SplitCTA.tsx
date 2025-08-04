@@ -36,7 +36,7 @@ import {
 } from "@ui8kit/core";
 
 // CTA interfaces (reuse from CenteredCTA)
-export interface CTAButton {
+interface CTAButton {
   id: string;
   text: string;
   variant?: "default" | "outline" | "secondary" | "ghost" | "link" | "destructive";
@@ -44,7 +44,7 @@ export interface CTAButton {
   href?: string;
 }
 
-export interface CTAFeature {
+interface CTAFeature {
   id: string;
   title: string;
   description?: string;
@@ -52,7 +52,7 @@ export interface CTAFeature {
 }
 
 // Split CTA data interface
-export interface SplitCTAData {
+interface SplitCTAData {
   badge?: string;
   title: string;
   description: string;
@@ -76,7 +76,7 @@ export interface SplitCTAData {
   gradient?: string;
 }
 
-export interface SplitCTAProps {
+interface SplitCTAProps {
   content: SplitCTAData;
   variant?: "withImage" | "withBackground" | "withStats" | "withDevices" | "withFeatures";
   leftMedia?: boolean;

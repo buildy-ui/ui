@@ -87,7 +87,7 @@ interface SplitFooterData {
   };
 }
 
-export interface SplitFooterProps {
+interface SplitFooterProps {
   content: SplitFooterData;
   variant?: "brand" | "newsletter" | "contact" | "social" | "minimal";
   mediaPosition?: "left" | "right";

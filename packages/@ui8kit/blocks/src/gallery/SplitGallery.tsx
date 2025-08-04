@@ -37,7 +37,7 @@ import {
 } from "@ui8kit/core";
 
 // Gallery interfaces
-export interface GalleryImage {
+interface GalleryImage {
   id: string;
   src: string;
   alt: string;
@@ -46,14 +46,14 @@ export interface GalleryImage {
   category?: string;
 }
 
-export interface GalleryStats {
+interface GalleryStats {
   totalImages?: string;
   categories?: string;
   views?: string;
 }
 
 // Split Gallery data interface
-export interface SplitGalleryData {
+interface SplitGalleryData {
   title: string;
   subtitle?: string;
   description?: string;
@@ -64,7 +64,7 @@ export interface SplitGalleryData {
   secondaryButtonText?: string;
 }
 
-export interface SplitGalleryProps {
+interface SplitGalleryProps {
   content: SplitGalleryData;
   variant?: "showcase" | "portfolio";
   leftMedia?: boolean;

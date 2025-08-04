@@ -39,7 +39,7 @@ import {
 } from "@ui8kit/core";
 
 // Portfolio interfaces (reuse from GridPortfolio)
-export interface PortfolioProject {
+interface PortfolioProject {
   id: string;
   title: string;
   description: string;
@@ -65,7 +65,7 @@ export interface PortfolioProject {
   lucideIcon?: any;
 }
 
-export interface PortfolioCategory {
+interface PortfolioCategory {
   id: string;
   name: string;
   lucideIcon?: any;
@@ -73,7 +73,7 @@ export interface PortfolioCategory {
 }
 
 // Split Portfolio data interface
-export interface SplitPortfolioData {
+interface SplitPortfolioData {
   badge?: string;
   title: string;
   description: string;
@@ -95,7 +95,7 @@ export interface SplitPortfolioData {
   };
 }
 
-export interface SplitPortfolioProps {
+interface SplitPortfolioProps {
   content: SplitPortfolioData;
   variant?: "showcase" | "about" | "skills" | "testimonial" | "process";
   leftMedia?: boolean;

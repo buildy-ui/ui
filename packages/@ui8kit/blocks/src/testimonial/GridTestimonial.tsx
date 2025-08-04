@@ -38,7 +38,7 @@ import {
 } from "@ui8kit/core";
 
 // Reuse testimonial interfaces from SplitTestimonial
-export interface TestimonialItem {
+interface TestimonialItem {
   id: string;
   rating: number;
   quote: string;
@@ -53,7 +53,7 @@ export interface TestimonialItem {
   verified?: boolean;
 }
 
-export interface GridTestimonialData {
+interface GridTestimonialData {
   title: string;
   subtitle?: string;
   description?: string;
@@ -66,7 +66,7 @@ export interface GridTestimonialData {
   };
 }
 
-export interface GridTestimonialProps {
+interface GridTestimonialProps {
   content: GridTestimonialData;
   variant?: "grid" | "masonry" | "minimal" | "cards" | "compact" | "slider" | "magazine";
   useContainer?: boolean;

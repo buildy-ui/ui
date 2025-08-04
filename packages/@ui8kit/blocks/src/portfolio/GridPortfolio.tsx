@@ -34,7 +34,7 @@ import {
 } from "@ui8kit/core";
 
 // Portfolio interfaces
-export interface PortfolioProject {
+interface PortfolioProject {
   id: string;
   title: string;
   description: string;
@@ -60,7 +60,7 @@ export interface PortfolioProject {
   lucideIcon?: any;
 }
 
-export interface PortfolioCategory {
+interface PortfolioCategory {
   id: string;
   name: string;
   lucideIcon?: any;
@@ -68,7 +68,7 @@ export interface PortfolioCategory {
 }
 
 // Grid Portfolio data interface
-export interface GridPortfolioData {
+interface GridPortfolioData {
   badge?: string;
   title: string;
   description: string;
@@ -78,7 +78,7 @@ export interface GridPortfolioData {
   showFilters?: boolean;
 }
 
-export interface GridPortfolioProps {
+interface GridPortfolioProps {
   content: GridPortfolioData;
   variant?: "cards" | "masonry" | "minimal" | "detailed" | "showcase";
   cols?: "1" | "2" | "3" | "4" | "1-2" | "1-2-3" | "1-2-4";

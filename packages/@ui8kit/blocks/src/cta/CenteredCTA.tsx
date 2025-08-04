@@ -31,7 +31,7 @@ import {
 } from "@ui8kit/core";
 
 // CTA interfaces
-export interface CTAButton { 
+interface CTAButton { 
   id: string;
   text: string;
   variant?: "default" | "outline" | "secondary" | "ghost" | "link" | "destructive";
@@ -39,7 +39,7 @@ export interface CTAButton {
   href?: string;
 }
 
-export interface CTABrand {
+interface CTABrand {
   id: string;
   name: string;
   lucideIcon?: any;
@@ -49,7 +49,7 @@ export interface CTABrand {
   };
 }
 
-export interface CTAFeature {
+interface CTAFeature {
   id: string;
   title: string;
   description?: string;
@@ -57,7 +57,7 @@ export interface CTAFeature {
 }
 
 // Centered CTA data interface
-export interface CenteredCTAData {
+interface CenteredCTAData {
   badge?: string;
   title: string;
   description: string;
@@ -73,7 +73,7 @@ export interface CenteredCTAData {
   gradient?: string;
 }
 
-export interface CenteredCTAProps {
+interface CenteredCTAProps {
   content: CenteredCTAData;
   variant?: "simple" | "withLogos" | "withBackground" | "withFeatures" | "withStats";
   useContainer?: boolean;

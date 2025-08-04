@@ -28,7 +28,7 @@ import {
 } from "@ui8kit/core";
 
 // Features data interface
-export interface FeaturesData {
+interface FeaturesData {
   badge: string;
   title: string;
   description: string;
@@ -48,7 +48,7 @@ export interface FeaturesData {
   secondaryButtonIcon?: any;
 }
 
-export interface SplitFeaturesProps {
+interface SplitFeaturesProps {
   content: FeaturesData;
   variant?: "media" | "leftMedia" | "features" | "analytics" | "career";
   leftMedia?: boolean;
