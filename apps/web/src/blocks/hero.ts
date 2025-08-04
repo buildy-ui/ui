@@ -1,21 +1,7 @@
-// Import built-in template objects and examples from @ui8kit/blocks library
-import { 
-  splitHeroTemplates, 
-  centeredHeroTemplates,
-  splitHeroExamples,
-  centeredHeroExamples 
-} from "@ui8kit/blocks";
+// Import built-in template objects from @ui8kit/blocks library
+import { heroTemplates } from "@ui8kit/blocks";
 
-// Create template objects using Examples components but Templates metadata
+// Export templates directly - they now contain components, defaults, and schemas
 export const allHeroTemplates = [
-  ...Object.keys(splitHeroTemplates).map(key => ({
-    ...splitHeroTemplates[key as keyof typeof splitHeroTemplates],
-    component: splitHeroExamples[key as keyof typeof splitHeroExamples]
-  })),
-  ...Object.keys(centeredHeroTemplates).map(key => ({
-    ...centeredHeroTemplates[key as keyof typeof centeredHeroTemplates], 
-    component: centeredHeroExamples[key as keyof typeof centeredHeroExamples]
-  }))
+  ...Object.values(heroTemplates)
 ];
-
-

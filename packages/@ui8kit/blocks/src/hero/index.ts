@@ -1,7 +1,3 @@
-// New factory-based components - replace 5+ old blocks with 2 powerful factories
+// Hero blocks - factory-based components ready for domain system
 export * from './CenteredHero';
 export * from './SplitHero';
-
-// Examples for the new factories
-export * from './SplitHero.examples';
-export * from './CenteredHero.examples';

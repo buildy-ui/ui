@@ -13,11 +13,15 @@ interface BuilderCanvasProps {
 const BlockItem = memo(({ block, onRemove }: { block: Block; onRemove: (id: string) => void }) => {
   const BlockComponent = allComponents[block.type as keyof typeof allComponents];
   
+  // Get template for defaultProps
+  const template = useMemo(() => {
+    return allTemplates.find(t => t.id === block.type);
+  }, [block.type]);
+  
   // Get block name from templates
   const getBlockName = useCallback(() => {
-    const template = allTemplates.find(t => t.id === block.type);
     return template?.name || block.type;
-  }, [block.type]);
+  }, [template, block.type]);
   
   const handleRemove = useCallback(() => {
     onRemove(block.id);
@@ -77,7 +81,10 @@ const BlockItem = memo(({ block, onRemove }: { block: Block; onRemove: (id: stri
 
       {/* Block Content */}
       <div className="relative">
-        <BlockComponent />
+        <BlockComponent 
+          content={block.content || {}}
+          {...(template?.defaultProps || {})}
+        />
       </div>
 
       {/* Hover Overlay */}

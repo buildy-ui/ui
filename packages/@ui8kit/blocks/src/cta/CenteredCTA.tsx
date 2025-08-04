@@ -31,7 +31,7 @@ import {
 } from "@ui8kit/core";
 
 // CTA interfaces
-export interface CTAButton {
+export interface CTAButton { 
   id: string;
   text: string;
   variant?: "default" | "outline" | "secondary" | "ghost" | "link" | "destructive";

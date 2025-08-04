@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, useMemo } from "react";
 import { Info, Rocket, BookOpen, Code, ExternalLink } from "lucide-react";
 import {
   Block,
@@ -27,7 +27,7 @@ const theme = {
   themeButtonSize: currentTheme.buttonSize
 }
 
-// Hero data interface
+// Hero data interface (internal)
 interface HeroData {
   badge?: string;
   title: string;
@@ -65,52 +65,52 @@ interface SplitHeroProps {
 const heroContentHooks = {
   // Simple hero with media
   media: createContentHook({
-    content: (content: HeroData) => (
+    content: (mergedContent: HeroData) => (
       <Stack gap="xl" align="start">
-        {content.badge && (
+        {mergedContent.badge && (
           <Badge variant="secondary" rounded={theme?.themeRounded.badge} size={theme?.themeButtonSize.badge}>
-            {content.badge}
+            {mergedContent.badge}
           </Badge>
         )}
 
         <Title order={1} size="4xl" fw="bold" className="tracking-tight">
-          {content.title}
+          {mergedContent.title}
         </Title>
 
         <Text c="secondary-foreground" className="max-w-[42rem]">
-          {content.description}
+          {mergedContent.description}
         </Text>
 
-        {(content.primaryButtonText || content.secondaryButtonText) && (
+        {(mergedContent.primaryButtonText || mergedContent.secondaryButtonText) && (
           <Group gap="md" align="center">
-            {content.primaryButtonText && (
+            {mergedContent.primaryButtonText && (
               <Button
                 variant="default"
                 rounded={theme?.themeRounded.default}
                 size={theme?.themeButtonSize.default}
-                leftSection={content.primaryButtonIcon ? (
+                leftSection={mergedContent.primaryButtonIcon ? (
                   <Icon
                     c="primary-foreground"
-                    lucideIcon={content.primaryButtonIcon || Info}
+                    lucideIcon={mergedContent.primaryButtonIcon || Info}
                   />
                 ) : undefined}
               >
-                {content.primaryButtonText}
+                {mergedContent.primaryButtonText}
               </Button>
             )}
 
-            {content.secondaryButtonText && (
+            {mergedContent.secondaryButtonText && (
               <Button
                 variant="outline"
                 rounded={theme?.themeRounded.default}
                 size={theme?.themeButtonSize.default}
-                leftSection={content.secondaryButtonIcon ? (
+                leftSection={mergedContent.secondaryButtonIcon ? (
                   <Icon
-                    lucideIcon={content.secondaryButtonIcon || Rocket}
+                    lucideIcon={mergedContent.secondaryButtonIcon || Rocket}
                   />
                 ) : undefined}
               >
-                {content.secondaryButtonText}
+                {mergedContent.secondaryButtonText}
               </Button>
             )}
           </Group>
@@ -121,25 +121,25 @@ const heroContentHooks = {
 
   // Hero with gallery
   gallery: createContentHook({
-    content: (content: HeroData) => (
+    content: (mergedContent: HeroData) => (
       <Stack gap="xl" align="start">
-        {content.badge && (
+        {mergedContent.badge && (
           <Badge variant="secondary" rounded={theme?.themeRounded.badge} size={theme?.themeButtonSize.badge}>
-            {content.badge}
+            {mergedContent.badge}
           </Badge>
         )}
 
         <Title order={1} size="4xl" fw="bold" className="tracking-tight">
-          {content.title}
+          {mergedContent.title}
         </Title>
 
         <Text c="secondary-foreground" className="max-w-[42rem]">
-          {content.description}
+          {mergedContent.description}
         </Text>
 
-        {(content.primaryButtonText || content.secondaryButtonText) && (
+        {(mergedContent.primaryButtonText || mergedContent.secondaryButtonText) && (
           <Group gap="md" align="center">
-            {content.primaryButtonText && (
+            {mergedContent.primaryButtonText && (
               <Button
                 variant="default"
                 rounded={theme?.themeRounded.default}
@@ -151,11 +151,11 @@ const heroContentHooks = {
                   />
                 }
               >
-                {content.primaryButtonText}
+                {mergedContent.primaryButtonText}
               </Button>
             )}
 
-            {content.secondaryButtonText && (
+            {mergedContent.secondaryButtonText && (
               <Button
                 variant="outline"
                 rounded={theme?.themeRounded.default}
@@ -166,7 +166,7 @@ const heroContentHooks = {
                   />
                 }
               >
-                {content.secondaryButtonText}
+                {mergedContent.secondaryButtonText}
               </Button>
             )}
           </Group>
@@ -177,35 +177,35 @@ const heroContentHooks = {
 
   // Hero with top button
   withTopButton: createContentHook({
-    beforeContent: (content: HeroData) => (
-      content.topButton ? (
+    beforeContent: (mergedContent: HeroData) => (
+      mergedContent.topButton ? (
         <Button variant="outline" rounded={theme?.themeRounded.default}>
           <Icon
             lucideIcon={ExternalLink}
           />
-          {content.topButton.text}
+          {mergedContent.topButton.text}
         </Button>
       ) : null
     ),
-    content: (content: HeroData) => (
+    content: (mergedContent: HeroData) => (
       <Stack gap="xl" align="center" ta="center">
-        {content.badge && (
+        {mergedContent.badge && (
           <Badge variant="secondary" rounded={theme?.themeRounded.badge} size={theme?.themeButtonSize.badge}>
-            {content.badge}
+            {mergedContent.badge}
           </Badge>
         )}
 
         <Title order={1} size="4xl" fw="bold" ta="center" className="tracking-tight">
-          {content.title}
+          {mergedContent.title}
         </Title>
 
         <Text c="secondary-foreground" ta="center" className="max-w-[42rem]">
-          {content.description}
+          {mergedContent.description}
         </Text>
 
-        {(content.primaryButtonText || content.secondaryButtonText) && (
+        {(mergedContent.primaryButtonText || mergedContent.secondaryButtonText) && (
           <Group gap="md" align="center">
-            {content.primaryButtonText && (
+            {mergedContent.primaryButtonText && (
               <Button
                 variant="default"
                 rounded={theme?.themeRounded.default}
@@ -217,11 +217,11 @@ const heroContentHooks = {
                   />
                 }
               >
-                {content.primaryButtonText}
+                {mergedContent.primaryButtonText}
               </Button>
             )}
 
-            {content.secondaryButtonText && (
+            {mergedContent.secondaryButtonText && (
               <Button
                 variant="outline"
                 rounded={theme?.themeRounded.default}
@@ -232,7 +232,7 @@ const heroContentHooks = {
                   />
                 }
               >
-                {content.secondaryButtonText}
+                {mergedContent.secondaryButtonText}
               </Button>
             )}
           </Group>
@@ -243,10 +243,10 @@ const heroContentHooks = {
 };
 
 export const SplitHero = forwardRef<HTMLElement, SplitHeroProps>(
-  ({
-    content,
+  ({ 
+    content, 
     variant = "media",
-    leftMedia = false,
+    leftMedia = false, 
     useContainer = true,
     py = "lg",
     gap = "xl",
@@ -254,12 +254,37 @@ export const SplitHero = forwardRef<HTMLElement, SplitHeroProps>(
     ...props
   }, ref) => {
 
+    // Simple content logic: если content пустой - показать defaults, иначе показать content
+    const mergedContent = useMemo(() => {
+      // Если content содержит данные - используем их как есть
+      if (content && Object.keys(content).length > 0) {
+        return {
+          ...content,
+          title: content.title || "Untitled",
+          description: content.description || "No description provided"
+        };
+      }
+      
+      // Если content пустой - показать lorem ipsum defaults
+      // По template ID определяем какие defaults использовать
+      // TODO: Получать templateId из props или context
+      // Пока используем простое маппинг по variant + leftMedia
+      if (variant === "gallery") return splitHeroDefaults.gallery;
+      if (variant === "withTopButton") return splitHeroDefaults.withTopButton;
+      // security в variant нет, он обрабатывается как media
+      if (variant === "media" && leftMedia) return splitHeroDefaults.leftMedia;
+      if (variant === "media" && !leftMedia) return splitHeroDefaults.media;
+      
+      // Fallback
+      return splitHeroDefaults.media;
+    }, [content, variant, leftMedia]);
+
     // Create media section based on variant
     const createMediaSection = () => {
-      if (variant === "gallery" && content.images) {
+      if (variant === "gallery" && (mergedContent as any).images && Array.isArray((mergedContent as any).images)) {
         return (
           <Grid cols="1-2" gap="md">
-            {content.images.map((image, index) => (
+            {(mergedContent as any).images.map((image: any, index: number) => (
               <Block
                 key={image.id}
                 className={index === 0 ? "row-span-2" : ""}
@@ -280,12 +305,12 @@ export const SplitHero = forwardRef<HTMLElement, SplitHeroProps>(
         );
       }
 
-      if (content.image) {
+      if ((mergedContent as any).image && typeof (mergedContent as any).image === 'object') {
         return (
           <Block>
             <Image
-              src={content.image.src}
-              alt={content.image.alt}
+              src={(mergedContent as any).image.src}
+              alt={(mergedContent as any).image.alt}
               width="100%"
               height="auto"
               fit="cover"
@@ -314,7 +339,7 @@ export const SplitHero = forwardRef<HTMLElement, SplitHeroProps>(
       <SplitBlock
         ref={ref}
         mediaSection={createMediaSection()}
-        content={content}
+        content={mergedContent}
         contentHooks={contentHooks}
         leftMedia={leftMedia}
         splitSection={!useContainer}
@@ -330,13 +355,137 @@ export const SplitHero = forwardRef<HTMLElement, SplitHeroProps>(
 SplitHero.displayName = "SplitHero";
 
 // Export template configurations
+// Default content extracted from examples
+const splitHeroDefaults = {
+  media: {
+    badge: "New Release",
+    title: "Build the future with modern technology",
+    description: "Transform your ideas into reality with our cutting-edge platform. Experience unparalleled performance, security, and scalability that grows with your business.",
+    image: {
+      src: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      alt: "Modern technology dashboard"
+    },
+    primaryButtonText: "Get Started Free",
+    secondaryButtonText: "View Demo"
+  },
+  leftMedia: {
+    badge: "Developer Tools",
+    title: "Code faster, deploy smarter, scale better",
+    description: "Our comprehensive developer platform provides everything you need to build, test, and deploy applications with confidence. Join thousands of developers who trust our tools.",
+    image: {
+      src: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      alt: "Developer coding environment"
+    },
+    primaryButtonText: "Start Building",
+    secondaryButtonText: "Documentation"
+  },
+  gallery: {
+    badge: "Portfolio",
+    title: "Showcase your work beautifully",
+    description: "Create stunning portfolios and galleries that captivate your audience. Our platform makes it easy to present your work in the best possible light.",
+    images: [
+      {
+        id: "1",
+        src: "https://images.unsplash.com/photo-1618477247222-acbdb0e159b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+        alt: "Portfolio showcase 1"
+      },
+      {
+        id: "2", 
+        src: "https://images.unsplash.com/photo-1618477388954-7852f32655ec?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+        alt: "Portfolio showcase 2"
+      },
+      {
+        id: "3",
+        src: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+        alt: "Portfolio showcase 3"
+      }
+    ],
+    primaryButtonText: "Explore Gallery",
+    secondaryButtonText: "Learn More"
+  },
+  withTopButton: {
+    topButton: {
+      text: "🎉 Announcing our Series A funding",
+      href: "#"
+    },
+    badge: "Funding News",
+    title: "We raised $50M to accelerate innovation",
+    description: "With this new funding, we're doubling down on our mission to democratize technology and make powerful tools accessible to everyone.",
+    images: [
+      {
+        id: "1",
+        src: "https://images.unsplash.com/photo-1618477247222-acbdb0e159b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+        alt: "Portfolio showcase 1"
+      },
+      {
+        id: "2", 
+        src: "https://images.unsplash.com/photo-1618477388954-7852f32655ec?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+        alt: "Portfolio showcase 2"
+      }
+    ],
+    primaryButtonText: "Read Announcement",
+    secondaryButtonText: "Join Journey"
+  },
+  security: {
+    badge: "Enterprise Security",
+    title: "Protect your business with enterprise-grade security",
+    description: "Our comprehensive security suite provides advanced threat protection, compliance management, and peace of mind for businesses of all sizes.",
+    image: {
+      src: "https://images.unsplash.com/photo-1618477388954-7852f32655ec?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      alt: "Security dashboard interface"
+    },
+    primaryButtonText: "Start Audit",
+    secondaryButtonText: "View Features"
+  }
+};
+
+// Content schema for domain support
+const splitHeroSchema = {
+  type: "object",
+  required: ["title", "description"],
+  properties: {
+    badge: { type: "string" },
+    title: { type: "string" },
+    description: { type: "string" },
+    image: {
+      type: "object",
+      properties: {
+        src: { type: "string" },
+        alt: { type: "string" }
+      }
+    },
+    images: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          id: { type: "string" },
+          src: { type: "string" },
+          alt: { type: "string" }
+        }
+      }
+    },
+    primaryButtonText: { type: "string" },
+    secondaryButtonText: { type: "string" },
+    topButton: {
+      type: "object",
+      properties: {
+        text: { type: "string" },
+        href: { type: "string" }
+      }
+    }
+  }
+};
+
 export const splitHeroTemplates = {
   media: {
     id: "splitHeroMedia",
     name: "Split Hero with Media",
     description: "Split layout hero with image and content",
     component: SplitHero,
-    defaultProps: { variant: "media" as const }
+    defaultProps: { variant: "media" as const },
+    defaults: splitHeroDefaults.media,
+    schema: splitHeroSchema
   },
 
   leftMedia: {
@@ -344,7 +493,9 @@ export const splitHeroTemplates = {
     name: "Split Hero with Left Media",
     description: "Split layout hero with left image",
     component: SplitHero,
-    defaultProps: { variant: "media" as const, leftMedia: true }
+    defaultProps: { variant: "media" as const, leftMedia: true },
+    defaults: splitHeroDefaults.leftMedia,
+    schema: splitHeroSchema
   },
 
   gallery: {
@@ -352,7 +503,9 @@ export const splitHeroTemplates = {
     name: "Split Hero with Gallery",
     description: "Split layout hero with image gallery",
     component: SplitHero,
-    defaultProps: { variant: "gallery" as const }
+    defaultProps: { variant: "gallery" as const },
+    defaults: splitHeroDefaults.gallery,
+    schema: splitHeroSchema
   },
 
   withTopButton: {
@@ -360,7 +513,9 @@ export const splitHeroTemplates = {
     name: "Split Hero with Top Button",
     description: "Split layout hero with top announcement button",
     component: SplitHero,
-    defaultProps: { variant: "withTopButton" as const, useContainer: false }
+    defaultProps: { variant: "withTopButton" as const, useContainer: false },
+    defaults: splitHeroDefaults.withTopButton,
+    schema: splitHeroSchema
   },
 
   security: {
@@ -368,6 +523,8 @@ export const splitHeroTemplates = {
     name: "Split Hero Security",
     description: "Split layout hero focused on security features",
     component: SplitHero,
-    defaultProps: { variant: "security" as const }
+    defaultProps: { variant: "security" as const },
+    defaults: splitHeroDefaults.security,
+    schema: splitHeroSchema
   }
 };

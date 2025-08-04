@@ -1,0 +1,138 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Hero Block Content Schema",
+  "description": "Unified content schema for all hero block variants (SplitHero + CenteredHero)",
+  "type": "object",
+  "required": ["title", "description"],
+  "properties": {
+    "badge": {
+      "type": "string",
+      "description": "Optional badge text displayed above the title"
+    },
+    "title": {
+      "type": "string",
+      "description": "Main hero title (required)"
+    },
+    "description": {
+      "type": "string", 
+      "description": "Hero description text (required)"
+    },
+    "primaryButtonText": {
+      "type": "string",
+      "description": "Text for the primary action button"
+    },
+    "secondaryButtonText": {
+      "type": "string",
+      "description": "Text for the secondary action button"
+    },
+    "topButton": {
+      "type": "object",
+      "description": "Top announcement button (centered hero)",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "Button text"
+        },
+        "href": {
+          "type": "string",
+          "description": "Button link"
+        }
+      },
+      "required": ["text"]
+    },
+    "image": {
+      "type": "object",
+      "description": "Single image (split hero)",
+      "properties": {
+        "src": {
+          "type": "string",
+          "description": "Image source URL"
+        },
+        "alt": {
+          "type": "string", 
+          "description": "Image alt text"
+        }
+      },
+      "required": ["src", "alt"]
+    },
+    "images": {
+      "type": "array",
+      "description": "Multiple images for gallery variant (split hero)",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique image identifier"
+          },
+          "src": {
+            "type": "string",
+            "description": "Image source URL"
+          },
+          "alt": {
+            "type": "string",
+            "description": "Image alt text"
+          }
+        },
+        "required": ["id", "src", "alt"]
+      }
+    },
+    "imageUrl": {
+      "type": "string",
+      "description": "Single image URL (centered hero)"
+    },
+    "imageAlt": {
+      "type": "string",
+      "description": "Image alt text (centered hero)"
+    },
+    "stats": {
+      "type": "array",
+      "description": "Statistics display (centered hero)",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique stat identifier"
+          },
+          "value": {
+            "type": "string",
+            "description": "Stat value (e.g., '2M+', '99.9%')"
+          },
+          "label": {
+            "type": "string",
+            "description": "Stat label (e.g., 'Active Users')"
+          }
+        },
+        "required": ["id", "value", "label"]
+      }
+    }
+  },
+  "examples": [
+    {
+      "title": "Build the future with modern technology",
+      "description": "Transform your ideas into reality with our cutting-edge platform.",
+      "badge": "New Release",
+      "primaryButtonText": "Get Started Free",
+      "secondaryButtonText": "View Demo",
+      "image": {
+        "src": "https://images.unsplash.com/photo-1551434678-e076c223a692",
+        "alt": "Modern technology dashboard"
+      }
+    },
+    {
+      "title": "The future of work is here", 
+      "description": "Transform the way your team collaborates with our innovative platform.",
+      "badge": "Welcome",
+      "primaryButtonText": "Get Started Free",
+      "secondaryButtonText": "Watch Demo",
+      "stats": [
+        {
+          "id": "1",
+          "value": "2M+",
+          "label": "Active Users"
+        }
+      ]
+    }
+  ]
+}

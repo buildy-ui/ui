@@ -1,0 +1,88 @@
+{
+  "project": {
+    "name": "Buildy Project",
+    "id": "project-1754303550995",
+    "version": "1.0.0",
+    "blocks": [
+      {
+        "id": "heroSplitMedia_1754303723946",
+        "type": "heroSplitMedia",
+        "content": {},
+        "order": 0
+      },
+      {
+        "id": "ctaCenteredSimple_1754303726994",
+        "type": "ctaCenteredSimple",
+        "content": {},
+        "order": 1
+      }
+    ],
+    "theme": {
+      "currentThemeId": "sky-os",
+      "customThemes": []
+    },
+    "collections": [
+      {
+        "id": "landing",
+        "name": "Landing",
+        "type": "buildy",
+        "blockIds": [
+          "block-heroSplitMedia-1754303683138",
+          "block-ctaCenteredSimple-1754303709434"
+        ],
+        "createdAt": "2025-08-04T10:32:30.936Z",
+        "updatedAt": "2025-08-04T10:35:09.434Z"
+      },
+      {
+        "id": "blog",
+        "name": "Blog",
+        "type": "buildy",
+        "blockIds": [],
+        "createdAt": "2025-08-04T10:32:30.936Z",
+        "updatedAt": "2025-08-04T10:32:30.936Z"
+      },
+      {
+        "id": "website",
+        "name": "Website",
+        "type": "buildy",
+        "blockIds": [],
+        "createdAt": "2025-08-04T10:32:30.936Z",
+        "updatedAt": "2025-08-04T10:32:30.936Z"
+      },
+      {
+        "id": "layouts",
+        "name": "Layouts",
+        "type": "buildy",
+        "blockIds": [],
+        "createdAt": "2025-08-04T10:32:30.936Z",
+        "updatedAt": "2025-08-04T10:32:30.936Z"
+      }
+    ],
+    "savedBlocks": [
+      {
+        "id": "block-heroSplitMedia-1754303683138",
+        "templateId": "heroSplitMedia",
+        "name": "Hero Split with Media",
+        "description": "Split layout hero with media content",
+        "savedAt": "2025-08-04T10:34:43.138Z"
+      },
+      {
+        "id": "block-ctaCenteredSimple-1754303709434",
+        "templateId": "ctaCenteredSimple",
+        "name": "CTA Centered Simple",
+        "description": "Simple centered call-to-action",
+        "savedAt": "2025-08-04T10:35:09.434Z"
+      }
+    ],
+    "favorites": [
+      "ctaCenteredSimple"
+    ],
+    "metadata": {
+      "createdAt": "2025-08-04T10:32:30.995Z",
+      "lastModified": "2025-08-04T10:35:26.994Z",
+      "version": "1.0.0"
+    }
+  },
+  "exportedAt": "2025-08-04T10:35:30.690Z",
+  "version": "1.0.0"
+}
