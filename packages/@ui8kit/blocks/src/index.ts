@@ -1,4 +1,4 @@
-export * from './hero-v2';
+export * from './hero';
 export * from './blog';
 export * from './features';
 export * from './footer';

@@ -18,3 +18,11 @@ export const allBlogTemplates = [
   }))
 ];
 
+/*
+// Import built-in template objects and examples from @ui8kit/blocks library
+import { blogTemplates } from "@ui8kit/blocks";
+
+// Export templates directly - they now contain components, defaults, and schemas
+export const allBlogTemplates = [
+  ...Object.values(blogTemplates)
+]; */
