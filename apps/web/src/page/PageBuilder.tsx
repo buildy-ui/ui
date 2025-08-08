@@ -25,17 +25,17 @@ export default function PageBuilder() {
     });
   }, []);
 
-  // Sidebar toggle
-  const toggleSidebar = useCallback(() => {
-    setIsSidebarCollapsed(prev => !prev);
-  }, []);
-
   // Initialize dark mode from system preference
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const initialMode = mediaQuery.matches;
     setIsDarkMode(initialMode);
     document.documentElement.classList.toggle('dark', initialMode);
+  }, []);
+
+  // Sidebar toggle
+  const toggleSidebar = useCallback(() => {
+    setIsSidebarCollapsed(prev => !prev);
   }, []);
 
   return (
