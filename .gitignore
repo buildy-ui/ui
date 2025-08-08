@@ -2,7 +2,10 @@
 .manual/
 .example/
 downloads/
-scripts/
+options.*
+options.json
+options.ts
+options.md
 .vscode/
 node_modules/
 dist/
