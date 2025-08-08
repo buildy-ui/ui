@@ -50,13 +50,13 @@ export default function Dashboard() {
   const isMobile = useIsMobile();
 
   return (
-    <Block className={`${isDarkMode ? 'dark' : ''}`}>
+    <div className={`${isDarkMode ? 'dark' : ''}`}>
       <Navbar
         isDarkMode={isDarkMode}
         toggleDarkMode={toggleDarkMode}
       />
       {!isMobile && (
-      <Block className="flex-1 h-screen relative" data-class="dashboard-layout">
+      <Block component="main" h="screen" position="relative" w="full" data-class="dashboard-layout">
         <PanelGroup direction="horizontal" ref={panelGroupRef}>
           <Panel
             ref={sidebarPanelRef}
@@ -69,12 +69,12 @@ export default function Dashboard() {
           </Panel>
           <PanelResizeHandle data-class="resize-handle" className="w-1 bg-border hover:bg-accent transition-colors data-[panel-group-direction=horizontal]:cursor-col-resize" />
           <Panel defaultSize={80} minSize={50} className="flex flex-col" data-class="resize-panel">
-            <Box component="main" p="md">
+            <Box p="md">
               <Container>
                 <Stack gap="lg" align="start">
                   <Title size="2xl" c="secondary-foreground">Dashboard</Title>
                   <Text c="muted">Welcome to the dashboard</Text>
-                  <Grid cols="1-2-3" gap="md" className="w-full">
+                  <Grid cols="1-2-3" gap="md" w="full">
                     <Card p="md" rounded={theme?.rounded.default} shadow="none" bg="card" w="full">
                       <Stack gap="sm" align="start">
                         <Text size="lg" fw="bold" c="primary">Card Title</Text>
@@ -134,6 +134,6 @@ export default function Dashboard() {
           </Card>
         </Block>
       )}
-    </Block>
+    </div>
   )
 }

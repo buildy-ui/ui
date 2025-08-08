@@ -1,11 +1,12 @@
-import { Block, Box, Button, Icon, Text } from "@ui8kit/core";
+import { Block, Button, Icon, Text, Group } from "@ui8kit/core";
 import { Home, Moon, Sun } from "lucide-react";
 
 export function Navbar({ isDarkMode, toggleDarkMode }: { isDarkMode: boolean, toggleDarkMode: () => void }) {
   return (
-    <Block component="nav" className="flex items-center justify-between p-4 bg-card" data-class="navbar">
+    <Block component="nav" bg="card" p="md">
+      <Group justify="between" align="center">
       <Text size="xl" fw="bold" c="primary">BuildY/UI</Text>
-      <Box className="flex items-center gap-2">
+      <Group gap="sm" align="center">
       <Button variant="ghost" size="sm">
         <Icon
           component="span"
@@ -19,7 +20,8 @@ export function Navbar({ isDarkMode, toggleDarkMode }: { isDarkMode: boolean, to
           lucideIcon={isDarkMode ? Moon : Sun}
           />
         </Button>
-      </Box>
+        </Group>
+      </Group>
     </Block>
   )
 }

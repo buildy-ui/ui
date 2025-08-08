@@ -47,7 +47,7 @@ export function Sidebar( { className, dataClass }: SidebarProps ) {
         <Stack gap="sm" p="md">
           {ButtonItems(LayoutDashboard, "Dashboard", "/dashboard")}
           {ButtonItems(Settings, "Settings", "/settings")}
-          <Card p="md" rounded={theme?.rounded.default} shadow="sm" bg="card" className="w-full hover:shadow-md transition-shadow" data-class="widgets-card">
+          <Card p="md" rounded={theme?.rounded.default} shadow="sm" bg="card" w="full">
             <Stack gap="md" align="start">
               <Text size={theme?.textSize} c="muted">Widgets</Text>
             </Stack>
