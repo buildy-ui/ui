@@ -8,12 +8,14 @@ import {
   layoutVariants,
   buttonSizeVariants,
   buttonStyleVariants,
+  buttonContentAlignVariants,
   type VariantSpacingProps,
   type RoundedProps,
   type ShadowProps,
   type VariantLayoutProps,
   type ButtonSizeProps,
   type ButtonStyleProps,
+  type ButtonContentAlignProps,
   cn
 } from "../../core";
 
@@ -24,7 +26,8 @@ export interface ButtonProps
     ShadowProps,
     Pick<VariantLayoutProps, 'w'>,
     ButtonSizeProps,
-    ButtonStyleProps {
+    ButtonStyleProps,
+    ButtonContentAlignProps {
   children: ReactNode;
   leftSection?: ReactNode;
   rightSection?: ReactNode;
@@ -51,6 +54,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     // Content props
     leftSection,
     rightSection,
+    contentAlign,
     ...props 
   }, ref) => {
     return (
@@ -64,6 +68,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           // Apply CVA variants
           buttonSizeVariants({ size }),
           buttonStyleVariants({ variant }),
+          buttonContentAlignVariants({ contentAlign }),
           spacingVariants({ m, mx, my }),
           roundedVariants({ rounded }),
           shadowVariants({ shadow }),

@@ -68,9 +68,10 @@ export const CenteredHeroWithImageExample = () => {
   };
 
   return (
-<div className="w-full bg-background dark:bg-secondary/5 relative">
+<div data-class="centered-hero-background" className="w-full bg-background dark:bg-secondary/5 relative">
   {/* Bottom Fade Grid Background */}
   <div
+  data-class="centered-hero-background-grid"
     className="absolute inset-0 z-0 
                [background-image:linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)]
                dark:[background-image:linear-gradient(to_right,rgba(71,85,105,0.4)_1px,transparent_1px),linear-gradient(to_bottom,rgba(71,85,105,0.4)_1px,transparent_1px)]"
@@ -86,6 +87,7 @@ export const CenteredHeroWithImageExample = () => {
       content={content}
       variant="withImage"
       useContainer={true}
+      data-class="centered-hero-content"
       className="relative z-10"
     />
 </div>

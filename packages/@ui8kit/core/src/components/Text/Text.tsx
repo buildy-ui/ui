@@ -10,6 +10,7 @@ import {
   textAlignVariants,
   leadingVariants,
   typographyModifierVariants,
+  trackingVariants,
   type VariantSpacingProps,
   type ColorProps,
   type VariantLayoutProps,
@@ -18,6 +19,7 @@ import {
   type TextAlignProps,
   type LeadingProps,
   type TypographyModifierProps,
+  type TrackingProps,
   cn
 } from "../../core";
 
@@ -30,6 +32,7 @@ export interface TextProps
     FontWeightProps,
     TextAlignProps,
     LeadingProps,
+    TrackingProps,
     TypographyModifierProps {
   children: ReactNode;
   component?: ElementType;
@@ -44,6 +47,7 @@ export const Text = forwardRef<HTMLElement, TextProps>(
     fw = 'normal',
     ta = 'left',
     leading = 'normal',
+    tracking,
     truncate = false,
     italic = false,
     underline = false,
@@ -66,6 +70,7 @@ export const Text = forwardRef<HTMLElement, TextProps>(
           fontWeightVariants({ fw }),
           textAlignVariants({ ta }),
           leadingVariants({ leading }),
+          trackingVariants({ tracking }),
           typographyModifierVariants({ truncate, italic, underline }),
           spacingVariants({ m, mx, my, mb, mt }),
           colorVariants({ c }),

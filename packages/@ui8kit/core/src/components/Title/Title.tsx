@@ -10,6 +10,7 @@ import {
   textAlignVariants,
   leadingVariants,
   typographyModifierVariants,
+  trackingVariants,
   type VariantSpacingProps,
   type ColorProps,
   type VariantLayoutProps,
@@ -18,6 +19,7 @@ import {
   type TextAlignProps,
   type LeadingProps,
   type TypographyModifierProps,
+  type TrackingProps,
   cn
 } from "../../core";
 
@@ -30,6 +32,7 @@ export interface TitleProps
     FontWeightProps,
     TextAlignProps,
     LeadingProps,
+    TrackingProps,
     Pick<TypographyModifierProps, 'truncate'> {
   children: ReactNode;
   order?: 1 | 2 | 3 | 4 | 5 | 6;
@@ -44,6 +47,7 @@ export const Title = forwardRef<HTMLHeadingElement, TitleProps>(
     fw = 'semibold',
     ta = 'left',
     leading = 'normal',
+    tracking,
     truncate = false,
     // Spacing props
     m, mx, my, mb, mt,
@@ -68,6 +72,7 @@ export const Title = forwardRef<HTMLHeadingElement, TitleProps>(
           fontWeightVariants({ fw }),
           textAlignVariants({ ta }),
           leadingVariants({ leading }),
+          trackingVariants({ tracking }),
           typographyModifierVariants({ truncate }),
           spacingVariants({ m, mx, my, mb, mt }),
           colorVariants({ c }),

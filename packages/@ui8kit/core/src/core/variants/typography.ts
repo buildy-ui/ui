@@ -87,8 +87,26 @@ export const typographyModifierVariants = cva("", {
   }
 });
 
+// Letter spacing (tracking) variants
+export const trackingVariants = cva("", {
+  variants: {
+    tracking: {
+      tighter: "tracking-tighter",
+      tight: "tracking-tight",
+      normal: "tracking-normal",
+      wide: "tracking-wide",
+      wider: "tracking-wider",
+      widest: "tracking-widest"
+    }
+  },
+  defaultVariants: {
+    tracking: undefined
+  }
+});
+
 export interface TextSizeProps extends VariantProps<typeof textSizeVariants> {}
 export interface FontWeightProps extends VariantProps<typeof fontWeightVariants> {}
 export interface TextAlignProps extends VariantProps<typeof textAlignVariants> {}
 export interface LeadingProps extends VariantProps<typeof leadingVariants> {}
 export interface TypographyModifierProps extends VariantProps<typeof typographyModifierVariants> {} 
+export interface TrackingProps extends VariantProps<typeof trackingVariants> {}

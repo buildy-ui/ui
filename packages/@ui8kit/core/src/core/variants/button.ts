@@ -35,5 +35,17 @@ export const buttonStyleVariants = cva("", {
   }
 });
 
+// Button content alignment variants (layout-only, no visual decoration)
+export const buttonContentAlignVariants = cva("", {
+  variants: {
+    contentAlign: {
+      start: "justify-start",
+      center: "justify-center",
+      end: "justify-end"
+    }
+  }
+});
+
 export interface ButtonSizeProps extends VariantProps<typeof buttonSizeVariants> {}
 export interface ButtonStyleProps extends VariantProps<typeof buttonStyleVariants> {} 
+export interface ButtonContentAlignProps extends VariantProps<typeof buttonContentAlignVariants> {}

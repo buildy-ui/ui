@@ -19,8 +19,7 @@ function ButtonItems(icon: React.ElementType, label: string, href: string) {
         w="full"
         size={theme?.buttonSize.default}
         rounded={theme?.rounded.default}
-        className="justify-start"
-        data-class="sidebar-item"
+        contentAlign="start"
       >
         <Icon
           component="span"

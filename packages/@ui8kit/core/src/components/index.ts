@@ -13,6 +13,7 @@ export { Text, type TextProps } from "./Text";
 // Interactive Components
 export { Button, type ButtonProps } from "./Button";
 export { Badge, type BadgeProps } from "./Badge";
+export { Sheet, type SheetProps } from "./Sheet";
 
 // Media Components
 export { Image, type ImageProps } from "./Image";
