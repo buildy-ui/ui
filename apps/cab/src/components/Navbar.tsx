@@ -1,10 +1,10 @@
 import { Block, Button, Icon, Text, Group, Sheet } from "@ui8kit/core";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@ui8kit/core";
-import { Home, Moon, Sun } from "lucide-react";
-import { useIsMobile } from "@/hooks/use-mobile";
+import { Home, Moon, Sun, Menu } from "lucide-react";
+import { useMobile } from "@ui8kit/hooks";
 
 export function Navbar({ isDarkMode, toggleDarkMode }: { isDarkMode: boolean, toggleDarkMode: () => void }) {
-  const isMobile = useIsMobile();
+  const isMobile = useMobile();
   return (
     <Block component="nav" bg="card" p="md">
       <Group justify="between" align="center">
@@ -23,7 +23,7 @@ export function Navbar({ isDarkMode, toggleDarkMode }: { isDarkMode: boolean, to
         )}
 
         {isMobile && (
-          <Sheet id="main-nav" side="right" size="md" openLabel="Menu" title="Menu">
+          <Sheet id="main-nav" side="right" size="md" triggerIcon={Menu} title="Menu">
             <Accordion type="single" collapsible defaultValue="menu">
               <AccordionItem value="menu">
                 <AccordionTrigger>

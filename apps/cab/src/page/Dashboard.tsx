@@ -3,7 +3,7 @@ import { Panel, PanelResizeHandle, PanelGroup } from 'react-resizable-panels';
 import { Sidebar } from '@/components/Sidebar';
 import { Navbar } from '@/components/Navbar';
 import { useState, useRef, useCallback, useEffect } from 'react';
-import { useIsMobile } from '@/hooks/use-mobile';
+import { useMobile } from '@ui8kit/hooks';
 import { Home } from 'lucide-react';
 
 import { Block, Container, Grid, Box, Card, Button, Icon, Stack, Text, Title } from "@ui8kit/core"
@@ -47,7 +47,7 @@ export default function Dashboard() {
     document.documentElement.classList.toggle('dark', initialMode);
   }, []);
 
-  const isMobile = useIsMobile();
+  const isMobile = useMobile();
 
   return (
     <div className={`${isDarkMode ? 'dark' : ''}`}>

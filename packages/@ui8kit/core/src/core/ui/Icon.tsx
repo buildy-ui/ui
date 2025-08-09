@@ -34,12 +34,22 @@ export const Icon = forwardRef<HTMLElement, IconProps>(
     ...props 
   }, ref) => {
     const Component = component as ElementType;
+    const safeProps = Object.fromEntries(
+      Object.entries(props).filter(([key]) =>
+        key.startsWith("data-") ||
+        key.startsWith("aria-") ||
+        key === "id" ||
+        key === "title" ||
+        key === "role" ||
+        key === "tabIndex"
+      )
+    );
     
     return (
       <Component
         ref={ref}
         className={cn(iconVariants({ size }), className)}
-        {...props}
+        {...safeProps}
       >
         {children}
       </Component>
