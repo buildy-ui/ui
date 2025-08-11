@@ -72,9 +72,9 @@ export default function Dashboard() {
             <Box p="md">
               <Container>
                 <Stack gap="lg" align="start">
-                  <Title size="2xl" c="secondary-foreground">Dashboard</Title>
+                  <Title size="2xl" c="secondary-foreground" mt="lg">Dashboard</Title>
                   <Text c="muted">Welcome to the dashboard</Text>
-                   <Grid cols="1-2-3" gap="md" w="full">
+                   <Grid cols="1-2-3" gap="lg" w="full">
                     <Card p="md" rounded={theme?.rounded.default} shadow="none" bg="card" w="full">
                       <Stack gap="sm" align="start">
                         <Text size="lg" fw="bold" c="primary">Card Title</Text>

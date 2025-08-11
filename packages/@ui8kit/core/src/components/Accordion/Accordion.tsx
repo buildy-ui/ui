@@ -108,7 +108,6 @@ const AccordionItem = React.forwardRef<HTMLDivElement, AccordionItemProps>(
             "flex",
             layoutVariants({ w }),
             flexVariants({ gap, direction }),
-            "border-b border-border",
             className
           )}
           {...props}

@@ -136,6 +136,7 @@
 @layer base {
   * {
     @apply border-border;
+    font-size: .925rem;
   }
   body {
     @apply bg-background text-foreground;
