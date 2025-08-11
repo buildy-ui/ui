@@ -1,6 +1,6 @@
-import { Block, Box, Card, Button, Icon, Stack, Text } from "@ui8kit/core"
-import { Settings, LayoutDashboard } from "lucide-react";
+import { Block, Box, Card, Stack, Text } from "@ui8kit/core"
 import { skyOSTheme } from "@ui8kit/theme";
+import { NavMenu } from "./NavMenu";
 
 const currentTheme = skyOSTheme;
 
@@ -11,25 +11,7 @@ const theme = {
   textSize: "xs" as const
 }
 
-function ButtonItems(icon: React.ElementType, label: string, href: string) {
-  return (
-    <a href={href}>
-      <Button
-        variant="ghost"
-        w="full"
-        size={theme?.buttonSize.default}
-        rounded={theme?.rounded.default}
-        contentAlign="start"
-      >
-        <Icon
-          component="span"
-          lucideIcon={icon}
-        />
-        <Text size={theme?.textSize} c="muted">{label}</Text>
-      </Button>
-    </a>
-  )
-}
+// No direct buttons here; use shared NavMenu to keep parity with mobile Sheet
 
 interface SidebarProps {
   className?: string;
@@ -44,8 +26,7 @@ export function Sidebar( { className, dataClass }: SidebarProps ) {
           <Text c="muted">Sidebar</Text>
         </Stack>
         <Stack gap="sm" p="md">
-          {ButtonItems(LayoutDashboard, "Dashboard", "/dashboard")}
-          {ButtonItems(Settings, "Settings", "/settings")}
+          <NavMenu />
           <Card p="md" rounded={theme?.rounded.default} shadow="sm" bg="card" w="full">
             <Stack gap="md" align="start">
               <Text size={theme?.textSize} c="muted">Widgets</Text>

@@ -48,17 +48,22 @@ export const Icon = forwardRef<HTMLElement, IconProps>(
           colorVariants({ c }),
           className
         )}
-        {...props}
+        // prevent non-DOM props leakage
+        aria-hidden={props['aria-hidden']}
+        role={props.role}
       >
         {LucideIcon ? (
-          <LucideIcon
-            className={cn(
-              iconSizeVariants({ size }),
-              spacingVariants({ m, mx, my }),
-              colorVariants({ c }),
-              className
-            )}
-          />
+          // Render Lucide icon as child element to avoid prop leakage to DOM
+          <span>
+            <LucideIcon
+              className={cn(
+                iconSizeVariants({ size }),
+                spacingVariants({ m, mx, my }),
+                colorVariants({ c }),
+                className
+              )}
+            />
+          </span>
         ) : children}
       </BaseIcon>
     );

@@ -41,7 +41,8 @@
   "dependencies": {
     "@floating-ui/react": "^0.26.28",
     "clsx": "^2.1.1",
-    "class-variance-authority": "^0.7.1"
+    "class-variance-authority": "^0.7.1",
+    "lucide-react": "^0.465.0"
   },
   "devDependencies": {
     "react": "^19.1.0",

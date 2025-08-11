@@ -1,6 +1,9 @@
 import type { ReactNode, HTMLAttributes } from "react";
 import { forwardRef } from "react";
-import { cn } from "../../core";
+import { cn, buttonSizeVariants, buttonStyleVariants } from "../../core";
+import type { ButtonProps } from "../Button";
+import { Icon } from "../Icon";
+import { Menu } from "lucide-react";
 
 export interface SheetProps extends HTMLAttributes<HTMLDivElement> {
   id?: string;
@@ -10,8 +13,48 @@ export interface SheetProps extends HTMLAttributes<HTMLDivElement> {
   size?: "sm" | "md" | "lg" | "xl" | "full";
   title?: string;
   showTrigger?: boolean;
+  triggerIcon?: any;
+  triggerVariant?: ButtonProps["variant"];
+  triggerSize?: ButtonProps["size"];
   children?: ReactNode;
 }
+
+export interface SheetTriggerProps extends ButtonProps {
+  htmlFor?: string;
+}
+
+export const SheetTrigger = forwardRef<HTMLButtonElement, SheetTriggerProps>(
+
+  (
+    {
+      htmlFor,
+      className,
+      size = "sm",
+      variant = "ghost",
+      ...props
+    },
+    ref
+  ) => {
+    return (
+      <label
+        ref={ref as any}
+        htmlFor={htmlFor}
+        data-class="sheet-trigger"
+        className={cn(
+          // Base button-like styles
+          "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium cursor-pointer",
+          // Apply CVA variants
+          buttonSizeVariants({ size }),
+          buttonStyleVariants({ variant }),
+          className
+        )}
+        aria-label={props["aria-label"]}
+      >
+        {props.children}
+      </label>
+    );
+  }
+);
 
 export const Sheet = forwardRef<HTMLDivElement, SheetProps>(
   (
@@ -23,6 +66,9 @@ export const Sheet = forwardRef<HTMLDivElement, SheetProps>(
       size = "md",
       title,
       showTrigger = true,
+      triggerIcon,
+      triggerVariant = "ghost",
+      triggerSize = "sm",
       className,
       children,
       ...props
@@ -47,16 +93,9 @@ export const Sheet = forwardRef<HTMLDivElement, SheetProps>(
         <input id={id} type="checkbox" className="peer hidden" />
 
         {showTrigger && (
-          <label
-            htmlFor={id}
-            data-class="sheet-open-button"
-            className={cn(
-              "inline-flex items-center gap-2 px-4 py-2 rounded-md border",
-              "border-border bg-card text-muted-foreground cursor-pointer"
-            )}
-          >
-            {openLabel}
-          </label>
+          <SheetTrigger htmlFor={id} variant={triggerVariant} size={triggerSize} aria-label={openLabel}>
+            <Icon component="span" lucideIcon={triggerIcon || Menu} />
+          </SheetTrigger>
         )}
 
         <div className="fixed inset-0 z-50 hidden peer-checked:block" data-class="sheet-portal">

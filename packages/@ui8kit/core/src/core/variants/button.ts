@@ -41,7 +41,8 @@ export const buttonContentAlignVariants = cva("", {
     contentAlign: {
       start: "justify-start",
       center: "justify-center",
-      end: "justify-end"
+      end: "justify-end",
+      between: "justify-between"
     }
   }
 });

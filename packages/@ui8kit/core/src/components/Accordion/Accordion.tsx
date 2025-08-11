@@ -1,9 +1,10 @@
 "use client"
 
 import * as React from "react"
-import { ChevronDown } from "lucide-react"
-
-import { cn } from "../../core";
+import { ChevronDown, ChevronUp } from "lucide-react"
+import { cn, layoutVariants, type VariantLayoutProps } from "../../core";
+import { Button } from "../Button";
+import { Icon } from "../Icon";
 
 type AccordionContextValue = {
   value: string | string[];
@@ -22,7 +23,7 @@ function useAccordionContext() {
   return context;
 }
 
-export interface AccordionProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface AccordionProps extends React.HTMLAttributes<HTMLDivElement>, Pick<VariantLayoutProps, 'w'> {
   type?: "single" | "multiple";
   collapsible?: boolean;
   value?: string | string[];
@@ -31,7 +32,7 @@ export interface AccordionProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
-  ({ type = "single", collapsible = false, value: controlledValue, onValueChange, defaultValue, ...props }, ref) => {
+  ({ type = "single", collapsible = false, value: controlledValue, onValueChange, defaultValue, w, className, ...props }, ref) => {
     const [uncontrolledValue, setUncontrolledValue] = React.useState<string | string[]>(
       defaultValue ?? (type === "multiple" ? [] : "")
     );
@@ -60,7 +61,12 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
 
     return (
       <AccordionContext.Provider value={{ value, onItemClick, type, collapsible }}>
-        <div ref={ref} data-accordion {...props} />
+        <div
+          ref={ref}
+          data-accordion
+          className={cn(layoutVariants({ w }), className)}
+          {...props}
+        />
       </AccordionContext.Provider>
     );
   }
@@ -81,12 +87,12 @@ function useAccordionItemContext() {
   return context;
 }
 
-export interface AccordionItemProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface AccordionItemProps extends React.HTMLAttributes<HTMLDivElement>, Pick<VariantLayoutProps, 'w'> {
   value: string;
 }
 
 const AccordionItem = React.forwardRef<HTMLDivElement, AccordionItemProps>(
-  ({ value, ...props }, ref) => {
+  ({ value, w, className, ...props }, ref) => {
     const { value: contextValue, type } = useAccordionContext();
     const isOpen = Array.isArray(contextValue)
       ? contextValue.includes(value)
@@ -98,7 +104,7 @@ const AccordionItem = React.forwardRef<HTMLDivElement, AccordionItemProps>(
           ref={ref}
           data-state={isOpen ? "open" : "closed"}
           data-type={type}
-          className="border-b"
+          className={cn("border-b border-border", layoutVariants({ w }), className)}
           {...props}
         />
       </AccordionItemContext.Provider>
@@ -107,36 +113,40 @@ const AccordionItem = React.forwardRef<HTMLDivElement, AccordionItemProps>(
 );
 AccordionItem.displayName = "AccordionItem";
 
-export interface AccordionTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
+export interface AccordionTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, Pick<VariantLayoutProps, 'w'> {}
 
 const AccordionTrigger = React.forwardRef<HTMLButtonElement, AccordionTriggerProps>(
-  (props, ref) => {
+  ({ w, className, ...props }, ref) => {
     const { onItemClick } = useAccordionContext();
     const { value } = useAccordionItemContext();
+    const { value: contextValue } = useAccordionContext();
+    const isOpen = Array.isArray(contextValue)
+      ? contextValue.includes(value)
+      : contextValue === value;
 
     return (
-      <button
+      <Button
         ref={ref}
-        type="button"
+        variant="ghost"
+        size="sm"
+        w={w || "full"}
+        contentAlign="between"
         onClick={() => onItemClick(value)}
-        className={cn(
-          "flex w-full flex-1 items-center justify-between py-4 font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180",
-          props.className
-        )}
+        className={className}
         {...props}
       >
         {props.children}
-        <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200" />
-      </button>
+        <Icon component="span" lucideIcon={isOpen ? ChevronUp : ChevronDown} />
+      </Button>
     );
   }
 );
 AccordionTrigger.displayName = "AccordionTrigger";
 
-export interface AccordionContentProps extends React.HTMLAttributes<HTMLDivElement> {}
+export interface AccordionContentProps extends React.HTMLAttributes<HTMLDivElement>, Pick<VariantLayoutProps, 'w'> {}
 
 const AccordionContent = React.forwardRef<HTMLDivElement, AccordionContentProps>(
-  (props, ref) => {
+  ({ className, w, ...props }, ref) => {
     const { value } = useAccordionItemContext();
     const { value: contextValue } = useAccordionContext();
     const isOpen = Array.isArray(contextValue)
@@ -148,10 +158,9 @@ const AccordionContent = React.forwardRef<HTMLDivElement, AccordionContentProps>
         ref={ref}
         data-state={isOpen ? "open" : "closed"}
         className={cn(
-          "overflow-hidden text-sm transition-all",
-          "data-[state=closed]:h-0 data-[state=closed]:opacity-0",
-          "data-[state=open]:h-auto data-[state=open]:opacity-100",
-          props.className
+          "overflow-hidden text-sm transition-all data-[state=closed]:h-0 data-[state=closed]:opacity-0 data-[state=open]:h-auto data-[state=open]:opacity-100 data-[state=closed]:ms-0 data-[state=open]:ms-4",
+          layoutVariants({ w }),
+          className
         )}
         {...props}
       >
