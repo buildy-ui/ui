@@ -6,7 +6,7 @@ import { NavMenu } from "./NavMenu";
 export function Navbar({ isDarkMode, toggleDarkMode }: { isDarkMode: boolean, toggleDarkMode: () => void }) {
   const isMobile = useMobile();
   return (
-    <Block component="nav" bg="card" p="md">
+    <Block component="nav" bg="card" p="md" data-class="navbar" className="h-16 border-b border-border">
       <Group justify="between" align="center">
         <Text size="xl" fw="bold" c="primary">BuildY/UI</Text>
 

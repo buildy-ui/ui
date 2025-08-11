@@ -15,7 +15,7 @@ export function NavMenu() {
       </Button>
 
       <Accordion type="single" collapsible defaultValue="more" w="full">
-        <AccordionItem value="more">
+        <AccordionItem gap="sm" value="more">
           <AccordionTrigger>
             <Text c="foreground">More</Text>
           </AccordionTrigger>
@@ -23,15 +23,15 @@ export function NavMenu() {
             <Stack gap="xs" align="start">
               <Button variant="ghost" size="sm" contentAlign="start" w="full">
                 <Icon component="span" lucideIcon={CreditCard} />
-                <Text size="sm" c="muted">Billing</Text>
+                <Text size="xs" c="muted">Billing</Text>
               </Button>
               <Button variant="ghost" size="sm" contentAlign="start" w="full">
                 <Icon component="span" lucideIcon={Users} />
-                <Text size="sm" c="muted">Team</Text>
+                <Text size="xs" c="muted">Team</Text>
               </Button>
               <Button variant="ghost" size="sm" contentAlign="start" w="full">
                 <Icon component="span" lucideIcon={Plug} />
-                <Text size="sm" c="muted">Integrations</Text>
+                <Text size="xs" c="muted">Integrations</Text>
               </Button>
             </Stack>
           </AccordionContent>

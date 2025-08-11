@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { ChevronDown, ChevronUp } from "lucide-react"
-import { cn, layoutVariants, type VariantLayoutProps } from "../../core";
+import { cn, layoutVariants, flexVariants,type VariantLayoutProps, type VariantFlexProps } from "../../core";
 import { Button } from "../Button";
 import { Icon } from "../Icon";
 
@@ -87,12 +87,12 @@ function useAccordionItemContext() {
   return context;
 }
 
-export interface AccordionItemProps extends React.HTMLAttributes<HTMLDivElement>, Pick<VariantLayoutProps, 'w'> {
+export interface AccordionItemProps extends React.HTMLAttributes<HTMLDivElement>, Pick<VariantLayoutProps, 'w'>, Pick<VariantFlexProps, 'gap' | 'direction'> {
   value: string;
 }
 
 const AccordionItem = React.forwardRef<HTMLDivElement, AccordionItemProps>(
-  ({ value, w, className, ...props }, ref) => {
+  ({ value, w, gap, direction = "col", className, ...props }, ref) => {
     const { value: contextValue, type } = useAccordionContext();
     const isOpen = Array.isArray(contextValue)
       ? contextValue.includes(value)
@@ -104,7 +104,13 @@ const AccordionItem = React.forwardRef<HTMLDivElement, AccordionItemProps>(
           ref={ref}
           data-state={isOpen ? "open" : "closed"}
           data-type={type}
-          className={cn("border-b border-border", layoutVariants({ w }), className)}
+          className={cn(
+            "flex",
+            layoutVariants({ w }),
+            flexVariants({ gap, direction }),
+            "border-b border-border",
+            className
+          )}
           {...props}
         />
       </AccordionItemContext.Provider>
