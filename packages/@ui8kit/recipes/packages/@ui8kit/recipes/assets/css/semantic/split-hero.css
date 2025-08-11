@@ -1,0 +1,19 @@
+.split-hero {
+  @apply w-full py-lg;
+}
+
+.split-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-xl items-center;
+}
+
+.split-hero-title {
+  @apply text-4xl font-bold tracking-tight;
+}
+
+.split-hero-description {
+  @apply text-secondary-foreground max-w-[42rem];
+}
+
+.split-hero-actions {
+  @apply flex items-center gap-md;
+}

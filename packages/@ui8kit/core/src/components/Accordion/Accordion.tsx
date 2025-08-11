@@ -64,6 +64,7 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
         <div
           ref={ref}
           data-accordion
+          data-class="accordion"
           className={cn(layoutVariants({ w }), className)}
           {...props}
         />
@@ -104,6 +105,7 @@ const AccordionItem = React.forwardRef<HTMLDivElement, AccordionItemProps>(
           ref={ref}
           data-state={isOpen ? "open" : "closed"}
           data-type={type}
+          data-class="accordion-item"
           className={cn(
             "flex",
             layoutVariants({ w }),
@@ -137,6 +139,7 @@ const AccordionTrigger = React.forwardRef<HTMLButtonElement, AccordionTriggerPro
         w={w || "full"}
         contentAlign="between"
         onClick={() => onItemClick(value)}
+        data-class="accordion-trigger"
         className={className}
         {...props}
       >
@@ -162,6 +165,7 @@ const AccordionContent = React.forwardRef<HTMLDivElement, AccordionContentProps>
       <div
         ref={ref}
         data-state={isOpen ? "open" : "closed"}
+        data-class="accordion-content"
         className={cn(
           "overflow-hidden text-sm transition-all data-[state=closed]:h-0 data-[state=closed]:opacity-0 data-[state=open]:h-auto data-[state=open]:opacity-100 data-[state=closed]:ms-0 data-[state=open]:ms-4",
           layoutVariants({ w }),
