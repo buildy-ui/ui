@@ -1,28 +1,33 @@
 {
-  "include": ["./src"],
-  "exclude": ["./lib", "./dist"],
+  "include": ["./src", "../core/src", "../hooks/src"],
   "compilerOptions": {
-    "rootDir": "src",
     "types": ["node"],
-    "target": "ES2020",
-    "lib": ["DOM", "ESNext"],
-    "module": "ES2020",
-    "moduleResolution": "Node",
+    "target": "ES2022",
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "jsx": "react-jsx",
     "resolveJsonModule": true,
     "strict": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "composite": true,
+    "skipLibCheck": false,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true,
+    "noUncheckedIndexedAccess": true,
     "declaration": true,
     "declarationDir": "./dist",
     "outDir": "./dist",
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@/brain": ["./src/index"],
-      "@/brain/*": ["./src/*"]
+      "@/recipes": ["./src/index"],
+      "@/recipes/*": ["./src/*"],
+      "@ui8kit/core": ["../core/src"],
+      "@ui8kit/hooks": ["../hooks/src"],
+      "@ui8kit/theme": ["../theme/src"]
     }
   }
 } 
