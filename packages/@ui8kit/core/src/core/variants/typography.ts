@@ -110,3 +110,56 @@ export interface TextAlignProps extends VariantProps<typeof textAlignVariants> {
 export interface LeadingProps extends VariantProps<typeof leadingVariants> {}
 export interface TypographyModifierProps extends VariantProps<typeof typographyModifierVariants> {} 
 export interface TrackingProps extends VariantProps<typeof trackingVariants> {}
+
+// Text transform
+export const textTransformVariants = cva("", {
+  variants: {
+    transform: {
+      uppercase: "uppercase",
+      lowercase: "lowercase",
+      capitalize: "capitalize",
+      normal: "normal-case"
+    }
+  }
+});
+
+// Whitespace handling
+export const whitespaceVariants = cva("", {
+  variants: {
+    whitespace: {
+      normal: "whitespace-normal",
+      nowrap: "whitespace-nowrap",
+      pre: "whitespace-pre",
+      preLine: "whitespace-pre-line",
+      preWrap: "whitespace-pre-wrap",
+      breakSpaces: "whitespace-break-spaces"
+    }
+  }
+});
+
+// Word/line breaking
+export const breakVariants = cva("", {
+  variants: {
+    break: {
+      normal: "break-normal",
+      words: "break-words",
+      all: "break-all"
+    }
+  }
+});
+
+// Hyphens
+export const hyphenVariants = cva("", {
+  variants: {
+    hyphens: {
+      none: "hyphens-none",
+      manual: "hyphens-manual",
+      auto: "hyphens-auto"
+    }
+  }
+});
+
+export interface TextTransformProps extends VariantProps<typeof textTransformVariants> {}
+export interface WhitespaceProps extends VariantProps<typeof whitespaceVariants> {}
+export interface BreakProps extends VariantProps<typeof breakVariants> {}
+export interface HyphenProps extends VariantProps<typeof hyphenVariants> {}

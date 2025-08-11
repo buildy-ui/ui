@@ -8,6 +8,27 @@ export const borderVariants = cva("", {
       "2px": "border-2",
       "4px": "border-4"
     },
+    // Ring width
+    ring: {
+      0: "ring-0",
+      1: "ring-1",
+      2: "ring-2",
+      4: "ring-4",
+      8: "ring-8"
+    },
+    // Ring offset width
+    ringOffset: {
+      0: "ring-offset-0",
+      1: "ring-offset-1",
+      2: "ring-offset-2",
+      4: "ring-offset-4",
+      8: "ring-offset-8"
+    },
+    borderStyle: {
+      solid: "border-solid",
+      dashed: "border-dashed",
+      dotted: "border-dotted"
+    },
     borderTop: {
       none: "border-t-0",
       "1px": "border-t",

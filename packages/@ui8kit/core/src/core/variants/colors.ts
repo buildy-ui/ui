@@ -35,6 +35,26 @@ export const colorVariants = cva("", {
       destructive: "text-destructive",
       "destructive-foreground": "text-destructive-foreground"
     },
+    // Accent color utility
+    accentColor: {
+      auto: "accent-auto",
+      inherit: "accent-inherit",
+      current: "accent-current"
+    },
+    // Placeholder color
+    placeholder: {
+      foreground: "placeholder-foreground",
+      muted: "placeholder-muted-foreground"
+    },
+    // Caret color
+    caret: {
+      primary: "caret-primary",
+      secondary: "caret-secondary",
+      accent: "caret-accent",
+      foreground: "caret-foreground",
+      current: "caret-current",
+      transparent: "caret-transparent"
+    },
     // Border colors
     borderColor: {
       transparent: "border-transparent",
@@ -48,6 +68,16 @@ export const colorVariants = cva("", {
       destructive: "border-destructive",
       muted: "border-muted",
       accent: "border-accent"
+    },
+    // Selection color (requires global selection styles support)
+    selectionBg: {
+      primary: "selection:bg-primary",
+      secondary: "selection:bg-secondary",
+      accent: "selection:bg-accent"
+    },
+    selectionText: {
+      foreground: "selection:text-foreground",
+      primary: "selection:text-primary"
     }
   }
 });

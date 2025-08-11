@@ -136,6 +136,23 @@ export const spacingVariants = cva("", {
       lg: "pr-6",
       xl: "pr-8",
       "2xl": "pr-12"
+    },
+    // Space between immediate children
+    spaceX: {
+      none: "space-x-0",
+      xs: "space-x-1",
+      sm: "space-x-2",
+      md: "space-x-4",
+      lg: "space-x-6",
+      xl: "space-x-8"
+    },
+    spaceY: {
+      none: "space-y-0",
+      xs: "space-y-1",
+      sm: "space-y-2",
+      md: "space-y-4",
+      lg: "space-y-6",
+      xl: "space-y-8"
     }
   }
 });

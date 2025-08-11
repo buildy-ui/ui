@@ -8,7 +8,8 @@ export const shadowVariants = cva("", {
       md: "shadow-md",
       lg: "shadow-lg",
       xl: "shadow-xl",
-      "2xl": "shadow-2xl"
+      "2xl": "shadow-2xl",
+      inner: "shadow-inner"
     }
   }
 });

@@ -11,6 +11,7 @@ export const layoutVariants = cva("", {
       "inline-flex": "inline-flex",
       grid: "grid",
       "inline-grid": "inline-grid",
+      contents: "contents",
       hidden: "hidden"
     },
     // Width
@@ -23,6 +24,23 @@ export const layoutVariants = cva("", {
       max: "w-max",
       "1px": "w-px"
     },
+    // Min width
+    minW: {
+      0: "min-w-0",
+      full: "min-w-full",
+      min: "min-w-min",
+      max: "min-w-max"
+    },
+    // Max width
+    maxW: {
+      none: "max-w-none",
+      full: "max-w-full",
+      screenSm: "max-w-screen-sm",
+      screenMd: "max-w-screen-md",
+      screenLg: "max-w-screen-lg",
+      screenXl: "max-w-screen-xl",
+      screen2xl: "max-w-screen-2xl"
+    },
     // Height
     h: {
       auto: "h-auto",
@@ -32,6 +50,12 @@ export const layoutVariants = cva("", {
       min: "h-min",
       max: "h-max",
       "1px": "h-px"
+    },
+    // Max height
+    maxH: {
+      none: "max-h-none",
+      full: "max-h-full",
+      screen: "max-h-screen"
     },
     // Min height
     minH: {
@@ -50,6 +74,27 @@ export const layoutVariants = cva("", {
       fixed: "fixed",
       sticky: "sticky"
     },
+    // Inset helpers
+    inset: {
+      0: "inset-0",
+      auto: "inset-auto"
+    },
+    top: {
+      0: "top-0",
+      auto: "top-auto"
+    },
+    right: {
+      0: "right-0",
+      auto: "right-auto"
+    },
+    bottom: {
+      0: "bottom-0",
+      auto: "bottom-auto"
+    },
+    left: {
+      0: "left-0",
+      auto: "left-auto"
+    },
     // Z-index
     z: {
       "0": "z-0",
@@ -66,6 +111,27 @@ export const layoutVariants = cva("", {
       hidden: "overflow-hidden",
       visible: "overflow-visible",
       scroll: "overflow-scroll"
+    },
+    overflowX: {
+      auto: "overflow-x-auto",
+      hidden: "overflow-x-hidden",
+      visible: "overflow-x-visible",
+      scroll: "overflow-x-scroll"
+    },
+    overflowY: {
+      auto: "overflow-y-auto",
+      hidden: "overflow-y-hidden",
+      visible: "overflow-y-visible",
+      scroll: "overflow-y-scroll"
+    },
+    visibility: {
+      visible: "visible",
+      invisible: "invisible",
+      collapse: "collapse"
+    },
+    pointerEvents: {
+      auto: "pointer-events-auto",
+      none: "pointer-events-none"
     }
   }
 });

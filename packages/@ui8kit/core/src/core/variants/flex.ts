@@ -32,6 +32,39 @@ export const flexVariants = cva("", {
       nowrap: "flex-nowrap",
       "wrap-reverse": "flex-wrap-reverse"
     },
+    // Flex grow/shrink/basis
+    grow: {
+      0: "grow-0",
+      1: "grow"
+    },
+    shrink: {
+      0: "shrink-0",
+      1: "shrink"
+    },
+    basis: {
+      auto: "basis-auto",
+      full: "basis-full",
+      0: "basis-0",
+      px: "basis-px"
+    },
+    // Order
+    order: {
+      first: "order-first",
+      last: "order-last",
+      none: "order-none",
+      1: "order-1",
+      2: "order-2",
+      3: "order-3",
+      4: "order-4",
+      5: "order-5",
+      6: "order-6",
+      7: "order-7",
+      8: "order-8",
+      9: "order-9",
+      10: "order-10",
+      11: "order-11",
+      12: "order-12"
+    },
     // Gap
     gap: {
       none: "gap-0",
@@ -42,6 +75,22 @@ export const flexVariants = cva("", {
       xl: "gap-8",
       "2xl": "gap-10",
       "3xl": "gap-12"
+    },
+    gapX: {
+      none: "gap-x-0",
+      xs: "gap-x-1",
+      sm: "gap-x-2",
+      md: "gap-x-4",
+      lg: "gap-x-6",
+      xl: "gap-x-8"
+    },
+    gapY: {
+      none: "gap-y-0",
+      xs: "gap-y-1",
+      sm: "gap-y-2",
+      md: "gap-y-4",
+      lg: "gap-y-6",
+      xl: "gap-y-8"
     }
   }
 });
@@ -103,6 +152,107 @@ export const gridVariants = cva("", {
       center: "justify-items-center",
       end: "justify-items-end",
       stretch: "justify-items-stretch"
+    },
+    // Grid rows
+    rows: {
+      1: "grid-rows-1",
+      2: "grid-rows-2",
+      3: "grid-rows-3",
+      4: "grid-rows-4",
+      5: "grid-rows-5",
+      6: "grid-rows-6",
+      12: "grid-rows-12"
+    },
+    // Grid flow
+    flow: {
+      row: "grid-flow-row",
+      col: "grid-flow-col",
+      dense: "grid-flow-dense",
+      rowDense: "grid-flow-row-dense",
+      colDense: "grid-flow-col-dense"
+    },
+    // Auto rows/cols
+    autoRows: {
+      auto: "auto-rows-auto",
+      min: "auto-rows-min",
+      max: "auto-rows-max",
+      fr: "auto-rows-fr"
+    },
+    autoCols: {
+      auto: "auto-cols-auto",
+      min: "auto-cols-min",
+      max: "auto-cols-max",
+      fr: "auto-cols-fr"
+    },
+    // Row/Col start & end
+    rowStart: {
+      auto: "row-start-auto",
+      1: "row-start-1",
+      2: "row-start-2",
+      3: "row-start-3",
+      4: "row-start-4",
+      5: "row-start-5",
+      6: "row-start-6",
+      7: "row-start-7"
+    },
+    rowEnd: {
+      auto: "row-end-auto",
+      1: "row-end-1",
+      2: "row-end-2",
+      3: "row-end-3",
+      4: "row-end-4",
+      5: "row-end-5",
+      6: "row-end-6",
+      7: "row-end-7"
+    },
+    colStart: {
+      auto: "col-start-auto",
+      1: "col-start-1",
+      2: "col-start-2",
+      3: "col-start-3",
+      4: "col-start-4",
+      5: "col-start-5",
+      6: "col-start-6",
+      7: "col-start-7",
+      8: "col-start-8",
+      9: "col-start-9",
+      10: "col-start-10",
+      11: "col-start-11",
+      12: "col-start-12",
+      13: "col-start-13"
+    },
+    colEnd: {
+      auto: "col-end-auto",
+      1: "col-end-1",
+      2: "col-end-2",
+      3: "col-end-3",
+      4: "col-end-4",
+      5: "col-end-5",
+      6: "col-end-6",
+      7: "col-end-7",
+      8: "col-end-8",
+      9: "col-end-9",
+      10: "col-end-10",
+      11: "col-end-11",
+      12: "col-end-12",
+      13: "col-end-13"
+    },
+    // Gap in grid context
+    gapX: {
+      none: "gap-x-0",
+      xs: "gap-x-1",
+      sm: "gap-x-2",
+      md: "gap-x-4",
+      lg: "gap-x-6",
+      xl: "gap-x-8"
+    },
+    gapY: {
+      none: "gap-y-0",
+      xs: "gap-y-1",
+      sm: "gap-y-2",
+      md: "gap-y-4",
+      lg: "gap-y-6",
+      xl: "gap-y-8"
     }
   }
 });
