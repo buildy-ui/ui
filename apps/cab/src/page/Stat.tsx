@@ -15,18 +15,21 @@ const content = {
       title: "Card Title 1",
       description: "Card Description 1",
       chartData: [12,11,12,9,10,8,8,9,11,13],
+      chartColor: "text-destructive",
       buttonText: "Call to action 1",
     },
     {
       title: "Card Title 2",
       description: "Card Description 2",
       barData: [3,5,2,8,6,9,7],
+      chartColor: "text-primary",
       buttonText: "Call to action 2",
     },
     {
       title: "Card Title",
       description: "Card Description 3",
       chartData: [5,8,6,9,12,10,14,9,11,13],
+      chartColor: "text-primary",
       buttonText: "Call to action 3",
     },
   ]
@@ -46,8 +49,8 @@ export function Stat() {
                 <Text size="lg" fw="bold" c="primary">{card.title}</Text>
                 <Text size="sm" c="muted">{card.description}</Text>
                 <Group gap="md" align="center" w="full" justify="center">
-                  {card.chartData && <Sparkline data={card.chartData} width={240} height={75} className="text-primary" showFill />}
-                  {card.barData && <BarMini data={card.barData} width={240} height={75} className="text-secondary" />}
+                  {card.chartData && <Sparkline data={card.chartData} width={240} height={75} className={card.chartColor} showFill />}
+                  {card.barData && <BarMini data={card.barData} width={240} height={75} className={card.chartColor} />}
                 </Group>
                 <Button variant="ghost" size={buttonSize.default} rounded={rounded?.default}>
                   <Icon component="span" lucideIcon={BarChartIcon} />
