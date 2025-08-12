@@ -10,6 +10,18 @@ export const VariantValue = z.union([
 
 export const VariantMapSchema = z.record(z.string(), VariantValue);
 
+// New: Component-level prop config for generated component
+export const ComponentPropSchema = z.object({
+  name: z.string(),
+  default: VariantValue.optional()
+});
+
+// New: Additional content props not directly tied to text nodes
+export const ContentPropSchema = z.object({
+  name: z.string(),
+  type: z.enum(['string', 'icon']).default('string')
+});
+
 export const SlotSchema:any = z.object({
   slot: z.string(),
   element: z.string().optional(),
@@ -36,6 +48,10 @@ export const RecipeSchema = z.object({
   extraImports: z.array(z.string()).optional(),
   themeImport: z.string().optional(),
   defaults: VariantMapSchema.optional(),
+  // New: expose selected component props in generated component API
+  props: z.array(ComponentPropSchema).optional(),
+  // New: add extra content fields for the data interface
+  contentProps: z.array(ContentPropSchema).optional(),
   root: SlotSchema,
 });
 

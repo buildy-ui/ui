@@ -7,34 +7,37 @@ const theme = { theme: currentTheme, themeRounded: currentTheme.rounded, themeBu
 
 export interface CenteredHeroData { [key: string]: any }
 
-export interface CenteredHeroProps extends React.HTMLAttributes<HTMLElement> {
+export interface CenteredHeroProps extends Omit<React.HTMLAttributes<HTMLElement>, 'content'> {
   content?: CenteredHeroData;
+  py?: any;
 }
 
-export const CenteredHero = React.forwardRef<HTMLElement, CenteredHeroProps>(({ content, ...props }, ref) => {
+export const CenteredHero = React.forwardRef<HTMLElement, CenteredHeroProps>(({ content, py = "lg", ...props }, ref) => {
   return (
-        <Block data-class="centered-hero">
-      <Stack data-class="centered-hero-stack">
-        <Title data-class="centered-hero-title">
-          {content?.title ?? null}
+            <Block data-class="centered-hero" w="full" component="section">
+        <Stack data-class="centered-hero-stack" gap="xl" align="center" ta="center">
+          <Title data-class="centered-hero-title" order={1} size="5xl" fw="bold" ta="center">
+            {content?.title ?? null}
 
-        </Title>
-        <Text data-class="centered-hero-description">
-          {content?.description ?? null}
+          </Title>
+          <Text data-class="centered-hero-description" c="secondary-foreground" ta="center">
+            {content?.description ?? null}
 
-        </Text>
-        <Group data-class="centered-hero-actions">
-          <Button data-class="centered-hero-primary">
-            {content?.primaryButtonText ? (<><Icon c="primary-foreground" lucideIcon={Info} /> {content?.primaryButtonText}</>) : null}
+          </Text>
+          {content?.primaryButtonText || content?.secondaryButtonText ? (
+          <Group data-class="centered-hero-actions" gap="md" align="center" justify="center">
+            <Button data-class="centered-hero-primary" variant="default" rounded={theme?.themeRounded.default} size={theme?.themeButtonSize.default} leftSection={content?.primaryButtonIcon ? (<Icon c="primary-foreground" lucideIcon={content?.primaryButtonIcon || Info} />) : undefined}>
+              {content?.primaryButtonText ? (<>{content?.primaryButtonText}</>) : null}
 
-          </Button>
-          <Button data-class="centered-hero-secondary">
-            {content?.secondaryButtonText ? (<><Icon lucideIcon={Rocket} /> {content?.secondaryButtonText}</>) : null}
+            </Button>
+            <Button data-class="centered-hero-secondary" variant="outline" rounded={theme?.themeRounded.default} size={theme?.themeButtonSize.default} leftSection={content?.secondaryButtonIcon ? (<Icon lucideIcon={content?.secondaryButtonIcon || Rocket} />) : undefined}>
+              {content?.secondaryButtonText ? (<>{content?.secondaryButtonText}</>) : null}
 
-          </Button>
-        </Group>
-      </Stack>
-    </Block>
+            </Button>
+          </Group>
+          ) : null}
+        </Stack>
+      </Block>
   );
 });
 CenteredHero.displayName = "CenteredHero";
