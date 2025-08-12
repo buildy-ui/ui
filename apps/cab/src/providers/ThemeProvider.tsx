@@ -6,6 +6,7 @@ export type ThemeBase = {
   name: string;
   rounded: Record<string, any> & { default: any };
   buttonSize: Record<string, any> & { default: any };
+  isNavFixed?: boolean;
 };
 
 interface ThemeContextValue<T extends ThemeBase = ThemeBase> {
@@ -13,6 +14,7 @@ interface ThemeContextValue<T extends ThemeBase = ThemeBase> {
   rounded: T['rounded'];
   buttonSize: T['buttonSize'];
   isDarkMode: boolean;
+  isNavFixed?: T['isNavFixed'];
   prefersReducedMotion: boolean;
   toggleDarkMode: () => void;
   setDarkMode: (value: boolean) => void;
@@ -71,6 +73,7 @@ export function ThemeProvider({ children, theme }: { children: ReactNode; theme:
       rounded: baseTheme.rounded,
       buttonSize: baseTheme.buttonSize,
       isDarkMode,
+      isNavFixed: baseTheme.isNavFixed,
       prefersReducedMotion,
       toggleDarkMode: () => setIsDarkMode((v) => !v),
       setDarkMode: setIsDarkMode,

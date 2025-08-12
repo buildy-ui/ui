@@ -10,7 +10,8 @@ export const lesseUITheme = {
     // xs | sm | default | md | lg | xl | icon
     default: "sm" as const,
     badge: "sm" as const
-  }
+  },
+  isNavFixed: true
 } as const;
 
 export type LesseUITheme = typeof lesseUITheme; 

@@ -15,7 +15,7 @@ export function Sidebar( { className, dataClass }: SidebarProps ) {
   const { rounded } = useAppTheme();
   return (
     <Block component="aside" className={className} data-class={dataClass}>
-      <Box>
+      <Box overflow="auto" h="screen">
         <Stack p="md" align="start">
           <Text c="muted">Sidebar</Text>
         </Stack>
