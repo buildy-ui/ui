@@ -1,4 +1,4 @@
-// SkyOS Theme - простые настройки без CVA
+// SkyOS Theme
 export const skyOSTheme = {
   name: "SkyOS",
   rounded: {

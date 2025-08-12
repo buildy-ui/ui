@@ -1,15 +1,8 @@
 import { Block, Box, Card, Stack, Text } from "@ui8kit/core"
-import { skyOSTheme } from "@ui8kit/theme";
 import { NavMenu } from "./NavMenu";
+import { useAppTheme } from '@/hooks/use-theme';
 
-const currentTheme = skyOSTheme;
-
-const theme = {
-  theme: currentTheme,
-  rounded: currentTheme.rounded,
-  buttonSize: currentTheme.buttonSize,
-  textSize: "xs" as const
-}
+const textSize = "xs" as const;
 
 // No direct buttons here; use shared NavMenu to keep parity with mobile Sheet
 
@@ -19,6 +12,7 @@ interface SidebarProps {
 }
 
 export function Sidebar( { className, dataClass }: SidebarProps ) {
+  const { rounded } = useAppTheme();
   return (
     <Block component="aside" className={className} data-class={dataClass}>
       <Box>
@@ -27,9 +21,9 @@ export function Sidebar( { className, dataClass }: SidebarProps ) {
         </Stack>
         <Stack gap="sm" p="md">
           <NavMenu />
-          <Card p="md" rounded={theme?.rounded.default} shadow="sm" bg="card" w="full">
+          <Card p="md" rounded={rounded?.default} shadow="sm" bg="card" w="full">
             <Stack gap="md" align="start">
-              <Text size={theme?.textSize} c="muted">Widgets</Text>
+              <Text size={textSize} c="muted">Widgets</Text>
             </Stack>
           </Card>
         </Stack>

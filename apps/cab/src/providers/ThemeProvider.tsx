@@ -1,21 +1,27 @@
 // apps/cab/src/providers/ThemeProvider.tsx
 import { createContext, useContext, useEffect, useMemo, useState, ReactNode } from 'react';
-import { skyOSTheme, type SkyOSTheme } from '@ui8kit/theme';
 
-interface ThemeContextValue {
-  theme: SkyOSTheme;
-  rounded: SkyOSTheme['rounded'];
-  buttonSize: SkyOSTheme['buttonSize'];
+// Theme-agnostic base type (no hard-coded unions)
+export type ThemeBase = {
+  name: string;
+  rounded: Record<string, any> & { default: any };
+  buttonSize: Record<string, any> & { default: any };
+};
+
+interface ThemeContextValue<T extends ThemeBase = ThemeBase> {
+  theme: T;
+  rounded: T['rounded'];
+  buttonSize: T['buttonSize'];
   isDarkMode: boolean;
   prefersReducedMotion: boolean;
   toggleDarkMode: () => void;
   setDarkMode: (value: boolean) => void;
 }
 
-const ThemeContext = createContext<ThemeContextValue | null>(null);
+const ThemeContext = createContext<ThemeContextValue<ThemeBase> | null>(null);
 
-export function ThemeProvider({ children }: { children: ReactNode }) {
-  const baseTheme: SkyOSTheme = skyOSTheme;
+export function ThemeProvider({ children, theme }: { children: ReactNode; theme: ThemeBase }) {
+  const baseTheme = theme;
 
   const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
     const stored = typeof window !== 'undefined' ? window.localStorage.getItem('ui:dark') : null;
@@ -63,7 +69,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     () => ({
       theme: baseTheme,
       rounded: baseTheme.rounded,
-      buttonSize: { default: baseTheme.buttonSize.default, badge: baseTheme.buttonSize.badge },
+      buttonSize: baseTheme.buttonSize,
       isDarkMode,
       prefersReducedMotion,
       toggleDarkMode: () => setIsDarkMode((v) => !v),
@@ -75,10 +81,10 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 }
 
-export function useTheme(): ThemeContextValue {
+export function useTheme<T extends ThemeBase = ThemeBase>(): ThemeContextValue<T> {
   const ctx = useContext(ThemeContext);
   if (!ctx) {
     throw new Error('useTheme must be used within ThemeProvider');
   }
-  return ctx;
+  return ctx as ThemeContextValue<T>;
 }

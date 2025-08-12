@@ -1,4 +1,4 @@
-// ModernUI Theme - альтернативная тема
+// ModernUI Theme
 export const modernUITheme = {
   name: "ModernUI",
   rounded: {

@@ -1,3 +1,5 @@
+import { cva } from 'class-variance-authority';
+
 // Base variants
 export * from './spacing';
 export * from './rounded';

@@ -1,15 +1,17 @@
 import { Stack, Button, Icon, Text, Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@ui8kit/core";
 import { Home, BarChart3, CreditCard, Users, Plug } from "lucide-react";
+import { useAppTheme } from '@/hooks/use-theme';
 
 export function NavMenu() {
+  const { rounded, buttonSize } = useAppTheme();
   return (
     <Stack gap="sm" align="start">
-      <Button variant="ghost" size="sm" contentAlign="start" w="full">
+      <Button variant="ghost" size={buttonSize.badge} rounded={rounded.default} contentAlign="start" w="full">
         <Icon component="span" lucideIcon={Home} />
         <Text size="sm" c="muted">Overview</Text>
       </Button>
 
-      <Button variant="ghost" size="sm" contentAlign="start" w="full">
+      <Button variant="ghost" size={buttonSize.badge} rounded={rounded.default} contentAlign="start" w="full">
         <Icon component="span" lucideIcon={BarChart3} />
         <Text size="sm" c="muted">Reports</Text>
       </Button>
@@ -21,15 +23,15 @@ export function NavMenu() {
           </AccordionTrigger>
           <AccordionContent>
             <Stack gap="xs" align="start">
-              <Button variant="ghost" size="sm" contentAlign="start" w="full">
+              <Button variant="ghost" size={buttonSize.badge} rounded={rounded.default} contentAlign="start" w="full">
                 <Icon component="span" lucideIcon={CreditCard} />
                 <Text size="xs" c="muted">Billing</Text>
               </Button>
-              <Button variant="ghost" size="sm" contentAlign="start" w="full">
+              <Button variant="ghost" size={buttonSize.badge} rounded={rounded.default} contentAlign="start" w="full">
                 <Icon component="span" lucideIcon={Users} />
                 <Text size="xs" c="muted">Team</Text>
               </Button>
-              <Button variant="ghost" size="sm" contentAlign="start" w="full">
+              <Button variant="ghost" size={buttonSize.badge} rounded={rounded.default} contentAlign="start" w="full">
                 <Icon component="span" lucideIcon={Plug} />
                 <Text size="xs" c="muted">Integrations</Text>
               </Button>

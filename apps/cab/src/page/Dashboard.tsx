@@ -7,13 +7,13 @@ import { useMobile } from '@ui8kit/hooks';
 import { Home } from 'lucide-react';
 
 import { Block, Container, Grid, Box, Card, Button, Icon, Stack, Text, Title } from "@ui8kit/core"
-import { useTheme } from '@/providers/ThemeProvider';
+import { useAppTheme } from '@/hooks/use-theme';
 
 export default function Dashboard() {
   const sidebarPanelRef = useRef<any>(null);
   const panelGroupRef = useRef<any>(null);
 
-  const { isDarkMode, toggleDarkMode, rounded, buttonSize } = useTheme();
+  const { isDarkMode, toggleDarkMode, rounded, buttonSize } = useAppTheme();
   const isMobile = useMobile();
 
   return (
