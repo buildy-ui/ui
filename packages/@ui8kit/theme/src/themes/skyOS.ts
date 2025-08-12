@@ -2,7 +2,7 @@
 export const skyOSTheme = {
   name: "SkyOS",
   rounded: {
-    // none | default | sm | md | lg | xl | "2xl" | "3xl" | full
+    // "sm" | "md" | "lg" | "xl" | "full" | "default" | "none" | "2xl" | "3xl" | null | undefined
     default: "lg" as const,
     badge: "full" as const
   },
