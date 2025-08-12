@@ -40,7 +40,7 @@ export function Home() {
               <Stack gap="sm" align="start">
                 <Text size="lg" fw="bold" c="primary">{card.title}</Text>
                 <Text size="sm" c="muted">{card.description}</Text>
-                <Button variant="ghost" size={buttonSize.default} rounded={rounded?.default}>
+                <Button variant="ghost" size={buttonSize.default} rounded={rounded.button}>
                   <Icon component="span" lucideIcon={HomeIcon} />
                   <Text size="sm" c="muted">{card.buttonText}</Text>
                 </Button>
@@ -53,12 +53,19 @@ export function Home() {
           <Stack gap="md" align="start">
             <Text size="lg" fw="bold" c="primary">{content.cardTitle}</Text>
             <Text c="muted">{content.cardDescription}</Text>
-            <Button variant="secondary" size={buttonSize.default} rounded={rounded?.default}>
+            <Button variant="secondary" size={buttonSize.default} rounded={rounded.button}>
               <Icon component="span" lucideIcon={HomeIcon} />
               <Text size="sm" c="muted">{content.buttonText}</Text>
             </Button>
           </Stack>
         </Card>
+
+        <Grid cols="1-2-3" gap="lg" w="full">
+          <Box p="md" rounded={rounded?.default} shadow="none" bg="card" border="1px" aspect="16/9" w="full"></Box>
+          <Box p="md" rounded={rounded?.default} shadow="none" bg="card" border="1px" aspect="16/9" w="full"></Box>
+          <Box p="md" rounded={rounded?.default} shadow="none" bg="card" border="1px" aspect="16/9" w="full"></Box>
+        </Grid>
+        <Box p="md" rounded={rounded?.default} shadow="none" bg="card" border="1px" aspect="16/9" w="full"></Box>
       </Stack>
     </Box>
   );

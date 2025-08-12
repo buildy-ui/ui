@@ -28,8 +28,8 @@ const content = {
     {
       title: "Card Title",
       description: "Card Description 3",
-      chartData: [5,8,6,9,12,10,14,9,11,13],
-      chartColor: "text-primary",
+      chartData: [8,6,9,12,10,14],
+      chartColor: "text-teal-500",
       buttonText: "Call to action 3",
     },
   ]
@@ -49,10 +49,10 @@ export function Stat() {
                 <Text size="lg" fw="bold" c="primary">{card.title}</Text>
                 <Text size="sm" c="muted">{card.description}</Text>
                 <Group gap="md" align="center" w="full" justify="center">
-                  {card.chartData && <Sparkline data={card.chartData} width={240} height={75} className={card.chartColor} showFill />}
-                  {card.barData && <BarMini data={card.barData} width={240} height={75} className={card.chartColor} />}
+                  {card.chartData && <Sparkline data={card.chartData} width={280} height={125} className={card.chartColor} showFill />}
+                  {card.barData && <BarMini data={card.barData} width={240} height={125} className={card.chartColor} />}
                 </Group>
-                <Button variant="ghost" size={buttonSize.default} rounded={rounded?.default}>
+                <Button variant="ghost" size={buttonSize.default} rounded={rounded.button}>
                   <Icon component="span" lucideIcon={BarChartIcon} />
                   <Text size="sm" c="muted">{card.buttonText}</Text>
                 </Button>
@@ -65,7 +65,7 @@ export function Stat() {
           <Stack gap="md" align="start">
             <Text size="lg" fw="bold" c="primary">{content.cardTitle}</Text>
             <Text c="muted">{content.cardDescription}</Text>
-            <Button variant="secondary" size={buttonSize.default} rounded={rounded?.default}>
+            <Button variant="secondary" size={buttonSize.default} rounded={rounded.button}>
               <Icon component="span" lucideIcon={HomeIcon} />
               <Text size="sm" c="muted">{content.buttonText}</Text>
             </Button>

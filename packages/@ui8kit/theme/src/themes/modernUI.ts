@@ -4,6 +4,7 @@ export const modernUITheme = {
   rounded: {
     // none | default | sm | md | lg | xl | "2xl" | "3xl" | full
     default: "default" as const,
+    button: "default" as const,
     badge: "default" as const
   },
   buttonSize: {

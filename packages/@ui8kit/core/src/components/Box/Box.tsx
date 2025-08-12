@@ -10,13 +10,15 @@ import {
   layoutVariants,
   borderVariants,
   flexVariants,
+  aspectRatioVariants,
   type VariantSpacingProps,
   type RoundedProps,
   type ShadowProps,
   type ColorProps,
   type VariantLayoutProps,
   type BorderProps,
-  type VariantFlexProps
+  type VariantFlexProps,
+  type AspectRatioProps
 } from "../../core/variants";
 
 export interface BoxProps 
@@ -26,7 +28,8 @@ export interface BoxProps
     ColorProps,
     VariantLayoutProps,
     BorderProps,
-    VariantFlexProps {
+    VariantFlexProps,
+    AspectRatioProps {
   component?: ElementType;
   className?: string;
   children?: ReactNode;
@@ -53,6 +56,8 @@ export const Box = forwardRef<HTMLElement, BoxProps>(
     border, borderTop, borderBottom, borderLeft, borderRight,
     // Flex props
     direction, align, justify, wrap, gap,
+    // Aspect ratio props
+    aspect,
     ...props 
   }, ref) => {
     return (
@@ -77,6 +82,8 @@ export const Box = forwardRef<HTMLElement, BoxProps>(
           borderVariants({ border, borderTop, borderBottom, borderLeft, borderRight }),
           // Apply flex variants
           flexVariants({ direction, align, justify, wrap, gap }),
+          // Apply aspect ratio variants
+          aspectRatioVariants({ aspect }),
           className
         )}
         {...props}

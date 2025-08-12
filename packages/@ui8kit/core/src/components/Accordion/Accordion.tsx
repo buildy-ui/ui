@@ -3,7 +3,7 @@
 import * as React from "react"
 import { ChevronDown, ChevronUp } from "lucide-react"
 import { cn, layoutVariants, flexVariants,type VariantLayoutProps, type VariantFlexProps } from "../../core";
-import { Button } from "../Button";
+import { Button, ButtonProps } from "../Button";
 import { Icon } from "../Icon";
 
 type AccordionContextValue = {
@@ -120,10 +120,10 @@ const AccordionItem = React.forwardRef<HTMLDivElement, AccordionItemProps>(
 );
 AccordionItem.displayName = "AccordionItem";
 
-export interface AccordionTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, Pick<VariantLayoutProps, 'w'> {}
+export interface AccordionTriggerProps extends ButtonProps, Pick<VariantLayoutProps, 'w'> {}
 
 const AccordionTrigger = React.forwardRef<HTMLButtonElement, AccordionTriggerProps>(
-  ({ w, className, ...props }, ref) => {
+  ({ w, rounded, className, ...props }, ref) => {
     const { onItemClick } = useAccordionContext();
     const { value } = useAccordionItemContext();
     const { value: contextValue } = useAccordionContext();
@@ -140,6 +140,7 @@ const AccordionTrigger = React.forwardRef<HTMLButtonElement, AccordionTriggerPro
         contentAlign="between"
         onClick={() => onItemClick(value)}
         data-class="accordion-trigger"
+        rounded={rounded}
         className={className}
         {...props}
       >
