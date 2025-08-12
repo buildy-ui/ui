@@ -1,17 +1,19 @@
 import { Stack, Button, Icon, Text, Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@ui8kit/core";
 import { Home, BarChart3, CreditCard, Users, Plug } from "lucide-react";
 import { useAppTheme } from '@/hooks/use-theme';
+import { useNavigate } from "react-router-dom";
 
 export function NavMenu() {
   const { rounded, buttonSize } = useAppTheme();
+  const navigate = useNavigate();
   return (
     <Stack gap="sm" align="start">
-      <Button variant="ghost" size={buttonSize.default} rounded={rounded.default} contentAlign="start" w="full">
+      <Button onClick={() => navigate('/')} variant="ghost" size={buttonSize.default} rounded={rounded.default} contentAlign="start" w="full">
         <Icon component="span" lucideIcon={Home} />
         <Text size="sm" c="muted">Overview</Text>
       </Button>
 
-      <Button variant="ghost" size={buttonSize.default} rounded={rounded.default} contentAlign="start" w="full">
+      <Button onClick={() => navigate('/stat')} variant="ghost" size={buttonSize.default} rounded={rounded.default} contentAlign="start" w="full">
         <Icon component="span" lucideIcon={BarChart3} />
         <Text size="sm" c="muted">Reports</Text>
       </Button>
