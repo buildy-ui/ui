@@ -10,7 +10,8 @@ export const skyOSTheme = {
     // xs | sm | default | md | lg | xl | icon
     default: "default" as const,
     badge: "sm" as const
-  }
+  },
+  isNavFixed: false
 } as const;
 
 export type SkyOSTheme = typeof skyOSTheme; 

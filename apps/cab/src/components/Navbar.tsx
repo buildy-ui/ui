@@ -22,7 +22,15 @@ export function Navbar({ isDarkMode, toggleDarkMode }: { isDarkMode: boolean, to
     return () => window.removeEventListener('resize', updateVar);
   }, []);
   return (
-    <Block ref={navRef as any} component="nav" bg="card" p="md" data-class="navbar" className={`h-16 border-b border-border ${isNavFixed ? 'fixed top-0 left-0 right-0 z-50' : ''}`}>
+    <Block
+      ref={navRef as any}
+      component="nav"
+      bg="card"
+      p="md"
+      data-class="navbar"
+      className={`border-b border-border ${isNavFixed ? 'fixed top-0 left-0 right-0 z-50' : ''}`}
+      position={isNavFixed ? 'fixed' : 'relative'}
+    >
       <Group justify="between" align="center">
         <Group gap="sm" align="center">
             <Icon size="lg" c="primary" component="span" lucideIcon={Atom} />
@@ -33,11 +41,11 @@ export function Navbar({ isDarkMode, toggleDarkMode }: { isDarkMode: boolean, to
 
         {!isMobile && (
           <Group gap="xs" align="center">
-            <Button variant="ghost" size={buttonSize.badge} rounded={rounded.default}>
+            <Button variant="ghost" size={buttonSize.default} rounded={rounded.default}>
               <Icon component="span" lucideIcon={Home} />
               <Text size="sm" c="muted">Home</Text>
             </Button>
-            <Button variant="ghost" size={buttonSize.badge} rounded={rounded.default} onClick={toggleDarkMode}>
+            <Button variant="ghost" size={buttonSize.default} rounded={rounded.default} onClick={toggleDarkMode}>
               <Icon component="span" lucideIcon={isDarkMode ? Moon : Sun} />
             </Button>
           </Group>
@@ -45,7 +53,7 @@ export function Navbar({ isDarkMode, toggleDarkMode }: { isDarkMode: boolean, to
 
         {isMobile && (
           <Group gap="xs" align="center">
-            <Button variant="ghost" size={buttonSize.badge} rounded={rounded.default} onClick={toggleDarkMode}>
+            <Button variant="ghost" size={buttonSize.default} rounded={rounded.default} onClick={toggleDarkMode}>
               <Icon component="span" lucideIcon={isDarkMode ? Moon : Sun} />
             </Button>
             <Sheet id="main-nav" side="left" size="md" triggerIcon={Menu} title="Menu">

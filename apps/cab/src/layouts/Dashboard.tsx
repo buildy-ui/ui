@@ -21,7 +21,17 @@ export function Dashboard({ page }: DashboardLayoutProps) {
   return (
     <>
       <Navbar isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
-      <Block component="main" h="screen" position="relative" w="full" style={{ paddingTop: isNavFixed ? 'var(--app-navbar-h)' : undefined }}>
+      <Block
+        component="main"
+        h={isNavFixed ? 'screen' : undefined}
+        position="relative"
+        w="full"
+        style={
+          isNavFixed
+            ? { marginTop: 'var(--app-navbar-h)', height: 'calc(100vh - var(--app-navbar-h))' }
+            : undefined
+        }
+      >
         <PanelGroup direction="horizontal" ref={panelGroupRef} autoSaveId="dashboard-panels">
           {!isMobile && (
             <Panel
@@ -40,7 +50,11 @@ export function Dashboard({ page }: DashboardLayoutProps) {
             <PanelResizeHandle data-class="resize-handle" className="w-1 bg-border data-[panel-group-direction=horizontal]:cursor-col-resize" />
           )}
           <Panel id="main" order={2} defaultSize={!isMobile ? 80 : 100} minSize={50} className="flex flex-col" data-class="resize-panel">
-            <Box p="md" overflow="auto" style={{ height: isNavFixed ? 'calc(100vh - var(--app-navbar-h))' : '100%' }}>
+            <Box
+              p="md"
+              overflow={isNavFixed ? 'auto' : 'visible'}
+              style={isNavFixed ? { height: '100%' } : undefined}
+            >
               <Container>
                 {(() => { const Page = page; return <Page />; })()}
               </Container>

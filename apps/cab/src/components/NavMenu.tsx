@@ -6,32 +6,32 @@ export function NavMenu() {
   const { rounded, buttonSize } = useAppTheme();
   return (
     <Stack gap="sm" align="start">
-      <Button variant="ghost" size={buttonSize.badge} rounded={rounded.default} contentAlign="start" w="full">
+      <Button variant="ghost" size={buttonSize.default} rounded={rounded.default} contentAlign="start" w="full">
         <Icon component="span" lucideIcon={Home} />
         <Text size="sm" c="muted">Overview</Text>
       </Button>
 
-      <Button variant="ghost" size={buttonSize.badge} rounded={rounded.default} contentAlign="start" w="full">
+      <Button variant="ghost" size={buttonSize.default} rounded={rounded.default} contentAlign="start" w="full">
         <Icon component="span" lucideIcon={BarChart3} />
         <Text size="sm" c="muted">Reports</Text>
       </Button>
 
-      <Accordion type="single" collapsible defaultValue="more" w="full">
+      <Accordion type="single" collapsible w="full">
         <AccordionItem gap="sm" value="more">
           <AccordionTrigger>
-            <Text c="foreground">More</Text>
+            <Text size="sm" c="foreground">More</Text>
           </AccordionTrigger>
           <AccordionContent>
             <Stack gap="xs" align="start">
-              <Button variant="ghost" size={buttonSize.badge} rounded={rounded.default} contentAlign="start" w="full">
+              <Button variant="ghost" size={buttonSize.default} rounded={rounded.default} contentAlign="start" w="full">
                 <Icon component="span" lucideIcon={CreditCard} />
                 <Text size="xs" c="muted">Billing</Text>
               </Button>
-              <Button variant="ghost" size={buttonSize.badge} rounded={rounded.default} contentAlign="start" w="full">
+              <Button variant="ghost" size={buttonSize.default} rounded={rounded.default} contentAlign="start" w="full">
                 <Icon component="span" lucideIcon={Users} />
                 <Text size="xs" c="muted">Team</Text>
               </Button>
-              <Button variant="ghost" size={buttonSize.badge} rounded={rounded.default} contentAlign="start" w="full">
+              <Button variant="ghost" size={buttonSize.default} rounded={rounded.default} contentAlign="start" w="full">
                 <Icon component="span" lucideIcon={Plug} />
                 <Text size="xs" c="muted">Integrations</Text>
               </Button>
