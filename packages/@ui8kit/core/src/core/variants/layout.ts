@@ -35,6 +35,11 @@ export const layoutVariants = cva("", {
     maxW: {
       none: "max-w-none",
       full: "max-w-full",
+      sm: "max-w-sm",
+      md: "max-w-md",
+      lg: "max-w-lg",
+      xl: "max-w-xl",
+      "2xl": "max-w-2xl",
       screenSm: "max-w-screen-sm",
       screenMd: "max-w-screen-md",
       screenLg: "max-w-screen-lg",

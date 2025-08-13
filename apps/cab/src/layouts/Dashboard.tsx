@@ -3,7 +3,7 @@ import { Panel, PanelResizeHandle, PanelGroup } from 'react-resizable-panels';
 import { Sidebar } from '@/components/Sidebar';
 import { Navbar } from '@/components/Navbar';
 import { useRef, type ComponentType } from 'react';
-import { Block, Container, Box, Stack } from "@ui8kit/core"
+import { Block, Container, Box } from "@ui8kit/core"
 import { useAppTheme } from '@/hooks/use-theme';
 import { useMobile } from '@ui8kit/hooks';
 

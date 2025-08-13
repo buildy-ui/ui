@@ -51,7 +51,7 @@ export const Box = forwardRef<HTMLElement, BoxProps>(
     // Color props
     bg, c, borderColor,
     // Layout props
-    display, w, h, minH, position, z, overflow,
+    display, maxW, w, h, minH, position, z, overflow,
     // Border props
     border, borderTop, borderBottom, borderLeft, borderRight,
     // Flex props
@@ -77,7 +77,7 @@ export const Box = forwardRef<HTMLElement, BoxProps>(
           // Apply color variants
           colorVariants({ bg, c, borderColor }),
           // Apply layout variants
-          layoutVariants({ display, w, h, minH, position, z, overflow }),
+          layoutVariants({ display, maxW, w, h, minH, position, z, overflow }),
           // Apply border variants
           borderVariants({ border, borderTop, borderBottom, borderLeft, borderRight }),
           // Apply flex variants

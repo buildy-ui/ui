@@ -10,7 +10,7 @@ export interface Template {
   name: string;
   description: string;
   component: React.ComponentType<any>;
-  defaultProps?: Record<string, any>;  // Props из template (variant, leftMedia, etc)
-  defaults?: Record<string, any>;      // Default content data
-  schema?: Record<string, any>;        // JSON schema для валидации
+  defaultProps?: Record<string, any>;
+  defaults?: Record<string, any>;
+  schema?: Record<string, any>;
 }
