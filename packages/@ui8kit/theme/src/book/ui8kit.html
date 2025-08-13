@@ -1,0 +1,235 @@
+
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8px UIKit — UI8Kit Book</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['"Nunito Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer base {
+            body {@apply bg-slate-50 text-slate-800 antialiased font-sans;}
+        }
+        @layer components {
+            .container-8 {@apply mx-auto max-w-[1200px] bg-white shadow-lg;}
+            .page-8 {@apply w-full p-16 relative border-b border-slate-200;}
+            .page-title {@apply text-4xl font-extrabold tracking-tight mb-8 text-slate-900;}
+            .page-subtitle {@apply text-xl font-medium mb-5 text-slate-600;}
+            .section-8 {@apply mb-10;}
+            .section-title {@apply text-2xl font-bold mb-5 text-slate-800;}
+            .image-container {@apply my-5 text-center;}
+            .image-container img {@apply rounded shadow;}
+            .description {@apply text-base leading-7 text-slate-600 mb-5;}
+            .footer-8 {@apply p-8 bg-slate-50 text-center text-sm text-slate-500;}
+            .page-number {@apply absolute bottom-5 right-16 text-sm text-slate-400;}
+            .badge {@apply inline-flex items-center rounded px-2.5 py-1 text-sm font-medium;}
+            .card-8 {@apply bg-white border border-slate-200 rounded-xl p-6;}
+            .lead-divider {@apply h-1 w-16 bg-blue-500 rounded mx-auto;}
+        }
+        @layer utilities {
+            .grid-8 {
+                background-image:
+                    linear-gradient(to right, rgba(0,0,0,0.06) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(0,0,0,0.06) 1px, transparent 1px),
+                    linear-gradient(to right, rgba(0,0,0,0.12) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(0,0,0,0.12) 1px, transparent 1px);
+                background-size: 8px 8px, 8px 8px, 64px 64px, 64px 64px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="container-8">
+        <section class="page-8 text-center space-y-4">
+            <h1 class="page-title">8px UIKit Design System</h1>
+            <p class="page-subtitle">Дизайн-система на 8px сетке для консистентных, масштабируемых и доступных интерфейсов</p>
+            <div class="lead-divider"></div>
+        </section>
+
+        <section class="page-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="card-8 space-y-6">
+                    <div class="grid grid-cols-2 gap-4 items-start">
+                        <div class="space-y-3">
+                            <div class="text-2xl font-extrabold tracking-wide">8PX UIKIT</div>
+                            <div class="space-y-2">
+                                <div class="text-xs uppercase tracking-wide text-slate-500">Color Palette</div>
+                                <div class="flex items-center gap-2">
+                                    <div class="h-6 w-8 rounded bg-blue-500" title="Primary"></div>
+                                    <div class="h-6 w-8 rounded bg-red-500" title="Danger"></div>
+                                    <div class="h-6 w-8 rounded bg-yellow-500" title="Warning"></div>
+                                    <div class="h-6 w-8 rounded bg-emerald-500" title="Success"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="space-y-2 text-right">
+                            <div class="text-2xl font-extrabold leading-none">GRID SYSTEM</div>
+                            <div class="text-sm font-semibold tracking-wide text-slate-500">OVERVIEW</div>
+                        </div>
+                    </div>
+                    <div class="relative mx-auto w-full aspect-square max-w-xs grid-8 rounded-lg border border-slate-200"></div>
+                </div>
+
+                <div class="card-8">
+                    <div class="text-xl font-bold mb-4">Buttons</div>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="text-xs uppercase tracking-wide text-slate-500 mb-2">Primary</div>
+                            <button class="px-4 py-2 rounded-md bg-blue-500 text-white font-medium shadow hover:bg-blue-600">Button</button>
+                        </div>
+                        <div>
+                            <div class="text-xs uppercase tracking-wide text-slate-500 mb-2">Secondary</div>
+                            <button class="px-4 py-2 rounded-md border border-slate-300 bg-white text-slate-800 font-medium hover:bg-slate-50">Button</button>
+                        </div>
+                        <div>
+                            <div class="text-xs uppercase tracking-wide text-slate-500 mb-2">Disabled</div>
+                            <button disabled class="px-4 py-2 rounded-md bg-slate-200 text-slate-500 font-medium cursor-not-allowed">Button</button>
+                        </div>
+                        <div class="grid grid-cols-2 gap-6">
+                            <div>
+                                <div class="text-xs uppercase tracking-wide text-slate-500 mb-2">Toggles</div>
+                                <div class="flex items-center gap-6">
+                                    <div class="relative w-10 h-6 rounded-full bg-slate-300">
+                                        <div class="absolute top-0.5 left-0.5 h-5 w-5 rounded-full bg-white shadow"></div>
+                                    </div>
+                                    <div class="relative w-10 h-6 rounded-full bg-emerald-500">
+                                        <div class="absolute top-0.5 left-[18px] h-5 w-5 rounded-full bg-white shadow"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="text-xs uppercase tracking-wide text-slate-500 mb-2">Radio Buttons</div>
+                                <div class="flex items-center gap-6">
+                                    <div class="h-5 w-5 rounded-full border-2 border-slate-400"></div>
+                                    <div class="relative h-5 w-5 rounded-full border-2 border-emerald-600">
+                                        <div class="absolute inset-1 rounded-full bg-emerald-600"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-8 space-y-6">
+                    <div class="text-xl font-bold">Inputs</div>
+                    <div class="space-y-3">
+                        <div class="text-xs uppercase tracking-wide text-slate-500">Input</div>
+                        <input class="w-full rounded-md border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Input" />
+                    </div>
+                    <div class="space-y-3">
+                        <div class="text-xs uppercase tracking-wide text-slate-500">Active Input Field</div>
+                        <input class="w-full rounded-md border border-blue-500 ring-2 ring-blue-200 px-3 py-2 focus:outline-none" placeholder="Input" value="Input" />
+                    </div>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div>
+                            <div class="text-xs uppercase tracking-wide text-slate-500 mb-2">Checkboxes</div>
+                            <div class="flex items-center gap-6">
+                                <div class="h-5 w-5 rounded border border-slate-400"></div>
+                                <div class="relative h-5 w-5 rounded border border-emerald-600 bg-emerald-500 text-white">
+                                    <svg viewBox="0 0 20 20" class="absolute inset-0 p-0.5" aria-hidden="true"><path d="M7.5 13.5 4.5 10.5m3 3 8-8" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </div>
+                                <div class="relative h-5 w-5 rounded-full border border-emerald-600">
+                                    <div class="absolute inset-1 rounded-full bg-emerald-500"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-xs uppercase tracking-wide text-slate-500 mb-2">Dropdown</div>
+                            <div class="flex items-center gap-4">
+                                <button class="px-3 py-2 rounded-md border border-slate-300 bg-white text-slate-800 hover:bg-slate-50">Dropdown</button>
+                                <button class="px-3 py-2 rounded-md bg-yellow-500 text-white hover:bg-yellow-600 flex items-center gap-2">
+                                    <span>Dropdown</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                <div class="card-8">
+                    <div class="text-lg font-semibold mb-2">Grid System & Color Palette</div>
+                    <p class="text-slate-600">Наш 8px грид обеспечивает основу для макетов, отступов и размеров компонентов. Палитра включает основные, вторичные и нейтральные цвета с учетом доступности.</p>
+                    <p class="text-slate-500 text-sm mt-4">8px Base Grid · Color Tokens · Spacing System · WCAG 2.1 AA</p>
+                </div>
+                <div class="card-8">
+                    <div class="text-lg font-semibold mb-2">Basic Components</div>
+                    <p class="text-slate-600">Библиотека UI‑компонентов: кнопки, поля ввода, тогглы, чекбоксы, радиокнопки, выпадающие списки — все на 8px‑сетке.</p>
+                    <p class="text-slate-500 text-sm mt-4">Form Controls · Navigation · Feedback · Containers</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                <div class="card-8 space-y-4">
+                    <div class="relative w-full aspect-square grid-8 rounded-lg border border-slate-200 p-8">
+                        <div class="grid grid-cols-5 md:grid-cols-6 gap-8 place-items-center">
+                            <svg viewBox="0 0 24 24" class="h-10 w-10 text-blue-500" fill="currentColor" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-10.5z"/></svg>
+                            <svg viewBox="0 0 24 24" class="h-10 w-10 text-red-500" fill="currentColor" aria-hidden="true"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79L20 21.5 21.5 20 15.5 14zM9.5 14A4.5 4.5 0 1 1 14 9.5 4.505 4.505 0 0 1 9.5 14z"/></svg>
+                            <svg viewBox="0 0 24 24" class="h-10 w-10 text-emerald-500" fill="currentColor" aria-hidden="true"><path d="M19.14 12.94A7.996 7.996 0 1 0 12 20v-6h-2v-2h2V9.5A3.5 3.5 0 0 1 15.5 6h1.5v2h-1.5A1.5 1.5 0 0 0 14 9.5V12h3l-0.86 2.94z"/></svg>
+                            <svg viewBox="0 0 24 24" class="h-10 w-10 text-yellow-500" fill="currentColor" aria-hidden="true"><path d="M12 2a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2h-6v6a1 1 0 1 1-2 0v-6H5a1 1 0 1 1 0-2h6V3a1 1 0 0 1 1-1z"/></svg>
+                            <svg viewBox="0 0 24 24" class="h-10 w-10 text-blue-500" fill="currentColor" aria-hidden="true"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zm1-10.5 4-4-1.5-1.5L11 10.5 8.5 8 7 9.5l4 4 2-2z"/></svg>
+                            <svg viewBox="0 0 24 24" class="h-10 w-10 text-emerald-500" fill="currentColor" aria-hidden="true"><path d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm-1-6 6-6-1.5-1.5L11 13l-2.5-2.5L7 12l4 4z"/></svg>
+                            <svg viewBox="0 0 24 24" class="h-10 w-10 text-red-500" fill="currentColor" aria-hidden="true"><path d="M6 19 19 6l-1.5-1.5L4.5 17.5 6 19zm0-13L19 19l-1.5 1.5L4.5 7.5 6 6z"/></svg>
+                            <svg viewBox="0 0 24 24" class="h-10 w-10 text-yellow-500" fill="currentColor" aria-hidden="true"><path d="M4 11h16v2H4v-2z"/></svg>
+                            <svg viewBox="0 0 24 24" class="h-10 w-10 text-emerald-500" fill="currentColor" aria-hidden="true"><path d="M5 12h14l-6 6v-4H5v-4h8V6l6 6z"/></svg>
+                            <svg viewBox="0 0 24 24" class="h-10 w-10 text-blue-500" fill="currentColor" aria-hidden="true"><path d="M4 6h16v2H4V6zm0 5h16v2H4v-2zm0 5h16v2H4v-2z"/></svg>
+                            <svg viewBox="0 0 24 24" class="h-10 w-10 text-red-500" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2zm3.536 13.536-1.414 1.414L12 13.414l-2.121 2.121-1.415-1.414L10.586 12 8.464 9.879l1.415-1.415L12 10.586l2.121-2.122 1.414 1.415L13.414 12l2.122 2.121z"/></svg>
+                            <svg viewBox="0 0 24 24" class="h-10 w-10 text-yellow-500" fill="currentColor" aria-hidden="true"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zM11 7h2v6h-2V7zm0 8h2v2h-2v-2z"/></svg>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="text-lg font-semibold mb-2">Icon Set</div>
+                        <p class="text-slate-600">Консистентная библиотека иконок, разработанная на 8px‑сетке, в стилях filled и outline. Оптимизирована для различных размеров.</p>
+                        <p class="text-slate-500 text-sm mt-4">Filled · Outline · 16px Base · SVG</p>
+                    </div>
+                </div>
+                <div class="card-8 space-y-6">
+                    <div class="text-2xl font-bold">Typography System</div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-4"><div class="text-blue-500 font-bold text-3xl">H1</div><div class="text-slate-600">32px<span class="text-slate-400 ml-3">Line height 40px</span></div></div>
+                            <div class="flex items-center gap-4"><div class="text-blue-500 font-bold text-2xl">H2</div><div class="text-slate-600">24px<span class="text-slate-400 ml-3">Line height 32px</span></div></div>
+                            <div class="flex items-center gap-4"><div class="text-blue-500 font-bold text-xl">H3</div><div class="text-slate-600">20px<span class="text-slate-400 ml-3">Line height 28px</span></div></div>
+                            <div class="flex items-center gap-4"><div class="text-blue-500 font-bold text-lg">H4</div><div class="text-slate-600">16px<span class="text-slate-400 ml-3">Line height 24px</span></div></div>
+                            <div class="flex items-center gap-4"><div class="text-blue-500 font-bold">H5</div><div class="text-slate-600">14px<span class="text-slate-400 ml-3">Line height 16px</span></div></div>
+                            <div class="flex items-center gap-4"><div class="text-blue-500 font-semibold text-sm">H6</div><div class="text-slate-600">12px<span class="text-slate-400 ml-3">Line height 0px</span></div></div>
+                            <div class="flex items-center gap-4"><div class="text-slate-800 font-medium">Caption</div><div class="text-slate-600">12px <span class="ml-2">14px</span> <span class="ml-2">16px</span> <span class="ml-2">0.5px</span></div></div>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="text-slate-900 font-semibold">Body text</div>
+                            <p class="text-slate-700">Body text</p>
+                            <div class="text-slate-900 font-semibold mt-6">Caption</div>
+                            <p class="text-slate-700 text-sm">Label</p>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-slate-600">Типографическая шкала, согласованная с 8px‑сеткой. Определены размеры, насыщенности и межстрочные интервалы для заголовков, основного текста и подписей.</p>
+                        <p class="text-slate-500 text-sm mt-4">Type Scale · Line Height · Font Weights · Text Styles</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer-8">
+            <p>© 2025 8px UIKit. Все права защищены.</p>
+            <p>Версия 1.0 | Последнее обновление: Август 2025</p>
+        </footer>
+    </main>
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>8px UIKit Design System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root {
+        --grid-color: rgba(0, 0, 0, 0.06);
+        --grid-color-strong: rgba(0, 0, 0, 0.12);
+      }
+
+      /* 8px grid background */
+      .grid-8 {
+        background-image:
+          linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+          linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+        background-size: 8px 8px;
+      }
+
+      /* 8px grid with 8x strong lines every 8 cells (64px) */
+      .grid-8-strong {
+        background-image:
+          linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+          linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px),
+          linear-gradient(to right, var(--grid-color-strong) 1px, transparent 1px),
+          linear-gradient(to bottom, var(--grid-color-strong) 1px, transparent 1px);
+        background-size: 8px 8px, 8px 8px, 64px 64px, 64px 64px;
+      }
+
+      .caption { font-feature-settings: "tnum" on, "lnum" on; }
+    </style>
+  </head>
+  <body class="bg-slate-50 text-slate-800 antialiased">
+    <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+      <!-- Header -->
+      <section class="text-center space-y-4">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">8px UIKit Design System</h1>
+        <p class="text-slate-600 max-w-3xl mx-auto">
+          A comprehensive design system built on an 8px grid for consistent, scalable, and accessible user interfaces
+        </p>
+        <div class="h-1 w-16 bg-blue-500 rounded mx-auto"></div>
+      </section>
+
+      <!-- Top grid: Intro, Buttons, Inputs -->
+      <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- 8PX UIKit + Grid -->
+        <div class="bg-white border border-slate-200 rounded-xl p-6 space-y-6">
+          <div class="grid grid-cols-2 gap-4 items-start">
+            <div class="space-y-3">
+              <div class="text-2xl font-extrabold tracking-wide">8PX UIKIT</div>
+              <div class="space-y-2">
+                <div class="text-xs uppercase tracking-wide text-slate-500">Color Palette</div>
+                <div class="flex items-center gap-2">
+                  <div class="h-6 w-8 rounded bg-blue-500" title="Primary: blue-500"></div>
+                  <div class="h-6 w-8 rounded bg-red-500" title="Danger: red-500"></div>
+                  <div class="h-6 w-8 rounded bg-yellow-500" title="Warning: yellow-500"></div>
+                  <div class="h-6 w-8 rounded bg-emerald-500" title="Success: emerald-500"></div>
+                </div>
+              </div>
+            </div>
+            <div class="space-y-2 text-right">
+              <div class="text-2xl font-extrabold leading-none">GRID SYSTEM</div>
+              <div class="text-sm font-semibold tracking-wide text-slate-500">OVERVIEW</div>
+            </div>
+          </div>
+
+          <div class="relative mx-auto w-full aspect-square max-w-xs grid-8-strong rounded-lg border border-slate-200"></div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="bg-white border border-slate-200 rounded-xl p-6">
+          <div class="text-xl font-bold mb-4">Buttons</div>
+          <div class="space-y-6">
+            <div>
+              <div class="text-xs uppercase tracking-wide text-slate-500 mb-2">Primary</div>
+              <button class="px-4 py-2 rounded-md bg-blue-500 text-white font-medium shadow hover:bg-blue-600">Button</button>
+            </div>
+
+            <div>
+              <div class="text-xs uppercase tracking-wide text-slate-500 mb-2">Secondary</div>
+              <button class="px-4 py-2 rounded-md border border-slate-300 bg-white text-slate-800 font-medium hover:bg-slate-50">Button</button>
+            </div>
+
+            <div>
+              <div class="text-xs uppercase tracking-wide text-slate-500 mb-2">Disabled</div>
+              <button disabled class="px-4 py-2 rounded-md bg-slate-200 text-slate-500 font-medium cursor-not-allowed">Button</button>
+            </div>
+
+            <div class="grid grid-cols-2 gap-6">
+              <!-- Toggle -->
+              <div>
+                <div class="text-xs uppercase tracking-wide text-slate-500 mb-2">Toggles</div>
+                <div class="flex items-center gap-6">
+                  <!-- off -->
+                  <div class="relative w-10 h-6 rounded-full bg-slate-300">
+                    <div class="absolute top-0.5 left-0.5 h-5 w-5 rounded-full bg-white shadow"></div>
+                  </div>
+                  <!-- on -->
+                  <div class="relative w-10 h-6 rounded-full bg-emerald-500">
+                    <div class="absolute top-0.5 left-[18px] h-5 w-5 rounded-full bg-white shadow"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Radio buttons -->
+              <div>
+                <div class="text-xs uppercase tracking-wide text-slate-500 mb-2">Radio Buttons</div>
+                <div class="flex items-center gap-6">
+                  <div class="h-5 w-5 rounded-full border-2 border-slate-400"></div>
+                  <div class="relative h-5 w-5 rounded-full border-2 border-emerald-600">
+                    <div class="absolute inset-1 rounded-full bg-emerald-600"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Inputs / Dropdowns -->
+        <div class="bg-white border border-slate-200 rounded-xl p-6 space-y-6">
+          <div class="text-xl font-bold">Inputs</div>
+
+          <div class="space-y-3">
+            <div class="text-xs uppercase tracking-wide text-slate-500">Input</div>
+            <input class="w-full rounded-md border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Input" />
+          </div>
+
+          <div class="space-y-3">
+            <div class="text-xs uppercase tracking-wide text-slate-500">Active Input Field</div>
+            <input class="w-full rounded-md border border-blue-500 ring-2 ring-blue-200 px-3 py-2 focus:outline-none" placeholder="Input" value="Input" />
+          </div>
+
+          <div class="grid grid-cols-2 gap-6">
+            <div>
+              <div class="text-xs uppercase tracking-wide text-slate-500 mb-2">Checkboxes</div>
+              <div class="flex items-center gap-6">
+                <div class="h-5 w-5 rounded border border-slate-400"></div>
+                <div class="relative h-5 w-5 rounded border border-emerald-600 bg-emerald-500 text-white">
+                  <svg viewBox="0 0 20 20" class="absolute inset-0 p-0.5" aria-hidden="true"><path d="M7.5 13.5 4.5 10.5m3 3 8-8" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="relative h-5 w-5 rounded-full border border-emerald-600">
+                  <div class="absolute inset-1 rounded-full bg-emerald-500"></div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="text-xs uppercase tracking-wide text-slate-500 mb-2">Dropdown</div>
+              <div class="flex items-center gap-4">
+                <button class="px-3 py-2 rounded-md border border-slate-300 bg-white text-slate-800 hover:bg-slate-50">Dropdown</button>
+                <button class="px-3 py-2 rounded-md bg-yellow-500 text-white hover:bg-yellow-600 flex items-center gap-2">
+                  <span>Dropdown</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Descriptions row -->
+      <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-white border border-slate-200 rounded-xl p-6">
+          <div class="text-lg font-semibold mb-2">Grid System & Color Palette</div>
+          <p class="text-slate-600">
+            Our 8px grid system provides a consistent foundation for layouts, spacing, and component sizing. The color palette includes primary, secondary, and neutral colors with accessibility considerations.
+          </p>
+          <p class="text-slate-500 text-sm mt-4 caption">8px Base Grid · Color Tokens · Spacing System · WCAG 2.1 AA</p>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-xl p-6">
+          <div class="text-lg font-semibold mb-2">Basic Components</div>
+          <p class="text-slate-600">
+            A comprehensive library of UI components including buttons, input fields, toggles, checkboxes, radio buttons, and dropdown menus—all designed on the 8px grid system.
+          </p>
+          <p class="text-slate-500 text-sm mt-4 caption">Form Controls · Navigation · Feedback · Containers</p>
+        </div>
+      </section>
+
+      <!-- Icons and Typography -->
+      <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Icon grid on 8px board -->
+        <div class="bg-white border border-slate-200 rounded-xl p-6 space-y-4">
+          <div class="relative w-full aspect-square grid-8-strong rounded-lg border border-slate-200 p-8">
+            <div class="grid grid-cols-5 md:grid-cols-6 gap-8 place-items-center">
+              <!-- Simple inline SVG icons in the specified semantic colors -->
+              <svg viewBox="0 0 24 24" class="h-10 w-10 text-blue-500" fill="currentColor" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-10.5z"/></svg>
+              <svg viewBox="0 0 24 24" class="h-10 w-10 text-red-500" fill="currentColor" aria-hidden="true"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79L20 21.5 21.5 20 15.5 14zM9.5 14A4.5 4.5 0 1 1 14 9.5 4.505 4.505 0 0 1 9.5 14z"/></svg>
+              <svg viewBox="0 0 24 24" class="h-10 w-10 text-emerald-500" fill="currentColor" aria-hidden="true"><path d="M19.14 12.94A7.996 7.996 0 1 0 12 20v-6h-2v-2h2V9.5A3.5 3.5 0 0 1 15.5 6h1.5v2h-1.5A1.5 1.5 0 0 0 14 9.5V12h3l-0.86 2.94z"/></svg>
+              <svg viewBox="0 0 24 24" class="h-10 w-10 text-yellow-500" fill="currentColor" aria-hidden="true"><path d="M12 2a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2h-6v6a1 1 0 1 1-2 0v-6H5a1 1 0 1 1 0-2h6V3a1 1 0 0 1 1-1z"/></svg>
+              <svg viewBox="0 0 24 24" class="h-10 w-10 text-blue-500" fill="currentColor" aria-hidden="true"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zm1-10.5 4-4-1.5-1.5L11 10.5 8.5 8 7 9.5l4 4 2-2z"/></svg>
+              <svg viewBox="0 0 24 24" class="h-10 w-10 text-emerald-500" fill="currentColor" aria-hidden="true"><path d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm-1-6 6-6-1.5-1.5L11 13l-2.5-2.5L7 12l4 4z"/></svg>
+              <svg viewBox="0 0 24 24" class="h-10 w-10 text-red-500" fill="currentColor" aria-hidden="true"><path d="M6 19 19 6l-1.5-1.5L4.5 17.5 6 19zm0-13L19 19l-1.5 1.5L4.5 7.5 6 6z"/></svg>
+              <svg viewBox="0 0 24 24" class="h-10 w-10 text-yellow-500" fill="currentColor" aria-hidden="true"><path d="M4 11h16v2H4v-2z"/></svg>
+              <svg viewBox="0 0 24 24" class="h-10 w-10 text-emerald-500" fill="currentColor" aria-hidden="true"><path d="M5 12h14l-6 6v-4H5v-4h8V6l6 6z"/></svg>
+              <svg viewBox="0 0 24 24" class="h-10 w-10 text-blue-500" fill="currentColor" aria-hidden="true"><path d="M4 6h16v2H4V6zm0 5h16v2H4v-2zm0 5h16v2H4v-2z"/></svg>
+              <svg viewBox="0 0 24 24" class="h-10 w-10 text-red-500" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2zm3.536 13.536-1.414 1.414L12 13.414l-2.121 2.121-1.415-1.414L10.586 12 8.464 9.879l1.415-1.415L12 10.586l2.121-2.122 1.414 1.415L13.414 12l2.122 2.121z"/></svg>
+              <svg viewBox="0 0 24 24" class="h-10 w-10 text-yellow-500" fill="currentColor" aria-hidden="true"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zM11 7h2v6h-2V7zm0 8h2v2h-2v-2z"/></svg>
+            </div>
+          </div>
+
+          <div>
+            <div class="text-lg font-semibold mb-2">Icon Set</div>
+            <p class="text-slate-600">A consistent icon library designed on the 8px grid, available in both filled and outline styles. Each icon is optimized for clarity and recognition at various sizes.</p>
+            <p class="text-slate-500 text-sm mt-4 caption">Filled Style · Outline Style · 16px Base Size · SVG Format</p>
+          </div>
+        </div>
+
+        <!-- Typography -->
+        <div class="bg-white border border-slate-200 rounded-xl p-6 space-y-6">
+          <div class="text-2xl font-bold">Typography System</div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+            <div class="space-y-3">
+              <div class="flex items-center gap-4"><div class="text-blue-500 font-bold text-3xl">H1</div><div class="text-slate-600">32px<span class="text-slate-400 ml-3">Line height 40px</span></div></div>
+              <div class="flex items-center gap-4"><div class="text-blue-500 font-bold text-2xl">H2</div><div class="text-slate-600">24px<span class="text-slate-400 ml-3">Line height 32px</span></div></div>
+              <div class="flex items-center gap-4"><div class="text-blue-500 font-bold text-xl">H3</div><div class="text-slate-600">20px<span class="text-slate-400 ml-3">Line height 28px</span></div></div>
+              <div class="flex items-center gap-4"><div class="text-blue-500 font-bold text-lg">H4</div><div class="text-slate-600">16px<span class="text-slate-400 ml-3">Line height 24px</span></div></div>
+              <div class="flex items-center gap-4"><div class="text-blue-500 font-bold">H5</div><div class="text-slate-600">14px<span class="text-slate-400 ml-3">Line height 16px</span></div></div>
+              <div class="flex items-center gap-4"><div class="text-blue-500 font-semibold text-sm">H6</div><div class="text-slate-600">12px<span class="text-slate-400 ml-3">Line height 0px</span></div></div>
+              <div class="flex items-center gap-4 caption"><div class="text-slate-800 font-medium">Caption</div><div class="text-slate-600">12px <span class="ml-2">14px</span> <span class="ml-2">16px</span> <span class="ml-2">0.5px</span></div></div>
+            </div>
+            <div class="space-y-3">
+              <div class="text-slate-900 font-semibold">Body text</div>
+              <p class="text-slate-700">Body text</p>
+              <div class="text-slate-900 font-semibold mt-6">Caption</div>
+              <p class="text-slate-700 text-sm">Label</p>
+            </div>
+          </div>
+          <div>
+            <p class="text-slate-600">A typographic scale that aligns with the 8px grid system. Includes text styles for headings, body text, captions, and UI elements with defined font sizes, weights, and line heights.</p>
+            <p class="text-slate-500 text-sm mt-4 caption">Type Scale · Line Height · Font Weights · Text Styles</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="text-center text-slate-500 text-xs pt-4">
+        2025 8px UIKit Design System. All rights reserved. v1.0
+      </footer>
+    </main>
+  </body>
+  </html>
+
+

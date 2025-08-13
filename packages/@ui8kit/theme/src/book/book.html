@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Брендбук 8px UIKit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['"Nunito Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer base {
+            body {@apply bg-slate-50 text-slate-800 antialiased font-sans;}
+        }
+        @layer components {
+            .container-8 {@apply mx-auto max-w-[1200px] bg-white shadow-lg;}
+            .page-8 {@apply w-full p-16 relative border-b border-slate-200;}
+            .page-title {@apply text-4xl font-extrabold tracking-tight mb-8 text-slate-900;}
+            .subtitle-8 {@apply text-xl text-slate-600 mt-2;}
+            .section-title {@apply text-2xl font-bold mb-5 text-slate-800;}
+            .description {@apply text-base leading-7 text-slate-600 mb-5;}
+            .image-container {@apply my-5 text-center;}
+            .image-container img {@apply rounded shadow;}
+            .footer-8 {@apply p-8 bg-slate-50 text-center text-sm text-slate-500;}
+            .page-number {@apply absolute bottom-5 right-16 text-sm text-slate-400;}
+            .note {@apply bg-slate-50 border-l-4 border-blue-500 p-4 my-5 text-sm text-slate-600;}
+            .tag {@apply inline-block bg-slate-200 text-slate-700 px-2.5 py-1 rounded text-sm mr-2 mb-2;}
+        }
+    </style>
+</head>
+<body>
+    <div class="container-8">
+        <!-- Cover Page -->
+        <div class="page-8 flex flex-col items-center justify-center text-center bg-slate-50">
+            <div class="image-container">
+                <img src="./assets-book/41e38593-3c18-475d-a311-633656d78a95.png" alt="Брендбук 8px UIKit Cover" class="max-w-[800px] w-full">
+            </div>
+            <h1 class="page-title">Брендбук 8px UIKit</h1>
+            <p class="subtitle-8">Руководство по фирменному стилю</p>
+        </div>
+
+        <!-- Logo Design Page -->
+        <div class="page-8">
+            <h2 class="page-title">Логотип</h2>
+            <p class="description">Логотип 8px UIKit основан на минималистичной круговой графике, которая символизирует целостность и универсальность нашего дизайн-системы. Он разработан с учетом современных тенденций в дизайне интерфейсов.</p>
+            
+            <div class="image-container">
+                <img src="./assets-book/e9aa0e05-faa6-4dd2-965a-68a542ea45a6.png" alt="Логотип 8px UIKit" class="max-w-[700px] w-full">
+            </div>
+            
+            <div class="mb-10">
+                <h3 class="section-title">Концепция дизайна</h3>
+                <p class="description">Логотип воплощает основные принципы нашего бренда: простоту, точность и модульность. Круговой элемент представляет собой пиксельную сетку размером 8px, которая является основой нашей дизайн-системы.</p>
+            </div>
+            
+            <div class="mb-10">
+                <h3 class="section-title">Варианты логотипа</h3>
+                <p class="description">Логотип доступен в нескольких вариантах для различных контекстов использования: основной (цветной), монохромный, негативный и упрощенный.</p>
+            </div>
+            
+            <div class="page-number">01</div>
+        </div>
+
+        <!-- Color Palette Page -->
+        <div class="page-8">
+            <h2 class="page-title">Цветовая палитра</h2>
+            <p class="description">Цветовая схема 8px UIKit разработана для обеспечения оптимальной читаемости, доступности и эстетической привлекательности. Все цвета определены в формате HSL для обеспечения точности и согласованности во всех средах.</p>
+            
+            <div class="image-container">
+                <img src="./assets-book/ffe7c197-c84f-4cb9-828b-ded81c671627.png" alt="Цветовая палитра 8px UIKit" class="max-w-[800px] w-full">
+            </div>
+            
+            <div class="mb-10">
+                <h3 class="section-title">Основные цвета</h3>
+                <p class="description">Основные цвета бренда используются для ключевых элементов интерфейса, включая кнопки действия, ссылки и выделенные элементы.</p>
+                <div class="note">
+                    <p><strong class="text-slate-800">Примечание:</strong> При использовании цветов придерживайтесь токенов Tailwind: <span class="text-blue-500 font-semibold">blue-500</span>, <span class="text-red-500 font-semibold">red-500</span>, <span class="text-yellow-500 font-semibold">yellow-500</span>, <span class="text-emerald-500 font-semibold">emerald-500</span>.</p>
+                </div>
+            </div>
+            
+            <div class="mb-10">
+                <h3 class="section-title">Вспомогательные цвета</h3>
+                <p class="description">Вспомогательные цвета дополняют основную палитру и используются для создания визуальной иерархии, обозначения состояний и обеспечения контраста.</p>
+            </div>
+            
+            <div class="page-number">02</div>
+        </div>
+
+        <!-- Logo Usage Guidelines Page -->
+        <div class="page-8">
+            <h2 class="page-title">Правила использования логотипа</h2>
+            <p class="description">Для поддержания целостности бренда важно следовать этим рекомендациям при использовании логотипа 8px UIKit в любых материалах.</p>
+            
+            <div class="image-container">
+              <svg class="max-w-[256px] w-full" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" id="logo-color" width="256" height="256">
+                <defs>
+                  <style>
+                  .primary { fill: hsl(217.2 91.2% 59.8%) }
+                  .danger { fill: hsl(349.7 89.2% 60.2%) }
+                  .warning { fill: hsl(43.3 96.4% 56.3%) }
+                  .success { fill: hsl(160.1 84.1% 39.4%) }
+                  </style>
+                </defs>
+                <title>logo-color</title>
+                <path d="M117.61,99,83.46,80.45a25.46,25.46,0,0,1-37.75,1.3c-9.59,7.61-21.53,17.05-30.34,23.86A64,64,0,0,0,117.61,99Z" class="success" id="success"></path>
+                <path d="M103.48,13.62c-8.69,9.82-18.61,21-25.7,28.91a25.51,25.51,0,0,1,5.15,38.55,19.28,19.28,0,0,0,14.35,32.21A18.9,18.9,0,0,0,111.38,107a64,64,0,0,0-7.91-93.39Z" class="danger" id="danger"></path>
+                <path d="M108.33,17.84a64,64,0,0,0-90.38,90.59,4,4,0,0,0,5.8,0c7.15-7.29,15.15-15.34,21.4-21.53a4,4,0,0,0,.12-5.62A25.5,25.5,0,0,1,81.59,45.54c11.18,10.66,29.64,4.19,32.28-10.61A19,19,0,0,0,108.33,17.84Z" class="primary" id="primary"></path>
+                <path d="M46,82a18.13,18.13,0,0,0-21.5-3.51l-1.36.71a18.76,18.76,0,1,0,25,25.88,15.2,15.2,0,0,0,.88-1.55A18,18,0,0,0,46,82Z" class="warning" id="warning"></path>
+              </svg>
+            </div>
+            
+            <div class="mb-10">
+                <h3 class="section-title">Правильное использование</h3>
+                <p class="description">Логотип должен всегда отображаться с достаточным свободным пространством вокруг него. Минимальное свободное пространство равно высоте буквы "x" в логотипе.</p>
+            </div>
+            
+            <div class="mb-10">
+                <h3 class="section-title">Недопустимое использование</h3>
+                <p class="description">Не искажайте пропорции логотипа, не меняйте его цвета, не добавляйте эффекты и не размещайте его на сложных фонах, которые снижают его видимость.</p>
+                <div class="note">
+                    <p><strong class="text-red-500">Важно:</strong> Никогда не изменяйте пропорции логотипа и не используйте неутвержденные цвета.</p>
+                </div>
+            </div>
+            
+            <div class="page-number">03</div>
+        </div>
+
+        <!-- Typography System Page -->
+        <div class="page-8">
+            <h2 class="page-title">Типографика</h2>
+            <p class="description">Типографическая система 8px UIKit разработана для обеспечения оптимальной читаемости и визуальной гармонии во всех материалах бренда.</p>
+            
+            <div class="image-container">
+                <img src="./assets-book/10ee39a7-48a3-495a-82bd-9cd6f8311460.png" alt="Система типографики" class="max-w-[800px] w-full">
+            </div>
+            
+            <div class="mb-10">
+                <h3 class="section-title">Основные шрифты</h3>
+                <p class="description">Основной шрифт бренда — современный, чёткий и легко читаемый шрифт без засечек, который хорошо работает как в цифровых, так и в печатных материалах.</p>
+            </div>
+            
+            <div class="mb-10">
+                <h3 class="section-title">Иерархия текста</h3>
+                <p class="description">Чёткая иерархия помогает быстро сканировать контент. Используйте согласованные размеры и насыщенности.</p>
+                <div class="mt-4">
+                    <span class="tag">H1: 32px / Bold</span>
+                    <span class="tag">H2: 24px / Bold</span>
+                    <span class="tag">H3: 20px / Medium</span>
+                    <span class="tag">Body: 16px / Regular</span>
+                    <span class="tag">Caption: 14px / Regular</span>
+                </div>
+            </div>
+            
+            <div class="page-number">04</div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-8">
+            <p>© 2025 8px UIKit. Все права защищены.</p>
+            <p>Версия 1.0 | Последнее обновление: Август 2025</p>
+        </div>
+    </div>
+
+
+</body></html>
