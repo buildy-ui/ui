@@ -1,6 +1,7 @@
 "use client"
 import { Panel, PanelResizeHandle, PanelGroup } from 'react-resizable-panels';
 import { Sidebar } from '@/components/Sidebar';
+// import BlockSidebar from '@/components/BlockSidebar';
 import { Navbar } from '@/components/Navbar';
 import { useRef, type ComponentType } from 'react';
 import { Block, Container, Box } from "@ui8kit/core"
@@ -44,6 +45,7 @@ export function Dashboard({ page }: DashboardLayoutProps) {
               collapsible={true}
             >
               <Sidebar className="bg-card/50 border-r border-border h-full w-full" data-class="sidebar" />
+              {/* <BlockSidebar blocks={[]} setBlocks={() => {}} isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} isSidebarCollapsed={false} toggleSidebar={() => {}} /> */}
             </Panel>
           )}
           {!isMobile && (

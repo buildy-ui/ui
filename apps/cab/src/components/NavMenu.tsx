@@ -1,5 +1,5 @@
 import { Stack, Button, Icon, Text, Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@ui8kit/core";
-import { Home, BarChart3, CreditCard, Users, Plug, LogIn, UserPlus, FilePlus2, List, Blocks } from "lucide-react";
+import { Home, BarChart3, CreditCard, Users, Plug, LogIn, UserPlus, FilePlus2, List, Blocks, Boxes } from "lucide-react";
 import { allTemplates } from "@/blocks";
 import { useAppTheme } from '@/hooks/use-theme';
 import { useNavigate } from "react-router-dom";
@@ -28,6 +28,11 @@ export function NavMenu() {
       <Button onClick={() => navigate('/stat')} variant="ghost" size={buttonSize.default} rounded={roundedItem} contentAlign="start" w="full">
         <Icon component="span" lucideIcon={BarChart3} />
         <Text size="sm" c="muted">Reports</Text>
+      </Button>
+
+      <Button onClick={() => navigate('/blocks')} variant="ghost" size={buttonSize.default} rounded={roundedItem} contentAlign="start" w="full">
+        <Icon component="span" lucideIcon={Boxes} />
+        <Text size="sm" c="muted">Blocks</Text>
       </Button>
 
       <Accordion type="single" collapsible w="full">

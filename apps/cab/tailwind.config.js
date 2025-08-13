@@ -3,7 +3,6 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{ts,tsx}",
-    "../../packages/@ui8kit/blocks/src/**/*.{ts,tsx}",
     "../../packages/@ui8kit/core/src/**/*.{ts,tsx}",
     "../../packages/@ui8kit/form/src/**/*.{ts,tsx}"
   ],
