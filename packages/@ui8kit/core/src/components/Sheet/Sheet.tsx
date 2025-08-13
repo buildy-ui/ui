@@ -10,7 +10,7 @@ export interface SheetProps extends HTMLAttributes<HTMLDivElement> {
   side?: "left" | "right";
   openLabel?: string;
   closeLabel?: string;
-  size?: "sm" | "md" | "lg" | "xl" | "full";
+  size?: "sm" | "md" | "lg" | "xl" | "2xl" | "full";
   title?: string;
   showTrigger?: boolean;
   triggerIcon?: any;
@@ -86,6 +86,8 @@ export const Sheet = forwardRef<HTMLDivElement, SheetProps>(
         ? "w-96"
         : size === "xl"
         ? "w-[28rem]"
+        : size === "2xl"
+        ? "w-[32rem]"
         : "w-full";
 
     return (

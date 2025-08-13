@@ -1,5 +1,6 @@
 import { Stack, Button, Icon, Text, Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@ui8kit/core";
-import { Home, BarChart3, CreditCard, Users, Plug, LogIn, UserPlus, FilePlus2, List } from "lucide-react";
+import { Home, BarChart3, CreditCard, Users, Plug, LogIn, UserPlus, FilePlus2, List, Blocks } from "lucide-react";
+import { allTemplates } from "@/blocks";
 import { useAppTheme } from '@/hooks/use-theme';
 import { useNavigate } from "react-router-dom";
 
@@ -8,6 +9,14 @@ export function NavMenu() {
   const navigate = useNavigate();
 
   const roundedItem = rounded.button;
+
+  // Derive block categories dynamically from allTemplates
+  const getTemplateCategoryFromId = (templateId: string): string => {
+    const parts = templateId.match(/[A-Z]+[a-z]*|^[a-z]+/g) || [];
+    const token = parts[1] || parts[0] || "";
+    return token.toLowerCase();
+  };
+  const blockCategories = Array.from(new Set((allTemplates as any[]).map(t => getTemplateCategoryFromId(t.id)))).sort();
 
   return (
     <Stack gap="sm" align="start">
@@ -40,6 +49,21 @@ export function NavMenu() {
           </AccordionContent>
         </AccordionItem>
         
+        <AccordionItem gap="sm" value="blocks">
+          <AccordionTrigger rounded={roundedItem}>
+            <Text size="sm" c="foreground">Blocks</Text>
+          </AccordionTrigger>
+          <AccordionContent>
+            <Stack gap="xs" align="start">
+              {blockCategories.map((cat) => (
+                <Button key={cat} onClick={() => navigate(`/blocks/${cat}`)} variant="ghost" size={buttonSize.default} rounded={roundedItem} contentAlign="start" w="full">
+                  <Icon component="span" lucideIcon={Blocks} />
+                  <Text size="xs" c="muted">{cat}</Text>
+                </Button>
+              ))}
+            </Stack>
+          </AccordionContent>
+        </AccordionItem>
         <AccordionItem gap="sm" value="more">
           <AccordionTrigger rounded={roundedItem}>
             <Text size="sm" c="foreground">More</Text>
