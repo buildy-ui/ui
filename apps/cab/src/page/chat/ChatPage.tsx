@@ -1,5 +1,6 @@
-import { Block, Box, Button, Stack, Text, Title } from "@ui8kit/core";
-import { Textarea } from '@ui8kit/form';
+import { Block, Box, Button, Group, Stack, Text, Title, Icon } from "@ui8kit/core";
+import { Textarea, Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@ui8kit/form';
+import { ChevronDown, Send } from "lucide-react";
 import { useAppTheme } from '@/hooks/use-theme';
 import { useChat } from '@/page/chat/context';
 import { useEffect, useRef, useState } from 'react';
@@ -8,6 +9,9 @@ export function ChatPage() {
   const { rounded, buttonSize } = useAppTheme();
   const { selectedThread, messages, sendMessage } = useChat();
   const [input, setInput] = useState<string>("");
+  const [model, setModel] = useState<string>("search1");
+  const [modelOpen, setModelOpen] = useState<boolean>(false);
+  const modelRef = useRef<HTMLDivElement | null>(null);
   const endRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -26,6 +30,20 @@ export function ChatPage() {
       handleSend();
     }
   };
+
+  useEffect(() => {
+    const onDocClick = (e: MouseEvent) => {
+      const el = modelRef.current;
+      if (!el) return;
+      if (e.target instanceof Node && !el.contains(e.target)) {
+        setModelOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', onDocClick);
+    return () => document.removeEventListener('mousedown', onDocClick);
+  }, []);
+
+  const modelLabel = model === 'search1' ? 'Search 1' : model === 'search2' ? 'Search 2' : 'Search 3';
 
   return (
     <Box w="full">
@@ -61,9 +79,26 @@ export function ChatPage() {
                 onKeyDown={handleKeyDown}
                 rows={3}
               />
-              <Box w="full">
-                <Button size={buttonSize.sm} onClick={handleSend} style={{ float: 'right' }}>Send</Button>
-              </Box>
+              <Group justify="between" align="center" gap="sm">
+                <Box w="auto" className="relative min-w-36" ref={modelRef as any}>
+                  <Select className="hidden" value={model} onChange={() => {}} />
+                  <SelectTrigger onClick={() => setModelOpen((v) => !v)}>
+                    <SelectValue value={modelLabel} placeholder="Select" />
+                    <Icon size="sm" c="secondary-foreground" component="span" lucideIcon={ChevronDown} className="ml-2" />
+                  </SelectTrigger>
+                  {modelOpen && (
+                    <SelectContent className="absolute left-0 top-full bg-card">
+                      <SelectItem value="search1" onClick={(v) => { setModel(v); setModelOpen(false); }}>Search 1</SelectItem>
+                      <SelectItem value="search2" onClick={(v) => { setModel(v); setModelOpen(false); }}>Search 2</SelectItem>
+                      <SelectItem value="search3" onClick={(v) => { setModel(v); setModelOpen(false); }}>Search 3</SelectItem>
+                    </SelectContent>
+                  )}
+                </Box>
+                <Button variant="secondary" size={buttonSize.default} onClick={handleSend} rounded={rounded.button}>
+                  <Icon size="sm" c="secondary-foreground" component="span" lucideIcon={Send} />
+                  <Text size="sm" c="secondary-foreground">Send</Text>
+                </Button>
+              </Group>
             </Stack>
           </Stack>
         </Block>

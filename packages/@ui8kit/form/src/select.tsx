@@ -1,7 +1,10 @@
 import * as React from "react"
 
+interface SelectProps extends React.ComponentProps<"select"> {
+  className?: string;
+}
 
-function Select({ className, ...props }: React.ComponentProps<"select">) {
+function Select({ className, ...props }: SelectProps) {
   return (
     <select
       data-class="select"
@@ -16,6 +19,64 @@ function Select({ className, ...props }: React.ComponentProps<"select">) {
   )
 }
 
-export { Select }
+function SelectTrigger({ className, ...props }: React.ComponentProps<"button">) {
+  return (
+    <button
+      type="button"
+      data-class="select-trigger"
+      className={[
+        "border-input flex h-9 w-full items-center justify-between rounded-md border bg-background px-3 py-1 text-sm shadow-xs outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
+      {...props}
+    />
+  )
+}
+
+function SelectValue({ placeholder, value }: { placeholder?: string; value?: string }) {
+  return (
+    <span data-class="select-value" className="text-muted-foreground">
+      {value || placeholder || "Select"}
+    </span>
+  )
+}
+
+function SelectContent({ className, children }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-class="select-content"
+      className={[
+        "border-input z-50 mt-1 w-full min-w-40 rounded-md border bg-background p-1 shadow-md",
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
+    >
+      {children}
+    </div>
+  )
+}
+
+function SelectItem({ className, children, value, onClick }: { className?: string; children: React.ReactNode; value: string; onClick?: (value: string) => void }) {
+  return (
+    <button
+      type="button"
+      data-class="select-item"
+      className={[
+        "hover:bg-accent hover:text-accent-foreground w-full cursor-pointer rounded-sm px-2 py-1 text-left text-sm",
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
+      onClick={() => onClick?.(value)}
+    >
+      {children}
+    </button>
+  )
+}
+
+export { Select, SelectTrigger, SelectValue, SelectContent, SelectItem }
 
 

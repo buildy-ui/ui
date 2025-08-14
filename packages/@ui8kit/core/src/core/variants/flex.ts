@@ -146,8 +146,17 @@ export const gridVariants = cva("", {
       end: "items-end",
       stretch: "items-stretch"
     },
-    // Justify items
+    // Container justify-content
     justify: {
+      start: "justify-start",
+      center: "justify-center",
+      end: "justify-end",
+      between: "justify-between",
+      around: "justify-around",
+      evenly: "justify-evenly"
+    },
+    // Item justify alignment (optional)
+    justifyItems: {
       start: "justify-items-start",
       center: "justify-items-center",
       end: "justify-items-end",
@@ -162,6 +171,15 @@ export const gridVariants = cva("", {
       5: "grid-rows-5",
       6: "grid-rows-6",
       12: "grid-rows-12"
+    },
+    // Align content (row distribution)
+    content: {
+      start: "content-start",
+      center: "content-center",
+      end: "content-end",
+      between: "content-between",
+      around: "content-around",
+      evenly: "content-evenly"
     },
     // Grid flow
     flow: {
