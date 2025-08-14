@@ -15,6 +15,16 @@ export default defineConfig({
     }
   },
   server: {
-    port: 5000
+    port: 5000,
+    proxy: {
+      '/api/pollinations': {
+        target: 'https://image.pollinations.ai',
+        changeOrigin: true,
+        rewrite: (p) => p.replace(/^\/api\/pollinations/, ''),
+        configure: (proxy, _options) => {
+          // You can inspect/modify proxy here if needed
+        }
+      }
+    }
   }
 }) 

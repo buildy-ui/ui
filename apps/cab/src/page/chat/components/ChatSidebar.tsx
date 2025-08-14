@@ -3,7 +3,7 @@ import { Block, Box, Button, Icon, Stack, Text } from "@ui8kit/core"
 import { useAppTheme } from '@/hooks/use-theme';
 import { useChat } from '@/page/chat/context';
 import { useNavigate } from "react-router-dom";
-import { Settings } from "lucide-react";
+import { Image, Plus, Settings } from "lucide-react";
 
 interface ChatSidebarProps {
 	className?: string;
@@ -17,9 +17,16 @@ export function ChatSidebar({ className, dataClass }: ChatSidebarProps) {
 	return (
 		<Block component="aside" className={className} data-class={dataClass}>
 			<Box overflow="auto" h="screen">
-				<Stack p="md" align="start" gap="md">
+				<Stack p="md" align="start" gap="sm">
 					<Text c="muted">Chats</Text>
-					<Button variant="secondary" size="sm" rounded={rounded.button} onClick={() => createThread()}>New chat</Button>
+					<Button variant="ghost" size={buttonSize.default} rounded={rounded.button} onClick={() => createThread()}>
+						<Icon component="span" lucideIcon={Plus} />
+						<Text size="sm" c="muted">New Chat</Text>	
+					</Button>
+					<Button onClick={() => navigate('/chat/image')} variant="ghost" size={buttonSize.default} rounded={rounded.button}>
+						<Icon component="span" lucideIcon={Image} />
+						<Text size="sm" c="muted">New Image</Text>
+					</Button>
 				</Stack>
 				<Stack gap="xs" p="md">
 					{threads.length === 0 && (
