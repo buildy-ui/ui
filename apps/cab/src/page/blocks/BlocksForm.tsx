@@ -75,7 +75,7 @@ export function BlocksForm() {
           <p className="text-xs opacity-90">{template.description}</p>
         </div>
         <Button
-          className="absolute z-50 top-2 right-2 h-8 w-8"
+          className="absolute top-2 right-2 h-8 w-8 z-10"
           size="icon"
           onClick={() => {
             const el = document.getElementById(sheetId) as HTMLInputElement | null;
@@ -85,9 +85,10 @@ export function BlocksForm() {
           <Plus className="h-4 w-4" />
         </Button>
         {/* Transparent overlay to block interactions */}
-        <div className="absolute inset-0 z-10 bg-transparent" />
-        <Sheet id={sheetId} side="right" size="xl" title="Edit block" showTrigger={false}>
-          <Box overflow="auto" h="screen" p="sm">
+        <div className="absolute inset-0 z-5 bg-transparent" />
+        <Sheet id={sheetId} side="right" size="2xl" title="Edit block" showTrigger={false}>
+        <Box p="sm" style={{ height: 'calc(100vh - 4rem)', overflowY: 'auto' }}>
+          <Box component="form" py="md">
             <Stack gap="md">
               <Text c="muted" size="sm">{template.id}</Text>
               <div ref={formAnchorRef} />
@@ -118,6 +119,7 @@ export function BlocksForm() {
 
               <Button variant="default" onClick={save}>Save</Button>
             </Stack>
+            </Box>
           </Box>
         </Sheet>
       </div>

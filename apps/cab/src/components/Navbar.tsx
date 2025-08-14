@@ -1,5 +1,5 @@
 import { Block, Button, Icon, Text, Group, Sheet, Box } from "@ui8kit/core";
-import { Atom, Home, Moon, Sun, Menu, BarChart3 } from "lucide-react";
+import { Atom, Moon, Sun, Menu, BarChart3, MessageCircle } from "lucide-react";
 import { useLayoutEffect, useRef } from 'react';
 import { useMobile } from "@ui8kit/hooks";
 
@@ -42,14 +42,14 @@ export function Navbar({ isDarkMode, toggleDarkMode }: { isDarkMode: boolean, to
 
         {!isMobile && (
           <Group gap="xs" align="center">
-            <Button variant="ghost" size={buttonSize.default} rounded={rounded.button} onClick={() => navigate('/')}>
-              <Icon component="span" lucideIcon={Home} />
-              <Text size="sm" c="muted">Home</Text>
-            </Button>
             <Button variant="ghost" size={buttonSize.default} rounded={rounded.button} onClick={() => navigate('/stat')}>
               <Icon component="span" lucideIcon={BarChart3} />
               <Text size="sm" c="muted">Stat</Text>
             </Button>
+            <Button variant="ghost" size={buttonSize.default} rounded={rounded.button} onClick={() => navigate('/chat')}>
+              <Icon component="span" lucideIcon={MessageCircle} />
+              <Text size="sm" c="muted">Chat</Text>
+            </Button> 
             <Button variant="ghost" size={buttonSize.default} rounded={rounded.button} onClick={toggleDarkMode}>
               <Icon component="span" lucideIcon={isDarkMode ? Moon : Sun} />
             </Button>

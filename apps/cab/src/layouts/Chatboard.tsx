@@ -1,17 +1,17 @@
 "use client"
 import { Panel, PanelResizeHandle, PanelGroup } from 'react-resizable-panels';
-import { Sidebar } from '@/components/Sidebar';
+import { ChatSidebar } from '@/page/chat/components/ChatSidebar';
 import { Navbar } from '@/components/Navbar';
 import { useRef, type ComponentType } from 'react';
 import { Block, Container, Box } from "@ui8kit/core"
 import { useAppTheme } from '@/hooks/use-theme';
 import { useMobile } from '@ui8kit/hooks';
 
-interface DashboardLayoutProps {
+interface ChatboardLayoutProps {
   page: ComponentType;
 }
 
-export function Dashboard({ page }: DashboardLayoutProps) {
+export function Chatboard({ page }: ChatboardLayoutProps) {
   const sidebarPanelRef = useRef<any>(null);
   const panelGroupRef = useRef<any>(null);
 
@@ -43,7 +43,7 @@ export function Dashboard({ page }: DashboardLayoutProps) {
               maxSize={40}
               collapsible={true}
             >
-              <Sidebar className="bg-card/50 border-r border-border h-full w-full" data-class="sidebar" />
+              <ChatSidebar className="bg-card/50 border-r border-border h-full w-full" data-class="sidebar" />
             </Panel>
           )}
           {!isMobile && (

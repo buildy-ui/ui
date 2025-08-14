@@ -45,7 +45,8 @@ export const aspectRatioVariants = cva("", {
       video: "aspect-video",
       "4/3": "aspect-[4/3]",
       "3/2": "aspect-[3/2]",
-      "16/9": "aspect-[16/9]"
+      "16/9": "aspect-[16/9]",
+      "9/16": "aspect-[9/16]"
     }
   },
   defaultVariants: {

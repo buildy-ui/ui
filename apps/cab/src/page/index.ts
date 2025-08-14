@@ -7,5 +7,5 @@ export * from './more/Team';
 export * from './more/Integrations';
 export * from './crud/CrudCreate';
 export * from './crud/CrudList';
-export * from './blocks/BlocksCategory';
 export * from './blocks/BlocksForm';
+export * from './chat/Blank';
