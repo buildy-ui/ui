@@ -2,11 +2,11 @@ import { Box, Stack, Text, Title } from "@ui8kit/core";
 import { useAppTheme } from '@/hooks/use-theme';
 
 const content = {
-  title: "Welcome to the Chatboard",
-  description: "This is the chat starter page"
+  title: "Welcome to the Chat Setting",
+  description: "This is the chat setting page"
 }
 
-export function Blank() {
+export function ChatSetting() {
   const { rounded } = useAppTheme();
   return (
     <Box w="full">

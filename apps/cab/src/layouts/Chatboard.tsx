@@ -6,6 +6,7 @@ import { useRef, type ComponentType } from 'react';
 import { Block, Container, Box } from "@ui8kit/core"
 import { useAppTheme } from '@/hooks/use-theme';
 import { useMobile } from '@ui8kit/hooks';
+import { ChatProvider } from '@/page/chat/context';
 
 interface ChatboardLayoutProps {
   page: ComponentType;
@@ -19,7 +20,7 @@ export function Chatboard({ page }: ChatboardLayoutProps) {
   const isMobile = useMobile();
 
   return (
-    <>
+		<ChatProvider>
       <Navbar isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
       <Block
         component="main"
@@ -62,6 +63,6 @@ export function Chatboard({ page }: ChatboardLayoutProps) {
           </Panel>
         </PanelGroup>
       </Block>
-    </>
+		</ChatProvider>
   )
 }
