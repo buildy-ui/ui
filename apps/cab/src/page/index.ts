@@ -11,3 +11,4 @@ export * from './blocks/BlocksForm';
 export * from './chat/ChatPage';
 export * from './chat/ChatSetting';
 export * from './chat/ImagePage';
+export * from './chat/CodePage';

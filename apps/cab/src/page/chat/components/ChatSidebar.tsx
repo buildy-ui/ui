@@ -3,7 +3,7 @@ import { Block, Box, Button, Icon, Stack, Text } from "@ui8kit/core"
 import { useAppTheme } from '@/hooks/use-theme';
 import { useChat } from '@/page/chat/context';
 import { useNavigate } from "react-router-dom";
-import { Image, Plus, Settings } from "lucide-react";
+import { Code, Image, Plus, Settings } from "lucide-react";
 
 interface ChatSidebarProps {
 	className?: string;
@@ -26,6 +26,10 @@ export function ChatSidebar({ className, dataClass }: ChatSidebarProps) {
 					<Button onClick={() => navigate('/chat/image')} variant="ghost" size={buttonSize.default} rounded={rounded.button}>
 						<Icon component="span" lucideIcon={Image} />
 						<Text size="sm" c="muted">New Image</Text>
+					</Button>
+					<Button onClick={() => navigate('/chat/code')} variant="ghost" size={buttonSize.default} rounded={rounded.button}>
+						<Icon component="span" lucideIcon={Code} />
+						<Text size="sm" c="muted">New Code</Text>
 					</Button>
 				</Stack>
 				<Stack gap="xs" p="md">

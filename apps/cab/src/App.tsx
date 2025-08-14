@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from '@/providers/ThemeProvider'
 import { Dashboard, Chatboard } from '@/layouts'
-import { Home, Stat, Login, Register, CrudCreate, CrudList, Billing, Team, Integrations, BlocksForm, ChatPage, ChatSetting, ImagePage } from '@/page'
+import { Home, Stat, Login, Register, CrudCreate, CrudList, Billing, Team, Integrations, BlocksForm, ChatPage, ChatSetting, ImagePage, CodePage } from '@/page'
 import { lesseUITheme } from '@ui8kit/theme' // isNavFixed: true
 
 function App() {
@@ -22,6 +22,7 @@ function App() {
           <Route path="/chat" element={<Chatboard page={ChatPage} />} />
           <Route path="/chat/setting" element={<Chatboard page={ChatSetting} />} />
           <Route path="/chat/image" element={<Chatboard page={ImagePage} />} />
+          <Route path="/chat/code" element={<Chatboard page={CodePage} />} />
         </Routes>
       </Router>
     </ThemeProvider>

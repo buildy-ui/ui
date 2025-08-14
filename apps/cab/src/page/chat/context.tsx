@@ -29,6 +29,7 @@ interface ChatContextValue {
 	removeThread: (id: string) => void
 	sendMessage: (text: string) => void
 	sendImage: (prompt: string, imageUrl: string) => void
+		sendCode: (code: string, output: string) => void
 	renewChat: () => void
 }
 
@@ -171,6 +172,36 @@ export function ChatProvider({ children }: { children: ReactNode }) {
 		forceRerender(n => n + 1)
 	}, [createThread, selectedThreadId])
 
+	const sendCode = useCallback((code: string, output: string) => {
+		const trimmed = code.trim()
+		if (!trimmed) return
+
+		let threadId = selectedThreadId
+		if (!threadId) {
+			threadId = createThread(toTitleFromText(trimmed))
+		}
+
+		const now = Date.now()
+		const userMsg: ChatMessage = {
+			id: generateId('msg'),
+			threadId,
+			role: 'user',
+			text: trimmed,
+			createdAt: now
+		}
+		const assistantMsg: ChatMessage = {
+			id: generateId('msg'),
+			threadId,
+			role: 'assistant',
+			text: output,
+			createdAt: now + 1
+		}
+		const current = messagesRef.current[threadId] || []
+		messagesRef.current[threadId] = [...current, userMsg, assistantMsg]
+		setThreads(prev => prev.map(t => (t.id === threadId ? { ...t, title: toTitleFromText(trimmed), updatedAt: Date.now() } : t)))
+		forceRerender(n => n + 1)
+	}, [createThread, selectedThreadId])
+
 	const renewChat = useCallback(() => {
 		setSelectedThreadId(null)
 	}, [])
@@ -189,8 +220,9 @@ export function ChatProvider({ children }: { children: ReactNode }) {
 		removeThread,
 		sendMessage,
 		sendImage,
+		sendCode,
 		renewChat
-	}), [threads, selectedThreadId, selectedThread, messages, selectThread, createThread, removeThread, sendMessage, sendImage, renewChat])
+	}), [threads, selectedThreadId, selectedThread, messages, selectThread, createThread, removeThread, sendMessage, sendImage, sendCode, renewChat])
 
 	return (
 		<ChatContext.Provider value={value}>
