@@ -1,5 +1,5 @@
 import { Box, Card, Stack, Title, Text, Button, Grid, Icon } from "@ui8kit/core";
-import { Plug, Github, Mail, Database } from "lucide-react";
+import { Github, Mail, Database } from "lucide-react";
 
 export function Integrations() {
   const items = [
