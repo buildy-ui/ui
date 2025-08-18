@@ -12,7 +12,34 @@ This package provides higher-level content blocks built on top of `@ui8kit/core`
 
 ## Quick Start
 
-### Render with the default registry
+### Render with the hero-only registry (recommended for Hero blocks)
+```tsx
+import { createHeroRegistry, BlockTreeRenderer } from "@ui8kit/blocks";
+
+const registry = createHeroRegistry();
+
+const splitPreset = registry.findPreset("preset:hero.split:gallery:funding");
+const centeredPreset = registry.findPreset("preset:hero.centered:simple:launch");
+
+const tree = [
+  {
+    type: "hero.split",
+    variant: splitPreset?.variant,
+    props: splitPreset?.props
+  },
+  {
+    type: "hero.centered",
+    variant: centeredPreset?.variant,
+    props: centeredPreset?.props
+  }
+];
+
+export function Page() {
+  return <BlockTreeRenderer registry={registry as any} tree={tree} />;
+}
+```
+
+### Render with the default registry (pilot)
 ```tsx
 import { createDefaultBlocksRegistry, BlockTreeRenderer } from "@ui8kit/blocks";
 
@@ -35,9 +62,9 @@ export function Page() {
 
 ### Compose via slots (nest blocks)
 ```tsx
-import { createDefaultBlocksRegistry, BlockTreeRenderer } from "@ui8kit/blocks";
+import { createHeroRegistry, BlockTreeRenderer } from "@ui8kit/blocks";
 
-const registry = createDefaultBlocksRegistry();
+const registry = createHeroRegistry();
 
 const tree = [
   {
@@ -47,24 +74,21 @@ const tree = [
       content: {
         badge: "Composable",
         title: "Compose blocks via slots",
-        description: "Media slot below is another block rendered into the hero."
+        description: "The media slot contains another hero block."
       }
     },
     slots: {
       // Current pilot supports `media` for SplitHero
       media: {
-        type: "features.grid",
-        variant: "gridMediaCards",
+        type: "hero.centered",
+        variant: "simple",
         props: {
           content: {
-            badge: "Solutions",
-            title: "Media grid",
-            description: "Rendered inside hero's media slot.",
-            items: [
-              { id: "1", title: "Item A", description: "..." },
-              { id: "2", title: "Item B", description: "..." }
-            ]
-          }
+            title: "Nested Centered Hero",
+            description: "Rendered inside hero.split media slot.",
+            primaryButtonText: "Learn more"
+          },
+          useContainer: true
         }
       }
     }
@@ -72,7 +96,7 @@ const tree = [
 ];
 
 export function Page() {
-  return <BlockTreeRenderer registry={registry} tree={tree} />;
+  return <BlockTreeRenderer registry={registry as any} tree={tree} />;
 }
 ```
 
@@ -192,15 +216,16 @@ interface GridFeaturesData {
 ## Using presets
 
 ```tsx
-import { createDefaultBlocksRegistry } from "@ui8kit/blocks";
+import { createHeroRegistry } from "@ui8kit/blocks";
 
-const registry = createDefaultBlocksRegistry();
+const registry = createHeroRegistry();
 
 // List all presets
 const all = registry.listPresets();
 
 // Narrow to a block type
 const heroPresets = registry.listPresets("hero.split");
+const centeredPresets = registry.listPresets("hero.centered");
 
 // Find specific preset and instantiate a node
 const preset = registry.findPreset("preset:hero.split:gallery:funding");
