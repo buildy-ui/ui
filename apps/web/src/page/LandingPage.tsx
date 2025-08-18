@@ -5,7 +5,29 @@ import {
 } from "@ui8kit/blocks";
 
 import { skyOSTheme } from "@ui8kit/theme";
-import { Shield, Zap } from "lucide-react";
+import { Info, Rocket, Shield, Zap } from "lucide-react";
+
+import Ajv from "ajv";
+import centeredContentSchema from "../../../../packages/@ui8kit/blocks/schemas/hero/CenteredHero.content.schema.json" with { type: "json" };
+import splitContentSchema from "../../../../packages/@ui8kit/blocks/schemas/hero/SplitHero.content.schema.json" with { type: "json" };
+
+const ajv = new Ajv({ allErrors: true });
+const vCentered = ajv.compile(centeredContentSchema as any);
+const vSplit = ajv.compile(splitContentSchema as any);
+
+function validateBlocksTree(tree: Array<any>) {
+  //if (!import.meta.env.DEV) return;
+  for (const node of tree) {
+    if (node?.props?.content) {
+      if (node.type === "hero.centered" && !vCentered(node.props.content)) {
+        throw new Error("Invalid hero.centered content: " + JSON.stringify(vCentered.errors));
+      }
+      if (node.type === "hero.split" && !vSplit(node.props.content)) {
+        throw new Error("Invalid hero.split content: " + JSON.stringify(vSplit.errors));
+      }
+    }
+  }
+}
 
 const currentTheme = skyOSTheme;
 
@@ -24,9 +46,26 @@ export const LandingPage = () => {
   const blocksTree = [
     {
       type: "hero.centered",
-      variant: "withTopButton"
+      variant: "withTopButton",
+      props: {
+        content: {
+        topButton: {
+          text: "✨ New: AI-powered automation is here",
+          href: "#"
+        },
+        //badge: "AI Innovation",
+        title: "Automate your workflow with intelligent AI",
+        description: "Discover how artificial intelligence can streamline your processes, reduce manual work, and help your team focus on what matters most.",
+        primaryButtonText: "Try AI Features",
+        secondaryButtonText: "Learn More",
+        primaryButtonIcon: Info,
+        secondaryButtonIcon: Rocket
+      },
     },
-    {
+      useContainer: true,
+      py: "xl"
+    },
+    /*{
       type: "hero.split",
       variant: heroSplitPreset?.variant,
       props: heroSplitPreset?.props
@@ -40,7 +79,7 @@ export const LandingPage = () => {
         py: theme.py,
         // etc props
       }
-    },
+    },*/
     {
       type: "hero.split",
       variant: "security",
@@ -63,6 +102,8 @@ export const LandingPage = () => {
       }
     }
   ] as any;
+
+  validateBlocksTree(blocksTree);
   
   return (
     <BlockTreeRenderer registry={heroRegistry as any} tree={blocksTree} />

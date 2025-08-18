@@ -1,0 +1,204 @@
+/*
+	Generic schema generator using Babel AST. Captures full nested content objects
+	and keeps duplicate samples (even for the same variant).
+
+	Usage:
+	  bun x packages/@ui8kit/blocks/scripts/gen-schemas-babel.ts --blocks features
+
+	- Scans: packages/@ui8kit/blocks/src/<category>/**\/*.examples.tsx
+	- Infers BlockName from file name (e.g., GridFeatures.examples.tsx → GridFeatures)
+	- For each JSX <BlockName ... content={...} variant="..." />:
+	    - If content is an identifier (usually "content"), resolves nearest const content = { ... }
+	    - Builds a JSON Schema for that single sample (required = keys present in this sample)
+	    - Adds it to anyOf list for this BlockName, preserving duplicates
+	- Emits: packages/@ui8kit/blocks/schemas/<category>/<BlockName>.content.schema.json
+
+	Requires dev deps:
+	  @babel/parser, @babel/traverse, @babel/types
+*/
+
+import { readdirSync, statSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { join, resolve, basename } from "node:path";
+import { parse } from "@babel/parser";
+import traverse from "@babel/traverse";
+import * as t from "@babel/types";
+
+type JsonSchema = Record<string, any>;
+
+const argv = process.argv;
+const blocksArgIdx = argv.indexOf("--blocks");
+if (blocksArgIdx === -1 || !argv[blocksArgIdx + 1]) {
+	console.error("[gen-schemas-babel] Missing --blocks <category>. E.g., --blocks features");
+	process.exit(1);
+}
+const category = argv[blocksArgIdx + 1];
+
+const srcRoot = resolve(__dirname, "..", "src", category);
+const outDir = resolve(__dirname, "..", "schemas", category);
+
+function ensureDir(path: string) {
+	try { mkdirSync(path, { recursive: true }); } catch {}
+}
+
+function walk(dir: string): string[] {
+	const result: string[] = [];
+	for (const entry of readdirSync(dir)) {
+		const full = join(dir, entry);
+		const st = statSync(full);
+		if (st.isDirectory()) result.push(...walk(full));
+		else if (st.isFile() && /\.examples\.tsx$/.test(entry)) result.push(full);
+	}
+	return result;
+}
+
+function parseSource(code: string, file: string) {
+	return parse(code, {
+		sourceType: "module",
+		plugins: ["typescript", "jsx", "decorators-legacy"],
+		sourceFilename: file
+	});
+}
+
+function isIdentifierName(node: t.JSXIdentifier | t.JSXMemberExpression | t.JSXNamespacedName): node is t.JSXIdentifier {
+	return node.type === "JSXIdentifier";
+}
+
+function getAttr(node: t.JSXOpeningElement, name: string): t.JSXAttribute | undefined {
+	const attrs = node.attributes.filter((a: t.JSXAttribute | t.JSXSpreadAttribute) => a.type === "JSXAttribute") as t.JSXAttribute[];
+	if (!attrs) return undefined;
+	return attrs.find(a => a.name.name === name);
+}
+
+function readStringValue(attr?: t.JSXAttribute): string | undefined {
+	if (!attr || !attr.value) return undefined;
+	if (attr.value.type === "StringLiteral") return attr.value.value;
+	if (attr.value.type === "JSXExpressionContainer" && attr.value.expression.type === "StringLiteral") return attr.value.expression.value;
+	return undefined;
+}
+
+function schemaFromNode(node: t.Node): JsonSchema {
+	if (t.isStringLiteral(node)) return { type: "string" };
+	if (t.isNumericLiteral(node)) return { type: "number" };
+	if (node.type === "BooleanLiteral") return { type: "boolean" };
+	if (node.type === "NullLiteral") return { type: "null" };
+	if (t.isArrayExpression(node)) {
+		const itemSchemas = node.elements.map(el => (el && el.type !== "SpreadElement" && el !== null) ? schemaFromNode(el as t.Node) : {});
+		return { type: "array", items: mergeItemSchemas(itemSchemas) };
+	}
+	if (t.isObjectExpression(node)) return schemaFromObject(node);
+	return {};
+}
+
+function schemaFromObject(obj: t.ObjectExpression): JsonSchema {
+	const properties: Record<string, JsonSchema> = {};
+	const required: string[] = [];
+	for (const prop of obj.properties) {
+		if (prop.type !== "ObjectProperty") continue;
+		const key = prop.key.type === "Identifier" ? prop.key.name : (prop.key.type === "StringLiteral" ? prop.key.value : undefined);
+		if (!key) continue;
+		if (!prop.value) continue;
+		properties[key] = mergeSchemas(properties[key], schemaFromNode(prop.value));
+		required.push(key);
+	}
+	return { type: "object", properties, required };
+}
+
+function mergeItemSchemas(schemas: JsonSchema[]): JsonSchema {
+	if (schemas.length === 0) return {};
+	const allObjects = schemas.every(s => s && s.type === "object");
+	if (allObjects) {
+		const mergedProps: Record<string, JsonSchema> = {};
+		for (const s of schemas) {
+			const props = s.properties || {};
+			for (const [k, v] of Object.entries(props)) mergedProps[k] = mergeSchemas(mergedProps[k], v as JsonSchema);
+		}
+		return { type: "object", properties: mergedProps };
+	}
+	const primitive = Array.from(new Set(schemas.map(s => s.type).filter(Boolean)));
+	if (primitive.length === 1) return { type: primitive[0] } as JsonSchema;
+	return {};
+}
+
+function mergeSchemas(a: JsonSchema | undefined, b: JsonSchema): JsonSchema {
+	if (!a) return b;
+	if (!b) return a;
+	if (a.type === "object" && b.type === "object") {
+		const props: Record<string, JsonSchema> = { ...(a.properties || {}) };
+		for (const [k, v] of Object.entries(b.properties || {})) props[k] = mergeSchemas(props[k], v as JsonSchema);
+		// required stays per-sample, so do not merge here (each sample carries its own required)
+		return { type: "object", properties: props };
+	}
+	if (a.type === "array" && b.type === "array") return { type: "array", items: mergeSchemas(a.items || {}, b.items || {}) };
+	return {};
+}
+
+function findNearestContent(objects: Array<{ start: number; node: t.ObjectExpression }>, jsxStart: number) {
+	let cand: t.ObjectExpression | undefined;
+	for (const o of objects) {
+		if (o.start < jsxStart) cand = o.node; else break;
+	}
+	return cand;
+}
+
+function generate() {
+	ensureDir(outDir);
+	const files = walk(srcRoot);
+	for (const file of files) {
+		const code = readFileSync(file, "utf8");
+		const ast = parseSource(code, file);
+		const blockName = basename(file).replace(/\.examples\.tsx$/, "");
+
+		const contentObjects: Array<{ start: number; node: t.ObjectExpression }> = [];
+		const samples: JsonSchema[] = [];
+
+		traverse(ast, {
+			VariableDeclarator(path) {
+				const id = path.node.id;
+				if (t.isIdentifier(id) && id.name === "content" && path.node.init && t.isObjectExpression(path.node.init)) {
+					contentObjects.push({ start: path.node.start || 0, node: path.node.init });
+				}
+			},
+			JSXOpeningElement(path) {
+				const opening = path.node;
+				if (!isIdentifierName(opening.name)) return;
+				if (opening.name.name !== blockName) return;
+				const contentAttr = getAttr(opening, "content");
+				if (!contentAttr) return;
+
+				let contentSchema: JsonSchema | undefined;
+				if (contentAttr.value && contentAttr.value.type === "JSXExpressionContainer") {
+					const expr = contentAttr.value.expression;
+					if (t.isObjectExpression(expr)) {
+						contentSchema = schemaFromObject(expr);
+					} else if (t.isIdentifier(expr) && expr.name === "content") {
+						const nearest = findNearestContent(contentObjects, opening.start || 0);
+						if (nearest) contentSchema = schemaFromObject(nearest);
+					}
+				}
+
+				if (contentSchema) {
+					// Push per-sample schema; duplicates are preserved
+					samples.push(contentSchema);
+				}
+			}
+		});
+
+		if (samples.length > 0) {
+			const schema: JsonSchema = {
+				$schema: "http://json-schema.org/draft-07/schema#",
+				title: `${category}/${blockName} Content Schema (samples)`
+			};
+			if (samples.length === 1) Object.assign(schema, samples[0]);
+			else Object.assign(schema, { anyOf: samples });
+
+			const outPath = join(outDir, `${blockName}.content.schema.json`);
+			writeFileSync(outPath, JSON.stringify(schema, null, 2), "utf8");
+			// eslint-disable-next-line no-console
+			console.log(`[gen-schemas-babel] Wrote ${outPath}`);
+		}
+	}
+}
+
+generate();
+
+

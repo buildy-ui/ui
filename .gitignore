@@ -9,7 +9,6 @@ options.*
 node_modules/
 dist/
 build/
-scripts/
 @registry/
 @buildy-ui/
 bun.lock
