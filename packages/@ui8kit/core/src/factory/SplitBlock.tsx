@@ -35,6 +35,10 @@ export interface SplitBlockProps {
   // Allows overriding specific areas without custom contentSection
   slots?: {
     media?: ReactNode;
+    // Future content composition slots (used by presenters)
+    header?: ReactNode;
+    body?: ReactNode;
+    actions?: ReactNode;
   };
 
   // Container settings (only for splitSection=false)

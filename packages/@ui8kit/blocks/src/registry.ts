@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
 import { createElement } from "react";
 import { SplitHero } from "./hero/SplitHero";
-import { GridFeatures } from "./features/GridFeatures";
 
 // Types
 export type BlockTypeId = "hero.split" | "features.grid";
@@ -100,55 +99,7 @@ const heroSplitPresets: BlockPreset[] = [
   }
 ];
 
-const featuresGridPresets: BlockPreset[] = [
-  {
-    id: "preset:features.grid:gridMediaCards:solutions",
-    type: "features.grid",
-    variant: "gridMediaCards",
-    name: "Solutions Media Cards",
-    description: "Grid of solution cards with media",
-    props: {
-      content: {
-        badge: "Solutions",
-        title: "Comprehensive solutions for every need",
-        description:
-          "Discover our range of specialized solutions designed to address specific business challenges and drive growth.",
-        items: [
-          {
-            id: "1",
-            title: "E-commerce Platform",
-            description:
-              "Complete e-commerce solution with payment processing, inventory management, and customer analytics.",
-            image: {
-              src: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-              alt: "E-commerce platform"
-            }
-          },
-          {
-            id: "2",
-            title: "Data Analytics Suite",
-            description:
-              "Advanced analytics tools for data visualization, reporting, and business intelligence insights.",
-            image: {
-              src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-              alt: "Data analytics dashboard"
-            }
-          },
-          {
-            id: "3",
-            title: "Team Collaboration",
-            description: "Streamline team communication and project management with our collaboration tools.",
-            image: {
-              src: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-              alt: "Team collaboration"
-            }
-          }
-        ]
-      },
-      useContainer: true
-    }
-  }
-];
+// features.grid removed from hero-only pilot registry
 
 const heroSplitDef: BlockDefinition = {
   type: "hero.split",
@@ -166,24 +117,11 @@ const heroSplitDef: BlockDefinition = {
   presets: heroSplitPresets
 };
 
-const featuresGridDef: BlockDefinition = {
-  type: "features.grid",
-  name: "Grid Features",
-  variants: ["threeColumns", "threeColumnsIcons", "gridMediaCards", "careerPositions", "careerStats"],
-  render: (node) => {
-    const { props = {}, variant } = node;
-    return createElement(GridFeatures as any, {
-      variant: (variant as any) || "threeColumns",
-      ...props
-    });
-  },
-  presets: featuresGridPresets
-};
+// Hero-only pilot: remove features.grid definition
 
 export const createDefaultBlocksRegistry = () => {
   const registry = createBlocksRegistry();
   registry.register(heroSplitDef);
-  registry.register(featuresGridDef);
   return registry;
 };
 
