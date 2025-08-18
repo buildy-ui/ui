@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "hero/CenteredHero Content Schema",
+  "description": "Auto-generated from examples for CenteredHero",
+  "anyOf": [
+    {
+      "title": "simple",
+      "type": "object",
+      "properties": {},
+      "required": [
+        "badge",
+        "title",
+        "description",
+        "primaryButtonText",
+        "secondaryButtonText",
+        "primaryButtonIcon",
+        "secondaryButtonIcon"
+      ]
+    },
+    {
+      "title": "withTopButton",
+      "type": "object",
+      "properties": {},
+      "required": [
+        "topButton",
+        "badge",
+        "title",
+        "description",
+        "primaryButtonText",
+        "secondaryButtonText",
+        "primaryButtonIcon",
+        "secondaryButtonIcon"
+      ]
+    },
+    {
+      "title": "withImage",
+      "type": "object",
+      "properties": {},
+      "required": [
+        "title",
+        "description",
+        "imageUrl",
+        "imageAlt",
+        "primaryButtonText",
+        "secondaryButtonText"
+      ]
+    },
+    {
+      "title": "withStats",
+      "type": "object",
+      "properties": {},
+      "required": [
+        "badge",
+        "title",
+        "description",
+        "stats",
+        "primaryButtonText",
+        "secondaryButtonText",
+        "primaryButtonIcon"
+      ]
+    }
+  ]
+}
