@@ -3,17 +3,18 @@ import { forwardRef } from "react";
 import {
   Block,
   Container,
-  Stack,
   Grid,
-  Group,
+  Stack,
   Title,
   Text,
   Badge,
   Icon,
   Box,
   Card,
-  Image
+  Image,
+  Group
 } from "../components";
+import type { VariantSpacingProps, ContainerSizingProps, VariantGridProps, VariantFlexProps } from "../core/variants";
 
 // Layout types
 export type LayoutType = "grid" | "flex" | "stack";
@@ -34,23 +35,23 @@ export interface LayoutBlockProps {
   
   // Container settings
   useContainer?: boolean;
-  containerSize?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "4xl" | "6xl" | "full";
-  padding?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | null;
-  py?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
+  containerSize?: ContainerSizingProps["size"];
+  padding?: VariantSpacingProps["px"] | null;
+  py?: VariantSpacingProps["py"];
 
   // Grid settings (for layout="grid")
-  cols?: "1" | "2" | "3" | "4" | "5" | "6" | "1-2" | "1-3" | "1-4" | "1-5" | "1-6" | "2-3" | "2-4" | "2-5" | "2-6" | "3-4" | "3-5" | "3-6" | "4-5" | "4-6" | "5-6" | "1-2-3" | "1-2-4" | "1-2-6" | "1-3-4" | "1-3-6" | "2-3-4" | "1-2-3-4";
-  gridCols?: "1" | "2" | "3" | "4" | "5" | "6" | "1-2" | "1-3" | "1-4" | "1-5" | "1-6" | "2-3" | "2-4" | "2-5" | "2-6" | "3-4" | "3-5" | "3-6" | "4-5" | "4-6" | "5-6" | "1-2-3" | "1-2-4" | "1-2-6" | "1-3-4" | "1-3-6" | "2-3-4" | "1-2-3-4";
-  gap?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
-  align?: "start" | "center" | "end" | "stretch";
-  justify?: "start" | "center" | "end" | "between" | "around" | "evenly";
+  cols?: VariantGridProps["cols"];
+  gridCols?: VariantGridProps["cols"];
+  gap?: VariantGridProps["gap"];
+  align?: VariantGridProps["align"];
+  justify?: VariantGridProps["justify"];
 
   // Flex settings (for layout="flex")
-  wrap?: "wrap" | "nowrap" | "wrap-reverse";
+  wrap?: VariantFlexProps["wrap"];
   flexWrap?: boolean;
 
   // Stack settings (for layout="stack")
-  stackAlign?: "start" | "center" | "end" | "stretch";
+  stackAlign?: VariantFlexProps["align"];
 
   // Header settings
   showHeader?: boolean;

@@ -17,6 +17,7 @@ import {
   SplitBlock,
   createContentHook,
 } from "@ui8kit/core";
+import type { SplitBlockProps } from "@ui8kit/core";
 import { skyOSTheme } from "@ui8kit/theme";
 
 const currentTheme = skyOSTheme; // modernUITheme | skyOSTheme
@@ -59,6 +60,8 @@ interface SplitHeroProps {
   py?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
   gap?: "none" | "xs" | "sm" | "md" | "lg" | "xl";
   className?: string;
+  // Named slots passthrough to SplitBlock
+  slots?: SplitBlockProps["slots"];
 }
 
 // Custom content hooks for different hero variants
@@ -251,6 +254,7 @@ export const SplitHero = forwardRef<HTMLElement, SplitHeroProps>(
     py = "lg",
     gap = "xl",
     className,
+    slots,
     ...props
   }, ref) => {
 
@@ -321,6 +325,7 @@ export const SplitHero = forwardRef<HTMLElement, SplitHeroProps>(
         py={py}
         gap={gap}
         className={className}
+        slots={slots}
         {...props}
       />
     );

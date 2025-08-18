@@ -10,3 +10,5 @@ export * from './cta';
 export * from './business';
 export * from './portfolio';
 export * from './faq';
+export * from './registry';
+export * from './renderer/BlockTreeRenderer';
