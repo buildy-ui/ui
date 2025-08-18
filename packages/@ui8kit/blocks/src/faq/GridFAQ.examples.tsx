@@ -138,7 +138,7 @@ export const GridFAQAccordionExample = () => {
     <GridFAQ
       content={content}
       variant="accordion"
-      cols="1"
+      cols="1-2-3"
     />
   );
 };
@@ -175,7 +175,7 @@ export const GridFAQCompactExample = () => {
     <GridFAQ
       content={content}
       variant="compact"
-      cols="1"
+      cols="1-2-3"
       useContainer={true}
     />
   );

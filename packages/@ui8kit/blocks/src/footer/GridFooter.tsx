@@ -23,7 +23,8 @@ import {
   Button,
   Icon,
   Box,
-  Card
+  Card,
+  type VariantSpacingProps
 } from "@ui8kit/core";
 import { skyOSTheme } from "@ui8kit/theme";
 
@@ -90,7 +91,7 @@ interface GridFooterProps {
   content: GridFooterData;
   variant?: "columns" | "mega" | "compact" | "newsletter" | "sitemap";
   useContainer?: boolean;
-  py?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
+  py?: VariantSpacingProps["py"];
   className?: string;
 }
 
@@ -621,7 +622,7 @@ export const GridFooter = forwardRef<HTMLElement, GridFooterProps>(
       <LayoutBlock
         ref={ref}
         layout={layoutConfig.layout}
-        gridCols={layoutConfig.cols as "1-2-3" | "1-2-3-4" | "1-2" | "1" | "2" | "3" | "4" | "5" | "6" | "1-3" | "1-4" | "1-5" | "1-6" | "2-3" | "2-4" | "2-5" | "2-6" | "3-4" | "3-5" | "3-6" | "4-5" | "4-6" | "5-6" | "1-2-4" | "1-2-6" | "1-3-4" | "1-3-6" | "2-3-4" | undefined}
+        cols={layoutConfig.cols as any}
         useContainer={useContainer}
         containerSize={layoutConfig.containerSize}
         py={py}

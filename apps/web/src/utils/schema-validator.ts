@@ -24,7 +24,7 @@ export function validateBlocksTree(tree: Array<any>) {
   for (const node of tree) {
     if (!node?.props?.content) continue;
 
-    if (node.type === "hero.centered" && node.variant === "simple" && !vCentered(node.props.content)) {
+    if (node.type === "hero.centered" && !vCentered(node.props.content)) {
       throw new Error(formatAjvError("hero.centered", vCentered));
     }
     if (node.type === "hero.split" && node.variant === "security" && !vSplit(node.props.content)) {

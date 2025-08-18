@@ -5,7 +5,7 @@ import {
 } from "@ui8kit/blocks";
 
 import { skyOSTheme } from "@ui8kit/theme";
-import { Info, Rocket, Shield, Zap } from "lucide-react";
+import { Info, Play, Rocket, Shield, Zap } from "lucide-react";
 
 import { validateBlocksTree } from "../utils/schema-validator";
 
@@ -21,7 +21,7 @@ const theme = {
 export const LandingPage = () => {
   const heroRegistry = createHeroRegistry();
   const heroSplitPreset = heroRegistry.findPreset("preset:hero.split:gallery:funding");
-  const heroCenteredPreset = heroRegistry.findPreset("hero.centered:withImage");
+  const heroCenteredPreset = heroRegistry.findPreset("preset:hero.centered:simple:launch");
 
   const blocksTree = [
     {
@@ -91,9 +91,11 @@ export const LandingPage = () => {
 };
 
 const heroCenteredContent = {
-  badge: "Badge",
-  title: "Title",
-  description: "Description",
-  primaryButtonText: "Primary Button",
-  secondaryButtonText: "Secondary Button"
+  badge: "Welcome",
+  title: "The future of work is here",
+  description: "Transform the way your team collaborates with our innovative platform. Built for modern teams who demand flexibility, security, and performance.",
+  primaryButtonText: "Get Started Free",
+  secondaryButtonText: "Watch Demo",
+  primaryButtonIcon: Rocket,
+  secondaryButtonIcon: Play
 }

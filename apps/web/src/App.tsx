@@ -6,8 +6,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<PageBuilder />} />
-        <Route path="/land" element={<LandingPage />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/blocks" element={<PageBuilder />} />
       </Routes>
     </Router>
   )

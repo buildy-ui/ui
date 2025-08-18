@@ -19,7 +19,8 @@ import {
   Button,
   Image,
   Icon,
-  Box
+  Box,
+  type VariantSpacingProps
 } from "@ui8kit/core";
 import { skyOSTheme } from "@ui8kit/theme";
 
@@ -74,7 +75,7 @@ interface CenteredPostProps {
   content: CenteredPostData;
   variant?: "classic" | "minimal" | "magazine" | "featured" | "editorial";
   useContainer?: boolean;
-  py?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
+  py?: VariantSpacingProps["py"];
   className?: string;
 }
 

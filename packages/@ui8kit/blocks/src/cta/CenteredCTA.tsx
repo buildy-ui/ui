@@ -13,7 +13,8 @@ import {
   Card,
   Image,
   Icon,
-  Box
+  Box,
+  type VariantSpacingProps
 } from "@ui8kit/core";
 import { skyOSTheme } from "@ui8kit/theme";
 
@@ -77,7 +78,7 @@ interface CenteredCTAProps {
   content: CenteredCTAData;
   variant?: "simple" | "withLogos" | "withBackground" | "withFeatures" | "withStats";
   useContainer?: boolean;
-  py?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
+  py?: VariantSpacingProps["py"];
   className?: string;
 }
 

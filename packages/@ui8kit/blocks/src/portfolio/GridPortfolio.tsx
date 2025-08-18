@@ -17,7 +17,9 @@ import {
   Card,
   Image,
   Icon,
-  Box
+  Box,
+  type VariantSpacingProps,
+  type VariantGridProps
 } from "@ui8kit/core";
 import { skyOSTheme } from "@ui8kit/theme";
 
@@ -81,10 +83,10 @@ export interface GridPortfolioData {
 interface GridPortfolioProps {
   content: GridPortfolioData;
   variant?: "cards" | "masonry" | "minimal" | "detailed" | "showcase";
-  cols?: "1" | "2" | "3" | "4" | "1-2" | "1-2-3" | "1-2-4";
-  gap?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
+  cols?: VariantGridProps["cols"];
+  gap?: VariantGridProps["gap"];
   useContainer?: boolean;
-  py?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
+  py?: VariantSpacingProps["py"];
   className?: string;
 }
 

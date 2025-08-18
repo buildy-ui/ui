@@ -22,6 +22,7 @@ import {
   Image,
   Icon,
   Box,
+  type VariantSpacingProps
 } from "@ui8kit/core";
 import { skyOSTheme } from "@ui8kit/theme";
 
@@ -70,7 +71,7 @@ interface GridGalleryProps {
   content: GridGalleryData;
   variant?: "grid" | "masonry" | "carousel" | "mosaic" | "minimal" | "cards" | "polaroid" | "magazine";
   useContainer?: boolean;
-  py?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
+  py?: VariantSpacingProps["py"];
   className?: string;
 }
 
@@ -638,7 +639,7 @@ export const GridGallery = forwardRef<HTMLElement, GridGalleryProps>(
       <LayoutBlock
         ref={ref}
         layout={layoutConfig.layout}
-        gridCols={layoutConfig.gridCols as "1-2-3" | "1-2-4" | "2-3-4" | "1" | "2" | "3" | "4" | "5" | "6" | "1-2" | "1-3" | "1-4" | "1-5" | "1-6" | "2-3" | "2-4" | "2-5" | "2-6" | "3-4" | "3-5" | "3-6" | "4-5" | "4-6" | "5-6" | "1-3-4" | "1-2-3-4" | undefined}
+        cols={layoutConfig.gridCols as any}
         flexWrap={layoutConfig.flexWrap}
         useContainer={useContainer}
         py={py}

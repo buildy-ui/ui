@@ -13,6 +13,7 @@ import {
   Box
 } from "@ui8kit/core";
 import { skyOSTheme } from "@ui8kit/theme";
+import type { VariantSpacingProps, VariantGridProps } from "@ui8kit/core";
 
 const currentTheme = skyOSTheme;
 
@@ -61,10 +62,10 @@ export interface GridBlogData {
 interface GridBlogProps {
   content: GridBlogData;
   variant?: "cards" | "postsGrid" | "filtered" | "compact" | "featured";
-  cols?: "1" | "2" | "3" | "4" | "1-2" | "1-2-3" | "1-2-4";
-  gap?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
+  cols?: VariantGridProps["cols"];
+  gap?: VariantGridProps["gap"];
   useContainer?: boolean;
-  py?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
+  py?: VariantSpacingProps["py"];
   _showFilters?: boolean;
   className?: string;
 }
@@ -500,8 +501,8 @@ export const GridBlog = forwardRef<HTMLElement, GridBlogProps>(
         layout="grid"
         useContainer={useContainer}
         py={py}
-        cols={cols || config.cols}
-        gap={gap || config.gap}
+        cols={cols as any || config.cols}
+        gap={gap as any || config.gap}
         content={layoutContent}
         contentHooks={config.contentHooks}
         className={className}

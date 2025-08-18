@@ -9,7 +9,8 @@ import {
   Button,
   Image,
   Icon,
-  Box
+  Box,
+  type VariantSpacingProps
 } from "@ui8kit/core";
 import {
   LayoutBlock,
@@ -51,7 +52,7 @@ interface CenteredHeroProps {
   content: CenteredHeroData;
   variant?: "simple" | "withTopButton" | "withImage" | "withStats";
   useContainer?: boolean;
-  py?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
+  py?: VariantSpacingProps["py"];
   className?: string;
 }
 

@@ -187,7 +187,7 @@ export const GridBlogCompactExample = () => {
     <GridBlog
       content={content}
       variant="compact"
-      cols="1"
+      cols="1-2-3"
       useContainer={true}
     />
   );
