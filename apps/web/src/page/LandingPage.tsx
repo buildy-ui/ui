@@ -11,20 +11,33 @@ import Ajv from "ajv";
 import centeredContentSchema from "../../../../packages/@ui8kit/blocks/schemas/hero/CenteredHero.content.schema.json" with { type: "json" };
 import splitContentSchema from "../../../../packages/@ui8kit/blocks/schemas/hero/SplitHero.content.schema.json" with { type: "json" };
 
-const ajv = new Ajv({ allErrors: true });
+const ajv = new Ajv({ allErrors: false }); // stop at first error
+
 const vCentered = ajv.compile(centeredContentSchema as any);
 const vSplit = ajv.compile(splitContentSchema as any);
 
+function formatAjvError(type: string, validate: any) {
+  const err = (validate.errors && validate.errors[0]) || null;
+  if (!err) return `${type}: invalid content`;
+  const path = (err.instancePath || err.dataPath || "")
+    .replace(/^\//, "")
+    .replace(/^\./, "");
+  const missing = err.params && (err.params as any).missingProperty;
+  const field = missing ? (path ? `${path}.${missing}` : missing) : path || "content";
+  const msg = err.keyword === "required" ? "is required" : (err.message || "invalid");
+  return `${type}: ${field} ${msg}`;
+}
+
 function validateBlocksTree(tree: Array<any>) {
-  //if (!import.meta.env.DEV) return;
+  // if (!import.meta.env.DEV) return; // keep it only in dev
   for (const node of tree) {
-    if (node?.props?.content) {
-      if (node.type === "hero.centered" && !vCentered(node.props.content)) {
-        throw new Error("Invalid hero.centered content: " + JSON.stringify(vCentered.errors));
-      }
-      if (node.type === "hero.split" && !vSplit(node.props.content)) {
-        throw new Error("Invalid hero.split content: " + JSON.stringify(vSplit.errors));
-      }
+    if (!node?.props?.content) continue;
+
+    if (node.type === "hero.centered" && !vCentered(node.props.content)) {
+      throw new Error(formatAjvError("hero.centered", vCentered));
+    }
+    if (node.type === "hero.split" && !vSplit(node.props.content)) {
+      throw new Error(formatAjvError("hero.split", vSplit));
     }
   }
 }
@@ -53,7 +66,7 @@ export const LandingPage = () => {
           text: "✨ New: AI-powered automation is here",
           href: "#"
         },
-        //badge: "AI Innovation",
+        badge: "AI Innovation",
         title: "Automate your workflow with intelligent AI",
         description: "Discover how artificial intelligence can streamline your processes, reduce manual work, and help your team focus on what matters most.",
         primaryButtonText: "Try AI Features",
