@@ -1,6 +1,5 @@
 "use client";
 import {
-  createDefaultBlocksRegistry,
   createHeroRegistry,
   BlockTreeRenderer
 } from "@ui8kit/blocks";
@@ -19,45 +18,27 @@ const theme = {
 
 export const LandingPage = () => {
   const heroRegistry = createHeroRegistry();
-  const newHeroPreset = heroRegistry.findPreset("preset:hero.split:gallery:funding");
-  const newHeroPreset2 = heroRegistry.findPreset("preset:hero.centered:simple:launch");
+  const heroSplitPreset = heroRegistry.findPreset("preset:hero.split:gallery:funding");
+  const heroCenteredPreset = heroRegistry.findPreset("preset:hero.centered:simple:launch");
 
-  const registry = createDefaultBlocksRegistry();
-  const heroPreset = registry.findPreset?.("preset:hero.split:gallery:funding");
-
-  const newDndTree = [
+  const blocksTree = [
     {
       type: "hero.split",
-      variant: newHeroPreset?.variant,
-      props: newHeroPreset?.props
+      variant: heroSplitPreset?.variant,
+      props: heroSplitPreset?.props
     },
     {
       type: "hero.centered",
-      variant: newHeroPreset2?.variant,
-      props: newHeroPreset2?.props
+      variant: heroCenteredPreset?.variant,
+      props: {
+        ...(heroCenteredPreset?.props ?? {}),
+        py: theme.py,
+        // etc props
+      }
     }
   ] as any;
-
-  const dndTree = [
-    {
-      type: "hero.split",
-      variant: heroPreset?.variant,
-      props: heroPreset?.props
-    }
-  ] as any;
+  
   return (
-    <Block component="main">
-      {/* Registry + DnD tree render demo */}
-      <Block component="section">
-        <BlockTreeRenderer registry={heroRegistry as any} tree={newDndTree} />
-        <BlockTreeRenderer registry={registry as any} tree={dndTree} />
-      </Block>
-      {/* <CenteredHeroWithTopButtonExample />
-      <splitHeroExamples.security />
-      <SplitHeroWithTopButtonExample />
-      <centeredCTAExamples.simple />
-      <gridFeaturesExamples.gridMediaCards />
-      <gridFooterExamples.compact /> */}
-    </Block>
+    <BlockTreeRenderer registry={heroRegistry as any} tree={blocksTree} />
   );
 };

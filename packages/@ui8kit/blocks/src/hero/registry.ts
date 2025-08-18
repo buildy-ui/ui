@@ -2,6 +2,7 @@ import { createElement } from "react";
 import type { ReactNode } from "react";
 import { SplitHero } from "./SplitHero";
 import { CenteredHero } from "./CenteredHero";
+import { createBlocksRegistry } from "../registry";
 
 // Shared hero types
 export type HeroTypeId = "hero.split" | "hero.centered";
@@ -36,53 +37,8 @@ export interface HeroBlockDefinition {
   migrate?: (props: Record<string, any>, fromVersion: number) => Record<string, any>;
 }
 
-export interface HeroBlocksRegistry {
-  register: (definition: HeroBlockDefinition) => void;
-  get: (type: HeroTypeId) => HeroBlockDefinition | undefined;
-  list: () => HeroBlockDefinition[];
-  findPreset: (presetId: string) => HeroBlockPreset | undefined;
-  listPresets: (type?: HeroTypeId) => HeroBlockPreset[];
-  renderNode: (node: HeroBlockNode) => ReactNode | null;
-}
-
-export const createHeroBlocksRegistry = (): HeroBlocksRegistry => {
-  const defs = new Map<HeroTypeId, HeroBlockDefinition>();
-  const presets = new Map<string, HeroBlockPreset>();
-
-  return {
-    register(def) {
-      defs.set(def.type, def);
-      def.presets?.forEach((p) => presets.set(p.id, p));
-    },
-    get(type) {
-      return defs.get(type);
-    },
-    list() {
-      return Array.from(defs.values());
-    },
-    findPreset(presetId) {
-      return presets.get(presetId);
-    },
-    listPresets(type) {
-      const all = Array.from(presets.values());
-      return type ? all.filter((p) => p.type === type) : all;
-    },
-    renderNode(node) {
-      const def = defs.get(node.type);
-      if (!def) return null;
-      const normalizedProps = (() => {
-        // Handle migration if needed
-        const fromPreset = node.variant || node.props?.__version;
-        const fromVersion = typeof node.props?.__version === "number" ? node.props.__version : def.version ?? 1;
-        if (def.migrate && typeof fromVersion === "number" && fromVersion < (def.version ?? 1)) {
-          return def.migrate(node.props || {}, fromVersion);
-        }
-        return node.props || {};
-      })();
-      return def.render({ ...node, props: normalizedProps } as HeroBlockNode, {});
-    }
-  };
-};
+// Intentionally no per-domain registry implementation.
+// Use the common createBlocksRegistry and register hero definitions via helpers below.
 
 // ===== Presets (kept close to hero code) =====
 
@@ -170,11 +126,15 @@ const centeredHeroDef: HeroBlockDefinition = {
   presets: centeredHeroPresets
 };
 
+export const registerHeroBlocks = (registry: ReturnType<typeof createBlocksRegistry>) => {
+  registry.register(splitHeroDef as any);
+  registry.register(centeredHeroDef as any);
+  return registry;
+};
+
 export const createHeroRegistry = () => {
-  const r = createHeroBlocksRegistry();
-  r.register(splitHeroDef);
-  r.register(centeredHeroDef);
-  return r;
+  const r = createBlocksRegistry();
+  return registerHeroBlocks(r);
 };
 
 

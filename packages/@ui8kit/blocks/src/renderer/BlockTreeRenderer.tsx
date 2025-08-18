@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Fragment } from "react";
-import type { BlockNode, BlocksRegistry } from "../registry/types";
+import type { BlockNode, BlocksRegistry } from "../registry";
 
 export interface BlockTreeRendererProps {
   registry: BlocksRegistry;

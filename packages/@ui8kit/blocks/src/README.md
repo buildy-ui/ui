@@ -39,11 +39,13 @@ export function Page() {
 }
 ```
 
-### Render with the default registry (pilot)
+### Aggregate multiple domains with the default registry (pilot)
 ```tsx
 import { createDefaultBlocksRegistry, BlockTreeRenderer } from "@ui8kit/blocks";
+import { registerHeroBlocks } from "@ui8kit/blocks";
 
 const registry = createDefaultBlocksRegistry();
+registerHeroBlocks(registry); // add Hero definitions to the shared registry
 
 const preset = registry.findPreset("preset:hero.split:gallery:funding");
 
@@ -102,6 +104,70 @@ export function Page() {
 
 ---
 
+## Customizing blocks via props
+
+You can override preset props per tree node. This is the recommended way to tweak spacing, layout, or behavior without forking components.
+
+Examples:
+
+1) Increase vertical padding on Centered Hero using theme-driven tokens
+```tsx
+const centered = registry.findPreset("preset:hero.centered:simple:launch");
+
+const tree = [
+  {
+    type: "hero.centered",
+    variant: centered?.variant,
+    props: {
+      ...(centered?.props ?? {}),
+      py: "2xl" // vertical padding; valid values: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
+    }
+  }
+];
+```
+
+2) Switch media side and container usage on Split Hero
+```tsx
+const split = registry.findPreset("preset:hero.split:gallery:funding");
+
+const tree = [
+  {
+    type: "hero.split",
+    variant: split?.variant,
+    props: {
+      ...(split?.props ?? {}),
+      leftMedia: true,
+      useContainer: true,
+      gap: "xl"
+    }
+  }
+];
+```
+
+3) Provide slot content (pilot)
+```tsx
+const tree = [
+  {
+    type: "hero.split",
+    variant: "media",
+    props: { /* ... */ },
+    slots: {
+      media: {
+        type: "hero.centered",
+        variant: "simple",
+        props: { content: { title: "Nested", description: "Inside media slot" }, useContainer: true }
+      }
+    }
+  }
+];
+```
+
+Notes:
+- SplitHero currently exposes the `media` slot. Additional slots (`header`, `body`, `actions`) are coming next.
+- Valid prop names mirror component props. For Hero blocks, common props include: `variant`, `useContainer`, `py`, `gap`, `leftMedia`, `className`, and `content` fields.
+
+---
+
 ## Concepts
 
 ### BlockDefinition
@@ -111,11 +177,11 @@ Defines a block type: its name, variants, how to render it, and its presets.
 type BlockVariant = string;
 
 interface BlockDefinition {
-  type: "hero.split" | "features.grid"; // unique block type id
-  name: string;                             // human name
-  variants: BlockVariant[];                 // supported variants
+  type: string;                              // unique block type id (e.g., "hero.split")
+  name: string;                              // human name
+  variants: BlockVariant[];                  // supported variants
   render: (node: BlockNode, renderedSlots?: Record<string, ReactNode>) => ReactNode;
-  presets?: BlockPreset[];                  // default content configurations
+  presets?: BlockPreset[];                   // default content configurations
 }
 ```
 
@@ -125,9 +191,9 @@ Serializable description of a block instance (works great for DnD and dynamic co
 ```ts
 interface BlockNode {
   id?: string;
-  type: "hero.split" | "features.grid";  // registered type
-  variant?: BlockVariant;                   // optional variant override
-  props?: Record<string, any>;              // component props and content
+  type: string;                              // registered type (e.g., "hero.split")
+  variant?: BlockVariant;                    // optional variant override
+  props?: Record<string, any>;               // component props and content
   slots?: Record<string, BlockNode[] | BlockNode | undefined>; // nested blocks
 }
 ```
@@ -137,8 +203,8 @@ Named configuration you can list, select in the editor, and instantiate.
 
 ```ts
 interface BlockPreset {
-  id: string;                               // e.g. "preset:hero.split:gallery:funding"
-  type: "hero.split" | "features.grid";
+  id: string;                                // e.g. "preset:hero.split:gallery:funding"
+  type: string;                              // block type id
   variant?: BlockVariant;
   name: string;
   description?: string;
@@ -152,10 +218,10 @@ Holds registered blocks and presets; provides discovery and rendering helpers.
 ```ts
 interface BlocksRegistry {
   register(def: BlockDefinition): void;
-  get(type: BlockDefinition["type"]): BlockDefinition | undefined;
+  get(type: string): BlockDefinition | undefined;
   list(): BlockDefinition[];
   findPreset(presetId: string): BlockPreset | undefined;
-  listPresets(type?: BlockDefinition["type"]): BlockPreset[];
+  listPresets(type?: string): BlockPreset[];
 }
 ```
 
@@ -187,29 +253,7 @@ interface HeroData {
 }
 ```
 
-### features.grid (GridFeatures)
-- Variants: `threeColumns`, `threeColumnsIcons`, `gridMediaCards`, `careerPositions`, `careerStats`
-- Slots: none (rendered as a normal block)
-- Presets (example): `preset:features.grid:gridMediaCards:solutions`
-- Props shape (content excerpt):
-
-```ts
-interface GridFeaturesData {
-  badge: string;
-  title: string;
-  description: string;
-  items: Array<{
-    id: string;
-    title?: string;
-    description: string;
-    image?: { src: string; alt: string };
-    lucideIcon?: any;
-    stats?: { value: string; label: string };
-    location?: string;
-    department?: string;
-  }>;
-}
-```
+// Additional block families (features, cta, etc.) can be registered via their own registrars.
 
 ---
 
@@ -251,32 +295,14 @@ Note: In this pilot, `SplitHero` exposes the `media` slot. More named slots (e.g
 
 ## Extending: add your own block
 
-```ts
+```tsx
 import { createBlocksRegistry } from "@ui8kit/blocks";
-import { createElement } from "react";
-import { CenteredCTA } from "@ui8kit/blocks/cta";
-
-const ctaDef = {
-  type: "cta.centered" as const,
-  name: "Centered CTA",
-  variants: ["simple"],
-  render: (node) => createElement(CenteredCTA as any, {
-    variant: node.variant ?? "simple",
-    ...node.props
-  }),
-  presets: [
-    {
-      id: "preset:cta.centered:simple",
-      type: "cta.centered",
-      variant: "simple",
-      name: "Simple CTA",
-      props: { content: { title: "Try it", description: "Get started in minutes" } }
-    }
-  ]
-};
+import { registerHeroBlocks } from "@ui8kit/blocks";
 
 const registry = createBlocksRegistry();
-registry.register(ctaDef);
+registerHeroBlocks(registry);
+// registerFeaturesBlocks(registry);
+// registerCtaBlocks(registry);
 ```
 
 Guidelines:
@@ -318,7 +344,8 @@ export function Page() {
 
 ## API Reference
 
-- **createDefaultBlocksRegistry()**: returns a registry preloaded with pilot blocks (`hero.split`, `features.grid`) and several presets.
+- **createDefaultBlocksRegistry()**: returns an empty registry you can compose by registering domains (e.g., `registerHeroBlocks(registry)`).
+- **registerHeroBlocks(registry)**: registers Hero blocks into an existing registry; `createHeroRegistry()` is a convenience wrapper.
 - **BlocksRegistry**:
   - `register(def)` — add your block definition
   - `get(type)` — fetch definition by type id
