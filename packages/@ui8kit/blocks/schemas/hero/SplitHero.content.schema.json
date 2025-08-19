@@ -3,247 +3,287 @@
   "title": "hero/SplitHero Content Schema (samples)",
   "anyOf": [
     {
-      "type": "object",
-      "properties": {
-        "badge": {
-          "type": "string"
-        },
-        "title": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "image": {
+      "type": "hero.split",
+      "variant": "media",
+      "props": {
+        "content": {
           "type": "object",
           "properties": {
-            "src": {
+            "badge": {
               "type": "string"
             },
-            "alt": {
+            "title": {
               "type": "string"
-            }
+            },
+            "description": {
+              "type": "string"
+            },
+            "image": {
+              "type": "object",
+              "properties": {
+                "src": {
+                  "type": "string"
+                },
+                "alt": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "src",
+                "alt"
+              ]
+            },
+            "primaryButtonText": {
+              "type": "string"
+            },
+            "secondaryButtonText": {
+              "type": "string"
+            },
+            "primaryButtonIcon": {},
+            "secondaryButtonIcon": {}
           },
           "required": [
-            "src",
-            "alt"
+            "badge",
+            "title",
+            "description",
+            "image",
+            "primaryButtonText",
+            "secondaryButtonText",
+            "primaryButtonIcon",
+            "secondaryButtonIcon"
           ]
         },
-        "primaryButtonText": {
-          "type": "string"
-        },
-        "secondaryButtonText": {
-          "type": "string"
-        },
-        "primaryButtonIcon": {},
-        "secondaryButtonIcon": {}
-      },
-      "required": [
-        "badge",
-        "title",
-        "description",
-        "image",
-        "primaryButtonText",
-        "secondaryButtonText",
-        "primaryButtonIcon",
-        "secondaryButtonIcon"
-      ]
+        "useContainer": true
+      }
     },
     {
-      "type": "object",
-      "properties": {
-        "badge": {
-          "type": "string"
-        },
-        "title": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "image": {
+      "type": "hero.split",
+      "variant": "media",
+      "props": {
+        "content": {
           "type": "object",
           "properties": {
-            "src": {
+            "badge": {
               "type": "string"
             },
-            "alt": {
+            "title": {
               "type": "string"
-            }
+            },
+            "description": {
+              "type": "string"
+            },
+            "image": {
+              "type": "object",
+              "properties": {
+                "src": {
+                  "type": "string"
+                },
+                "alt": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "src",
+                "alt"
+              ]
+            },
+            "primaryButtonText": {
+              "type": "string"
+            },
+            "secondaryButtonText": {
+              "type": "string"
+            },
+            "primaryButtonIcon": {},
+            "secondaryButtonIcon": {}
           },
           "required": [
-            "src",
-            "alt"
+            "badge",
+            "title",
+            "description",
+            "image",
+            "primaryButtonText",
+            "secondaryButtonText",
+            "primaryButtonIcon",
+            "secondaryButtonIcon"
           ]
         },
-        "primaryButtonText": {
-          "type": "string"
-        },
-        "secondaryButtonText": {
-          "type": "string"
-        },
-        "primaryButtonIcon": {},
-        "secondaryButtonIcon": {}
-      },
-      "required": [
-        "badge",
-        "title",
-        "description",
-        "image",
-        "primaryButtonText",
-        "secondaryButtonText",
-        "primaryButtonIcon",
-        "secondaryButtonIcon"
-      ]
+        "leftMedia": true,
+        "useContainer": true
+      }
     },
     {
-      "type": "object",
-      "properties": {
-        "badge": {
-          "type": "string"
-        },
-        "title": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "images": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "id": {},
-              "src": {},
-              "alt": {}
-            }
-          }
-        },
-        "primaryButtonText": {
-          "type": "string"
-        },
-        "secondaryButtonText": {
-          "type": "string"
-        },
-        "primaryButtonIcon": {},
-        "secondaryButtonIcon": {}
-      },
-      "required": [
-        "badge",
-        "title",
-        "description",
-        "images",
-        "primaryButtonText",
-        "secondaryButtonText",
-        "primaryButtonIcon",
-        "secondaryButtonIcon"
-      ]
-    },
-    {
-      "type": "object",
-      "properties": {
-        "topButton": {
+      "type": "hero.split",
+      "variant": "gallery",
+      "props": {
+        "content": {
           "type": "object",
           "properties": {
-            "text": {
+            "badge": {
               "type": "string"
             },
-            "href": {
+            "title": {
               "type": "string"
-            }
+            },
+            "description": {
+              "type": "string"
+            },
+            "images": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {},
+                  "src": {},
+                  "alt": {}
+                }
+              }
+            },
+            "primaryButtonText": {
+              "type": "string"
+            },
+            "secondaryButtonText": {
+              "type": "string"
+            },
+            "primaryButtonIcon": {},
+            "secondaryButtonIcon": {}
           },
           "required": [
-            "text",
-            "href"
+            "badge",
+            "title",
+            "description",
+            "images",
+            "primaryButtonText",
+            "secondaryButtonText",
+            "primaryButtonIcon",
+            "secondaryButtonIcon"
           ]
         },
-        "badge": {
-          "type": "string"
-        },
-        "title": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "images": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "id": {},
-              "src": {},
-              "alt": {}
-            }
-          }
-        },
-        "primaryButtonText": {
-          "type": "string"
-        },
-        "secondaryButtonText": {
-          "type": "string"
-        },
-        "primaryButtonIcon": {},
-        "secondaryButtonIcon": {}
-      },
-      "required": [
-        "topButton",
-        "badge",
-        "title",
-        "description",
-        "images",
-        "primaryButtonText",
-        "secondaryButtonText",
-        "primaryButtonIcon",
-        "secondaryButtonIcon"
-      ]
+        "leftMedia": true,
+        "useContainer": true
+      }
     },
     {
-      "type": "object",
-      "properties": {
-        "badge": {
-          "type": "string"
-        },
-        "title": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "image": {
+      "type": "hero.split",
+      "variant": "gallery",
+      "props": {
+        "content": {
           "type": "object",
           "properties": {
-            "src": {
+            "topButton": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "type": "string"
+                },
+                "href": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "text",
+                "href"
+              ]
+            },
+            "badge": {
               "type": "string"
             },
-            "alt": {
+            "title": {
               "type": "string"
-            }
+            },
+            "description": {
+              "type": "string"
+            },
+            "images": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {},
+                  "src": {},
+                  "alt": {}
+                }
+              }
+            },
+            "primaryButtonText": {
+              "type": "string"
+            },
+            "secondaryButtonText": {
+              "type": "string"
+            },
+            "primaryButtonIcon": {},
+            "secondaryButtonIcon": {}
           },
           "required": [
-            "src",
-            "alt"
+            "topButton",
+            "badge",
+            "title",
+            "description",
+            "images",
+            "primaryButtonText",
+            "secondaryButtonText",
+            "primaryButtonIcon",
+            "secondaryButtonIcon"
           ]
         },
-        "primaryButtonText": {
-          "type": "string"
+        "useContainer": true,
+        "className": "bg-gradient-to-br from-primary/10 to-secondary/10"
+      }
+    },
+    {
+      "type": "hero.split",
+      "variant": "media",
+      "props": {
+        "content": {
+          "type": "object",
+          "properties": {
+            "badge": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "image": {
+              "type": "object",
+              "properties": {
+                "src": {
+                  "type": "string"
+                },
+                "alt": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "src",
+                "alt"
+              ]
+            },
+            "primaryButtonText": {
+              "type": "string"
+            },
+            "secondaryButtonText": {
+              "type": "string"
+            },
+            "primaryButtonIcon": {},
+            "secondaryButtonIcon": {}
+          },
+          "required": [
+            "badge",
+            "title",
+            "description",
+            "image",
+            "primaryButtonText",
+            "secondaryButtonText",
+            "primaryButtonIcon",
+            "secondaryButtonIcon"
+          ]
         },
-        "secondaryButtonText": {
-          "type": "string"
-        },
-        "primaryButtonIcon": {},
-        "secondaryButtonIcon": {}
-      },
-      "required": [
-        "badge",
-        "title",
-        "description",
-        "image",
-        "primaryButtonText",
-        "secondaryButtonText",
-        "primaryButtonIcon",
-        "secondaryButtonIcon"
-      ]
+        "leftMedia": true,
+        "useContainer": true,
+        "className": "bg-gradient-to-r from-secondary to-primary/10"
+      }
     }
   ]
 }

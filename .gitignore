@@ -14,3 +14,9 @@ build/
 bun.lock
 .env
 package-lock.json
+
+## build
+vite.config.js
+vite.config.d.ts
+tsconfig.tsbuildinfo
+tsconfig.node.tsbuildinfo
