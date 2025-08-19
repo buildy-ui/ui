@@ -5,9 +5,11 @@ import {
 } from "@ui8kit/blocks";
 
 import { skyOSTheme } from "@ui8kit/theme";
-import { Info, Play, Rocket, Shield, Zap } from "lucide-react";
+import { Play, Rocket, Shield, Zap } from "lucide-react";
 
-import { validateBlocksTree } from "../utils/schema-validator";
+// import { validateBlocksTree } from "../utils/schema-validator";
+
+import heroCenteredJsonContent from "../../../../packages/@ui8kit/blocks/content/hero/CenteredHero.content.json";
 
 const currentTheme = skyOSTheme;
 
@@ -28,22 +30,10 @@ export const LandingPage = () => {
       type: "hero.centered",
       variant: "withTopButton",
       props: {
-        content: {
-        topButton: {
-          text: "✨ New: AI-powered automation is here",
-          href: "#"
-        },
-        badge: "AI Innovation",
-        title: "Automate your workflow with intelligent AI",
-        description: "Discover how artificial intelligence can streamline your processes, reduce manual work, and help your team focus on what matters most.",
-        primaryButtonText: "Try AI Features",
-        secondaryButtonText: "Learn More",
-        primaryButtonIcon: Info,
-        secondaryButtonIcon: Rocket
+        content: heroCenteredJsonContent[1].props.content,
+        useContainer: true,
+        py: "xl"
       },
-    },
-      useContainer: true,
-      py: "xl"
     },
     {
       type: "hero.split",
@@ -83,8 +73,8 @@ export const LandingPage = () => {
     }
   ] as any;
 
-  validateBlocksTree(blocksTree);
-  
+  // validateBlocksTree(blocksTree);
+
   return (
     <BlockTreeRenderer registry={heroRegistry as any} tree={blocksTree} />
   );

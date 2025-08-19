@@ -22,10 +22,10 @@
     "props": {
       "content": {
         "topButton": {
-          "text": "✨ New: AI-powered automation is here",
+          "text": "✨ BuildY: AI-powered automation is here",
           "href": "#"
         },
-        "badge": "AI Innovation",
+        "badge": "AI BuildY",
         "title": "Automate your workflow with intelligent AI",
         "description": "Discover how artificial intelligence can streamline your processes, reduce manual work, and help your team focus on what matters most.",
         "primaryButtonText": "Try AI Features",
