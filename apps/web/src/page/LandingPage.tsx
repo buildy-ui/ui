@@ -7,11 +7,6 @@ import {
 import { skyOSTheme } from "@ui8kit/theme";
 import { Play, Rocket, Shield, Zap } from "lucide-react";
 
-import { CenteredHeroPresetSchema } from "../../../../packages/@ui8kit/blocks/schemas/hero/CenteredHero.preset.schema";
-import { validateContentAgainstPreset } from "../utils/schema-validator";
-
-import heroCenteredJsonContent from "../../../../packages/@ui8kit/blocks/content/hero/CenteredHero.content";
-
 const currentTheme = skyOSTheme;
 
 const theme = {
@@ -27,15 +22,6 @@ export const LandingPage = () => {
   const heroCenteredPreset = heroRegistry.findPreset("preset:hero.centered:simple:launch");
 
   const blocksTree = [
-    {
-      type: "hero.centered",
-      variant: "withTopButton",
-      props: {
-        content: heroCenteredJsonContent[1].props.content,
-        useContainer: true,
-        py: "xl"
-      },
-    },
     {
       type: "hero.split",
       variant: heroSplitPreset?.variant,
@@ -73,10 +59,6 @@ export const LandingPage = () => {
       }
     }
   ] as any;
-  
-  const results = validateContentAgainstPreset(CenteredHeroPresetSchema as any, heroCenteredJsonContent as any[]);
-  const invalid = results.filter(r => !r.ok);
-  console.log(invalid);
 
   return (
     <BlockTreeRenderer registry={heroRegistry as any} tree={blocksTree} />

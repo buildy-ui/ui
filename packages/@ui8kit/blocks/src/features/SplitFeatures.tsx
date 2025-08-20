@@ -330,6 +330,7 @@ export const SplitFeatures = forwardRef<HTMLElement, SplitFeaturesProps>(
 SplitFeatures.displayName = "SplitFeatures";
 
 // Export template configurations
+// media, leftMedia, features, analytics, security, performance
 export const splitFeaturesTemplates = {
   media: {
     id: "splitFeaturesMedia",

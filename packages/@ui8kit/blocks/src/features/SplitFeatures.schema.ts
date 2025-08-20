@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const CenteredHeroPresetSchema = z.union([z.object({
+export const SplitFeaturesPresetSchema = z.union([z.object({
 	'type': z.string(),
 	variant: z.string().optional(),
 	props: z.object({
@@ -8,26 +8,15 @@ export const CenteredHeroPresetSchema = z.union([z.object({
 			'badge': z.string(),
 			'title': z.string(),
 			'description': z.string(),
-			'primaryButtonText': z.string(),
-			'secondaryButtonText': z.string(),
-			'primaryButtonIcon': z.any(),
-			'secondaryButtonIcon': z.any()
-		}),
-		'useContainer': z.boolean(),
-		'className': z.string()
-	}).optional()
-}), z.object({
-	'type': z.string(),
-	variant: z.string().optional(),
-	props: z.object({
-		'content': z.object({
-			'topButton': z.object({
-				'text': z.string(),
-				'href': z.string()
+			'image': z.object({
+				'src': z.string(),
+				'alt': z.string()
 			}),
-			'badge': z.string(),
-			'title': z.string(),
-			'description': z.string(),
+			'features': z.array(z.object({
+				'id': z.any().optional(),
+				'title': z.any().optional(),
+				'description': z.any().optional()
+			})),
 			'primaryButtonText': z.string(),
 			'secondaryButtonText': z.string(),
 			'primaryButtonIcon': z.any(),
@@ -40,34 +29,21 @@ export const CenteredHeroPresetSchema = z.union([z.object({
 	variant: z.string().optional(),
 	props: z.object({
 		'content': z.object({
-			'title': z.string(),
-			'description': z.string(),
-			'imageUrl': z.string(),
-			'imageAlt': z.string(),
-			'primaryButtonText': z.string(),
-			'secondaryButtonText': z.string()
-		}),
-		'useContainer': z.boolean(),
-		'data-class': z.string(),
-		'className': z.string()
-	}).optional()
-}), z.object({
-	'type': z.string(),
-	variant: z.string().optional(),
-	props: z.object({
-		'content': z.object({
 			'badge': z.string(),
 			'title': z.string(),
 			'description': z.string(),
-			'stats': z.array(z.object({
+			'image': z.object({
+				'src': z.string(),
+				'alt': z.string()
+			}),
+			'features': z.array(z.object({
 				'id': z.any().optional(),
-				'value': z.any().optional(),
-				'label': z.any().optional()
-			})),
-			'primaryButtonText': z.string(),
-			'secondaryButtonText': z.string(),
-			'primaryButtonIcon': z.any()
+				'title': z.any().optional(),
+				'description': z.any().optional(),
+				'lucideIcon': z.any().optional()
+			}))
 		}),
+		'leftMedia': z.boolean(),
 		'useContainer': z.boolean()
 	}).optional()
 }), z.object({
@@ -78,16 +54,63 @@ export const CenteredHeroPresetSchema = z.union([z.object({
 			'badge': z.string(),
 			'title': z.string(),
 			'description': z.string(),
-			'stats': z.array(z.object({
+			'features': z.array(z.object({
 				'id': z.any().optional(),
-				'value': z.any().optional(),
-				'label': z.any().optional()
+				'title': z.any().optional(),
+				'description': z.any().optional()
+			}))
+		}),
+		'leftMedia': z.boolean(),
+		'useContainer': z.boolean(),
+		'py': z.string(),
+		'gap': z.string(),
+		'className': z.string()
+	}).optional()
+}), z.object({
+	'type': z.string(),
+	variant: z.string().optional(),
+	props: z.object({
+		'content': z.object({
+			'badge': z.string(),
+			'title': z.string(),
+			'description': z.string(),
+			'features': z.array(z.object({
+				'id': z.any().optional(),
+				'title': z.any().optional(),
+				'description': z.any().optional(),
+				'lucideIcon': z.any().optional()
+			})),
+			'primaryButtonText': z.string(),
+			'primaryButtonIcon': z.any()
+		}),
+		'leftMedia': z.boolean(),
+		'useContainer': z.boolean(),
+		'gap': z.string(),
+		'className': z.string()
+	}).optional()
+}), z.object({
+	'type': z.string(),
+	variant: z.string().optional(),
+	props: z.object({
+		'content': z.object({
+			'badge': z.string(),
+			'title': z.string(),
+			'description': z.string(),
+			'image': z.object({
+				'src': z.string(),
+				'alt': z.string()
+			}),
+			'features': z.array(z.object({
+				'id': z.any().optional(),
+				'title': z.any().optional(),
+				'description': z.any().optional()
 			})),
 			'primaryButtonText': z.string(),
 			'secondaryButtonText': z.string(),
-			'primaryButtonIcon': z.any()
+			'primaryButtonIcon': z.any(),
+			'secondaryButtonIcon': z.any()
 		}),
-		'useContainer': z.boolean(),
-		'className': z.string()
+		'leftMedia': z.boolean(),
+		'useContainer': z.boolean()
 	}).optional()
 })]);

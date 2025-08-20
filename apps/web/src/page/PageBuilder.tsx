@@ -6,7 +6,7 @@ import type { Block } from "@/types";
 import BlockSidebar from "./components/BlockSidebar";
 import BuilderCanvas from "./components/BuilderCanvas";
 
-export default function PageBuilder() {
+export function PageBuilder() {
   const [blocks, setBlocks] = useState<Block[]>([]);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);

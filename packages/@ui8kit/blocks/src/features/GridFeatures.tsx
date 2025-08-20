@@ -402,6 +402,7 @@ export const GridFeatures = forwardRef<HTMLElement, GridFeaturesProps>(
 GridFeatures.displayName = "GridFeatures";
 
 // Export template configurations
+// threeColumns, threeColumnsIcons, gridMediaCards, careerPositions, careerStats
 export const gridFeaturesTemplates = {
   threeColumns: {
     id: "gridFeaturesThreeColumns",

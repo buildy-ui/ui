@@ -1,13 +1,13 @@
-import PageBuilder from '@/page/PageBuilder'
-import { LandingPage } from '@/page/LandingPage'
+import { LandingPage, PageBuilder, FeaturesPage } from '@/page'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/landing" element={<LandingPage />} />
         <Route path="/blocks" element={<PageBuilder />} />
+        <Route path="/" element={<FeaturesPage />} />
       </Routes>
     </Router>
   )
