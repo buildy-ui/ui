@@ -16,32 +16,6 @@ const contentMap = new Map<any, any>([
   [CenteredHeroPresetSchema, heroCenteredJsonContent]
 ]);
 
-function extractContentSchemaFromPreset(preset: any) {
-  try {
-    const def = (preset as any)?._def;
-    if (!def) return z.any();
-
-    // If union, extract content schemas from each option
-    if (def.typeName === 'ZodUnion' && Array.isArray(def.options)) {
-      const opts = def.options as any[];
-      const contentSchemas: any[] = [];
-      for (const opt of opts) {
-        const cs = extractContentSchemaFromZodObject(opt);
-        if (cs) contentSchemas.push(cs);
-      }
-      if (contentSchemas.length === 0) return z.any();
-      if (contentSchemas.length === 1) return contentSchemas[0];
-      return z.union(contentSchemas);
-    }
-
-    // If single ZodObject
-    const single = extractContentSchemaFromZodObject(preset);
-    return single || z.any();
-  } catch (e) {
-    return z.any();
-  }
-}
-
 function extractContentSchemaFromZodObject(obj: any) {
   if (!obj || !(obj as any)._def) return undefined;
   const def = (obj as any)._def;
@@ -58,26 +32,6 @@ function extractContentSchemaFromZodObject(obj: any) {
   return contentSchema;
 }
 
-function getContentSchemas(preset: any): any[] {
-  const out: any[] = [];
-  try {
-    const def = preset?._def;
-    if (!def) return out;
-    if (def.typeName === 'ZodUnion' && Array.isArray(def.options)) {
-      for (const opt of def.options) {
-        const cs = extractContentSchemaFromZodObject(opt);
-        if (cs) out.push(cs);
-      }
-    } else {
-      const cs = extractContentSchemaFromZodObject(preset);
-      if (cs) out.push(cs);
-    }
-  } catch (e) {
-    return out;
-  }
-  return out;
-}
-
 function validateBlocksContent(...schemas: any[]) {
   for (const schema of schemas) {
     const contents = contentMap.get(schema);
@@ -92,7 +46,18 @@ function validateBlocksContent(...schemas: any[]) {
       const result = schema && schema.safeParse ? schema.safeParse(sample) : { success: true };
       if (!result.success) {
         // eslint-disable-next-line no-console
-        console.error(`[validateBlocksContent] Validation failed for ${sample.type} variant=${sample.variant}:`, result.error?.format ? result.error.format() : result.error);
+        console.error(`[validateBlocksContent] Validation failed for ${sample.type} variant=${sample.variant}:`);
+        const zerr = (result as any).error;
+        if (zerr && Array.isArray(zerr.issues)) {
+          for (const iss of zerr.issues) {
+            const path = Array.isArray(iss.path) ? iss.path.join('.') : String(iss.path);
+            // eslint-disable-next-line no-console
+            console.error(`  - field: ${path || '<root>'} -> ${iss.message}`);
+          }
+        } else {
+          // eslint-disable-next-line no-console
+          console.error(result.error || result);
+        }
       } else {
         // eslint-disable-next-line no-console
         console.log(`[validateBlocksContent] OK: ${sample.type} variant=${sample.variant}`);
