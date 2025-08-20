@@ -354,14 +354,15 @@ function generate() {
 
 			const outPath = join(outDir, `${blockName}.preset.ts`);
 			ensureDir(outDir);
-			const fileContent = `${header}\nexport default [\n${samplesTs.join(',\n')}\n];\n`;
+			const fileContent = `${header}\nexport const ${blockName}Preset = [\n${samplesTs.join(',\n')}\n];\n`;
 			writeFileSync(outPath, fileContent, 'utf8');
-			// eslint-disable-next-line no-console
-			console.log(`[gen-content-ast-parser] Wrote ${outPath}`);
+			// eslint-disable-next-line no-console 
+			console.log(`export * from './${blockName}.preset';`);
 		}
 	}
 }
 
+console.log(`// Content presets`);
 generate();
 
 

@@ -87,7 +87,6 @@ export const CenteredHeroWithImageExample = () => {
       content={content}
       variant="withImage"
       useContainer={true}
-      data-class="centered-hero-content"
       className="relative z-10"
     />
 </div>

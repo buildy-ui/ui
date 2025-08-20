@@ -1,6 +1,6 @@
 import { ArrowRight, Rocket, Zap, Users, BarChart, Globe, Check, Shield } from 'lucide-react';
 
-export default [
+export const SplitFeaturesPreset = [
 {
 				type: "features.splitfeatures",
 				variant: "media",

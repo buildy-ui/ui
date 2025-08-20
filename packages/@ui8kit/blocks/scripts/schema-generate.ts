@@ -294,11 +294,12 @@ function generate() {
 				`export const ${blockName}PresetSchema = ${zodRoot};\n`;
 			writeFileSync(tsOutPath, tsCode, "utf8");
 			// eslint-disable-next-line no-console
-			console.log(`[gen-schemas-babel] Wrote ${tsOutPath}`);
+			console.log(`export * from './${blockName}.schema';`);
 		}
 	}
 }
 
+console.log(`// Zod schemes for checking presets`);
 generate();
 
 

@@ -114,4 +114,17 @@ export function extractContentSchemasFromPresetSchema(presetSchema: ZodTypeAny):
   return contentSchemas;
 }
 
+export function formatSampleValidation(result: SampleValidation) {
+  if (result.ok) return `${result.type ?? 'block'} is valid`;
+  const missing = result.issues.filter((i) => {
+    const msg = String(i.message || '').toLowerCase();
+    return msg === 'required' || msg.includes('required') || i.received === undefined;
+  }).map((i) => i.path);
+  const invalid = result.issues.filter((i) => !missing.includes(i.path))
+    .map((i) => `${i.path}: ${i.message}`);
+  const missingStr = missing.length ? missing.join(', ') : '—';
+  const invalidStr = invalid.length ? invalid.join('; ') : '—';
+  return `${result.type ?? 'block'} is invalid. variant: ${result.variant ?? 'unknown'} | missing: ${missingStr} | errors: ${invalidStr}`;
+}
+
 

@@ -3,6 +3,12 @@ export * from './GridFeatures';
 export * from './SplitFeatures';
 export * from './registry';
 
+// Schemas and content presets
+export * from './GridFeatures.preset';
+export * from './GridFeatures.schema';
+export * from './SplitFeatures.preset';
+export * from './SplitFeatures.schema';
+
 // Examples for the new factories
 export * from './SplitFeatures.examples';
 export * from './GridFeatures.examples';

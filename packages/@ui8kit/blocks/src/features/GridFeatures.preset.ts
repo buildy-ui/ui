@@ -1,6 +1,6 @@
 import { BarChart, Code, Database, Cloud, Lock, Smartphone, Shield, Users, ZoomIn, Briefcase, Globe, GraduationCap, Heart } from 'lucide-react';
 
-export default [
+export const GridFeaturesPreset = [
 {
 				type: "features.gridfeatures",
 				variant: "threeColumns",
