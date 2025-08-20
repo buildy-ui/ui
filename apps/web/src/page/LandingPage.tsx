@@ -7,9 +7,99 @@ import {
 import { skyOSTheme } from "@ui8kit/theme";
 import { Play, Rocket, Shield, Zap } from "lucide-react";
 
-// import { validateBlocksTree } from "../utils/schema-validator";
+import { CenteredHeroPresetSchema } from "../../../../packages/@ui8kit/blocks/schemas/hero/CenteredHero.preset.schema";
+import { z } from 'zod';
 
-import heroCenteredJsonContent from "../../../../packages/@ui8kit/blocks/content/hero/CenteredHero.content.json";
+import heroCenteredJsonContent from "../../../../packages/@ui8kit/blocks/content/hero/CenteredHero.content";
+// map schemas to their content arrays so validator can look them up by schema reference
+const contentMap = new Map<any, any>([
+  [CenteredHeroPresetSchema, heroCenteredJsonContent]
+]);
+
+function extractContentSchemaFromPreset(preset: any) {
+  try {
+    const def = (preset as any)?._def;
+    if (!def) return z.any();
+
+    // If union, extract content schemas from each option
+    if (def.typeName === 'ZodUnion' && Array.isArray(def.options)) {
+      const opts = def.options as any[];
+      const contentSchemas: any[] = [];
+      for (const opt of opts) {
+        const cs = extractContentSchemaFromZodObject(opt);
+        if (cs) contentSchemas.push(cs);
+      }
+      if (contentSchemas.length === 0) return z.any();
+      if (contentSchemas.length === 1) return contentSchemas[0];
+      return z.union(contentSchemas);
+    }
+
+    // If single ZodObject
+    const single = extractContentSchemaFromZodObject(preset);
+    return single || z.any();
+  } catch (e) {
+    return z.any();
+  }
+}
+
+function extractContentSchemaFromZodObject(obj: any) {
+  if (!obj || !(obj as any)._def) return undefined;
+  const def = (obj as any)._def;
+  if (def.typeName !== 'ZodObject') return undefined;
+  const shape = typeof def.shape === 'function' ? def.shape() : def.shape;
+  if (!shape) return undefined;
+  const propsSchema = shape['props'];
+  if (!propsSchema || !(propsSchema as any)._def) return undefined;
+  const propsDef = (propsSchema as any)._def;
+  if (propsDef.typeName !== 'ZodObject') return undefined;
+  const propsShape = typeof propsDef.shape === 'function' ? propsDef.shape() : propsDef.shape;
+  if (!propsShape) return undefined;
+  const contentSchema = propsShape['content'];
+  return contentSchema;
+}
+
+function getContentSchemas(preset: any): any[] {
+  const out: any[] = [];
+  try {
+    const def = preset?._def;
+    if (!def) return out;
+    if (def.typeName === 'ZodUnion' && Array.isArray(def.options)) {
+      for (const opt of def.options) {
+        const cs = extractContentSchemaFromZodObject(opt);
+        if (cs) out.push(cs);
+      }
+    } else {
+      const cs = extractContentSchemaFromZodObject(preset);
+      if (cs) out.push(cs);
+    }
+  } catch (e) {
+    return out;
+  }
+  return out;
+}
+
+function validateBlocksContent(...schemas: any[]) {
+  for (const schema of schemas) {
+    const contents = contentMap.get(schema);
+    if (!contents) {
+      // eslint-disable-next-line no-console
+      console.warn('[validateBlocksContent] No content mapped for schema', schema);
+      continue;
+    }
+
+    // Validate the whole sample against the preset schema (z.union of variants).
+    for (const sample of contents) {
+      const result = schema && schema.safeParse ? schema.safeParse(sample) : { success: true };
+      if (!result.success) {
+        // eslint-disable-next-line no-console
+        console.error(`[validateBlocksContent] Validation failed for ${sample.type} variant=${sample.variant}:`, result.error?.format ? result.error.format() : result.error);
+      } else {
+        // eslint-disable-next-line no-console
+        console.log(`[validateBlocksContent] OK: ${sample.type} variant=${sample.variant}`);
+      }
+    }
+  }
+}
 
 const currentTheme = skyOSTheme;
 
@@ -72,8 +162,8 @@ export const LandingPage = () => {
       }
     }
   ] as any;
-
-  // validateBlocksTree(blocksTree);
+  
+  validateBlocksContent(CenteredHeroPresetSchema);
 
   return (
     <BlockTreeRenderer registry={heroRegistry as any} tree={blocksTree} />

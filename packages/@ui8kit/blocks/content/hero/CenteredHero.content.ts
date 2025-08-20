@@ -9,12 +9,12 @@ export default [
 {
 				type: "hero.centered",
 				variant: "withTopButton",
-				props: { content: { topButton: { text: "✨ New: AI-powered automation is here", href: "#" }, badge: "AI Innovation", title: "Automate your workflow with intelligent AI", description: "Discover how artificial intelligence can streamline your processes, reduce manual work, and help your team focus on what matters most.", primaryButtonText: "Try AI Features", secondaryButtonText: "Learn More", primaryButtonIcon: Info, secondaryButtonIcon: Rocket }, useContainer: true }
+				props: { content: { topButton: { text: { topButton: "✨ New: AI-powered automation is here" }, href: "#" }, badge: "AI Innovation", title: "Automate your workflow with intelligent AI", description: "Discover how artificial intelligence can streamline your processes, reduce manual work, and help your team focus on what matters most.", primaryButtonText: "Try AI Features", secondaryButtonText: "Learn More", primaryButtonIcon: Info, secondaryButtonIcon: Rocket }, useContainer: true }
 			},
 {
 				type: "hero.centered",
 				variant: "withImage",
-				props: { content: { title: "Experience the power of visual storytelling", description: "Create compelling narratives that resonate with your audience. Our platform provides all the tools you need to craft beautiful, engaging content that drives results.", imageUrl: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80", imageAlt: "Visual storytelling dashboard", primaryButtonText: "Start Creating", secondaryButtonText: "Watch Tutorial" }, useContainer: true, data-class: "centered-hero-content", className: "relative z-10" }
+				props: { content: { title: "Experience the power of visual storytelling", description: "Create compelling narratives that resonate with your audience. Our platform provides all the tools you need to craft beautiful, engaging content that drives results.", imageUrl: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80", imageAlt: "Visual storytelling dashboard", primaryButtonText: "Start Creating", secondaryButtonText: "Watch Tutorial" }, useContainer: true, "data-class": "centered-hero-content", className: "relative z-10" }
 			},
 {
 				type: "hero.centered",
