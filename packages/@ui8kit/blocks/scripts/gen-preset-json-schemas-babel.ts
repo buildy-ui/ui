@@ -225,76 +225,17 @@ function generate() {
 		}*/
 
 		if (samples.length > 0) {
-			// build zod schema code from samples
-			function jsonSchemaToZod(schema: JsonSchema, indent = 0): string {
-				const pad = '\t'.repeat(indent);
-				if (!schema || Object.keys(schema).length === 0) return 'z.any()';
-				if (schema.type === 'string') return 'z.string()';
-				if (schema.type === 'number') return 'z.number()';
-				if (schema.type === 'boolean') return 'z.boolean()';
-				if (schema.type === 'null') return 'z.null()';
-				if (schema.type === 'array') {
-					const items = schema.items || {};
-					return `z.array(${jsonSchemaToZod(items, indent)})`;
-				}
-				if (schema.type === 'object') {
-					const props = schema.properties || {};
-					const req: string[] = schema.required || [];
-					const lines: string[] = [];
-					for (const [k, v] of Object.entries(props)) {
-						const sub = jsonSchemaToZod(v as JsonSchema, indent + 1);
-						const isReq = req.includes(k);
-						lines.push(`'${k}': ${sub}${isReq ? '' : '.optional()'}`);
-					}
-					return `z.object({\n${pad}\t${lines.join(`,\n${pad}\t`)}\n${pad}})`;
-				}
-				return 'z.any()';
-			}
+			const schema: JsonSchema = {
+				$schema: "http://json-schema.org/draft-07/schema#",
+				title: `${category}/${blockName} Content Schema (samples)`
+			};
+			if (samples.length === 1) Object.assign(schema, samples[0]);
+			else Object.assign(schema, { anyOf: samples });
 
-			function propValueToZod(value: any): string {
-				if (value == null) return 'z.any()';
-				if (typeof value === 'string') return 'z.string()';
-				if (typeof value === 'number') return 'z.number()';
-				if (typeof value === 'boolean') return 'z.boolean()';
-				if (typeof value === 'object') {
-					// assume it's already a JSON schema for object/array
-					if (value.type) return jsonSchemaToZod(value as JsonSchema, 2);
-					return 'z.any()';
-				}
-				return 'z.any()';
-			}
-
-			function sampleToZod(sample: any): string {
-				// root object shape
-				const props = sample.props || {};
-				const propLines: string[] = [];
-				for (const [k, v] of Object.entries(props)) {
-					const z = propValueToZod(v);
-					propLines.push(`'${k}': ${z}`);
-				}
-
-				const propsBlock = propLines.length ? `z.object({\n\t\t${propLines.join(',\n\t\t')}\n\t})` : 'z.object({}).optional()';
-
-				// build final sample schema
-				const variantLine = `variant: ${sample.variant ? 'z.string().optional()' : 'z.string().optional()'}`;
-				const root = `z.object({\n\t'type': z.string(),\n\t${variantLine},\n\tprops: ${propsBlock}.optional()\n})`;
-				return root;
-			}
-
-			let zodRoot = '';
-			if (samples.length === 1) {
-				zodRoot = sampleToZod(samples[0]);
-			} else {
-				const parts = samples.map(s => sampleToZod(s));
-				zodRoot = `z.union([${parts.join(', ')}])`;
-			}
-
-			const tsOutPath = join(outDir, `${blockName}.preset.schema.ts`);
-			const tsCode = "import { z } from 'zod';\n\n" +
-				`export const ${blockName}PresetSchema = ${zodRoot};\n`;
-			writeFileSync(tsOutPath, tsCode, "utf8");
+			const outPath = join(outDir, `${blockName}.content.schema.json`);
+			writeFileSync(outPath, JSON.stringify(schema, null, 2), "utf8");
 			// eslint-disable-next-line no-console
-			console.log(`[gen-schemas-babel] Wrote ${tsOutPath}`);
+			console.log(`[gen-schemas-babel] Wrote ${outPath}`);
 		}
 	}
 }

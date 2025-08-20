@@ -55,6 +55,68 @@ function objectFromObjectExpression(obj: t.ObjectExpression): any {
   return out;
 }
 
+// Convert AST node to TypeScript source (preserving identifiers)
+function nodeToTs(node: t.Node, used: Set<string>): string {
+	if (!node) return 'undefined';
+	if (t.isStringLiteral(node)) return JSON.stringify(node.value);
+	if (t.isNumericLiteral(node)) return String((node as any).value);
+	if (node.type === 'BooleanLiteral') return String((node as any).value);
+	if (node.type === 'NullLiteral') return 'null';
+	if (t.isIdentifier(node)) {
+		used.add(node.name);
+		return node.name;
+	}
+	if (t.isObjectExpression(node)) {
+		const parts: string[] = [];
+		for (const prop of node.properties) {
+			if (prop.type !== 'ObjectProperty') continue;
+			const key = prop.key.type === 'Identifier' ? prop.key.name : (prop.key.type === 'StringLiteral' ? prop.key.value : undefined);
+			if (!key) continue;
+			// @ts-ignore
+			const val = nodeToTs(prop.value, used);
+			parts.push(`${key}: ${val}`);
+		}
+		return `{ ${parts.join(', ')} }`;
+	}
+	if (t.isArrayExpression(node)) {
+		const items = node.elements.map(el => {
+			if (!el) return 'null';
+			// @ts-ignore
+			return nodeToTs(el as t.Node, used);
+		});
+		return `[${items.join(', ')}]`;
+	}
+	if (t.isMemberExpression(node)) {
+		// object.property or object['prop']
+		const obj = node.object as t.Node;
+		const prop = node.property as t.Node;
+		let objTs = nodeToTs(obj, used);
+		let propTs = '';
+		if (t.isIdentifier(prop) && !node.computed) {
+			propTs = `.${(prop as t.Identifier).name}`;
+		} else {
+			propTs = `[${nodeToTs(prop, used)}]`;
+		}
+		return `${objTs}${propTs}`;
+	}
+	// fallback: try valueFromNode then JSON stringify
+	const v = valueFromNode(node);
+	try { return JSON.stringify(v); } catch { return 'undefined'; }
+}
+
+function attrValueToTs(attr: t.JSXAttribute | null | undefined, used: Set<string>): string {
+	if (!attr || !attr.value) return 'true';
+	if (attr.value.type === 'StringLiteral') return JSON.stringify(attr.value.value);
+	if (attr.value.type === 'JSXExpressionContainer') {
+		const expr = attr.value.expression;
+		return nodeToTs(expr as t.Node, used);
+	}
+	// other (rare) types
+	return 'undefined';
+}
+
+// --- end helpers ---
+
 const argv = process.argv;
 const blocksArgIdx = argv.indexOf("--blocks");
 if (blocksArgIdx === -1 || !argv[blocksArgIdx + 1]) {
@@ -174,17 +236,34 @@ function generate() {
 	ensureDir(outDir);
 	const files = walk(srcRoot);
 	for (const file of files) {
-		const code = readFileSync(file, "utf8");
+		const code = readFileSync(file, 'utf8');
 		const ast = parseSource(code, file);
-		const blockName = basename(file).replace(/\.examples\.tsx$/, "");
+		const blockName = basename(file).replace(/\.examples\.tsx$/, '');
 
 		const contentObjects: Array<{ start: number; node: t.ObjectExpression }> = [];
-		const samples: any[] = [];
+		const samplesTs: string[] = [];
+
+		// map local import name -> { source, type, imported }
+		const importMap: Record<string, { source: string; type: 'named' | 'default' | 'ns'; imported?: string }> = {};
 
 		traverse(ast, {
+			ImportDeclaration(path) {
+				const src = path.node.source.value as string;
+				for (const spec of path.node.specifiers) {
+					if (t.isImportSpecifier(spec)) {
+						const local = spec.local.name;
+						const imported = (spec.imported && spec.imported.type === 'Identifier') ? spec.imported.name : local;
+						importMap[local] = { source: src, type: 'named', imported };
+					} else if (t.isImportDefaultSpecifier(spec)) {
+						importMap[spec.local.name] = { source: src, type: 'default' };
+					} else if (t.isImportNamespaceSpecifier(spec)) {
+						importMap[spec.local.name] = { source: src, type: 'ns' };
+					}
+				}
+			},
 			VariableDeclarator(path) {
 				const id = path.node.id;
-				if (t.isIdentifier(id) && id.name === "content" && path.node.init && t.isObjectExpression(path.node.init)) {
+				if (t.isIdentifier(id) && id.name === 'content' && path.node.init && t.isObjectExpression(path.node.init)) {
 					contentObjects.push({ start: path.node.start || 0, node: path.node.init });
 				}
 			},
@@ -193,67 +272,90 @@ function generate() {
 				if (!isIdentifierName(opening.name)) return;
 				if (opening.name.name !== blockName) return;
 
-				// build sample
-				const variant = blockName.replace(/Hero$/, "").toLowerCase();
-				const sample: any = { type: `${category}.${variant}`, variant, props: {} };
+				const used = new Set<string>();
+				const variant = blockName.replace(/Hero$/, '').toLowerCase();
+				let variantValue: string | undefined = undefined;
+				const propsParts: string[] = [];
 
-				// process attributes
 				for (const a of (opening.attributes as any[])) {
-					if (a.type !== "JSXAttribute") continue;
+					if (a.type !== 'JSXAttribute') continue;
 					const aName = (a.name as any).name;
 					if (!aName) continue;
-					if (aName === "variant") {
+					if (aName === 'variant') {
 						const v = readStringValue(a as t.JSXAttribute);
-						if (typeof v === "string") sample.variant = v;
+						if (typeof v === 'string') variantValue = v;
 						continue;
 					}
-					if (aName === "content") {
-						let contentValue: any;
-						if (a.value && a.value.type === "JSXExpressionContainer") {
+					if (aName === 'content') {
+						let contentTs = 'undefined';
+						if (a.value && a.value.type === 'JSXExpressionContainer') {
 							const expr = a.value.expression;
 							if (t.isObjectExpression(expr)) {
-								contentValue = valueFromNode(expr);
-							} else if (t.isIdentifier(expr) && expr.name === "content") {
+								contentTs = nodeToTs(expr, used);
+							} else if (t.isIdentifier(expr) && expr.name === 'content') {
 								const nearest = findNearestContent(contentObjects, opening.start || 0);
-								if (nearest) contentValue = valueFromNode(nearest);
+								if (nearest) contentTs = nodeToTs(nearest, used);
 							}
 						}
-						sample.props.content = contentValue ?? {};
+						propsParts.push(`content: ${contentTs}`);
 						continue;
 					}
-					// Other props
-					let value: any = undefined;
-					if (!a.value) {
-						value = true;
-					} else if (a.value.type === "StringLiteral") {
-						value = a.value.value;
-					} else if (a.value.type === "JSXExpressionContainer") {
-						const expr = a.value.expression;
-						if (t.isObjectExpression(expr)) {
-							value = valueFromNode(expr);
-						} else if (t.isArrayExpression(expr)) {
-							value = valueFromNode(expr);
-						} else if (t.isIdentifier(expr)) {
-							value = (expr as any).name;
-						} else if (t.isStringLiteral(expr) || t.isNumericLiteral(expr) || expr.type === "BooleanLiteral" || expr.type === "NullLiteral") {
-							value = valueFromNode(expr as t.Node);
-						} else {
-							value = undefined;
-						}
-					} else if (a.value.type === "BooleanLiteral") {
-						value = (a.value as any).value;
-					}
-					(sample.props as any)[aName] = value;
+					// other props
+					const valTs = attrValueToTs(a as t.JSXAttribute, used);
+					propsParts.push(`${aName}: ${valTs}`);
 				}
-				// push sample
-				samples.push(sample);
+
+				const sampleType = `${category}.${variant}`;
+				const sampleVariant = variantValue ?? variant;
+				const sampleCode = `{
+				type: ${JSON.stringify(sampleType)},
+				variant: ${JSON.stringify(sampleVariant)},
+				props: { ${propsParts.join(', ')} }
+			}`;
+				samplesTs.push(sampleCode);
 			}
 		});
 
-		if (samples.length > 0) {
-			const outPath = join(outDir, `${blockName}.content.json`);
-			// Write the raw array of per-sample content objects
-			writeFileSync(outPath, JSON.stringify(samples, null, 2), "utf8");
+		if (samplesTs.length > 0) {
+			// Build imports for used identifiers
+			const usedNames = new Set<string>();
+			// collect used names by scanning samplesTs for identifiers that match importMap keys
+			for (const src of samplesTs) {
+				for (const local of Object.keys(importMap)) {
+					if (new RegExp(`\\b${local}\\b`).test(src)) usedNames.add(local);
+				}
+			}
+
+			// group by source
+			const importsBySource: Record<string, { named: Array<{ imported: string; local: string }>; defaults: string[]; ns: string[] }> = {};
+			for (const name of usedNames) {
+				const info = importMap[name];
+				if (!info) continue;
+				const src = info.source;
+				if (!importsBySource[src]) importsBySource[src] = { named: [], defaults: [], ns: [] };
+				if (info.type === 'named') importsBySource[src].named.push({ imported: info.imported || name, local: name });
+				else if (info.type === 'default') importsBySource[src].defaults.push(name);
+				else if (info.type === 'ns') importsBySource[src].ns.push(name);
+			}
+
+			let header = '';
+			for (const [src, group] of Object.entries(importsBySource)) {
+				if (group.ns.length > 0) {
+					for (const n of group.ns) header += `import * as ${n} from '${src}';\n`;
+				}
+				if (group.defaults.length > 0) {
+					for (const d of group.defaults) header += `import ${d} from '${src}';\n`;
+				}
+				if (group.named.length > 0) {
+					const parts = group.named.map(it => it.imported === it.local ? it.imported : `${it.imported} as ${it.local}`);
+					header += `import { ${parts.join(', ')} } from '${src}';\n`;
+				}
+			}
+
+			const outPath = join(outDir, `${blockName}.content.ts`);
+			ensureDir(outDir);
+			const fileContent = `${header}\nexport default [\n${samplesTs.join(',\n')}\n];\n`;
+			writeFileSync(outPath, fileContent, 'utf8');
 			// eslint-disable-next-line no-console
 			console.log(`[gen-content-ast-parser] Wrote ${outPath}`);
 		}

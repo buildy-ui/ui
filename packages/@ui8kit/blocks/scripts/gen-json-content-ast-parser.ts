@@ -25,6 +25,36 @@ import * as t from "@babel/types";
 
 type JsonSchema = Record<string, any>;
 
+// Convert a Babel AST node into a plain JS value (object/array/literal)
+function valueFromNode(node: t.Node): any {
+  if (!node) return undefined;
+  if (t.isObjectExpression(node)) return objectFromObjectExpression(node);
+  if (t.isArrayExpression(node)) {
+    return node.elements.map((el) => {
+      if (!el || el.type === "SpreadElement") return null;
+      return valueFromNode(el as t.Node);
+    });
+  }
+  if (t.isStringLiteral(node)) return node.value;
+  if (t.isNumericLiteral(node)) return (node as any).value;
+  if (node.type === "BooleanLiteral") return (node as any).value;
+  if (node.type === "NullLiteral") return null;
+  if ((node as any).type === "Identifier") return (node as any).name;
+  return undefined;
+}
+
+function objectFromObjectExpression(obj: t.ObjectExpression): any {
+  const out: any = {};
+  for (const prop of obj.properties) {
+    if (prop.type !== "ObjectProperty") continue;
+    const key = prop.key.type === "Identifier" ? prop.key.name : (prop.key.type === "StringLiteral" ? prop.key.value : undefined);
+    if (!key) continue;
+    if (!prop.value) continue;
+    out[key] = valueFromNode(prop.value as t.Node);
+  }
+  return out;
+}
+
 const argv = process.argv;
 const blocksArgIdx = argv.indexOf("--blocks");
 if (blocksArgIdx === -1 || !argv[blocksArgIdx + 1]) {
@@ -34,7 +64,7 @@ if (blocksArgIdx === -1 || !argv[blocksArgIdx + 1]) {
 const category = argv[blocksArgIdx + 1];
 
 const srcRoot = resolve(__dirname, "..", "src", category);
-const outDir = resolve(__dirname, "..", "schemas", category);
+const outDir = resolve(__dirname, "..", "content", category);
 
 function ensureDir(path: string) {
 	try { mkdirSync(path, { recursive: true }); } catch {}
@@ -178,17 +208,17 @@ function generate() {
 						continue;
 					}
 					if (aName === "content") {
-						let contentSchema: JsonSchema | undefined;
+						let contentValue: any;
 						if (a.value && a.value.type === "JSXExpressionContainer") {
 							const expr = a.value.expression;
 							if (t.isObjectExpression(expr)) {
-								contentSchema = schemaFromObject(expr);
+								contentValue = valueFromNode(expr);
 							} else if (t.isIdentifier(expr) && expr.name === "content") {
 								const nearest = findNearestContent(contentObjects, opening.start || 0);
-								if (nearest) contentSchema = schemaFromObject(nearest);
+								if (nearest) contentValue = valueFromNode(nearest);
 							}
 						}
-						sample.props.content = contentSchema || {};
+						sample.props.content = contentValue ?? {};
 						continue;
 					}
 					// Other props
@@ -199,13 +229,16 @@ function generate() {
 						value = a.value.value;
 					} else if (a.value.type === "JSXExpressionContainer") {
 						const expr = a.value.expression;
-						switch (expr.type) {
-							case "StringLiteral": value = (expr as any).value; break;
-							case "NumericLiteral": value = (expr as any).value; break;
-							case "BooleanLiteral": value = (expr as any).value; break;
-							case "NullLiteral": value = null; break;
-							case "ObjectExpression": value = schemaFromObject(expr); break;
-							default: value = undefined;
+						if (t.isObjectExpression(expr)) {
+							value = valueFromNode(expr);
+						} else if (t.isArrayExpression(expr)) {
+							value = valueFromNode(expr);
+						} else if (t.isIdentifier(expr)) {
+							value = (expr as any).name;
+						} else if (t.isStringLiteral(expr) || t.isNumericLiteral(expr) || expr.type === "BooleanLiteral" || expr.type === "NullLiteral") {
+							value = valueFromNode(expr as t.Node);
+						} else {
+							value = undefined;
 						}
 					} else if (a.value.type === "BooleanLiteral") {
 						value = (a.value as any).value;
@@ -217,84 +250,12 @@ function generate() {
 			}
 		});
 
-		/*if (samples.length > 0) {
-			const outPath = join(outDir, `${blockName}.content.schema.json`);
+		if (samples.length > 0) {
+			const outPath = join(outDir, `${blockName}.content.json`);
+			// Write the raw array of per-sample content objects
 			writeFileSync(outPath, JSON.stringify(samples, null, 2), "utf8");
 			// eslint-disable-next-line no-console
-			console.log(`[gen-schemas-babel] Wrote ${outPath}`);
-		}*/
-
-		if (samples.length > 0) {
-			// build zod schema code from samples
-			function jsonSchemaToZod(schema: JsonSchema, indent = 0): string {
-				const pad = '\t'.repeat(indent);
-				if (!schema || Object.keys(schema).length === 0) return 'z.any()';
-				if (schema.type === 'string') return 'z.string()';
-				if (schema.type === 'number') return 'z.number()';
-				if (schema.type === 'boolean') return 'z.boolean()';
-				if (schema.type === 'null') return 'z.null()';
-				if (schema.type === 'array') {
-					const items = schema.items || {};
-					return `z.array(${jsonSchemaToZod(items, indent)})`;
-				}
-				if (schema.type === 'object') {
-					const props = schema.properties || {};
-					const req: string[] = schema.required || [];
-					const lines: string[] = [];
-					for (const [k, v] of Object.entries(props)) {
-						const sub = jsonSchemaToZod(v as JsonSchema, indent + 1);
-						const isReq = req.includes(k);
-						lines.push(`'${k}': ${sub}${isReq ? '' : '.optional()'}`);
-					}
-					return `z.object({\n${pad}\t${lines.join(`,\n${pad}\t`)}\n${pad}})`;
-				}
-				return 'z.any()';
-			}
-
-			function propValueToZod(value: any): string {
-				if (value == null) return 'z.any()';
-				if (typeof value === 'string') return 'z.string()';
-				if (typeof value === 'number') return 'z.number()';
-				if (typeof value === 'boolean') return 'z.boolean()';
-				if (typeof value === 'object') {
-					// assume it's already a JSON schema for object/array
-					if (value.type) return jsonSchemaToZod(value as JsonSchema, 2);
-					return 'z.any()';
-				}
-				return 'z.any()';
-			}
-
-			function sampleToZod(sample: any): string {
-				// root object shape
-				const props = sample.props || {};
-				const propLines: string[] = [];
-				for (const [k, v] of Object.entries(props)) {
-					const z = propValueToZod(v);
-					propLines.push(`'${k}': ${z}`);
-				}
-
-				const propsBlock = propLines.length ? `z.object({\n\t\t${propLines.join(',\n\t\t')}\n\t})` : 'z.object({}).optional()';
-
-				// build final sample schema
-				const variantLine = `variant: ${sample.variant ? 'z.string().optional()' : 'z.string().optional()'}`;
-				const root = `z.object({\n\t'type': z.string(),\n\t${variantLine},\n\tprops: ${propsBlock}.optional()\n})`;
-				return root;
-			}
-
-			let zodRoot = '';
-			if (samples.length === 1) {
-				zodRoot = sampleToZod(samples[0]);
-			} else {
-				const parts = samples.map(s => sampleToZod(s));
-				zodRoot = `z.union([${parts.join(', ')}])`;
-			}
-
-			const tsOutPath = join(outDir, `${blockName}.preset.schema.ts`);
-			const tsCode = "import { z } from 'zod';\n\n" +
-				`export const ${blockName}PresetSchema = ${zodRoot};\n`;
-			writeFileSync(tsOutPath, tsCode, "utf8");
-			// eslint-disable-next-line no-console
-			console.log(`[gen-schemas-babel] Wrote ${tsOutPath}`);
+			console.log(`[gen-content-ast-parser] Wrote ${outPath}`);
 		}
 	}
 }
