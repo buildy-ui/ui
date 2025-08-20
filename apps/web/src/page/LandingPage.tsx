@@ -8,63 +8,9 @@ import { skyOSTheme } from "@ui8kit/theme";
 import { Play, Rocket, Shield, Zap } from "lucide-react";
 
 import { CenteredHeroPresetSchema } from "../../../../packages/@ui8kit/blocks/schemas/hero/CenteredHero.preset.schema";
-import { z } from 'zod';
+import { validateContentAgainstPreset } from "../utils/schema-validator";
 
 import heroCenteredJsonContent from "../../../../packages/@ui8kit/blocks/content/hero/CenteredHero.content";
-// map schemas to their content arrays so validator can look them up by schema reference
-const contentMap = new Map<any, any>([
-  [CenteredHeroPresetSchema, heroCenteredJsonContent]
-]);
-
-function extractContentSchemaFromZodObject(obj: any) {
-  if (!obj || !(obj as any)._def) return undefined;
-  const def = (obj as any)._def;
-  if (def.typeName !== 'ZodObject') return undefined;
-  const shape = typeof def.shape === 'function' ? def.shape() : def.shape;
-  if (!shape) return undefined;
-  const propsSchema = shape['props'];
-  if (!propsSchema || !(propsSchema as any)._def) return undefined;
-  const propsDef = (propsSchema as any)._def;
-  if (propsDef.typeName !== 'ZodObject') return undefined;
-  const propsShape = typeof propsDef.shape === 'function' ? propsDef.shape() : propsDef.shape;
-  if (!propsShape) return undefined;
-  const contentSchema = propsShape['content'];
-  return contentSchema;
-}
-
-function validateBlocksContent(...schemas: any[]) {
-  for (const schema of schemas) {
-    const contents = contentMap.get(schema);
-    if (!contents) {
-      // eslint-disable-next-line no-console
-      console.warn('[validateBlocksContent] No content mapped for schema', schema);
-      continue;
-    }
-
-    // Validate the whole sample against the preset schema (z.union of variants).
-    for (const sample of contents) {
-      const result = schema && schema.safeParse ? schema.safeParse(sample) : { success: true };
-      if (!result.success) {
-        // eslint-disable-next-line no-console
-        console.error(`[validateBlocksContent] Validation failed for ${sample.type} variant=${sample.variant}:`);
-        const zerr = (result as any).error;
-        if (zerr && Array.isArray(zerr.issues)) {
-          for (const iss of zerr.issues) {
-            const path = Array.isArray(iss.path) ? iss.path.join('.') : String(iss.path);
-            // eslint-disable-next-line no-console
-            console.error(`  - field: ${path || '<root>'} -> ${iss.message}`);
-          }
-        } else {
-          // eslint-disable-next-line no-console
-          console.error(result.error || result);
-        }
-      } else {
-        // eslint-disable-next-line no-console
-        console.log(`[validateBlocksContent] OK: ${sample.type} variant=${sample.variant}`);
-      }
-    }
-  }
-}
 
 const currentTheme = skyOSTheme;
 
@@ -128,7 +74,9 @@ export const LandingPage = () => {
     }
   ] as any;
   
-  validateBlocksContent(CenteredHeroPresetSchema);
+  const results = validateContentAgainstPreset(CenteredHeroPresetSchema as any, heroCenteredJsonContent as any[]);
+  const invalid = results.filter(r => !r.ok);
+  console.log(invalid);
 
   return (
     <BlockTreeRenderer registry={heroRegistry as any} tree={blocksTree} />

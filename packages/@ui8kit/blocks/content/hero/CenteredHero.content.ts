@@ -9,7 +9,7 @@ export default [
 {
 				type: "hero.centered",
 				variant: "withTopButton",
-				props: { content: { topButton: { href: "#" }, badge: "AI Innovation", title: "Automate your workflow with intelligent AI", description: "Discover how artificial intelligence can streamline your processes, reduce manual work, and help your team focus on what matters most.", primaryButtonText: "Try AI Features", secondaryButtonText: "Learn More", primaryButtonIcon: Info, secondaryButtonIcon: Rocket }, useContainer: true }
+				props: { content: { topButton: { text: "✨ New: AI-powered automation is here", href: "#" }, badge: "AI Innovation", title: "Automate your workflow with intelligent AI", description: "Discover how artificial intelligence can streamline your processes, reduce manual work, and help your team focus on what matters most.", primaryButtonText: "Try AI Features", secondaryButtonText: "Learn More", primaryButtonIcon: Info, secondaryButtonIcon: Rocket }, useContainer: true }
 			},
 {
 				type: "hero.centered",
