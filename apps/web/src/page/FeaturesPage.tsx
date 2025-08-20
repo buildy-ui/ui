@@ -27,24 +27,22 @@ export const FeaturesPage = () => {
 };
 
 const validateBlocks = () => {
-
-  const results = validateContentAgainstPreset(GridFeaturesPresetSchema as any, GridFeaturesPreset as any[]);
-  const results2 = validateContentAgainstPreset(CenteredHeroPresetSchema as any, CenteredHeroPreset as any[]);
-
   const presetInvalid = (r: SampleValidation) => formatSampleValidation(r);
 
-  switch (results.filter(r => !r.ok).length) {
-    case 0:
-      break;
-    default:
-      console.error(results.filter(r => !r.ok).map(r => presetInvalid(r)));
-      break;
-  }
-  switch (results2.filter(r => !r.ok).length) {
-    case 0:
-      break;
-    default:
-      console.error(results2.filter(r => !r.ok).map(r => presetInvalid(r)));
-      break;
+  const validations = [
+    { name: 'features.gridfeatures', schema: GridFeaturesPresetSchema, samples: GridFeaturesPreset },
+    { name: 'hero.centered', schema: CenteredHeroPresetSchema, samples: CenteredHeroPreset }
+    // add more schemas/presets here without duplicating logic
+  ];
+
+  const invalidMessages = validations.flatMap(v => {
+    const results = validateContentAgainstPreset(v.schema as any, v.samples as any[]);
+    return results
+      .filter(r => !r.ok)
+      .map(r => `[${v.name}] ${presetInvalid(r)}`);
+  });
+
+  if (invalidMessages.length) {
+    console.error(invalidMessages);
   }
 };
