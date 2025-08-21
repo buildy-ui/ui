@@ -1,5 +1,4 @@
-
-import { SplitPortfolio, type SplitPortfolioData } from "./SplitPortfolio";
+import { SplitPortfolio, type SplitPortfolioData } from "../SplitPortfolio";
 import { 
   Code,
   Palette,
