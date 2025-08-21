@@ -586,44 +586,4 @@ export const GridPortfolio = forwardRef<HTMLElement, GridPortfolioProps>(
 GridPortfolio.displayName = "GridPortfolio";
 
 // Export template configurations
-export const gridPortfolioTemplates = {
-  cards: {
-    id: "gridPortfolioCards",
-    name: "Portfolio Cards Grid",
-    description: "Standard grid layout with portfolio cards",
-    component: GridPortfolio,
-    defaultProps: { variant: "cards" as const, cols: "1-2-3" as const }
-  },
-  
-  masonry: {
-    id: "gridPortfolioMasonry",
-    name: "Masonry Portfolio Grid",
-    description: "Pinterest-style masonry layout with varying heights",
-    component: GridPortfolio,
-    defaultProps: { variant: "masonry" as const, cols: "1-2-3" as const }
-  },
-
-  minimal: {
-    id: "gridPortfolioMinimal",
-    name: "Minimal Portfolio Grid",
-    description: "Clean, minimal layout focusing on visuals",
-    component: GridPortfolio,
-    defaultProps: { variant: "minimal" as const, cols: "1-2-4" as const }
-  },
-
-  detailed: {
-    id: "gridPortfolioDetailed",
-    name: "Detailed Portfolio Grid",
-    description: "Comprehensive layout with project details and metadata",
-    component: GridPortfolio,
-    defaultProps: { variant: "detailed" as const, cols: "1-2-3" as const }
-  },
-
-  showcase: {
-    id: "gridPortfolioShowcase",
-    name: "Showcase Portfolio Grid",
-    description: "Hero-style layout with featured projects and overlays",
-    component: GridPortfolio,
-    defaultProps: { variant: "showcase" as const, cols: "1-2-4" as const }
-  }
-};
+// cards, masonry, minimal, detailed, showcase

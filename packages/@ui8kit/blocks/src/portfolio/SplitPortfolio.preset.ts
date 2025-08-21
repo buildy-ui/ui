@@ -6,7 +6,6 @@ import {
   Smartphone,
   Award,
 } from "lucide-react";
-import { SplitPortfolio, type SplitPortfolioData } from "./SplitPortfolio";
 
 // Sample portfolio data (reuse from GridPortfolio)
 const sampleProjects = [
@@ -137,134 +136,30 @@ const sampleCategories = [
   { id: "branding", name: "Branding", lucideIcon: Award }
 ];
 
-// ===== SPLIT PORTFOLIO EXAMPLES =====
-
-// 1. Portfolio Showcase
-export const SplitPortfolioShowcaseExample = () => {
-  const content: SplitPortfolioData = {
-    badge: "Portfolio",
-    title: "Creating Digital Experiences",
-    description: "I'm a full-stack developer and designer passionate about creating beautiful, functional digital experiences that solve real-world problems.",
-    buttonText: "View Full Portfolio",
-    projects: sampleProjects,
-    stats: {
-      totalProjects: "50+",
-      yearsExperience: "8",
-      happyClients: "25",
-      awards: "12"
-    }
-  };
-
-  return (
-    <SplitPortfolio
-      content={content}
-      variant="showcase"
-      leftMedia={false}
-    />
-  );
-};
-
-// 2. About & Bio
-export const SplitPortfolioAboutExample = () => {
-  const content: SplitPortfolioData = {
-    badge: "About Me",
-    title: "Hello, I'm Alex Johnson",
-    description: "A passionate full-stack developer with 8 years of experience creating innovative digital solutions. I specialize in modern web technologies and have a keen eye for design.",
-    projects: sampleProjects,
-    categories: sampleCategories,
-    stats: {
-      totalProjects: "50+",
-      yearsExperience: "8",
-      happyClients: "25",
-      awards: "12"
-    }
-  };
-
-  return (
-    <SplitPortfolio
-      content={content}
-      variant="about"
-      leftMedia={true}
-    />
-  );
-};
-
-// 3. Skills & Expertise
-export const SplitPortfolioSkillsExample = () => {
-  const content: SplitPortfolioData = {
-    badge: "Skills",
-    title: "Technical Expertise",
-    description: "I combine technical proficiency with creative problem-solving to deliver exceptional results across multiple disciplines.",
-    buttonText: "Hire Me",
-    projects: sampleProjects,
-    categories: sampleCategories,
-    skills: [
-      "React", "Next.js", "TypeScript", "Node.js", "Python", "PostgreSQL", 
-      "AWS", "Docker", "Figma", "Adobe Creative Suite", "Git", "Agile/Scrum"
-    ]
-  };
-
-  return (
-    <SplitPortfolio
-      content={content}
-      variant="skills"
-      leftMedia={false}
-    />
-  );
-};
-
-// 4. Client Testimonials
-export const SplitPortfolioTestimonialExample = () => {
-  const content: SplitPortfolioData = {
-    badge: "Testimonials",
-    title: "What Clients Say",
-    description: "I'm proud to have worked with amazing clients who have trusted me to bring their visions to life. Here's what they have to say about our collaboration.",
-    projects: sampleProjects,
-    testimonial: {
-      text: "Alex delivered exceptional results that exceeded our expectations. The attention to detail and technical expertise made our project a huge success. I highly recommend working with Alex for any complex development needs.",
-      author: "Sarah Chen",
-      role: "Product Manager",
-      company: "TechCorp Inc"
-    }
-  };
-
-  return (
-    <SplitPortfolio
-      content={content}
-      variant="testimonial"
-      leftMedia={true}
-    />
-  );
-};
-
-// 5. Work Process
-export const SplitPortfolioProcessExample = () => {
-  const content: SplitPortfolioData = {
-    badge: "Process",
-    title: "How I Work",
-    description: "My proven 5-step process ensures every project is delivered on time, within budget, and exceeds expectations through careful planning and execution.",
-    buttonText: "Start a Project",
-    projects: sampleProjects,
-    skills: [
-      "React", "Next.js", "TypeScript", "Node.js", "Python", "PostgreSQL", 
-      "Figma", "Adobe XD", "Git", "Jira", "Slack", "Notion"
-    ]
-  };
-
-  return (
-    <SplitPortfolio
-      content={content}
-      variant="process"
-      leftMedia={false}
-    />
-  );
-};
-
-// Export all examples
-export const splitPortfolioExamples = {
-  showcase: SplitPortfolioShowcaseExample,
-  about: SplitPortfolioAboutExample,
-  skills: SplitPortfolioSkillsExample,
-  testimonial: SplitPortfolioTestimonialExample,
-  process: SplitPortfolioProcessExample
-};
+export const SplitPortfolioPreset = [
+{
+				type: "portfolio.split",
+				variant: "showcase",
+				props: { content: { badge: "Portfolio", title: "Creating Digital Experiences", description: "I'm a full-stack developer and designer passionate about creating beautiful, functional digital experiences that solve real-world problems.", buttonText: "View Full Portfolio", projects: sampleProjects, stats: { totalProjects: "50+", yearsExperience: "8", happyClients: "25", awards: "12" } }, leftMedia: false }
+			},
+{
+				type: "portfolio.split",
+				variant: "about",
+				props: { content: { badge: "About Me", title: "Hello, I'm Alex Johnson", description: "A passionate full-stack developer with 8 years of experience creating innovative digital solutions. I specialize in modern web technologies and have a keen eye for design.", projects: sampleProjects, categories: sampleCategories, stats: { totalProjects: "50+", yearsExperience: "8", happyClients: "25", awards: "12" } }, leftMedia: true }
+			},
+{
+				type: "portfolio.split",
+				variant: "skills",
+				props: { content: { badge: "Skills", title: "Technical Expertise", description: "I combine technical proficiency with creative problem-solving to deliver exceptional results across multiple disciplines.", buttonText: "Hire Me", projects: sampleProjects, categories: sampleCategories, skills: ["React", "Next.js", "TypeScript", "Node.js", "Python", "PostgreSQL", "AWS", "Docker", "Figma", "Adobe Creative Suite", "Git", "Agile/Scrum"] }, leftMedia: false }
+			},
+{
+				type: "portfolio.split",
+				variant: "testimonial",
+				props: { content: { badge: "Testimonials", title: "What Clients Say", description: "I'm proud to have worked with amazing clients who have trusted me to bring their visions to life. Here's what they have to say about our collaboration.", projects: sampleProjects, testimonial: { text: "Alex delivered exceptional results that exceeded our expectations. The attention to detail and technical expertise made our project a huge success. I highly recommend working with Alex for any complex development needs.", author: "Sarah Chen", role: "Product Manager", company: "TechCorp Inc" } }, leftMedia: true }
+			},
+{
+				type: "portfolio.split",
+				variant: "process",
+				props: { content: { badge: "Process", title: "How I Work", description: "My proven 5-step process ensures every project is delivered on time, within budget, and exceeds expectations through careful planning and execution.", buttonText: "Start a Project", projects: sampleProjects, skills: ["React", "Next.js", "TypeScript", "Node.js", "Python", "PostgreSQL", "Figma", "Adobe XD", "Git", "Jira", "Slack", "Notion"] }, leftMedia: false }
+			}
+];

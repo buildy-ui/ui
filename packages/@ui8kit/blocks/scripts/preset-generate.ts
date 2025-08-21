@@ -3,7 +3,7 @@
 	and keeps duplicate samples (even for the same variant).
 
 	Usage:
-	  bun packages/@ui8kit/blocks/scripts/preset-generate.ts --blocks features
+	  bun packages/@ui8kit/blocks/scripts/preset-generate.ts --blocks portfolio && bun packages/@ui8kit/blocks/scripts/schema-generate.ts --blocks portfolio
 
 	- Scans: packages/@ui8kit/blocks/src/<category>/**\/*.examples.tsx
 	- Infers BlockName from file name (e.g., GridFeatures.examples.tsx → GridFeatures)

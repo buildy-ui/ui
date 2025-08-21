@@ -6,6 +6,7 @@ import {
   createFAQRegistry,
   createHeroRegistry,
   createFeaturesRegistry,
+  createPortfolioRegistry,
   /*SplitBusinessPresetSchema,
   GridBusinessPresetSchema,
   GridBlogPresetSchema,
@@ -15,6 +16,8 @@ import {
   SplitHeroPresetSchema,*/
   GridFeaturesPresetSchema,
   SplitFeaturesPresetSchema,
+  GridPortfolioPreset,
+  SplitPortfolioPreset,
   SplitBusinessPreset,
   GridBusinessPreset,
   GridBlogPreset,
@@ -37,6 +40,7 @@ export const FeaturesPage = () => {
     { name: "Hero Blocks", registry: createHeroRegistry() },
     { name: "Features Blocks", registry: createFeaturesRegistry() },
     { name: "Business Blocks", registry: createBusinessRegistry() },
+    { name: "Portfolio Blocks", registry: createPortfolioRegistry() },
     { name: "Blog Blocks", registry: createBlogRegistry() },
     { name: "CTA Blocks", registry: createCTARegistry() },
     { name: "FAQ Blocks", registry: createFAQRegistry() }
@@ -47,6 +51,8 @@ export const FeaturesPage = () => {
     ...SplitFeaturesPreset,
     ...GridBusinessPreset,
     ...SplitBusinessPreset,
+    ...GridPortfolioPreset,
+    ...SplitPortfolioPreset,
     ...CenteredCTAPreset,
     ...SplitCTAPreset,
     ...GridBlogPreset,
@@ -79,14 +85,7 @@ const validateBlocks = () => {
 
   const validations = [
     { schema: GridFeaturesPresetSchema, samples: GridFeaturesPreset },
-    { schema: SplitFeaturesPresetSchema, samples: SplitFeaturesPreset },
-    /*{ schema: SplitHeroPresetSchema, samples: SplitHeroPreset },
-    { schema: CenteredHeroPresetSchema, samples: CenteredHeroPreset },
-    { schema: CenteredCTAPresetSchema, samples: CenteredCTAPreset },
-    { schema: SplitCTAPresetSchema, samples: SplitCTAPreset },
-    { schema: GridBlogPresetSchema, samples: GridBlogPreset }
-    { schema: GridBusinessPresetSchema, samples: GridBusinessPreset },
-    { schema: SplitBusinessPresetSchema, samples: SplitBusinessPreset }*/
+    { schema: SplitFeaturesPresetSchema, samples: SplitFeaturesPreset }
     // add more schemas/presets here without duplicating logic
   ];
 

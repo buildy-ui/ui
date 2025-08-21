@@ -1,3 +1,5 @@
+import { GridPortfolio, type GridPortfolioData } from "./GridPortfolio";
+
 import { 
   Code,
   Palette,
@@ -5,12 +7,8 @@ import {
   Monitor,
   Smartphone,
   Globe,
-  Award,
-
-
-
+  Award
 } from "lucide-react";
-import { GridPortfolio, type GridPortfolioData } from "./GridPortfolio";
 
 // Sample portfolio data
 const sampleProjects = [

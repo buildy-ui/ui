@@ -8,7 +8,7 @@ export * from './faq';
 export * from './gallery';
 export * from './post';
 export * from './team';
-export * from './testimonial';
-export * from './portfolio';*/
+export * from './testimonial';*/
+export * from './portfolio';
 export * from './registry';
 export * from './renderer/BlockTreeRenderer';

@@ -685,44 +685,4 @@ export const SplitPortfolio = forwardRef<HTMLElement, SplitPortfolioProps>(
 SplitPortfolio.displayName = "SplitPortfolio";
 
 // Export template configurations
-export const splitPortfolioTemplates = {
-  showcase: {
-    id: "splitPortfolioShowcase",
-    name: "Portfolio Showcase",
-    description: "Split layout showcasing featured work and stats",
-    component: SplitPortfolio,
-    defaultProps: { variant: "showcase" as const }
-  },
-  
-  about: {
-    id: "splitPortfolioAbout",
-    name: "About & Bio",
-    description: "Personal introduction with experience and specializations",
-    component: SplitPortfolio,
-    defaultProps: { variant: "about" as const }
-  },
-
-  skills: {
-    id: "splitPortfolioSkills",
-    name: "Skills & Expertise",
-    description: "Technical skills and areas of expertise showcase",
-    component: SplitPortfolio,
-    defaultProps: { variant: "skills" as const }
-  },
-
-  testimonial: {
-    id: "splitPortfolioTestimonial",
-    name: "Client Testimonials",
-    description: "Client feedback with recent work samples",
-    component: SplitPortfolio,
-    defaultProps: { variant: "testimonial" as const }
-  },
-
-  process: {
-    id: "splitPortfolioProcess",
-    name: "Work Process",
-    description: "Step-by-step work methodology and tools",
-    component: SplitPortfolio,
-    defaultProps: { variant: "process" as const }
-  }
-};
+// showcase, about, skills, testimonial, process
