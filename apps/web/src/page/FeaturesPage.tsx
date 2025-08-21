@@ -8,6 +8,7 @@ import {
   createFeaturesRegistry,
   createPortfolioRegistry,
   createTeamRegistry,
+  createTestimonialRegistry,
   /*SplitBusinessPresetSchema,
   GridBusinessPresetSchema,
   GridBlogPresetSchema,
@@ -32,6 +33,8 @@ import {
   SplitHeroPreset,
   GridFeaturesPreset,
   SplitFeaturesPreset,
+  GridTestimonialPreset,
+  SplitTestimonialPreset,
   BlockTreeRenderer
 } from "@ui8kit/blocks";
 
@@ -47,7 +50,8 @@ export const FeaturesPage = () => {
     { name: "Blog Blocks", registry: createBlogRegistry() },
     { name: "CTA Blocks", registry: createCTARegistry() },
     { name: "FAQ Blocks", registry: createFAQRegistry() },
-    { name: "Team Blocks", registry: createTeamRegistry() }
+    { name: "Team Blocks", registry: createTeamRegistry() },
+    { name: "Testimonial Blocks", registry: createTestimonialRegistry() }
   ]
 
   const treeBlocks = [
@@ -65,7 +69,9 @@ export const FeaturesPage = () => {
     ...GridFAQPreset,
     ...SplitFAQPreset,
     ...GridTeamPreset,
-    ...SplitTeamPreset
+    ...SplitTeamPreset,
+    ...GridTestimonialPreset,
+    ...SplitTestimonialPreset
   ];
 
   validateBlocks();

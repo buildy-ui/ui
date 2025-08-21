@@ -1,5 +1,3 @@
-import { SplitTestimonial, type SplitTestimonialData } from "./SplitTestimonial";
-
 // Sample testimonial data
 const sampleTestimonials = [
   {
@@ -66,72 +64,20 @@ const sampleTestimonials = [
   }
 ];
 
-// 1. Featured Testimonial Example
-export const SplitTestimonialFeaturedExample = () => {
-  const content: SplitTestimonialData = {
-    title: "Trusted by Industry Leaders",
-    description: "See what our customers are saying about their experience with our platform and how it's transformed their business operations.",
-    badge: "Customer Stories",
-    testimonials: sampleTestimonials,
-    ctaText: "Read All Reviews"
-  };
-
-  return (
-    <SplitTestimonial
-      content={content}
-      variant="featured"
-      mediaPosition="right"
-      useContainer={true}
-    />
-  );
-};
-
-// 2. Carousel Style Example
-export const SplitTestimonialCarouselExample = () => {
-  const content: SplitTestimonialData = {
-    title: "Join Thousands of Happy Customers",
-    subtitle: "Discover why companies of all sizes choose our solution to drive their success.",
-    badge: "Customer Reviews",
-    testimonials: sampleTestimonials
-  };
-
-  return (
-    <SplitTestimonial
-      content={content}
-      variant="carousel"
-      mediaPosition="left"
-      useContainer={true}
-    />
-  );
-};
-
-// 3. Stats & Social Proof Example
-export const SplitTestimonialStatsExample = () => {
-  const content: SplitTestimonialData = {
-    title: "Proven Results Speak for Themselves",
-    description: "Our customers consistently rate us highly and see measurable improvements in their business metrics within weeks of implementation.",
-    testimonials: sampleTestimonials,
-    stats: {
-      totalReviews: "2,500+",
-      averageRating: "4.9",
-      satisfied: "98%"
-    },
-    ctaText: "Start Your Free Trial"
-  };
-
-  return (
-    <SplitTestimonial
-      content={content}
-      variant="stats"
-      mediaPosition="right"
-      useContainer={true}
-    />
-  );
-};
-
-// Export all examples
-export const splitTestimonialExamples = {
-  featured: SplitTestimonialFeaturedExample,
-  carousel: SplitTestimonialCarouselExample,
-  stats: SplitTestimonialStatsExample
-};
+export const SplitTestimonialPreset = [
+{
+				type: "testimonial.split",
+				variant: "featured",
+				props: { content: { title: "Trusted by Industry Leaders", description: "See what our customers are saying about their experience with our platform and how it's transformed their business operations.", badge: "Customer Stories", testimonials: sampleTestimonials, ctaText: "Read All Reviews" }, mediaPosition: "right", useContainer: true }
+			},
+{
+				type: "testimonial.split",
+				variant: "carousel",
+				props: { content: { title: "Join Thousands of Happy Customers", subtitle: "Discover why companies of all sizes choose our solution to drive their success.", badge: "Customer Reviews", testimonials: sampleTestimonials }, mediaPosition: "left", useContainer: true }
+			},
+{
+				type: "testimonial.split",
+				variant: "stats",
+				props: { content: { title: "Proven Results Speak for Themselves", description: "Our customers consistently rate us highly and see measurable improvements in their business metrics within weeks of implementation.", testimonials: sampleTestimonials, stats: { totalReviews: "2,500+", averageRating: "4.9", satisfied: "98%" }, ctaText: "Start Your Free Trial" }, mediaPosition: "right", useContainer: true }
+			}
+];

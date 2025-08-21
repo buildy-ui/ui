@@ -5,6 +5,9 @@ export * from "./SplitTestimonial";
 // Registry and presets
 export * from "./registry";
 
-// New Factory Examples
-export * from "./SplitTestimonial.examples";
-export * from "./GridTestimonial.examples";
+// Content presets
+export * from './GridTestimonial.preset';
+export * from './SplitTestimonial.preset';
+// Zod schemes for checking presets
+export * from './GridTestimonial.schema';
+export * from './SplitTestimonial.schema';
