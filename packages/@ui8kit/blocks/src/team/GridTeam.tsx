@@ -654,44 +654,4 @@ export const GridTeam = forwardRef<HTMLElement, GridTeamProps>(
 GridTeam.displayName = "GridTeam";
 
 // Export template configurations
-export const gridTeamTemplates = {
-  grid: {
-    id: "gridTeamGrid",
-    name: "Classic Team Grid",
-    description: "Traditional grid layout with team member cards",
-    component: GridTeam,
-    defaultProps: { variant: "grid" as const }
-  },
-  
-  cards: {
-    id: "gridTeamCards",
-    name: "Detailed Team Cards",
-    description: "Rich card layout with detailed member information",
-    component: GridTeam,
-    defaultProps: { variant: "cards" as const }
-  },
-
-  minimal: {
-    id: "gridTeamMinimal",
-    name: "Minimal Team Display",
-    description: "Clean, minimal team member presentation",
-    component: GridTeam,
-    defaultProps: { variant: "minimal" as const }
-  },
-
-  showcase: {
-    id: "gridTeamShowcase",
-    name: "Team Showcase",
-    description: "Highlighted team members with featured profiles",
-    component: GridTeam,
-    defaultProps: { variant: "showcase" as const }
-  },
-
-  directory: {
-    id: "gridTeamDirectory",
-    name: "Team Directory",
-    description: "Compact directory-style team member listing",
-    component: GridTeam,
-    defaultProps: { variant: "directory" as const }
-  }
-};
+// grid, cards, minimal, showcase, directory

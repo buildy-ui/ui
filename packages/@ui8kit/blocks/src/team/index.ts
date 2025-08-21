@@ -5,6 +5,9 @@ export * from "./SplitTeam";
 // Registry and presets
 export * from "./registry";
 
-// New Factory Examples
-export * from "./SplitTeam.examples";
-export * from "./GridTeam.examples";
+// Content presets
+export * from './GridTeam.preset';
+export * from './SplitTeam.preset';
+// Zod schemes for checking presets
+export * from './GridTeam.schema';
+export * from './SplitTeam.schema';

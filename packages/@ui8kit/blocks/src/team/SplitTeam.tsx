@@ -717,44 +717,4 @@ export const SplitTeam = forwardRef<HTMLElement, SplitTeamProps>(
 SplitTeam.displayName = "SplitTeam";
 
 // Export template configurations
-export const splitTeamTemplates = {
-  leadership: {
-    id: "splitTeamLeadership",
-    name: "Leadership Team",
-    description: "Showcase leadership team with detailed profiles and achievements",
-    component: SplitTeam,
-    defaultProps: { variant: "leadership" as const }
-  },
-  
-  showcase: {
-    id: "splitTeamShowcase", 
-    name: "Team Showcase",
-    description: "Display team members with skills and social links",
-    component: SplitTeam,
-    defaultProps: { variant: "showcase" as const }
-  },
-
-  hiring: {
-    id: "splitTeamHiring",
-    name: "Hiring & Recruitment",
-    description: "Team section focused on recruitment and open positions",
-    component: SplitTeam,
-    defaultProps: { variant: "hiring" as const }
-  },
-
-  culture: {
-    id: "splitTeamCulture",
-    name: "Company Culture",
-    description: "Highlight company culture and team statistics",
-    component: SplitTeam,
-    defaultProps: { variant: "culture" as const }
-  },
-
-  departments: {
-    id: "splitTeamDepartments",
-    name: "Departments Overview",
-    description: "Organize team members by departments and roles",
-    component: SplitTeam,
-    defaultProps: { variant: "departments" as const }
-  }
-};
+// leadership, showcase, hiring, culture, departments

@@ -7,6 +7,7 @@ import {
   createHeroRegistry,
   createFeaturesRegistry,
   createPortfolioRegistry,
+  createTeamRegistry,
   /*SplitBusinessPresetSchema,
   GridBusinessPresetSchema,
   GridBlogPresetSchema,
@@ -25,6 +26,8 @@ import {
   SplitCTAPreset,
   GridFAQPreset,
   SplitFAQPreset,
+  GridTeamPreset,
+  SplitTeamPreset,
   CenteredHeroPreset,
   SplitHeroPreset,
   GridFeaturesPreset,
@@ -43,7 +46,8 @@ export const FeaturesPage = () => {
     { name: "Portfolio Blocks", registry: createPortfolioRegistry() },
     { name: "Blog Blocks", registry: createBlogRegistry() },
     { name: "CTA Blocks", registry: createCTARegistry() },
-    { name: "FAQ Blocks", registry: createFAQRegistry() }
+    { name: "FAQ Blocks", registry: createFAQRegistry() },
+    { name: "Team Blocks", registry: createTeamRegistry() }
   ]
 
   const treeBlocks = [
@@ -59,7 +63,9 @@ export const FeaturesPage = () => {
     ...CenteredHeroPreset,
     ...SplitHeroPreset,
     ...GridFAQPreset,
-    ...SplitFAQPreset
+    ...SplitFAQPreset,
+    ...GridTeamPreset,
+    ...SplitTeamPreset
   ];
 
   validateBlocks();
