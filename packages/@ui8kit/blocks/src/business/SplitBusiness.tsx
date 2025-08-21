@@ -602,44 +602,4 @@ export const SplitBusiness = forwardRef<HTMLElement, SplitBusinessProps>(
 SplitBusiness.displayName = "SplitBusiness";
 
 // Export template configurations
-export const splitBusinessTemplates = {
-  solutions: {
-    id: "splitBusinessSolutions",
-    name: "Business Solutions Split",
-    description: "Split layout with business solutions and metrics",
-    component: SplitBusiness,
-    defaultProps: { variant: "solutions" as const }
-  },
-  
-  metrics: {
-    id: "splitBusinessMetrics",
-    name: "Business Metrics Split",
-    description: "Split layout focused on business performance metrics",
-    component: SplitBusiness,
-    defaultProps: { variant: "metrics" as const }
-  },
-
-  testimonial: {
-    id: "splitBusinessTestimonial",
-    name: "Business Testimonial Split",
-    description: "Split layout featuring customer testimonials",
-    component: SplitBusiness,
-    defaultProps: { variant: "testimonial" as const }
-  },
-
-  features: {
-    id: "splitBusinessFeatures",
-    name: "Business Features Split",
-    description: "Split layout highlighting business features",
-    component: SplitBusiness,
-    defaultProps: { variant: "features" as const }
-  },
-
-  about: {
-    id: "splitBusinessAbout",
-    name: "About Business Split",
-    description: "Split layout for company information and values",
-    component: SplitBusiness,
-    defaultProps: { variant: "about" as const }
-  }
-};
+// solutions, metrics, testimonial, features, about

@@ -335,44 +335,4 @@ export const SplitHero = forwardRef<HTMLElement, SplitHeroProps>(
 SplitHero.displayName = "SplitHero";
 
 // Export template configurations
-export const splitHeroTemplates = {
-  media: {
-    id: "splitHeroMedia",
-    name: "Split Hero with Media",
-    description: "Split layout hero with image and content",
-    component: SplitHero,
-    defaultProps: { variant: "media" as const }
-  },
-
-  leftMedia: {
-    id: "splitHeroLeftMedia",
-    name: "Split Hero with Left Media",
-    description: "Split layout hero with left image",
-    component: SplitHero,
-    defaultProps: { variant: "media" as const, leftMedia: true }
-  },
-
-  gallery: {
-    id: "splitHeroGallery",
-    name: "Split Hero with Gallery",
-    description: "Split layout hero with image gallery",
-    component: SplitHero,
-    defaultProps: { variant: "gallery" as const }
-  },
-
-  withTopButton: {
-    id: "splitHeroWithTopButton",
-    name: "Split Hero with Top Button",
-    description: "Split layout hero with top announcement button",
-    component: SplitHero,
-    defaultProps: { variant: "withTopButton" as const, useContainer: false }
-  },
-
-  security: {
-    id: "splitHeroSecurity",
-    name: "Split Hero Security",
-    description: "Split layout hero focused on security features",
-    component: SplitHero,
-    defaultProps: { variant: "security" as const }
-  }
-};
+// media, leftMedia, gallery, withTopButton, security

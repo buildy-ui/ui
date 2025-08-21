@@ -559,44 +559,4 @@ export const SplitFAQ = forwardRef<HTMLElement, SplitFAQProps>(
 SplitFAQ.displayName = "SplitFAQ";
 
 // Export template configurations
-export const splitFAQTemplates = {
-  contact: {
-    id: "splitFAQContact",
-    name: "FAQ with Contact Info",
-    description: "Split layout with FAQ content and contact information",
-    component: SplitFAQ,
-    defaultProps: { variant: "contact" as const }
-  },
-  
-  search: {
-    id: "splitFAQSearch",
-    name: "FAQ with Search",
-    description: "Split layout with search functionality and categories",
-    component: SplitFAQ,
-    defaultProps: { variant: "search" as const }
-  },
-
-  categories: {
-    id: "splitFAQCategories",
-    name: "FAQ with Categories",
-    description: "Split layout with category navigation",
-    component: SplitFAQ,
-    defaultProps: { variant: "categories" as const }
-  },
-
-  support: {
-    id: "splitFAQSupport",
-    name: "FAQ Support Center",
-    description: "Support-focused FAQ with contact options",
-    component: SplitFAQ,
-    defaultProps: { variant: "support" as const }
-  },
-
-  accordion: {
-    id: "splitFAQAccordion",
-    name: "FAQ with Accordion",
-    description: "Split layout with accordion-style FAQ list",
-    component: SplitFAQ,
-    defaultProps: { variant: "accordion" as const }
-  }
-};
+// contact, search, categories, support, accordion

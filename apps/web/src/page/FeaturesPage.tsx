@@ -1,11 +1,31 @@
 "use client";
 import {
+  createBusinessRegistry,
+  createBlogRegistry,
+  createCTARegistry,
+  createFAQRegistry,
   createHeroRegistry,
-  CenteredHeroPresetSchema,
-  CenteredHeroPreset,
   createFeaturesRegistry,
+  /*SplitBusinessPresetSchema,
+  GridBusinessPresetSchema,
+  GridBlogPresetSchema,
+  CenteredCTAPresetSchema,
+  SplitCTAPresetSchema,
+  CenteredHeroPresetSchema,
+  SplitHeroPresetSchema,*/
   GridFeaturesPresetSchema,
+  SplitFeaturesPresetSchema,
+  SplitBusinessPreset,
+  GridBusinessPreset,
+  GridBlogPreset,
+  CenteredCTAPreset,
+  SplitCTAPreset,
+  GridFAQPreset,
+  SplitFAQPreset,
+  CenteredHeroPreset,
+  SplitHeroPreset,
   GridFeaturesPreset,
+  SplitFeaturesPreset,
   BlockTreeRenderer
 } from "@ui8kit/blocks";
 
@@ -13,16 +33,44 @@ import { SampleValidation, validateContentAgainstPreset, formatSampleValidation 
 
 export const FeaturesPage = () => {
 
-  const featuresRegistry = createFeaturesRegistry();
-  const heroRegistry = createHeroRegistry();
+  const treeRegistry = [
+    { name: "Hero Blocks", registry: createHeroRegistry() },
+    { name: "Features Blocks", registry: createFeaturesRegistry() },
+    { name: "Business Blocks", registry: createBusinessRegistry() },
+    { name: "Blog Blocks", registry: createBlogRegistry() },
+    { name: "CTA Blocks", registry: createCTARegistry() },
+    { name: "FAQ Blocks", registry: createFAQRegistry() }
+  ]
+
+  const treeBlocks = [
+    ...GridFeaturesPreset,
+    ...SplitFeaturesPreset,
+    ...GridBusinessPreset,
+    ...SplitBusinessPreset,
+    ...CenteredCTAPreset,
+    ...SplitCTAPreset,
+    ...GridBlogPreset,
+    ...CenteredHeroPreset,
+    ...SplitHeroPreset,
+    ...GridFAQPreset,
+    ...SplitFAQPreset
+  ];
 
   validateBlocks();
 
+  const treeRenderers = treeRegistry.map((type, index) => {
+
+    console.info(index+1+". "+type.name)
+    return (
+      <div key={index} title={type.name} >
+        <h2 className="text-2xl font-bold text-center bg-primary/15 text-primary p-4 border-y border-2 border-primary">{type.name}</h2>
+        <BlockTreeRenderer registry={type.registry as any} tree={treeBlocks}/>
+      </div>
+    )
+  });
+
   return (
-    <>
-      <BlockTreeRenderer registry={heroRegistry as any} tree={CenteredHeroPreset} />
-      <BlockTreeRenderer registry={featuresRegistry as any} tree={GridFeaturesPreset} />
-    </>
+    treeRenderers
   );
 };
 
@@ -30,8 +78,15 @@ const validateBlocks = () => {
   const presetInvalid = (r: SampleValidation) => formatSampleValidation(r);
 
   const validations = [
-    { name: 'features.gridfeatures', schema: GridFeaturesPresetSchema, samples: GridFeaturesPreset },
-    { name: 'hero.centered', schema: CenteredHeroPresetSchema, samples: CenteredHeroPreset }
+    { schema: GridFeaturesPresetSchema, samples: GridFeaturesPreset },
+    { schema: SplitFeaturesPresetSchema, samples: SplitFeaturesPreset },
+    /*{ schema: SplitHeroPresetSchema, samples: SplitHeroPreset },
+    { schema: CenteredHeroPresetSchema, samples: CenteredHeroPreset },
+    { schema: CenteredCTAPresetSchema, samples: CenteredCTAPreset },
+    { schema: SplitCTAPresetSchema, samples: SplitCTAPreset },
+    { schema: GridBlogPresetSchema, samples: GridBlogPreset }
+    { schema: GridBusinessPresetSchema, samples: GridBusinessPreset },
+    { schema: SplitBusinessPresetSchema, samples: SplitBusinessPreset }*/
     // add more schemas/presets here without duplicating logic
   ];
 
@@ -39,7 +94,7 @@ const validateBlocks = () => {
     const results = validateContentAgainstPreset(v.schema as any, v.samples as any[]);
     return results
       .filter(r => !r.ok)
-      .map(r => `[${v.name}] ${presetInvalid(r)}`);
+      .map(r => presetInvalid(r));
   });
 
   if (invalidMessages.length) {

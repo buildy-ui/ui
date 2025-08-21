@@ -374,44 +374,4 @@ export const CenteredHero = forwardRef<HTMLElement, CenteredHeroProps>(
 CenteredHero.displayName = "CenteredHero";
 
 // Export template configurations
-export const centeredHeroTemplates = {
-  simple: {
-    id: "centeredHeroSimple",
-    name: "Simple Centered Hero",
-    description: "Centered hero section with badge, title, description and buttons",
-    component: CenteredHero,
-    defaultProps: { variant: "simple" as const }
-  },
-
-  withTopButton: {
-    id: "centeredHeroWithTopButton",
-    name: "Centered Hero with Top Button",
-    description: "Centered hero with announcement button at the top",
-    component: CenteredHero,
-    defaultProps: { variant: "withTopButton" as const }
-  },
-
-  withImage: {
-    id: "centeredHeroWithImage",
-    name: "Centered Hero with Image",
-    description: "Centered hero with large image below content",
-    component: CenteredHero,
-    defaultProps: { variant: "withImage" as const }
-  },
-
-  withStats: {
-    id: "centeredHeroWithStats",
-    name: "Centered Hero with Stats",
-    description: "Centered hero with statistics display below content",
-    component: CenteredHero,
-    defaultProps: { variant: "withStats" as const }
-  },
-
-  mission: {
-    id: "centeredHeroMission",
-    name: "Centered Hero Mission",
-    description: "Centered hero for mission/vision statements",
-    component: CenteredHero,
-    defaultProps: { variant: "mission" as const }
-  }
-};
+// simple, withTopButton, withImage, withStats

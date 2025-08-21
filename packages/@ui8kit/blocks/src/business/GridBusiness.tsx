@@ -560,44 +560,4 @@ export const GridBusiness = forwardRef<HTMLElement, GridBusinessProps>(
 GridBusiness.displayName = "GridBusiness";
 
 // Export template configurations
-export const gridBusinessTemplates = {
-  cardsGallery: {
-    id: "gridBusinessCardsGallery",
-    name: "Business Cards Gallery",
-    description: "Grid layout with business feature cards",
-    component: GridBusiness,
-    defaultProps: { variant: "cardsGallery" as const }
-  },
-  
-  solutionsGrid: {
-    id: "gridBusinessSolutionsGrid",
-    name: "Business Solutions Grid",
-    description: "Grid layout with business solutions and stats",
-    component: GridBusiness,
-    defaultProps: { variant: "solutionsGrid" as const }
-  },
-
-  pricing: {
-    id: "gridBusinessPricing",
-    name: "Pricing Grid",
-    description: "Grid layout with pricing plans",
-    component: GridBusiness,
-    defaultProps: { variant: "pricing" as const }
-  },
-
-  pricingYear: {
-    id: "gridBusinessPricingYear",
-    name: "Pricing Grid with Yearly Toggle",
-    description: "Grid layout with monthly/yearly pricing toggle",
-    component: GridBusiness,
-    defaultProps: { variant: "pricingYear" as const, _showYearlyToggle: true }
-  },
-
-  career: {
-    id: "gridBusinessCareer",
-    name: "Career Openings Grid",
-    description: "Grid layout for job openings",
-    component: GridBusiness,
-    defaultProps: { variant: "career" as const, cols: "1-2" as const }
-  }
-};
+// cardsGallery, solutionsGrid, pricing, pricingYear, career

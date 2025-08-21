@@ -37,61 +37,6 @@ export interface HeroBlockDefinition {
   migrate?: (props: Record<string, any>, fromVersion: number) => Record<string, any>;
 }
 
-// Intentionally no per-domain registry implementation.
-// Use the common createBlocksRegistry and register hero definitions via helpers below.
-
-// ===== Presets (kept close to hero code) =====
-
-const splitHeroPresets: HeroBlockPreset[] = [
-  {
-    id: "preset:hero.split:gallery:funding",
-    type: "hero.split",
-    variant: "gallery",
-    name: "Funding Announcement",
-    description: "Hero with top button and gallery",
-    props: {
-      content: {
-        topButton: { text: "🎉 Announcing our Series A funding", href: "#" },
-        badge: "Funding News",
-        title: "We raised $50M to accelerate innovation",
-        description:
-          "With this new funding, we're doubling down on our mission to democratize technology and make powerful tools accessible to everyone.",
-        images: [
-          { id: "1", src: "https://images.unsplash.com/photo-1618477247222-acbdb0e159b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80", alt: "Portfolio showcase 1" },
-          { id: "2", src: "https://images.unsplash.com/photo-1618477388954-7852f32655ec?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80", alt: "Portfolio showcase 2" },
-          { id: "3", src: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80", alt: "Portfolio showcase 3" }
-        ],
-        primaryButtonText: "Read Announcement",
-        secondaryButtonText: "Join Journey"
-      },
-      useContainer: true,
-      className: "bg-gradient-to-br from-primary/10 to-secondary/10"
-    },
-    version: 1
-  }
-];
-
-const centeredHeroPresets: HeroBlockPreset[] = [
-  {
-    id: "preset:hero.centered:simple:launch",
-    type: "hero.centered",
-    variant: "simple",
-    name: "Product Launch",
-    description: "Simple centered hero with actions",
-    props: {
-      content: {
-        badge: "New",
-        title: "Appy Launch your next big thing",
-        description: "Build with confidence using a modern, composable UI kit.",
-        primaryButtonText: "Get Started",
-        secondaryButtonText: "Learn More"
-      },
-      useContainer: true
-    },
-    version: 1
-  }
-];
-
 // ===== Definitions =====
 
 const splitHeroDef: HeroBlockDefinition = {
@@ -107,8 +52,7 @@ const splitHeroDef: HeroBlockDefinition = {
       ...props,
       slots: slots as any
     });
-  },
-  presets: splitHeroPresets
+  }
 };
 
 const centeredHeroDef: HeroBlockDefinition = {
@@ -122,8 +66,7 @@ const centeredHeroDef: HeroBlockDefinition = {
       variant: (variant as any) || "simple",
       ...props
     });
-  },
-  presets: centeredHeroPresets
+  }
 };
 
 export const registerHeroBlocks = (registry: ReturnType<typeof createBlocksRegistry>) => {

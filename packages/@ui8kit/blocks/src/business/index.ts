@@ -2,6 +2,12 @@
 export * from './GridBusiness';
 export * from './SplitBusiness';
 
-// Examples for the new factories
-export * from './GridBusiness.examples';
-export * from './SplitBusiness.examples';
+// Registry and presets
+export * from './registry';
+
+// Content presets
+export * from './GridBusiness.preset';
+export * from './SplitBusiness.preset';
+// Zod schemes for checking presets
+export * from './GridBusiness.schema';
+export * from './SplitBusiness.schema';

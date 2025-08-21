@@ -375,44 +375,4 @@ export const GridFAQ = forwardRef<HTMLElement, GridFAQProps>(
 GridFAQ.displayName = "GridFAQ";
 
 // Export template configurations
-export const gridFAQTemplates = {
-  cards: {
-    id: "gridFAQCards",
-    name: "FAQ Cards Grid",
-    description: "Grid layout with FAQ cards",
-    component: GridFAQ,
-    defaultProps: { variant: "cards" as const, cols: "1-2-3" as const }
-  },
-  
-  accordion: {
-    id: "gridFAQAccordion",
-    name: "FAQ Accordion List",
-    description: "Single column accordion FAQ list",
-    component: GridFAQ,
-    defaultProps: { variant: "accordion" as const, cols: "1" as const }
-  },
-
-  categories: {
-    id: "gridFAQCategories",
-    name: "Categorized FAQ Grid",
-    description: "Compact grid with category-based FAQ items",
-    component: GridFAQ,
-    defaultProps: { variant: "categories" as const, cols: "1-2-4" as const }
-  },
-
-  compact: {
-    id: "gridFAQCompact",
-    name: "Compact FAQ List",
-    description: "Minimal single-column FAQ list",
-    component: GridFAQ,
-    defaultProps: { variant: "compact" as const, cols: "1" as const }
-  },
-
-  support: {
-    id: "gridFAQSupport",
-    name: "Support Center FAQ",
-    description: "Support-focused FAQ with prominent icons",
-    component: GridFAQ,
-    defaultProps: { variant: "support" as const, cols: "1-2-3" as const }
-  }
-};
+// cards, accordion, categories, compact, support

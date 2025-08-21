@@ -2,6 +2,12 @@
 export * from './GridFAQ';
 export * from './SplitFAQ';
 
-// Examples for the new factories
-export * from './GridFAQ.examples';
-export * from './SplitFAQ.examples';
+// Registry and presets
+export * from './registry';
+
+// Content presets
+export * from './GridFAQ.preset';
+export * from './SplitFAQ.preset';
+// Zod schemes for checking presets
+export * from './GridFAQ.schema';
+export * from './SplitFAQ.schema';

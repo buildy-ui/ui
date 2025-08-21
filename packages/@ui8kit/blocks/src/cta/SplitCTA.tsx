@@ -559,44 +559,4 @@ export const SplitCTA = forwardRef<HTMLElement, SplitCTAProps>(
 SplitCTA.displayName = "SplitCTA";
 
 // Export template configurations
-export const splitCTATemplates = {
-  withImage: {
-    id: "splitCTAWithImage",
-    name: "Split CTA with Image",
-    description: "Split layout CTA with image and content",
-    component: SplitCTA,
-    defaultProps: { variant: "withImage" as const }
-  },
-  
-  withBackground: {
-    id: "splitCTAWithBackground",
-    name: "Split CTA with Background",
-    description: "Split layout CTA with background image or gradient",
-    component: SplitCTA,
-    defaultProps: { variant: "withBackground" as const }
-  },
-
-  withStats: {
-    id: "splitCTAWithStats",
-    name: "Split CTA with Statistics",
-    description: "Split layout CTA showcasing key statistics",
-    component: SplitCTA,
-    defaultProps: { variant: "withStats" as const }
-  },
-
-  withDevices: {
-    id: "splitCTAWithDevices",
-    name: "Split CTA with Device Stats",
-    description: "Split layout CTA highlighting multi-device support",
-    component: SplitCTA,
-    defaultProps: { variant: "withDevices" as const }
-  },
-
-  withFeatures: {
-    id: "splitCTAWithFeatures",
-    name: "Split CTA with Features",
-    description: "Split layout CTA highlighting key features",
-    component: SplitCTA,
-    defaultProps: { variant: "withFeatures" as const }
-  }
-};
+// withImage, withBackground, withStats, withDevices, withFeatures

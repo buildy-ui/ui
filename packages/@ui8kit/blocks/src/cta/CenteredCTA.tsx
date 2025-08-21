@@ -414,44 +414,4 @@ export const CenteredCTA = forwardRef<HTMLElement, CenteredCTAProps>(
 CenteredCTA.displayName = "CenteredCTA";
 
 // Export template configurations
-export const centeredCTATemplates = {
-  simple: {
-    id: "centeredCTASimple",
-    name: "Simple Centered CTA",
-    description: "Clean centered call-to-action with title, description and buttons",
-    component: CenteredCTA,
-    defaultProps: { variant: "simple" as const }
-  },
-  
-  withLogos: {
-    id: "centeredCTAWithLogos",
-    name: "CTA with Brand Logos",
-    description: "Centered CTA featuring trusted brand logos",
-    component: CenteredCTA,
-    defaultProps: { variant: "withLogos" as const }
-  },
-
-  withBackground: {
-    id: "centeredCTAWithBackground",
-    name: "CTA with Background",
-    description: "Eye-catching CTA with background image or gradient",
-    component: CenteredCTA,
-    defaultProps: { variant: "withBackground" as const }
-  },
-
-  withFeatures: {
-    id: "centeredCTAWithFeatures",
-    name: "CTA with Features",
-    description: "CTA highlighting key features with icons",
-    component: CenteredCTA,
-    defaultProps: { variant: "withFeatures" as const }
-  },
-
-  withStats: {
-    id: "centeredCTAWithStats",
-    name: "CTA with Statistics",
-    description: "Data-driven CTA showcasing impressive statistics",
-    component: CenteredCTA,
-    defaultProps: { variant: "withStats" as const }
-  }
-};
+// simple, withLogos, withBackground, withFeatures, withStats

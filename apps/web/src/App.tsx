@@ -1,4 +1,4 @@
-import { LandingPage, PageBuilder, FeaturesPage } from '@/page'
+import { LandingPage, FeaturesPage } from '@/page'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -6,7 +6,6 @@ function App() {
     <Router>
       <Routes>
         <Route path="/landing" element={<LandingPage />} />
-        <Route path="/blocks" element={<PageBuilder />} />
         <Route path="/" element={<FeaturesPage />} />
       </Routes>
     </Router>

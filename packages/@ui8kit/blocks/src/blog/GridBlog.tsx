@@ -22,7 +22,8 @@ const theme = {
   themeRounded: currentTheme.rounded,
   themeButtonSize: currentTheme.buttonSize
 }
-import { 
+
+import {
   LayoutBlock,
   createLayoutContentHook
 } from "@ui8kit/core";
@@ -87,10 +88,10 @@ const gridBlogContentHooks = {
                 fit="cover"
                 rounded={theme?.themeRounded.default}
               />
-              
+
               <Box
-                p="xs" 
-                bg="primary" 
+                p="xs"
+                bg="primary"
                 rounded={theme?.themeRounded.default}
                 data-class="category-badge"
                 className="absolute top-3 left-3"
@@ -106,7 +107,7 @@ const gridBlogContentHooks = {
             <Title order={3} size="lg" fw="semibold" className="line-clamp-2">
               {post.title}
             </Title>
-            
+
             <Text c="secondary-foreground" className="line-clamp-3">
               {post.description}
             </Text>
@@ -119,14 +120,14 @@ const gridBlogContentHooks = {
                 {post.author.name}
               </Text>
             </Group>
-            
+
             <Group gap="sm" align="center">
               <Icon size="lg" lucideIcon={Calendar} />
               <Text size="xs" c="secondary-foreground">
                 {post.date}
               </Text>
             </Group>
-            
+
             <Group gap="sm" align="center">
               <Icon size="lg" lucideIcon={Clock} />
               <Text size="xs" c="secondary-foreground">
@@ -175,11 +176,11 @@ const gridBlogContentHooks = {
             <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="max-w-fit">
               {post.category}
             </Badge>
-            
+
             <Title order={3} size="md" fw="semibold" className="line-clamp-2">
               {post.title}
             </Title>
-            
+
             <Text c="secondary-foreground" className="line-clamp-2">
               {post.description}
             </Text>
@@ -202,7 +203,7 @@ const gridBlogContentHooks = {
                 {post.author.name}
               </Text>
             </Group>
-            
+
             <Group gap="md" align="center">
               <Text size="xs" c="secondary-foreground">
                 {post.date}
@@ -263,11 +264,11 @@ const gridBlogContentHooks = {
                 {post.category}
               </Text>
             </Group>
-            
+
             <Title order={4} size="sm" fw="semibold" className="line-clamp-2">
               {post.title}
             </Title>
-            
+
             <Text size="xs" c="secondary-foreground" className="line-clamp-2">
               {post.description}
             </Text>
@@ -310,11 +311,11 @@ const gridBlogContentHooks = {
             <Badge variant="outline" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="max-w-fit">
               {post.category}
             </Badge>
-            
+
             <Title order={4} size="sm" fw="semibold" className="line-clamp-2">
               {post.title}
             </Title>
-            
+
             <Group gap="md" align="center" className="text-xs">
               <Text size="xs" c="secondary-foreground">
                 {post.author.name}
@@ -336,14 +337,14 @@ const gridBlogContentHooks = {
   featured: createLayoutContentHook({
     item: (post: BlogPost, index: number) => {
       const isFeatured = index === 0;
-      
+
       return (
-        <Card 
-          key={post.id} 
-          p={isFeatured ? "xl" : "lg"} 
+        <Card
+          key={post.id}
+          p={isFeatured ? "xl" : "lg"}
           rounded={theme?.themeRounded.default}
-          shadow={isFeatured ? "md" : "sm"} 
-          bg="card" 
+          shadow={isFeatured ? "md" : "sm"}
+          bg="card"
           className={`hover:shadow-lg transition-shadow ${isFeatured ? "col-span-2 row-span-2" : ""}`}
         >
           <Stack gap={isFeatured ? "lg" : "md"} align="start">
@@ -362,19 +363,19 @@ const gridBlogContentHooks = {
               <Badge variant="secondary" size={theme?.themeButtonSize.badge} rounded={theme?.themeRounded.badge} className="max-w-fit">
                 {post.category}
               </Badge>
-              
-              <Title 
-                order={isFeatured ? 2 : 3} 
-                size={isFeatured ? "xl" : "lg"} 
-                fw="bold" 
+
+              <Title
+                order={isFeatured ? 2 : 3}
+                size={isFeatured ? "xl" : "lg"}
+                fw="bold"
                 className="line-clamp-2"
               >
                 {post.title}
               </Title>
-              
-              <Text 
-                size={isFeatured ? "md" : "sm"} 
-                c="secondary-foreground" 
+
+              <Text
+                size={isFeatured ? "md" : "sm"}
+                c="secondary-foreground"
                 className={isFeatured ? "line-clamp-4" : "line-clamp-2"}
               >
                 {post.description}
@@ -411,7 +412,7 @@ const gridBlogContentHooks = {
                   </Group>
                 </Stack>
               </Group>
-              
+
               {isFeatured && (
                 <Button rounded={theme?.themeRounded.default} variant="outline" size={theme?.themeButtonSize.default} rightSection={
                   <Icon lucideIcon={ArrowRight} />
@@ -428,8 +429,8 @@ const gridBlogContentHooks = {
 };
 
 export const GridBlog = forwardRef<HTMLElement, GridBlogProps>(
-  ({ 
-    content, 
+  ({
+    content,
     variant = "cards",
     cols = "1-2-3",
     py = "lg",
@@ -437,9 +438,9 @@ export const GridBlog = forwardRef<HTMLElement, GridBlogProps>(
     useContainer = true,
     _showFilters = false,
     className,
-    ...props 
+    ...props
   }, ref) => {
-    
+
     // Choose content hooks and layout settings based on variant
     const getVariantConfig = () => {
       switch (variant) {
@@ -449,35 +450,35 @@ export const GridBlog = forwardRef<HTMLElement, GridBlogProps>(
             cols: "1-2-3" as const,
             gap: "xl" as const
           };
-        
+
         case "postsGrid":
           return {
             contentHooks: gridBlogContentHooks.postsGrid,
             cols: "1-2-3" as const,
             gap: "lg" as const
           };
-        
+
         case "filtered":
           return {
             contentHooks: gridBlogContentHooks.filtered,
             cols: "1-2-3" as const,
             gap: "lg" as const
           };
-        
+
         case "compact":
           return {
             contentHooks: gridBlogContentHooks.compact,
             cols: "1" as const,
             gap: "sm" as const
           };
-        
+
         case "featured":
           return {
             contentHooks: gridBlogContentHooks.featured,
             cols: "1-2-4" as const,
             gap: "lg" as const
           };
-        
+
         default:
           return {
             contentHooks: gridBlogContentHooks.cards,
@@ -515,44 +516,4 @@ export const GridBlog = forwardRef<HTMLElement, GridBlogProps>(
 GridBlog.displayName = "GridBlog";
 
 // Export template configurations
-export const gridBlogTemplates = {
-  cards: {
-    id: "gridBlogCards",
-    name: "Blog Cards Grid",
-    description: "Grid layout with blog post cards",
-    component: GridBlog,
-    defaultProps: { variant: "cards" as const }
-  },
-  
-  postsGrid: {
-    id: "gridBlogPostsGrid",
-    name: "Blog Posts Grid",
-    description: "Grid layout with detailed blog posts",
-    component: GridBlog,
-    defaultProps: { variant: "postsGrid" as const }
-  },
-
-  filtered: {
-    id: "gridBlogFiltered",
-    name: "Filtered Blog Grid",
-    description: "Grid layout with category filters",
-    component: GridBlog,
-    defaultProps: { variant: "filtered" as const, _showFilters: true }
-  },
-
-  compact: {
-    id: "gridBlogCompact",
-    name: "Compact Blog List",
-    description: "Compact list layout for blog posts",
-    component: GridBlog,
-    defaultProps: { variant: "compact" as const, cols: "1" as const }
-  },
-
-  featured: {
-    id: "gridBlogFeatured",
-    name: "Featured Blog Grid",
-    description: "Grid layout with featured post highlight",
-    component: GridBlog,
-    defaultProps: { variant: "featured" as const, cols: "1-2-4" as const }
-  }
-};
+// cards, postsGrid, filtered, compact, featured
