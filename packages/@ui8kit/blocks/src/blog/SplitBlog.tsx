@@ -599,6 +599,7 @@ export const SplitBlog = forwardRef<HTMLElement, SplitBlogProps>(
 SplitBlog.displayName = "SplitBlog";
 
 // Export template configurations
+// news, slider, featured, newsletter, timeline
 export const splitBlogTemplates = {
   news: {
     id: "splitBlogNews",

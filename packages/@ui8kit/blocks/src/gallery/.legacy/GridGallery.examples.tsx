@@ -25,11 +25,11 @@ const createSampleImages = (count: number = 12) => {
 
   return Array.from({ length: count }, (_, index) => ({
     id: `img-${index + 1}`,
-    src: imageUrls[index % imageUrls.length],
+    src: imageUrls[index % imageUrls.length] || "",
     alt: `Gallery image ${index + 1}`,
     title: titles[index % titles.length],
     category: categories[index % categories.length],
-    description: `Beautiful ${categories[index % categories.length].toLowerCase()} photography`,
+    description: `Beautiful ${categories[index % categories.length]?.toLowerCase()} photography`,
     likes: `${Math.floor(Math.random() * 500) + 50}`,
     views: `${Math.floor(Math.random() * 2000) + 200}`
   }));
@@ -52,7 +52,7 @@ const baseGalleryData: GridGalleryData = {
 
 // 1. Classic Grid Layout
 export const GridGalleryGridExample = () => {
-  const gridData: GridGalleryData = {
+  const content: GridGalleryData = {
     ...baseGalleryData,
     title: "Classic Photo Grid",
     badge: "Featured Collection"
@@ -60,7 +60,7 @@ export const GridGalleryGridExample = () => {
 
   return (
     <GridGallery
-      content={gridData}
+      content={content}
       variant="grid"
     />
   );
@@ -68,7 +68,7 @@ export const GridGalleryGridExample = () => {
 
 // 2. Masonry Layout
 export const GridGalleryMasonryExample = () => {
-  const masonryData: GridGalleryData = {
+  const content: GridGalleryData = {
     ...baseGalleryData,
     title: "Masonry Gallery",
     subtitle: "Pinterest-style layout with dynamic heights"
@@ -76,7 +76,7 @@ export const GridGalleryMasonryExample = () => {
 
   return (
     <GridGallery
-      content={masonryData}
+      content={content}
       variant="masonry"
     />
   );
@@ -84,7 +84,7 @@ export const GridGalleryMasonryExample = () => {
 
 // 3. Carousel-style with featured image
 export const GridGalleryCarouselExample = () => {
-  const carouselData: GridGalleryData = {
+  const content: GridGalleryData = {
     ...baseGalleryData,
     title: "Interactive Gallery Carousel",
     images: createSampleImages(9) // Featured + 8 thumbnails
@@ -92,7 +92,7 @@ export const GridGalleryCarouselExample = () => {
 
   return (
     <GridGallery
-      content={carouselData}
+      content={content}
       variant="carousel"
     />
   );
@@ -100,7 +100,7 @@ export const GridGalleryCarouselExample = () => {
 
 // 4. Mosaic Layout with different sizes
 export const GridGalleryMosaicExample = () => {
-  const mosaicData: GridGalleryData = {
+  const content: GridGalleryData = {
     ...baseGalleryData,
     title: "Dynamic Mosaic Layout",
     description: "Varied sizes create an engaging visual experience"
@@ -108,7 +108,7 @@ export const GridGalleryMosaicExample = () => {
 
   return (
     <GridGallery
-      content={mosaicData}
+      content={content}
       variant="mosaic"
     />
   );
@@ -116,7 +116,7 @@ export const GridGalleryMosaicExample = () => {
 
 // 5. Minimal Clean Layout
 export const GridGalleryMinimalExample = () => {
-  const minimalData: GridGalleryData = {
+  const content: GridGalleryData = {
     ...baseGalleryData,
     title: "Minimal Gallery",
     subtitle: "Clean design focused on the imagery",
@@ -125,7 +125,7 @@ export const GridGalleryMinimalExample = () => {
 
   return (
     <GridGallery
-      content={minimalData}
+      content={content}
       variant="minimal"
     />
   );
@@ -133,7 +133,7 @@ export const GridGalleryMinimalExample = () => {
 
 // 6. Card-based Layout
 export const GridGalleryCardsExample = () => {
-  const cardsData: GridGalleryData = {
+  const content: GridGalleryData = {
     ...baseGalleryData,
     title: "Photo Cards Collection",
     badge: "Community Favorites"
@@ -141,7 +141,7 @@ export const GridGalleryCardsExample = () => {
 
   return (
     <GridGallery
-      content={cardsData}
+      content={content}
       variant="cards"
     />
   );
@@ -149,7 +149,7 @@ export const GridGalleryCardsExample = () => {
 
 // 7. Polaroid Style
 export const GridGalleryPolaroidExample = () => {
-  const polaroidData: GridGalleryData = {
+    const content: GridGalleryData = {
     ...baseGalleryData,
     title: "Vintage Polaroid Collection",
     description: "Nostalgic photo memories with a vintage twist",
@@ -158,7 +158,7 @@ export const GridGalleryPolaroidExample = () => {
 
   return (
     <GridGallery
-      content={polaroidData}
+      content={content}
       variant="polaroid"
       className="bg-gradient-to-b from-primary/50 to-primary/10"
     />
@@ -167,7 +167,7 @@ export const GridGalleryPolaroidExample = () => {
 
 // 8. Magazine Layout
 export const GridGalleryMagazineExample = () => {
-  const magazineData: GridGalleryData = {
+  const content: GridGalleryData = {
     ...baseGalleryData,
     title: "Editorial Showcase",
     subtitle: "Professional photography with magazine-style presentation",
@@ -176,13 +176,14 @@ export const GridGalleryMagazineExample = () => {
 
   return (
     <GridGallery
-      content={magazineData}
+      content={content}
       variant="magazine"
     />
   );
 };
 
 // Export all examples
+// grid, masonry, carousel, mosaic, minimal, cards, polaroid, magazine
 export const gridGalleryExamples = {
   grid: GridGalleryGridExample,
   masonry: GridGalleryMasonryExample,

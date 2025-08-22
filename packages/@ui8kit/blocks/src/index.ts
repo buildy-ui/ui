@@ -5,8 +5,8 @@ export * from './blog';
 export * from './cta';
 export * from './faq';
 export * from './footer';
-/*export * from './gallery';
-export * from './post';*/
+export * from './gallery';
+export * from './post';
 export * from './testimonial';
 export * from './team';
 export * from './portfolio';

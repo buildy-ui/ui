@@ -1,7 +1,12 @@
 import { SplitGallery, type SplitGalleryData } from "./SplitGallery";
 
+// ===== SPLIT GALLERY EXAMPLES =====
+
+// 1. Showcase Split Gallery
+export const SplitGalleryShowcaseExample = () => {
+
 // Sample gallery data
-const sampleGalleryData: SplitGalleryData = {
+const content: SplitGalleryData = {
   title: "Creative Photography Showcase",
   subtitle: "Capturing moments that tell extraordinary stories",
   description: "Explore our curated collection of stunning photographs from around the world, featuring landscapes, portraits, and urban scenes that inspire and captivate.",
@@ -48,14 +53,9 @@ const sampleGalleryData: SplitGalleryData = {
   primaryButtonText: "View Full Gallery",
   secondaryButtonText: "Share Collection"
 };
-
-// ===== SPLIT GALLERY EXAMPLES =====
-
-// 1. Showcase Split Gallery
-export const SplitGalleryShowcaseExample = () => {
   return (
     <SplitGallery
-      content={sampleGalleryData}
+      content={content}
       variant="showcase"
       leftMedia={false}
     />
@@ -64,7 +64,7 @@ export const SplitGalleryShowcaseExample = () => {
 
 // 2. Portfolio Split Gallery
 export const SplitGalleryPortfolioExample = () => {
-  const portfolioData: SplitGalleryData = {
+  const content: SplitGalleryData = {
     title: "Professional Photography Portfolio",
     description: "A curated selection of my finest work spanning multiple genres and styles, showcasing technical excellence and creative vision.",
     badge: "Portfolio 2024",
@@ -109,7 +109,7 @@ export const SplitGalleryPortfolioExample = () => {
 
   return (
     <SplitGallery
-      content={portfolioData}
+      content={content}
       variant="portfolio"
       leftMedia={true}
     />

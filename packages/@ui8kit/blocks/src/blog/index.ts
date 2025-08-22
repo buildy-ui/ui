@@ -6,5 +6,7 @@ export * from './registry';
 
 // Content presets
 export * from './GridBlog.preset';
+export * from './SplitBlog.preset';
 // Zod schemes for checking presets
 export * from './GridBlog.schema';
+export * from './SplitBlog.schema';

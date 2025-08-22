@@ -38,9 +38,10 @@ const samplePostData: SplitPostData = {
 
 // 1. Standard Split Post
 export const SplitPostStandardExample = () => {
+  const content: SplitPostData = {...samplePostData}
   return (
     <SplitPost
-      content={samplePostData}
+      content={content}
       variant="standard"
       leftMedia={false}
     />
@@ -49,7 +50,7 @@ export const SplitPostStandardExample = () => {
 
 // 2. Author-Focused Split Post
 export const SplitPostAuthorExample = () => {
-  const authorData: SplitPostData = {
+  const content: SplitPostData = {
     ...samplePostData,
     title: "Design Systems That Scale: Lessons from Industry Leaders",
     excerpt: "Building design systems that can grow with your organization while maintaining consistency and usability across all touchpoints.",
@@ -71,7 +72,7 @@ export const SplitPostAuthorExample = () => {
 
   return (
     <SplitPost
-      content={authorData}
+      content={content}
       variant="author"
       leftMedia={true}
     />
@@ -80,7 +81,7 @@ export const SplitPostAuthorExample = () => {
 
 // 3. Media-Focused Split Post
 export const SplitPostMediaExample = () => {
-  const mediaData: SplitPostData = {
+  const content: SplitPostData = {
     ...samplePostData,
     title: "The Visual Guide to CSS Grid Layout",
     subtitle: "Master CSS Grid with interactive examples and real-world use cases",
@@ -98,7 +99,7 @@ export const SplitPostMediaExample = () => {
 
   return (
     <SplitPost
-      content={mediaData}
+      content={content}
       variant="media"
       leftMedia={false}
     />
@@ -107,7 +108,7 @@ export const SplitPostMediaExample = () => {
 
 // 4. Sidebar Split Post
 export const SplitPostSidebarExample = () => {
-  const sidebarData: SplitPostData = {
+  const content: SplitPostData = {
     ...samplePostData,
     title: "Building Accessible Web Applications",
     author: {
@@ -133,7 +134,7 @@ export const SplitPostSidebarExample = () => {
 
   return (
     <SplitPost
-      content={sidebarData}
+      content={content}
       variant="sidebar"
       leftMedia={true}
     />
@@ -142,7 +143,7 @@ export const SplitPostSidebarExample = () => {
 
 // 5. Hero Split Post
 export const SplitPostHeroExample = () => {
-  const heroData: SplitPostData = {
+  const content: SplitPostData = {
     ...samplePostData,
     title: "The Complete Guide to Modern JavaScript",
     subtitle: "Everything you need to know about ES2024 features and beyond",
@@ -167,7 +168,7 @@ export const SplitPostHeroExample = () => {
 
   return (
     <SplitPost
-      content={heroData}
+      content={content}
       variant="hero"
       leftMedia={false}
       className="bg-gradient-to-r from-primary/5 to-secondary/5"
@@ -176,6 +177,7 @@ export const SplitPostHeroExample = () => {
 };
 
 // Export all examples
+// standard, author, media, sidebar, hero
 export const splitPostExamples = {
   standard: SplitPostStandardExample,
   author: SplitPostAuthorExample,

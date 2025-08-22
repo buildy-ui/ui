@@ -2,9 +2,10 @@ import { createElement } from "react";
 import type { ReactNode } from "react";
 import { GridBlog } from "./GridBlog";
 import { createBlocksRegistry } from "../registry";
+import { SplitBlog } from "./SplitBlog";
 
 // Shared blog types
-export type BlogTypeId = "blog.grid";
+export type BlogTypeId = "blog.grid" | "blog.split";
 
 export type BlogVariant = string;
 
@@ -53,8 +54,26 @@ const gridBlogDef: BlogBlockDefinition = {
   presets: []
 };
 
+const splitBlogDef: BlogBlockDefinition = {
+
+  type: "blog.split",
+  name: "Split Blog",
+  variants: ["news", "slider", "featured", "newsletter", "timeline"],
+  version: 1,
+  render: (node, renderedSlots) => {
+    const { props = {}, variant } = node;
+    const slots = renderedSlots && renderedSlots.media ? { media: renderedSlots.media } : undefined;
+    return createElement(SplitBlog as any, {
+      variant: (variant as any) || "news",
+      ...props,
+      slots: slots as any
+    });
+  }
+};
+
 export const registerBlogBlocks = (registry: ReturnType<typeof createBlocksRegistry>) => {
   registry.register(gridBlogDef as any);
+  registry.register(splitBlogDef as any);
   return registry;
 };
 

@@ -373,6 +373,7 @@ export const SplitGallery = forwardRef<HTMLElement, SplitGalleryProps>(
 SplitGallery.displayName = "SplitGallery";
 
 // Export template configurations
+// showcase, portfolio
 export const splitGalleryTemplates = {
   showcase: {
     id: "splitGalleryShowcase",

@@ -34,9 +34,10 @@ const samplePostData: CenteredPostData = {
 
 // 1. Classic Post Header
 export const CenteredPostClassicExample = () => {
+  const content: CenteredPostData = {...samplePostData}
   return (
     <CenteredPost
-      content={samplePostData}
+      content={content}
       variant="classic"
     />
   );
@@ -44,7 +45,7 @@ export const CenteredPostClassicExample = () => {
 
 // 2. Minimal Post Header
 export const CenteredPostMinimalExample = () => {
-  const minimalData: CenteredPostData = {
+  const content: CenteredPostData = {
     ...samplePostData,
     title: "Minimalist Design Principles for Modern Interfaces",
     subtitle: undefined, // No subtitle for minimal variant
@@ -53,7 +54,7 @@ export const CenteredPostMinimalExample = () => {
 
   return (
     <CenteredPost
-      content={minimalData}
+      content={content}
       variant="minimal"
     />
   );
@@ -61,7 +62,7 @@ export const CenteredPostMinimalExample = () => {
 
 // 3. Magazine Post Header
 export const CenteredPostMagazineExample = () => {
-  const magazineData: CenteredPostData = {
+  const content: CenteredPostData = {
     ...samplePostData,
     title: "The Art of Digital Storytelling",
     excerpt: "How modern brands are using interactive media and immersive experiences to connect with their audiences in meaningful ways.",
@@ -77,7 +78,7 @@ export const CenteredPostMagazineExample = () => {
 
   return (
     <CenteredPost
-      content={magazineData}
+      content={content}
       variant="magazine"
     />
   );
@@ -85,7 +86,7 @@ export const CenteredPostMagazineExample = () => {
 
 // 4. Featured Post Header
 export const CenteredPostFeaturedExample = () => {
-  const featuredData: CenteredPostData = {
+  const content: CenteredPostData = {
     ...samplePostData,
     title: "Building Scalable Applications with Microservices",
     subtitle: "A comprehensive guide to architecting distributed systems that can handle millions of users while maintaining performance and reliability.",
@@ -104,7 +105,7 @@ export const CenteredPostFeaturedExample = () => {
 
   return (
     <CenteredPost
-      content={featuredData}
+      content={content}
       variant="featured"
       className="bg-gradient-to-b from-muted/30 to-background"
     />
@@ -113,7 +114,7 @@ export const CenteredPostFeaturedExample = () => {
 
 // 5. Editorial Post Header
 export const CenteredPostEditorialExample = () => {
-  const editorialData: CenteredPostData = {
+  const content: CenteredPostData = {
     ...samplePostData,
     title: "The Philosophy of Code: Writing Software as Literature",
     subtitle: "Exploring the intersection between programming and creative writing, and how we can craft code that tells a story.",
@@ -134,13 +135,14 @@ export const CenteredPostEditorialExample = () => {
 
   return (
     <CenteredPost
-      content={editorialData}
+      content={content}
       variant="editorial"
     />
   );
 };
 
 // Export all examples
+// classic, minimal, magazine, featured, editorial
 export const centeredPostExamples = {
   classic: CenteredPostClassicExample,
   minimal: CenteredPostMinimalExample,
