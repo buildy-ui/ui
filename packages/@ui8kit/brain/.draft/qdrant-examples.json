@@ -1,0 +1,180 @@
+{
+  "examples": [
+    {
+      "id": "button_primary",
+      "component_type": "Button",
+      "category": "interactive",
+      "subcategory": "action",
+      "layout": "inline",
+      "variants": ["primary", "secondary", "outline", "ghost", "link"],
+      "supports": ["click", "hover", "focus", "disabled", "loading"],
+      "visual_emphasis": ["color", "border", "shadow"],
+      "content_structure": {
+        "has_title": true,
+        "has_description": false,
+        "has_image": false,
+        "has_icon": true,
+        "has_button": true,
+        "has_badge": false,
+        "has_stats": false,
+        "has_list": false,
+        "has_form": false
+      },
+      "semantic": {
+        "description_ru": "Интерактивная кнопка для действий пользователя. Поддерживает различные стили и состояния",
+        "description_en": "Interactive button for user actions. Supports various styles and states",
+        "purpose": "Trigger actions, navigate, submit forms",
+        "use_cases": [
+          "Form submission",
+          "Navigation",
+          "Call-to-action",
+          "Dialog triggers"
+        ],
+        "example_queries": [
+          "кнопка для формы",
+          "CTA кнопка",
+          "интерактивная кнопка",
+          "кнопка действия"
+        ]
+      },
+      "business_context": {
+        "industries": ["any"],
+        "personas": ["developer", "designer", "marketer"],
+        "funnel_stages": ["awareness", "consideration", "conversion"],
+        "intents": ["interact", "navigate", "convert"],
+        "seasonality": ["any"]
+      },
+      "technical": {
+        "complexity": "low",
+        "accessibility_score": 95,
+        "responsive_breakpoints": ["mobile", "tablet", "desktop"],
+        "dependencies": ["react", "tailwind"]
+      },
+      "metadata": {
+        "version": "1.0.0",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z",
+        "tags": ["interactive", "ui", "action"],
+        "keywords": ["button", "click", "action", "cta", "интерактивная", "кнопка"]
+      }
+    },
+    {
+      "id": "hero_centered_simple",
+      "component_type": "CenteredHero",
+      "category": "blocks",
+      "subcategory": "hero",
+      "layout": "centered",
+      "variants": ["simple", "withTopButton", "withImage", "withStats"],
+      "supports": ["title", "subtitle", "description", "button", "image", "stats"],
+      "visual_emphasis": ["typography", "spacing", "alignment"],
+      "content_structure": {
+        "has_title": true,
+        "has_description": true,
+        "has_image": false,
+        "has_icon": false,
+        "has_button": true,
+        "has_badge": false,
+        "has_stats": false,
+        "has_list": false,
+        "has_form": false
+      },
+      "semantic": {
+        "description_ru": "Центрированный герой-блок для главной секции лендинга. Содержит заголовок, описание и призыв к действию",
+        "description_en": "Centered hero block for landing page main section. Contains title, description and call-to-action",
+        "purpose": "Capture attention, communicate main value proposition, drive primary action",
+        "use_cases": [
+          "Landing page header",
+          "Product introduction",
+          "Service overview",
+          "Campaign announcement"
+        ],
+        "example_queries": [
+          "главная секция сайта",
+          "герой-блок для лендинга",
+          "заголовок с кнопкой",
+          "центрированный баннер"
+        ]
+      },
+      "business_context": {
+        "industries": ["restaurants", "agencies", "saas", "ecommerce", "local_services"],
+        "personas": ["owner", "marketer", "sales"],
+        "funnel_stages": ["awareness", "consideration"],
+        "intents": ["introduce", "engage", "convert"],
+        "seasonality": ["any", "campaign_ready"]
+      },
+      "technical": {
+        "complexity": "low",
+        "accessibility_score": 100,
+        "responsive_breakpoints": ["mobile", "tablet", "desktop"],
+        "dependencies": ["react", "tailwind", "ui8kit-core"]
+      },
+      "metadata": {
+        "version": "1.0.0",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z",
+        "tags": ["hero", "landing", "conversion", "engagement"],
+        "keywords": ["герой", "заголовок", "лендинг", "главная", "hero", "landing", "header"]
+      }
+    },
+    {
+      "id": "business_pricing",
+      "component_type": "GridBusiness",
+      "category": "blocks",
+      "subcategory": "business",
+      "layout": "grid",
+      "variants": ["pricing", "pricingYear", "cardsGallery", "solutionsGrid", "career"],
+      "supports": ["pricing", "features", "cta", "badges", "toggle"],
+      "visual_emphasis": ["cards", "highlight-popular", "grid"],
+      "content_structure": {
+        "has_title": true,
+        "has_description": true,
+        "has_image": false,
+        "has_icon": false,
+        "has_button": true,
+        "has_badge": true,
+        "has_stats": false,
+        "has_list": true,
+        "has_form": false
+      },
+      "semantic": {
+        "description_ru": "Сетка ценовых планов с функциями, ценами и кнопками действий. Поддерживает выделение популярного тарифа",
+        "description_en": "Pricing plans grid with features, prices and action buttons. Supports popular plan highlighting",
+        "purpose": "Present pricing tiers, showcase features, drive conversions",
+        "use_cases": [
+          "SaaS pricing",
+          "Service packages",
+          "Restaurant menus",
+          "Agency offerings",
+          "Subscription plans"
+        ],
+        "example_queries": [
+          "цены на услуги",
+          "тарифные планы",
+          "меню с ценами",
+          "пакеты услуг",
+          "подписка с ценами"
+        ]
+      },
+      "business_context": {
+        "industries": ["restaurants", "agencies", "saas", "repair", "local_services"],
+        "personas": ["owner", "marketer"],
+        "funnel_stages": ["consideration", "conversion"],
+        "intents": ["sell", "packages", "pricing", "subscription"],
+        "seasonality": ["campaign_ready", "new_year", "black_friday"]
+      },
+      "technical": {
+        "complexity": "medium",
+        "accessibility_score": 95,
+        "responsive_breakpoints": ["mobile", "tablet", "desktop"],
+        "dependencies": ["react", "tailwind", "ui8kit-core", "ui8kit-blocks"]
+      },
+      "metadata": {
+        "version": "1.0.0",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z",
+        "tags": ["pricing", "business", "conversion", "grid"],
+        "keywords": ["цены", "тарифы", "пакеты", "меню", "pricing", "plans", "subscription"]
+      }
+    }
+  ]
+}

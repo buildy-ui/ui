@@ -1,0 +1,236 @@
+{
+  "description_templates": {
+    "base_component": {
+      "template": "{component_type} - {layout_description}. {purpose_description}. {features_description}",
+      "variables": {
+        "component_type": "Тип компонента (Button, Card, Hero и т.д.)",
+        "layout_description": "Описание макета/расположения",
+        "purpose_description": "Цель использования",
+        "features_description": "Ключевые возможности"
+      },
+      "examples": {
+        "button": {
+          "component_type": "Интерактивная кнопка",
+          "layout_description": "встраиваемый элемент",
+          "purpose_description": "для действий пользователя",
+          "features_description": "поддерживает различные стили и состояния"
+        }
+      }
+    },
+    "block_component": {
+      "template": "{block_type} - {layout_description}. {content_description}. {interaction_description}. {best_for_description}",
+      "variables": {
+        "block_type": "Тип блока с вариантом (CenteredHero, GridBusiness и т.д.)",
+        "layout_description": "Описание макета (центрированный, сетка, разделенный)",
+        "content_description": "Какие элементы контента поддерживает",
+        "interaction_description": "Возможности взаимодействия",
+        "best_for_description": "Для каких сценариев лучше всего подходит"
+      },
+      "examples": {
+        "hero_centered": {
+          "block_type": "Центрированный герой-блок",
+          "layout_description": "полноэкранный блок с центрированным контентом",
+          "content_description": "заголовок, описание и призыв к действию",
+          "interaction_description": "с кнопкой для перехода",
+          "best_for_description": "главной страницы лендинга"
+        }
+      }
+    }
+  },
+  "semantic_templates": {
+    "description_ru_template": "{component_type} {purpose}. {features}. {use_cases}. {business_context}",
+    "description_en_template": "{component_type} {purpose}. {features}. {use_cases}. {business_context}",
+    "purpose_template": "предназначен(а) для {primary_use_case}",
+    "features_template": "Поддерживает: {feature_list}",
+    "use_cases_template": "Используется для: {use_case_list}",
+    "business_context_template": "Подходит для {industries}, на этапах {funnel_stages}"
+  },
+  "component_type_templates": {
+    "Button": {
+      "description_ru": "Интерактивная кнопка для действий пользователя. Поддерживает различные стили (primary, secondary, outline, ghost), состояния (hover, focus, disabled, loading) и размеры. Используется для отправки форм, навигации, призывов к действию и триггеров диалогов",
+      "description_en": "Interactive button for user actions. Supports various styles (primary, secondary, outline, ghost), states (hover, focus, disabled, loading) and sizes. Used for form submission, navigation, calls-to-action and dialog triggers",
+      "keywords": ["кнопка", "действие", "интерактивный", "cta", "навигация", "button", "click", "action", "interactive"]
+    },
+    "Card": {
+      "description_ru": "Контейнер для группировки связанного контента. Поддерживает изображение, заголовок, описание, кнопки и значки. Используется для отображения товаров, услуг, новостей, отзывов и другой структурированной информации",
+      "description_en": "Container for grouping related content. Supports image, title, description, buttons and icons. Used for displaying products, services, news, testimonials and other structured information",
+      "keywords": ["карточка", "контейнер", "группировка", "контент", "card", "container", "group", "content"]
+    },
+    "Badge": {
+      "description_ru": "Маленький элемент для выделения статуса, категории или метки. Поддерживает различные цвета и формы. Используется для отображения уведомлений, статусов, тегов и категоризации контента",
+      "description_en": "Small element for highlighting status, category or label. Supports various colors and shapes. Used for displaying notifications, statuses, tags and content categorization",
+      "keywords": ["значок", "метка", "статус", "тег", "badge", "label", "status", "tag"]
+    },
+    "Icon": {
+      "description_ru": "Векторный значок из библиотеки Lucide. Поддерживает различные размеры и цвета. Используется для визуального дополнения контента, навигации, кнопок и интерфейсных элементов",
+      "description_en": "Vector icon from Lucide library. Supports various sizes and colors. Used for visual content enhancement, navigation, buttons and interface elements",
+      "keywords": ["значок", "иконка", "вектор", "lucide", "icon", "vector", "lucide"]
+    },
+    "Text": {
+      "description_ru": "Типографический компонент для отображения текста. Поддерживает различные размеры, веса и цвета шрифта. Используется для заголовков, абзацев, ссылок и любого текстового контента",
+      "description_en": "Typography component for text display. Supports various font sizes, weights and colors. Used for headings, paragraphs, links and any text content",
+      "keywords": ["текст", "типографика", "шрифт", "заголовок", "text", "typography", "font", "heading"]
+    },
+    "Title": {
+      "description_ru": "Компонент заголовка с семантической разметкой. Поддерживает уровни h1-h6 и стилистическое оформление. Используется для создания иерархии контента и улучшения SEO",
+      "description_en": "Semantic heading component. Supports h1-h6 levels and styling. Used for content hierarchy and SEO improvement",
+      "keywords": ["заголовок", "h1", "h2", "seo", "иерархия", "title", "heading", "h1", "h2", "seo", "hierarchy"]
+    },
+    "Image": {
+      "description_ru": "Компонент для отображения изображений с оптимизацией. Поддерживает ленивую загрузку, адаптивные размеры и запасные варианты. Используется для фотографий, иллюстраций и медиа-контента",
+      "description_en": "Image component with optimization. Supports lazy loading, responsive sizes and fallbacks. Used for photos, illustrations and media content",
+      "keywords": ["изображение", "фото", "картинка", "медиа", "image", "photo", "picture", "media"]
+    },
+    "Grid": {
+      "description_ru": "Макетная сетка для создания адаптивных раскладок. Поддерживает различные количества колонок и промежутков. Используется для организации контента в виде сетки с автоматическим перестроением",
+      "description_en": "Layout grid for responsive designs. Supports various column counts and gaps. Used for organizing content in grid format with automatic reflow",
+      "keywords": ["сетка", "макет", "колонки", "адаптивный", "grid", "layout", "columns", "responsive"]
+    },
+    "Stack": {
+      "description_ru": "Вертикальный стек для последовательного размещения элементов. Поддерживает различные промежутки и выравнивание. Используется для создания вертикальных списков и упорядоченных макетов",
+      "description_en": "Vertical stack for sequential element placement. Supports various gaps and alignment. Used for creating vertical lists and ordered layouts",
+      "keywords": ["стек", "вертикальный", "список", "последовательный", "stack", "vertical", "list", "sequential"]
+    }
+  },
+  "block_type_templates": {
+    "Hero": {
+      "CenteredHero": {
+        "description_ru": "Центрированный герой-блок для главной секции лендинга. Содержит крупный заголовок, описание и призыв к действию. Идеально подходит для представления основного предложения и захвата внимания",
+        "description_en": "Centered hero block for landing page main section. Contains large title, description and call-to-action. Perfect for presenting main offer and capturing attention",
+        "variants": {
+          "simple": "Базовая версия с заголовком, описанием и кнопкой",
+          "withTopButton": "С дополнительной кнопкой в верхней части",
+          "withImage": "С фоновым изображением",
+          "withStats": "С блоком статистики или метрик"
+        },
+        "use_cases": ["главная страница", "запуск продукта", "предложение услуг", "кампания"]
+      },
+      "SplitHero": {
+        "description_ru": "Разделенный герой-блок с двумя колонками. Одна колонка для контента, другая для медиа. Поддерживает изображения, видео, формы и сложные элементы. Используется для детального представления продукта или услуги",
+        "description_en": "Split hero block with two columns. One column for content, another for media. Supports images, videos, forms and complex elements. Used for detailed product or service presentation",
+        "variants": {
+          "media": "С медиа-контентом (изображение/видео)",
+          "gallery": "С галереей изображений",
+          "withTopButton": "С кнопкой в верхней части",
+          "leftMedia": "Медиа слева, контент справа",
+          "security": "С элементами безопасности/доверия"
+        },
+        "use_cases": ["детальное описание", "демонстрация продукта", "форма захвата", "видео-презентация"]
+      }
+    },
+    "Business": {
+      "GridBusiness": {
+        "description_ru": "Универсальный бизнес-блок в виде сетки. Поддерживает различные типы контента: услуги, продукты, команды, отзывы. Адаптивная сетка автоматически перестраивается под размер экрана",
+        "description_en": "Universal business block in grid format. Supports various content types: services, products, teams, testimonials. Responsive grid automatically reflows based on screen size",
+        "variants": {
+          "cardsGallery": "Галерея карточек для услуг/функций",
+          "solutionsGrid": "Сетка решений с изображениями и статистикой",
+          "pricing": "Ценовые планы с функциями и CTA",
+          "pricingYear": "Цены с переключателем год/месяц",
+          "career": "Вакансии с информацией о позиции"
+        },
+        "use_cases": ["прайс-листы", "каталоги услуг", "команда", "отзывы", "портфолио"]
+      },
+      "SplitBusiness": {
+        "description_ru": "Бизнес-блок с разделенным макетом. Одна часть для контента, другая для визуальных элементов. Подходит для детального описания сложных услуг или продуктов",
+        "description_en": "Business block with split layout. One part for content, another for visual elements. Suitable for detailed description of complex services or products",
+        "variants": {
+          "feature": "Акцент на функциональность",
+          "testimonial": "С отзывами клиентов",
+          "stats": "С показателями и метриками",
+          "process": "Описание бизнес-процесса"
+        },
+        "use_cases": ["сложные услуги", "кейс-стади", "демонстрация преимуществ"]
+      }
+    },
+    "Features": {
+      "GridFeatures": {
+        "description_ru": "Сетка для демонстрации функций и преимуществ. Каждая карточка содержит иконку, заголовок и описание. Используется для объяснения возможностей продукта или сервиса",
+        "description_en": "Grid for showcasing features and benefits. Each card contains icon, title and description. Used for explaining product or service capabilities",
+        "variants": {
+          "icons": "С иконками для каждой функции",
+          "images": "С изображениями вместо иконок",
+          "stats": "С числовыми показателями",
+          "detailed": "С расширенными описаниями"
+        },
+        "use_cases": ["функциональность продукта", "преимущества сервиса", "технические возможности"]
+      },
+      "SplitFeatures": {
+        "description_ru": "Разделенный макет для детального описания функций. Альтернативное размещение контента и визуальных элементов для лучшего восприятия",
+        "description_en": "Split layout for detailed feature descriptions. Alternating content and visual elements for better perception",
+        "variants": {
+          "leftImage": "Изображение слева, текст справа",
+          "rightImage": "Текст слева, изображение справа",
+          "fullWidth": "Полноширинные секции"
+        },
+        "use_cases": ["детальные описания", "туториалы", "инструкции"]
+      }
+    },
+    "CTA": {
+      "CenteredCTA": {
+        "description_ru": "Центрированный блок призыва к действию. Содержит убедительный текст и кнопку. Используется для конверсии посетителей в клиентов",
+        "description_en": "Centered call-to-action block. Contains compelling text and button. Used for converting visitors into customers",
+        "variants": {
+          "simple": "Базовая версия с текстом и кнопкой",
+          "withStats": "С дополнительной статистикой",
+          "withForm": "С встроенной формой",
+          "newsletter": "Для подписки на рассылку"
+        },
+        "use_cases": ["конверсионные секции", "подписки", "заявки", "консультации"]
+      },
+      "SplitCTA": {
+        "description_ru": "Разделенный CTA с дополнительными элементами. Поддерживает изображения, формы, списки преимуществ. Более сложный и убедительный формат",
+        "description_en": "Split CTA with additional elements. Supports images, forms, benefit lists. More complex and persuasive format",
+        "variants": {
+          "withImage": "С фоновым изображением",
+          "withForm": "С формой захвата",
+          "withBenefits": "Список преимуществ",
+          "guarantee": "С гарантиями"
+        },
+        "use_cases": ["сложные конверсии", "демо-запросы", "консультации"]
+      }
+    }
+  },
+  "industry_templates": {
+    "restaurants": {
+      "keywords": ["ресторан", "кафе", "меню", "блюда", "кухня", "еда", "напитки", "заказ", "бронирование", "доставка"],
+      "context_phrases": [
+        "для ресторана/кафе",
+        "для меню",
+        "для заказа еды",
+        "для бронирования столика",
+        "для доставки"
+      ]
+    },
+    "agencies": {
+      "keywords": ["агентство", "маркетинг", "реклама", "дизайн", "брендинг", "digital", "smm", "seo", "продвижение"],
+      "context_phrases": [
+        "для агентства",
+        "для маркетинговых услуг",
+        "для портфолио",
+        "для презентации кейсов",
+        "для услуг дизайна"
+      ]
+    },
+    "saas": {
+      "keywords": ["saas", "приложение", "платформа", "сервис", "подписка", "автоматизация", "crm", "erp", "облако"],
+      "context_phrases": [
+        "для SaaS продукта",
+        "для бизнес-приложения",
+        "для платформы",
+        "для подписки",
+        "для автоматизации"
+      ]
+    },
+    "ecommerce": {
+      "keywords": ["интернет-магазин", "товары", "каталог", "заказ", "доставка", "корзина", "оплата", "покупки"],
+      "context_phrases": [
+        "для интернет-магазина",
+        "для каталога товаров",
+        "для корзины",
+        "для оформления заказа",
+        "для оплаты"
+      ]
+    }
+  }
+}

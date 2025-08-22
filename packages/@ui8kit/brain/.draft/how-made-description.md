@@ -20,7 +20,7 @@
     "name": "HeroCenteredWithTopButton",
     "description": "",
     "tags": [],
-    "category": "hero",
+    "category": "hero", 
     "path": "src\\blocks\\hero\\HeroCenteredWithTopButton.tsx",
     "imports": [
       "import { Info, Rocket, MoveRight } from \"lucide-react\";",

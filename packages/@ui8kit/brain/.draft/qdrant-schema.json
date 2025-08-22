@@ -1,0 +1,65 @@
+{
+  "collection_name": "ui8kit_blocks",
+  "schema": {
+    "id": "string",
+    "component_type": "keyword",
+    "category": "keyword",
+    "subcategory": "keyword",
+    "layout": "keyword",
+    "variants": ["keyword"],
+    "supports": ["keyword"],
+    "visual_emphasis": ["keyword"],
+    "content_structure": {
+      "has_title": "bool",
+      "has_description": "bool",
+      "has_image": "bool",
+      "has_icon": "bool",
+      "has_button": "bool",
+      "has_badge": "bool",
+      "has_stats": "bool",
+      "has_list": "bool",
+      "has_form": "bool"
+    },
+    "semantic": {
+      "description_ru": "text",
+      "description_en": "text",
+      "purpose": "text",
+      "use_cases": ["text"],
+      "example_queries": ["text"]
+    },
+    "business_context": {
+      "industries": ["keyword"],
+      "personas": ["keyword"],
+      "funnel_stages": ["keyword"],
+      "intents": ["keyword"],
+      "seasonality": ["keyword"]
+    },
+    "technical": {
+      "complexity": "keyword",
+      "accessibility_score": "integer",
+      "responsive_breakpoints": ["keyword"],
+      "dependencies": ["keyword"]
+    },
+    "metadata": {
+      "version": "string",
+      "created_at": "datetime",
+      "updated_at": "datetime",
+      "tags": ["keyword"],
+      "keywords": ["keyword"]
+    }
+  },
+  "indexing": {
+    "vector_config": {
+      "size": 1536,
+      "distance": "Cosine",
+      "on_disk": true
+    },
+    "sparse_index": {
+      "index_type": "text"
+    }
+  },
+  "payload_indexing": {
+    "fields": ["component_type", "category", "subcategory", "layout"],
+    "arrays": ["variants", "supports", "industries", "personas", "funnel_stages", "intents"]
+  }
+}
