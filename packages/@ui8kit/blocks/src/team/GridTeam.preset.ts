@@ -172,12 +172,12 @@ export const GridTeamPreset = [
 {
 				type: "team.grid",
 				variant: "cards",
-				props: { content: { title: "Our Amazing Team", subtitle: "Get to know the passionate individuals who make our company successful every day.", badge: "Team Spotlight", members: undefined }, useContainer: true }
+				props: { content: { title: "Our Amazing Team", subtitle: "Get to know the passionate individuals who make our company successful every day.", badge: "Team Spotlight", members: sampleTeamMembers }, useContainer: true }
 			},
 {
 				type: "team.grid",
 				variant: "minimal",
-				props: { content: { title: "The People Behind Our Success", subtitle: "Simple introductions to the talented individuals driving our mission forward.", badge: "Team", members: undefined }, useContainer: true }
+				props: { content: { title: "The People Behind Our Success", subtitle: "Simple introductions to the talented individuals driving our mission forward.", badge: "Team", members: sampleTeamMembers }, useContainer: true }
 			},
 {
 				type: "team.grid",

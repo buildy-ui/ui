@@ -1,0 +1,564 @@
+[
+  {
+    "id": "gallery.grid#grid#0",
+    "type": "gallery.grid",
+    "variant": "grid",
+    "category": "gallery",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\gallery\\GridGallery.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "gallery.grid for presenting collections clearly. grid; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:gallery",
+          "layout:grid",
+          "variant:grid",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "gallery"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "description",
+          "images",
+          "stats",
+          "categories",
+          "badge"
+        ],
+        "collections": [
+          "categories"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "description",
+          "badge"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Classic Photo Grid. Grid layout with header, collections. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "gallery.grid#masonry#1",
+    "type": "gallery.grid",
+    "variant": "masonry",
+    "category": "gallery",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\gallery\\GridGallery.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "gallery.grid for presenting collections clearly. grid; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:gallery",
+          "layout:grid",
+          "variant:masonry",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "gallery"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "description",
+          "images",
+          "stats",
+          "categories",
+          "subtitle"
+        ],
+        "collections": [
+          "categories"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "description",
+          "subtitle"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Masonry Gallery. Grid layout with header, collections. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "gallery.grid#carousel#2",
+    "type": "gallery.grid",
+    "variant": "carousel",
+    "category": "gallery",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\gallery\\GridGallery.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "gallery.grid for presenting collections clearly. grid; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:gallery",
+          "layout:grid",
+          "variant:carousel",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "gallery"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "description",
+          "images",
+          "stats",
+          "categories"
+        ],
+        "collections": [
+          "categories"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Interactive Gallery Carousel. Grid layout with header, collections. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "gallery.grid#mosaic#3",
+    "type": "gallery.grid",
+    "variant": "mosaic",
+    "category": "gallery",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\gallery\\GridGallery.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "gallery.grid for presenting collections clearly. grid; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:gallery",
+          "layout:grid",
+          "variant:mosaic",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "gallery"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "description",
+          "images",
+          "stats",
+          "categories"
+        ],
+        "collections": [
+          "categories"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Dynamic Mosaic Layout. Grid layout with header, collections. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "gallery.grid#minimal#4",
+    "type": "gallery.grid",
+    "variant": "minimal",
+    "category": "gallery",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\gallery\\GridGallery.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "gallery.grid for presenting collections clearly. grid; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:gallery",
+          "layout:grid",
+          "variant:minimal",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "gallery"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "description",
+          "images",
+          "stats",
+          "categories",
+          "subtitle",
+          "badge"
+        ],
+        "collections": [
+          "categories"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "description",
+          "subtitle",
+          "badge"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Minimal Gallery. Grid layout with header, collections. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "gallery.grid#cards#5",
+    "type": "gallery.grid",
+    "variant": "cards",
+    "category": "gallery",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\gallery\\GridGallery.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "gallery.grid for presenting collections clearly. grid; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:gallery",
+          "layout:grid",
+          "variant:cards",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "gallery"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "description",
+          "images",
+          "stats",
+          "categories",
+          "badge"
+        ],
+        "collections": [
+          "categories"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "description",
+          "badge"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Photo Cards Collection. Grid layout with header, collections. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "gallery.grid#polaroid#6",
+    "type": "gallery.grid",
+    "variant": "polaroid",
+    "category": "gallery",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\gallery\\GridGallery.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "gallery.grid for presenting collections clearly. grid; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:gallery",
+          "layout:grid",
+          "variant:polaroid",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "gallery"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "description",
+          "images",
+          "stats",
+          "categories"
+        ],
+        "collections": [
+          "categories"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Vintage Polaroid Collection. Grid layout with header, collections. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "gallery.grid#magazine#7",
+    "type": "gallery.grid",
+    "variant": "magazine",
+    "category": "gallery",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\gallery\\GridGallery.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "gallery.grid for presenting collections clearly. grid; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:gallery",
+          "layout:grid",
+          "variant:magazine",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "gallery"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "description",
+          "images",
+          "stats",
+          "categories",
+          "subtitle",
+          "badge"
+        ],
+        "collections": [
+          "categories"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "description",
+          "subtitle",
+          "badge"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Editorial Showcase. Grid layout with header, collections. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "gallery.split#showcase#0",
+    "type": "gallery.split",
+    "variant": "showcase",
+    "category": "gallery",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\gallery\\SplitGallery.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "gallery.split for pairing content with visuals. split, media-right; elements: header, collections, actions. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:gallery",
+          "layout:split",
+          "variant:showcase",
+          "orientation:media-right",
+          "element:header",
+          "element:collections",
+          "element:actions"
+        ],
+        "category": "gallery"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": "media-right"
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "subtitle",
+          "description",
+          "badge",
+          "images",
+          "stats",
+          "primaryButtonText",
+          "secondaryButtonText"
+        ],
+        "collections": [
+          "images"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [
+          "primaryButtonText",
+          "secondaryButtonText"
+        ],
+        "headerKeys": [
+          "title",
+          "subtitle",
+          "description",
+          "badge"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": true
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Creative Photography Showcase. Split layout (media-right) with header, collections, actions. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "gallery.split#portfolio#1",
+    "type": "gallery.split",
+    "variant": "portfolio",
+    "category": "gallery",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\gallery\\SplitGallery.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "gallery.split for pairing content with visuals. split, media-left; elements: header, collections, actions. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:gallery",
+          "layout:split",
+          "variant:portfolio",
+          "orientation:media-left",
+          "element:header",
+          "element:collections",
+          "element:actions"
+        ],
+        "category": "gallery"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": "media-left"
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "description",
+          "badge",
+          "images",
+          "stats",
+          "primaryButtonText",
+          "secondaryButtonText"
+        ],
+        "collections": [
+          "images"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [
+          "primaryButtonText",
+          "secondaryButtonText"
+        ],
+        "headerKeys": [
+          "title",
+          "description",
+          "badge"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": true
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Professional Photography Portfolio. Split layout (media-left) with header, collections, actions. Balances narrative copy with supporting visuals."
+    }
+  }
+]

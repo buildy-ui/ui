@@ -1,0 +1,549 @@
+[
+  {
+    "id": "blog.grid#cards#0",
+    "type": "blog.grid",
+    "variant": "cards",
+    "category": "blog",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\blog\\GridBlog.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "blog.grid for presenting collections clearly. grid, columns 1-2-3; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:blog",
+          "layout:grid",
+          "variant:cards",
+          "columns:1-2-3",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "blog"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": "1-2-3",
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "posts"
+        ],
+        "collections": [
+          "posts"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Discover our latest insights. Grid layout 1-2-3 with header, collections. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "blog.grid#postsGrid#1",
+    "type": "blog.grid",
+    "variant": "postsGrid",
+    "category": "blog",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\blog\\GridBlog.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "blog.grid for presenting collections clearly. grid, columns 1-2-3; elements: header, collections, actions. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:blog",
+          "layout:grid",
+          "variant:postsGrid",
+          "columns:1-2-3",
+          "element:header",
+          "element:collections",
+          "element:actions"
+        ],
+        "category": "blog"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": "1-2-3",
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "buttonText",
+          "posts"
+        ],
+        "collections": [
+          "posts"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [
+          "buttonText"
+        ],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": true
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Expert insights and tutorials. Grid layout 1-2-3 with header, collections, actions. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "blog.grid#filtered#2",
+    "type": "blog.grid",
+    "variant": "filtered",
+    "category": "blog",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\blog\\GridBlog.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "blog.grid for presenting collections clearly. grid, columns 1-2-3; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:blog",
+          "layout:grid",
+          "variant:filtered",
+          "columns:1-2-3",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "blog"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": "1-2-3",
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "categories",
+          "posts"
+        ],
+        "collections": [
+          "categories",
+          "posts"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Browse by category. Grid layout 1-2-3 with header, collections. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "blog.grid#compact#3",
+    "type": "blog.grid",
+    "variant": "compact",
+    "category": "blog",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\blog\\GridBlog.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "blog.grid for presenting collections clearly. grid, columns 1-2-3; elements: header. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:blog",
+          "layout:grid",
+          "variant:compact",
+          "columns:1-2-3",
+          "element:header"
+        ],
+        "category": "blog"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": "1-2-3",
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "posts"
+        ],
+        "collections": [],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": false,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Latest updates. Grid layout 1-2-3 with header. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "blog.grid#featured#4",
+    "type": "blog.grid",
+    "variant": "featured",
+    "category": "blog",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\blog\\GridBlog.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "blog.grid for presenting collections clearly. grid, columns 1-2-3; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:blog",
+          "layout:grid",
+          "variant:featured",
+          "columns:1-2-3",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "blog"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": "1-2-3",
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "posts"
+        ],
+        "collections": [
+          "posts"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Editor's picks and trending articles. Grid layout 1-2-3 with header, collections. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "blog.split#news#0",
+    "type": "blog.split",
+    "variant": "news",
+    "category": "blog",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\blog\\SplitBlog.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "blog.split for pairing content with visuals. split, media-right; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:blog",
+          "layout:split",
+          "variant:news",
+          "orientation:media-right",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "blog"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": "media-right"
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "subtitle",
+          "description",
+          "posts"
+        ],
+        "collections": [
+          "posts"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "badge",
+          "title",
+          "subtitle",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Latest in Technology. Split layout (media-right) with header, collections. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "blog.split#slider#1",
+    "type": "blog.split",
+    "variant": "slider",
+    "category": "blog",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\blog\\SplitBlog.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "blog.split for pairing content with visuals. split, media-left; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:blog",
+          "layout:split",
+          "variant:slider",
+          "orientation:media-left",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "blog"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": "media-left"
+      },
+      "content_signature": {
+        "keys": [
+          "tagline",
+          "title",
+          "description",
+          "viewAllText",
+          "posts"
+        ],
+        "collections": [
+          "posts"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Trending posts this week. Split layout (media-left) with header, collections. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "blog.split#featured#2",
+    "type": "blog.split",
+    "variant": "featured",
+    "category": "blog",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\blog\\SplitBlog.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "blog.split for pairing content with visuals. split, media-left; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:blog",
+          "layout:split",
+          "variant:featured",
+          "orientation:media-left",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "blog"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": "media-left"
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "posts",
+          "featuredPost"
+        ],
+        "collections": [
+          "posts"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Must-read article of the month. Split layout (media-left) with header, collections. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "blog.split#newsletter#3",
+    "type": "blog.split",
+    "variant": "newsletter",
+    "category": "blog",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\blog\\SplitBlog.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "blog.split for pairing content with visuals. split, media-right; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:blog",
+          "layout:split",
+          "variant:newsletter",
+          "orientation:media-right",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "blog"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": "media-right"
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "posts"
+        ],
+        "collections": [
+          "posts"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Subscribe to our developer newsletter. Split layout (media-right) with header, collections. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "blog.split#timeline#4",
+    "type": "blog.split",
+    "variant": "timeline",
+    "category": "blog",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\blog\\SplitBlog.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "blog.split for pairing content with visuals. split, media-left; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:blog",
+          "layout:split",
+          "variant:timeline",
+          "orientation:media-left",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "blog"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": "media-left"
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "viewAllText",
+          "posts"
+        ],
+        "collections": [
+          "posts"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Our latest project milestones. Split layout (media-left) with header, collections. Balances narrative copy with supporting visuals."
+    }
+  }
+]

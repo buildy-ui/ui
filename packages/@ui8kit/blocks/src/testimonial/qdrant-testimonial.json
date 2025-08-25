@@ -1,0 +1,525 @@
+[
+  {
+    "id": "testimonial.grid#grid#0",
+    "type": "testimonial.grid",
+    "variant": "grid",
+    "category": "testimonial",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\testimonial\\GridTestimonial.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "testimonial.grid for presenting collections clearly. grid; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:testimonial",
+          "layout:grid",
+          "variant:grid",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "testimonial"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "description",
+          "badge",
+          "testimonials",
+          "stats"
+        ],
+        "collections": [
+          "testimonials"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "description",
+          "badge"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "What Our Customers Say. Grid layout with header, collections. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "testimonial.grid#masonry#1",
+    "type": "testimonial.grid",
+    "variant": "masonry",
+    "category": "testimonial",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\testimonial\\GridTestimonial.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "testimonial.grid for presenting collections clearly. grid; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:testimonial",
+          "layout:grid",
+          "variant:masonry",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "testimonial"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "subtitle",
+          "testimonials"
+        ],
+        "collections": [
+          "testimonials"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "subtitle"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Success Stories. Grid layout with header, collections. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "testimonial.grid#minimal#2",
+    "type": "testimonial.grid",
+    "variant": "minimal",
+    "category": "testimonial",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\testimonial\\GridTestimonial.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "testimonial.grid for presenting collections clearly. grid; elements: header. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:testimonial",
+          "layout:grid",
+          "variant:minimal",
+          "element:header"
+        ],
+        "category": "testimonial"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "subtitle",
+          "badge",
+          "testimonials"
+        ],
+        "collections": [],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "subtitle",
+          "badge"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": false,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Customer Voices. Grid layout with header. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "testimonial.grid#cards#3",
+    "type": "testimonial.grid",
+    "variant": "cards",
+    "category": "testimonial",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\testimonial\\GridTestimonial.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "testimonial.grid for presenting collections clearly. grid; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:testimonial",
+          "layout:grid",
+          "variant:cards",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "testimonial"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "badge",
+          "testimonials",
+          "stats"
+        ],
+        "collections": [
+          "testimonials"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "badge"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Customer Excellence Awards. Grid layout with header, collections. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "testimonial.grid#compact#4",
+    "type": "testimonial.grid",
+    "variant": "compact",
+    "category": "testimonial",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\testimonial\\GridTestimonial.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "testimonial.grid for presenting collections clearly. grid; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:testimonial",
+          "layout:grid",
+          "variant:compact",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "testimonial"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "description",
+          "testimonials"
+        ],
+        "collections": [
+          "testimonials"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Quick Reviews. Grid layout with header, collections. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "testimonial.grid#slider#5",
+    "type": "testimonial.grid",
+    "variant": "slider",
+    "category": "testimonial",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\testimonial\\GridTestimonial.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "testimonial.grid for presenting collections clearly. grid; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:testimonial",
+          "layout:grid",
+          "variant:slider",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "testimonial"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "description",
+          "testimonials"
+        ],
+        "collections": [
+          "testimonials"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Customer Feedback Stream. Grid layout with header, collections. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "testimonial.grid#magazine#6",
+    "type": "testimonial.grid",
+    "variant": "magazine",
+    "category": "testimonial",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\testimonial\\GridTestimonial.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "testimonial.grid for presenting collections clearly. grid; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:testimonial",
+          "layout:grid",
+          "variant:magazine",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "testimonial"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "subtitle",
+          "badge",
+          "testimonials",
+          "stats"
+        ],
+        "collections": [
+          "testimonials"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "subtitle",
+          "badge"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Featured Customer Stories. Grid layout with header, collections. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "testimonial.split#featured#0",
+    "type": "testimonial.split",
+    "variant": "featured",
+    "category": "testimonial",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\testimonial\\SplitTestimonial.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "testimonial.split for pairing content with visuals. split; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:testimonial",
+          "layout:split",
+          "variant:featured",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "testimonial"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "description",
+          "badge",
+          "testimonials",
+          "ctaText"
+        ],
+        "collections": [
+          "testimonials"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "description",
+          "badge"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Trusted by Industry Leaders. Split layout with header, collections. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "testimonial.split#carousel#1",
+    "type": "testimonial.split",
+    "variant": "carousel",
+    "category": "testimonial",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\testimonial\\SplitTestimonial.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "testimonial.split for pairing content with visuals. split; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:testimonial",
+          "layout:split",
+          "variant:carousel",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "testimonial"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "subtitle",
+          "badge",
+          "testimonials"
+        ],
+        "collections": [
+          "testimonials"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "subtitle",
+          "badge"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Join Thousands of Happy Customers. Split layout with header, collections. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "testimonial.split#stats#2",
+    "type": "testimonial.split",
+    "variant": "stats",
+    "category": "testimonial",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\testimonial\\SplitTestimonial.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "testimonial.split for pairing content with visuals. split; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:testimonial",
+          "layout:split",
+          "variant:stats",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "testimonial"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "description",
+          "testimonials",
+          "stats",
+          "ctaText"
+        ],
+        "collections": [
+          "testimonials"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Proven Results Speak for Themselves. Split layout with header, collections. Balances narrative copy with supporting visuals."
+    }
+  }
+]

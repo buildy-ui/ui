@@ -1,0 +1,550 @@
+[
+  {
+    "id": "cta.centered#simple#0",
+    "type": "cta.centered",
+    "variant": "simple",
+    "category": "cta",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\cta\\CenteredCTA.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "cta.centered for focused messaging. stack; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:cta",
+          "layout:stack",
+          "variant:simple",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "cta"
+      },
+      "structure": {
+        "layout": "stack",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "buttons"
+        ],
+        "collections": [
+          "buttons"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Transform Your Business Today. Stacked (centered) section with header, collections. Optimized for primary messaging and conversion."
+    }
+  },
+  {
+    "id": "cta.centered#withLogos#1",
+    "type": "cta.centered",
+    "variant": "withLogos",
+    "category": "cta",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\cta\\CenteredCTA.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "cta.centered for focused messaging. stack; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:cta",
+          "layout:stack",
+          "variant:withLogos",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "cta"
+      },
+      "structure": {
+        "layout": "stack",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "description",
+          "buttons",
+          "brands"
+        ],
+        "collections": [
+          "buttons",
+          "brands"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Trusted by Industry Leaders. Stacked (centered) section with header, collections. Optimized for primary messaging and conversion."
+    }
+  },
+  {
+    "id": "cta.centered#withBackground#2",
+    "type": "cta.centered",
+    "variant": "withBackground",
+    "category": "cta",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\cta\\CenteredCTA.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "cta.centered for focused messaging. stack; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:cta",
+          "layout:stack",
+          "variant:withBackground",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "cta"
+      },
+      "structure": {
+        "layout": "stack",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "buttons",
+          "backgroundImage",
+          "gradient"
+        ],
+        "collections": [
+          "buttons"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Ready to Scale Your Success?. Stacked (centered) section with header, collections. Optimized for primary messaging and conversion."
+    }
+  },
+  {
+    "id": "cta.centered#withFeatures#3",
+    "type": "cta.centered",
+    "variant": "withFeatures",
+    "category": "cta",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\cta\\CenteredCTA.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "cta.centered for focused messaging. stack; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:cta",
+          "layout:stack",
+          "variant:withFeatures",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "cta"
+      },
+      "structure": {
+        "layout": "stack",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "description",
+          "buttons",
+          "features"
+        ],
+        "collections": [
+          "buttons",
+          "features"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Everything You Need to Succeed. Stacked (centered) section with header, collections. Optimized for primary messaging and conversion."
+    }
+  },
+  {
+    "id": "cta.centered#withStats#4",
+    "type": "cta.centered",
+    "variant": "withStats",
+    "category": "cta",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\cta\\CenteredCTA.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "cta.centered for focused messaging. stack; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:cta",
+          "layout:stack",
+          "variant:withStats",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "cta"
+      },
+      "structure": {
+        "layout": "stack",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "buttons",
+          "stats"
+        ],
+        "collections": [
+          "buttons"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Join the Success Story. Stacked (centered) section with header, collections. Optimized for primary messaging and conversion."
+    }
+  },
+  {
+    "id": "cta.split#withImage#0",
+    "type": "cta.split",
+    "variant": "withImage",
+    "category": "cta",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\cta\\SplitCTA.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "cta.split for pairing content with visuals. split, media-right; elements: header, media, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:cta",
+          "layout:split",
+          "variant:withImage",
+          "orientation:media-right",
+          "element:header",
+          "element:media",
+          "element:collections"
+        ],
+        "category": "cta"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": "media-right"
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "buttons",
+          "image",
+          "features"
+        ],
+        "collections": [
+          "buttons",
+          "features"
+        ],
+        "mediaKeys": [
+          "image"
+        ],
+        "actionKeys": [],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": true,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Revolutionize Your Workflow. Split layout (media-right) with header, media, collections. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "cta.split#withBackground#1",
+    "type": "cta.split",
+    "variant": "withBackground",
+    "category": "cta",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\cta\\SplitCTA.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "cta.split for pairing content with visuals. split, media-left; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:cta",
+          "layout:split",
+          "variant:withBackground",
+          "orientation:media-left",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "cta"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": "media-left"
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "buttons",
+          "backgroundImage",
+          "stats"
+        ],
+        "collections": [
+          "buttons"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Unlock Your Full Potential. Split layout (media-left) with header, collections. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "cta.split#withStats#2",
+    "type": "cta.split",
+    "variant": "withStats",
+    "category": "cta",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\cta\\SplitCTA.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "cta.split for pairing content with visuals. split, media-right; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:cta",
+          "layout:split",
+          "variant:withStats",
+          "orientation:media-right",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "cta"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": "media-right"
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "description",
+          "buttons",
+          "stats"
+        ],
+        "collections": [
+          "buttons"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Trusted by Thousands Worldwide. Split layout (media-right) with header, collections. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "cta.split#withDevices#3",
+    "type": "cta.split",
+    "variant": "withDevices",
+    "category": "cta",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\cta\\SplitCTA.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "cta.split for pairing content with visuals. split, media-left; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:cta",
+          "layout:split",
+          "variant:withDevices",
+          "orientation:media-left",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "cta"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": "media-left"
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "buttons",
+          "devices"
+        ],
+        "collections": [
+          "buttons"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Access Anywhere, Anytime. Split layout (media-left) with header, collections. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "cta.split#withFeatures#4",
+    "type": "cta.split",
+    "variant": "withFeatures",
+    "category": "cta",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\cta\\SplitCTA.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "cta.split for pairing content with visuals. split, media-right; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:cta",
+          "layout:split",
+          "variant:withFeatures",
+          "orientation:media-right",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "cta"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": "media-right"
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "buttons",
+          "features"
+        ],
+        "collections": [
+          "buttons",
+          "features"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Everything You Need in One Place. Split layout (media-right) with header, collections. Balances narrative copy with supporting visuals."
+    }
+  }
+]

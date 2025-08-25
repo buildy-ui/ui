@@ -1,0 +1,574 @@
+[
+  {
+    "id": "faq.grid#cards#0",
+    "type": "faq.grid",
+    "variant": "cards",
+    "category": "faq",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\faq\\GridFAQ.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "faq.grid for presenting collections clearly. grid, columns 1-2-3; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:faq",
+          "layout:grid",
+          "variant:cards",
+          "columns:1-2-3",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "faq"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": "1-2-3",
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "faqs"
+        ],
+        "collections": [
+          "faqs"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Frequently Asked Questions. Grid layout 1-2-3 with header, collections. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "faq.grid#accordion#1",
+    "type": "faq.grid",
+    "variant": "accordion",
+    "category": "faq",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\faq\\GridFAQ.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "faq.grid for presenting collections clearly. grid, columns 1-2-3; elements: header, collections, actions. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:faq",
+          "layout:grid",
+          "variant:accordion",
+          "columns:1-2-3",
+          "element:header",
+          "element:collections",
+          "element:actions"
+        ],
+        "category": "faq"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": "1-2-3",
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "buttonText",
+          "faqs"
+        ],
+        "collections": [
+          "faqs"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [
+          "buttonText"
+        ],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": true
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Common Questions & Answers. Grid layout 1-2-3 with header, collections, actions. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "faq.grid#categories#2",
+    "type": "faq.grid",
+    "variant": "categories",
+    "category": "faq",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\faq\\GridFAQ.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "faq.grid for presenting collections clearly. grid, columns 1-2-4; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:faq",
+          "layout:grid",
+          "variant:categories",
+          "columns:1-2-4",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "faq"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": "1-2-4",
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "categories",
+          "faqs"
+        ],
+        "collections": [
+          "categories",
+          "faqs"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Browse by Category. Grid layout 1-2-4 with header, collections. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "faq.grid#compact#3",
+    "type": "faq.grid",
+    "variant": "compact",
+    "category": "faq",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\faq\\GridFAQ.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "faq.grid for presenting collections clearly. grid, columns 1-2-3; elements: header. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:faq",
+          "layout:grid",
+          "variant:compact",
+          "columns:1-2-3",
+          "element:header"
+        ],
+        "category": "faq"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": "1-2-3",
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "faqs"
+        ],
+        "collections": [],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": false,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Essential Information. Grid layout 1-2-3 with header. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "faq.grid#support#4",
+    "type": "faq.grid",
+    "variant": "support",
+    "category": "faq",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\faq\\GridFAQ.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "faq.grid for presenting collections clearly. grid, columns 1-2-3; elements: header, collections, actions. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:faq",
+          "layout:grid",
+          "variant:support",
+          "columns:1-2-3",
+          "element:header",
+          "element:collections",
+          "element:actions"
+        ],
+        "category": "faq"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": "1-2-3",
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "buttonText",
+          "faqs",
+          "contactInfo"
+        ],
+        "collections": [
+          "faqs"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [
+          "buttonText"
+        ],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": true
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "We're Here to Help. Grid layout 1-2-3 with header, collections, actions. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "faq.split#contact#0",
+    "type": "faq.split",
+    "variant": "contact",
+    "category": "faq",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\faq\\SplitFAQ.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "faq.split for pairing content with visuals. split, media-right; elements: header, collections, actions. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:faq",
+          "layout:split",
+          "variant:contact",
+          "orientation:media-right",
+          "element:header",
+          "element:collections",
+          "element:actions"
+        ],
+        "category": "faq"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": "media-right"
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "buttonText",
+          "faqs",
+          "contactInfo"
+        ],
+        "collections": [
+          "faqs"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [
+          "buttonText"
+        ],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": true
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Need Help? We're Here for You. Split layout (media-right) with header, collections, actions. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "faq.split#search#1",
+    "type": "faq.split",
+    "variant": "search",
+    "category": "faq",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\faq\\SplitFAQ.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "faq.split for pairing content with visuals. split, media-left; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:faq",
+          "layout:split",
+          "variant:search",
+          "orientation:media-left",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "faq"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": "media-left"
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "searchPlaceholder",
+          "categories",
+          "faqs",
+          "stats"
+        ],
+        "collections": [
+          "categories",
+          "faqs"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Find Answers Instantly. Split layout (media-left) with header, collections. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "faq.split#categories#2",
+    "type": "faq.split",
+    "variant": "categories",
+    "category": "faq",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\faq\\SplitFAQ.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "faq.split for pairing content with visuals. split, media-right; elements: header, collections, actions. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:faq",
+          "layout:split",
+          "variant:categories",
+          "orientation:media-right",
+          "element:header",
+          "element:collections",
+          "element:actions"
+        ],
+        "category": "faq"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": "media-right"
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "buttonText",
+          "categories",
+          "faqs"
+        ],
+        "collections": [
+          "categories",
+          "faqs"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [
+          "buttonText"
+        ],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": true
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Browse Help by Category. Split layout (media-right) with header, collections, actions. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "faq.split#support#3",
+    "type": "faq.split",
+    "variant": "support",
+    "category": "faq",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\faq\\SplitFAQ.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "faq.split for pairing content with visuals. split, media-left; elements: header, collections, actions. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:faq",
+          "layout:split",
+          "variant:support",
+          "orientation:media-left",
+          "element:header",
+          "element:collections",
+          "element:actions"
+        ],
+        "category": "faq"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": "media-left"
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "buttonText",
+          "faqs",
+          "stats"
+        ],
+        "collections": [
+          "faqs"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [
+          "buttonText"
+        ],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": true
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Comprehensive Support Hub. Split layout (media-left) with header, collections, actions. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "faq.split#accordion#4",
+    "type": "faq.split",
+    "variant": "accordion",
+    "category": "faq",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\faq\\SplitFAQ.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "faq.split for pairing content with visuals. split, media-right; elements: header, collections, actions. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:faq",
+          "layout:split",
+          "variant:accordion",
+          "orientation:media-right",
+          "element:header",
+          "element:collections",
+          "element:actions"
+        ],
+        "category": "faq"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": "media-right"
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "buttonText",
+          "faqs"
+        ],
+        "collections": [
+          "faqs"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [
+          "buttonText"
+        ],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": true
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Most Common Questions. Split layout (media-right) with header, collections, actions. Balances narrative copy with supporting visuals."
+    }
+  }
+]

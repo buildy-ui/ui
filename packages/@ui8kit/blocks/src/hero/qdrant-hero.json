@@ -1,0 +1,617 @@
+[
+  {
+    "id": "hero.centered#simple#0",
+    "type": "hero.centered",
+    "variant": "simple",
+    "category": "hero",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\hero\\CenteredHero.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "hero.centered for focused messaging. stack; elements: header, actions. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:hero",
+          "layout:stack",
+          "variant:simple",
+          "element:header",
+          "element:actions"
+        ],
+        "category": "hero"
+      },
+      "structure": {
+        "layout": "stack",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "primaryButtonText",
+          "secondaryButtonText",
+          "primaryButtonIcon",
+          "secondaryButtonIcon"
+        ],
+        "collections": [],
+        "mediaKeys": [],
+        "actionKeys": [
+          "primaryButtonText",
+          "secondaryButtonText",
+          "primaryButtonIcon",
+          "secondaryButtonIcon"
+        ],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": false,
+          "actions": true
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "The future of work is here. Stacked (centered) section with header, actions. Optimized for primary messaging and conversion."
+    }
+  },
+  {
+    "id": "hero.centered#withTopButton#1",
+    "type": "hero.centered",
+    "variant": "withTopButton",
+    "category": "hero",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\hero\\CenteredHero.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "hero.centered for focused messaging. stack; elements: header, actions. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:hero",
+          "layout:stack",
+          "variant:withTopButton",
+          "element:header",
+          "element:actions"
+        ],
+        "category": "hero"
+      },
+      "structure": {
+        "layout": "stack",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "topButton",
+          "badge",
+          "title",
+          "description",
+          "primaryButtonText",
+          "secondaryButtonText",
+          "primaryButtonIcon",
+          "secondaryButtonIcon"
+        ],
+        "collections": [],
+        "mediaKeys": [],
+        "actionKeys": [
+          "primaryButtonText",
+          "secondaryButtonText",
+          "primaryButtonIcon",
+          "secondaryButtonIcon"
+        ],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": false,
+          "actions": true
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Automate your workflow with intelligent AI. Stacked (centered) section with header, actions. Optimized for primary messaging and conversion."
+    }
+  },
+  {
+    "id": "hero.centered#withImage#2",
+    "type": "hero.centered",
+    "variant": "withImage",
+    "category": "hero",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\hero\\CenteredHero.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "hero.centered for focused messaging. stack; elements: header, actions. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:hero",
+          "layout:stack",
+          "variant:withImage",
+          "element:header",
+          "element:actions"
+        ],
+        "category": "hero"
+      },
+      "structure": {
+        "layout": "stack",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "description",
+          "imageUrl",
+          "imageAlt",
+          "primaryButtonText",
+          "secondaryButtonText"
+        ],
+        "collections": [],
+        "mediaKeys": [],
+        "actionKeys": [
+          "primaryButtonText",
+          "secondaryButtonText"
+        ],
+        "headerKeys": [
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": false,
+          "actions": true
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Experience the power of visual storytelling. Stacked (centered) section with header, actions. Optimized for primary messaging and conversion."
+    }
+  },
+  {
+    "id": "hero.centered#withStats#3",
+    "type": "hero.centered",
+    "variant": "withStats",
+    "category": "hero",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\hero\\CenteredHero.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "hero.centered for focused messaging. stack; elements: header, collections, actions. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:hero",
+          "layout:stack",
+          "variant:withStats",
+          "element:header",
+          "element:collections",
+          "element:actions"
+        ],
+        "category": "hero"
+      },
+      "structure": {
+        "layout": "stack",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "stats",
+          "primaryButtonText",
+          "secondaryButtonText",
+          "primaryButtonIcon"
+        ],
+        "collections": [
+          "stats"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [
+          "primaryButtonText",
+          "secondaryButtonText",
+          "primaryButtonIcon"
+        ],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": true
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Join millions who trust our platform. Stacked (centered) section with header, collections, actions. Optimized for primary messaging and conversion."
+    }
+  },
+  {
+    "id": "hero.centered#withStats#4",
+    "type": "hero.centered",
+    "variant": "withStats",
+    "category": "hero",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\hero\\CenteredHero.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "hero.centered for focused messaging. stack; elements: header, collections, actions. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:hero",
+          "layout:stack",
+          "variant:withStats",
+          "element:header",
+          "element:collections",
+          "element:actions"
+        ],
+        "category": "hero"
+      },
+      "structure": {
+        "layout": "stack",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "stats",
+          "primaryButtonText",
+          "secondaryButtonText",
+          "primaryButtonIcon"
+        ],
+        "collections": [
+          "stats"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [
+          "primaryButtonText",
+          "secondaryButtonText",
+          "primaryButtonIcon"
+        ],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": true
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Building technology that brings people together. Stacked (centered) section with header, collections, actions. Optimized for primary messaging and conversion."
+    }
+  },
+  {
+    "id": "hero.split#media#0",
+    "type": "hero.split",
+    "variant": "media",
+    "category": "hero",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\hero\\SplitHero.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "hero.split for pairing content with visuals. split; elements: header, media, actions. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:hero",
+          "layout:split",
+          "variant:media",
+          "element:header",
+          "element:media",
+          "element:actions"
+        ],
+        "category": "hero"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "image",
+          "primaryButtonText",
+          "secondaryButtonText",
+          "primaryButtonIcon",
+          "secondaryButtonIcon"
+        ],
+        "collections": [],
+        "mediaKeys": [
+          "image"
+        ],
+        "actionKeys": [
+          "primaryButtonText",
+          "secondaryButtonText",
+          "primaryButtonIcon",
+          "secondaryButtonIcon"
+        ],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": true,
+          "collections": false,
+          "actions": true
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Build the future with modern technology. Split layout with header, media, actions. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "hero.split#media#1",
+    "type": "hero.split",
+    "variant": "media",
+    "category": "hero",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\hero\\SplitHero.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "hero.split for pairing content with visuals. split, media-left; elements: header, media, actions. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:hero",
+          "layout:split",
+          "variant:media",
+          "orientation:media-left",
+          "element:header",
+          "element:media",
+          "element:actions"
+        ],
+        "category": "hero"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": "media-left"
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "image",
+          "primaryButtonText",
+          "secondaryButtonText",
+          "primaryButtonIcon",
+          "secondaryButtonIcon"
+        ],
+        "collections": [],
+        "mediaKeys": [
+          "image"
+        ],
+        "actionKeys": [
+          "primaryButtonText",
+          "secondaryButtonText",
+          "primaryButtonIcon",
+          "secondaryButtonIcon"
+        ],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": true,
+          "collections": false,
+          "actions": true
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Code faster, deploy smarter, scale better. Split layout (media-left) with header, media, actions. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "hero.split#gallery#2",
+    "type": "hero.split",
+    "variant": "gallery",
+    "category": "hero",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\hero\\SplitHero.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "hero.split for pairing content with visuals. split, media-left; elements: header, collections, actions. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:hero",
+          "layout:split",
+          "variant:gallery",
+          "orientation:media-left",
+          "element:header",
+          "element:collections",
+          "element:actions"
+        ],
+        "category": "hero"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": "media-left"
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "images",
+          "primaryButtonText",
+          "secondaryButtonText",
+          "primaryButtonIcon",
+          "secondaryButtonIcon"
+        ],
+        "collections": [
+          "images"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [
+          "primaryButtonText",
+          "secondaryButtonText",
+          "primaryButtonIcon",
+          "secondaryButtonIcon"
+        ],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": true
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Showcase your work beautifully. Split layout (media-left) with header, collections, actions. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "hero.split#gallery#3",
+    "type": "hero.split",
+    "variant": "gallery",
+    "category": "hero",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\hero\\SplitHero.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "hero.split for pairing content with visuals. split; elements: header, collections, actions. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:hero",
+          "layout:split",
+          "variant:gallery",
+          "element:header",
+          "element:collections",
+          "element:actions"
+        ],
+        "category": "hero"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "topButton",
+          "badge",
+          "title",
+          "description",
+          "images",
+          "primaryButtonText",
+          "secondaryButtonText",
+          "primaryButtonIcon",
+          "secondaryButtonIcon"
+        ],
+        "collections": [
+          "images"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [
+          "primaryButtonText",
+          "secondaryButtonText",
+          "primaryButtonIcon",
+          "secondaryButtonIcon"
+        ],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": true
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "We raised $50M to accelerate innovation. Split layout with header, collections, actions. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "hero.split#media#4",
+    "type": "hero.split",
+    "variant": "media",
+    "category": "hero",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\hero\\SplitHero.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "hero.split for pairing content with visuals. split, media-left; elements: header, media, actions. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:hero",
+          "layout:split",
+          "variant:media",
+          "orientation:media-left",
+          "element:header",
+          "element:media",
+          "element:actions"
+        ],
+        "category": "hero"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": "media-left"
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "image",
+          "primaryButtonText",
+          "secondaryButtonText",
+          "primaryButtonIcon",
+          "secondaryButtonIcon"
+        ],
+        "collections": [],
+        "mediaKeys": [
+          "image"
+        ],
+        "actionKeys": [
+          "primaryButtonText",
+          "secondaryButtonText",
+          "primaryButtonIcon",
+          "secondaryButtonIcon"
+        ],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": true,
+          "collections": false,
+          "actions": true
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Protect your business with enterprise-grade security. Split layout (media-left) with header, media, actions. Balances narrative copy with supporting visuals."
+    }
+  }
+]

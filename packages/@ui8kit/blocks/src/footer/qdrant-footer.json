@@ -1,0 +1,559 @@
+[
+  {
+    "id": "footer.grid#columns#0",
+    "type": "footer.grid",
+    "variant": "columns",
+    "category": "footer",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\footer\\GridFooter.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "footer.grid for presenting collections clearly. grid; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:footer",
+          "layout:grid",
+          "variant:columns",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "footer"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "brand",
+          "tagline",
+          "description",
+          "copyright",
+          "sections",
+          "contact",
+          "social",
+          "newsletter",
+          "features"
+        ],
+        "collections": [
+          "sections"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Grid layout with header, collections. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "footer.grid#mega#1",
+    "type": "footer.grid",
+    "variant": "mega",
+    "category": "footer",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\footer\\GridFooter.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "footer.grid for presenting collections clearly. grid; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:footer",
+          "layout:grid",
+          "variant:mega",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "footer"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "brand",
+          "tagline",
+          "description",
+          "copyright",
+          "sections",
+          "contact",
+          "social",
+          "newsletter",
+          "features"
+        ],
+        "collections": [
+          "sections"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Grid layout with header, collections. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "footer.grid#compact#2",
+    "type": "footer.grid",
+    "variant": "compact",
+    "category": "footer",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\footer\\GridFooter.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "footer.grid for presenting collections clearly. grid; elements: header. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:footer",
+          "layout:grid",
+          "variant:compact",
+          "element:header"
+        ],
+        "category": "footer"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "brand",
+          "tagline",
+          "description",
+          "copyright",
+          "sections",
+          "contact",
+          "social",
+          "newsletter",
+          "features"
+        ],
+        "collections": [],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": false,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Grid layout with header. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "footer.grid#newsletter#3",
+    "type": "footer.grid",
+    "variant": "newsletter",
+    "category": "footer",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\footer\\GridFooter.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "footer.grid for presenting collections clearly. grid; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:footer",
+          "layout:grid",
+          "variant:newsletter",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "footer"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "brand",
+          "tagline",
+          "description",
+          "copyright",
+          "sections",
+          "contact",
+          "social",
+          "newsletter",
+          "features"
+        ],
+        "collections": [
+          "sections"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Grid layout with header, collections. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "footer.grid#sitemap#4",
+    "type": "footer.grid",
+    "variant": "sitemap",
+    "category": "footer",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\footer\\GridFooter.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "footer.grid for presenting collections clearly. grid; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:footer",
+          "layout:grid",
+          "variant:sitemap",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "footer"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "brand",
+          "tagline",
+          "description",
+          "copyright",
+          "sections",
+          "contact",
+          "social",
+          "newsletter",
+          "features"
+        ],
+        "collections": [
+          "sections"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Grid layout with header, collections. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "footer.split#brand#0",
+    "type": "footer.split",
+    "variant": "brand",
+    "category": "footer",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\footer\\SplitFooter.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "footer.split for pairing content with visuals. split; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:footer",
+          "layout:split",
+          "variant:brand",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "footer"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "brand",
+          "tagline",
+          "description",
+          "copyright",
+          "sections",
+          "contact",
+          "social",
+          "newsletter",
+          "features"
+        ],
+        "collections": [
+          "sections"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Split layout with header, collections. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "footer.split#newsletter#1",
+    "type": "footer.split",
+    "variant": "newsletter",
+    "category": "footer",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\footer\\SplitFooter.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "footer.split for pairing content with visuals. split; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:footer",
+          "layout:split",
+          "variant:newsletter",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "footer"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "brand",
+          "tagline",
+          "description",
+          "copyright",
+          "sections",
+          "contact",
+          "social",
+          "newsletter",
+          "features"
+        ],
+        "collections": [
+          "sections"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Split layout with header, collections. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "footer.split#contact#2",
+    "type": "footer.split",
+    "variant": "contact",
+    "category": "footer",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\footer\\SplitFooter.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "footer.split for pairing content with visuals. split; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:footer",
+          "layout:split",
+          "variant:contact",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "footer"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "brand",
+          "tagline",
+          "description",
+          "copyright",
+          "sections",
+          "contact",
+          "social",
+          "newsletter",
+          "features"
+        ],
+        "collections": [
+          "sections"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Split layout with header, collections. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "footer.split#social#3",
+    "type": "footer.split",
+    "variant": "social",
+    "category": "footer",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\footer\\SplitFooter.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "footer.split for pairing content with visuals. split; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:footer",
+          "layout:split",
+          "variant:social",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "footer"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "brand",
+          "tagline",
+          "description",
+          "copyright",
+          "sections",
+          "contact",
+          "social",
+          "newsletter",
+          "features"
+        ],
+        "collections": [
+          "sections"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Split layout with header, collections. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "footer.split#minimal#4",
+    "type": "footer.split",
+    "variant": "minimal",
+    "category": "footer",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\footer\\SplitFooter.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "footer.split for pairing content with visuals. split; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:footer",
+          "layout:split",
+          "variant:minimal",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "footer"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "brand",
+          "tagline",
+          "description",
+          "copyright",
+          "sections",
+          "contact",
+          "social",
+          "newsletter",
+          "features"
+        ],
+        "collections": [
+          "sections"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Split layout with header, collections. Balances narrative copy with supporting visuals."
+    }
+  }
+]

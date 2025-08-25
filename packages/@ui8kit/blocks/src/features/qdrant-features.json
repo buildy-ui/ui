@@ -1,0 +1,579 @@
+[
+  {
+    "id": "features.grid#threeColumns#0",
+    "type": "features.grid",
+    "variant": "threeColumns",
+    "category": "features",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\features\\GridFeatures.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "features.grid for presenting collections clearly. grid, columns 1-2-3; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:features",
+          "layout:grid",
+          "variant:threeColumns",
+          "columns:1-2-3",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "features"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": "1-2-3",
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "items"
+        ],
+        "collections": [
+          "items"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Everything you need to succeed. Grid layout 1-2-3 with header, collections. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "features.grid#threeColumnsIcons#1",
+    "type": "features.grid",
+    "variant": "threeColumnsIcons",
+    "category": "features",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\features\\GridFeatures.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "features.grid for presenting collections clearly. grid, columns 1-2-3; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:features",
+          "layout:grid",
+          "variant:threeColumnsIcons",
+          "columns:1-2-3",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "features"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": "1-2-3",
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "items"
+        ],
+        "collections": [
+          "items"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Built for developers, designed for scale. Grid layout 1-2-3 with header, collections. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "features.grid#gridMediaCards#2",
+    "type": "features.grid",
+    "variant": "gridMediaCards",
+    "category": "features",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\features\\GridFeatures.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "features.grid for presenting collections clearly. grid, columns 1-2-3; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:features",
+          "layout:grid",
+          "variant:gridMediaCards",
+          "columns:1-2-3",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "features"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": "1-2-3",
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "items"
+        ],
+        "collections": [
+          "items"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Comprehensive solutions for every need. Grid layout 1-2-3 with header, collections. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "features.grid#careerPositions#3",
+    "type": "features.grid",
+    "variant": "careerPositions",
+    "category": "features",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\features\\GridFeatures.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "features.grid for presenting collections clearly. grid, columns 1-2; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:features",
+          "layout:grid",
+          "variant:careerPositions",
+          "columns:1-2",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "features"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": "1-2",
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "items"
+        ],
+        "collections": [
+          "items"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Join our growing team. Grid layout 1-2 with header, collections. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "features.grid#careerStats#4",
+    "type": "features.grid",
+    "variant": "careerStats",
+    "category": "features",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\features\\GridFeatures.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "features.grid for presenting collections clearly. grid, columns 1-2-3; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:features",
+          "layout:grid",
+          "variant:careerStats",
+          "columns:1-2-3",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "features"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": "1-2-3",
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "items"
+        ],
+        "collections": [
+          "items"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Why join our team?. Grid layout 1-2-3 with header, collections. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "features.split#media#0",
+    "type": "features.split",
+    "variant": "media",
+    "category": "features",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\features\\SplitFeatures.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "features.split for pairing content with visuals. split; elements: header, media, collections, actions. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:features",
+          "layout:split",
+          "variant:media",
+          "element:header",
+          "element:media",
+          "element:collections",
+          "element:actions"
+        ],
+        "category": "features"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "image",
+          "features",
+          "primaryButtonText",
+          "secondaryButtonText",
+          "primaryButtonIcon",
+          "secondaryButtonIcon"
+        ],
+        "collections": [
+          "features"
+        ],
+        "mediaKeys": [
+          "image"
+        ],
+        "actionKeys": [
+          "primaryButtonText",
+          "secondaryButtonText",
+          "primaryButtonIcon",
+          "secondaryButtonIcon"
+        ],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": true,
+          "collections": true,
+          "actions": true
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Everything you need to build modern applications. Split layout with header, media, collections, actions. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "features.split#features#1",
+    "type": "features.split",
+    "variant": "features",
+    "category": "features",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\features\\SplitFeatures.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "features.split for pairing content with visuals. split, media-left; elements: header, media, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:features",
+          "layout:split",
+          "variant:features",
+          "orientation:media-left",
+          "element:header",
+          "element:media",
+          "element:collections"
+        ],
+        "category": "features"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": "media-left"
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "image",
+          "features"
+        ],
+        "collections": [
+          "features"
+        ],
+        "mediaKeys": [
+          "image"
+        ],
+        "actionKeys": [],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": true,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Powerful features for modern teams. Split layout (media-left) with header, media, collections. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "features.split#analytics#2",
+    "type": "features.split",
+    "variant": "analytics",
+    "category": "features",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\features\\SplitFeatures.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "features.split for pairing content with visuals. split, media-left; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:features",
+          "layout:split",
+          "variant:analytics",
+          "orientation:media-left",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "features"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": "media-left"
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "features"
+        ],
+        "collections": [
+          "features"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Data-driven insights for better decisions. Split layout (media-left) with header, collections. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "features.split#features#3",
+    "type": "features.split",
+    "variant": "features",
+    "category": "features",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\features\\SplitFeatures.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "features.split for pairing content with visuals. split, media-right; elements: header, collections, actions. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:features",
+          "layout:split",
+          "variant:features",
+          "orientation:media-right",
+          "element:header",
+          "element:collections",
+          "element:actions"
+        ],
+        "category": "features"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": "media-right"
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "features",
+          "primaryButtonText",
+          "primaryButtonIcon"
+        ],
+        "collections": [
+          "features"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [
+          "primaryButtonText",
+          "primaryButtonIcon"
+        ],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": true
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Enterprise-grade security you can trust. Split layout (media-right) with header, collections, actions. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "features.split#media#4",
+    "type": "features.split",
+    "variant": "media",
+    "category": "features",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\features\\SplitFeatures.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "features.split for pairing content with visuals. split, media-left; elements: header, media, collections, actions. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:features",
+          "layout:split",
+          "variant:media",
+          "orientation:media-left",
+          "element:header",
+          "element:media",
+          "element:collections",
+          "element:actions"
+        ],
+        "category": "features"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": "media-left"
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "image",
+          "features",
+          "primaryButtonText",
+          "secondaryButtonText",
+          "primaryButtonIcon",
+          "secondaryButtonIcon"
+        ],
+        "collections": [
+          "features"
+        ],
+        "mediaKeys": [
+          "image"
+        ],
+        "actionKeys": [
+          "primaryButtonText",
+          "secondaryButtonText",
+          "primaryButtonIcon",
+          "secondaryButtonIcon"
+        ],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": true,
+          "collections": true,
+          "actions": true
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Blazing fast performance at scale. Split layout (media-left) with header, media, collections, actions. Balances narrative copy with supporting visuals."
+    }
+  }
+]

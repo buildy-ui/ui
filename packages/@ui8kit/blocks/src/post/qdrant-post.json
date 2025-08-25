@@ -1,0 +1,617 @@
+[
+  {
+    "id": "post.centered#classic#0",
+    "type": "post.centered",
+    "variant": "classic",
+    "category": "post",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\post\\CenteredPost.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "post.centered for focused messaging. stack; elements: header, media, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:post",
+          "layout:stack",
+          "variant:classic",
+          "element:header",
+          "element:media",
+          "element:collections"
+        ],
+        "category": "post"
+      },
+      "structure": {
+        "layout": "stack",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "subtitle",
+          "excerpt",
+          "author",
+          "meta",
+          "image",
+          "tags",
+          "breadcrumbs"
+        ],
+        "collections": [
+          "tags",
+          "breadcrumbs"
+        ],
+        "mediaKeys": [
+          "image"
+        ],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "subtitle"
+        ],
+        "elements": {
+          "header": true,
+          "media": true,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "The Future of Web Development: Trends to Watch in 2024. Stacked (centered) section with header, media, collections. Optimized for primary messaging and conversion."
+    }
+  },
+  {
+    "id": "post.centered#minimal#1",
+    "type": "post.centered",
+    "variant": "minimal",
+    "category": "post",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\post\\CenteredPost.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "post.centered for focused messaging. stack; elements: header, media, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:post",
+          "layout:stack",
+          "variant:minimal",
+          "element:header",
+          "element:media",
+          "element:collections"
+        ],
+        "category": "post"
+      },
+      "structure": {
+        "layout": "stack",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "subtitle",
+          "excerpt",
+          "author",
+          "meta",
+          "image",
+          "tags",
+          "breadcrumbs"
+        ],
+        "collections": [
+          "tags",
+          "breadcrumbs"
+        ],
+        "mediaKeys": [
+          "image"
+        ],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "subtitle"
+        ],
+        "elements": {
+          "header": true,
+          "media": true,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Minimalist Design Principles for Modern Interfaces. Stacked (centered) section with header, media, collections. Optimized for primary messaging and conversion."
+    }
+  },
+  {
+    "id": "post.centered#magazine#2",
+    "type": "post.centered",
+    "variant": "magazine",
+    "category": "post",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\post\\CenteredPost.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "post.centered for focused messaging. stack; elements: header, media, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:post",
+          "layout:stack",
+          "variant:magazine",
+          "element:header",
+          "element:media",
+          "element:collections"
+        ],
+        "category": "post"
+      },
+      "structure": {
+        "layout": "stack",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "subtitle",
+          "excerpt",
+          "author",
+          "meta",
+          "image",
+          "tags",
+          "breadcrumbs"
+        ],
+        "collections": [
+          "tags",
+          "breadcrumbs"
+        ],
+        "mediaKeys": [
+          "image"
+        ],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "subtitle"
+        ],
+        "elements": {
+          "header": true,
+          "media": true,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "The Art of Digital Storytelling. Stacked (centered) section with header, media, collections. Optimized for primary messaging and conversion."
+    }
+  },
+  {
+    "id": "post.centered#featured#3",
+    "type": "post.centered",
+    "variant": "featured",
+    "category": "post",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\post\\CenteredPost.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "post.centered for focused messaging. stack; elements: header, media, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:post",
+          "layout:stack",
+          "variant:featured",
+          "element:header",
+          "element:media",
+          "element:collections"
+        ],
+        "category": "post"
+      },
+      "structure": {
+        "layout": "stack",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "subtitle",
+          "excerpt",
+          "author",
+          "meta",
+          "image",
+          "tags",
+          "breadcrumbs"
+        ],
+        "collections": [
+          "tags",
+          "breadcrumbs"
+        ],
+        "mediaKeys": [
+          "image"
+        ],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "subtitle"
+        ],
+        "elements": {
+          "header": true,
+          "media": true,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Building Scalable Applications with Microservices. Stacked (centered) section with header, media, collections. Optimized for primary messaging and conversion."
+    }
+  },
+  {
+    "id": "post.centered#editorial#4",
+    "type": "post.centered",
+    "variant": "editorial",
+    "category": "post",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\post\\CenteredPost.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "post.centered for focused messaging. stack; elements: header, media, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:post",
+          "layout:stack",
+          "variant:editorial",
+          "element:header",
+          "element:media",
+          "element:collections"
+        ],
+        "category": "post"
+      },
+      "structure": {
+        "layout": "stack",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "subtitle",
+          "excerpt",
+          "author",
+          "meta",
+          "image",
+          "tags",
+          "breadcrumbs"
+        ],
+        "collections": [
+          "tags",
+          "breadcrumbs"
+        ],
+        "mediaKeys": [
+          "image"
+        ],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "subtitle"
+        ],
+        "elements": {
+          "header": true,
+          "media": true,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "The Philosophy of Code: Writing Software as Literature. Stacked (centered) section with header, media, collections. Optimized for primary messaging and conversion."
+    }
+  },
+  {
+    "id": "post.split#standard#0",
+    "type": "post.split",
+    "variant": "standard",
+    "category": "post",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\post\\SplitPost.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "post.split for pairing content with visuals. split, media-right; elements: header, media, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:post",
+          "layout:split",
+          "variant:standard",
+          "orientation:media-right",
+          "element:header",
+          "element:media",
+          "element:collections"
+        ],
+        "category": "post"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": "media-right"
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "subtitle",
+          "excerpt",
+          "author",
+          "meta",
+          "image",
+          "tags",
+          "breadcrumbs",
+          "relatedLinks"
+        ],
+        "collections": [
+          "tags",
+          "breadcrumbs",
+          "relatedLinks"
+        ],
+        "mediaKeys": [
+          "image"
+        ],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "subtitle"
+        ],
+        "elements": {
+          "header": true,
+          "media": true,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Mastering React Performance Optimization. Split layout (media-right) with header, media, collections. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "post.split#author#1",
+    "type": "post.split",
+    "variant": "author",
+    "category": "post",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\post\\SplitPost.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "post.split for pairing content with visuals. split, media-left; elements: header, media, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:post",
+          "layout:split",
+          "variant:author",
+          "orientation:media-left",
+          "element:header",
+          "element:media",
+          "element:collections"
+        ],
+        "category": "post"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": "media-left"
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "subtitle",
+          "excerpt",
+          "author",
+          "meta",
+          "image",
+          "tags",
+          "breadcrumbs",
+          "relatedLinks"
+        ],
+        "collections": [
+          "tags",
+          "breadcrumbs",
+          "relatedLinks"
+        ],
+        "mediaKeys": [
+          "image"
+        ],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "subtitle"
+        ],
+        "elements": {
+          "header": true,
+          "media": true,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Design Systems That Scale: Lessons from Industry Leaders. Split layout (media-left) with header, media, collections. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "post.split#media#2",
+    "type": "post.split",
+    "variant": "media",
+    "category": "post",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\post\\SplitPost.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "post.split for pairing content with visuals. split, media-right; elements: header, media, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:post",
+          "layout:split",
+          "variant:media",
+          "orientation:media-right",
+          "element:header",
+          "element:media",
+          "element:collections"
+        ],
+        "category": "post"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": "media-right"
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "subtitle",
+          "excerpt",
+          "author",
+          "meta",
+          "image",
+          "tags",
+          "breadcrumbs",
+          "relatedLinks"
+        ],
+        "collections": [
+          "tags",
+          "breadcrumbs",
+          "relatedLinks"
+        ],
+        "mediaKeys": [
+          "image"
+        ],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "subtitle"
+        ],
+        "elements": {
+          "header": true,
+          "media": true,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "The Visual Guide to CSS Grid Layout. Split layout (media-right) with header, media, collections. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "post.split#sidebar#3",
+    "type": "post.split",
+    "variant": "sidebar",
+    "category": "post",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\post\\SplitPost.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "post.split for pairing content with visuals. split, media-left; elements: header, media, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:post",
+          "layout:split",
+          "variant:sidebar",
+          "orientation:media-left",
+          "element:header",
+          "element:media",
+          "element:collections"
+        ],
+        "category": "post"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": "media-left"
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "subtitle",
+          "excerpt",
+          "author",
+          "meta",
+          "image",
+          "tags",
+          "breadcrumbs",
+          "relatedLinks"
+        ],
+        "collections": [
+          "tags",
+          "breadcrumbs",
+          "relatedLinks"
+        ],
+        "mediaKeys": [
+          "image"
+        ],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "subtitle"
+        ],
+        "elements": {
+          "header": true,
+          "media": true,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Building Accessible Web Applications. Split layout (media-left) with header, media, collections. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "post.split#hero#4",
+    "type": "post.split",
+    "variant": "hero",
+    "category": "post",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\post\\SplitPost.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "post.split for pairing content with visuals. split, media-right; elements: header, media, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:post",
+          "layout:split",
+          "variant:hero",
+          "orientation:media-right",
+          "element:header",
+          "element:media",
+          "element:collections"
+        ],
+        "category": "post"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": "media-right"
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "subtitle",
+          "excerpt",
+          "author",
+          "meta",
+          "image",
+          "tags",
+          "breadcrumbs",
+          "relatedLinks"
+        ],
+        "collections": [
+          "tags",
+          "breadcrumbs",
+          "relatedLinks"
+        ],
+        "mediaKeys": [
+          "image"
+        ],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "subtitle"
+        ],
+        "elements": {
+          "header": true,
+          "media": true,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "The Complete Guide to Modern JavaScript. Split layout (media-right) with header, media, collections. Balances narrative copy with supporting visuals."
+    }
+  }
+]

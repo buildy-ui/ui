@@ -1,0 +1,578 @@
+[
+  {
+    "id": "business.grid#cardsGallery#0",
+    "type": "business.grid",
+    "variant": "cardsGallery",
+    "category": "business",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\business\\GridBusiness.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "business.grid for presenting collections clearly. grid, columns 1-2-3; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:business",
+          "layout:grid",
+          "variant:cardsGallery",
+          "columns:1-2-3",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "business"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": "1-2-3",
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "promo",
+          "title",
+          "description",
+          "cards"
+        ],
+        "collections": [
+          "cards"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Comprehensive business solutions for modern enterprises. Grid layout 1-2-3 with header, collections. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "business.grid#solutionsGrid#1",
+    "type": "business.grid",
+    "variant": "solutionsGrid",
+    "category": "business",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\business\\GridBusiness.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "business.grid for presenting collections clearly. grid, columns 1-2-3; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:business",
+          "layout:grid",
+          "variant:solutionsGrid",
+          "columns:1-2-3",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "business"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": "1-2-3",
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "solutions"
+        ],
+        "collections": [
+          "solutions"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Transform your business with our proven solutions. Grid layout 1-2-3 with header, collections. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "business.grid#pricing#2",
+    "type": "business.grid",
+    "variant": "pricing",
+    "category": "business",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\business\\GridBusiness.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "business.grid for presenting collections clearly. grid, columns 1-2-3; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:business",
+          "layout:grid",
+          "variant:pricing",
+          "columns:1-2-3",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "business"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": "1-2-3",
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "description",
+          "plans"
+        ],
+        "collections": [
+          "plans"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Choose the perfect plan for your business. Grid layout 1-2-3 with header, collections. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "business.grid#pricingYear#3",
+    "type": "business.grid",
+    "variant": "pricingYear",
+    "category": "business",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\business\\GridBusiness.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "business.grid for presenting collections clearly. grid, columns 1-2-3; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:business",
+          "layout:grid",
+          "variant:pricingYear",
+          "columns:1-2-3",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "business"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": "1-2-3",
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "description",
+          "plans"
+        ],
+        "collections": [
+          "plans"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Save more with annual billing. Grid layout 1-2-3 with header, collections. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "business.grid#career#4",
+    "type": "business.grid",
+    "variant": "career",
+    "category": "business",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\business\\GridBusiness.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "business.grid for presenting collections clearly. grid, columns 1-2; elements: header, collections, actions. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:business",
+          "layout:grid",
+          "variant:career",
+          "columns:1-2",
+          "element:header",
+          "element:collections",
+          "element:actions"
+        ],
+        "category": "business"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": "1-2",
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "description",
+          "buttonText",
+          "openings"
+        ],
+        "collections": [
+          "openings"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [
+          "buttonText"
+        ],
+        "headerKeys": [
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": true
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Join our growing team. Grid layout 1-2 with header, collections, actions. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "business.split#solutions#0",
+    "type": "business.split",
+    "variant": "solutions",
+    "category": "business",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\business\\SplitBusiness.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "business.split for pairing content with visuals. split, media-right; elements: header, media, collections, actions. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:business",
+          "layout:split",
+          "variant:solutions",
+          "orientation:media-right",
+          "element:header",
+          "element:media",
+          "element:collections",
+          "element:actions"
+        ],
+        "category": "business"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": "media-right"
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "buttonText",
+          "secondaryButtonText",
+          "metrics",
+          "image"
+        ],
+        "collections": [
+          "metrics"
+        ],
+        "mediaKeys": [
+          "image"
+        ],
+        "actionKeys": [
+          "buttonText",
+          "secondaryButtonText"
+        ],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": true,
+          "collections": true,
+          "actions": true
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Accelerate your business growth with our proven solutions. Split layout (media-right) with header, media, collections, actions. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "business.split#metrics#1",
+    "type": "business.split",
+    "variant": "metrics",
+    "category": "business",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\business\\SplitBusiness.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "business.split for pairing content with visuals. split, media-left; elements: header, actions. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:business",
+          "layout:split",
+          "variant:metrics",
+          "orientation:media-left",
+          "element:header",
+          "element:actions"
+        ],
+        "category": "business"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": "media-left"
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "subtitle",
+          "description",
+          "buttonText",
+          "stats"
+        ],
+        "collections": [],
+        "mediaKeys": [],
+        "actionKeys": [
+          "buttonText"
+        ],
+        "headerKeys": [
+          "badge",
+          "title",
+          "subtitle",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": false,
+          "actions": true
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Delivering measurable business impact. Split layout (media-left) with header, actions. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "business.split#testimonial#2",
+    "type": "business.split",
+    "variant": "testimonial",
+    "category": "business",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\business\\SplitBusiness.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "business.split for pairing content with visuals. split, media-right; elements: header, media, collections, actions. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:business",
+          "layout:split",
+          "variant:testimonial",
+          "orientation:media-right",
+          "element:header",
+          "element:media",
+          "element:collections",
+          "element:actions"
+        ],
+        "category": "business"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": "media-right"
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "buttonText",
+          "testimonials",
+          "image"
+        ],
+        "collections": [
+          "testimonials"
+        ],
+        "mediaKeys": [
+          "image"
+        ],
+        "actionKeys": [
+          "buttonText"
+        ],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": true,
+          "collections": true,
+          "actions": true
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "What our clients say about us. Split layout (media-right) with header, media, collections, actions. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "business.split#features#3",
+    "type": "business.split",
+    "variant": "features",
+    "category": "business",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\business\\SplitBusiness.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "business.split for pairing content with visuals. split, media-left; elements: header, collections, actions. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:business",
+          "layout:split",
+          "variant:features",
+          "orientation:media-left",
+          "element:header",
+          "element:collections",
+          "element:actions"
+        ],
+        "category": "business"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": "media-left"
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "buttonText",
+          "secondaryButtonText",
+          "features"
+        ],
+        "collections": [
+          "features"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [
+          "buttonText",
+          "secondaryButtonText"
+        ],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": true
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Everything you need to succeed in one platform. Split layout (media-left) with header, collections, actions. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "business.split#about#4",
+    "type": "business.split",
+    "variant": "about",
+    "category": "business",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\business\\SplitBusiness.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "business.split for pairing content with visuals. split, media-right; elements: header, media, collections, actions. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:business",
+          "layout:split",
+          "variant:about",
+          "orientation:media-right",
+          "element:header",
+          "element:media",
+          "element:collections",
+          "element:actions"
+        ],
+        "category": "business"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": "media-right"
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "subtitle",
+          "description",
+          "buttonText",
+          "secondaryButtonText",
+          "cards",
+          "image"
+        ],
+        "collections": [
+          "cards"
+        ],
+        "mediaKeys": [
+          "image"
+        ],
+        "actionKeys": [
+          "buttonText",
+          "secondaryButtonText"
+        ],
+        "headerKeys": [
+          "badge",
+          "title",
+          "subtitle",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": true,
+          "collections": true,
+          "actions": true
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Building the future of business technology. Split layout (media-right) with header, media, collections, actions. Balances narrative copy with supporting visuals."
+    }
+  }
+]

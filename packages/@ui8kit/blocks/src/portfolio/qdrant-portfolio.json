@@ -1,0 +1,577 @@
+[
+  {
+    "id": "portfolio.grid#cards#0",
+    "type": "portfolio.grid",
+    "variant": "cards",
+    "category": "portfolio",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\portfolio\\GridPortfolio.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "portfolio.grid for presenting collections clearly. grid, columns 1-2-3; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:portfolio",
+          "layout:grid",
+          "variant:cards",
+          "columns:1-2-3",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "portfolio"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": "1-2-3",
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "projects"
+        ],
+        "collections": [
+          "projects"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Featured Projects. Grid layout 1-2-3 with header, collections. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "portfolio.grid#masonry#1",
+    "type": "portfolio.grid",
+    "variant": "masonry",
+    "category": "portfolio",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\portfolio\\GridPortfolio.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "portfolio.grid for presenting collections clearly. grid, columns 1-2-3; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:portfolio",
+          "layout:grid",
+          "variant:masonry",
+          "columns:1-2-3",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "portfolio"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": "1-2-3",
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "projects",
+          "categories"
+        ],
+        "collections": [
+          "projects",
+          "categories"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Visual Portfolio. Grid layout 1-2-3 with header, collections. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "portfolio.grid#minimal#2",
+    "type": "portfolio.grid",
+    "variant": "minimal",
+    "category": "portfolio",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\portfolio\\GridPortfolio.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "portfolio.grid for presenting collections clearly. grid, columns 1-2-4; elements: header. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:portfolio",
+          "layout:grid",
+          "variant:minimal",
+          "columns:1-2-4",
+          "element:header"
+        ],
+        "category": "portfolio"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": "1-2-4",
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "projects"
+        ],
+        "collections": [],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": false,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Clean & Simple. Grid layout 1-2-4 with header. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "portfolio.grid#detailed#3",
+    "type": "portfolio.grid",
+    "variant": "detailed",
+    "category": "portfolio",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\portfolio\\GridPortfolio.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "portfolio.grid for presenting collections clearly. grid, columns 1-2-3; elements: header, collections, actions. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:portfolio",
+          "layout:grid",
+          "variant:detailed",
+          "columns:1-2-3",
+          "element:header",
+          "element:collections",
+          "element:actions"
+        ],
+        "category": "portfolio"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": "1-2-3",
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "buttonText",
+          "projects",
+          "categories",
+          "showFilters"
+        ],
+        "collections": [
+          "projects",
+          "categories"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [
+          "buttonText"
+        ],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": true
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Detailed Project Showcase. Grid layout 1-2-3 with header, collections, actions. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "portfolio.grid#showcase#4",
+    "type": "portfolio.grid",
+    "variant": "showcase",
+    "category": "portfolio",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\portfolio\\GridPortfolio.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "portfolio.grid for presenting collections clearly. grid, columns 1-2-4; elements: header, collections, actions. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:portfolio",
+          "layout:grid",
+          "variant:showcase",
+          "columns:1-2-4",
+          "element:header",
+          "element:collections",
+          "element:actions"
+        ],
+        "category": "portfolio"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": "1-2-4",
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "buttonText",
+          "projects",
+          "categories"
+        ],
+        "collections": [
+          "projects",
+          "categories"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [
+          "buttonText"
+        ],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": true
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Award-Winning Projects. Grid layout 1-2-4 with header, collections, actions. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "portfolio.split#showcase#0",
+    "type": "portfolio.split",
+    "variant": "showcase",
+    "category": "portfolio",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\portfolio\\SplitPortfolio.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "portfolio.split for pairing content with visuals. split, media-right; elements: header, collections, actions. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:portfolio",
+          "layout:split",
+          "variant:showcase",
+          "orientation:media-right",
+          "element:header",
+          "element:collections",
+          "element:actions"
+        ],
+        "category": "portfolio"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": "media-right"
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "buttonText",
+          "projects",
+          "stats"
+        ],
+        "collections": [
+          "projects"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [
+          "buttonText"
+        ],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": true
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Creating Digital Experiences. Split layout (media-right) with header, collections, actions. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "portfolio.split#about#1",
+    "type": "portfolio.split",
+    "variant": "about",
+    "category": "portfolio",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\portfolio\\SplitPortfolio.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "portfolio.split for pairing content with visuals. split, media-left; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:portfolio",
+          "layout:split",
+          "variant:about",
+          "orientation:media-left",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "portfolio"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": "media-left"
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "projects",
+          "categories",
+          "stats"
+        ],
+        "collections": [
+          "projects",
+          "categories"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Hello, I'm Alex Johnson. Split layout (media-left) with header, collections. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "portfolio.split#skills#2",
+    "type": "portfolio.split",
+    "variant": "skills",
+    "category": "portfolio",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\portfolio\\SplitPortfolio.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "portfolio.split for pairing content with visuals. split, media-right; elements: header, collections, actions. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:portfolio",
+          "layout:split",
+          "variant:skills",
+          "orientation:media-right",
+          "element:header",
+          "element:collections",
+          "element:actions"
+        ],
+        "category": "portfolio"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": "media-right"
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "buttonText",
+          "projects",
+          "categories",
+          "skills"
+        ],
+        "collections": [
+          "projects",
+          "categories",
+          "skills"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [
+          "buttonText"
+        ],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": true
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Technical Expertise. Split layout (media-right) with header, collections, actions. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "portfolio.split#testimonial#3",
+    "type": "portfolio.split",
+    "variant": "testimonial",
+    "category": "portfolio",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\portfolio\\SplitPortfolio.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "portfolio.split for pairing content with visuals. split, media-left; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:portfolio",
+          "layout:split",
+          "variant:testimonial",
+          "orientation:media-left",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "portfolio"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": "media-left"
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "projects",
+          "testimonial"
+        ],
+        "collections": [
+          "projects"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "What Clients Say. Split layout (media-left) with header, collections. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "portfolio.split#process#4",
+    "type": "portfolio.split",
+    "variant": "process",
+    "category": "portfolio",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\portfolio\\SplitPortfolio.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "portfolio.split for pairing content with visuals. split, media-right; elements: header, collections, actions. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:portfolio",
+          "layout:split",
+          "variant:process",
+          "orientation:media-right",
+          "element:header",
+          "element:collections",
+          "element:actions"
+        ],
+        "category": "portfolio"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": "media-right"
+      },
+      "content_signature": {
+        "keys": [
+          "badge",
+          "title",
+          "description",
+          "buttonText",
+          "projects",
+          "skills"
+        ],
+        "collections": [
+          "projects",
+          "skills"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [
+          "buttonText"
+        ],
+        "headerKeys": [
+          "badge",
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": true
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "How I Work. Split layout (media-right) with header, collections, actions. Balances narrative copy with supporting visuals."
+    }
+  }
+]

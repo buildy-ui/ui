@@ -1,0 +1,531 @@
+[
+  {
+    "id": "team.grid#grid#0",
+    "type": "team.grid",
+    "variant": "grid",
+    "category": "team",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\team\\GridTeam.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "team.grid for presenting collections clearly. grid; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:team",
+          "layout:grid",
+          "variant:grid",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "team"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "description",
+          "badge",
+          "members",
+          "stats"
+        ],
+        "collections": [
+          "members"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "description",
+          "badge"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Meet Our Team. Grid layout with header, collections. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "team.grid#cards#1",
+    "type": "team.grid",
+    "variant": "cards",
+    "category": "team",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\team\\GridTeam.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "team.grid for presenting collections clearly. grid; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:team",
+          "layout:grid",
+          "variant:cards",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "team"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "subtitle",
+          "badge",
+          "members"
+        ],
+        "collections": [
+          "members"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "subtitle",
+          "badge"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Our Amazing Team. Grid layout with header, collections. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "team.grid#minimal#2",
+    "type": "team.grid",
+    "variant": "minimal",
+    "category": "team",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\team\\GridTeam.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "team.grid for presenting collections clearly. grid; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:team",
+          "layout:grid",
+          "variant:minimal",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "team"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "subtitle",
+          "badge",
+          "members"
+        ],
+        "collections": [
+          "members"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "subtitle",
+          "badge"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "The People Behind Our Success. Grid layout with header, collections. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "team.grid#showcase#3",
+    "type": "team.grid",
+    "variant": "showcase",
+    "category": "team",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\team\\GridTeam.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "team.grid for presenting collections clearly. grid; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:team",
+          "layout:grid",
+          "variant:showcase",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "team"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "description",
+          "members",
+          "hiring"
+        ],
+        "collections": [
+          "members"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Our World-Class Team. Grid layout with header, collections. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "team.grid#directory#4",
+    "type": "team.grid",
+    "variant": "directory",
+    "category": "team",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\team\\GridTeam.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "team.grid for presenting collections clearly. grid; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:team",
+          "layout:grid",
+          "variant:directory",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "team"
+      },
+      "structure": {
+        "layout": "grid",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "description",
+          "members",
+          "stats"
+        ],
+        "collections": [
+          "members"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Team Directory. Grid layout with header, collections. Designed to present multiple items clearly and scan-friendly."
+    }
+  },
+  {
+    "id": "team.split#leadership#0",
+    "type": "team.split",
+    "variant": "leadership",
+    "category": "team",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\team\\SplitTeam.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "team.split for pairing content with visuals. split; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:team",
+          "layout:split",
+          "variant:leadership",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "team"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "description",
+          "badge",
+          "members",
+          "stats"
+        ],
+        "collections": [
+          "members"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "description",
+          "badge"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Meet Our Leadership Team. Split layout with header, collections. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "team.split#showcase#1",
+    "type": "team.split",
+    "variant": "showcase",
+    "category": "team",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\team\\SplitTeam.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "team.split for pairing content with visuals. split; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:team",
+          "layout:split",
+          "variant:showcase",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "team"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "subtitle",
+          "badge",
+          "members"
+        ],
+        "collections": [
+          "members"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "subtitle",
+          "badge"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Our Amazing Team. Split layout with header, collections. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "team.split#hiring#2",
+    "type": "team.split",
+    "variant": "hiring",
+    "category": "team",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\team\\SplitTeam.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "team.split for pairing content with visuals. split; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:team",
+          "layout:split",
+          "variant:hiring",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "team"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "description",
+          "members",
+          "hiring"
+        ],
+        "collections": [
+          "members"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Join Our Growing Team. Split layout with header, collections. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "team.split#culture#3",
+    "type": "team.split",
+    "variant": "culture",
+    "category": "team",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\team\\SplitTeam.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "team.split for pairing content with visuals. split; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:team",
+          "layout:split",
+          "variant:culture",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "team"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "subtitle",
+          "badge",
+          "members",
+          "stats"
+        ],
+        "collections": [
+          "members"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "subtitle",
+          "badge"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Our Culture & Values. Split layout with header, collections. Balances narrative copy with supporting visuals."
+    }
+  },
+  {
+    "id": "team.split#departments#4",
+    "type": "team.split",
+    "variant": "departments",
+    "category": "team",
+    "path": "E:\\_@Bun\\@BuildY\\packages\\@ui8kit\\blocks\\src\\team\\SplitTeam.preset.ts",
+    "payload": {
+      "qdrant": {
+        "description": "team.split for pairing content with visuals. split; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+        "tags": [
+          "category:team",
+          "layout:split",
+          "variant:departments",
+          "element:header",
+          "element:collections"
+        ],
+        "category": "team"
+      },
+      "structure": {
+        "layout": "split",
+        "columns": null,
+        "orientation": null
+      },
+      "content_signature": {
+        "keys": [
+          "title",
+          "description",
+          "members",
+          "stats"
+        ],
+        "collections": [
+          "members"
+        ],
+        "mediaKeys": [],
+        "actionKeys": [],
+        "headerKeys": [
+          "title",
+          "description"
+        ],
+        "elements": {
+          "header": true,
+          "media": false,
+          "collections": true,
+          "actions": false
+        }
+      }
+    },
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "text": "Cross-Functional Excellence. Split layout with header, collections. Balances narrative copy with supporting visuals."
+    }
+  }
+]
