@@ -1,32 +1,47 @@
-import { allBlogTemplates } from "./blog";
-import { allHeroTemplates } from "./hero";
-import { allBusinessTemplates } from "./business";
-import { allCTATemplates } from "./cta";
-import { allFAQTemplates } from "./faq";
-import { allFeaturesTemplates } from "./features";
-import { allFooterTemplates } from "./footer";
-import { allGalleryTemplates } from "./gallery";
-import { allPortfolioTemplates } from "./portfolio";
-import { allPostTemplates } from "./post";
-import { allTeamTemplates } from "./team";
-import { allTestimonialTemplates } from "./testimonial";
- 
+"use client";
+import {
+  createBusinessRegistry,
+  createBlogRegistry,
+  createCTARegistry,
+  createFAQRegistry,
+  createHeroRegistry,
+  createFeaturesRegistry,
+  createPortfolioRegistry,
+  createTeamRegistry,
+  createTestimonialRegistry,
+  createFooterRegistry,
+  createGalleryRegistry,
+  createPostRegistry
+} from "@ui8kit/blocks";
+
+const treeRegistry = [
+  { name: "Hero Blocks", registry: createHeroRegistry() },
+  { name: "Features Blocks", registry: createFeaturesRegistry() },
+  { name: "Post Blocks", registry: createPostRegistry() },
+  { name: "Blog Blocks", registry: createBlogRegistry() },
+  { name: "Business Blocks", registry: createBusinessRegistry() },
+  { name: "Portfolio Blocks", registry: createPortfolioRegistry() },
+  { name: "Gallery Blocks", registry: createGalleryRegistry() },
+  { name: "CTA Blocks", registry: createCTARegistry() },
+  { name: "FAQ Blocks", registry: createFAQRegistry() },
+  { name: "Team Blocks", registry: createTeamRegistry() },
+  { name: "Testimonial Blocks", registry: createTestimonialRegistry() },
+  { name: "Footer Blocks", registry: createFooterRegistry() }
+]
+
+export const treeRenderers = treeRegistry.map((type) => {
+  return {
+    name: type.name,
+    registry: type.registry
+  }
+}); 
+
+
 export const allTemplates = [
-  ...allHeroTemplates,
-  ...allBlogTemplates,
-  ...allBusinessTemplates,
-  ...allCTATemplates,
-  ...allFAQTemplates,
-  ...allFeaturesTemplates,
-  ...allFooterTemplates,
-  ...allGalleryTemplates,
-  ...allPortfolioTemplates,
-  ...allPostTemplates,
-  ...allTeamTemplates,
-  ...allTestimonialTemplates
+  ...treeRenderers
 ];
 
 export const allComponents = allTemplates.reduce((acc, template) => {
-  acc[template.id] = template.component;
+  acc[template.name] = template.registry;
   return acc;
 }, {} as Record<string, any>);

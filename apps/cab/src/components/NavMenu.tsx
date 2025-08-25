@@ -21,11 +21,6 @@ export function NavMenu() {
         <Text size="sm" c="muted">Reports</Text>
       </Button>
 
-      <Button onClick={() => navigate('/blocks')} variant="ghost" size={buttonSize.default} rounded={roundedItem} contentAlign="start" w="full">
-        <Icon component="span" lucideIcon={Boxes} />
-        <Text size="sm" c="muted">Blocks</Text>
-      </Button>
-
       <Accordion type="single" collapsible w="full">
         <AccordionItem gap="sm" value="crud">
           <AccordionTrigger rounded={roundedItem}>

@@ -7,7 +7,6 @@ export * from './more/Team';
 export * from './more/Integrations';
 export * from './crud/CrudCreate';
 export * from './crud/CrudList';
-export * from './blocks/BlocksForm';
 export * from './chat/ChatPage';
 export * from './chat/ChatSetting';
 export * from './chat/ImagePage';
