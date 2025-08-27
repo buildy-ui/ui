@@ -30,7 +30,7 @@ Using this graph, Answer the following question:
 User Query: "${userQuery}"
   `;
   const completion = await chatClient.chat.completions.create({
-    model: 'gpt-4',
+    model: 'gpt-5-mini',
     messages: [
       { role: 'system', content: 'Provide the answer for the following question:' },
       { role: 'user', content: prompt },

@@ -30,31 +30,31 @@ async function main() {
   await ensureCollection(collectionName, vectorDimension);
 
   // Example raw text to extract graph components from
-  const raw = `Alice is a data scientist at TechCorp's Seattle office.
-Bob and Carol collaborate on the Alpha project.
-Carol transferred to the New York office last year.
-Dave mentors both Alice and Bob.
-TechCorp's headquarters is in Seattle.
-Carol leads the East Coast team.
-Dave started his career in Seattle.
-The Alpha project is managed from New York.
-Alice previously worked with Carol at DataCo.
-Bob joined the team after Dave's recommendation.
-Eve runs the West Coast operations from Seattle.
-Frank works with Carol on client relations.
-The New York office expanded under Carol's leadership.
-Dave's team spans multiple locations.
-Alice visits Seattle monthly for team meetings.
-Bob's expertise is crucial for the Alpha project.
-Carol implemented new processes in New York.
-Eve and Dave collaborated on previous projects.
-Frank reports to the New York office.
-TechCorp's main AI research is in Seattle.
-The Alpha project revolutionized East Coast operations.
-Dave oversees projects in both offices.
-Bob's contributions are mainly remote.
-Carol's team grew significantly after moving to New York.
-Seattle remains the technology hub for TechCorp.`;
+  const raw = `Дизайн систем упрощает совместную разработку.
+Компоненты React работают с Tailwind.
+Shadcn обеспечивает модульность компонентов дизайна.
+Tailwind ускоряет прототипирование визуальных решений.
+Компонентам нужно единое соглашение стилей.
+Система кода описывает принципы использования.
+Компоненты должны быть переиспользуемыми и доступными.
+Увеличение повторного использования снижает дубликаты.
+Tailwind позволяет описывать стиль в классы.
+Шаблоны компонентов ускоряют общую разработку.
+Shadcn обеспечивает совместные стили в проектах.
+Компоненты должны документироваться внутри системы.
+Гайдлайны дизайна описывают оттенки и контрасты.
+Реактивные UI обновляются гладко благодаря абстракциям.
+Взгляд на Tailwind упрощает верстку.
+Конструктивные принципы помогают масштабировать UX.
+Реиспользуемые хуки улучшают производительность приложений.
+Паттерны дизайна ускоряют принятие решения.
+Тестирование интерфейсов важно для стабильности.
+Архитектура компонентов упорядочивает кодовую базу.
+Обратная совместимость важна при обновлениях.
+Документация ускоряет вхождение новых разработчиков.
+Стили из Tailwind можно централизовать.
+Shadcn упрощает стилизацию повторных компонентов.
+Итоговый подход объединяет дизайн и код.`;
 
   console.log('Extracting graph components...');
   // Extract graph components from the raw text
