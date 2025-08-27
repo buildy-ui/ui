@@ -1,18 +1,21 @@
 {
   "name": "@ui8kit/brain",
   "version": "0.0.1",
-  "description": "A collection of brain for buildy/ui - AI + SmartY logic scripts",
+  "description": "Create an AI-driven llms agent based on GraphRAG using Neo4j and Qdrant for Node.js",
   "homepage": "https://buildy.tw",
   "license": "MIT",
   "author": "buildy-ui",
   "type": "module",
   "keywords": [
-    "frontend",
+    "graphrag",
+    "graphrag-agent",
+    "graphrag-agent-nodejs",
+    "graphrag-agent-neo4j",
+    "graphrag-agent-qdrant",
+    "graphrag-agent-openai",
+    "graphrag-agent-zod",
     "brain",
     "library",
-    "tailwind",
-    "utility-first",
-    "semantic",
     "react",
     "react-brain",
     "brain"
@@ -33,6 +36,23 @@
     "url": "https://github.com/buildy-ui/ui.git",
     "type": "git",
     "directory": "packages/@ui8kit/brain"
+  },
+  "scripts": {
+    "start": "bun src/index.ts",
+    "dev": "bun run --hot src/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@qdrant/js-client-rest": "^1.15.1",
+    "dotenv": "^16.4.5",
+    "neo4j-driver": "^5.28.0",
+    "openai": "^4.58.2",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "bun-types": "^1.1.29",
+    "typescript": "^5.6.3"
   },
   "peerDependencies": {
     "react": "^19.1.0",
