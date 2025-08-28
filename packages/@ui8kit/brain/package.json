@@ -44,6 +44,7 @@
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
+    "@dqbd/tiktoken": "^1.0.22",
     "@qdrant/js-client-rest": "^1.15.1",
     "dotenv": "^16.4.5",
     "neo4j-driver": "^5.28.0",

@@ -22,12 +22,7 @@ import { formatGraphContext, graphRAGRun } from './application/graphrag';
  */
 async function main() {
   console.log('Script started');
-  const collectionName = 'graphRAGstoreds'; // This is the name of the collection in Qdrant
-  const vectorDimension = 1536; // This is the dimension of the embeddings
-
-  // Ensure collection exists in Qdrant
-  console.log('Creating/ensuring collection...');
-  await ensureCollection(collectionName, vectorDimension);
+  const collectionName = 'graphRAGtailwind'; // This is the name of the collection in Qdrant
 
   // Example raw text to extract graph components from
   const raw = `Дизайн систем упрощает совместную разработку.
@@ -76,6 +71,13 @@ Shadcn упрощает стилизацию повторных компонен
   // Create embeddings for the graph components
   const paragraphs = raw.split('\n');
   const vectors = await createEmbeddings(paragraphs);
+  const detectedDim = vectors[0]?.length ?? 0;
+  if (!detectedDim) {
+    throw new Error('Failed to create embeddings: first vector is missing or empty.');
+  }
+  // Ensure collection exists in Qdrant with detected vector dimension
+  console.log('Creating/ensuring collection...');
+  await ensureCollection(collectionName, detectedDim);
   const ids = Object.values(nodeIdMapping).slice(0, vectors.length);
   console.log('Upserting into Qdrant...');
   // Upsert the embeddings to Qdrant

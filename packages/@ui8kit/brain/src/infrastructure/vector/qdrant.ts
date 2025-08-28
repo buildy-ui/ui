@@ -13,11 +13,32 @@ export function getQdrantClient(): QdrantClient {
 export async function ensureCollection(collectionName: string, vectorSize: number): Promise<void> {
   const client = getQdrantClient();
   try {
-    await client.getCollection(collectionName);
-    console.log(`Skipping creating collection; '${collectionName}' already exists.`);
+    const existing = await client.getCollection(collectionName);
+    // Try to discover configured vector size across possible response shapes
+    // @ts-ignore best-effort probing of response
+    const configuredDim = existing?.result?.config?.params?.vectors?.size
+      // @ts-ignore legacy path
+      ?? existing?.result?.params?.vectors?.size
+      // @ts-ignore sometimes vectors may be an object with named vectors
+      ?? (typeof existing?.result?.config?.params?.vectors === 'object' && existing?.result?.config?.params?.vectors?.size)
+      ?? undefined;
+    if (configuredDim && configuredDim !== vectorSize) {
+      console.warn(
+        `Collection '${collectionName}' exists with dim=${configuredDim}, but required=${vectorSize}. Recreating collection...`
+      );
+      await client.deleteCollection(collectionName);
+      await client.createCollection(collectionName, {
+        vectors: { size: vectorSize, distance: 'Cosine' },
+      } as any);
+      console.log(`Collection '${collectionName}' recreated with size=${vectorSize}.`);
+    } else {
+      console.log(`Skipping creating collection; '${collectionName}' already exists${configuredDim ? ` (dim=${configuredDim})` : ''}.`);
+    }
   } catch (e: any) {
+    const status = e?.status ?? e?.response?.status;
+    const statusText = String(e?.statusText || e?.response?.statusText || '');
     const msg = String(e?.message || e);
-    if (msg.includes('Not found')) {
+    if (status === 404 || statusText.toLowerCase() === 'not found' || msg.toLowerCase().includes('not found')) {
       console.log(`Collection '${collectionName}' not found. Creating it now...`);
       await client.createCollection(collectionName, {
         vectors: { size: vectorSize, distance: 'Cosine' },
@@ -30,10 +51,49 @@ export async function ensureCollection(collectionName: string, vectorSize: numbe
   }
 }
 
+function assertVectorsValid(ids: string[], vectors: number[][]): { usedIds: string[]; usedVectors: number[][]; dim: number } {
+  const minLen = Math.min(ids.length, vectors.length);
+  const usedIds = ids.slice(0, minLen);
+  const usedVectors = vectors.slice(0, minLen);
+  if (usedIds.length === 0) {
+    throw new Error('No ids provided for upsert.');
+  }
+  if (usedVectors.length === 0) {
+    throw new Error('No vectors provided for upsert.');
+  }
+  const dim = usedVectors[0]?.length ?? 0;
+  if (!dim) throw new Error('First vector is empty or undefined.');
+  for (let i = 0; i < usedVectors.length; i++) {
+    const v = usedVectors[i];
+    const id = usedIds[i];
+    if (!id) throw new Error(`Missing id at index ${i}.`);
+    if (!Array.isArray(v) || v.length !== dim) {
+      throw new Error(`Vector at index ${i} has invalid dimension ${Array.isArray(v) ? v.length : 'N/A'} (expected ${dim}).`);
+    }
+    if (v.some((n) => typeof n !== 'number' || Number.isNaN(n))) {
+      throw new Error(`Vector at index ${i} contains non-number/NaN values.`);
+    }
+  }
+  return { usedIds, usedVectors, dim };
+}
+
 export async function upsertEmbeddings(collectionName: string, ids: string[], vectors: number[][]): Promise<void> {
   const client = getQdrantClient();
-  const points = ids.map((id, i) => ({ id, vector: vectors[i], payload: { id } }));
-  await client.upsert(collectionName, { points } as any);
+  const { usedIds, usedVectors, dim } = assertVectorsValid(ids, vectors);
+  const points = usedIds.map((id, i) => ({ id, vector: usedVectors[i], payload: { id } }));
+  try {
+    await client.upsert(collectionName, { points } as any);
+  } catch (e: any) {
+    const msg = String(e?.message || e);
+    console.error('Qdrant upsert failed:', msg);
+    try {
+      const col = await client.getCollection(collectionName);
+      // @ts-ignore shape may vary; best-effort logging only
+      const configuredDim = col?.result?.config?.params?.vectors?.size ?? col?.result?.vectors?.size;
+      console.error(`Collection '${collectionName}' configured dimension: ${configuredDim}, first vector dim: ${dim}, points: ${points.length}`);
+    } catch {}
+    throw e;
+  }
 }
 
 export async function searchTopK(collectionName: string, queryVector: number[], topK: number) {

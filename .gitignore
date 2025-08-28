@@ -5,6 +5,7 @@
 .example/
 downloads/
 options.*
+.draft/
 .vscode/
 node_modules/
 dist/
