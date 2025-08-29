@@ -5,12 +5,26 @@
  *
  * This is the implementation for Node.js
  */
-import { ensureCollection, upsertEmbeddings, upsertVectorsWithPayload, retrieveExistingIds } from './infrastructure/vector/qdrant';
+import {
+  ensureCollection,
+  upsertEmbeddings,
+  upsertVectorsWithPayload,
+  retrieveExistingIds,
+  listCollections,
+  getCollectionInfo,
+  deleteCollection,
+  getPoints,
+  deletePoints,
+  deleteAllPoints,
+  upsertIfMissing,
+} from './infrastructure/vector/qdrant';
 import { getNeo4jDriver, ingestToNeo4j, upsertEntity, upsertRelationship } from './infrastructure/graph/neo4j';
 import { extractGraphComponents } from './application/extract';
 import { createEmbeddings } from './infrastructure/llm/openai';
 import { retrieverSearch } from './application/retriever';
-import { formatGraphContext, graphRAGRun } from './application/graphrag';
+import { formatGraphContext, graphRAGRun, setPrompt, getPrompt, listPrompts, deletePrompt } from './application/graphrag';
+import { GraphRepository } from './infrastructure/graph/neo4j';
+import type { IngestRequestDTO, QdrantItemDTO, ComponentDTO } from './domain/types';
 
 /**
  * This is the main entry point for the application.
@@ -137,7 +151,53 @@ export {
   ingestToNeo4j,
   upsertEntity,
   upsertRelationship,
+  // Qdrant collection/points helpers
+  listCollections,
+  getCollectionInfo,
+  deleteCollection,
+  getPoints,
+  deletePoints,
+  deleteAllPoints,
+  upsertIfMissing,
+  // Prompt registry
+  setPrompt,
+  getPrompt,
+  listPrompts,
+  deletePrompt,
+  // Repository
+  GraphRepository,
 };
+
+// ------- Ingest utilities -------
+export async function ingestQdrantItems(collection: string, items: QdrantItemDTO[]): Promise<void> {
+  if (items.length === 0) return;
+  const vectors = await createEmbeddings(items.map((i) => i.description));
+  const upsertItems = items.map((i, idx) => ({ id: i.id, vector: vectors[idx], payload: i.payload ?? { id: i.id } }));
+  await upsertIfMissing(collection, upsertItems);
+}
+
+export async function ingestComponentsToNeo4j(components: ComponentDTO[], relationships?: Array<{ sourceId: string; targetId: string; type: string; props?: Record<string, any> }>): Promise<void> {
+  const repo = new GraphRepository();
+  await repo.ensureUniqueIdConstraint('Entity');
+  for (const c of components) {
+    await upsertEntity(c.id, c.name, ['Entity', 'Component'], { category: c.category, tags: c.tags, ...(c.props ?? {}) });
+  }
+  if (relationships && relationships.length) {
+    for (const r of relationships) {
+      await upsertRelationship(r.sourceId, r.targetId, r.type, r.props ?? {});
+    }
+  }
+}
+
+export async function ingest(request: IngestRequestDTO): Promise<void> {
+  const { collection, qdrant, components, relationships } = request;
+  if (qdrant && qdrant.length) {
+    await ingestQdrantItems(collection, qdrant);
+  }
+  if (components && components.length) {
+    await ingestComponentsToNeo4j(components, relationships);
+  }
+}
 
 export class BrainEngine {
   async ensureQdrantCollection(name: string, dimension: number): Promise<void> {

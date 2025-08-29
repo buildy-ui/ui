@@ -102,4 +102,87 @@ export async function upsertRelationship(sourceId: string, targetId: string, typ
   }
 }
 
+export type NodeFilter = { label?: string; props?: Record<string, any>; limit?: number; offset?: number };
+
+export class GraphRepository {
+  async getNodeById(id: string, label: string = 'Entity'): Promise<any | null> {
+    const driver = getNeo4jDriver();
+    const session = driver.session();
+    try {
+      const res = await session.run(`MATCH (n:${label} {id: $id}) RETURN n`, { id });
+      const r = res.records[0]?.get('n');
+      return r ? r.properties : null;
+    } finally {
+      await session.close();
+    }
+  }
+
+  async listNodes(filter: NodeFilter = {}): Promise<any[]> {
+    const driver = getNeo4jDriver();
+    const session = driver.session();
+    const label = filter.label ?? 'Entity';
+    const props = filter.props ?? {};
+    const whereEntries = Object.keys(props).map((k) => `n.${k} = $${k}`);
+    const where = whereEntries.length ? `WHERE ${whereEntries.join(' AND ')}` : '';
+    const limit = Number.isFinite(filter.limit) ? `LIMIT ${filter.limit}` : '';
+    const offset = Number.isFinite(filter.offset) ? `SKIP ${filter.offset}` : '';
+    try {
+      const res = await session.run(`MATCH (n:${label}) ${where} RETURN n ${offset} ${limit}`, props as any);
+      return res.records.map((rec) => rec.get('n').properties);
+    } finally {
+      await session.close();
+    }
+  }
+
+  async deleteNode(id: string, detach: boolean = true, label: string = 'Entity'): Promise<void> {
+    const driver = getNeo4jDriver();
+    const session = driver.session();
+    try {
+      const cypher = detach
+        ? `MATCH (n:${label} {id: $id}) DETACH DELETE n`
+        : `MATCH (n:${label} {id: $id}) DELETE n`;
+      await session.run(cypher, { id });
+    } finally {
+      await session.close();
+    }
+  }
+
+  async deleteRelationship(sourceId: string, targetId: string, type: string): Promise<void> {
+    const driver = getNeo4jDriver();
+    const session = driver.session();
+    try {
+      await session.run(
+        'MATCH (a:Entity {id: $source})-[r:RELATIONSHIP {type: $type}]->(b:Entity {id: $target}) DELETE r',
+        { source: sourceId, target: targetId, type }
+      );
+    } finally {
+      await session.close();
+    }
+  }
+
+  async ensureUniqueIdConstraint(label: string = 'Entity'): Promise<void> {
+    const driver = getNeo4jDriver();
+    const session = driver.session();
+    try {
+      await session.run(`CREATE CONSTRAINT IF NOT EXISTS FOR (n:${label}) REQUIRE n.id IS UNIQUE`);
+    } finally {
+      await session.close();
+    }
+  }
+
+  async findByName(name: string, label: string = 'Entity', limit: number = 25): Promise<any[]> {
+    const driver = getNeo4jDriver();
+    const session = driver.session();
+    try {
+      const res = await session.run(`MATCH (n:${label}) WHERE toLower(n.name) CONTAINS toLower($name) RETURN n LIMIT $limit`, {
+        name,
+        limit,
+      });
+      return res.records.map((rec) => rec.get('n').properties);
+    } finally {
+      await session.close();
+    }
+  }
+}
+
 

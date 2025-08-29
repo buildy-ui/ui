@@ -18,17 +18,15 @@ export function formatGraphContext(subgraph: Array<{ entity: any; relationship: 
 export async function graphRAGRun(graphContext: { nodes: string[]; edges: string[] }, userQuery: string) {
   const nodesStr = graphContext.nodes.join(', ');
   const edgesStr = graphContext.edges.join('; ');
-  const prompt = `
-You are an intelligent assistant with access to the following knowledge graph:
+  const defaultPrompt = `You are an intelligent assistant with access to the following knowledge graph. Use it to answer the question.`;
+  const header = getPrompt('rag') ?? defaultPrompt;
+  const prompt = `${header}
 
 Nodes: ${nodesStr}
 
 Edges: ${edgesStr}
 
-Using this graph, Answer the following question:
-
-User Query: "${userQuery}"
-  `;
+User Query: "${userQuery}"`;
   const completion = await chatClient.chat.completions.create({
     model: 'gpt-5-mini',
     messages: [
@@ -37,6 +35,27 @@ User Query: "${userQuery}"
     ],
   });
   return completion.choices[0]?.message?.content ?? '';
+}
+
+// ------- Prompt Registry -------
+type PromptKind = 'extract' | 'rag' | 'summarize' | 'classify' | string;
+
+const promptRegistry = new Map<PromptKind, string>();
+
+export function setPrompt(kind: PromptKind, prompt: string): void {
+  promptRegistry.set(kind, prompt);
+}
+
+export function getPrompt(kind: PromptKind): string | undefined {
+  return promptRegistry.get(kind);
+}
+
+export function listPrompts(): Array<{ kind: PromptKind; prompt: string }> {
+  return Array.from(promptRegistry.entries()).map(([kind, prompt]) => ({ kind, prompt }));
+}
+
+export function deletePrompt(kind: PromptKind): boolean {
+  return promptRegistry.delete(kind);
 }
 
 

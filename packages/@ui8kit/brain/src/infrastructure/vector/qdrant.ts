@@ -134,3 +134,55 @@ export async function upsertVectorsWithPayload(
   const points = items.map((it) => ({ id: it.id, vector: it.vector, payload: it.payload ?? { id: it.id } }));
   await client.upsert(collectionName, { points } as any);
 }
+
+// ------- Qdrant Collections CRUD -------
+export async function listCollections(): Promise<string[]> {
+  const client = getQdrantClient();
+  const res = await client.getCollections();
+  // @ts-ignore shape varies by client version
+  const names = (res?.collections ?? res?.result?.collections ?? []).map((c: any) => c.name);
+  return names;
+}
+
+export async function getCollectionInfo(collectionName: string): Promise<any> {
+  const client = getQdrantClient();
+  const res = await client.getCollection(collectionName);
+  return res;
+}
+
+export async function deleteCollection(collectionName: string): Promise<void> {
+  const client = getQdrantClient();
+  await client.deleteCollection(collectionName);
+}
+
+// ------- Qdrant Points CRUD -------
+export async function getPoints(collectionName: string, ids: string[]): Promise<any[]> {
+  const client = getQdrantClient();
+  if (ids.length === 0) return [];
+  const res = await client.retrieve(collectionName, { ids } as any);
+  return res as any[];
+}
+
+export async function deletePoints(collectionName: string, ids: string[]): Promise<void> {
+  const client = getQdrantClient();
+  if (ids.length === 0) return;
+  await client.delete(collectionName, { points: ids } as any);
+}
+
+export async function deleteAllPoints(collectionName: string): Promise<void> {
+  const client = getQdrantClient();
+  await client.delete(collectionName, { filter: {} } as any);
+}
+
+// Upsert only items that do not already exist (matching by id)
+export async function upsertIfMissing(
+  collectionName: string,
+  items: Array<{ id: string; vector: number[]; payload?: Record<string, any> }>
+): Promise<{ inserted: number; skipped: number }> {
+  const existing = await retrieveExistingIds(collectionName, items.map((i) => i.id));
+  const missing = items.filter((i) => !existing.has(i.id));
+  if (missing.length > 0) {
+    await upsertVectorsWithPayload(collectionName, missing);
+  }
+  return { inserted: missing.length, skipped: items.length - missing.length };
+}
