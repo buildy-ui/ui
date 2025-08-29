@@ -5,8 +5,8 @@
  *
  * This is the implementation for Node.js
  */
-import { ensureCollection, upsertEmbeddings } from './infrastructure/vector/qdrant';
-import { getNeo4jDriver, ingestToNeo4j } from './infrastructure/graph/neo4j';
+import { ensureCollection, upsertEmbeddings, upsertVectorsWithPayload, retrieveExistingIds } from './infrastructure/vector/qdrant';
+import { getNeo4jDriver, ingestToNeo4j, upsertEntity, upsertRelationship } from './infrastructure/graph/neo4j';
 import { extractGraphComponents } from './application/extract';
 import { createEmbeddings } from './infrastructure/llm/openai';
 import { retrieverSearch } from './application/retriever';
@@ -22,7 +22,7 @@ import { formatGraphContext, graphRAGRun } from './application/graphrag';
  */
 async function main() {
   console.log('Script started');
-  const collectionName = 'graphRAGtailwind'; // This is the name of the collection in Qdrant
+  const collectionName = 'graphRAGtw'; // This is the name of the collection in Qdrant
 
   // Example raw text to extract graph components from
   const raw = `Дизайн систем упрощает совместную разработку.
@@ -80,8 +80,9 @@ Shadcn упрощает стилизацию повторных компонен
   await ensureCollection(collectionName, detectedDim);
   const ids = Object.values(nodeIdMapping).slice(0, vectors.length);
   console.log('Upserting into Qdrant...');
-  // Upsert the embeddings to Qdrant
-  await upsertEmbeddings(collectionName, ids, vectors);
+  // Upsert the embeddings to Qdrant with payloads for richer queries
+  const items = ids.map((id, i) => ({ id, vector: vectors[i], payload: { id, source: 'demo', paragraph: paragraphs[i] } }));
+  await upsertVectorsWithPayload(collectionName, items);
   console.log('Qdrant ingestion complete');
 
   /**
@@ -90,7 +91,7 @@ Shadcn упрощает стилизацию повторных компонен
    * format the graph context for the GraphRAG algorithm,
    * and then run the GraphRAG algorithm to answer the query.
    */
-  const query = 'How is Bob connected to New York?'; // This is the query to ask the graph
+  const query = 'How is tailwind connected to shadcn?'; // This is the query to ask the graph
 
   /**
    * This is the retriever search.
@@ -120,7 +121,45 @@ Shadcn упрощает стилизацию повторных компонен
   await getNeo4jDriver().close();
 }
 
-main().catch((e) => {
-  console.error(e);
-  process.exit(1);
-});
+if (import.meta.main) {
+  main().catch((e) => {
+    console.error(e);
+    process.exit(1);
+  });
+}
+
+export {
+  ensureCollection,
+  upsertEmbeddings,
+  upsertVectorsWithPayload,
+  retrieveExistingIds,
+  getNeo4jDriver,
+  ingestToNeo4j,
+  upsertEntity,
+  upsertRelationship,
+};
+
+export class BrainEngine {
+  async ensureQdrantCollection(name: string, dimension: number): Promise<void> {
+    await ensureCollection(name, dimension);
+  }
+
+  async upsertVectors(
+    collection: string,
+    items: Array<{ id: string; vector: number[]; payload?: Record<string, any> }>
+  ): Promise<void> {
+    await upsertVectorsWithPayload(collection, items);
+  }
+
+  async createEmbeddings(texts: string[]): Promise<number[][]> {
+    return createEmbeddings(texts);
+  }
+
+  async upsertEntity(id: string, name: string, labels: string[] = ['Entity'], props: Record<string, any> = {}): Promise<void> {
+    await upsertEntity(id, name, labels, props);
+  }
+
+  async upsertRelationship(sourceId: string, targetId: string, type: string, props: Record<string, any> = {}): Promise<void> {
+    await upsertRelationship(sourceId, targetId, type, props);
+  }
+}

@@ -106,4 +106,31 @@ export async function searchTopK(collectionName: string, queryVector: number[], 
   return res;
 }
 
+export async function retrieveExistingIds(collectionName: string, ids: string[]): Promise<Set<string>> {
+  const client = getQdrantClient();
+  if (ids.length === 0) return new Set();
+  const res = await client.retrieve(collectionName, { ids } as any);
+  const existing = new Set<string>();
+  for (const p of res) {
+    // @ts-ignore
+    if (p?.id != null) existing.add(String(p.id));
+  }
+  return existing;
+}
 
+export async function upsertVectorsWithPayload(
+  collectionName: string,
+  items: Array<{ id: string; vector: number[]; payload?: Record<string, any> }>
+): Promise<void> {
+  if (items.length === 0) return;
+  const dim = items[0].vector.length;
+  for (let i = 0; i < items.length; i++) {
+    const it = items[i];
+    if (!Array.isArray(it.vector) || it.vector.length !== dim) {
+      throw new Error(`Vector at index ${i} has invalid dimension ${Array.isArray(it.vector) ? it.vector.length : 'N/A'} (expected ${dim}).`);
+    }
+  }
+  const client = getQdrantClient();
+  const points = items.map((it) => ({ id: it.id, vector: it.vector, payload: it.payload ?? { id: it.id } }));
+  await client.upsert(collectionName, { points } as any);
+}

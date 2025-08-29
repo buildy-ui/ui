@@ -22,13 +22,13 @@ export async function ingestToNeo4j(nodes: NodesMap, relationships: Relationship
   try {
     for (const [name, id] of Object.entries(nodes)) {
       await session.run(
-        'CREATE (n:Entity {id: $id, name: $name})',
+        'MERGE (n:Entity {id: $id}) ON CREATE SET n.name = $name ON MATCH SET n.name = coalesce(n.name, $name)',
         { id, name }
       );
     }
     for (const rel of relationships) {
       await session.run(
-        'MATCH (a:Entity {id: $source_id}), (b:Entity {id: $target_id}) CREATE (a)-[:RELATIONSHIP {type: $type}]->(b)',
+        'MATCH (a:Entity {id: $source_id}), (b:Entity {id: $target_id}) MERGE (a)-[r:RELATIONSHIP {type: $type}]->(b)',
         { source_id: rel.source, target_id: rel.target, type: rel.type }
       );
     }
@@ -70,6 +70,33 @@ export async function fetchRelatedGraph(entityIds: string[]) {
       }
     }
     return subgraph;
+  } finally {
+    await session.close();
+  }
+}
+
+export async function upsertEntity(id: string, name: string, labels: string[] = ['Entity'], props: Record<string, any> = {}): Promise<void> {
+  const driver = getNeo4jDriver();
+  const session = driver.session();
+  const labelsCypher = labels.map((l) => `:${l}`).join('');
+  try {
+    await session.run(
+      `MERGE (n${labelsCypher} {id: $id}) SET n.name = coalesce(n.name, $name) SET n += $props`,
+      { id, name, props }
+    );
+  } finally {
+    await session.close();
+  }
+}
+
+export async function upsertRelationship(sourceId: string, targetId: string, type: string, props: Record<string, any> = {}): Promise<void> {
+  const driver = getNeo4jDriver();
+  const session = driver.session();
+  try {
+    await session.run(
+      'MATCH (a:Entity {id: $source}), (b:Entity {id: $target}) MERGE (a)-[r:RELATIONSHIP {type: $type}]->(b) SET r += $props',
+      { source: sourceId, target: targetId, type, props }
+    );
   } finally {
     await session.close();
   }

@@ -26,7 +26,8 @@
     "type-check:watch": "tsc --build tsconfig.build.json --watch",
     "clean": "tsc --build tsconfig.build.json --clean",
     "registry:utility": "bun run --cwd packages/ui8kit build:utility",
-    "registry:semantic": "bun run --cwd packages/ui8kit build:semantic"
+    "registry:semantic": "bun run --cwd packages/ui8kit build:semantic",
+    "start:brain": "bun run --cwd packages/@ui8kit/brain start"
   },
   "devDependencies": {
     "@babel/generator": "^7.27.1",
