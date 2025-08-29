@@ -78,7 +78,7 @@ export async function fetchRelatedGraph(entityIds: string[]) {
 export async function upsertEntity(id: string, name: string, labels: string[] = ['Entity'], props: Record<string, any> = {}): Promise<void> {
   const driver = getNeo4jDriver();
   const session = driver.session();
-  const labelsCypher = labels.map((l) => `:${l}`).join('');
+  const labelsCypher = labels.map((l) => `:${sanitizeLabel(l)}`).join('');
   try {
     await session.run(
       `MERGE (n${labelsCypher} {id: $id}) SET n.name = coalesce(n.name, $name) SET n += $props`,
@@ -120,7 +120,7 @@ export class GraphRepository {
   async listNodes(filter: NodeFilter = {}): Promise<any[]> {
     const driver = getNeo4jDriver();
     const session = driver.session();
-    const label = filter.label ?? 'Entity';
+    const label = filter.label ? sanitizeLabel(filter.label) : 'Entity';
     const props = filter.props ?? {};
     const whereEntries = Object.keys(props).map((k) => `n.${k} = $${k}`);
     const where = whereEntries.length ? `WHERE ${whereEntries.join(' AND ')}` : '';
@@ -182,6 +182,165 @@ export class GraphRepository {
     } finally {
       await session.close();
     }
+  }
+}
+
+// ------- Advanced filtering & relationship queries -------
+type PropertyPredicate = { op: 'eq' | 'contains' | 'in'; value: any };
+
+export type NodeQueryFilter = {
+  labels?: string[];
+  where?: Record<string, PropertyPredicate>;
+  limit?: number;
+  offset?: number;
+  orderBy?: { key: string; direction?: 'ASC' | 'DESC' };
+};
+
+export type RelationshipQueryFilter = {
+  type?: string;
+  sourceLabel?: string;
+  targetLabel?: string;
+  sourceWhere?: Record<string, PropertyPredicate>;
+  relWhere?: Record<string, PropertyPredicate>;
+  targetWhere?: Record<string, PropertyPredicate>;
+  limit?: number;
+  offset?: number;
+  orderBy?: { key: 'source.name' | 'target.name' | 'type'; direction?: 'ASC' | 'DESC' };
+};
+
+function sanitizeLabel(label: string): string {
+  return /^[A-Za-z_][A-Za-z0-9_]*$/.test(label) ? label : 'Entity';
+}
+
+function buildWhere(alias: string, where?: Record<string, PropertyPredicate>): { clause: string; params: Record<string, any> } {
+  if (!where || Object.keys(where).length === 0) return { clause: '', params: {} };
+  const parts: string[] = [];
+  const params: Record<string, any> = {};
+  for (const [key, pred] of Object.entries(where)) {
+    const paramKey = `${alias}_${key}`;
+    if (pred.op === 'eq') {
+      parts.push(`${alias}.${key} = $${paramKey}`);
+      params[paramKey] = pred.value;
+    } else if (pred.op === 'contains') {
+      parts.push(`toLower(${alias}.${key}) CONTAINS toLower($${paramKey})`);
+      params[paramKey] = String(pred.value ?? '');
+    } else if (pred.op === 'in') {
+      parts.push(`${alias}.${key} IN $${paramKey}`);
+      params[paramKey] = Array.isArray(pred.value) ? pred.value : [pred.value];
+    }
+  }
+  const clause = parts.length ? `WHERE ${parts.join(' AND ')}` : '';
+  return { clause, params };
+}
+
+export class AdvancedGraphRepository extends GraphRepository {
+  async listNodesAdvanced(filter: NodeQueryFilter = {}): Promise<any[]> {
+    const driver = getNeo4jDriver();
+    const session = driver.session();
+    const labelsCypher = (filter.labels ?? ['Entity']).map((l) => `:${sanitizeLabel(l)}`).join('');
+    const whereBuilt = buildWhere('n', filter.where);
+    const order = filter.orderBy ? `ORDER BY n.${filter.orderBy.key} ${filter.orderBy.direction ?? 'ASC'}` : '';
+    const limit = Number.isFinite(filter.limit) ? `LIMIT ${filter.limit}` : '';
+    const offset = Number.isFinite(filter.offset) ? `SKIP ${filter.offset}` : '';
+    try {
+      const res = await session.run(
+        `MATCH (n${labelsCypher}) ${whereBuilt.clause} RETURN n ${order} ${offset} ${limit}`,
+        whereBuilt.params
+      );
+      return res.records.map((rec) => rec.get('n').properties);
+    } finally {
+      await session.close();
+    }
+  }
+
+  async listRelationships(filter: RelationshipQueryFilter = {}): Promise<Array<{ source: any; relationship: any; target: any }>> {
+    const driver = getNeo4jDriver();
+    const session = driver.session();
+    const srcLabel = filter.sourceLabel ? `:${sanitizeLabel(filter.sourceLabel)}` : ':Entity';
+    const tgtLabel = filter.targetLabel ? `:${sanitizeLabel(filter.targetLabel)}` : ':Entity';
+    const relType = filter.type ? `:RELATIONSHIP {type: $rel_type}` : ':RELATIONSHIP';
+    const srcWhere = buildWhere('a', filter.sourceWhere);
+    const relWhere = buildWhere('r', filter.relWhere);
+    const tgtWhere = buildWhere('b', filter.targetWhere);
+    const order = filter.orderBy ? `ORDER BY ${filter.orderBy.key} ${filter.orderBy.direction ?? 'ASC'}` : '';
+    const limit = Number.isFinite(filter.limit) ? `LIMIT ${filter.limit}` : '';
+    const offset = Number.isFinite(filter.offset) ? `SKIP ${filter.offset}` : '';
+    const params = { ...srcWhere.params, ...relWhere.params, ...tgtWhere.params } as any;
+    if (filter.type) params.rel_type = filter.type;
+    try {
+      const res = await session.run(
+        `MATCH (a${srcLabel})-[r${relType}]->(b${tgtLabel})
+         ${srcWhere.clause}
+         ${relWhere.clause}
+         ${tgtWhere.clause}
+         RETURN a, r, b ${order} ${offset} ${limit}`,
+        params
+      );
+      return res.records.map((rec) => ({
+        source: rec.get('a').properties,
+        relationship: rec.get('r').properties,
+        target: rec.get('b').properties,
+      }));
+    } finally {
+      await session.close();
+    }
+  }
+
+  async listNeighborsByDepth(id: string, minDepth = 1, maxDepth = 1): Promise<Array<{ source: any; relationship: any; target: any }>> {
+    const driver = getNeo4jDriver();
+    const session = driver.session();
+    try {
+      const res = await session.run(
+        'MATCH (n:Entity {id: $id})-[r*' + minDepth + '..' + maxDepth + ']-(m) WITH n, m LIMIT 100 MATCH (n)-[r1:RELATIONSHIP]->(m) RETURN n as a, r1 as r, m as b',
+        { id }
+      );
+      return res.records.map((rec) => ({
+        source: rec.get('a').properties,
+        relationship: rec.get('r').properties,
+        target: rec.get('b').properties,
+      }));
+    } finally {
+      await session.close();
+    }
+  }
+}
+
+// ------- Bulk transactional ingests -------
+export async function ingestBulkTransactional(
+  nodes: Array<{ id: string; name: string; labels?: string[]; props?: Record<string, any> }>,
+  relationships: Array<{ sourceId: string; targetId: string; type: string; props?: Record<string, any> }>
+): Promise<void> {
+  const driver = getNeo4jDriver();
+  const session = driver.session();
+  try {
+    await session.executeWrite(async (tx) => {
+      if (nodes.length) {
+        const prepared = nodes.map((n) => ({
+          id: n.id,
+          name: n.name,
+          props: n.props ?? {},
+          labels: (n.labels ?? ['Entity']).map((l) => sanitizeLabel(l)),
+        }));
+        await tx.run(
+          `UNWIND $rows AS row
+           CALL apoc.merge.node(row.labels, {id: row.id}, {name: row.name}, row.props) YIELD node
+           RETURN count(node)`,
+          { rows: prepared }
+        );
+      }
+      if (relationships.length) {
+        await tx.run(
+          `UNWIND $rows AS row
+           MATCH (a:Entity {id: row.sourceId}), (b:Entity {id: row.targetId})
+           MERGE (a)-[r:RELATIONSHIP {type: row.type}]->(b)
+           SET r += coalesce(row.props, {})
+           RETURN count(r)` ,
+          { rows: relationships }
+        );
+      }
+    });
+  } finally {
+    await session.close();
   }
 }
 

@@ -19,128 +19,11 @@ import {
   upsertIfMissing,
 } from './infrastructure/vector/qdrant';
 import { getNeo4jDriver, ingestToNeo4j, upsertEntity, upsertRelationship } from './infrastructure/graph/neo4j';
-import { extractGraphComponents } from './application/extract';
 import { createEmbeddings } from './infrastructure/llm/openai';
-import { retrieverSearch } from './application/retriever';
-import { formatGraphContext, graphRAGRun, setPrompt, getPrompt, listPrompts, deletePrompt } from './application/graphrag';
-import { GraphRepository } from './infrastructure/graph/neo4j';
-import type { IngestRequestDTO, QdrantItemDTO, ComponentDTO } from './domain/types';
-
-/**
- * This is the main entry point for the application.
- * It will extract the graph components from the raw text,
- * ingest them to Neo4j,
- * create embeddings for the graph components,
- * upsert them to Qdrant,
- * and then run the GraphRAG algorithm to answer the query.
- */
-async function main() {
-  console.log('Script started');
-  const collectionName = 'graphRAGtw'; // This is the name of the collection in Qdrant
-
-  // Example raw text to extract graph components from
-  const raw = `Дизайн систем упрощает совместную разработку.
-Компоненты React работают с Tailwind.
-Shadcn обеспечивает модульность компонентов дизайна.
-Tailwind ускоряет прототипирование визуальных решений.
-Компонентам нужно единое соглашение стилей.
-Система кода описывает принципы использования.
-Компоненты должны быть переиспользуемыми и доступными.
-Увеличение повторного использования снижает дубликаты.
-Tailwind позволяет описывать стиль в классы.
-Шаблоны компонентов ускоряют общую разработку.
-Shadcn обеспечивает совместные стили в проектах.
-Компоненты должны документироваться внутри системы.
-Гайдлайны дизайна описывают оттенки и контрасты.
-Реактивные UI обновляются гладко благодаря абстракциям.
-Взгляд на Tailwind упрощает верстку.
-Конструктивные принципы помогают масштабировать UX.
-Реиспользуемые хуки улучшают производительность приложений.
-Паттерны дизайна ускоряют принятие решения.
-Тестирование интерфейсов важно для стабильности.
-Архитектура компонентов упорядочивает кодовую базу.
-Обратная совместимость важна при обновлениях.
-Документация ускоряет вхождение новых разработчиков.
-Стили из Tailwind можно централизовать.
-Shadcn упрощает стилизацию повторных компонентов.
-Итоговый подход объединяет дизайн и код.`;
-
-  console.log('Extracting graph components...');
-  // Extract graph components from the raw text
-  const { nodes, relationships } = await extractGraphComponents(raw);
-  console.log('Nodes:', nodes);
-  console.log('Relationships:', relationships);
-
-  console.log('Ingesting to Neo4j...');
-  // Ingest the graph components to Neo4j
-  const nodeIdMapping = await ingestToNeo4j(nodes, relationships);
-  console.log('Neo4j ingestion complete');
-
-  /**
-   * This is the embedding creation and upsertion to Qdrant.
-   * It will create embeddings for the graph components,
-   * and then upsert them to Qdrant.
-   */
-  console.log('Creating embeddings for Qdrant...');
-  // Create embeddings for the graph components
-  const paragraphs = raw.split('\n');
-  const vectors = await createEmbeddings(paragraphs);
-  const detectedDim = vectors[0]?.length ?? 0;
-  if (!detectedDim) {
-    throw new Error('Failed to create embeddings: first vector is missing or empty.');
-  }
-  // Ensure collection exists in Qdrant with detected vector dimension
-  console.log('Creating/ensuring collection...');
-  await ensureCollection(collectionName, detectedDim);
-  const ids = Object.values(nodeIdMapping).slice(0, vectors.length);
-  console.log('Upserting into Qdrant...');
-  // Upsert the embeddings to Qdrant with payloads for richer queries
-  const items = ids.map((id, i) => ({ id, vector: vectors[i], payload: { id, source: 'demo', paragraph: paragraphs[i] } }));
-  await upsertVectorsWithPayload(collectionName, items);
-  console.log('Qdrant ingestion complete');
-
-  /**
-   * This is the GraphRAG algorithm.
-   * It will use the retriever to find the most relevant graph components,
-   * format the graph context for the GraphRAG algorithm,
-   * and then run the GraphRAG algorithm to answer the query.
-   */
-  const query = 'How is tailwind connected to shadcn?'; // This is the query to ask the graph
-
-  /**
-   * This is the retriever search.
-   * It will use the retriever to find the most relevant graph components,
-   * and then format the graph context for the GraphRAG algorithm.
-   */
-  console.log('Starting retriever search...');
-  const ret = await retrieverSearch(collectionName, query, 5);
-  console.log('Retriever ids:', ret.ids);
-
-  // Format the graph context for the GraphRAG algorithm
-  console.log('Formatting graph context...');
-  const graphContext = formatGraphContext(ret.subgraph);
-  console.log('Graph context:', graphContext);
-
-  /**
-   * This is the GraphRAG algorithm.
-   * It will use the retriever to find the most relevant graph components,
-   * format the graph context for the GraphRAG algorithm,
-   * and then run the GraphRAG algorithm to answer the query.
-   */
-  console.log('Running GraphRAG...');
-  const answer = await graphRAGRun(graphContext, query);
-  console.log('Final Answer:', answer); // This is the final answer
-
-  // Clean up Neo4j driver on exit
-  await getNeo4jDriver().close();
-}
-
-if (import.meta.main) {
-  main().catch((e) => {
-    console.error(e);
-    process.exit(1);
-  });
-}
+import { setPrompt, getPrompt, listPrompts, deletePrompt } from './application/graphrag';
+import { GraphRepository, AdvancedGraphRepository, ingestBulkTransactional } from './infrastructure/graph/neo4j';
+import type { IngestRequestDTO, QdrantItemDTO, ComponentDTO, FragmentJSON } from './domain/types';
+import { IngestRequestSchema, QdrantItemSchema, ComponentSchema, RelationshipSchema, FragmentSchema } from './domain/types';
 
 export {
   ensureCollection,
@@ -166,6 +49,14 @@ export {
   deletePrompt,
   // Repository
   GraphRepository,
+  AdvancedGraphRepository,
+  ingestBulkTransactional,
+  // zod validators
+  IngestRequestSchema,
+  QdrantItemSchema,
+  ComponentSchema,
+  RelationshipSchema,
+  FragmentSchema,
 };
 
 // ------- Ingest utilities -------
@@ -196,6 +87,53 @@ export async function ingest(request: IngestRequestDTO): Promise<void> {
   }
   if (components && components.length) {
     await ingestComponentsToNeo4j(components, relationships);
+  }
+}
+
+// ------- Fragment helpers -------
+// Minimal helper: ingest a single fragment into both stores with the same id
+export async function ingestFragment(
+  collection: string,
+  id: string,
+  fragment: FragmentJSON,
+  component: { name: string; category?: string; tags?: string[]; props?: Record<string, any> } = { name: id }
+): Promise<void> {
+  FragmentSchema.parse(fragment);
+  const vectors = await createEmbeddings([fragment.description]);
+  await ensureCollection(collection, vectors[0].length);
+  await upsertIfMissing(collection, [
+    { id, vector: vectors[0], payload: { id, category: fragment.category, tags: fragment.tags } },
+  ]);
+  await upsertEntity(id, component.name, ['Entity', 'Component'], {
+    category: component.category ?? fragment.category,
+    tags: component.tags ?? fragment.tags,
+    ...(component.props ?? {}),
+  });
+}
+
+// Batch helper for multiple fragments
+export async function ingestFragments(
+  collection: string,
+  items: Array<{ id: string; fragment: FragmentJSON; component?: { name: string; category?: string; tags?: string[]; props?: Record<string, any> } }>
+): Promise<void> {
+  if (items.length === 0) return;
+  items.forEach((i) => FragmentSchema.parse(i.fragment));
+  const texts = items.map((i) => i.fragment.description);
+  const vectors = await createEmbeddings(texts);
+  await ensureCollection(collection, vectors[0].length);
+  const upserts = items.map((i, idx) => ({
+    id: i.id,
+    vector: vectors[idx],
+    payload: { id: i.id, category: i.fragment.category, tags: i.fragment.tags },
+  }));
+  await upsertIfMissing(collection, upserts);
+  for (const i of items) {
+    const comp = i.component ?? { name: i.id };
+    await upsertEntity(i.id, comp.name, ['Entity', 'Component'], {
+      category: comp.category ?? i.fragment.category,
+      tags: comp.tags ?? i.fragment.tags,
+      ...(comp.props ?? {}),
+    });
   }
 }
 
