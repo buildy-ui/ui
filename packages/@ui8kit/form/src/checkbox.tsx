@@ -1,9 +1,10 @@
 import * as React from "react"
 
 
-function Checkbox({ className, ...props }: React.ComponentProps<"input">) {
+const Checkbox = React.forwardRef<HTMLInputElement, React.ComponentProps<"input">>(({ className, ...props }, ref) => {
   return (
     <input
+      ref={ref}
       type="checkbox"
       data-class="checkbox"
       className={[
@@ -15,7 +16,9 @@ function Checkbox({ className, ...props }: React.ComponentProps<"input">) {
       {...props}
     />
   )
-}
+})
+
+Checkbox.displayName = "Checkbox"
 
 export { Checkbox }
 

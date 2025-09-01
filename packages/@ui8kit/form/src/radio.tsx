@@ -1,9 +1,10 @@
 import * as React from "react"
 
 
-function Radio({ className, ...props }: React.ComponentProps<"input">) {
+const Radio = React.forwardRef<HTMLInputElement, React.ComponentProps<"input">>(({ className, ...props }, ref) => {
   return (
     <input
+      ref={ref}
       type="radio"
       data-class="radio"
       className={[
@@ -15,7 +16,9 @@ function Radio({ className, ...props }: React.ComponentProps<"input">) {
       {...props}
     />
   )
-}
+})
+
+Radio.displayName = "Radio"
 
 function RadioGroup({ className, ...props }: React.ComponentProps<"div">) {
   return <div data-class="radio-group" className={["flex gap-3", className].filter(Boolean).join(" ")} {...props} />

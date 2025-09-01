@@ -50,8 +50,6 @@ export const Container = forwardRef<HTMLElement, ContainerProps>(
         component={component}
         data-class="container"
         className={cn(
-          // Base container styles
-          'container',
           // Size variant
           containerSizeVariants({ size }),
           // Centering

@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+
+    /* Path mapping */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@ui8kit/core": ["../../packages/@ui8kit/core/src"],
+      "@ui8kit/core/*": ["../../packages/@ui8kit/core/src/*"],
+      "@ui8kit/blocks": ["../../packages/@ui8kit/blocks/src"],
+      "@ui8kit/blocks/*": ["../../packages/@ui8kit/blocks/src/*"],
+      "@ui8kit/theme": ["../../packages/@ui8kit/theme/src"],
+      "@ui8kit/theme/*": ["../../packages/@ui8kit/theme/src/*"],
+      "@ui8kit/hooks": ["../../packages/@ui8kit/hooks/src"],
+      "@ui8kit/hooks/*": ["../../packages/@ui8kit/hooks/src/*"],
+      "@ui8kit/form": ["../../packages/@ui8kit/form/src"],
+      "@ui8kit/form/*": ["../../packages/@ui8kit/form/src/*"]
+    }
+  },
+  "include": ["src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+} 

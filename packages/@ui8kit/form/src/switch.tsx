@@ -3,11 +3,12 @@ import * as React from "react"
 
 type SwitchProps = Omit<React.ComponentProps<"input">, "type">
 
-function Switch({ className, ...props }: SwitchProps) {
+const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(({ className, ...props }, ref) => {
   return (
     <label data-class="switch" className={["inline-flex items-center gap-2", className].filter(Boolean).join(" ")}>
       <input
         type="checkbox"
+        ref={ref}
         className="peer sr-only"
         {...props}
       />
@@ -22,7 +23,7 @@ function Switch({ className, ...props }: SwitchProps) {
       </span>
     </label>
   )
-}
+})
 
 export { Switch }
 
