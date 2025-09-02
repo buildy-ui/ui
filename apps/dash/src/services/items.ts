@@ -1,4 +1,4 @@
-import { toDomain } from "@/page/brain/item-schema";
+import { toDomain } from "@/page/brain/schema/transport";
 
 export type Item = ReturnType<typeof toDomain> & {
   id: string;

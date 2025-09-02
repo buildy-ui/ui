@@ -3,8 +3,15 @@ import { Box, Card, Stack, Title, Button } from "@ui8kit/core";
 import { Form } from "@ui8kit/form";
 import { useForm } from "@ui8kit/form";
 import { AutoFields } from "@ui8kit/form";
-import { itemFormDefaults, toDomain, ItemFieldOrder, ItemUi } from "./item-schema";
 import { createItem } from "@/services/items";
+import * as qdrant from "@/schema/item-schema-qdrant";
+import { makeSchemaTransport } from "@ui8kit/form";
+
+const transport = makeSchemaTransport(qdrant as any);
+const itemFormDefaults = transport.itemFormDefaults;
+const toDomain = transport.toDomain;
+const ItemFieldOrder = transport.ItemFieldOrder;
+const ItemUi = transport.ItemUi;
 
 export function NewItem() {
 	const navigate = useNavigate();

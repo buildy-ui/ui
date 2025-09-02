@@ -5,8 +5,15 @@ import { Form } from "@ui8kit/form";
 import { useForm } from "@ui8kit/form";
 import { loadItems, updateItem, type Item } from "@/services/items";
 import { AutoFields } from "@ui8kit/form";
-import { ItemFieldOrder, toFormValues, toDomain, ItemUi } from "./item-schema";
+import * as qdrant from "@/schema/item-schema-qdrant";
+import { makeSchemaTransport } from "@ui8kit/form";
 import { ResizableSheet } from "@/components/ResizableSheet";
+
+const transport = makeSchemaTransport(qdrant as any);
+const ItemFieldOrder = transport.ItemFieldOrder;
+const toFormValues = transport.toFormValues;
+const toDomain = transport.toDomain;
+const ItemUi = transport.ItemUi;
 
 function dotGet(obj: any, path: string): any {
     return path.split(".").reduce((acc, key) => (acc == null ? undefined : acc[key]), obj);
