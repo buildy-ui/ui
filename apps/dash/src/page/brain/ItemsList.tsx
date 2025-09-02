@@ -4,16 +4,11 @@ import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@
 import { Form } from "@ui8kit/form";
 import { useForm } from "@ui8kit/form";
 import { loadItems, updateItem, type Item } from "@/services/items";
-import { AutoFields } from "@ui8kit/form";
+import { AutoFields, makeSchemaTransport } from "@ui8kit/form";
 import * as qdrant from "@/schema/item-schema-qdrant";
-import { makeSchemaTransport } from "@ui8kit/form";
 import { ResizableSheet } from "@/components/ResizableSheet";
 
-const transport = makeSchemaTransport(qdrant as any);
-const ItemFieldOrder = transport.ItemFieldOrder;
-const toFormValues = transport.toFormValues;
-const toDomain = transport.toDomain;
-const ItemUi = transport.ItemUi;
+const schema = makeSchemaTransport(qdrant as any);
 
 function dotGet(obj: any, path: string): any {
     return path.split(".").reduce((acc, key) => (acc == null ? undefined : acc[key]), obj);
@@ -35,8 +30,8 @@ export function ItemsList() {
 					<Table>
 						<TableHeader>
 							<TableRow>
-								{ItemFieldOrder.filter((k) => ItemUi[k]?.table).map((k) => (
-									<TableHead key={k}>{ItemUi[k]?.label ?? k}</TableHead>
+								{schema.ItemFieldOrder.filter((k) => schema.ItemUi[k]?.table).map((k) => (
+									<TableHead key={k}>{schema.ItemUi[k]?.label ?? k}</TableHead>
 								))}
 								<TableHead>Created</TableHead>
 								<TableHead>Actions</TableHead>
@@ -57,17 +52,17 @@ export function ItemsList() {
 function Row({ item, onSaved }: { item: Item; onSaved: () => void }) {
 	const id = `edit-${item.id}`;
 	const form = useForm<any>({
-		defaultValues: toFormValues(item),
+		defaultValues: schema.toFormValues(item),
 		mode: "onBlur",
 	});
 
 	const onSubmit = form.handleSubmit(async (_values) => {
 		// Build flat values keyed by schema UI (supports dot-paths)
 		const flat: Record<string, any> = {};
-		for (const k of Object.keys(ItemUi)) {
+		for (const k of Object.keys(schema.ItemUi)) {
 			flat[k] = form.getValues(k as any);
 		}
-		const domain = toDomain(flat as any);
+		const domain = schema.toDomain(flat as any);
 		await updateItem(item.id, domain);
 		onSaved();
 		const checkbox = document.getElementById(id) as HTMLInputElement | null;
@@ -76,7 +71,7 @@ function Row({ item, onSaved }: { item: Item; onSaved: () => void }) {
 
 	return (
 		<TableRow>
-			{ItemFieldOrder.filter((k) => ItemUi[k]?.table).map((k) => (
+			{schema.ItemFieldOrder.filter((k) => schema.ItemUi[k]?.table).map((k) => (
 				<TableCell key={k}>
 					<Text size="xs" c="muted">{String(dotGet(item, k) ?? "—")}</Text>
 				</TableCell>
@@ -91,7 +86,7 @@ function Row({ item, onSaved }: { item: Item; onSaved: () => void }) {
 					<form onSubmit={onSubmit} noValidate>
 						<Form {...form}>
 							<Stack gap="md">
-								<AutoFields form={form} fields={ItemFieldOrder as any} ui={ItemUi as any} />
+								<AutoFields form={form} fields={schema.ItemFieldOrder as any} ui={schema.ItemUi as any} />
 								<Button type="submit" variant="default">Save changes</Button>
 							</Stack>
 						</Form>

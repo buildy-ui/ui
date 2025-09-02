@@ -2,26 +2,21 @@ import { useNavigate } from "react-router-dom";
 import { Box, Card, Stack, Title, Button } from "@ui8kit/core";
 import { Form } from "@ui8kit/form";
 import { useForm } from "@ui8kit/form";
-import { AutoFields } from "@ui8kit/form";
+import { AutoFields, makeSchemaTransport } from "@ui8kit/form";
 import { createItem } from "@/services/items";
 import * as qdrant from "@/schema/item-schema-qdrant";
-import { makeSchemaTransport } from "@ui8kit/form";
 
-const transport = makeSchemaTransport(qdrant as any);
-const itemFormDefaults = transport.itemFormDefaults;
-const toDomain = transport.toDomain;
-const ItemFieldOrder = transport.ItemFieldOrder;
-const ItemUi = transport.ItemUi;
+const schema = makeSchemaTransport(qdrant as any);
 
 export function NewItem() {
 	const navigate = useNavigate();
 	const form = useForm<any>({
-		defaultValues: itemFormDefaults(),
+		defaultValues: schema.itemFormDefaults(),
 		mode: "onBlur",
 	});
 
 	const onSubmit = form.handleSubmit(async (values) => {
-		const domain = toDomain(values);
+		const domain = schema.toDomain(values);
 		await createItem(domain);
 		navigate("/brain/items");
 	});
@@ -34,7 +29,7 @@ export function NewItem() {
 					<form onSubmit={onSubmit} noValidate>
 						<Form {...form}>
 							<Stack gap="md">
-								<AutoFields form={form} fields={ItemFieldOrder as any} ui={ItemUi as any} />
+								<AutoFields form={form} fields={schema.ItemFieldOrder as any} ui={schema.ItemUi as any} />
 								<Button type="submit" variant="default">Save</Button>
 							</Stack>
 						</Form>

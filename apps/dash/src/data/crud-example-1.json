@@ -1,2 +1,90 @@
-[]
-
+[
+  {
+    "title": "Sample Post 1",
+    "excerpt": "An example post 1",
+    "content": "This is a sample post for testing the CRUD rendering.",
+    "category": "tech",
+    "tags": ["sample","test1"],
+    "slug": "sample-post-1",
+    "id": "id-sample-1",
+    "createdAt": 1700000000001,
+    "updatedAt": 1700000000001
+  },
+  {
+    "title": "Sample Post 2",
+    "excerpt": "An example post 2",
+    "content": "Another example content for the CRUD pages.",
+    "category": "design",
+    "tags": ["demo","design"],
+    "slug": "sample-post-2",
+    "id": "id-sample-2",
+    "createdAt": 1700000000002,
+    "updatedAt": 1700000000002
+  },
+  {
+    "title": "Sample Post 3",
+    "excerpt": "An example post 3",
+    "content": "More content for CRUD rendering.",
+    "category": "news",
+    "tags": ["news"],
+    "slug": "sample-post-3",
+    "id": "id-sample-3",
+    "createdAt": 1700000000003,
+    "updatedAt": 1700000000003
+  },
+  {
+    "title": "Sample Post 4",
+    "excerpt": "An example post 4",
+    "content": "Additional content to test.",
+    "category": "tech",
+    "tags": ["tech"],
+    "slug": "sample-post-4",
+    "id": "id-sample-4",
+    "createdAt": 1700000000004,
+    "updatedAt": 1700000000004
+  },
+  {
+    "title": "Sample Post 5",
+    "excerpt": "An example post 5",
+    "content": "Fifth content for UI tests.",
+    "category": "design",
+    "tags": ["ui"],
+    "slug": "sample-post-5",
+    "id": "id-sample-5",
+    "createdAt": 1700000000005,
+    "updatedAt": 1700000000005
+  },
+  {
+    "title": "Sample Post 6",
+    "excerpt": "An example post 6",
+    "content": "Sixth content for UI tests.",
+    "category": "news",
+    "tags": ["web"],
+    "slug": "sample-post-6",
+    "id": "id-sample-6",
+    "createdAt": 1700000000006,
+    "updatedAt": 1700000000006
+  },
+  {
+    "title": "Sample Post 7",
+    "excerpt": "An example post 7",
+    "content": "Seventh content for UI tests.",
+    "category": "tech",
+    "tags": ["node"],
+    "slug": "sample-post-7",
+    "id": "id-sample-7",
+    "createdAt": 1700000000007,
+    "updatedAt": 1700000000007
+  },
+  {
+    "title": "Sample Post 8",
+    "excerpt": "An example post 8",
+    "content": "Eighth content for UI tests.",
+    "category": "design",
+    "tags": ["ui"],
+    "slug": "sample-post-8",
+    "id": "id-sample-8",
+    "createdAt": 1700000000008,
+    "updatedAt": 1700000000008
+  }
+]
