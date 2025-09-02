@@ -68,20 +68,13 @@ export function CrudList() {
 			<Stack gap="lg" align="start">
 				<Title size="2xl" c="secondary-foreground" mt="lg">Posts</Title>
 				<Box w="full" className="ml-auto flex justify-end gap-4">
-					<Card p="md" rounded="md" shadow="lg" bg="card">
-						<Stack gap="sm">
-							<Title size="lg">Import posts</Title>
-							<Text c="muted">Load CRUD posts from a local JSON file.</Text>
-							<input type="file" accept="application/json" onChange={(e) => onImportFile(e.target.files?.[0] || null)} />
-						</Stack>
-					</Card>
-					<Card p="md" rounded="md" shadow="lg" bg="card">
-						<Stack gap="sm">
-							<Title size="lg">Export posts</Title>
-							<Text c="muted">Download current posts as JSON.</Text>
-							<Button variant="default" onClick={onExportFile}>Export JSON</Button>
-						</Stack>
-					</Card>
+					<label htmlFor="import-posts" className="inline-flex items-center gap-2 text-sm bg-primary text-primary-foreground cursor-pointer px-4 py-2 rounded-md">
+						Import posts
+							<input id="import-posts" hidden type="file" accept="application/json" onChange={(e) => onImportFile(e.target.files?.[0] || null)} />
+					</label>
+					<Button variant="outline" onClick={onExportFile}>
+						Export posts
+					</Button>
 				</Box>
 				<Card p="md" rounded="md" shadow="lg" bg="card" w="full">
 					<Table>

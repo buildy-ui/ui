@@ -1,4 +1,8 @@
-import { toDomain } from "@/page/brain/schema/transport";
+import { makeSchemaTransport } from "@ui8kit/form";
+import * as qdrant from "@/schema/item-schema-qdrant";
+
+const schema = makeSchemaTransport(qdrant as any);
+const toDomain = schema.toDomain;
 
 export type Item = ReturnType<typeof toDomain> & {
   id: string;
