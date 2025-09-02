@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App'
 
-createRoot(document.getElementById('cab')!).render(
+createRoot(document.getElementById('dash')!).render(
   <StrictMode>
     <App />
   </StrictMode>,

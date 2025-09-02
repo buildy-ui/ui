@@ -11,4 +11,8 @@ export * from "./table"
 // Optional DX helpers
 export { useForm } from "react-hook-form"
 
+// Auto-rendering utilities
+export * from "./auto/auto-fields"
+export * from "./auto/schema-transport"
+
 

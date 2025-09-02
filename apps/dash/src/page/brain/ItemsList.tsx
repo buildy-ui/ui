@@ -4,7 +4,7 @@ import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@
 import { Form } from "@ui8kit/form";
 import { useForm } from "@ui8kit/form";
 import { loadItems, updateItem, type Item } from "@/services/items";
-import { AutoFields } from "./AutoFields";
+import { AutoFields } from "@ui8kit/form";
 import { ItemFieldOrder, toFormValues, toDomain, ItemUi } from "./item-schema";
 import { ResizableSheet } from "@/components/ResizableSheet";
 
@@ -55,9 +55,9 @@ function Row({ item, onSaved }: { item: Item; onSaved: () => void }) {
 	});
 
 	const onSubmit = form.handleSubmit(async (_values) => {
-		// Build flat values keyed by ItemFieldOrder to support dot-path schemas
+		// Build flat values keyed by schema UI (supports dot-paths)
 		const flat: Record<string, any> = {};
-		for (const k of ItemFieldOrder) {
+		for (const k of Object.keys(ItemUi)) {
 			flat[k] = form.getValues(k as any);
 		}
 		const domain = toDomain(flat as any);
@@ -84,7 +84,7 @@ function Row({ item, onSaved }: { item: Item; onSaved: () => void }) {
 					<form onSubmit={onSubmit} noValidate>
 						<Form {...form}>
 							<Stack gap="md">
-								<AutoFields form={form} fields={ItemFieldOrder as any} />
+								<AutoFields form={form} fields={ItemFieldOrder as any} ui={ItemUi as any} />
 								<Button type="submit" variant="default">Save changes</Button>
 							</Stack>
 						</Form>

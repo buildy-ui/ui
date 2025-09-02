@@ -2,8 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { Box, Card, Stack, Title, Button } from "@ui8kit/core";
 import { Form } from "@ui8kit/form";
 import { useForm } from "@ui8kit/form";
-import { AutoFields } from "./AutoFields";
-import { itemFormDefaults, toDomain, ItemFieldOrder } from "./item-schema";
+import { AutoFields } from "@ui8kit/form";
+import { itemFormDefaults, toDomain, ItemFieldOrder, ItemUi } from "./item-schema";
 import { createItem } from "@/services/items";
 
 export function NewItem() {
@@ -27,7 +27,7 @@ export function NewItem() {
 					<form onSubmit={onSubmit} noValidate>
 						<Form {...form}>
 							<Stack gap="md">
-								<AutoFields form={form} fields={ItemFieldOrder as any} />
+								<AutoFields form={form} fields={ItemFieldOrder as any} ui={ItemUi as any} />
 								<Button type="submit" variant="default">Save</Button>
 							</Stack>
 						</Form>
