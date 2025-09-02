@@ -1,4 +1,4 @@
-import { Box, Stack, Text, Title, Card, Button } from "@ui8kit/core";
+import { Box, Stack, Text, Title, Card, Button, Grid } from "@ui8kit/core";
 import { useAppTheme } from '@/hooks/use-theme';
 import { importItemsFromArray, exportItemsToArray } from "@/services/items";
 
@@ -36,20 +36,33 @@ export function Tools() {
       <Stack gap="lg">
         <Title size="2xl" c="secondary-foreground" mt="lg" data-class="home-title">{content.title}</Title>
         <Text c="muted">{content.description}</Text>
-        <Card p="md" rounded={rounded?.default} shadow="lg" bg="card" w="full">
-          <Stack gap="sm">
-            <Title size="lg">Import items</Title>
-            <Text c="muted">Load Qdrant items from a local JSON file. Only schema-supported fields will be imported; extra fields are preserved for export.</Text>
-            <input type="file" accept="application/json" onChange={(e) => onImportFile(e.target.files?.[0] || null)} />
-          </Stack>
-        </Card>
-        <Card p="md" rounded={rounded?.default} shadow="lg" bg="card" w="full">
-          <Stack gap="sm">
-            <Title size="lg">Export items</Title>
-            <Text c="muted">Download current items as JSON. Non-schema fields from the original file remain untouched.</Text>
-            <Button variant="default" onClick={onExportFile}>Export JSON</Button>
-          </Stack>
-        </Card>
+        <Grid cols="1-2-3" gap="lg" w="full">
+          <Card p="md" rounded={rounded?.default} shadow="lg" bg="card" w="full">
+            <Stack gap="lg">
+              <Title size="lg">Import / Export items</Title>
+              <Text c="muted">Load and export Qdrant items from a local JSON file. Only schema-supported fields will be imported; extra fields are preserved for export.</Text>
+            </Stack>
+          </Card>
+          <Card p="md" rounded={rounded?.default} shadow="lg" bg="card" w="full">
+            <Stack gap="lg">
+              <Title size="lg">Import items</Title>
+              <Text c="muted">Load Qdrant items from a local JSON file. Only schema-supported fields will be imported.</Text>
+              <Box>
+                <label htmlFor="import-posts" className="inline-flex items-center justify-center gap-2 text-sm bg-primary text-primary-foreground w-full cursor-pointer px-4 py-2 rounded-md">
+                  Import JSON
+                  <input id="import-posts" hidden type="file" accept="application/json" onChange={(e) => onImportFile(e.target.files?.[0] || null)} />
+                </label>
+              </Box>
+            </Stack>
+          </Card>
+          <Card p="md" rounded={rounded?.default} shadow="lg" bg="card" w="full">
+            <Stack gap="lg">
+              <Title size="lg">Export items</Title>
+              <Text c="muted">Download current items as JSON. Non-schema fields from the original file remain untouched.</Text>
+                <Button variant="outline" onClick={onExportFile}>Export JSON</Button>
+            </Stack>
+          </Card>
+        </Grid>
       </Stack>
     </Box>
   );
