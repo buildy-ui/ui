@@ -114,17 +114,18 @@ export async function searchWithFilters(collection: string, opts: { category?: s
 
 export async function ensureCollection(name: string, vectorSize: number): Promise<void> {
   if (IS_DEV) {
+    // Pre-check by listing collections to avoid 404/409 noise
     try {
-      await qdrantFetch(`/collections/${encodeURIComponent(name)}`);
-    } catch {
-      await qdrantFetch(`/collections/${encodeURIComponent(name)}`, {
-        method: 'PUT',
-        body: JSON.stringify({ vectors: { size: vectorSize, distance: 'Cosine' } }),
-      });
-    }
+      const existing = await listCollections();
+      if (existing.includes(name)) return;
+    } catch {}
+    await qdrantFetch(`/collections/${encodeURIComponent(name)}`, {
+      method: 'PUT',
+      body: JSON.stringify({ vectors: { size: vectorSize, distance: 'Cosine' } }),
+    });
     return;
   }
-  const client = new QdrantClient({ url: QDRANT_URL!, apiKey: QDRANT_KEY, config: { checkCompatibility: false } as any });
+  const client = new QdrantClient({ url: QDRANT_URL!, apiKey: QDRANT_KEY, checkCompatibility: false });
   try {
     await client.getCollection(name);
   } catch {
@@ -157,7 +158,7 @@ export async function upsertPoints(collection: string, points: Array<{ id: strin
     });
     return;
   }
-  const client = new QdrantClient({ url: QDRANT_URL!, apiKey: QDRANT_KEY, config: { checkCompatibility: false } as any });
+  const client = new QdrantClient({ url: QDRANT_URL!, apiKey: QDRANT_KEY, checkCompatibility: false });
   const safePoints = points.map(p => ({ 
     id: stringToNumber(p.id), 
     vector: p.vector, 
@@ -174,7 +175,7 @@ export async function deleteAllPoints(collection: string): Promise<void> {
     });
     return;
   }
-  const client = new QdrantClient({ url: QDRANT_URL!, apiKey: QDRANT_KEY, config: { checkCompatibility: false } as any });
+  const client = new QdrantClient({ url: QDRANT_URL!, apiKey: QDRANT_KEY, checkCompatibility: false });
   await client.delete(collection, { filter: {} } as any);
 }
 
