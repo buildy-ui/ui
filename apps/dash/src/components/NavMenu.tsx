@@ -1,5 +1,5 @@
 import { Stack, Button, Icon, Text, Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@ui8kit/core";
-import { Home, BarChart3, LogIn, UserPlus, FilePlus2, List, Boxes, Brain, TableProperties } from "lucide-react";
+import { Home, BarChart3, LogIn, UserPlus, FilePlus2, List, Boxes, Brain, TableProperties, Database } from "lucide-react";
 import { ListPlus } from "lucide-react";
 import { useAppTheme } from '@/hooks/use-theme';
 import { useNavigate } from "react-router-dom";
@@ -41,6 +41,10 @@ export function NavMenu() {
               <Button data-class="menu-item" onClick={() => navigate('/brain/items')} variant="ghost" size={buttonSize.default} rounded={roundedItem} contentAlign="start" w="full">
                 <Icon component="span" lucideIcon={TableProperties} />
                 <Text size="xs" c="muted">Items</Text>
+              </Button>
+              <Button data-class="menu-item" onClick={() => navigate('/brain/qdrant')} variant="ghost" size={buttonSize.default} rounded={roundedItem} contentAlign="start" w="full">
+                <Icon component="span" lucideIcon={Database} />
+                <Text size="xs" c="muted">Qdrant</Text>
               </Button>
               <Button data-class="menu-item" onClick={() => navigate('/brain/new-item')} variant="ghost" size={buttonSize.default} rounded={roundedItem} contentAlign="start" w="full">
                 <Icon component="span" lucideIcon={ListPlus} />
