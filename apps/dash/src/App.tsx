@@ -3,7 +3,7 @@ import { ThemeProvider } from '@/providers/ThemeProvider'
 import { Dashboard } from '@/layouts'
 import { Home, Stat, Blank, _404, Login, Register, CrudCreate, CrudList } from '@/page'
 import { lesseUITheme } from '@ui8kit/theme' // isNavFixed: true
-import { ItemsList, NewItem, Tools, QDrantList } from "./page/brain";
+import { ItemsList, NewItem, Tools, QDrantList, QDrantGraph } from "./page/brain";
 
 function App() {
   return (
@@ -22,6 +22,7 @@ function App() {
           <Route path="/brain/new-item" element={<Dashboard page={NewItem} />} />
           <Route path="/brain" element={<Dashboard page={Tools} />} />
           <Route path="/brain/qdrant" element={<Dashboard page={QDrantList} />} />
+          <Route path="/brain/qdrant-graph" element={<Dashboard page={QDrantGraph} />} />
         </Routes>
       </Router>
     </ThemeProvider>

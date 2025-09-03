@@ -6,6 +6,10 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
   const QDRANT_URL = env.VITE_QDRANT_URL
   const QDRANT_KEY = env.VITE_QDRANT_KEY
+  const EMB_URL = env.VITE_EMBEDDING_URL
+  const EMB_KEY = env.VITE_EMBEDDING_KEY
+  const OPENROUTER_URL = env.OPENROUTER_URL
+  const OPENROUTER_API_KEY = env.OPENROUTER_API_KEY
 
   return {
     plugins: [react()],
@@ -21,15 +25,41 @@ export default defineConfig(({ mode }) => {
     },
     server: {
       port: 5000,
-      proxy: QDRANT_URL ? {
-        '/qdrant': {
-          target: QDRANT_URL,
-          changeOrigin: true,
-          secure: true,
-          rewrite: (p) => p.replace(/^\/qdrant/, ''),
-          headers: QDRANT_KEY ? { 'api-key': QDRANT_KEY } : undefined,
+      proxy: (() => {
+        const proxy: Record<string, any> = {}
+        if (QDRANT_URL) {
+          proxy['/qdrant'] = {
+            target: QDRANT_URL,
+            changeOrigin: true,
+            secure: true,
+            rewrite: (p: string) => p.replace(/^\/qdrant/, ''),
+            headers: QDRANT_KEY ? { 'api-key': QDRANT_KEY } : undefined,
+          }
         }
-      } : undefined,
+        if (EMB_URL) {
+          proxy['/emb'] = {
+            target: EMB_URL,
+            changeOrigin: true,
+            secure: true,
+            rewrite: (p: string) => p.replace(/^\/emb/, ''),
+            headers: EMB_KEY ? { 'authorization': `Bearer ${EMB_KEY}` } : undefined,
+          }
+        }
+        if (OPENROUTER_URL) {
+          proxy['/llm'] = {
+            target: OPENROUTER_URL,
+            changeOrigin: true,
+            secure: true,
+            rewrite: (p: string) => p.replace(/^\/llm/, ''),
+            headers: OPENROUTER_API_KEY ? {
+              'authorization': `Bearer ${OPENROUTER_API_KEY}`,
+              'content-type': 'application/json',
+              'x-title': 'buildy-dash',
+            } : { 'content-type': 'application/json' },
+          }
+        }
+        return Object.keys(proxy).length ? proxy : undefined
+      })(),
     }
   }
 }) 

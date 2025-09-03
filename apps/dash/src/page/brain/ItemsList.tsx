@@ -7,6 +7,8 @@ import { loadItems, updateItem, type Item } from "@/services/items";
 import { AutoFields, makeSchemaTransport } from "@ui8kit/form";
 import * as qdrant from "@/schema/item-schema-qdrant";
 import { ResizableSheet } from "@/components/ResizableSheet";
+import { embedTexts } from "@/services/embeddings";
+import { ensureCollection, deleteAllPoints, upsertPoints } from "@/services/qdrant";
 
 const schema = makeSchemaTransport(qdrant as any);
 
@@ -18,14 +20,61 @@ export function ItemsList() {
 	const [items, setItems] = useState<Item[]>([]);
 	useEffect(() => { loadItems().then(setItems); }, []);
 
+	const [collection, setCollection] = useState<string>("components");
+	const [sending, setSending] = useState<boolean>(false);
+
 	function refresh() {
 		loadItems().then(setItems);
+	}
+
+	async function sendToQdrant() {
+		if (!items.length) return;
+		setSending(true);
+		try {
+			const descriptions = items.map((i) => (i as any)?.payload?.qdrant?.description ?? "");
+			const vectors = await embedTexts(descriptions);
+			const dim = vectors[0]?.length ?? 0;
+			if (!dim) throw new Error('Embedding dimension is 0');
+			await ensureCollection(collection, dim);
+			await deleteAllPoints(collection);
+			const points = items.map((it, idx) => ({
+				id: it.id,
+				vector: vectors[idx],
+				payload: {
+					id: it.id,
+					category: (it as any)?.payload?.qdrant?.category,
+					tags: (it as any)?.payload?.qdrant?.tags,
+					description: (it as any)?.payload?.qdrant?.description,
+					type: (it as any).type,
+					variant: (it as any).variant,
+				},
+			}));
+			await upsertPoints(collection, points);
+			alert(`Uploaded ${points.length} items to Qdrant collection '${collection}'.`);
+		} catch (e: any) {
+			alert(e?.message || String(e));
+		} finally {
+			setSending(false);
+		}
 	}
 
 	return (
 		<Box w="full">
 			<Stack gap="lg" align="start">
 				<Title size="2xl" c="secondary-foreground" mt="lg">Items</Title>
+				<Card p="md" rounded="md" shadow="lg" bg="card" w="full">
+					<div className="flex items-center gap-2 w-full">
+						<input
+							className="w-full px-3 py-2 rounded-md border bg-background"
+							placeholder="Qdrant collection (e.g. components)"
+							value={collection}
+							onChange={(e) => setCollection(e.target.value)}
+						/>
+						<Button variant="default" disabled={!items.length || sending} onClick={sendToQdrant}>
+							{sending ? 'Sending…' : 'Send to Qdrant'}
+						</Button>
+					</div>
+				</Card>
 				<Card p="md" rounded="md" shadow="lg" bg="card" w="full">
 					<Table>
 						<TableHeader>
