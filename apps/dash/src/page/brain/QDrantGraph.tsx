@@ -16,6 +16,8 @@ type Row = ReturnType<typeof pickDisplayFields> & { _score?: number; _collection
 function GraphLoader({ nodes, edges }: { nodes: GraphNode[]; edges: GraphEdge[] }) {
   const sigma = useSigma();
   useEffect(() => {
+    console.log('GraphLoader: updating graph with', { nodesCount: nodes.length, edgesCount: edges.length, nodes: nodes.slice(0, 3), edges: edges.slice(0, 3) });
+    
     const g = sigma.getGraph() as any;
     g.clear();
     const kindColor: Record<string, string> = { component: '#2563eb', tag: '#16a34a', category: '#f59e0b' };
@@ -23,15 +25,18 @@ function GraphLoader({ nodes, edges }: { nodes: GraphNode[]; edges: GraphEdge[] 
     // Add nodes with random initial positions
     for (const n of nodes) {
       if (!g.hasNode(n.id)) {
+        const x = (Math.random() - 0.5) * 200;
+        const y = (Math.random() - 0.5) * 200;
         g.addNode(n.id, {
           label: n.label,
-          size: n.kind === 'component' ? 8 : n.kind === 'category' ? 7 : 6,
+          size: n.kind === 'component' ? 12 : n.kind === 'category' ? 10 : 8,
           color: kindColor[n.kind] ?? '#64748b',
-          x: Math.random() * 500,
-          y: Math.random() * 500,
+          x,
+          y,
         });
       }
     }
+    console.log('GraphLoader: added', g.order, 'nodes');
     
     // Add edges
     for (const e of edges) {
@@ -39,13 +44,69 @@ function GraphLoader({ nodes, edges }: { nodes: GraphNode[]; edges: GraphEdge[] 
         if (g.hasNode(e.source) && g.hasNode(e.target)) {
           g.addEdgeWithKey(e.id, e.source, e.target, { label: e.kind, size: 1 });
         }
-      } catch {}
+      } catch (err) {
+        console.warn('Failed to add edge:', e, err);
+      }
     }
+    console.log('GraphLoader: added', g.size, 'edges');
     
     // Apply force layout
     try {
-      forceAtlas2.assign(g, { iterations: 100, settings: { gravity: 0.05, scalingRatio: 10 } as any });
-    } catch {}
+      if (g.order > 0) {
+        forceAtlas2.assign(g, { 
+          iterations: 50, 
+          settings: { 
+            gravity: 1,
+            scalingRatio: 1,
+            strongGravityMode: true,
+            slowDown: 1
+          } 
+        });
+        console.log('GraphLoader: applied force layout');
+      }
+    } catch (err) {
+      console.warn('Force layout failed:', err);
+    }
+    
+    // Fit camera to graph bounds
+    try {
+      let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+      g.forEachNode((_: any, attrs: any) => {
+        if (typeof attrs.x === 'number' && typeof attrs.y === 'number') {
+          if (attrs.x < minX) minX = attrs.x;
+          if (attrs.x > maxX) maxX = attrs.x;
+          if (attrs.y < minY) minY = attrs.y;
+          if (attrs.y > maxY) maxY = attrs.y;
+        }
+      });
+      const container = sigma.getContainer() as HTMLElement | null;
+      const width = Math.max(1, container?.clientWidth || 1);
+      const height = Math.max(1, container?.clientHeight || 1);
+      const graphWidth = Math.max(1e-3, maxX - minX);
+      const graphHeight = Math.max(1e-3, maxY - minY);
+      const centerX = (minX + maxX) / 2;
+      const centerY = (minY + maxY) / 2;
+      // Compute zoom ratio so that the graph fits entirely in the container.
+      const fitScale = Math.max(graphWidth / width, graphHeight / height);
+      const ratio = Math.max(1, fitScale * 1.2);
+      const camera = sigma.getCamera() as any;
+      if (typeof camera.animatedReset === 'function' && fitScale <= 1) {
+        camera.animatedReset({ duration: 0 });
+      } else {
+        camera.setState({ x: centerX, y: centerY, ratio });
+      }
+      console.log('GraphLoader: fitted camera', { centerX, centerY, ratio, width, height, graphWidth, graphHeight });
+    } catch (err) {
+      console.warn('Camera fit failed:', err);
+    }
+    
+    // Refresh sigma to ensure it renders
+    try {
+      sigma.refresh();
+      console.log('GraphLoader: refreshed sigma');
+    } catch (err) {
+      console.warn('Sigma refresh failed:', err);
+    }
   }, [sigma, nodes, edges]);
   return null;
 }
@@ -79,11 +140,8 @@ export function QDrantGraph() {
         .map((p: any) => ({ ...pickDisplayFields(p), _score: p?.score, _collection: p?._collection }))
         .sort((a: any, b: any) => (b._score ?? 0) - (a._score ?? 0))
         .slice(0, 10);
+      console.log('Search results formatted:', { count: formatted.length, first: formatted[0] });
       setRows(formatted);
-      const pointsForGraph = formatted.map((r: any) => ({ id: r.id, payload: { category: r.category, tags: r.tags } }));
-      const { nodes, edges } = buildGraphFromPoints(pointsForGraph as any[]);
-      setGraphNodes(nodes);
-      setGraphEdges(edges);
     } catch (e: any) {
       setError(e?.message || String(e));
     } finally {
@@ -93,8 +151,11 @@ export function QDrantGraph() {
 
   // Build Sigma graph whenever rows change
   useEffect(() => {
+    console.log('Building graph from rows:', { rowsCount: rows.length, firstRow: rows[0] });
     const points = rows.map((r) => ({ id: r.id, payload: { category: r.category, tags: r.tags } }));
+    console.log('Points for graph builder:', { pointsCount: points.length, firstPoint: points[0] });
     const { nodes, edges } = buildGraphFromPoints(points as any[]);
+    console.log('Built graph:', { nodesCount: nodes.length, edgesCount: edges.length });
     setGraphNodes(nodes);
     setGraphEdges(edges);
   }, [rows]);
@@ -175,20 +236,30 @@ export function QDrantGraph() {
           </Card>
         )}
         <Card p="md" rounded="md" shadow="lg" bg="card" w="full">
-          <div style={{ width: '100%', height: 520 }}>
-            <SigmaContainer 
-              style={{ width: '100%', height: '100%' }}
-              settings={{ 
-                allowInvalidContainer: true,
-                renderLabels: true,
-                defaultNodeType: 'circle',
-                defaultEdgeType: 'line',
-                labelSize: 12,
-                labelColor: { color: '#000' },
-              }}
-            >
-              <GraphLoader nodes={graphNodes} edges={graphEdges} />
-            </SigmaContainer>
+          <div style={{ width: '100%', height: 520, border: '1px solid #ccc' }}>
+            {graphNodes.length === 0 ? (
+              <div className="flex items-center justify-center h-full text-muted-foreground">
+                No graph data available. Search for items to populate the graph.
+              </div>
+            ) : (
+              <SigmaContainer 
+                style={{ width: '100%', height: '100%', backgroundColor: '#fafafa' }}
+                settings={{ 
+                  allowInvalidContainer: true,
+                  renderLabels: true,
+                  defaultNodeType: 'circle',
+                  defaultEdgeType: 'line',
+                  labelSize: 14,
+                  labelColor: { color: '#333' },
+                  nodeColor: { color: '#666' },
+                  edgeColor: { color: '#999' },
+                  minCameraRatio: 0.1,
+                  maxCameraRatio: 10,
+                }}
+              >
+                <GraphLoader nodes={graphNodes} edges={graphEdges} />
+              </SigmaContainer>
+            )}
           </div>
         </Card>
         {hasRows && (
