@@ -11,14 +11,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@dqbd/tiktoken": "^1.0.22",
     "@hookform/resolvers": "^5.2.1",
+    "@qdrant/js-client-rest": "^1.15.1",
     "@react-sigma/core": "^5.0.4",
     "@types/d3": "^7.4.3",
-    "@qdrant/js-client-rest": "^1.15.1",
     "d3": "^7.9.0",
     "graphology": "^0.25.4",
     "graphology-layout-forceatlas2": "^0.10.1",
     "lucide-react": "^0.465.0",
+    "openai": "^5.19.1",
     "react-day-picker": "^9.8.1",
     "react-hook-form": "^7.62.0",
     "react-resizable-panels": "^3.0.4",

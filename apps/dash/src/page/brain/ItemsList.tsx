@@ -7,7 +7,7 @@ import { loadItems, updateItem, type Item } from "@/services/items";
 import { AutoFields, makeSchemaTransport } from "@ui8kit/form";
 import * as qdrant from "@/schema/item-schema-qdrant";
 import { ResizableSheet } from "@/components/ResizableSheet";
-import { embedTexts } from "@/services/embeddings";
+import { embedTexts, lastEmbeddingTokenCount } from "@/services/embeddings";
 import { ensureCollection, deleteAllPoints, upsertPoints } from "@/services/qdrant";
 
 const schema = makeSchemaTransport(qdrant as any);
@@ -50,7 +50,7 @@ export function ItemsList() {
 				},
 			}));
 			await upsertPoints(collection, points);
-			alert(`Uploaded ${points.length} items to Qdrant collection '${collection}'.`);
+			alert(`Uploaded ${points.length} items to Qdrant collection '${collection}'. Token count: ${lastEmbeddingTokenCount}`);
 		} catch (e: any) {
 			alert(e?.message || String(e));
 		} finally {
