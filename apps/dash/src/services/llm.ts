@@ -1,6 +1,16 @@
+import OpenAI from 'openai';
+
 const LLM_URL = (import.meta as any).env?.OPENROUTER_URL as string | undefined;
 const LLM_KEY = (import.meta as any).env?.OPENROUTER_API_KEY as string | undefined;
 const IS_DEV = (import.meta as any).env?.DEV as boolean | undefined;
+
+// Create OpenAI client only on server to avoid browser runtime issues
+function createLLMClient() {
+  return new OpenAI({
+    baseURL: LLM_URL,
+    apiKey: LLM_KEY,
+  });
+}
 
 function assertConfig() {
   if (!LLM_URL) throw new Error('Missing OPENROUTER_URL');
@@ -26,13 +36,28 @@ export async function llmRefineTagsAndCategories(context: Array<{ id: string; de
     { role: 'system', content: prompt },
     { role: 'user', content: JSON.stringify({ query: userQuery, results: context }) },
   ];
-  const res = await llmFetch('/v1/chat/completions', {
-    model: 'openai/gpt-4o-mini',
-    messages: content,
-    response_format: { type: 'json_object' },
-  });
-  const data = await res.json();
-  const text = data?.choices?.[0]?.message?.content ?? '{}';
+  console.log('content', content);
+  let responseBody: any = null;
+  if (typeof window === 'undefined') {
+    // Server-side: use SDK
+    const client = createLLMClient();
+    const res = await client.chat.completions.create({
+      model: 'gpt-5-mini',
+      messages: content as any,
+      response_format: { type: 'json_object' },
+    });
+    console.log('res', res);
+    responseBody = res;
+  } else {
+    // Browser: use fetch/proxy to avoid SDK internals that may call atob
+    const res = await llmFetch('/chat/completions', { model: 'gpt-5-mini', messages: content, response_format: { type: 'json_object' } });
+    console.log('res', res);
+    responseBody = await res.json();
+  }
+
+  const data = responseBody?.choices?.[0]?.message?.content ?? '{}';
+  console.log('data', data);
+  const text = data ?? '{}';
   try {
     const parsed = JSON.parse(text);
     return {
