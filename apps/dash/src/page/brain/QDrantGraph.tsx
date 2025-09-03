@@ -5,11 +5,10 @@ import { SigmaContainer, useSigma } from "@react-sigma/core";
 import '@react-sigma/core/lib/style.css'
 
 import forceAtlas2 from 'graphology-layout-forceatlas2';
-import { embedTexts } from "@/services/embeddings";
-import { searchTopK, searchWithFilters, pickDisplayFields, listCollections } from "@/services/qdrant";
+import { pickDisplayFields, listCollections, getPointsFirstN } from "@/services/qdrant";
 import { buildGraphFromPoints, type GraphNode, type GraphEdge } from "@/lib/graph-builder";
 import { ResizableSheet } from "@/components/ResizableSheet";
-import { llmRefineTagsAndCategories } from "@/services/llm";
+import { agentSearchAndRefine } from "@/services/agent";
 
 const STORAGE_KEY = 'qdrantGraphRows';
 
@@ -103,23 +102,37 @@ export function QDrantGraph() {
   const [rows, setRows] = useState<Row[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const [collectionsInput, setCollectionsInput] = useState("components");
+  const [collectionsInput, setCollectionsInput] = useState(""); // empty = all collections
   const filterFormId = "qg-filters";
-  const [mustTags, setMustTags] = useState<string>("");
-  const [shouldTags, setShouldTags] = useState<string>("");
-  const [categories, setCategories] = useState<string>("");
   const [graphNodes, setGraphNodes] = useState<GraphNode[]>([]);
   const [graphEdges, setGraphEdges] = useState<GraphEdge[]>([]);
 
-  // Load saved results on mount
+  // Initial load: show up to 100 points across all collections
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed)) setRows(parsed as Row[]);
+    (async () => {
+      setError(null);
+      setLoading(true);
+      try {
+        const cols = await listCollections();
+        const found: any[] = [];
+        for (const col of cols) {
+          if (found.length >= 100) break;
+          const pts = await getPointsFirstN(col, 100);
+          for (const p of pts) {
+            if (found.length >= 100) break;
+            found.push({ ...p, _collection: col });
+          }
+        }
+        const formatted = found
+          .map((p: any) => ({ ...pickDisplayFields(p), _score: undefined, _collection: p?._collection }))
+          .slice(0, 100);
+        setRows(formatted);
+      } catch (e: any) {
+        setError(e?.message || String(e));
+      } finally {
+        setLoading(false);
       }
-    } catch {}
+    })();
   }, []);
 
   function saveRowsToStorage(data: Row[]) {
@@ -149,20 +162,13 @@ export function QDrantGraph() {
     setError(null);
     setLoading(true);
     try {
-      const [v] = await embedTexts([query]);
-      const cols = collectionsInput.split(',').map(s => s.trim()).filter(Boolean);
-      const found: any[] = [];
-      const allCols = cols.length ? cols : await listCollections();
-      for (const col of allCols) {
-        const pts = await searchTopK(col, v, 20);
-        for (const p of pts) found.push({ ...p, _collection: col });
+      if (!query.trim()) {
+        // No-op if query is empty
+        return;
       }
-      const formatted = found
-        .map((p: any) => ({ ...pickDisplayFields(p), _score: p?.score, _collection: p?._collection }))
-        .sort((a: any, b: any) => (b._score ?? 0) - (a._score ?? 0))
-        .slice(0, 10);
-      setRows(formatted);
-      saveRowsToStorage(formatted);
+      const result = await agentSearchAndRefine(query, 10);
+      setRows(result);
+      saveRowsToStorage(result);
     } catch (e: any) {
       setError(e?.message || String(e));
     } finally {
@@ -197,19 +203,7 @@ export function QDrantGraph() {
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-2">
               <span className="w-32 text-xs text-muted-foreground">Collections</span>
-              <input className="flex-1 px-3 py-2 rounded-md border bg-background" placeholder="components,cta,blog" value={collectionsInput} onChange={(e) => setCollectionsInput(e.target.value)} />
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-32 text-xs text-muted-foreground">Must tags</span>
-              <input className="flex-1 px-3 py-2 rounded-md border bg-background" placeholder="layout:stack,element:header" value={mustTags} onChange={(e) => setMustTags(e.target.value)} />
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-32 text-xs text-muted-foreground">Should tags</span>
-              <input className="flex-1 px-3 py-2 rounded-md border bg-background" placeholder="variant:simple" value={shouldTags} onChange={(e) => setShouldTags(e.target.value)} />
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-32 text-xs text-muted-foreground">Categories</span>
-              <input className="flex-1 px-3 py-2 rounded-md border bg-background" placeholder="hero,cta" value={categories} onChange={(e) => setCategories(e.target.value)} />
+              <input className="flex-1 px-3 py-2 rounded-md border bg-background" placeholder="components,cta,blog (empty = all)" value={collectionsInput} onChange={(e) => setCollectionsInput(e.target.value)} />
             </div>
             <div className="flex items-center gap-2">
               <Button variant="outline" onClick={async () => {
@@ -217,36 +211,26 @@ export function QDrantGraph() {
                 setLoading(true);
                 try {
                   const cols = collectionsInput.split(',').map(s => s.trim()).filter(Boolean);
-                  const must = mustTags.split(',').map(s => s.trim()).filter(Boolean);
-                  const should = shouldTags.split(',').map(s => s.trim()).filter(Boolean);
-                  const cats = categories.split(',').map(s => s.trim()).filter(Boolean);
-                  const found: any[] = [];
                   const allCols = cols.length ? cols : await listCollections();
+                  const found: any[] = [];
                   for (const col of allCols) {
-                    const pts = await searchWithFilters(col, { category: cats[0], tagsMust: must, tagsShould: should, limit: 100 });
-                    for (const p of pts) found.push({ ...p, _collection: col });
+                    if (found.length >= 100) break;
+                    const pts = await getPointsFirstN(col, 100);
+                    for (const p of pts) {
+                      if (found.length >= 100) break;
+                      found.push({ ...p, _collection: col });
+                    }
                   }
                   const formatted = found.map((p: any) => ({ ...pickDisplayFields(p), _score: undefined, _collection: p?._collection }));
-                  const top = formatted.slice(0, 10);
-                  setRows(top);
-                  saveRowsToStorage(top);
+                  setRows(formatted);
+                  saveRowsToStorage(formatted);
                 } catch (e: any) {
                   setError(e?.message || String(e));
                 } finally {
                   setLoading(false);
                 }
               }}>Apply filters</Button>
-              <Button variant="default" onClick={async () => {
-                try {
-                  const context = rows.map(r => ({ id: r.id, description: r.description, category: r.category, tags: r.tags }));
-                  const refine = await llmRefineTagsAndCategories(context, query);
-                  setMustTags(refine.mustTags.join(','));
-                  setShouldTags(refine.shouldTags.join(','));
-                  setCategories(refine.categories.join(','));
-                } catch (e: any) {
-                  alert(e?.message || String(e));
-                }
-              }}>Refine with LLM</Button>
+              {/* Refine with LLM removed per new flow */}
             </div>
           </div>
         </ResizableSheet>
