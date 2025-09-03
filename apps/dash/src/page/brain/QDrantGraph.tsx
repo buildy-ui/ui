@@ -11,13 +11,13 @@ import { buildGraphFromPoints, type GraphNode, type GraphEdge } from "@/lib/grap
 import { ResizableSheet } from "@/components/ResizableSheet";
 import { llmRefineTagsAndCategories } from "@/services/llm";
 
+const STORAGE_KEY = 'qdrantGraphRows';
+
 type Row = ReturnType<typeof pickDisplayFields> & { _score?: number; _collection?: string };
 
 function GraphLoader({ nodes, edges }: { nodes: GraphNode[]; edges: GraphEdge[] }) {
   const sigma = useSigma();
   useEffect(() => {
-    console.log('GraphLoader: updating graph with', { nodesCount: nodes.length, edgesCount: edges.length, nodes: nodes.slice(0, 3), edges: edges.slice(0, 3) });
-    
     const g = sigma.getGraph() as any;
     g.clear();
     const kindColor: Record<string, string> = { component: '#2563eb', tag: '#16a34a', category: '#f59e0b' };
@@ -36,7 +36,6 @@ function GraphLoader({ nodes, edges }: { nodes: GraphNode[]; edges: GraphEdge[] 
         });
       }
     }
-    console.log('GraphLoader: added', g.order, 'nodes');
     
     // Add edges
     for (const e of edges) {
@@ -44,11 +43,8 @@ function GraphLoader({ nodes, edges }: { nodes: GraphNode[]; edges: GraphEdge[] 
         if (g.hasNode(e.source) && g.hasNode(e.target)) {
           g.addEdgeWithKey(e.id, e.source, e.target, { label: e.kind, size: 1 });
         }
-      } catch (err) {
-        console.warn('Failed to add edge:', e, err);
-      }
+      } catch {}
     }
-    console.log('GraphLoader: added', g.size, 'edges');
     
     // Apply force layout
     try {
@@ -62,11 +58,8 @@ function GraphLoader({ nodes, edges }: { nodes: GraphNode[]; edges: GraphEdge[] 
             slowDown: 1
           } 
         });
-        console.log('GraphLoader: applied force layout');
       }
-    } catch (err) {
-      console.warn('Force layout failed:', err);
-    }
+    } catch {}
     
     // Fit camera to graph bounds
     try {
@@ -95,18 +88,12 @@ function GraphLoader({ nodes, edges }: { nodes: GraphNode[]; edges: GraphEdge[] 
       } else {
         camera.setState({ x: centerX, y: centerY, ratio });
       }
-      console.log('GraphLoader: fitted camera', { centerX, centerY, ratio, width, height, graphWidth, graphHeight });
-    } catch (err) {
-      console.warn('Camera fit failed:', err);
-    }
+    } catch {}
     
     // Refresh sigma to ensure it renders
     try {
       sigma.refresh();
-      console.log('GraphLoader: refreshed sigma');
-    } catch (err) {
-      console.warn('Sigma refresh failed:', err);
-    }
+    } catch {}
   }, [sigma, nodes, edges]);
   return null;
 }
@@ -124,6 +111,40 @@ export function QDrantGraph() {
   const [graphNodes, setGraphNodes] = useState<GraphNode[]>([]);
   const [graphEdges, setGraphEdges] = useState<GraphEdge[]>([]);
 
+  // Load saved results on mount
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed)) setRows(parsed as Row[]);
+      }
+    } catch {}
+  }, []);
+
+  function saveRowsToStorage(data: Row[]) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch {}
+  }
+
+  function handleSaveJson() {
+    try {
+      const data = { rows };
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      const ts = new Date();
+      const timestamp = ts.toISOString().replace(/[:.]/g, '-');
+      a.href = url;
+      a.download = `qdrant-results-${timestamp}.json`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } catch (e) {
+      alert('Failed to save JSON');
+    }
+  }
+
   async function runSearch() {
     setError(null);
     setLoading(true);
@@ -140,8 +161,8 @@ export function QDrantGraph() {
         .map((p: any) => ({ ...pickDisplayFields(p), _score: p?.score, _collection: p?._collection }))
         .sort((a: any, b: any) => (b._score ?? 0) - (a._score ?? 0))
         .slice(0, 10);
-      console.log('Search results formatted:', { count: formatted.length, first: formatted[0] });
       setRows(formatted);
+      saveRowsToStorage(formatted);
     } catch (e: any) {
       setError(e?.message || String(e));
     } finally {
@@ -151,11 +172,8 @@ export function QDrantGraph() {
 
   // Build Sigma graph whenever rows change
   useEffect(() => {
-    console.log('Building graph from rows:', { rowsCount: rows.length, firstRow: rows[0] });
     const points = rows.map((r) => ({ id: r.id, payload: { category: r.category, tags: r.tags } }));
-    console.log('Points for graph builder:', { pointsCount: points.length, firstPoint: points[0] });
     const { nodes, edges } = buildGraphFromPoints(points as any[]);
-    console.log('Built graph:', { nodesCount: nodes.length, edgesCount: edges.length });
     setGraphNodes(nodes);
     setGraphEdges(edges);
   }, [rows]);
@@ -209,7 +227,9 @@ export function QDrantGraph() {
                     for (const p of pts) found.push({ ...p, _collection: col });
                   }
                   const formatted = found.map((p: any) => ({ ...pickDisplayFields(p), _score: undefined, _collection: p?._collection }));
-                  setRows(formatted.slice(0, 10));
+                  const top = formatted.slice(0, 10);
+                  setRows(top);
+                  saveRowsToStorage(top);
                 } catch (e: any) {
                   setError(e?.message || String(e));
                 } finally {
@@ -286,11 +306,15 @@ export function QDrantGraph() {
                 ))}
               </TableBody>
             </Table>
+            <div className="w-full flex justify-end mt-3">
+              <Button variant="outline" onClick={handleSaveJson}>Save JSON</Button>
+            </div>
           </Card>
         )}
       </Stack>
     </Box>
   );
 }
+
 
 
