@@ -1,5 +1,5 @@
 export type GraphNode = { id: string; label: string; kind: 'component' | 'tag' | 'category' };
-export type GraphEdge = { id: string; source: string; target: string; kind: 'has_tag' | 'has_category' | 'co_tag' };
+export type GraphEdge = { id: string; source: string; target: string; kind: 'has_tag' | 'has_category' | 'co_tag' | 'cosine'; weight?: number };
 
 export function buildGraphFromPoints(points: any[]): { nodes: GraphNode[]; edges: GraphEdge[] } {
   const nodesMap = new Map<string, GraphNode>();
@@ -25,7 +25,7 @@ export function buildGraphFromPoints(points: any[]): { nodes: GraphNode[]; edges
       const catId = `category:${category}`;
       ensureNode(catId, category, 'category');
       const eid = `${id}->${catId}`;
-      if (!edgesMap.has(eid)) edgesMap.set(eid, { id: eid, source: id, target: catId, kind: 'has_category' });
+      if (!edgesMap.has(eid)) edgesMap.set(eid, { id: eid, source: id, target: catId, kind: 'has_category', weight: 1 });
     }
 
     const tagIds = [] as string[];
@@ -34,7 +34,7 @@ export function buildGraphFromPoints(points: any[]): { nodes: GraphNode[]; edges
       tagIds.push(tagId);
       ensureNode(tagId, t, 'tag');
       const eid = `${id}->${tagId}`;
-      if (!edgesMap.has(eid)) edgesMap.set(eid, { id: eid, source: id, target: tagId, kind: 'has_tag' });
+      if (!edgesMap.has(eid)) edgesMap.set(eid, { id: eid, source: id, target: tagId, kind: 'has_tag', weight: 1 });
     }
 
     // co-occurrence pairs within this component's tags
@@ -53,7 +53,7 @@ export function buildGraphFromPoints(points: any[]): { nodes: GraphNode[]; edges
     if (count < 2) continue;
     const [a, b] = key.split('|');
     const eid = `${a}<->${b}`;
-    if (!edgesMap.has(eid)) edgesMap.set(eid, { id: eid, source: a, target: b, kind: 'co_tag' });
+    if (!edgesMap.has(eid)) edgesMap.set(eid, { id: eid, source: a, target: b, kind: 'co_tag', weight: count });
   }
 
   return { nodes: Array.from(nodesMap.values()), edges: Array.from(edgesMap.values()) };

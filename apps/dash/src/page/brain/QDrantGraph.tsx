@@ -1,101 +1,19 @@
 import { useEffect, useMemo, useState } from "react";
 import { Box, Card, Stack, Title, Text, Button } from "@ui8kit/core";
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@ui8kit/form";
-import { SigmaContainer, useSigma } from "@react-sigma/core";
 import '@react-sigma/core/lib/style.css'
 
-import forceAtlas2 from 'graphology-layout-forceatlas2';
 import { pickDisplayFields, listCollections, getPointsFirstN } from "@/services/qdrant";
-import { buildGraphFromPoints, type GraphNode, type GraphEdge } from "@/lib/graph-builder";
+import type { GraphNode, GraphEdge } from "@/lib/graph-builder";
 import { ResizableSheet } from "@/components/ResizableSheet";
 import { agentSearchAndRefine } from "@/services/agent";
+import { buildTopologyGraph, buildCosineGraph } from "@/services/graphology";
+import { useThemeColors } from "@/hooks/useThemeColors";
+import { GraphCanvas } from "@/components/GraphCanvas";
 
 const STORAGE_KEY = 'qdrantGraphRows';
 
 type Row = ReturnType<typeof pickDisplayFields> & { _score?: number; _collection?: string };
-
-function GraphLoader({ nodes, edges }: { nodes: GraphNode[]; edges: GraphEdge[] }) {
-  const sigma = useSigma();
-  useEffect(() => {
-    const g = sigma.getGraph() as any;
-    g.clear();
-    const kindColor: Record<string, string> = { component: '#2563eb', tag: '#16a34a', category: '#f59e0b' };
-    
-    // Add nodes with random initial positions
-    for (const n of nodes) {
-      if (!g.hasNode(n.id)) {
-        const x = (Math.random() - 0.5) * 200;
-        const y = (Math.random() - 0.5) * 200;
-        g.addNode(n.id, {
-          label: n.label,
-          size: n.kind === 'component' ? 12 : n.kind === 'category' ? 10 : 8,
-          color: kindColor[n.kind] ?? '#64748b',
-          x,
-          y,
-        });
-      }
-    }
-    
-    // Add edges
-    for (const e of edges) {
-      try {
-        if (g.hasNode(e.source) && g.hasNode(e.target)) {
-          g.addEdgeWithKey(e.id, e.source, e.target, { label: e.kind, size: 1 });
-        }
-      } catch {}
-    }
-    
-    // Apply force layout
-    try {
-      if (g.order > 0) {
-        forceAtlas2.assign(g, { 
-          iterations: 50, 
-          settings: { 
-            gravity: 1,
-            scalingRatio: 1,
-            strongGravityMode: true,
-            slowDown: 1
-          } 
-        });
-      }
-    } catch {}
-    
-    // Fit camera to graph bounds
-    try {
-      let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
-      g.forEachNode((_: any, attrs: any) => {
-        if (typeof attrs.x === 'number' && typeof attrs.y === 'number') {
-          if (attrs.x < minX) minX = attrs.x;
-          if (attrs.x > maxX) maxX = attrs.x;
-          if (attrs.y < minY) minY = attrs.y;
-          if (attrs.y > maxY) maxY = attrs.y;
-        }
-      });
-      const container = sigma.getContainer() as HTMLElement | null;
-      const width = Math.max(1, container?.clientWidth || 1);
-      const height = Math.max(1, container?.clientHeight || 1);
-      const graphWidth = Math.max(1e-3, maxX - minX);
-      const graphHeight = Math.max(1e-3, maxY - minY);
-      const centerX = (minX + maxX) / 2;
-      const centerY = (minY + maxY) / 2;
-      // Compute zoom ratio so that the graph fits entirely in the container.
-      const fitScale = Math.max(graphWidth / width, graphHeight / height);
-      const ratio = Math.max(1, fitScale * 1.2);
-      const camera = sigma.getCamera() as any;
-      if (typeof camera.animatedReset === 'function' && fitScale <= 1) {
-        camera.animatedReset({ duration: 0 });
-      } else {
-        camera.setState({ x: centerX, y: centerY, ratio });
-      }
-    } catch {}
-    
-    // Refresh sigma to ensure it renders
-    try {
-      sigma.refresh();
-    } catch {}
-  }, [sigma, nodes, edges]);
-  return null;
-}
 
 export function QDrantGraph() {
   const [query, setQuery] = useState("");
@@ -106,6 +24,9 @@ export function QDrantGraph() {
   const filterFormId = "qg-filters";
   const [graphNodes, setGraphNodes] = useState<GraphNode[]>([]);
   const [graphEdges, setGraphEdges] = useState<GraphEdge[]>([]);
+  const [mode, setMode] = useState<'topology' | 'cosine'>("topology");
+  const [fa2, setFa2] = useState({ gravity: 1, scalingRatio: 1, strongGravityMode: true as boolean, slowDown: 1 });
+  const themeColors = useThemeColors();
 
   // Initial load: show up to 100 points across all collections
   useEffect(() => {
@@ -176,13 +97,20 @@ export function QDrantGraph() {
     }
   }
 
-  // Build Sigma graph whenever rows change
+  // Build Sigma graph whenever rows or mode change
   useEffect(() => {
-    const points = rows.map((r) => ({ id: r.id, payload: { category: r.category, tags: r.tags } }));
-    const { nodes, edges } = buildGraphFromPoints(points as any[]);
-    setGraphNodes(nodes);
-    setGraphEdges(edges);
-  }, [rows]);
+    (async () => {
+      if (mode === 'topology') {
+        const { nodes, edges } = await buildTopologyGraph(rows.map(r => ({ id: r.id as any, category: r.category as any, tags: r.tags as any })));
+        setGraphNodes(nodes);
+        setGraphEdges(edges);
+        return;
+      }
+      const { nodes, edges } = await buildCosineGraph(rows.map(r => ({ id: r.id as any, _collection: r._collection as any })));
+      setGraphNodes(nodes);
+      setGraphEdges(edges);
+    })();
+  }, [rows, mode]);
 
   const hasRows = useMemo(() => rows.length > 0, [rows]);
 
@@ -191,13 +119,13 @@ export function QDrantGraph() {
       <Stack gap="lg" align="start">
         <Title size="2xl" c="secondary-foreground" mt="lg">Qdrant Graph</Title>
         <Card p="md" rounded="md" shadow="lg" bg="card" w="full">
-          <Stack gap="sm" align="center">
-            <div className="w-full flex items-center gap-2">
+          <div className="w-full flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2 flex-1">
               <input className="w-full px-3 py-2 rounded-md border bg-background" placeholder="Ask something…" value={query} onChange={(e) => setQuery(e.target.value)} />
               <Button disabled={!query || loading} onClick={runSearch}>{loading ? 'Searching…' : 'Search'}</Button>
               <label htmlFor={filterFormId} className="inline-flex items-center gap-2 text-sm text-primary cursor-pointer">Filters</label>
             </div>
-          </Stack>
+          </div>
         </Card>
         <ResizableSheet id={filterFormId} title="Graph filters">
           <div className="flex flex-col gap-3">
@@ -230,7 +158,6 @@ export function QDrantGraph() {
                   setLoading(false);
                 }
               }}>Apply filters</Button>
-              {/* Refine with LLM removed per new flow */}
             </div>
           </div>
         </ResizableSheet>
@@ -239,32 +166,39 @@ export function QDrantGraph() {
             <Text c="destructive">{error}</Text>
           </Card>
         )}
-        <Card p="md" rounded="md" shadow="lg" bg="card" w="full">
-          <div style={{ width: '100%', height: 520, border: '1px solid #ccc' }}>
-            {graphNodes.length === 0 ? (
-              <div className="flex items-center justify-center h-full text-muted-foreground">
-                No graph data available. Search for items to populate the graph.
+        <Card p="sm" rounded="md" shadow="sm" bg="card" w="full">
+          <div className="flex items-center gap-3 flex-wrap justify-between">
+            <div className="flex items-center gap-3 flex-wrap">
+              <div className="flex items-center gap-2">
+                <span className="text-xs text-muted-foreground">Gravity</span>
+                <input type="number" className="w-20 px-2 py-1 rounded-md border bg-background text-xs" value={fa2.gravity} step={0.1} onChange={(e) => setFa2(v => ({ ...v, gravity: Number(e.target.value) }))} />
               </div>
-            ) : (
-              <SigmaContainer 
-                style={{ width: '100%', height: '100%', backgroundColor: '#fafafa' }}
-                settings={{ 
-                  allowInvalidContainer: true,
-                  renderLabels: true,
-                  defaultNodeType: 'circle',
-                  defaultEdgeType: 'line',
-                  labelSize: 14,
-                  labelColor: { color: '#333' },
-                  nodeColor: { color: '#666' },
-                  edgeColor: { color: '#999' },
-                  minCameraRatio: 0.1,
-                  maxCameraRatio: 10,
-                }}
-              >
-                <GraphLoader nodes={graphNodes} edges={graphEdges} />
-              </SigmaContainer>
-            )}
+              <div className="flex items-center gap-2">
+                <span className="text-xs text-muted-foreground">Scaling</span>
+                <input type="number" className="w-20 px-2 py-1 rounded-md border bg-background text-xs" value={fa2.scalingRatio} step={0.1} onChange={(e) => setFa2(v => ({ ...v, scalingRatio: Number(e.target.value) }))} />
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-xs text-muted-foreground">SlowDown</span>
+                <input type="number" className="w-20 px-2 py-1 rounded-md border bg-background text-xs" value={fa2.slowDown} step={0.1} onChange={(e) => setFa2(v => ({ ...v, slowDown: Number(e.target.value) }))} />
+              </div>
+              <div className="flex items-center gap-2">
+                <label className="inline-flex items-center gap-2 text-xs text-muted-foreground">
+                  <input type="checkbox" checked={fa2.strongGravityMode} onChange={(e) => setFa2(v => ({ ...v, strongGravityMode: e.target.checked }))} />
+                  Strong gravity
+                </label>
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-muted-foreground">Mode</span>
+              <select className="px-2 py-1 rounded-md border bg-background text-sm" value={mode} onChange={(e) => setMode(e.target.value as any)}>
+                <option value="topology">Topology</option>
+                <option value="cosine">Cosine</option>
+              </select>
+            </div>
           </div>
+        </Card>
+        <Card p="md" rounded="md" shadow="lg" bg="card" w="full">
+          <GraphCanvas nodes={graphNodes} edges={graphEdges} mode={mode} fa2={fa2} background={themeColors.background} labelColor={themeColors.foreground} edgeColor={themeColors.border} />
         </Card>
         {hasRows && (
           <Card p="md" rounded="md" shadow="lg" bg="card" w="full">

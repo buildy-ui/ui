@@ -179,4 +179,15 @@ export async function deleteAllPoints(collection: string): Promise<void> {
   await client.delete(collection, { filter: {} } as any);
 }
 
+// Recommend similar points by original ids using Qdrant 'recommend'
+export async function recommendByOriginalIds(collection: string, originals: string[], limit = 10): Promise<any[]> {
+  const positive = originals.map((id) => stringToNumber(String(id)));
+  const res = await qdrantFetch(`/collections/${encodeURIComponent(collection)}/points/recommend`, {
+    method: 'POST',
+    body: JSON.stringify({ positive, limit, with_payload: true, with_vector: false }),
+  });
+  const data = await res.json();
+  return data?.result ?? [];
+}
+
 
