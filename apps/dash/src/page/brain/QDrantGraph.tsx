@@ -10,6 +10,7 @@ import { agentSearchAndRefine } from "@/services/agent";
 import { buildTopologyGraph, buildCosineGraph } from "@/services/graphology";
 import { useThemeColors } from "@/hooks/useThemeColors";
 import { GraphCanvas } from "@/components/GraphCanvas";
+import { ChatSheet } from "@/components/ChatSheet";
 
 const STORAGE_KEY = 'qdrantGraphRows';
 
@@ -58,6 +59,14 @@ export function QDrantGraph() {
 
   function saveRowsToStorage(data: Row[]) {
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch {}
+  }
+
+  function hasData() {
+    const data = localStorage.getItem(STORAGE_KEY);
+    if (data) {
+      return true;
+    }
+    return false;
   }
 
   function handleSaveJson() {
@@ -115,8 +124,8 @@ export function QDrantGraph() {
   const hasRows = useMemo(() => rows.length > 0, [rows]);
 
   return (
-    <Box w="full">
-      <Stack gap="lg" align="start">
+    <Box w="full" mb="2xl">
+      <Stack gap="md" align="start">
         <Title size="2xl" c="secondary-foreground" mt="lg">Qdrant Graph</Title>
         <Card p="md" rounded="md" shadow="lg" bg="card" w="full">
           <div className="w-full flex items-center justify-between gap-2">
@@ -127,6 +136,12 @@ export function QDrantGraph() {
             </div>
           </div>
         </Card>
+        {hasData() && (
+        <Box w="full" justify="center" align="center" py="md" className="flex">
+          <label htmlFor="chat-review" className="outline-button">Review & Improve</label>
+        </Box>
+        )}
+        <ChatSheet id="chat-review" title="Review & Improve" query={query} items={rows.slice(0, 10).map(r => ({ id: String(r.id), description: r.description, category: r.category, tags: r.tags }))} />
         <ResizableSheet id={filterFormId} title="Graph filters">
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-2">
@@ -197,10 +212,10 @@ export function QDrantGraph() {
             </div>
           </div>
         </Card>
-        <Card p="md" rounded="md" shadow="lg" bg="card" w="full">
+        <Card p="none" rounded="md" shadow="lg" w="full">
           <GraphCanvas nodes={graphNodes} edges={graphEdges} mode={mode} fa2={fa2} background={themeColors.background} labelColor={themeColors.foreground} edgeColor={themeColors.border} />
         </Card>
-        {hasRows && (
+        {hasRows && hasData() && (
           <Card p="md" rounded="md" shadow="lg" bg="card" w="full">
             <Table>
               <TableHeader>

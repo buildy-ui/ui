@@ -142,4 +142,25 @@ Return strict JSON { acceptAll: boolean, refinedQuery?: string }`;
   }
 }
 
+// Analyze code + blocks and propose improved descriptions
+export async function llmChatAnalyze(context: { query: string; items: Array<{ id: string; description?: string; category?: string; tags?: string[] }>; userNote?: string }, history: Array<{ role: 'system'|'user'|'assistant'; text: string }>, codeChunks: Array<{ id: string; chunk: string }>): Promise<{ text: string; suggestions: Array<{ id: string; suggestion: { description: string; tags: string[]; category?: string; rationale?: string } }> }> {
+  const system = `You are an analyzer assisting developers. Given a user query, current item metadata, chat history, and code excerpts, propose improved descriptions/tags (concise, precise), optionally category, and short rationale. Return strict JSON { text: string, suggestions: [{ id: string, suggestion: { description: string, tags: string[], category?: string, rationale?: string } }] }`;
+  const messages: any[] = [
+    { role: 'system', content: system },
+  ];
+  for (const m of history.slice(-8)) messages.push({ role: m.role, content: m.text });
+  messages.push({ role: 'user', content: JSON.stringify({ query: context.query, items: context.items, userNote: context.userNote, code: codeChunks }) });
+
+  if (typeof window === 'undefined') {
+    const client = createLLMClient();
+    const res = await client.chat.completions.create({ model: 'openai/gpt-5-mini', messages, response_format: { type: 'json_object' } as any });
+    const text = res.choices[0]?.message?.content ?? '{}';
+    try { return JSON.parse(text); } catch { return { text, suggestions: [] }; }
+  } else {
+    const res = await llmFetch('/chat/completions', { model: 'openai/gpt-5-mini', messages, response_format: { type: 'json_object' } });
+    const text = (await res.json())?.choices?.[0]?.message?.content ?? '{}';
+    try { return JSON.parse(text); } catch { return { text, suggestions: [] }; }
+  }
+}
+
 

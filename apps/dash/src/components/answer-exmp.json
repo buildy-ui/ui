@@ -1,0 +1,175 @@
+[
+  [
+    {
+      "id": "hero.split#gallery#3",
+      "category": "hero",
+      "tags": [
+        "category:hero",
+        "layout:split",
+        "variant:gallery",
+        "element:header",
+        "element:collections",
+        "element:actions"
+      ],
+      "description": "hero.split for pairing content with visuals. split; elements: header, collections, actions. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+      "_score": 0.27272236,
+      "_collection": "components"
+    },
+    {
+      "id": "features.split#analytics#2",
+      "category": "features",
+      "tags": [
+        "category:features",
+        "layout:split",
+        "variant:analytics",
+        "orientation:media-left",
+        "element:header",
+        "element:collections"
+      ],
+      "description": "features.split for pairing content with visuals. split, media-left; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+      "_score": 0.26955312,
+      "_collection": "featuresComponents"
+    },
+    {
+      "id": "hero.split#media#0",
+      "category": "hero",
+      "tags": [
+        "category:hero",
+        "layout:split",
+        "variant:media",
+        "element:header",
+        "element:media",
+        "element:actions"
+      ],
+      "description": "hero.split for pairing content with visuals. split; elements: header, media, actions. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+      "_score": 0.2674923,
+      "_collection": "components"
+    },
+    {
+      "id": "features.split#media#0",
+      "category": "features",
+      "tags": [
+        "category:features",
+        "layout:split",
+        "variant:media",
+        "element:header",
+        "element:media",
+        "element:collections",
+        "element:actions"
+      ],
+      "description": "features.split for pairing content with visuals. split; elements: header, media, collections, actions. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+      "_score": 0.26731125,
+      "_collection": "featuresComponents"
+    },
+    {
+      "id": "hero.split#gallery#2",
+      "category": "hero",
+      "tags": [
+        "category:hero",
+        "layout:split",
+        "variant:gallery",
+        "orientation:media-left",
+        "element:header",
+        "element:collections",
+        "element:actions"
+      ],
+      "description": "hero.split for pairing content with visuals. split, media-left; elements: header, collections, actions. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+      "_score": 0.26228106,
+      "_collection": "components"
+    },
+    {
+      "id": "features.split#features#3",
+      "category": "features",
+      "tags": [
+        "category:features",
+        "layout:split",
+        "variant:features",
+        "orientation:media-right",
+        "element:header",
+        "element:collections",
+        "element:actions"
+      ],
+      "description": "features.split for pairing content with visuals. split, media-right; elements: header, collections, actions. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+      "_score": 0.2619616,
+      "_collection": "featuresComponents"
+    },
+    {
+      "id": "hero.split#media#4",
+      "category": "hero",
+      "tags": [
+        "category:hero",
+        "layout:split",
+        "variant:media",
+        "orientation:media-left",
+        "element:header",
+        "element:media",
+        "element:actions"
+      ],
+      "description": "hero.split for pairing content with visuals. split, media-left; elements: header, media, actions. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+      "_score": 0.25961438,
+      "_collection": "components"
+    },
+    {
+      "id": "hero.split#media#1",
+      "category": "hero",
+      "tags": [
+        "category:hero",
+        "layout:split",
+        "variant:media",
+        "orientation:media-left",
+        "element:header",
+        "element:media",
+        "element:actions"
+      ],
+      "description": "hero.split for pairing content with visuals. split, media-left; elements: header, media, actions. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+      "_score": 0.25961438,
+      "_collection": "components"
+    },
+    {
+      "id": "features.split#features#1",
+      "category": "features",
+      "tags": [
+        "category:features",
+        "layout:split",
+        "variant:features",
+        "orientation:media-left",
+        "element:header",
+        "element:media",
+        "element:collections"
+      ],
+      "description": "features.split for pairing content with visuals. split, media-left; elements: header, media, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+      "_score": 0.25857127,
+      "_collection": "featuresComponents"
+    },
+    {
+      "id": "blog.split#newsletter#3",
+      "category": "blog",
+      "tags": [
+        "category:blog",
+        "layout:split",
+        "variant:newsletter",
+        "orientation:media-right",
+        "element:header",
+        "element:collections"
+      ],
+      "description": "blog.split for pairing content with visuals. split, media-right; elements: header, collections. Responsive layout for common breakpoints. Content-driven and easily customizable. Suitable for landing pages and marketing sections.",
+      "_score": 0.25747254,
+      "_collection": "blogComponents"
+    }
+  ],
+  {
+    "sessionId": "1756990043745-e3rznd",
+    "role": "user",
+    "text": "отлично. теперь уточним тип блока - blog ",
+    "id": "1756991576988-luoj5u",
+    "createdAt": 1756991576988
+  },
+  {
+    "sessionId": "1756990043745-e3rznd",
+    "role": "assistant",
+    "text": "Уточняю и предлагаю обновить метаданные для блока типа blog, чтобы он лучше подходил для задач сравнения товаров и обзоров.",
+    "qdrant": "blog.split — блок для публикаций и обзоров. Split‑layout с заголовком, коллекцией превью‑статей/карточек продуктов, областью подписки. Карточки содержат изображение, краткое описание, метаданные (цена/рейтинг/тег), ссылку на подробный обзор и CTA «сравнить». Поддерживает фильтры/сортировку, адаптивен и легко настраивается для постов «сравнение товаров» и руководств по выбору.",
+    "id": "1756991595636-0c4lmy",
+    "createdAt": 1756991595636
+  }
+]

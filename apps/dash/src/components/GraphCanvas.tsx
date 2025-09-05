@@ -35,8 +35,8 @@ function GraphLoader({ nodes, edges, mode, fa2, edgeBaseColor }: { nodes: GraphN
 
 export function GraphCanvas({ nodes, edges, mode, fa2, width = '100%', height = 520, background, labelColor, edgeColor }: { nodes: GraphNode[]; edges: GraphEdge[]; mode: 'topology' | 'cosine'; fa2: { gravity: number; scalingRatio: number; strongGravityMode: boolean; slowDown: number }; width?: string | number; height?: number; background: string; labelColor: string; edgeColor: string }) {
   return (
-    <div style={{ width, height, border: `1px solid ${edgeColor}`, background }}>
-      <SigmaContainer key={`${background}-${labelColor}-${mode}`} style={{ width: '100%', height: '100%', background }} settings={{ allowInvalidContainer: true, renderLabels: true, defaultNodeType: 'circle', defaultEdgeType: 'line', labelSize: 14, labelColor: { color: labelColor }, nodeColor: { color: '#777' }, edgeColor: { color: edgeColor }, minCameraRatio: 0.1, maxCameraRatio: 10 }}>
+    <div style={{ width, height }}>
+      <SigmaContainer className="rounded-md" key={`${background}-${labelColor}-${mode}`} style={{ width: '100%', height: '100%', background }} settings={{ allowInvalidContainer: true, renderLabels: true, defaultNodeType: 'circle', defaultEdgeType: 'line', labelSize: 14, labelColor: { color: labelColor }, nodeColor: { color: '#777' }, edgeColor: { color: edgeColor }, minCameraRatio: 0.1, maxCameraRatio: 10 }}>
         <GraphLoader nodes={nodes} edges={edges} mode={mode} fa2={fa2} edgeBaseColor={edgeColor} />
       </SigmaContainer>
     </div>

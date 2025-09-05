@@ -149,6 +149,9 @@
   .container {
     @apply !max-w-7xl;
   }
+  .outline-button {
+    @apply inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] h-10 px-4 py-2 border border-input bg-background hover:bg-accent hover:text-accent-foreground rounded-lg cursor-pointer;
+  }
 } 
 
 /* Hide scrollbar but keep functionality */

@@ -44,7 +44,7 @@ export function NavMenu() {
               </Button>
               <Button data-class="menu-item" onClick={() => navigate('/brain/qdrant')} variant="ghost" size={buttonSize.default} rounded={roundedItem} contentAlign="start" w="full">
                 <Icon component="span" lucideIcon={Database} />
-                <Text size="xs" c="muted">Qdrant</Text>
+                <Text size="xs" c="muted">Collections</Text>
               </Button>
               <Button data-class="menu-item" onClick={() => navigate('/brain/qdrant-graph')} variant="ghost" size={buttonSize.default} rounded={roundedItem} contentAlign="start" w="full">
                 <Icon component="span" lucideIcon={Share2} />
