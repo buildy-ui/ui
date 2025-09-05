@@ -41,4 +41,38 @@ export async function buildCosineGraph(rows: Array<{ id: string; _collection?: s
   return { nodes, edges };
 }
 
+// In-memory caches (reset on page reload)
+const topologyCache = new Map<string, { nodes: GraphNode[]; edges: GraphEdge[] }>();
+const cosineCache = new Map<string, { nodes: GraphNode[]; edges: GraphEdge[] }>();
+
+function makeTopologyKey(rows: Array<{ id: string; category?: string; tags?: string[] }>): string {
+  const norm = rows.map(r => [String(r.id), r.category || '', (r.tags || []).slice().sort().join('|')]);
+  norm.sort((a, b) => (a[0] as string).localeCompare(b[0] as string));
+  return JSON.stringify(norm);
+}
+
+function makeCosineKey(rows: Array<{ id: string; _collection?: string }>): string {
+  const norm = rows.map(r => [String(r._collection || ''), String(r.id)]);
+  norm.sort((a, b) => (a[0] as string).localeCompare(b[0] as string) || (a[1] as string).localeCompare(b[1] as string));
+  return JSON.stringify(norm);
+}
+
+export async function getTopologyGraph(rows: Array<{ id: string; category?: string; tags?: string[] }>): Promise<{ nodes: GraphNode[]; edges: GraphEdge[] }> {
+  const key = makeTopologyKey(rows);
+  const cached = topologyCache.get(key);
+  if (cached) return cached;
+  const built = await buildTopologyGraph(rows);
+  topologyCache.set(key, built);
+  return built;
+}
+
+export async function getCosineGraph(rows: Array<{ id: string; _collection?: string }>): Promise<{ nodes: GraphNode[]; edges: GraphEdge[] }> {
+  const key = makeCosineKey(rows);
+  const cached = cosineCache.get(key);
+  if (cached) return cached;
+  const built = await buildCosineGraph(rows);
+  cosineCache.set(key, built);
+  return built;
+}
+
 

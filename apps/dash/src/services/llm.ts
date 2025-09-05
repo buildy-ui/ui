@@ -1,4 +1,5 @@
 import OpenAI from 'openai';
+import { logLLMRequest, logLLMResponse } from '@/services/sessionLog';
 
 const RAW_OPENROUTER_URL = (import.meta as any).env?.OPENROUTER_URL as string | undefined;
 const VITE_OPENROUTER_URL = (import.meta as any).env?.VITE_OPENROUTER_URL as string | undefined;
@@ -59,6 +60,7 @@ export async function llmRefineTagsAndCategories(context: Array<{ id: string; de
   if (typeof window === 'undefined') {
     // Server-side: use SDK
     const client = createLLMClient();
+    logLLMRequest({ endpoint: 'chat/completions', model: 'openai/gpt-5-mini', messages: content });
     const res = await client.chat.completions.create({
       model: 'openai/gpt-5-mini',
       messages: content as any,
@@ -66,11 +68,14 @@ export async function llmRefineTagsAndCategories(context: Array<{ id: string; de
     });
     console.log('raw response (server)', res);
     responseBody = res;
+    logLLMResponse(res);
   } else {
     // Browser: use fetch/proxy to avoid SDK internals that may call atob
+    logLLMRequest({ endpoint: 'chat/completions', model: 'openai/gpt-5-mini', messages: content });
     const res = await llmFetch('/chat/completions', { model: 'openai/gpt-5-mini', messages: content, response_format: { type: 'json_object' } });
     console.log('fetch response (browser)', res);
     responseBody = await res.json();
+    logLLMResponse(responseBody);
   }
 
   const data = responseBody?.choices?.[0]?.message?.content ?? '{}';
@@ -106,6 +111,10 @@ Return strict JSON { acceptAll: boolean, refinedQuery?: string }`;
   console.log('ids', ids);
   if (typeof window === 'undefined') {
     const client = createLLMClient();
+    logLLMRequest({ endpoint: 'chat/completions', model: 'openai/gpt-5-mini', messages: [
+      { role: 'system', content: system },
+      { role: 'user', content: JSON.stringify(user) },
+    ] });
     const res = await client.chat.completions.create({
       model: 'openai/gpt-5-mini',
       messages: [
@@ -116,7 +125,12 @@ Return strict JSON { acceptAll: boolean, refinedQuery?: string }`;
     });
     console.log('raw response (server)', res);
     responseBody = res;
+    logLLMResponse(res);
   } else {
+    logLLMRequest({ endpoint: 'chat/completions', model: 'openai/gpt-5-mini', messages: [
+      { role: 'system', content: system },
+      { role: 'user', content: JSON.stringify(user) },
+    ] });
     const res = await llmFetch('/chat/completions', {
       model: 'openai/gpt-5-mini',
       messages: [
@@ -127,6 +141,7 @@ Return strict JSON { acceptAll: boolean, refinedQuery?: string }`;
     });
     console.log('fetch response (browser)', res);
     responseBody = await res.json();
+    logLLMResponse(responseBody);
   }
 
   const text = responseBody?.choices?.[0]?.message?.content ?? '{}';
@@ -153,12 +168,17 @@ export async function llmChatAnalyze(context: { query: string; items: Array<{ id
 
   if (typeof window === 'undefined') {
     const client = createLLMClient();
+    logLLMRequest({ endpoint: 'chat/completions', model: 'openai/gpt-5-mini', messages });
     const res = await client.chat.completions.create({ model: 'openai/gpt-5-mini', messages, response_format: { type: 'json_object' } as any });
     const text = res.choices[0]?.message?.content ?? '{}';
+    logLLMResponse(res);
     try { return JSON.parse(text); } catch { return { text, suggestions: [] }; }
   } else {
+    logLLMRequest({ endpoint: 'chat/completions', model: 'openai/gpt-5-mini', messages });
     const res = await llmFetch('/chat/completions', { model: 'openai/gpt-5-mini', messages, response_format: { type: 'json_object' } });
-    const text = (await res.json())?.choices?.[0]?.message?.content ?? '{}';
+    const json = await res.json();
+    logLLMResponse(json);
+    const text = json?.choices?.[0]?.message?.content ?? '{}';
     try { return JSON.parse(text); } catch { return { text, suggestions: [] }; }
   }
 }

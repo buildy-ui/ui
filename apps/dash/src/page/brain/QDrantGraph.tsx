@@ -3,16 +3,18 @@ import { Box, Card, Stack, Title, Text, Button } from "@ui8kit/core";
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@ui8kit/form";
 import '@react-sigma/core/lib/style.css'
 
-import { pickDisplayFields, listCollections, getPointsFirstN } from "@/services/qdrant";
+import { pickDisplayFields, listCollections, getPointsFirstN, searchTopK } from "@/services/qdrant";
 import type { GraphNode, GraphEdge } from "@/lib/graph-builder";
 import { ResizableSheet } from "@/components/ResizableSheet";
-import { agentSearchAndRefine } from "@/services/agent";
-import { buildTopologyGraph, buildCosineGraph } from "@/services/graphology";
+import { getTopologyGraph, getCosineGraph } from "@/services/graphology";
 import { useThemeColors } from "@/hooks/useThemeColors";
 import { GraphCanvas } from "@/components/GraphCanvas";
 import { ChatSheet } from "@/components/ChatSheet";
+import { embedTexts } from "@/services/embeddings";
+import { exportSession, logSearchQuery } from "@/services/sessionLog";
 
 const STORAGE_KEY = 'qdrantGraphRows';
+const LAST_QUERY_KEY = 'qdrantGraphLastQuery';
 
 type Row = ReturnType<typeof pickDisplayFields> & { _score?: number; _collection?: string };
 
@@ -25,16 +27,37 @@ export function QDrantGraph() {
   const filterFormId = "qg-filters";
   const [graphNodes, setGraphNodes] = useState<GraphNode[]>([]);
   const [graphEdges, setGraphEdges] = useState<GraphEdge[]>([]);
-  const [mode, setMode] = useState<'topology' | 'cosine'>("topology");
-  const [fa2, setFa2] = useState({ gravity: 1, scalingRatio: 1, strongGravityMode: true as boolean, slowDown: 1 });
   const themeColors = useThemeColors();
+  const [showCategories, setShowCategories] = useState<boolean>(false);
+  const [showTags, setShowTags] = useState<boolean>(true);
 
-  // Initial load: show up to 100 points across all collections
+  const defaultFA2 = { gravity: 1, scalingRatio: 1, strongGravityMode: true as boolean, slowDown: 1 };
+
+  // Initial load: try vector search using last saved query; otherwise show up to 100 points across all collections
   useEffect(() => {
     (async () => {
       setError(null);
       setLoading(true);
       try {
+        const lastQuery = (typeof window !== 'undefined' ? window.localStorage.getItem(LAST_QUERY_KEY) : null) || '';
+        if (lastQuery && lastQuery.trim()) {
+          setQuery(lastQuery);
+          const [v] = await embedTexts([lastQuery]);
+          const cols = await listCollections();
+          const found: any[] = [];
+          for (const col of cols) {
+            const pts = await searchTopK(col, v, 20);
+            for (const p of pts) found.push({ ...p, _collection: col });
+          }
+          const formatted = found
+            .map((p: any) => ({ ...pickDisplayFields(p), _score: p?.score, _collection: p?._collection }))
+            .sort((a: any, b: any) => (b._score ?? 0) - (a._score ?? 0))
+            .slice(0, 10);
+          setRows(formatted);
+          saveRowsToStorage(formatted);
+          return;
+        }
+        // Fallback: no last query — show initial sample without scores
         const cols = await listCollections();
         const found: any[] = [];
         for (const col of cols) {
@@ -69,16 +92,46 @@ export function QDrantGraph() {
     return false;
   }
 
+  async function runSearch() {
+    setError(null);
+    setLoading(true);
+    try {
+      if (!query.trim()) {
+        // No-op if query is empty
+        return;
+      }
+      const [v] = await embedTexts([query]);
+      const cols = await listCollections();
+      const found: any[] = [];
+      for (const col of cols) {
+        const pts = await searchTopK(col, v, 20);
+        for (const p of pts) found.push({ ...p, _collection: col });
+      }
+      const formatted = found
+        .map((p: any) => ({ ...pickDisplayFields(p), _score: p?.score, _collection: p?._collection }))
+        .sort((a: any, b: any) => (b._score ?? 0) - (a._score ?? 0))
+        .slice(0, 10);
+      setRows(formatted);
+      saveRowsToStorage(formatted);
+      try { localStorage.setItem(LAST_QUERY_KEY, query); } catch {}
+      logSearchQuery(query, formatted.map((r: any) => String(r.id)));
+    } catch (e: any) {
+      setError(e?.message || String(e));
+    } finally {
+      setLoading(false);
+    }
+  }
+
   function handleSaveJson() {
     try {
-      const data = { rows };
+      const data = { rows: displayRows, query, lastQuery: (typeof window !== 'undefined' ? window.localStorage.getItem(LAST_QUERY_KEY) : null), session: exportSession() };
       const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       const ts = new Date();
       const timestamp = ts.toISOString().replace(/[:.]/g, '-');
       a.href = url;
-      a.download = `qdrant-results-${timestamp}.json`;
+      a.download = `qdrant-session-${timestamp}.json`;
       document.body.appendChild(a);
       a.click();
       a.remove();
@@ -88,40 +141,45 @@ export function QDrantGraph() {
     }
   }
 
-  async function runSearch() {
-    setError(null);
-    setLoading(true);
-    try {
-      if (!query.trim()) {
-        // No-op if query is empty
-        return;
-      }
-      const result = await agentSearchAndRefine(query, 10);
-      setRows(result);
-      saveRowsToStorage(result);
-    } catch (e: any) {
-      setError(e?.message || String(e));
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  // Build Sigma graph whenever rows or mode change
+  // Build Sigma graph whenever rows or toggles change
   useEffect(() => {
     (async () => {
-      if (mode === 'topology') {
-        const { nodes, edges } = await buildTopologyGraph(rows.map(r => ({ id: r.id as any, category: r.category as any, tags: r.tags as any })));
-        setGraphNodes(nodes);
-        setGraphEdges(edges);
+      const togglesOff = !showCategories && !showTags;
+      if (!togglesOff) {
+        const { nodes, edges } = await getTopologyGraph(rows.map(r => ({ id: r.id as any, category: r.category as any, tags: r.tags as any })));
+        const filteredEdges = edges.filter((e) => {
+          if (e.kind === 'has_category' && !showCategories) return false;
+          if ((e.kind === 'has_tag' || e.kind === 'co_tag') && !showTags) return false;
+          return true;
+        });
+        const connectedIds = new Set<string>();
+        for (const e of filteredEdges) { connectedIds.add(e.source); connectedIds.add(e.target); }
+        const filteredNodes = nodes.filter((n) => {
+          if (n.kind === 'component') return true;
+          if (n.kind === 'tag') return showTags && connectedIds.has(n.id);
+          if (n.kind === 'category') return showCategories && connectedIds.has(n.id);
+          return false;
+        });
+        setGraphNodes(filteredNodes);
+        setGraphEdges(filteredEdges);
         return;
       }
-      const { nodes, edges } = await buildCosineGraph(rows.map(r => ({ id: r.id as any, _collection: r._collection as any })));
+      const { nodes, edges } = await getCosineGraph(rows.map(r => ({ id: r.id as any, _collection: r._collection as any })));
       setGraphNodes(nodes);
       setGraphEdges(edges);
     })();
-  }, [rows, mode]);
+  }, [rows, showCategories, showTags]);
 
-  const hasRows = useMemo(() => rows.length > 0, [rows]);
+  const derivedMode: 'topology' | 'cosine' = (!showCategories && !showTags) ? 'cosine' : 'topology';
+  const displayRows = useMemo(() => {
+    if (rows.length === 0) return rows;
+    if (derivedMode === 'cosine') {
+      const withScore = rows.map((r: any) => ({ ...r }));
+      withScore.sort((a: any, b: any) => (b._score ?? -Infinity) - (a._score ?? -Infinity));
+      return withScore;
+    }
+    return rows;
+  }, [derivedMode, rows]);
 
   return (
     <Box w="full" mb="2xl">
@@ -184,38 +242,21 @@ export function QDrantGraph() {
         <Card p="sm" rounded="md" shadow="sm" bg="card" w="full">
           <div className="flex items-center gap-3 flex-wrap justify-between">
             <div className="flex items-center gap-3 flex-wrap">
-              <div className="flex items-center gap-2">
-                <span className="text-xs text-muted-foreground">Gravity</span>
-                <input type="number" className="w-20 px-2 py-1 rounded-md border bg-background text-xs" value={fa2.gravity} step={0.1} onChange={(e) => setFa2(v => ({ ...v, gravity: Number(e.target.value) }))} />
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-xs text-muted-foreground">Scaling</span>
-                <input type="number" className="w-20 px-2 py-1 rounded-md border bg-background text-xs" value={fa2.scalingRatio} step={0.1} onChange={(e) => setFa2(v => ({ ...v, scalingRatio: Number(e.target.value) }))} />
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-xs text-muted-foreground">SlowDown</span>
-                <input type="number" className="w-20 px-2 py-1 rounded-md border bg-background text-xs" value={fa2.slowDown} step={0.1} onChange={(e) => setFa2(v => ({ ...v, slowDown: Number(e.target.value) }))} />
-              </div>
-              <div className="flex items-center gap-2">
-                <label className="inline-flex items-center gap-2 text-xs text-muted-foreground">
-                  <input type="checkbox" checked={fa2.strongGravityMode} onChange={(e) => setFa2(v => ({ ...v, strongGravityMode: e.target.checked }))} />
-                  Strong gravity
-                </label>
-              </div>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-xs text-muted-foreground">Mode</span>
-              <select className="px-2 py-1 rounded-md border bg-background text-sm" value={mode} onChange={(e) => setMode(e.target.value as any)}>
-                <option value="topology">Topology</option>
-                <option value="cosine">Cosine</option>
-              </select>
+              <label className="inline-flex items-center gap-2 text-xs text-muted-foreground">
+                <input type="checkbox" checked={showCategories} onChange={(e) => setShowCategories(e.target.checked)} />
+                Categories
+              </label>
+              <label className="inline-flex items-center gap-2 text-xs text-muted-foreground">
+                <input type="checkbox" checked={showTags} onChange={(e) => setShowTags(e.target.checked)} />
+                Labels (tags)
+              </label>
             </div>
           </div>
         </Card>
         <Card p="none" rounded="md" shadow="lg" w="full">
-          <GraphCanvas nodes={graphNodes} edges={graphEdges} mode={mode} fa2={fa2} background={themeColors.background} labelColor={themeColors.foreground} edgeColor={themeColors.border} />
+          <GraphCanvas nodes={graphNodes} edges={graphEdges} mode={derivedMode} fa2={defaultFA2} background={themeColors.background} labelColor={themeColors.foreground} edgeColor={themeColors.border} />
         </Card>
-        {hasRows && hasData() && (
+        {displayRows.length > 0 && (
           <Card p="md" rounded="md" shadow="lg" bg="card" w="full">
             <Table>
               <TableHeader>
@@ -228,13 +269,13 @@ export function QDrantGraph() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {rows.map((r, idx) => (
+                {displayRows.map((r, idx) => (
                   <TableRow key={`${r.id}-${idx}`}>
                     <TableCell><Text size="xs" c="muted">{String(r.id ?? '—')}</Text></TableCell>
-                    <TableCell><Text size="xs" c="muted">{String(r.category ?? '—')}</Text></TableCell>
-                    <TableCell><Text size="xs" c="muted">{Array.isArray(r.tags) ? r.tags.join(', ') : String(r.tags ?? '—')}</Text></TableCell>
-                    <TableCell><Text size="xs" c="muted">{String(r.description ?? '—')}</Text></TableCell>
-                    <TableCell><Text size="xs" c="muted">{typeof r._score === 'number' ? r._score.toFixed(3) : '—'}</Text></TableCell>
+                    <TableCell><Text size="xs" c="muted">{String((r as any).category ?? '—')}</Text></TableCell>
+                    <TableCell><Text size="xs" c="muted">{Array.isArray((r as any).tags) ? (r as any).tags.join(', ') : String((r as any).tags ?? '—')}</Text></TableCell>
+                    <TableCell><Text size="xs" c="muted">{String((r as any).description ?? '—')}</Text></TableCell>
+                    <TableCell><Text size="xs" c="muted">{(() => { const s = (r as any)._score; return typeof s === 'number' ? s.toFixed(3) : '—'; })()}</Text></TableCell>
                   </TableRow>
                 ))}
               </TableBody>

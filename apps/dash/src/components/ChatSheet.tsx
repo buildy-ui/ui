@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Box, Card, Stack, Title, Text, Button } from '@ui8kit/core';
 import { ResizableSheet } from '@/components/ResizableSheet';
 import { addMessage, listMessages, type ChatMessage } from '@/services/chat';
+import { logChatMessage } from '@/services/sessionLog';
 import { chatTurnAnalyze, ensureSession } from '@/services/agent_analyzer';
 import { getItemById, updateItem } from '@/services/items';
 import { embedTexts } from '@/services/embeddings';
@@ -49,12 +50,14 @@ export function ChatSheet({ id, title, query, items }: { id: string; title: stri
     setLoading(true);
     try {
       await addMessage({ sessionId, role: 'user', text: input, attachments: [] });
+      logChatMessage('user', input, { sessionId });
       setInput('');
       const turn = await chatTurnAnalyze({ sessionId, query, items, userNote: input });
       const flat = (turn.suggestions || []).map((s) => ({ id: s.id, description: s.suggestion.description, tags: s.suggestion.tags || [], category: s.suggestion.category, rationale: s.suggestion.rationale, accepted: true }));
       setSuggestions(flat);
       const list = await listMessages(sessionId);
       setMessages(list);
+      logChatMessage('assistant', JSON.stringify(turn), { sessionId, kind: 'analyze_result' });
     } catch (e) {
       // eslint-disable-next-line no-alert
       alert((e as any)?.message || String(e));
@@ -84,6 +87,7 @@ export function ChatSheet({ id, title, query, items }: { id: string; title: stri
       const points = accepted.map((s, i) => ({ id: s.id, vector: vectors[i] || [], payload: { description: s.description, tags: s.tags, category: s.category } }));
       await upsertPoints('all', points);
       alert(`Applied ${accepted.length} suggestions and re-embedded.`);
+      logChatMessage('system', 'Applied suggestions & re-embedded', { count: accepted.length, ids: accepted.map(a => a.id) });
     } catch (e) {
       alert((e as any)?.message || String(e));
     } finally {
