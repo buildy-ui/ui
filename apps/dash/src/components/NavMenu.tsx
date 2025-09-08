@@ -1,5 +1,5 @@
 import { Stack, Button, Icon, Text, Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@ui8kit/core";
-import { Home, BarChart3, LogIn, UserPlus, FilePlus2, List, Boxes, Brain, TableProperties, Database, Share2 } from "lucide-react";
+import { Home, BarChart3, LogIn, UserPlus, FilePlus2, List, Boxes, Brain, TableProperties, Database, Share2, Workflow, PenTool } from "lucide-react";
 import { ListPlus } from "lucide-react";
 import { useAppTheme } from '@/hooks/use-theme';
 import { useNavigate } from "react-router-dom";
@@ -15,6 +15,16 @@ export function NavMenu() {
       <Button data-class="menu-item" onClick={() => navigate('/')} variant="ghost" size={buttonSize.default} rounded={roundedItem} contentAlign="start" w="full">
         <Icon component="span" lucideIcon={Home} />
         <Text size="sm" c="muted">Overview</Text>
+      </Button>
+
+      <Button data-class="menu-item" onClick={() => navigate('/flow')} variant="ghost" size={buttonSize.default} rounded={roundedItem} contentAlign="start" w="full">
+        <Icon component="span" lucideIcon={Workflow} />
+        <Text size="sm" c="muted">Flow</Text>
+      </Button>
+
+      <Button data-class="menu-item" onClick={() => navigate('/draw')} variant="ghost" size={buttonSize.default} rounded={roundedItem} contentAlign="start" w="full">
+        <Icon component="span" lucideIcon={PenTool} />
+        <Text size="sm" c="muted">Draw</Text>
       </Button>
 
       <Button data-class="menu-item" onClick={() => navigate('/stat')} variant="ghost" size={buttonSize.default} rounded={roundedItem} contentAlign="start" w="full">

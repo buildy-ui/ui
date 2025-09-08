@@ -1,0 +1,34 @@
+{
+  "include": ["./src"],
+  "exclude": ["./lib", "./dist"],
+  "compilerOptions": {
+    "rootDir": "src",
+    "types": ["node"],
+    "target": "ES2020",
+    "lib": ["DOM", "ESNext"],
+    "module": "ES2020",
+    "moduleResolution": "Node",
+    "jsx": "react-jsx",
+    "resolveJsonModule": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "composite": true,
+    "declaration": true,
+    "declarationDir": "./dist",
+    "outDir": "./dist",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/flow": ["./src/index"],
+      "@/flow/*": ["./src/*"],
+      "@ui8kit/core": ["../core/src"],
+      "@ui8kit/core/*": ["../core/src/*"],
+      "@ui8kit/form": ["../form/src"],
+      "@ui8kit/form/*": ["../form/src/*"]
+    }
+  },
+  "references": [
+    { "path": "../core" },
+    { "path": "../form" }
+  ]
+} 

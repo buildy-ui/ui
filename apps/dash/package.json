@@ -16,6 +16,7 @@
     "@qdrant/js-client-rest": "^1.15.1",
     "@react-sigma/core": "^5.0.4",
     "@types/d3": "^7.4.3",
+    "@xyflow/react": "^12.8.4",
     "d3": "^7.9.0",
     "graphology": "^0.25.4",
     "graphology-layout-forceatlas2": "^0.10.1",

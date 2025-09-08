@@ -1,0 +1,56 @@
+{
+  "name": "@ui8kit/flow",
+  "version": "0.0.1",
+  "description": "A collection of flow for buildy/ui",
+  "homepage": "https://buildy.tw",
+  "license": "MIT",
+  "author": "buildy-ui",
+  "keywords": [
+    "frontend",
+    "flow",
+    "library",
+    "tailwind",
+    "utility-first",
+    "semantic",
+    "react",
+    "react-flow",
+    "flow",
+    "state"
+  ],
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "repository": {
+    "url": "https://github.com/buildy-ui/ui.git",
+    "type": "git",
+    "directory": "packages/@ui8kit/flow"
+  },
+  "peerDependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "dependencies": {
+    "dexie": "^4.0.8",
+    "elkjs": "^0.9.3",
+    "fit-curve": "^0.2.0",
+    "immer": "^10.1.1",
+    "konva": "^9.3.16",
+    "perfect-freehand": "^1.2.2",
+    "react-konva": "^18.2.10",
+    "zod": "^3.23.8",
+    "zustand": "^4.5.5"
+  }
+}
