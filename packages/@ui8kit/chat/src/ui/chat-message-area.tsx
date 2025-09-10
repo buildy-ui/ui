@@ -1,5 +1,6 @@
 import { Block, Button, Icon, Group, Stack } from "@ui8kit/core";
 import { ChevronDown } from "lucide-react";
+import { ChatDropdown } from "./chat-dropdown";
 import { ScrollArea } from "./scroll-area";
 import { useScrollToBottom } from "../hooks/use-scroll-to-bottom";
 
@@ -31,12 +32,19 @@ export function ScrollButton({ onClick, alignment = "right" }: ScrollButtonProps
 interface ChatMessageAreaProps {
   children: any;
   scrollButtonAlignment?: ScrollButtonAlignment;
+  reasoningText?: string;
+  reasoningFinished?: boolean;
 }
 
-export function ChatMessageArea({ children, scrollButtonAlignment = "right" }: ChatMessageAreaProps) {
+export function ChatMessageArea({ children, scrollButtonAlignment = "right", reasoningText, reasoningFinished }: ChatMessageAreaProps) {
   const [containerRef, showScrollButton, scrollToBottom] = useScrollToBottom<HTMLDivElement>();
   return (
     <Block position="relative" w="full" h="full">
+      {reasoningText && (
+        <Block p="sm" border="1px" borderColor="border" rounded="md" mb="sm" bg="card">
+          <ChatDropdown text={reasoningText} finished={Boolean(reasoningFinished)} />
+        </Block>
+      )}
       <ScrollArea>
         <Block ref={containerRef}>
           <Block minH="full">{children}</Block>

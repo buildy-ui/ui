@@ -7,6 +7,7 @@ export { ChatMessageArea, ScrollButton } from "./ui/chat-message-area";
 export { MarkdownContent } from "./ui/markdown-content";
 export { ScrollArea } from "./ui/scroll-area";
 export { ModelSelector, MODELS, type Model } from "./ui/model-selector";
+export { ChatDropdown } from "./ui/chat-dropdown";
 
 // Hooks
 export * from "./hooks";

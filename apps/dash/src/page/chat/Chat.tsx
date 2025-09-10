@@ -108,7 +108,7 @@ export function Chat() {
               </Text>
             </Box>
           ) : (
-            <ChatMessageArea>
+            <ChatMessageArea reasoningText={reasoningText} reasoningFinished={requestStatus === 'completed'}>
               {messages.map((message) => (
                 <ChatMessage
                   key={message.id}

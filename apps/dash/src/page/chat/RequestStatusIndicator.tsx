@@ -13,7 +13,6 @@ import { useEffect, useState } from 'react';
 
 interface RequestStatusIndicatorProps {
   status: RequestStatus;
-  reasoningText?: string;
   className?: string;
 }
 
@@ -83,9 +82,8 @@ const statusConfig = {
   },
 };
 
-export function RequestStatusIndicator({ status, reasoningText, className }: RequestStatusIndicatorProps) {
+export function RequestStatusIndicator({ status, className }: RequestStatusIndicatorProps) {
   const [isVisible, setIsVisible] = useState(status !== 'idle');
-  const [dots, setDots] = useState('');
 
   const config = statusConfig[status];
   const StatusIcon = config.icon;
@@ -97,19 +95,6 @@ export function RequestStatusIndicator({ status, reasoningText, className }: Req
       return () => clearTimeout(timer);
     } else {
       setIsVisible(true);
-    }
-  }, [status]);
-
-  // Animated dots for processing states
-  useEffect(() => {
-    if (status === 'connecting_openrouter' || status === 'calling_openai' || status === 'openai_processing' ||
-        status === 'model_reasoning' || status === 'generating_response' || status === 'streaming_tokens') {
-      const interval = setInterval(() => {
-        setDots(prev => prev.length >= 3 ? '' : prev + '.');
-      }, 500);
-      return () => clearInterval(interval);
-    } else {
-      setDots('');
     }
   }, [status]);
 
@@ -131,31 +116,8 @@ export function RequestStatusIndicator({ status, reasoningText, className }: Req
           className={`${config.color} ${isAnimated ? 'animate-spin' : ''}`}
         />
         <Text size="sm" className={config.color} fw="medium">
-          {config.text}{dots}
+          {config.text}
         </Text>
-        {/* Reasoning text preview (if available) */}
-        {status === 'model_reasoning' && reasoningText && (
-          <Text size="xs" className={config.color}>
-            {reasoningText}
-          </Text>
-        )}
-
-        {/* Progress dots for active states */}
-        {isAnimated && (
-          <Box display="flex" gap="xs" ml="xs">
-            {[0, 1, 2].map((i) => (
-              <Box
-                key={i}
-                w="6px"
-                h="6px"
-                rounded="full"
-                bg="current"
-                opacity={dots.length > i ? '1' : '0.3'}
-                className="transition-opacity duration-200"
-              />
-            ))}
-          </Box>
-        )}
 
         {/* Completion checkmark animation */}
         {status === 'completed' && (
