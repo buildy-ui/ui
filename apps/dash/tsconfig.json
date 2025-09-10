@@ -33,7 +33,9 @@
       "@ui8kit/form": ["../../packages/@ui8kit/form/src"],
       "@ui8kit/form/*": ["../../packages/@ui8kit/form/src/*"],
       "@ui8kit/flow": ["../../packages/@ui8kit/flow/src"],
-      "@ui8kit/flow/*": ["../../packages/@ui8kit/flow/src/*"]
+      "@ui8kit/flow/*": ["../../packages/@ui8kit/flow/src/*"],
+      "@ui8kit/chat": ["../../packages/@ui8kit/chat/src"],
+      "@ui8kit/chat/*": ["../../packages/@ui8kit/chat/src/*"]
     }
   },
   "include": ["src"],

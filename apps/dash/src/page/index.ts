@@ -6,5 +6,4 @@ export * from './more/Login';
 export * from './more/Register';
 export * from './crud/CrudCreate';
 export * from './crud/CrudList';
-export * from './flow/flow';
-export * from './flow/draw';
+export * from './chat/Chat';

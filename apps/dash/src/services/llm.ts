@@ -22,7 +22,7 @@ function createLLMClient() {
   });
 }
 
-async function llmFetch(path: string, body: any): Promise<Response> {
+export async function llmFetch(path: string, body: any): Promise<Response> {
   const useProxy = IS_DEV && PROXY_ENABLED;
   const url = useProxy ? `/llm${path}` : `${LLM_URL}${path}`;
   const token = LLM_KEY || VITE_LLM_KEY;

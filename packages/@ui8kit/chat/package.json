@@ -1,5 +1,5 @@
 {
-  "name": "@ui8kit/flow",
+  "name": "@ui8kit/chat",
   "version": "0.0.1",
   "description": "A collection of flow for buildy/ui",
   "homepage": "https://buildy.tw",
@@ -7,14 +7,14 @@
   "author": "buildy-ui",
   "keywords": [
     "frontend",
-    "flow",
+    "chat",
     "library",
     "tailwind",
     "utility-first",
     "semantic",
     "react",
-    "react-flow",
-    "flow",
+    "react-chat",
+    "chat",
     "state"
   ],
   "sideEffects": false,
@@ -36,14 +36,16 @@
   "repository": {
     "url": "https://github.com/buildy-ui/ui.git",
     "type": "git",
-    "directory": "packages/@ui8kit/flow"
+    "directory": "packages/@ui8kit/chat"
   },
   "peerDependencies": {
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
   "dependencies": {
-    "zod": "^3.23.8",
-    "zustand": "^4.5.5"
+    "marked": "^16.2.1",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1",
+    "shiki": "^3.12.2"
   }
 }
