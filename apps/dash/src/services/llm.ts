@@ -9,8 +9,8 @@ const VITE_LLM_KEY = (import.meta as any).env?.VITE_OPENROUTER_API_KEY as string
 const IS_DEV = (import.meta as any).env?.DEV as boolean | undefined;
 const PROXY_ENABLED = Boolean(RAW_OPENROUTER_URL);
 
-// Create OpenAI client only on server to avoid browser runtime issues
-function createLLMClient() {
+// Create OpenAI client. Prefer server; allow browser when using proxy/fetch streaming.
+export function createLLMClient() {
   return new OpenAI({
     baseURL: LLM_URL,
     apiKey: LLM_KEY,
@@ -45,6 +45,128 @@ export async function llmFetch(path: string, body: any): Promise<Response> {
     throw new Error(data?.error?.message || res.statusText);
   }
   return res;
+}
+
+// High-level streaming chat completions via OpenAI SDK (OpenRouter baseURL)
+// Supports: stream=true, reasoning, and returns token usage when available.
+export type LLMRequestParams = {
+  model: string;
+  messages: Array<{ role: 'system'|'user'|'assistant'; content: string }>;
+  stream?: boolean;
+  reasoning?: { effort?: 'low'|'medium'|'high'; exclude?: boolean };
+  temperature?: number;
+  max_tokens?: number;
+  // Progress callbacks
+  onProgress?: (
+    status: 'reasoning' | 'content' | 'usage' | 'done',
+    data: { delta?: string; reasoningText?: string; totalLength?: number; usage?: any }
+  ) => void;
+};
+
+export async function llmChatCompletions({
+  model,
+  messages,
+  stream = true,
+  reasoning,
+  temperature,
+  max_tokens,
+  onProgress,
+}: LLMRequestParams): Promise<{ text?: string; usage?: any }> {
+  // For browser runtime we prefer SDK streaming iterator when possible.
+  // Falls back to proxy fetch if needed.
+  try {
+    const client = createLLMClient();
+
+    logLLMRequest({ endpoint: 'chat/completions', model, messages, stream, reasoning, temperature, max_tokens });
+
+    const response = await client.chat.completions.create({
+      model,
+      messages,
+      stream,
+      reasoning,
+      temperature,
+      max_tokens,
+    } as any);
+
+    let fullText = '';
+    let lastUsage: any = undefined;
+
+    if (stream) {
+      // Stream chunks using async iterator
+      for await (const chunk of response as any) {
+        const choice = chunk?.choices?.[0];
+        const delta = choice?.delta;
+
+        if (delta?.reasoning) {
+          onProgress?.('reasoning', { reasoningText: String(delta.reasoning) });
+        }
+
+        if (delta?.content) {
+          const textDelta = String(delta.content);
+          fullText += textDelta;
+          onProgress?.('content', { delta: textDelta, totalLength: fullText.length });
+        }
+
+        // Some providers include usage within stream or at the end
+        if ((chunk as any)?.usage) {
+          lastUsage = (chunk as any).usage;
+          onProgress?.('usage', { usage: lastUsage });
+        }
+      }
+
+      onProgress?.('done', { delta: '', totalLength: fullText.length, usage: lastUsage });
+      logLLMResponse({ text: fullText, usage: lastUsage });
+      return { text: fullText, usage: lastUsage };
+    }
+
+    // Non-streaming
+    const text = (response as any)?.choices?.[0]?.message?.content ?? '';
+    const usage = (response as any)?.usage;
+    onProgress?.('done', { delta: '', totalLength: text.length, usage });
+    logLLMResponse({ text, usage });
+    return { text, usage };
+  } catch (err) {
+    // On client SDK limitations (e.g., atob in browser), fallback to proxy fetch
+    // using the existing llmFetch helper with stream=true and SSE parsing.
+    const proxyRes = await llmFetch('/chat/completions', { model, messages, stream: true, reasoning, temperature, max_tokens });
+    if (!proxyRes.ok || !proxyRes.body) {
+      throw new Error(`LLM proxy request failed: ${proxyRes.status}`);
+    }
+    const reader = proxyRes.body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = '';
+    let fullText = '';
+    let usage: any = undefined;
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buffer += decoder.decode(value, { stream: true });
+      const lines = buffer.split('\n');
+      buffer = lines.pop() || '';
+      for (const line of lines) {
+        if (!line.startsWith('data: ')) continue;
+        const data = line.slice(6);
+        if (data === '[DONE]') break;
+        try {
+          const parsed = JSON.parse(data);
+          const delta = parsed?.choices?.[0]?.delta;
+          if (delta?.reasoning) onProgress?.('reasoning', { reasoningText: String(delta.reasoning) });
+          if (delta?.content) {
+            const d = String(delta.content);
+            fullText += d;
+            onProgress?.('content', { delta: d, totalLength: fullText.length });
+          }
+          if (parsed?.usage) {
+            usage = parsed.usage;
+            onProgress?.('usage', { usage });
+          }
+        } catch {}
+      }
+    }
+    onProgress?.('done', { delta: '', totalLength: fullText.length, usage });
+    logLLMResponse({ text: fullText, usage });
+    return { text: fullText, usage };
+  }
 }
 
 export async function llmRefineTagsAndCategories(context: Array<{ id: string; description?: string; category?: string; tags?: string[] }>, userQuery: string): Promise<{ mustTags: string[]; shouldTags: string[]; categories: string[] }> {

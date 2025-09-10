@@ -1,6 +1,6 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { Model } from '@ui8kit/chat';
-import { llmFetch } from '@/services/llm';
+import { llmChatCompletions, type LLMRequestParams } from '@/services/llm';
 
 export interface Message {
   id: string;
@@ -27,6 +27,7 @@ export interface ChatState {
   error: string | null;
   inputValue: string;
   requestStatus: RequestStatus;
+  reasoningText: string;
 }
 
 export function useChat() {
@@ -37,6 +38,7 @@ export function useChat() {
     error: null,
     inputValue: '',
     requestStatus: 'idle',
+    reasoningText: '',
   });
 
   const abortControllerRef = useRef<AbortController | null>(null);
@@ -62,9 +64,16 @@ export function useChat() {
     setState(prev => ({ ...prev, requestStatus: status }));
   }, []);
 
+  // Ensure unique, stable IDs for React keys even within the same ms
+  const idSeqRef = useRef(0);
+  const generateId = useCallback(() => {
+    idSeqRef.current += 1;
+    return `${Date.now()}_${idSeqRef.current}`;
+  }, []);
+
   const addMessage = useCallback((content: string, role: 'user' | 'assistant') => {
     const message: Message = {
-      id: Date.now().toString(),
+      id: generateId(),
       content,
       role,
       timestamp: new Date(),
@@ -77,13 +86,13 @@ export function useChat() {
     }));
 
     return message;
-  }, []);
+  }, [generateId]);
 
   const sendMessage = useCallback(async (content: string) => {
     if (!content.trim() || state.isLoading) return;
 
-    // Clear input immediately
-    setState(prev => ({ ...prev, inputValue: '', requestStatus: 'connecting_openrouter' }));
+    // Clear input immediately and reset reasoning text
+    setState(prev => ({ ...prev, inputValue: '', requestStatus: 'connecting_openrouter', reasoningText: '' }));
 
     // Add user message
     const userMessage = addMessage(content, 'user');
@@ -106,99 +115,62 @@ export function useChat() {
         content: msg.content,
       }));
 
-      // Status: Connecting to OpenRouter
+      // Status: Connecting to OpenRouter (initial phase)
       setRequestStatus('connecting_openrouter');
 
-      // Make API request with streaming
-      const response = await llmFetch('/chat/completions', {
-        model: state.selectedModel,
-        messages,
-        stream: true,
-      });
-
-      // Status: OpenRouter responded, now calling OpenAI
-      setRequestStatus('openrouter_response');
-
-      if (!response.ok) {
-        throw new Error(`API request failed: ${response.status}`);
-      }
-
-      // Status: Calling OpenAI API
-      setRequestStatus('calling_openai');
-
-      if (!response.body) {
-        throw new Error('Response body is not available');
-      }
-
-      // Status: OpenAI is processing the request
-      setRequestStatus('openai_processing');
-
-      const reader = response.body.getReader();
-      const decoder = new TextDecoder();
-      let assistantContent = '';
-      let buffer = '';
-
-      // Create temporary assistant message
+      // Create temporary assistant message to update progressively
       const assistantMessage = addMessage('', 'assistant');
 
-      try {
-        while (true) {
-          const { done, value } = await reader.read();
+      // Call high-level streaming helper (OpenAI SDK/OpenRouter)
+      // Map human-friendly model to OpenRouter-compatible name
+      const modelMap: Record<string, string> = {
+        'gpt-5-mini': 'openai/gpt-5-mini',
+        'gpt-5-nano': 'openai/gpt-5-nano',
+        'gpt-5-high': 'openai/gpt-5-high',
+      };
+      const openRouterModel = modelMap[state.selectedModel] || state.selectedModel;
 
-          if (done) break;
-
-          buffer += decoder.decode(value, { stream: true });
-          const lines = buffer.split('\n');
-          buffer = lines.pop() || '';
-
-          for (const line of lines) {
-            if (line.startsWith('data: ')) {
-              const data = line.slice(6);
-
-              if (data === '[DONE]') {
-                break;
+      await llmChatCompletions({
+        model: openRouterModel,
+        messages,
+        stream: true,
+        reasoning: { effort: 'medium', exclude: false },
+        temperature: 0.7,
+        max_tokens: 2048,
+        onProgress: (status, data) => {
+          switch (status) {
+            case 'reasoning':
+              setRequestStatus('model_reasoning');
+              if (data.reasoningText) {
+                setState(prev => ({ ...prev, reasoningText: prev.reasoningText + data.reasoningText }));
               }
-
-              try {
-                const parsed = JSON.parse(data);
-                const delta = parsed.choices?.[0]?.delta?.content;
-
-                if (delta) {
-                  // Status: Model is reasoning and generating response
-                  if (assistantContent === '') {
-                    setRequestStatus('model_reasoning');
-                  } else if (assistantContent.length < 50) {
-                    setRequestStatus('generating_response');
-                  } else {
-                    setRequestStatus('streaming_tokens');
-                  }
-
-                  assistantContent += delta;
-
-                  // Update the assistant message with new content
-                  setState(prev => ({
-                    ...prev,
-                    messages: prev.messages.map(msg =>
-                      msg.id === assistantMessage.id
-                        ? { ...msg, content: assistantContent }
-                        : msg
-                    ),
-                  }));
-                }
-              } catch (e) {
-                // Skip invalid JSON
-                continue;
-              }
+              break;
+            case 'content': {
+              const delta = data.delta || '';
+              const total = data.totalLength || 0;
+              if (total < 10) setRequestStatus('generating_response');
+              else setRequestStatus('streaming_tokens');
+              // Update assistant message content incrementally
+              setState(prev => ({
+                ...prev,
+                messages: prev.messages.map(msg =>
+                  msg.id === assistantMessage.id
+                    ? { ...msg, content: (msg.content || '') + delta }
+                    : msg
+                ),
+              }));
+              break;
             }
+            case 'usage':
+              // Future: surface token usage in UI if needed
+              break;
+            case 'done':
+              setRequestStatus('completed');
+              setTimeout(() => setRequestStatus('idle'), 2000);
+              break;
           }
-        }
-      } finally {
-        reader.releaseLock();
-      }
-
-      if (!assistantContent) {
-        throw new Error('No response content received');
-      }
+        },
+      } as LLMRequestParams);
 
       // Status: Completed
       setRequestStatus('completed');
@@ -238,6 +210,7 @@ export function useChat() {
       error: null,
       inputValue: '',
       requestStatus: 'idle',
+      reasoningText: '',
     }));
   }, []);
 

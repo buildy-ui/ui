@@ -28,6 +28,7 @@ export function Chat() {
     error,
     inputValue,
     requestStatus,
+    reasoningText,
     sendMessage,
     setSelectedModel,
     setInputValue,
@@ -80,7 +81,7 @@ export function Chat() {
         </Stack>
 
         {/* Status Indicator */}
-        <RequestStatusIndicator status={requestStatus} />
+        <RequestStatusIndicator status={requestStatus} reasoningText={reasoningText} />
 
         {/* Messages Area */}
         <Box

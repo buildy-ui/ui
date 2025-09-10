@@ -13,6 +13,7 @@ import { useEffect, useState } from 'react';
 
 interface RequestStatusIndicatorProps {
   status: RequestStatus;
+  reasoningText?: string;
   className?: string;
 }
 
@@ -82,7 +83,7 @@ const statusConfig = {
   },
 };
 
-export function RequestStatusIndicator({ status, className }: RequestStatusIndicatorProps) {
+export function RequestStatusIndicator({ status, reasoningText, className }: RequestStatusIndicatorProps) {
   const [isVisible, setIsVisible] = useState(status !== 'idle');
   const [dots, setDots] = useState('');
 
@@ -132,6 +133,12 @@ export function RequestStatusIndicator({ status, className }: RequestStatusIndic
         <Text size="sm" className={config.color} fw="medium">
           {config.text}{dots}
         </Text>
+        {/* Reasoning text preview (if available) */}
+        {status === 'model_reasoning' && reasoningText && (
+          <Text size="xs" className={config.color}>
+            {reasoningText}
+          </Text>
+        )}
 
         {/* Progress dots for active states */}
         {isAnimated && (
