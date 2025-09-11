@@ -14,6 +14,10 @@ import { useEffect, useState } from 'react';
 interface RequestStatusIndicatorProps {
   status: RequestStatus;
   className?: string;
+  theme: {
+    rounded : { default: any };
+    buttonSize : { default: any };
+  };
 }
 
 const statusConfig = {
@@ -21,68 +25,68 @@ const statusConfig = {
     icon: CheckCircle,
     text: 'Ready to work',
     color: 'text-green-600',
-    bgColor: 'bg-green-50',
-    borderColor: 'border-green-200',
+    bgColor: 'bg-card',
+    borderColor: 'border',
   },
   connecting_openrouter: {
     icon: Wifi,
     text: 'Connecting to OpenRouter...',
     color: 'text-blue-600',
-    bgColor: 'bg-blue-50',
-    borderColor: 'border-blue-200',
+    bgColor: 'bg-card',
+    borderColor: 'border',
   },
   openrouter_response: {
     icon: Server,
     text: 'OpenRouter responded',
     color: 'text-purple-600',
-    bgColor: 'bg-purple-50',
-    borderColor: 'border-purple-200',
+    bgColor: 'bg-card',
+    borderColor: 'border',
   },
   calling_openai: {
     icon: Cpu,
     text: 'Calling OpenAI API...',
     color: 'text-orange-600',
-    bgColor: 'bg-orange-50',
-    borderColor: 'border-orange-200',
+    bgColor: 'bg-card',
+    borderColor: 'border',
   },
   openai_processing: {
     icon: Zap,
     text: 'OpenAI processing request...',
     color: 'text-orange-600',
-    bgColor: 'bg-orange-50',
-    borderColor: 'border-orange-200',
+    bgColor: 'bg-card',
+    borderColor: 'border',
   },
   model_reasoning: {
     icon: Brain,
     text: 'Model is reasoning...',
     color: 'text-indigo-600',
-    bgColor: 'bg-indigo-50',
-    borderColor: 'border-indigo-200',
+    bgColor: 'bg-card',
+    borderColor: 'border',
   },
   generating_response: {
     icon: Brain,
     text: 'Generating response...',
     color: 'text-indigo-600',
-    bgColor: 'bg-indigo-50',
-    borderColor: 'border-indigo-200',
+    bgColor: 'bg-card',
+    borderColor: 'border',
   },
   streaming_tokens: {
     icon: Loader2,
     text: 'Streaming response...',
     color: 'text-cyan-600',
-    bgColor: 'bg-cyan-50',
-    borderColor: 'border-cyan-200',
+    bgColor: 'bg-card',
+    borderColor: 'border',
   },
   completed: {
     icon: CheckCircle,
     text: 'Completed!',
     color: 'text-green-600',
-    bgColor: 'bg-green-50',
-    borderColor: 'border-green-200',
+    bgColor: 'bg-card',
+    borderColor: 'border',
   },
 };
 
-export function RequestStatusIndicator({ status, className }: RequestStatusIndicatorProps) {
+export function RequestStatusIndicator({ status, theme, className }: RequestStatusIndicatorProps) {
   const [isVisible, setIsVisible] = useState(status !== 'idle');
 
   const config = statusConfig[status];
@@ -106,24 +110,24 @@ export function RequestStatusIndicator({ status, className }: RequestStatusIndic
   return (
     <Box
       p="sm"
-      rounded="md"
+      rounded={theme.rounded.default}
       className={`border transition-all duration-300 ${config.bgColor} ${config.borderColor} ${className}`}
     >
       <Group gap="sm" align="center">
         <Icon
           lucideIcon={StatusIcon}
-          size="sm"
+          size={theme.buttonSize.default}
           className={`${config.color} ${isAnimated ? 'animate-spin' : ''}`}
         />
-        <Text size="sm" className={config.color} fw="medium">
+        <Text size={theme.buttonSize.default} className={config.color} fw="medium">
           {config.text}
         </Text>
 
         {/* Completion checkmark animation */}
         {status === 'completed' && (
           <Box
-            w="16px"
-            h="16px"
+            w="14px"
+            h="14px"
             rounded="full"
             bg="green-500"
             display="flex"

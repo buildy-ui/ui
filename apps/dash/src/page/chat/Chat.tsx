@@ -20,7 +20,12 @@ const content = {
 }
 
 export function Chat() {
-  const { rounded } = useAppTheme();
+  const { rounded, buttonSize } = useAppTheme();
+  const theme = {
+    rounded,
+    buttonSize,
+  }
+
   const {
     messages,
     isLoading,
@@ -50,15 +55,20 @@ export function Chat() {
           </Title>
           <Text c="muted">{content.description}</Text>
 
-          {/* Controls */}
+          {/* Model Selector */}
           <Group gap="md" justify="between">
             <ModelSelector
               value={selectedModel}
               onChange={setSelectedModel}
             />
+
+            {/* Request Status Indicator */}
+            <RequestStatusIndicator status={requestStatus} theme={theme} />
+
+            {/* Controls */}
             <Group gap="sm">
               <Button
-                size="sm"
+                size={buttonSize.default}
                 variant="outline"
                 onClick={clearMessages}
                 disabled={messages.length === 0}
@@ -68,7 +78,7 @@ export function Chat() {
               </Button>
               {isLoading && (
                 <Button
-                  size="sm"
+                  size={buttonSize.default}
                   variant="outline"
                   onClick={stopGeneration}
                 >
@@ -80,9 +90,6 @@ export function Chat() {
           </Group>
         </Stack>
 
-        {/* Status Indicator */}
-        <RequestStatusIndicator status={requestStatus} reasoningText={reasoningText} />
-
         {/* Messages Area */}
         <Box
           flex="1"
@@ -90,6 +97,7 @@ export function Chat() {
           rounded={rounded?.default}
           shadow="none"
           bg="card"
+          p="md"
           border="1px"
           borderColor="border"
           position="relative"
@@ -102,8 +110,9 @@ export function Chat() {
               display="flex"
               align="center"
               justify="center"
+              p="md"
             >
-              <Text c="muted" size="lg">
+              <Text c="muted" size="sm">
                 Start a conversation by typing a message below
               </Text>
             </Box>
@@ -163,6 +172,7 @@ export function Chat() {
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
           >
+            <Group gap="sm" justify="between">
             <ChatInputTextArea
               placeholder="Type your message here..."
               disabled={isLoading}
@@ -173,6 +183,7 @@ export function Chat() {
             >
               Send
             </ChatInputSubmit>
+            </Group>
           </ChatInput>
         </Box>
       </Stack>

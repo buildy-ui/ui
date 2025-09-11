@@ -1,15 +1,24 @@
-// Public exports for @ui8kit/chat
+// Main exports
+export { AIClient } from './core/ai-client';
+export { BaseAIProvider } from './core/base-provider';
 
-// UI components
-export { ChatInput, ChatInputTextArea, ChatInputSubmit } from "./ui/chat-input";
-export { ChatMessage, ChatMessageAvatar, ChatMessageContent } from "./ui/chat-message";
-export { ChatMessageArea, ScrollButton } from "./ui/chat-message-area";
-export { MarkdownContent } from "./ui/markdown-content";
-export { ScrollArea } from "./ui/scroll-area";
-export { ModelSelector, MODELS, type Model } from "./ui/model-selector";
-export { ChatDropdown } from "./ui/chat-dropdown";
+// Providers
+export { OpenRouterProvider } from './providers/openrouter-provider';
+export { OpenAIProvider } from './providers/openai-provider';
+export { ProviderFactory, type ProviderType, type ProviderConfig } from './providers/provider-factory';
 
-// Hooks
-export * from "./hooks";
+// Interfaces and types
+export type {
+  Message,
+  ToolCall,
+  Tool,
+  CommonParameters,
+  ProviderSpecificParameters,
+  CompletionRequest,
+  ChatCompletionRequest,
+  CompletionResponse,
+  StreamChunk
+} from './core/interfaces';
 
-
+// Examples (for testing and reference)
+export * from './examples/usage-examples';
