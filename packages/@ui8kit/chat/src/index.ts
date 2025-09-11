@@ -27,11 +27,12 @@ export {
   ChatMessageContent
 } from './ui/chat-message';
 
-export { ChatInput } from './ui/chat-input';
+export { ChatInput, ChatInputTextArea, ChatInputSubmit } from './ui/chat-input';
 export { ChatMessageArea } from './ui/chat-message-area';
 export { ChatDropdown } from './ui/chat-dropdown';
 export { MarkdownContent } from './ui/markdown-content';
 export { ModelSelector } from './ui/model-selector';
+export type { Model } from './ui/model-selector';
 export { ScrollArea } from './ui/scroll-area';
 
 // ========== HOOKS ==========

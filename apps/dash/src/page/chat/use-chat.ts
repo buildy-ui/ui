@@ -1,6 +1,6 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
-import { Model } from '@ui8kit/chat';
-import { llmChatCompletions, type LLMRequestParams } from '@/services/llm';
+import type { Model } from '@ui8kit/chat';
+import { ui8chatCompletions } from '@/services/ui8kitChat';
 
 export interface Message {
   id: string;
@@ -121,22 +121,15 @@ export function useChat() {
       // Create temporary assistant message to update progressively
       const assistantMessage = addMessage('', 'assistant');
 
-      // Call high-level streaming helper (OpenAI SDK/OpenRouter)
-      // Map human-friendly model to OpenRouter-compatible name
-      const modelMap: Record<string, string> = {
-        'gpt-5-mini': 'openai/gpt-5-mini',
-        'gpt-5-nano': 'openai/gpt-5-nano',
-        'gpt-5-high': 'openai/gpt-5-high',
-      };
-      const openRouterModel = modelMap[state.selectedModel] || state.selectedModel;
-
-      await llmChatCompletions({
-        model: openRouterModel,
+      // Stream via UI8Kit AIClient-backed service
+      await ui8chatCompletions({
+        model: state.selectedModel,
         messages,
         stream: true,
         reasoning: { effort: 'medium', exclude: false },
         temperature: 0.7,
         max_tokens: 2048,
+        signal: abortController.signal,
         onProgress: (status, data) => {
           switch (status) {
             case 'reasoning':
@@ -170,7 +163,7 @@ export function useChat() {
               break;
           }
         },
-      } as LLMRequestParams);
+      });
 
       // Status: Completed
       setRequestStatus('completed');

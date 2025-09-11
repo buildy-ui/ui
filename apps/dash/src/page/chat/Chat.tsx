@@ -1,13 +1,14 @@
 import { Box, Stack, Title, Button, Text, Group, Icon } from "@ui8kit/core";
 import {
   ChatInput,
-  ChatInputTextArea,
+  ChatInputTextArea, 
   ChatInputSubmit,
   ChatMessage,
   ChatMessageAvatar,
   ChatMessageContent,
   ChatMessageArea,
-  ModelSelector
+  ModelSelector,
+  Model
 } from "@ui8kit/chat";
 import { useChat } from './use-chat';
 import { RequestStatusIndicator } from './RequestStatusIndicator';
@@ -59,7 +60,7 @@ export function Chat() {
           <Group gap="md" justify="between">
             <ModelSelector
               value={selectedModel}
-              onChange={setSelectedModel}
+              onChange={(model) => setSelectedModel(model as Model)}
             />
 
             {/* Request Status Indicator */}

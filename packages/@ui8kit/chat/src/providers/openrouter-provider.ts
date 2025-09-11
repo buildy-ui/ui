@@ -1,5 +1,5 @@
 import { BaseAIProvider } from '../core/base-provider';
-import { CompletionResponse, CommonParameters, ProviderSpecificParameters } from '../core/interfaces';
+import { CompletionResponse, CommonParameters, ProviderSpecificParameters, StreamChunk, Message } from '../core/interfaces';
 
 export class OpenRouterProvider extends BaseAIProvider {
   protected getDefaultBaseURL(): string {
@@ -126,5 +126,74 @@ export class OpenRouterProvider extends BaseAIProvider {
       })),
       usage: response.usage
     };
+  }
+
+  /**
+   * Streaming chat completions via Server-Sent Events (SSE)
+   */
+  async *chatCompletionStream(request: { model: string; messages: Message[]; parameters?: any; stream?: boolean; }): AsyncGenerator<StreamChunk> {
+    const { model, messages, parameters = {} } = request;
+
+    const transformedParams = this.transformParameters(
+      this.extractCommonParams(parameters),
+      this.extractProviderParams(parameters)
+    );
+
+    const payload = {
+      model: this.mapModelName(model),
+      messages,
+      stream: true,
+      ...transformedParams
+    };
+
+    const url = `${this.baseURL}/chat/completions`;
+
+    const headers: Record<string, string> = {
+      'Authorization': `Bearer ${this.apiKey}`,
+      'Content-Type': 'application/json',
+    };
+    if (typeof process !== 'undefined' && (process as any).env?.OPENROUTER_HTTP_REFERER) {
+      headers['HTTP-Referer'] = (process as any).env.OPENROUTER_HTTP_REFERER as string;
+    }
+    if (typeof process !== 'undefined' && (process as any).env?.OPENROUTER_X_TITLE) {
+      headers['X-Title'] = (process as any).env.OPENROUTER_X_TITLE as string;
+    }
+
+    const response = await fetch(url, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(payload)
+    } as any);
+
+    if (!response.ok || !response.body) {
+      const errorText = await response.text().catch(() => '');
+      throw new Error(`OpenRouter stream error: ${response.status} ${response.statusText} ${errorText}`);
+    }
+
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = '';
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buffer += decoder.decode(value, { stream: true });
+      const lines = buffer.split('\n');
+      buffer = lines.pop() || '';
+      for (const line of lines) {
+        if (!line.startsWith('data: ')) continue;
+        const data = line.slice(6).trim();
+        if (!data) continue;
+        if (data === '[DONE]') {
+          return;
+        }
+        try {
+          const json = JSON.parse(data);
+          yield json as StreamChunk;
+        } catch {
+          // Ignore malformed partials
+        }
+      }
+    }
   }
 }

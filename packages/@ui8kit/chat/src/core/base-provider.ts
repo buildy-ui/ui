@@ -103,7 +103,7 @@ export abstract class BaseAIProvider {
   /**
    * Separates common parameters from provider-specific ones
    */
-  private extractCommonParams(params: CommonParameters & ProviderSpecificParameters): CommonParameters {
+  protected extractCommonParams(params: CommonParameters & ProviderSpecificParameters): CommonParameters {
     const {
       temperature,
       top_p,
@@ -147,7 +147,7 @@ export abstract class BaseAIProvider {
   /**
    * Extracts provider-specific parameters
    */
-  private extractProviderParams(params: CommonParameters & ProviderSpecificParameters): ProviderSpecificParameters {
+  protected extractProviderParams(params: CommonParameters & ProviderSpecificParameters): ProviderSpecificParameters {
     const commonKeys = [
       'temperature', 'top_p', 'top_k', 'max_tokens', 'seed', 'stop',
       'frequency_penalty', 'presence_penalty', 'repetition_penalty',
