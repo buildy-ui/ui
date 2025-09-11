@@ -25,6 +25,29 @@ export class OpenAIProvider extends BaseAIProvider {
       transformed.structured_outputs = providerParams.structured_outputs;
     }
 
+    // Handle structured outputs - OpenAI supports json_schema format
+    if (commonParams.response_format) {
+      const format = commonParams.response_format;
+
+      if ('json_schema' in format && format.type === 'json_schema') {
+        // OpenAI expects structured output format with specific structure
+        transformed.response_format = {
+          type: 'json_schema',
+          json_schema: format.json_schema
+        };
+      } else if (format.type === 'json_object') {
+        // Convert legacy format to structured output if possible
+        transformed.response_format = {
+          type: 'json_schema',
+          json_schema: {
+            name: 'response',
+            strict: true,
+            schema: format.schema || { type: 'object' }
+          }
+        };
+      }
+    }
+
     // Remove parameters that OpenAI doesn't support
     delete transformed.repetition_penalty; // OpenAI doesn't have this
     delete transformed.verbosity; // OpenRouter specific

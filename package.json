@@ -30,7 +30,12 @@
     "clean": "tsc --build tsconfig.build.json --clean",
     "registry:utility": "bun run --cwd packages/ui8kit build:utility",
     "registry:semantic": "bun run --cwd packages/ui8kit build:semantic",
-    "start:brain": "bun run --cwd packages/@ui8kit/brain start"
+    "start:brain": "bun run --cwd packages/@ui8kit/brain start",
+    "build:chat": "bun run --cwd packages/@ui8kit/chat build",
+    "dev:chat": "bun run --cwd packages/@ui8kit/chat dev",
+    "test:chat": "bun run --cwd packages/@ui8kit/chat test",
+    "lint:chat": "bun run --cwd packages/@ui8kit/chat lint",
+    "storybook:chat": "bun run --cwd packages/@ui8kit/chat storybook"
   },
   "devDependencies": {
     "@babel/generator": "^7.27.1",

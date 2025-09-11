@@ -37,6 +37,26 @@ export class OpenRouterProvider extends BaseAIProvider {
       transformed.transforms = providerParams.transforms;
     }
 
+    // Handle structured outputs - OpenRouter supports json_schema format
+    if (commonParams.response_format) {
+      const format = commonParams.response_format;
+
+      if ('json_schema' in format && format.type === 'json_schema') {
+        // OpenRouter expects the structured output format directly
+        transformed.response_format = format;
+      } else if (format.type === 'json_object') {
+        // Convert legacy format to structured output if possible
+        transformed.response_format = {
+          type: 'json_schema',
+          json_schema: {
+            name: 'response',
+            strict: true,
+            schema: format.schema || { type: 'object' }
+          }
+        };
+      }
+    }
+
     return transformed;
   }
 

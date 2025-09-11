@@ -4,6 +4,8 @@ export interface Message {
   role: 'system' | 'user' | 'assistant' | 'developer' | 'tool';
   content: string;
   name?: string;
+  id?: string;
+  timestamp?: Date;
   tool_calls?: ToolCall[];
   tool_call_id?: string;
 }
@@ -26,6 +28,58 @@ export interface Tool {
   };
 }
 
+// JSON Schema definition for structured outputs
+export interface JSONSchema {
+  type: string;
+  properties?: Record<string, JSONSchemaProperty>;
+  items?: JSONSchema | JSONSchemaProperty;
+  required?: string[];
+  additionalProperties?: boolean;
+  enum?: any[];
+  const?: any;
+  description?: string;
+  default?: any;
+  minimum?: number;
+  maximum?: number;
+  minLength?: number;
+  maxLength?: number;
+  pattern?: string;
+  format?: string;
+  $ref?: string;
+  oneOf?: JSONSchema[];
+  anyOf?: JSONSchema[];
+  allOf?: JSONSchema[];
+}
+
+export interface JSONSchemaProperty extends JSONSchema {
+  description?: string;
+  default?: any;
+  examples?: any[];
+}
+
+// Response format types
+export type ResponseFormatType = 'text' | 'json_object' | 'json_schema';
+
+// Structured output configuration
+export interface StructuredOutputConfig {
+  type: 'json_schema';
+  json_schema: {
+    name: string;
+    description?: string;
+    strict: boolean;
+    schema: JSONSchema;
+  };
+}
+
+// Legacy response format (for backward compatibility)
+export interface LegacyResponseFormat {
+  type: 'text' | 'json_object';
+  schema?: Record<string, any>;
+}
+
+// Union type for all response formats
+export type ResponseFormat = StructuredOutputConfig | LegacyResponseFormat;
+
 // Common parameters supported by most providers
 export interface CommonParameters {
   temperature?: number;
@@ -40,10 +94,7 @@ export interface CommonParameters {
   logit_bias?: Record<string, number>;
   logprobs?: boolean;
   top_logprobs?: number;
-  response_format?: {
-    type: 'text' | 'json_object';
-    schema?: Record<string, any>;
-  };
+  response_format?: ResponseFormat;
   tools?: Tool[];
   tool_choice?: 'none' | 'auto' | 'required' | { type: 'function'; function: { name: string } };
   parallel_tool_calls?: boolean;
