@@ -258,7 +258,6 @@ export function getGenerationAnalytics(generation: GenerationData): {
 
   // Combine all recommendations
   const allRecommendations = [
-    ...tokens.recommendations || [],
     ...cache.recommendations,
     ...performance.recommendations,
     ...cost.recommendations

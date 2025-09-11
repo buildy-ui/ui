@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useRef } from 'react';
 import { AIClient } from '../core/ai-client';
 import { ChatMessage, ChatMessageAvatar, ChatMessageContent } from '../ui/chat-message';
-import { ChatInput } from '../ui/chat-input';
+import { ChatInput, ChatInputTextArea, ChatInputSubmit } from '../ui/chat-input';
 import { ChatMessageArea } from '../ui/chat-message-area';
 import { ScrollArea } from '../ui/scroll-area';
 import { ModelSelector } from '../ui/model-selector';
@@ -9,7 +9,8 @@ import { useChatState } from '../hooks/use-chat-state';
 import { useStreaming } from '../hooks/use-streaming';
 import { useMessageHistory } from '../hooks/use-message-history';
 import { useScrollToBottom } from '../hooks/use-scroll-to-bottom';
-import type { Message, ProviderConfig } from '../core/interfaces';
+import type { Message } from '../core/interfaces';
+import type { ProviderConfig } from '../providers/provider-factory';
 import { createUserMessage, createAssistantMessage } from '../utils/chat-utils';
 
 interface ChatCompositionProps {
@@ -57,6 +58,8 @@ export function ChatComposition({
 }: ChatCompositionProps) {
   const [selectedModel, setSelectedModel] = useState(defaultModel);
   const [isTyping, setIsTyping] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [inputValue, setInputValue] = useState('');
 
   // Initialize AI client
   const client = React.useMemo(() => new AIClient(providerConfig), [providerConfig]);
@@ -118,12 +121,7 @@ export function ChatComposition({
   });
 
   // Auto-scroll functionality
-  const scrollAreaRef = useRef<HTMLDivElement>(null);
-  const { scrollToBottom } = useScrollToBottom({
-    ref: scrollAreaRef,
-    threshold: 100,
-    behavior: 'smooth',
-  });
+  const [scrollAreaRef, showScrollButton, scrollToBottom] = useScrollToBottom<HTMLDivElement>();
 
   // Handle message sending
   const handleSendMessage = useCallback(async (content: string) => {
@@ -131,9 +129,10 @@ export function ChatComposition({
 
     const userMessage = createUserMessage(content);
     addMessage(userMessage);
+    setInputValue(''); // Clear input
 
     setIsTyping(true);
-    setLoading(true);
+    setIsLoading(true);
 
     try {
       const conversationMessages: Message[] = [
@@ -166,7 +165,7 @@ export function ChatComposition({
       setError(errorMessage);
       onError?.(errorMessage);
     } finally {
-      setLoading(false);
+      setIsLoading(false);
       if (!streaming) {
         setIsTyping(false);
       }
@@ -216,9 +215,8 @@ export function ChatComposition({
       {showModelSelector && (
         <div className="flex items-center justify-between p-4 border-b">
           <ModelSelector
-            models={availableModels}
-            selectedModel={selectedModel}
-            onModelChange={handleModelChange}
+            value="gpt-5-mini"
+            onChange={handleModelChange}
           />
           <div className="flex gap-2">
             <button
@@ -250,14 +248,13 @@ export function ChatComposition({
         <ChatMessageArea>
           {messages.map((message) => (
             <ChatMessage
-              key={message.id}
-              id={message.id}
+              key={message.id || Math.random().toString()}
+              id={message.id || Math.random().toString()}
               type={message.role === 'user' ? 'outgoing' : 'incoming'}
               variant={variant}
             >
               <ChatMessageAvatar />
               <ChatMessageContent
-                id={message.id}
                 content={message.content}
               />
             </ChatMessage>
@@ -266,13 +263,13 @@ export function ChatComposition({
           {/* Streaming message */}
           {isStreaming && currentContent && (
             <ChatMessage
+              key="streaming"
               id="streaming"
               type="incoming"
               variant={variant}
             >
               <ChatMessageAvatar />
               <ChatMessageContent
-                id="streaming"
                 content={currentContent}
               />
             </ChatMessage>
@@ -281,13 +278,13 @@ export function ChatComposition({
           {/* Typing indicator */}
           {isTyping && !isStreaming && (
             <ChatMessage
+              key="typing"
               id="typing"
               type="incoming"
               variant={variant}
             >
               <ChatMessageAvatar />
               <ChatMessageContent
-                id="typing"
                 content="..."
               />
             </ChatMessage>
@@ -298,12 +295,15 @@ export function ChatComposition({
       {/* Input area */}
       <div className="p-4 border-t">
         <ChatInput
-          placeholder={placeholder}
-          onSendMessage={handleSendMessage}
-          disabled={isLoading}
-          showStopButton={isStreaming}
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          onMessageSubmit={handleSendMessage}
+          loading={isLoading}
           onStop={handleStopStreaming}
-        />
+        >
+          <ChatInputTextArea placeholder={placeholder} />
+          <ChatInputSubmit>Send</ChatInputSubmit>
+        </ChatInput>
       </div>
     </div>
   );

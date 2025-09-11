@@ -49,6 +49,10 @@ export interface JSONSchema {
   oneOf?: JSONSchema[];
   anyOf?: JSONSchema[];
   allOf?: JSONSchema[];
+  // Array-specific properties
+  minItems?: number;
+  maxItems?: number;
+  uniqueItems?: boolean;
 }
 
 export interface JSONSchemaProperty extends JSONSchema {

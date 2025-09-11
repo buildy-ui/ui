@@ -85,12 +85,7 @@ export {
   validateStructuredResponse,
   CommonSchemas,
   createCustomSchema,
-  parseStructuredResponse,
-  type JSONSchema,
-  type JSONSchemaProperty,
-  type StructuredOutputConfig,
-  type ResponseFormat,
-  type ResponseFormatType
+  parseStructuredResponse
 } from './utils/structured-outputs';
 
 // ========== UTILITIES ==========
