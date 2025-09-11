@@ -12,6 +12,7 @@ import { useScrollToBottom } from '../hooks/use-scroll-to-bottom';
 import type { Message } from '../core/interfaces';
 import type { ProviderConfig } from '../providers/provider-factory';
 import { createUserMessage, createAssistantMessage } from '../utils/chat-utils';
+import { DEFAULT_MODEL } from '../core/config';
 
 interface ChatCompositionProps {
   providerConfig: ProviderConfig;
@@ -49,8 +50,8 @@ export function ChatComposition({
   onMessageReceive,
   onError,
   showModelSelector = false,
-  availableModels = ['gpt-3.5-turbo', 'gpt-4', 'claude-3-haiku'],
-  defaultModel = 'gpt-3.5-turbo',
+  availableModels = ['gpt-5-mini', 'gpt-5-high'],
+  defaultModel = DEFAULT_MODEL,
   maxMessages = 100,
   streaming = true,
   autoScroll = true,
@@ -215,8 +216,9 @@ export function ChatComposition({
       {showModelSelector && (
         <div className="flex items-center justify-between p-4 border-b">
           <ModelSelector
-            value="gpt-5-mini"
+            value={selectedModel}
             onChange={handleModelChange}
+            models={availableModels}
           />
           <div className="flex gap-2">
             <button

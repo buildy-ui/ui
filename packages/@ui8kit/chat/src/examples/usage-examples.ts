@@ -11,7 +11,7 @@ async function basicExample() {
   // Simple text completion
   const text = await client.generateText(
     'Write a haiku about programming',
-    'anthropic/claude-3-haiku'
+    'gpt-5-mini'
   );
   console.log('Generated text:', text);
 
@@ -21,7 +21,7 @@ async function basicExample() {
     { role: 'user', content: 'How do I implement a binary search in JavaScript?' }
   ];
 
-  const response = await client.chat(messages, 'openai/gpt-4');
+  const response = await client.chat(messages, 'gpt-5-mini');
   console.log('Assistant response:', response.content);
 }
 
@@ -35,7 +35,7 @@ async function providerSwitching() {
   // Use OpenAI first
   const openaiResponse = await client.generateText(
     'Explain quantum computing in simple terms',
-    'gpt-4'
+    'gpt-5-mini'
   );
 
   // Switch to OpenRouter
@@ -47,7 +47,7 @@ async function providerSwitching() {
   // Use OpenRouter with the same interface
   const orResponse = await client.generateText(
     'Explain quantum computing in simple terms',
-    'anthropic/claude-3-sonnet'
+    'gpt-5-mini'
   );
 }
 
@@ -61,7 +61,7 @@ async function agentExample() {
   const agent = {
     systemPrompt: `You are a senior software architect. Provide detailed,
     production-ready code with proper error handling and documentation.`,
-    model: 'openai/gpt-4'
+    model: 'gpt-5-mini'
   };
 
   const response = await client.agentChat(
@@ -83,7 +83,7 @@ async function providerSpecificParams() {
 
   // Use OpenRouter-specific verbosity parameter
   const response = await client.chatCompletion({
-    model: 'anthropic/claude-3-sonnet',
+    model: 'gpt-5-mini',
     messages: [
       { role: 'user', content: 'Explain machine learning' }
     ],
@@ -106,7 +106,7 @@ async function streamingExample() {
   ];
 
   const stream = client.chatCompletionStream({
-    model: 'openai/gpt-4',
+    model: 'gpt-5-mini',
     messages,
     parameters: { temperature: 0.8, max_tokens: 500 }
   });
@@ -143,7 +143,7 @@ async function toolCallingExample() {
   ];
 
   const response = await client.chatCompletion({
-    model: 'openai/gpt-4',
+    model: 'gpt-5-mini',
     messages: [
       { role: 'user', content: 'What\'s the weather like in New York?' }
     ],

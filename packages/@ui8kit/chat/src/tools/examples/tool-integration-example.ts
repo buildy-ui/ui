@@ -85,7 +85,7 @@ When using tools:
     try {
       // First AI call with tools
       const aiResponse = await this.client.chatCompletion({
-        model: 'openai/gpt-4',
+        model: 'gpt-5-mini',
         messages,
         parameters: {
           tools,
@@ -110,8 +110,8 @@ When using tools:
             userId: 'example-user',
             sessionId: 'chat-session-123',
             conversationId: 'conv-456',
-            provider: 'openai',
-            model: 'gpt-4',
+            provider: 'openrouter',
+            model: 'gpt-5-mini',
             timestamp: new Date()
           }
         );
@@ -125,7 +125,7 @@ When using tools:
 
         // Second AI call with tool results
         const finalResponse = await this.client.chatCompletion({
-          model: 'openai/gpt-4',
+          model: 'gpt-5-mini',
           messages: messagesWithTools,
           parameters: {
             tools, // Keep tools available for follow-up

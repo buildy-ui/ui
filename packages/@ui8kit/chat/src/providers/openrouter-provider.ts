@@ -61,7 +61,14 @@ export class OpenRouterProvider extends BaseAIProvider {
   }
 
   protected mapModelName(model: string): string {
-    // OpenRouter supports model names as-is, but we can add mappings if needed
+    // Normalize common aliases to OpenRouter namespaced identifiers
+    if (model.includes('/')) return model;
+
+    // Map OpenAI shorthand to OpenRouter namespaced
+    if (model === 'gpt-5-mini') return 'openai/gpt-5-mini';
+    if (model === 'gpt-5-nano') return 'openai/gpt-5-nano';
+
+    // Default: pass through
     return model;
   }
 
@@ -73,11 +80,20 @@ export class OpenRouterProvider extends BaseAIProvider {
   ): Promise<any> {
     const url = `${this.baseURL}${endpoint}`;
 
-    const requestHeaders = {
+    const requestHeaders: Record<string, string> = {
       'Authorization': `Bearer ${this.apiKey}`,
       'Content-Type': 'application/json',
-      ...headers
+      ...(headers || {})
     };
+
+    // Optional OpenRouter identification headers to improve model routing & rankings
+    // Consumers can override by passing headers explicitly
+    if (!requestHeaders['HTTP-Referer'] && typeof process !== 'undefined' && (process as any).env?.OPENROUTER_HTTP_REFERER) {
+      requestHeaders['HTTP-Referer'] = (process as any).env.OPENROUTER_HTTP_REFERER as string;
+    }
+    if (!requestHeaders['X-Title'] && typeof process !== 'undefined' && (process as any).env?.OPENROUTER_X_TITLE) {
+      requestHeaders['X-Title'] = (process as any).env.OPENROUTER_X_TITLE as string;
+    }
 
     const response = await fetch(url, {
       method,

@@ -35,7 +35,7 @@ export class StructuredOutputsExample {
 
     // Use the predefined weather schema
     const response = await this.client.chatCompletion({
-      model: 'openai/gpt-4',
+      model: 'gpt-5-mini',
       messages,
       parameters: {
         response_format: CommonSchemas.weather,
@@ -67,7 +67,7 @@ export class StructuredOutputsExample {
     ];
 
     const response = await this.client.chatCompletion({
-      model: 'anthropic/claude-3-sonnet',
+      model: 'gpt-5-mini',
       messages,
       parameters: {
         response_format: CommonSchemas.product,
@@ -95,7 +95,7 @@ export class StructuredOutputsExample {
     ];
 
     const response = await this.client.chatCompletion({
-      model: 'openai/gpt-4',
+      model: 'gpt-5-mini',
       messages,
       parameters: {
         response_format: CommonSchemas.taskList,
@@ -127,7 +127,7 @@ ${codeSnippet}
     ];
 
     const response = await this.client.chatCompletion({
-      model: 'anthropic/claude-3-sonnet',
+      model: 'gpt-5-mini',
       messages,
       parameters: {
         response_format: CommonSchemas.codeAnalysis,
@@ -184,7 +184,7 @@ ${codeSnippet}
     ];
 
     const response = await this.client.chatCompletion({
-      model: 'openai/gpt-4',
+      model: 'gpt-5-mini',
       messages,
       parameters: {
         response_format: userProfileSchema,
@@ -212,7 +212,7 @@ ${codeSnippet}
     ];
 
     const stream = this.client.chatCompletionStream({
-      model: 'openai/gpt-4',
+      model: 'gpt-5-mini',
       messages,
       parameters: {
         response_format: CommonSchemas.weather,
@@ -262,7 +262,7 @@ ${codeSnippet}
       ];
 
       const response = await this.client.chatCompletion({
-        model: 'openai/gpt-4',
+        model: 'gpt-5-mini',
         messages,
         parameters: {
           response_format: CommonSchemas.weather, // Wrong schema for the query
@@ -306,7 +306,7 @@ ${codeSnippet}
     });
 
     const weatherResponse = await this.client.chatCompletion({
-      model: 'openai/gpt-4',
+      model: 'gpt-5-mini',
       messages: conversation,
       parameters: {
         response_format: CommonSchemas.weather
@@ -327,7 +327,7 @@ ${codeSnippet}
       });
 
       const productResponse = await this.client.chatCompletion({
-        model: 'openai/gpt-4',
+        model: 'gpt-5-mini',
         messages: conversation,
         parameters: {
           response_format: CommonSchemas.product

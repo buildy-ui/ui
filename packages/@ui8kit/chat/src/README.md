@@ -178,7 +178,7 @@ const orResult = await client.generateText('Hello world');
 const response = await client.agentChat(
   'Create a REST API for user management',
   'You are a senior fullstack developer. Provide production-ready code.',
-  'openai/gpt-4',
+  'gpt-5-mini',
   { max_tokens: 1000 }
 );
 ```
@@ -188,7 +188,7 @@ const response = await client.agentChat(
 ```typescript
 // OpenRouter with verbosity
 const response = await client.chatCompletion({
-  model: 'anthropic/claude-3-sonnet',
+  model: 'gpt-5-mini',
   messages: [{ role: 'user', content: 'Explain neural networks' }],
   parameters: {
     temperature: 0.7,
@@ -201,7 +201,7 @@ const response = await client.chatCompletion({
 
 ```typescript
 const stream = client.chatCompletionStream({
-  model: 'openai/gpt-4',
+  model: 'gpt-5-mini',
   messages: [{ role: 'user', content: 'Write a story' }]
 });
 
@@ -226,7 +226,7 @@ const tools = [{
 }];
 
 const response = await client.chatCompletion({
-  model: 'openai/gpt-4',
+  model: 'gpt-5-mini',
   messages: [{ role: 'user', content: 'What\'s the weather in Moscow?' }],
   parameters: { tools, tool_choice: 'auto' }
 });
@@ -259,7 +259,7 @@ const schema = createStructuredOutput('user_profile', createObjectSchema({
 }, { required: ['name', 'email'] }));
 
 const response = await client.chatCompletion({
-  model: 'openai/gpt-4',
+  model: 'gpt-5-mini',
   messages: [{ role: 'user', content: 'Create a user profile for John Doe' }],
   parameters: { response_format: schema }
 });
@@ -283,7 +283,7 @@ function MyChatApp() {
       systemPrompt="You are a helpful assistant"
       placeholder="Type your message..."
       showModelSelector={true}
-      availableModels={['gpt-3.5-turbo', 'gpt-4', 'claude-3-haiku']}
+      availableModels={['gpt-5-mini', 'gpt-5-high']}
       streaming={true}
     />
   );
@@ -302,7 +302,7 @@ toolRegistry.registerTool(webSearchTool);
 
 // Use in chat
 const response = await client.chatCompletion({
-  model: 'openai/gpt-4',
+  model: 'gpt-5-mini',
   messages: [{ role: 'user', content: 'Search for latest React updates' }],
   parameters: {
     tools: toolRegistry.getAllTools(),

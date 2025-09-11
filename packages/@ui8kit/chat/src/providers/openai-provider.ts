@@ -56,7 +56,10 @@ export class OpenAIProvider extends BaseAIProvider {
   }
 
   protected mapModelName(model: string): string {
-    // OpenAI supports model names as-is
+    // Accept OpenRouter namespaced forms by stripping provider prefix
+    if (model.startsWith('openai/')) {
+      return model.replace(/^openai\//, '');
+    }
     return model;
   }
 

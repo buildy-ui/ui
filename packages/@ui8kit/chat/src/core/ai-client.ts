@@ -1,4 +1,5 @@
 import { BaseAIProvider } from './base-provider';
+import { DEFAULT_MODEL } from './config';
 import { ProviderFactory, ProviderConfig } from '../providers/provider-factory';
 import {
   Message,
@@ -54,7 +55,7 @@ export class AIClient {
    */
   async generateText(
     prompt: string,
-    model: string = 'gpt-3.5-turbo',
+    model: string = DEFAULT_MODEL,
     options?: {
       temperature?: number;
       max_tokens?: number;
@@ -79,7 +80,7 @@ export class AIClient {
    */
   async chat(
     messages: Message[],
-    model: string = 'gpt-3.5-turbo',
+    model: string = DEFAULT_MODEL,
     options?: {
       temperature?: number;
       max_tokens?: number;
@@ -107,7 +108,7 @@ export class AIClient {
   async agentChat(
     userMessage: string,
     systemPrompt: string,
-    model: string = 'gpt-3.5-turbo',
+    model: string = DEFAULT_MODEL,
     options?: {
       temperature?: number;
       max_tokens?: number;

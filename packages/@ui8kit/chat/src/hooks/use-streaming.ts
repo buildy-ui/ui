@@ -1,5 +1,6 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
 import type { Message, StreamChunk } from '../core/interfaces';
+import { DEFAULT_MODEL } from '../core/config';
 import { AIClient } from '../core/ai-client';
 
 interface UseStreamingOptions {
@@ -92,7 +93,7 @@ export function useStreaming(options: UseStreamingOptions): UseStreamingReturn {
       abortControllerRef.current = new AbortController();
 
       const stream = client.chatCompletionStream({
-        model: streamingOptions.model || 'gpt-3.5-turbo',
+        model: streamingOptions.model || DEFAULT_MODEL,
         messages,
         parameters: {
           temperature: streamingOptions.temperature ?? 0.7,

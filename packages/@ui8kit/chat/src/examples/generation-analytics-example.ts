@@ -348,7 +348,7 @@ export async function demonstrateGenerationAnalytics() {
   console.log('\n4️⃣ MODEL PERFORMANCE COMPARISON');
   await example.compareModelPerformance(
     generationIds,
-    ['openai/gpt-3.5-turbo', 'openai/gpt-4', 'anthropic/claude-3-haiku']
+    ['gpt-5-mini', 'gpt-5-high']
   );
 
   // Example 5: Cache optimization
