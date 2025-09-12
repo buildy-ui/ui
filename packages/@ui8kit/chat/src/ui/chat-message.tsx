@@ -50,7 +50,7 @@ const ChatMessage = React.forwardRef<HTMLDivElement, ChatMessageProps>(({
   return (
     <ChatMessageContext.Provider value={{ variant, type, id }}>
       <Block ref={ref} w="full" {...props}>
-        <Group className={variant === "bubble" ? "bg-card border-none shadow-none rounded-lg p-4" : "bg-none border-none shadow-none p-4 mt-8"} justify={align as any} gap="md" w="full">
+        <Group className={variant === "bubble" ? "bg-card/50 border-none shadow-none rounded-2xl p-4" : "bg-none border-none shadow-none p-4 mt-8"} justify={align as any} gap="md" w="full">
           {children}
         </Group>
       </Block>
@@ -82,30 +82,6 @@ const ChatMessageAvatar = React.forwardRef<HTMLDivElement, ChatMessageAvatarProp
 });
 
 ChatMessageAvatar.displayName = "ChatMessageAvatar";
-
-const chatMessageContentVariants = cva("", {
-  variants: {
-    variant: {
-      default: undefined,
-      bubble: undefined,
-      full: undefined,
-    },
-    type: {
-      incoming: undefined,
-      outgoing: undefined,
-    },
-  },
-  compoundVariants: [
-    { variant: "bubble", type: "incoming", className: "bg-secondary text-secondary-foreground" },
-    { variant: "bubble", type: "outgoing", className: "bg-primary text-primary-foreground" },
-    { variant: "full", type: "outgoing", className: "bg-muted" },
-    { variant: "full", type: "incoming", className: "bg-background" },
-  ],
-  defaultVariants: {
-    variant: "default",
-    type: "incoming",
-  },
-});
 
 interface ChatMessageContentProps {
   id?: string;

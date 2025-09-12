@@ -93,9 +93,9 @@ export function Chat() {
         <Box
           flex="1"
           minH="200px"
-          p="md"
           position="relative"
           overflow="hidden"
+          p="sm"
         >
           {messages.length === 0 ? (
             <Box
@@ -113,49 +113,29 @@ export function Chat() {
             <ChatMessageArea>
               {messages.map((message) => (
                 <Fragment key={message.id}>
-                  {message.role !== 'user' && message.reasoningText && (
-                    <Box w="full">
-                      <Box display="flex" w="full" mb="md">
-                        {/* Render dropdown for this assistant message */}
-                        <Box w="full">
+                  <ChatMessage
+                    id={message.id}
+                    type={message.role === 'user' ? 'outgoing' : 'incoming'}
+                    variant={message.role !== 'user' ? 'bubble' : 'default'}
+                  >
+                    {message.role === 'user' && (
+                      <ChatMessageAvatar  />
+                    )}
+                    <Stack gap="md">
+                      {message.role !== 'user' && message.reasoningText && (
+                        <Box display="flex" w="full" mb="md">
+                          {/* Render dropdown for this assistant message */}
                           <ChatDropdown text={message.reasoningText} finished={Boolean(message.reasoningFinished)} />
                         </Box>
-                      </Box>
-                    </Box>
-                  )}
-                  {message.role === 'user' && (
-                  <ChatMessage
-                    id={message.id}
-                    type='outgoing'
-                  >
-                    <ChatMessageAvatar />
-                    <ChatMessageContent
-                      id={message.id}
-                      content={message.content}
-                    />
+                      )}
+                      <ChatMessageContent
+                        id={message.id}
+                        content={message.content}
+                      />
+                    </Stack>
                   </ChatMessage>
-                  )}
-                  {message.role !== 'user' && message.reasoningText && !isLoading && (
-                  <ChatMessage
-                    id={message.id}
-                    type='incoming'
-                    variant='bubble'
-                  >
-                    <ChatMessageAvatar />
-                    <ChatMessageContent
-                      id={message.id}
-                      content={message.content}
-                    />
-                  </ChatMessage>
-                  )}
                 </Fragment>
               ))}
-
-              {/* Loading indicator */}
-              {isLoading && (
-                <Box display="flex-1" ml="sm">
-                  <RequestStatusIndicator status={requestStatus} theme={theme} /></Box>
-              )}
             </ChatMessageArea>
           )}
         </Box>
@@ -173,7 +153,13 @@ export function Chat() {
           shadow="none"
           bg="card"
           p="sm"
-          className="focus-within:ring-1 focus-within:ring-ring focus-within:outline-none transition-colors"
+          position="sticky"
+          w="full"
+          z="10"
+          mt="lg"
+          border="1px"
+          borderColor="border"
+          className="bottom-0 focus-within:ring-1 focus-within:ring-ring focus-within:outline-none transition-colors shadow-3xl"
         >
           <ChatInput
             onMessageSubmit={handleSubmit}
@@ -189,10 +175,8 @@ export function Chat() {
             />
             <Box display="flex" w="full" justify="end" mt="sm">
               <Group gap="sm" justify="between" w="full">
-                <Button variant="outline" onClick={stopGeneration}>
-                  <Icon lucideIcon={RotateCcw} />
-                  Stop
-                </Button>
+                <Box display="flex-1" justify="start"><RequestStatusIndicator status={requestStatus} theme={theme} /></Box>
+
                 <ChatInputSubmit
                   loading={isLoading}
                   onStop={stopGeneration}

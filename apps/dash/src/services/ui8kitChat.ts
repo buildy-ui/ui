@@ -59,6 +59,8 @@ export async function ui8chatCompletions({
   }
 
   // Streaming mode
+  // eslint-disable-next-line no-console
+  console.log('[ui8kitChat] stream start', { model, messagesCount: messages.length, hasReasoning: Boolean(reasoning), max_tokens });
   const streamGen = aiClient.chatCompletionStream({
     model,
     messages: messages as unknown as UI8Message[],
@@ -80,21 +82,30 @@ export async function ui8chatCompletions({
     const delta = choice?.delta;
 
     if (delta?.reasoning) {
-      onProgress?.('reasoning', { reasoningText: String(delta.reasoning) });
+      const r = String(delta.reasoning);
+      // eslint-disable-next-line no-console
+      // console.log('[ui8kitChat] reasoning delta', r.slice(0, 80));
+      onProgress?.('reasoning', { reasoningText: r });
     }
 
     if (delta?.content) {
       const d = String(delta.content);
       fullText += d;
+      // eslint-disable-next-line no-console
+      // console.log('[ui8kitChat] content delta', { len: d.length, total: fullText.length });
       onProgress?.('content', { delta: d, totalLength: fullText.length });
     }
 
     if ((chunk as any)?.usage) {
       lastUsage = (chunk as any).usage;
+      // eslint-disable-next-line no-console
+      console.log('[ui8kitChat] usage', lastUsage);
       onProgress?.('usage', { usage: lastUsage });
     }
   }
 
+  // eslint-disable-next-line no-console
+  console.log('[ui8kitChat] stream done', { total: fullText.length });
   onProgress?.('done', { delta: '', totalLength: fullText.length, usage: lastUsage });
   return { text: fullText, usage: lastUsage };
 }

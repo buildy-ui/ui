@@ -1,6 +1,5 @@
 import { Block, Text, Title } from "@ui8kit/core";
-import { marked } from "marked";
-import { Suspense, isValidElement, memo, useMemo } from "react";
+import { Suspense, isValidElement, memo } from "react";
 import ReactMarkdown, { type Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
 
@@ -36,17 +35,15 @@ const components: Partial<Components> = {
   h4: ({ children }: any) => <Title size="lg">{children}</Title>,
   h5: ({ children }: any) => <Title size="md">{children}</Title>,
   h6: ({ children }: any) => <Title size="sm">{children}</Title>,
-  p: ({ children }: any) => <Text leading="relaxed">{children}</Text>,
-  strong: ({ children }: any) => <Text fw="semibold">{children}</Text>,
+  p: ({ children }: any) => <Text my="sm" leading="relaxed">{children}</Text>,
+  strong: ({ children }: any) => <strong>{children}</strong>,
   a: ({ children, ...props }: any) => (
-    <a {...props}>
-      <Text>{children}</Text>
-    </a>
+    <a {...props}>{children}</a>
   ),
-  ol: ({ children }: any) => <ol>{children}</ol>,
-  ul: ({ children }: any) => <ul>{children}</ul>,
-  li: ({ children }: any) => <li>{children}</li>,
-  blockquote: ({ children }: any) => <blockquote>{children}</blockquote>,
+  ol: ({ children }: any) => <ol className="list-decimal">{children}</ol>,
+  ul: ({ children }: any) => <ul className="list-disc">{children}</ul>,
+  li: ({ children }: any) => <li className="ml-4 my-2">{children}</li>,
+  blockquote: ({ children }: any) => <blockquote className="border-l-2 border-gray-300 pl-4">{children}</blockquote>,
   hr: () => <hr />,
   table: ({ children }: any) => <table>{children}</table>,
   tr: ({ children }: any) => <tr>{children}</tr>,
@@ -54,7 +51,7 @@ const components: Partial<Components> = {
   td: ({ children }: any) => <td>{children}</td>,
   img: ({ alt, ...props }: any) => <img alt={alt} {...props} />,
   code: ({ children, className }: any) => {
-    const match = /language-(\w+)/.exec(className || "");
+    const match = /language-(\w+)/.exec(className || "json");
     if (match) {
       return (
         <Suspense fallback={<CodeBlock language={match[1]}>{children}</CodeBlock>}>
@@ -67,17 +64,13 @@ const components: Partial<Components> = {
   pre: ({ children }: any) => <>{children}</>,
 };
 
-function parseMarkdownIntoBlocks(markdown: string): string[] {
-  if (!markdown) return [];
-  const tokens = marked.lexer(markdown);
-  return tokens.map((token) => token.raw);
-}
-
-interface MarkdownBlockProps {
+interface MarkdownContentProps {
   content: string;
+  id: string;
 }
 
-const MemoizedMarkdownBlock = memo(({ content }: MarkdownBlockProps) => {
+export const MarkdownContent = memo(({ content }: MarkdownContentProps) => {
+  if (!content) return null;
   return (
     <Block>
       <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
@@ -85,23 +78,6 @@ const MemoizedMarkdownBlock = memo(({ content }: MarkdownBlockProps) => {
       </ReactMarkdown>
     </Block>
   );
-});
-
-MemoizedMarkdownBlock.displayName = "MemoizedMarkdownBlock";
-
-interface MarkdownContentProps {
-  content: string;
-  id: string;
-}
-
-export const MarkdownContent = memo(({ content, id }: MarkdownContentProps) => {
-  const blocks = useMemo(() => parseMarkdownIntoBlocks(content || ""), [content]);
-  return blocks.map((block, index) => (
-    <MemoizedMarkdownBlock
-      content={block}
-      key={`${id}-block_${index}`}
-    />
-  ));
 });
 
 MarkdownContent.displayName = "MarkdownContent";

@@ -111,6 +111,9 @@ export function useChat() {
     abortControllerRef.current = abortController;
 
     try {
+      // Debug: log request payload summary
+      // eslint-disable-next-line no-console
+      console.log('[chat] sendMessage', { model: state.selectedModel, prevMessages: state.messages.length, userContentLength: content.length });
       // Prepare messages for API
       const messages = state.messages.concat(userMessage).map(msg => ({
         role: msg.role,
@@ -124,13 +127,13 @@ export function useChat() {
       const assistantMessage = addMessage('', 'assistant');
 
       // Stream via UI8Kit AIClient-backed service
-      await ui8chatCompletions({
+      const result = await ui8chatCompletions({
         model: state.selectedModel,
         messages,
         stream: true,
         reasoning: { effort: 'medium', exclude: false },
-        temperature: 0.7,
-        max_tokens: 2048,
+        temperature: 0.5,
+        max_tokens: 8000,
         signal: abortController.signal,
         onProgress: (status, data) => {
           switch (status) {
@@ -138,6 +141,8 @@ export function useChat() {
               setRequestStatus('model_reasoning');
               const chunk = data.reasoningText || '';
               if (chunk) {
+                // eslint-disable-next-line no-console
+                // console.log('[chat] reasoning chunk', { length: chunk.length, sample: chunk.slice(0, 80) });
                 setState(prev => ({
                   ...prev,
                   reasoningText: prev.reasoningText + chunk,
@@ -153,6 +158,8 @@ export function useChat() {
             case 'content': {
               const delta = data.delta || '';
               const total = data.totalLength || 0;
+              // eslint-disable-next-line no-console
+              // console.log('[chat] content delta', { length: delta.length, total });
               if (total < 10) setRequestStatus('generating_response');
               else setRequestStatus('streaming_tokens');
               // Update assistant message content incrementally
@@ -168,20 +175,28 @@ export function useChat() {
             }
             case 'usage':
               // Future: surface token usage in UI if needed
+              // eslint-disable-next-line no-console
+              console.log('[chat] usage', data.usage);
               break;
             case 'done':
               setRequestStatus('completed');
-              setState(prev => ({
-                ...prev,
-                messages: prev.messages.map(msg =>
+              setState(prev => {
+                const nextMessages = prev.messages.map(msg =>
                   msg.id === assistantMessage.id ? { ...msg, reasoningFinished: true } : msg
-                ),
-              }));
+                );
+                const final = nextMessages.find(m => m.id === assistantMessage.id);
+                // eslint-disable-next-line no-console
+                console.log('[chat] done', { contentLength: (final?.content || '').length, hasReasoning: Boolean(final?.reasoningText), usageFromResult: result?.usage });
+                return { ...prev, messages: nextMessages };
+              });
               setTimeout(() => setRequestStatus('idle'), 2000);
               break;
           }
         },
       });
+
+      // eslint-disable-next-line no-console
+      console.log('[chat] final text', result?.text ?? '');
 
       // Status: Completed
       setRequestStatus('completed');
