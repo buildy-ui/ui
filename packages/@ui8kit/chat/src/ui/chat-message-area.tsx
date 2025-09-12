@@ -31,6 +31,7 @@ export function ScrollButton({ onClick, alignment = "right" }: ScrollButtonProps
 
 interface ChatMessageAreaProps {
   children: any;
+  className?: string;
   scrollButtonAlignment?: ScrollButtonAlignment;
   reasoningText?: string;
   reasoningFinished?: boolean;

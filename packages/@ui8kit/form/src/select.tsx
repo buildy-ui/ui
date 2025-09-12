@@ -46,12 +46,22 @@ function SelectValue({ placeholder, value }: { placeholder?: string; value?: str
   )
 }
 
-function SelectContent({ className, children }: React.ComponentProps<"div">) {
+function SelectContent({ className, children, position, ...props }: React.ComponentProps<"div"> & { position?: "top" | "bottom" }) {
+  // When a position is provided, we switch to absolute positioning relative to a positioned ancestor
+  // and control vertical placement explicitly. Without position, preserve existing inline flow layout.
+  const isPositioned = position === "top" || position === "bottom";
+
   return (
     <div
       data-class="select-content"
+      {...props}
       className={[
-        "border-input z-50 mt-1 w-full min-w-40 rounded-md border bg-background p-1 shadow-md",
+        isPositioned
+          ? [
+              "border-input z-50 w-full min-w-40 rounded-md border bg-background p-1 shadow-md absolute left-0",
+              position === "top" ? "bottom-full mb-1" : "top-full mt-1",
+            ].join(" ")
+          : "border-input z-50 mt-1 w-full min-w-40 rounded-md border bg-background p-1 shadow-md",
         className,
       ]
         .filter(Boolean)
@@ -68,7 +78,7 @@ function SelectItem({ className, children, value, onClick }: { className?: strin
       type="button"
       data-class="select-item"
       className={[
-        "hover:bg-accent hover:text-accent-foreground w-full cursor-pointer rounded-sm px-2 py-1 text-left text-sm",
+        "hover:bg-accent hover:text-accent-foreground w-full cursor-pointer rounded-sm px-2 py-1 text-left text-xs",
         className,
       ]
         .filter(Boolean)

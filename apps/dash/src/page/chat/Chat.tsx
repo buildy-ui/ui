@@ -48,7 +48,7 @@ export function Chat() {
   };
 
   return (
-    <Box w="full" h="full" position="relative">
+    <Box w="full" h="full" position="relative" className="max-w-full overflow-hidden">
       <Stack gap="md" h="full">
         {/* Header */}
         <Stack gap="sm">
@@ -93,9 +93,11 @@ export function Chat() {
         <Box
           flex="1"
           minH="200px"
+          w="full"
           position="relative"
-          overflow="hidden"
+          overflow="auto"
           p="sm"
+          className="max-w-full overflow-x-hidden"
         >
           {messages.length === 0 ? (
             <Box
@@ -110,7 +112,7 @@ export function Chat() {
               </Text>
             </Box>
           ) : (
-            <ChatMessageArea>
+            <ChatMessageArea className="max-w-full w-full overflow-x-hidden">
               {messages.map((message) => (
                 <Fragment key={message.id}>
                   <ChatMessage
@@ -171,7 +173,7 @@ export function Chat() {
               placeholder="Type your message here..."
               disabled={isLoading}
               variant="unstyled"
-              className={`w-full border-none focus-visible:ring-0 focus-visible:ring-offset-0 shadow-none !bg-card`}
+              className="w-full border-none ring-none outline-none focus-visible:ring-0 focus-visible:ring-offset-0 shadow-none !bg-card"
             />
             <Box display="flex" w="full" justify="end" mt="sm">
               <Group gap="sm" justify="between" w="full">
