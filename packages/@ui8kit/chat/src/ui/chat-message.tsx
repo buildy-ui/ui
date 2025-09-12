@@ -50,7 +50,7 @@ const ChatMessage = React.forwardRef<HTMLDivElement, ChatMessageProps>(({
   return (
     <ChatMessageContext.Provider value={{ variant, type, id }}>
       <Block ref={ref} w="full" {...props}>
-        <Group justify={align as any} gap="md" w="full">
+        <Group className={variant === "bubble" ? "bg-card border-none shadow-none rounded-lg p-4" : "bg-none border-none shadow-none p-4 mt-8"} justify={align as any} gap="md" w="full">
           {children}
         </Group>
       </Block>

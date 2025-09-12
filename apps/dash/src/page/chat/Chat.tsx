@@ -1,14 +1,16 @@
 import { Box, Stack, Title, Button, Text, Group, Icon } from "@ui8kit/core";
+import { Fragment } from 'react';
 import {
   ChatInput,
-  ChatInputTextArea, 
+  ChatInputTextArea,
   ChatInputSubmit,
   ChatMessage,
   ChatMessageAvatar,
   ChatMessageContent,
   ChatMessageArea,
   ModelSelector,
-  Model
+  Model,
+  ChatDropdown
 } from "@ui8kit/chat";
 import { useChat } from './use-chat';
 import { RequestStatusIndicator } from './RequestStatusIndicator';
@@ -34,7 +36,6 @@ export function Chat() {
     error,
     inputValue,
     requestStatus,
-    reasoningText,
     sendMessage,
     setSelectedModel,
     setInputValue,
@@ -62,9 +63,6 @@ export function Chat() {
               value={selectedModel}
               onChange={(model) => setSelectedModel(model as Model)}
             />
-
-            {/* Request Status Indicator */}
-            <RequestStatusIndicator status={requestStatus} theme={theme} />
 
             {/* Controls */}
             <Group gap="sm">
@@ -95,12 +93,7 @@ export function Chat() {
         <Box
           flex="1"
           minH="200px"
-          rounded={rounded?.default}
-          shadow="none"
-          bg="card"
           p="md"
-          border="1px"
-          borderColor="border"
           position="relative"
           overflow="hidden"
         >
@@ -111,42 +104,57 @@ export function Chat() {
               display="flex"
               align="center"
               justify="center"
-              p="md"
             >
               <Text c="muted" size="sm">
                 Start a conversation by typing a message below
               </Text>
             </Box>
           ) : (
-            <ChatMessageArea reasoningText={reasoningText} reasoningFinished={requestStatus === 'completed'}>
+            <ChatMessageArea>
               {messages.map((message) => (
-                <ChatMessage
-                  key={message.id}
-                  id={message.id}
-                  type={message.role === 'user' ? 'outgoing' : 'incoming'}
-                  variant="bubble"
-                >
-                  <ChatMessageAvatar />
-                  <ChatMessageContent
+                <Fragment key={message.id}>
+                  {message.role !== 'user' && message.reasoningText && (
+                    <Box w="full">
+                      <Box display="flex" w="full" mb="md">
+                        {/* Render dropdown for this assistant message */}
+                        <Box w="full">
+                          <ChatDropdown text={message.reasoningText} finished={Boolean(message.reasoningFinished)} />
+                        </Box>
+                      </Box>
+                    </Box>
+                  )}
+                  {message.role === 'user' && (
+                  <ChatMessage
                     id={message.id}
-                    content={message.content}
-                  />
-                </ChatMessage>
+                    type='outgoing'
+                  >
+                    <ChatMessageAvatar />
+                    <ChatMessageContent
+                      id={message.id}
+                      content={message.content}
+                    />
+                  </ChatMessage>
+                  )}
+                  {message.role !== 'user' && message.reasoningText && !isLoading && (
+                  <ChatMessage
+                    id={message.id}
+                    type='incoming'
+                    variant='bubble'
+                  >
+                    <ChatMessageAvatar />
+                    <ChatMessageContent
+                      id={message.id}
+                      content={message.content}
+                    />
+                  </ChatMessage>
+                  )}
+                </Fragment>
               ))}
 
               {/* Loading indicator */}
               {isLoading && (
-                <ChatMessage
-                  id="loading"
-                  type="incoming"
-                  variant="bubble"
-                >
-                  <ChatMessageAvatar />
-                  <ChatMessageContent
-                    id="loading"
-                    content="..."
-                  />
-                </ChatMessage>
+                <Box display="flex-1" ml="sm">
+                  <RequestStatusIndicator status={requestStatus} theme={theme} /></Box>
               )}
             </ChatMessageArea>
           )}
@@ -164,27 +172,35 @@ export function Chat() {
           rounded={rounded?.default}
           shadow="none"
           bg="card"
-          border="1px"
-          borderColor="border"
-          p="md"
+          p="sm"
+          className="focus-within:ring-1 focus-within:ring-ring focus-within:outline-none transition-colors"
         >
           <ChatInput
             onMessageSubmit={handleSubmit}
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
+            className="flex flex-col items-end w-full gap-2"
           >
-            <Group gap="sm" justify="between">
             <ChatInputTextArea
               placeholder="Type your message here..."
               disabled={isLoading}
+              variant="unstyled"
+              className={`w-full border-none focus-visible:ring-0 focus-visible:ring-offset-0 shadow-none !bg-card`}
             />
-            <ChatInputSubmit
-              loading={isLoading}
-              onStop={stopGeneration}
-            >
-              Send
-            </ChatInputSubmit>
-            </Group>
+            <Box display="flex" w="full" justify="end" mt="sm">
+              <Group gap="sm" justify="between" w="full">
+                <Button variant="outline" onClick={stopGeneration}>
+                  <Icon lucideIcon={RotateCcw} />
+                  Stop
+                </Button>
+                <ChatInputSubmit
+                  loading={isLoading}
+                  onStop={stopGeneration}
+                >
+                  Send
+                </ChatInputSubmit>
+              </Group>
+            </Box>
           </ChatInput>
         </Box>
       </Stack>

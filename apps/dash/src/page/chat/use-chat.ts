@@ -7,6 +7,8 @@ export interface Message {
   content: string;
   role: 'user' | 'assistant';
   timestamp: Date;
+  reasoningText?: string;
+  reasoningFinished?: boolean;
 }
 
 export type RequestStatus =
@@ -132,12 +134,22 @@ export function useChat() {
         signal: abortController.signal,
         onProgress: (status, data) => {
           switch (status) {
-            case 'reasoning':
+            case 'reasoning': {
               setRequestStatus('model_reasoning');
-              if (data.reasoningText) {
-                setState(prev => ({ ...prev, reasoningText: prev.reasoningText + data.reasoningText }));
+              const chunk = data.reasoningText || '';
+              if (chunk) {
+                setState(prev => ({
+                  ...prev,
+                  reasoningText: prev.reasoningText + chunk,
+                  messages: prev.messages.map(msg =>
+                    msg.id === assistantMessage.id
+                      ? { ...msg, reasoningText: (msg.reasoningText || '') + chunk, reasoningFinished: false }
+                      : msg
+                  ),
+                }));
               }
               break;
+            }
             case 'content': {
               const delta = data.delta || '';
               const total = data.totalLength || 0;
@@ -159,6 +171,12 @@ export function useChat() {
               break;
             case 'done':
               setRequestStatus('completed');
+              setState(prev => ({
+                ...prev,
+                messages: prev.messages.map(msg =>
+                  msg.id === assistantMessage.id ? { ...msg, reasoningFinished: true } : msg
+                ),
+              }));
               setTimeout(() => setRequestStatus('idle'), 2000);
               break;
           }

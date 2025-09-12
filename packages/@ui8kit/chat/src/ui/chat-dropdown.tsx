@@ -31,12 +31,12 @@ export function ChatDropdown({
   return (
     <Block w="full">
       <Group justify="between" align="center" w="full">
-        <Text size="sm" fw="medium">
+        <Text size="sm" fw="medium" c="muted">
           {title}
         </Text>
         <Button
           size="sm"
-          variant="outline"
+          variant="ghost"
           onClick={() => {
             const next = !open;
             setOpen(next);
@@ -47,7 +47,7 @@ export function ChatDropdown({
         </Button>
       </Group>
       {open && (
-        <Block mt="xs">
+        <Block mt="sm">
           <Text size="xs" c="muted">
             {text}
           </Text>
