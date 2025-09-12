@@ -38,7 +38,8 @@ export { ScrollArea } from './ui/scroll-area';
 // ========== HOOKS ==========
 export {
   useScrollToBottom,
-  useTextareaResize
+  useTextareaResize,
+  useCopyMarkdown
 } from './hooks';
 
 // ========== COMPOSITIONS ==========

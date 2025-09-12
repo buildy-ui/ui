@@ -12,6 +12,7 @@ import {
   Model,
   ChatDropdown
 } from "@ui8kit/chat";
+import { useCopyMarkdown } from "@ui8kit/chat";
 import { useChat } from './use-chat';
 import { RequestStatusIndicator } from './RequestStatusIndicator';
 import { useAppTheme } from '@/hooks/use-theme';
@@ -46,6 +47,9 @@ export function Chat() {
   const handleSubmit = (message: string) => {
     sendMessage(message);
   };
+
+  const lastAssistantMessage = messages.slice().reverse().find(m => m.role !== 'user');
+  const { copyMarkdown, isCopying, copied } = useCopyMarkdown();
 
   return (
     <Box w="full" h="full" position="relative" className="max-w-full">
@@ -188,6 +192,18 @@ export function Chat() {
               </Group>
             </Box>
           </ChatInput>
+        </Box>
+
+        {/* Floating Copy Button */}
+        <Box position="fixed" right="16px" bottom="88px" z="50">
+          <Button
+            size={buttonSize.default}
+            variant="outline"
+            disabled={!lastAssistantMessage?.content || isCopying}
+            onClick={() => lastAssistantMessage?.content && copyMarkdown(lastAssistantMessage.content)}
+          >
+            {copied ? 'Copied' : 'Copy reply'}
+          </Button>
         </Box>
       </Stack>
     </Box>

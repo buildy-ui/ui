@@ -6,3 +6,4 @@ export { useTextareaResize } from "./use-textarea-resize";
 export { useChatState } from "./use-chat-state";
 export { useStreaming } from "./use-streaming";
 export { useMessageHistory } from "./use-message-history";
+export { useCopyMarkdown } from "./use-copy-markdown";
