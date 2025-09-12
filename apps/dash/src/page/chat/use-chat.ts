@@ -196,7 +196,7 @@ export function useChat() {
       });
 
       // eslint-disable-next-line no-console
-      console.log('[chat] final text', result?.text ?? '');
+      // console.log('[chat] final text', result?.text ?? '');
 
       // Status: Completed
       setRequestStatus('completed');

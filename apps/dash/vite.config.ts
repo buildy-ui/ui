@@ -8,8 +8,8 @@ export default defineConfig(({ mode }) => {
   const QDRANT_KEY = env.VITE_QDRANT_KEY
   const EMB_URL = env.VITE_EMBEDDING_URL
   const EMB_KEY = env.VITE_EMBEDDING_KEY
-  const OPENROUTER_URL = env.OPENROUTER_URL
-  const OPENROUTER_API_KEY = env.OPENROUTER_API_KEY
+  const OPENROUTER_URL = env.VITE_OPENROUTER_URL
+  const OPENROUTER_API_KEY = env.VITE_OPENROUTER_API_KEY
 
   return {
     plugins: [react()],

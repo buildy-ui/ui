@@ -1,6 +1,9 @@
 import { BaseAIProvider } from '../core/base-provider';
 import { CompletionResponse, CommonParameters, ProviderSpecificParameters, StreamChunk, Message } from '../core/interfaces';
 
+//console.log('OPENROUTER_HTTP_REFERER:', (import.meta as any).env?.VITE_OPENROUTER_HTTP_REFERER);
+//console.log('OPENROUTER_X_TITLE:', (import.meta as any).env?.VITE_OPENROUTER_X_TITLE);
+
 export class OpenRouterProvider extends BaseAIProvider {
   protected getDefaultBaseURL(): string {
     return 'https://openrouter.ai/api/v1';
@@ -87,12 +90,29 @@ export class OpenRouterProvider extends BaseAIProvider {
     };
 
     // Optional OpenRouter identification headers to improve model routing & rankings
-    // Consumers can override by passing headers explicitly
-    if (!requestHeaders['HTTP-Referer'] && typeof process !== 'undefined' && (process as any).env?.OPENROUTER_HTTP_REFERER) {
-      requestHeaders['HTTP-Referer'] = (process as any).env.OPENROUTER_HTTP_REFERER as string;
+    // Prefer explicit headers; otherwise fill from env or browser context
+    if (!requestHeaders['HTTP-Referer']) {
+      // Node env vars
+      if (typeof process !== 'undefined' && (process as any).env?.OPENROUTER_HTTP_REFERER) {
+        requestHeaders['HTTP-Referer'] = (process as any).env.OPENROUTER_HTTP_REFERER as string;
+      }
+      // Vite/browser env vars
+      else if (typeof import.meta !== 'undefined' && (import.meta as any).env?.VITE_OPENROUTER_HTTP_REFERER) {
+        requestHeaders['HTTP-Referer'] = (import.meta as any).env.VITE_OPENROUTER_HTTP_REFERER as string;
+      }
+      // Fallback to window origin in browser
+      else if (typeof window !== 'undefined' && (window as any)?.location?.origin) {
+        requestHeaders['HTTP-Referer'] = (window as any).location.origin as string;
+      }
     }
-    if (!requestHeaders['X-Title'] && typeof process !== 'undefined' && (process as any).env?.OPENROUTER_X_TITLE) {
-      requestHeaders['X-Title'] = (process as any).env.OPENROUTER_X_TITLE as string;
+    if (!requestHeaders['X-Title']) {
+      if (typeof process !== 'undefined' && (process as any).env?.OPENROUTER_X_TITLE) {
+        requestHeaders['X-Title'] = (process as any).env.OPENROUTER_X_TITLE as string;
+      } else if (typeof import.meta !== 'undefined' && (import.meta as any).env?.VITE_OPENROUTER_X_TITLE) {
+        requestHeaders['X-Title'] = (import.meta as any).env.VITE_OPENROUTER_X_TITLE as string;
+      } else if (typeof document !== 'undefined' && (document as any)?.title) {
+        requestHeaders['X-Title'] = (document as any).title as string;
+      }
     }
 
     const response = await fetch(url, {
@@ -152,11 +172,24 @@ export class OpenRouterProvider extends BaseAIProvider {
       'Authorization': `Bearer ${this.apiKey}`,
       'Content-Type': 'application/json',
     };
-    if (typeof process !== 'undefined' && (process as any).env?.OPENROUTER_HTTP_REFERER) {
-      headers['HTTP-Referer'] = (process as any).env.OPENROUTER_HTTP_REFERER as string;
+    // Fill identification headers as above
+    if (!headers['HTTP-Referer']) {
+      if (typeof process !== 'undefined' && (process as any).env?.OPENROUTER_HTTP_REFERER) {
+        headers['HTTP-Referer'] = (process as any).env.OPENROUTER_HTTP_REFERER as string;
+      } else if (typeof import.meta !== 'undefined' && (import.meta as any).env?.VITE_OPENROUTER_HTTP_REFERER) {
+        headers['HTTP-Referer'] = (import.meta as any).env.VITE_OPENROUTER_HTTP_REFERER as string;
+      } else if (typeof window !== 'undefined' && (window as any)?.location?.origin) {
+        headers['HTTP-Referer'] = (window as any).location.origin as string;
+      }
     }
-    if (typeof process !== 'undefined' && (process as any).env?.OPENROUTER_X_TITLE) {
-      headers['X-Title'] = (process as any).env.OPENROUTER_X_TITLE as string;
+    if (!headers['X-Title']) {
+      if (typeof process !== 'undefined' && (process as any).env?.OPENROUTER_X_TITLE) {
+        headers['X-Title'] = (process as any).env.OPENROUTER_X_TITLE as string;
+      } else if (typeof import.meta !== 'undefined' && (import.meta as any).env?.VITE_OPENROUTER_X_TITLE) {
+        headers['X-Title'] = (import.meta as any).env.VITE_OPENROUTER_X_TITLE as string;
+      } else if (typeof document !== 'undefined' && (document as any)?.title) {
+        headers['X-Title'] = (document as any).title as string;
+      }
     }
 
     const response = await fetch(url, {

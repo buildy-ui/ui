@@ -48,7 +48,7 @@ export function Chat() {
   };
 
   return (
-    <Box w="full" h="full" position="relative" className="max-w-full overflow-hidden">
+    <Box w="full" h="full" position="relative" className="max-w-full">
       <Stack gap="md" h="full">
         {/* Header */}
         <Stack gap="sm">
@@ -161,7 +161,7 @@ export function Chat() {
           mt="lg"
           border="1px"
           borderColor="border"
-          className="bottom-0 focus-within:ring-1 focus-within:ring-ring focus-within:outline-none transition-colors shadow-3xl"
+          className="bottom-0 focus-within:ring-1 focus-within:ring-ring focus-within:outline-none transition-colors"
         >
           <ChatInput
             onMessageSubmit={handleSubmit}
