@@ -1,5 +1,5 @@
 import { Box, Stack, Title, Button, Badge, Text, Group, Icon } from "@ui8kit/core";
-import { Fragment, useEffect, useRef } from 'react';
+import { Fragment } from 'react';
 import {
   ChatInput,
   ChatInputTextArea,
@@ -12,7 +12,7 @@ import {
   Model,
   ChatDropdown
 } from "@ui8kit/chat";
-import { useCopyMarkdown } from "@ui8kit/chat";
+import { useCopyMarkdown, useScrollToBottom } from "@ui8kit/chat";
 import { useChat } from './use-chat';
 import { RequestStatusIndicator } from './RequestStatusIndicator';
 import { useAppTheme } from '@/hooks/use-theme';
@@ -44,15 +44,11 @@ export function Chat() {
     stopGeneration,
   } = useChat();
 
-  // Anchor for auto-scrolling to bottom when new messages arrive
-  const bottomAnchorRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    bottomAnchorRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, [messages.length, isLoading]);
+  const [scrollContainerRef, _showScrollButton, scrollToBottom] = useScrollToBottom<HTMLDivElement>();
 
   const handleSubmit = (message: string) => {
     sendMessage(message);
+    scrollToBottom();
   };
 
   const lastAssistantMessage = messages.slice().reverse().find(m => m.role !== 'user');
@@ -109,6 +105,8 @@ export function Chat() {
           overflow="auto"
           p="sm"
           className="max-w-full overflow-x-hidden"
+          ref={scrollContainerRef}
+          data-class="scroll-viewport"
         >
           {messages.length === 0 ? (
             <Box
@@ -136,6 +134,9 @@ export function Chat() {
                         <ChatMessageAvatar />
                       )}
                       <Stack gap="md">
+                        {message.role === 'assistant' && message.reasoningText && (
+                          <RequestStatusIndicator status={requestStatus} theme={theme} />
+                        )}
                         {message.role !== 'user' && message.reasoningText && (
                           <Box display="flex" w="full" mb="md">
                             {/* Render dropdown for this assistant message */}
@@ -148,7 +149,7 @@ export function Chat() {
                               <Badge
                                 size={buttonSize.default}
                                 variant="ghost">
-                                <Icon size="sm" lucideIcon={CheckCheck} className="text-emerald-600 mr-1" />
+                                <Icon size="sm" lucideIcon={CheckCheck} className="text-teal-500 mr-1" />
                                 Copied
                               </Badge>
                             )}
@@ -158,7 +159,7 @@ export function Chat() {
                               disabled={!lastAssistantMessage?.content || isCopying}
                               onClick={() => { copied ? window.open("https://editory.vercel.app/", "_blank") : lastAssistantMessage?.content && copyMarkdown(lastAssistantMessage.content) }}
                             >
-                              {copied ? <Icon size="sm" lucideIcon={ExternalLink} className="text-emerald-600" /> : <Icon size="sm" lucideIcon={Copy} />}
+                              {copied ? <Icon size="sm" lucideIcon={ExternalLink} className="text-teal-500" /> : <Icon size="sm" lucideIcon={Copy} />}
                             </Button>
                           </Box>
                         )}
@@ -171,7 +172,7 @@ export function Chat() {
                   </Fragment>
                 ))}
               </ChatMessageArea>
-              <div ref={bottomAnchorRef} />
+              {/* bottom anchor removed in favor of hook-based scrolling */}
             </>
           )}
         </Box>
@@ -203,9 +204,6 @@ export function Chat() {
             onChange={(e) => setInputValue(e.target.value)}
             className="flex flex-col items-end w-full gap-2"
           >
-            <Box display="flex" w="fit" justify="start" mb="sm">
-              <RequestStatusIndicator status={requestStatus} theme={theme} />
-            </Box>
             <ChatInputTextArea
               placeholder="Type your message here..."
               disabled={isLoading}
