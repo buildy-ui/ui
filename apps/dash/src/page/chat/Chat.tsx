@@ -1,5 +1,5 @@
-import { Box, Stack, Title, Button, Text, Group, Icon } from "@ui8kit/core";
-import { Fragment } from 'react';
+import { Box, Stack, Title, Button, Badge, Text, Group, Icon } from "@ui8kit/core";
+import { Fragment, useEffect, useRef } from 'react';
 import {
   ChatInput,
   ChatInputTextArea,
@@ -16,7 +16,7 @@ import { useCopyMarkdown } from "@ui8kit/chat";
 import { useChat } from './use-chat';
 import { RequestStatusIndicator } from './RequestStatusIndicator';
 import { useAppTheme } from '@/hooks/use-theme';
-import { Trash2, RotateCcw } from 'lucide-react';
+import { Trash2, RotateCcw, Copy, CheckCheck, ExternalLink } from 'lucide-react';
 
 const content = {
   title: "AI Chat Assistant",
@@ -43,6 +43,13 @@ export function Chat() {
     clearMessages,
     stopGeneration,
   } = useChat();
+
+  // Anchor for auto-scrolling to bottom when new messages arrive
+  const bottomAnchorRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    bottomAnchorRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, [messages.length, isLoading]);
 
   const handleSubmit = (message: string) => {
     sendMessage(message);
@@ -116,33 +123,59 @@ export function Chat() {
               </Text>
             </Box>
           ) : (
-            <ChatMessageArea className="max-w-full w-full overflow-x-hidden">
-              {messages.map((message) => (
-                <Fragment key={message.id}>
-                  <ChatMessage
-                    id={message.id}
-                    type={message.role === 'user' ? 'outgoing' : 'incoming'}
-                    variant={message.role !== 'user' ? 'bubble' : 'default'}
-                  >
-                    {message.role === 'user' && (
-                      <ChatMessageAvatar  />
-                    )}
-                    <Stack gap="md">
-                      {message.role !== 'user' && message.reasoningText && (
-                        <Box display="flex" w="full" mb="md">
-                          {/* Render dropdown for this assistant message */}
-                          <ChatDropdown text={message.reasoningText} finished={Boolean(message.reasoningFinished)} />
-                        </Box>
+            <>
+              <ChatMessageArea className="relative max-w-full w-full overflow-x-hidden">
+                {messages.map((message) => (
+                  <Fragment key={message.id}>
+                    <ChatMessage
+                      id={message.id}
+                      type={message.role === 'user' ? 'outgoing' : 'incoming'}
+                      variant={message.role !== 'user' ? 'bubble' : 'default'}
+                    >
+                      {message.role === 'user' && (
+                        <ChatMessageAvatar />
                       )}
-                      <ChatMessageContent
-                        id={message.id}
-                        content={message.content}
-                      />
-                    </Stack>
-                  </ChatMessage>
-                </Fragment>
-              ))}
-            </ChatMessageArea>
+                      <Stack gap="md">
+                        {message.role === 'assistant' && (
+                          <RequestStatusIndicator status={requestStatus} theme={theme} />
+                        )}
+                        {message.role !== 'user' && message.reasoningText && (
+                          <Box display="flex" w="full" mb="md">
+                            {/* Render dropdown for this assistant message */}
+                            <ChatDropdown text={message.reasoningText} finished={Boolean(message.reasoningFinished)} />
+                          </Box>
+                        )}
+                        {message.role === 'assistant' && message.reasoningFinished && message.content && (
+                          <Box position="absolute" style={{ bottom: '8px', right: '4px' }}>
+                            {copied && (
+                              <Badge
+                                size={buttonSize.default}
+                                variant="ghost">
+                                <Icon size="sm" lucideIcon={CheckCheck} className="text-teal-500 mr-1" />
+                                Copied
+                              </Badge>
+                            )}
+                            <Button
+                              size={buttonSize.default}
+                              variant="ghost"
+                              disabled={!lastAssistantMessage?.content || isCopying}
+                              onClick={() => { copied ? window.open("https://editory.vercel.app/", "_blank") : lastAssistantMessage?.content && copyMarkdown(lastAssistantMessage.content) }}
+                            >
+                              {copied ? <Icon size="sm" lucideIcon={ExternalLink} className="text-teal-500" /> : <Icon size="sm" lucideIcon={Copy} />}
+                            </Button>
+                          </Box>
+                        )}
+                        <ChatMessageContent
+                          id={message.id}
+                          content={message.content}
+                        />
+                      </Stack>
+                    </ChatMessage>
+                  </Fragment>
+                ))}
+              </ChatMessageArea>
+              <div ref={bottomAnchorRef} />
+            </>
           )}
         </Box>
 
@@ -181,7 +214,7 @@ export function Chat() {
             />
             <Box display="flex" w="full" justify="end" mt="sm">
               <Group gap="sm" justify="between" w="full">
-                <Box display="flex-1" justify="start"><RequestStatusIndicator status={requestStatus} theme={theme} /></Box>
+                <Box display="flex-1" justify="start">Dropdown</Box>
 
                 <ChatInputSubmit
                   loading={isLoading}
@@ -192,18 +225,6 @@ export function Chat() {
               </Group>
             </Box>
           </ChatInput>
-        </Box>
-
-        {/* Floating Copy Button */}
-        <Box position="fixed" right="16px" bottom="88px" z="50">
-          <Button
-            size={buttonSize.default}
-            variant="outline"
-            disabled={!lastAssistantMessage?.content || isCopying}
-            onClick={() => lastAssistantMessage?.content && copyMarkdown(lastAssistantMessage.content)}
-          >
-            {copied ? 'Copied' : 'Copy reply'}
-          </Button>
         </Box>
       </Stack>
     </Box>

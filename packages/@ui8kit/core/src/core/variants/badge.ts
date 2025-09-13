@@ -25,7 +25,8 @@ export const badgeStyleVariants = cva("", {
       outline: "text-foreground border-border",
       success: "bg-green-500 text-white hover:bg-green-600",
       warning: "bg-yellow-500 text-white hover:bg-yellow-600",
-      info: "bg-blue-500 text-white hover:bg-blue-600"
+      info: "bg-blue-500 text-white hover:bg-blue-600",
+      ghost: "bg-transparent text-foreground hover:bg-transparent"
     }
   },
   defaultVariants: {

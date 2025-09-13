@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Block, Button, Group, Icon, Text } from "@ui8kit/core";
+import { Block, Button, Group, Icon, Text, Box } from "@ui8kit/core";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
 interface ChatDropdownProps {
@@ -30,10 +30,12 @@ export function ChatDropdown({
 
   return (
     <Block w="full">
-      <Group justify="between" align="center" w="full">
+      <Group justify="end" align="end">
+        <Box p="sm">
         <Text size="sm" fw="medium" c="muted">
           {title}
         </Text>
+        </Box>
         <Button
           size="sm"
           variant="ghost"

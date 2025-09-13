@@ -31,7 +31,7 @@ export function useCopyMarkdown(options: UseCopyMarkdownOptions = {}) {
       }
       setCopied(true);
       onSuccess?.();
-      setTimeout(() => setCopied(false), 1500);
+      setTimeout(() => setCopied(false), 2500);
     } catch (error) {
       onError?.(error);
     } finally {
