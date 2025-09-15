@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from '@/providers/ThemeProvider'
-import { Dashboard } from '@/layouts'
+import { Dashboard } from '@/layouts' //LayoutSandbox
 import { Home, Stat, Blank, _404, Login, Register, CrudCreate, CrudList, Chat } from '@/page'
 import { lesseUITheme } from '@ui8kit/theme' // isNavFixed: true
 import { ItemsList, NewItem, Tools, QDrantList, QDrantGraph } from "./page/brain";
@@ -23,7 +23,7 @@ function App() {
           <Route path="/brain" element={<Dashboard page={Tools} />} />
           <Route path="/brain/qdrant" element={<Dashboard page={QDrantList} />} />
           <Route path="/brain/qdrant-graph" element={<Dashboard page={QDrantGraph} />} />
-          <Route path="/chat" element={<Dashboard page={Chat} />} />
+          {/*<Route path="/chat" element={<LayoutSandbox page={Chat} />} />*/}
         </Routes>
       </Router>
     </ThemeProvider>

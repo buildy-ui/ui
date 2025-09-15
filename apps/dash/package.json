@@ -11,6 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@codesandbox/sandpack-react": "^2.20.0",
     "@dqbd/tiktoken": "^1.0.22",
     "@hookform/resolvers": "^5.2.1",
     "@qdrant/js-client-rest": "^1.15.1",
