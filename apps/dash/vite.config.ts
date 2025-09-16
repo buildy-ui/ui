@@ -14,6 +14,7 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [react()],
     resolve: {
+      preserveSymlinks: true,
       dedupe: ["react", "react-dom"],
       alias: {
         '@': path.resolve(__dirname, './src'),
@@ -26,7 +27,8 @@ export default defineConfig(({ mode }) => {
       }
     },
     server: {
-      port: 5000,
+      port: 7000,
+      fs: { allow: [path.resolve(__dirname, '..', '..')] },
       proxy: (() => {
         const proxy: Record<string, any> = {}
         if (QDRANT_URL) {

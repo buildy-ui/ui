@@ -82,7 +82,8 @@
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",
-    "react-dom": "^18.0.0 || ^19.0.0"
+    "react-dom": "^18.0.0 || ^19.0.0",
+    "@ui8kit/core": "*"
   },
   "dependencies": {
     "marked": "^16.2.1",
@@ -91,7 +92,7 @@
     "shiki": "^3.12.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
-    "lucide-react": "^0.460.0"
+    "lucide-react": "^0.525.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.0",

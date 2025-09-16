@@ -1,5 +1,11 @@
 # BuildY UI8Kit component library
 
+## Monorepo tasks
+
+- dev: `bunx turbo run dev`
+- build: `bunx turbo run build`
+- release: `bun run release`
+
 A powerful **[buildy-ui](https://www.npmjs.com/package/buildy-ui) CLI** for adding UI components to your Vite React projects with [multi-registry](https://www.npmjs.com/package/ui8kit) support and intelligent dependency validation.
 
 ## Quick Start
