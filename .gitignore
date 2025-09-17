@@ -20,6 +20,7 @@ vite.config.js
 vite.config.d.ts
 tsconfig.tsbuildinfo
 tsconfig.node.tsbuildinfo
+bash.exe.stackdump
 
 ## turbo
 .turbo/
