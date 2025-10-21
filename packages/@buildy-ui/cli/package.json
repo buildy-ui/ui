@@ -1,7 +1,7 @@
 {
   "name": "buildy-ui",
   "version": "1.2.3",
-  "description": "A CLI for adding UI components to your Vite React projects (UI8Kit utility components)",
+  "description": "A CLI for adding UI components to your Vite React projects (UI8Kit core/form registries)",
   "type": "module",
   "bin": {
     "buildy-ui": "./dist/index.js"
@@ -46,7 +46,8 @@
     "shadcn",
     "tailwind",
     "ui8kit",
-    "utility"
+    "core",
+    "form"
   ],
   "author": {
     "name": "buildy",

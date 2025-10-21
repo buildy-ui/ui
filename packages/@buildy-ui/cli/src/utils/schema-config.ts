@@ -12,21 +12,18 @@ export const SCHEMA_CONFIG = {
   // Default aliases for path mapping
   defaultAliases: {
     "@": "./src",
-    "@/components": "./utility/components",
-    "@/ui": "./utility/ui",
-    "@/blocks": "./utility/blocks",
-    "@/lib": "./lib",
-    "@/utility": "./utility",
-    "@/semantic": "./semantic",
-    "@/theme": "./theme",
+    "@/components": "./src/components",
+    "@/ui": "./src/ui",
+    "@/blocks": "./src/blocks",
+    "@/lib": "./src/lib"
   },
   
   // Registry configuration
   defaultRegistry: "@ui8kit",
-  registryTypes: ["utility", "semantic", "theme"],
+  registryTypes: ["core", "form"],
 
   // Default registry type
-  defaultRegistryType: "utility",
+  defaultRegistryType: "core",
   
   // CDN base URLs (registryName will be substituted)
   cdnBaseUrls: [
@@ -49,8 +46,8 @@ export const SCHEMA_CONFIG = {
   
   // Default directories
   defaultDirectories: {
-    components: "./utility/ui",
-    lib: "./lib",
+    components: "./src/ui",
+    lib: "./src/lib",
   },
   
   // Schema descriptions and titles
@@ -80,7 +77,7 @@ export const SCHEMA_CONFIG = {
     libDir: "Directory for utility libraries",
     registryName: "Registry name",
     registryHomepage: "Registry homepage URL",
-    registryType: "Registry type in UI8Kit architecture",
+    registryType: "Registry type (e.g., core, form)",
     registryVersion: "Registry version",
     lastUpdated: "Last update timestamp",
     categories: "Available component categories",
@@ -89,7 +86,7 @@ export const SCHEMA_CONFIG = {
   }
 } as const
 
-export type RegistryType = "utility" | "semantic" | "theme"
+export type RegistryType = "core" | "form"
 
 // Map component types to their corresponding folders
 export const TYPE_TO_FOLDER = {
@@ -106,13 +103,12 @@ export function getCdnUrls(registryType: RegistryType): string[] {
 }
 
 export function getInstallPath(registryType: RegistryType, componentType: string): string {
+  // Deprecated: install path should be resolved via project config. This remains only for backward compatibility.
   const folder = TYPE_TO_FOLDER[componentType as keyof typeof TYPE_TO_FOLDER]
-  
   if (componentType === "registry:lib") {
-    return "lib"
+    return "src/lib"
   }
-  
-  return `${registryType}/${folder}`
+  return `src/${folder}`
 }
 
 // Helper function to filter real npm dependencies (exclude local aliases and paths)

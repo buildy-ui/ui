@@ -39,17 +39,14 @@ export const configSchema = z.object({
   typescript: z.boolean().default(true),
   aliases: z.record(z.string()).default({
     "@": "./src",
-    "@/components": "./utility/components",
-    "@/ui": "./utility/ui",
-    "@/blocks": "./utility/blocks",
-    "@/lib": "./lib",
-    "@/utility": "./utility",
-    "@/semantic": "./semantic",
-    "@/theme": "./theme",
+    "@/components": "./src/components",
+    "@/ui": "./src/ui",
+    "@/blocks": "./src/blocks",
+    "@/lib": "./src/lib"
   }),
   registry: z.string().default("@ui8kit"),
-  componentsDir: z.string().default("./utility/ui"),
-  libDir: z.string().default("./lib"),
+  componentsDir: z.string().default("./src/ui"),
+  libDir: z.string().default("./src/lib"),
 })
 
 export type Config = z.infer<typeof configSchema> 

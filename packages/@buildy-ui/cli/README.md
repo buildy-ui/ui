@@ -1,98 +1,85 @@
 # buildy-ui CLI
 
-A powerful CLI for adding UI components to your Vite React projects with multi-registry support and intelligent dependency validation.
+A powerful CLI for adding UI components to your Vite React projects with simplified package-based registries (`core`, `form`) and intelligent dependency validation.
 
 ## Quick Start
 
 No installation needed! Use directly with `npx` or `bun x`:
 
 ```bash
-# Initialize utility registry (base requirement)
-npx buildy-ui@latest init
+# Initialize project (defaults to core)
+npx buildy-ui@latest init --registry core
 
-# Initialize additional registries
-npx buildy-ui@latest init --registry semantic
-npx buildy-ui@latest init --registry yourtheme
+# Initialize form registry
+npx buildy-ui@latest init --registry form
 
 # Add components from different registries
-npx buildy-ui@latest add button card --registry utility
-npx buildy-ui@latest add input --registry semantic
-npx buildy-ui@latest add dark-theme --registry yourtheme
+npx buildy-ui@latest add button card --registry core
+npx buildy-ui@latest add input --registry form
 
 # Install all components from a registry
-npx buildy-ui@latest add --all --registry semantic
+npx buildy-ui@latest add --all --registry core
 
 # Build and scan registries
-npx buildy-ui@latest scan --registry utility
+npx buildy-ui@latest scan --registry core
 npx buildy-ui@latest build
 ```
 
-## Multi-Registry Architecture
+## Package Registries
 
-The CLI supports three types of registries:
+The CLI supports two package registries:
 
-- **`utility`** - Base registry (required first). Contains foundational UI components
-- **`semantic`** - Semantic components that extend utility components
-- **`theme`** - Theme-specific components and variations
-
-### Registry Dependencies
-
-- **Utility registry** is the foundation and must be initialized first
-- **Semantic and yourtheme registries** require utility registry to be present
-- Components can only be installed in non-utility registries if they exist in utility first
+- **`core`** - Base UI components (`@ui8kit/core`)
+- **`form`** - Form components (`@ui8kit/form`)
 
 ## Commands
 
 ### Initialize project
 ```bash
-# Initialize utility registry (required first)
-npx buildy-ui@latest init
+# Initialize core registry
+npx buildy-ui@latest init --registry core
 
-# Initialize additional registries
-npx buildy-ui@latest init --registry semantic
-npx buildy-ui@latest init --registry yourtheme
+# Initialize form registry
+npx buildy-ui@latest init --registry form
 
 # Skip prompts and use defaults
-npx buildy-ui@latest init --yes --registry semantic
+npx buildy-ui@latest init --yes --registry core
 ```
 
-Creates registry-specific configuration, directories, and dependencies.
+Creates project configuration, `src/` directories, and dependencies.
 
 ### Add components
 ```bash
-# Add from utility registry (default)
-npx buildy-ui@latest add button card
+# Add from core registry (default)
+npx buildy-ui@latest add button card --registry core
 
-# Add from specific registries
-npx buildy-ui@latest add button --registry utility
-npx buildy-ui@latest add input --registry semantic
-npx buildy-ui@latest add dark-theme --registry yourtheme
+# Add from form registry
+npx buildy-ui@latest add input --registry form
 
 # Add multiple components at once
-npx buildy-ui@latest add button card hero-section --registry semantic
+npx buildy-ui@latest add button card hero-section --registry core
 
 # Add from external URL
 npx buildy-ui@latest add "https://ui.example.com/button.json"
 
 # Install ALL available components from a registry
-npx buildy-ui@latest add --all --registry utility
-npx buildy-ui@latest add --all --registry semantic
+npx buildy-ui@latest add --all --registry core
+npx buildy-ui@latest add --all --registry form
 
 # Preview what would be installed
-npx buildy-ui@latest add --all --dry-run --registry semantic
-npx buildy-ui@latest add button --dry-run --registry yourtheme
+npx buildy-ui@latest add --all --dry-run --registry core
+npx buildy-ui@latest add button --dry-run --registry form
 
 # Force overwrite existing files
-npx buildy-ui@latest add button --force --registry semantic
+npx buildy-ui@latest add button --force --registry core
 
 # Enable retry logic for unreliable connections
-npx buildy-ui@latest add button --retry --registry semantic
-npx buildy-ui@latest add --all --retry --registry yourtheme
+npx buildy-ui@latest add button --retry --registry core
+npx buildy-ui@latest add --all --retry --registry form
 ```
 
 **Smart Features**:
-- **Registry Validation**: Ensures utility registry exists before using semantic/theme
-- **Component Validation**: Checks if components exist in utility before installing in other registries
+- **Simplified registries**: `core` and `form` with no prerequisite ordering
 - **Smart Search**: Automatically searches across all categories (`ui`, `blocks`, `components`, `lib`, `templates`)
 - **Dependency Intelligence**: Handles workspace dependencies and filters real npm packages
 - **Skip Existing**: Already installed files are skipped automatically (use `--force` to overwrite)
@@ -101,14 +88,14 @@ npx buildy-ui@latest add --all --retry --registry yourtheme
 
 ### Scan existing components
 ```bash
-# Scan utility registry
-npx buildy-ui@latest scan --registry utility
+# Scan core registry
+npx buildy-ui@latest scan --registry core
 
-# Scan semantic registry
-npx buildy-ui@latest scan --registry semantic --output ./semantic/registry.json
+# Scan form registry
+npx buildy-ui@latest scan --registry form --output ./form/registry.json
 
 # Scan with custom source directory
-npx buildy-ui@latest scan --registry yourtheme --source ./theme --output ./theme-registry.json
+npx buildy-ui@latest scan --registry core --source ./src --output ./src/registry.json
 ```
 
 **Scan Features**:
@@ -123,10 +110,7 @@ npx buildy-ui@latest scan --registry yourtheme --source ./theme --output ./theme
 npx buildy-ui@latest build
 
 # Build specific registry
-npx buildy-ui@latest build ./utility/registry.json --output ./packages/registry/r/utility
-
-# Build semantic registry
-npx buildy-ui@latest build ./semantic/registry.json --output ./packages/registry/r/semantic
+npx buildy-ui@latest build ./src/registry.json --output ./packages/registry/r/core
 
 # Build from different working directory
 npx buildy-ui@latest build --cwd ./packages/ui --output ./packages/registry/r
@@ -134,44 +118,23 @@ npx buildy-ui@latest build --cwd ./packages/ui --output ./packages/registry/r
 
 ## Directory Structure
 
-After initialization, your project will have registry-specific directories:
+After initialization, your project will have `src/` directories:
 
 ```
-# Utility registry (base)
-utility/
+src/
 ├── ui/              # UI components (@/ui)
 ├── blocks/          # Component blocks (@/blocks)
 ├── components/      # Generic components (@/components)
 ├── templates/       # Template components (@/templates)
-└── buildy.config.json
-
-# Semantic registry
-semantic/
-├── ui/              # Semantic UI components
-├── blocks/          # Semantic blocks
-├── components/      # Semantic components
-├── templates/       # Semantic templates
-└── buildy.config.json
-
-# Theme registry
-theme/
-├── ui/              # Theme-specific UI
-├── blocks/          # Theme blocks
-├── components/      # Theme components
-├── templates/       # Theme templates
-└── buildy.config.json
-
-# Shared utilities (created with utility registry)
-lib/                 # Utilities (@/lib)
-└── utils.ts
+└── lib/             # Utilities (@/lib)
 ```
 
-Components are automatically installed to the correct directory based on their type and registry:
-- `registry:ui` → `{registry}/ui/`
-- `registry:block` → `{registry}/blocks/`
-- `registry:component` → `{registry}/components/`
-- `registry:template` → `{registry}/templates/`
-- `registry:lib` → `lib/` (always at root)
+Components are automatically installed to the correct directory based on their type:
+- `registry:ui` → `src/ui/`
+- `registry:block` → `src/blocks/`
+- `registry:component` → `src/components/`
+- `registry:template` → `src/templates/`
+- `registry:lib` → `src/lib/`
 
 ## Component Types
 
@@ -183,9 +146,9 @@ Components are automatically installed to the correct directory based on their t
 
 ## Configuration
 
-Each registry has its own `buildy.config.json` file:
+Each registry can have its own `buildy.config.json` file (at project root or under `./core` or `./form`):
 
-### Utility Registry Config
+### Example Config
 ```json
 {
   "$schema": "https://buildy.tw/schema.json",
@@ -193,68 +156,20 @@ Each registry has its own `buildy.config.json` file:
   "typescript": true,
   "aliases": {
     "@": "./src",
-    "@/components": "./utility/components",
-    "@/ui": "./utility/ui",
-    "@/blocks": "./utility/blocks",
-    "@/lib": "./lib",
-    "@/utility": "./utility",
-    "@/semantic": "./semantic",
-    "@/theme": "./theme"
+    "@/components": "./src/components",
+    "@/ui": "./src/ui",
+    "@/blocks": "./src/blocks",
+    "@/lib": "./src/lib"
   },
   "registry": "@ui8kit",
-  "componentsDir": "./utility/ui",
-  "libDir": "./lib"
+  "componentsDir": "./src/ui",
+  "libDir": "./src/lib"
 }
 ```
 
-### Semantic Registry Config
-```json
-{
-  "$schema": "https://buildy.tw/schema.json",
-  "framework": "vite-react",
-  "typescript": true,
-  "aliases": {
-    "@": "./src",
-    "@/components": "./semantic/components",
-    "@/ui": "./semantic/ui",
-    "@/blocks": "./semantic/blocks",
-    "@/lib": "./lib",
-    "@/utility": "./utility",
-    "@/semantic": "./semantic",
-    "@/theme": "./theme"
-  },
-  "registry": "@ui8kit",
-  "componentsDir": "./semantic/ui",
-  "libDir": "./lib"
-}
-```
+## Validation
 
-## Registry Validation
-
-The CLI includes intelligent validation:
-
-### Registry Dependency Validation
-```bash
-# This will fail if utility registry is not initialized
-npx buildy-ui@latest init --registry semantic
-# ❌ Cannot use semantic registry without utility registry. Please run: npx buildy-ui init
-
-# This will fail if utility registry has no components
-npx buildy-ui@latest add button --registry semantic
-# ❌ No components found in utility registry. Please install utility components first
-```
-
-### Component Dependency Validation
-```bash
-# This will show available utility components and fail
-npx buildy-ui@latest add card --registry semantic
-
-# Output:
-# 📦 Available utility components (3 total):
-#    ui: button, input
-#    lib: utils
-# ❌ Components not found in utility registry: card. Install them first: npx buildy-ui add card
-```
+Validation is simplified; there is no dependency between registries. Component dependency checks focus on external npm packages only.
 
 ## Dependency Management
 
@@ -312,13 +227,13 @@ npx buildy-ui@latest add button --registry semantic
       "devDependencies": ["@types/react"],
       "files": [
         {
-          "path": "./utility/ui/button.tsx",
+          "path": "./src/ui/button.tsx",
           "target": "ui"
         }
       ]
     }
   ],
-  "registry": "utility",
+  "registry": "core",
   "version": "1.0.0"
 }
 ```
@@ -326,8 +241,8 @@ npx buildy-ui@latest add button --registry semantic
 ### Output: Built Registry
 ```
 packages/registry/r/
-├── utility/
-│   ├── index.json          # Utility registry index
+├── core/
+│   ├── index.json          # Registry index
 │   ├── ui/
 │   │   └── button.json     # UI components
 │   ├── lib/
@@ -336,19 +251,11 @@ packages/registry/r/
 │   │   └── hero.json       # Component blocks
 │   └── components/
 │       └── card.json       # Generic components
-├── semantic/
-│   ├── index.json          # Semantic registry index
-│   └── ui/
-│       └── input.json      # Semantic components
-└── yourtheme/
-    ├── index.json          # Theme registry index
-    └── ui/
-        └── dark-button.json # Theme components
 ```
 
 ## Workflow for Library Authors
 
-1. **Initialize registries** in your development environment
+1. **Initialize** your project
 2. **Develop components** in registry-specific directories
 3. **Scan registries** to generate registry.json files
 4. **Build registries** to generate distribution files
@@ -358,23 +265,17 @@ packages/registry/r/
 ### Example Workflow
 ```bash
 # Development setup
-npx buildy-ui@latest init
-npx buildy-ui@latest init --registry semantic
-npx buildy-ui@latest init --registry yourtheme
+npx buildy-ui@latest init --registry core
+npx buildy-ui@latest init --registry form
 
-# Develop components in utility/, semantic/, yourtheme/ directories 
+# Develop components in src/ directories
 
 # Generate registry files
-npx buildy-ui@latest scan --registry utility --output ./utility/registry.json
-npx buildy-ui@latest scan --registry semantic --output ./semantic/registry.json
-npx buildy-ui@latest scan --registry yourtheme --output ./theme/registry.json
-bunx buildy-ui@latest scan --registry builddy --output ./builddy/registry.json
+npx buildy-ui@latest scan --registry core --output ./src/registry.json
+npx buildy-ui@latest scan --registry form --output ./form/registry.json
 
 # Build distribution
-npx buildy-ui@latest build ./utility/registry.json --output ./packages/registry/r/utility
-npx buildy-ui@latest build ./semantic/registry.json --output ./packages/registry/r/semantic
-npx buildy-ui@latest build ./theme/registry.json --output ./packages/registry/r/theme
-bunx buildy-ui@latest build ./builddy/registry.json --output ./builddy/registry/r/blocks
+npx buildy-ui@latest build ./src/registry.json --output ./packages/registry/r/core
 
 # Deploy packages/registry/r/ to your CDN
 ```

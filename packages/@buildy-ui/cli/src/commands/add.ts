@@ -6,7 +6,7 @@ import { execa } from "execa"
 import { getComponent, getAllComponents } from "../registry/api.js"
 import { getComponentWithRetry, getAllComponentsWithRetry } from "../registry/retry-api.js"
 import { findConfig } from "../utils/project.js"
-import { Component } from "../registry/schema.js"
+import { Component, type Config } from "../registry/schema.js"
 import { SCHEMA_CONFIG, getInstallPath, type RegistryType } from "../utils/schema-config.js"
 import { validateComponentInstallation, handleValidationError, showUtilityComponentsSummary } from "../utils/registry-validator.js"
 import { checkProjectDependencies, showDependencyStatus, filterMissingDependencies, isWorkspaceError } from "../utils/dependency-checker.js"
@@ -30,9 +30,9 @@ export async function addCommand(components: string[], options: AddOptions) {
   if (components.length === 0) {
     console.error(chalk.red("❌ Please specify at least one component to add."))
     console.log("Example: npx buildy-ui@latest add button card")
-    console.log("Example: npx buildy-ui@latest add button --registry semantic")
+    console.log("Example: npx buildy-ui@latest add button --registry core")
     console.log("Example: npx buildy-ui@latest add all  # Install all components")
-    console.log("Example: npx buildy-ui@latest add --all --registry semantic  # Install all semantic components")
+    console.log("Example: npx buildy-ui@latest add --all --registry core  # Install all core components")
     console.log("Example: npx buildy-ui@latest add --retry  # Enable retry for unreliable connections")
     console.log("Example: npx buildy-ui@latest add \"https://example.com/component.json\"")
     process.exit(1)
@@ -41,10 +41,6 @@ export async function addCommand(components: string[], options: AddOptions) {
   // Validate component installation before proceeding
   const validation = await validateComponentInstallation(components, registryType)
   if (!validation.isValid) {
-    // Show available utility components if validation fails for non-utility registry
-    if (registryType !== "utility") {
-      await showUtilityComponentsSummary()
-    }
     handleValidationError(validation)
   }
   
@@ -53,9 +49,7 @@ export async function addCommand(components: string[], options: AddOptions) {
   if (!config) {
     console.error(chalk.red("❌ buildy is not initialized in this project."))
     console.log(`Run 'npx buildy-ui@latest init' first.`)
-    if (registryType !== "utility") {
-      console.log(`For ${registryType} registry, run: npx buildy-ui@latest init --registry ${registryType}`)
-    }
+    console.log(`For ${registryType} registry, run: npx buildy-ui@latest init --registry ${registryType}`)
     process.exit(1)
   }
   
@@ -96,7 +90,7 @@ export async function addCommand(components: string[], options: AddOptions) {
       }
       
       // Install component files
-      await installComponentFiles(component, config.componentsDir, options.force, registryType)
+      await installComponentFiles(component, config, options.force)
       
       // Install dependencies with improved error handling
       if (component.dependencies.length > 0) {
@@ -145,24 +139,14 @@ export async function addCommand(components: string[], options: AddOptions) {
 
 async function addAllComponents(options: AddOptions, registryType: RegistryType) {
   console.log(chalk.blue(`🚀 Installing all available components from ${registryType} registry...`))
-  
-  // Validate registry usage for --all installation
-  if (registryType !== "utility") {
-    const validation = await validateComponentInstallation([], registryType)
-    if (!validation.isValid) {
-      await showUtilityComponentsSummary()
-      handleValidationError(validation)
-    }
-  }
+
   
   // Get project configuration (try utility first, then specified registry)
   const config = await findConfig(registryType)
   if (!config) {
     console.error(chalk.red("❌ buildy is not initialized in this project."))
     console.log(`Run 'npx buildy-ui@latest init' first.`)
-    if (registryType !== "utility") {
-      console.log(`For ${registryType} registry, run: npx buildy-ui@latest init --registry ${registryType}`)
-    }
+    console.log(`For ${registryType} registry, run: npx buildy-ui@latest init --registry ${registryType}`)
     process.exit(1)
   }
   
@@ -206,8 +190,8 @@ async function addAllComponents(options: AddOptions, registryType: RegistryType)
       const componentSpinner = ora(`Installing ${component.name} from ${registryType}...`).start()
       
       try {
-        // Install component files
-        await installComponentFiles(component, config.componentsDir, options.force, registryType)
+      // Install component files
+      await installComponentFiles(component, config, options.force)
         
         // Install dependencies with improved error handling
         if (component.dependencies.length > 0) {
@@ -268,30 +252,69 @@ async function addAllComponents(options: AddOptions, registryType: RegistryType)
 }
 
 async function installComponentFiles(
-  component: Component, 
-  componentsDir: string, 
-  force = false,
-  registryType: RegistryType = "utility"
+  component: Component,
+  config: Config,
+  force = false
 ): Promise<void> {
   for (const file of component.files) {
     const fileName = path.basename(file.path)
-    
-    // Use dynamic path generation based on registry type
-    const installPath = getInstallPath(registryType, component.type)
-    const targetPath = path.join(process.cwd(), installPath, fileName)
-    
-    // Check if file already exists
+
+    // Determine base install folder by target or component type
+    const target = file.target || inferTargetFromType(component.type)
+    const installDir = resolveInstallDir(target, config)
+    const targetPath = path.join(process.cwd(), installDir, fileName)
+
     if (!force && await fs.pathExists(targetPath)) {
-      console.log(`   ⚠️  Skipped ${fileName} (already exists, use --force to overwrite)`)
+      console.log(`   ⚠️  Skipped ${fileName} (already exists, use --force to overwrite)`) 
       continue
     }
-    
-    // Ensure directory exists
+
     await fs.ensureDir(path.dirname(targetPath))
-    
-    // Write file
     await fs.writeFile(targetPath, file.content, "utf-8")
   }
+}
+
+function inferTargetFromType(componentType: string): string {
+  switch (componentType) {
+    case "registry:ui":
+      return "ui"
+    case "registry:block":
+      return "blocks"
+    case "registry:component":
+      return "components"
+    case "registry:template":
+      return "templates"
+    case "registry:lib":
+      return "lib"
+    default:
+      return "components"
+  }
+}
+
+function resolveInstallDir(target: string, config: Config): string {
+  if (target === "lib") {
+    return normalizeDir(config.libDir || "src/lib")
+  }
+
+  // Prefer config.componentsDir for UI; derive siblings for other targets
+  const baseUiDir = normalizeDir(config.componentsDir || "src/ui")
+  if (target === "ui") return baseUiDir
+
+  const parent = baseUiDir.replace(/[/\\]ui$/i, "") || "src"
+  switch (target) {
+    case "components":
+      return path.join(parent, "components").replace(/\\/g, "/")
+    case "blocks":
+      return path.join(parent, "blocks").replace(/\\/g, "/")
+    case "templates":
+      return path.join(parent, "templates").replace(/\\/g, "/")
+    default:
+      return baseUiDir
+  }
+}
+
+function normalizeDir(dir: string): string {
+  return dir.replace(/^\.\//, "").replace(/\\/g, "/")
 }
 
 function resolveRegistryType(registryInput?: string): RegistryType {

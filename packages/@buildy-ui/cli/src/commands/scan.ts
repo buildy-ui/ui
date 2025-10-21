@@ -45,7 +45,7 @@ export async function scanCommand(
     cwd: path.resolve(options.cwd || process.cwd()),
     registry: path.resolve(registryPath),
     outputFile: path.resolve(options.output || registryPath + "/registry.json"),
-    sourceDir: path.resolve(options.source || registryPath),
+    sourceDir: path.resolve(options.source || "./src"),
   }
 
   console.log(chalk.blue(`🔍 Scanning ${registryName} components...`))
@@ -59,8 +59,8 @@ export async function scanCommand(
     const componentComponents = await scanDirectory(path.join(scanOptions.sourceDir, "components"), "registry:component")
     const templateComponents = await scanDirectory(path.join(scanOptions.sourceDir, "templates"), "registry:template")
     
-    // Scan lib directory (at root level)
-    const libDir = path.join(scanOptions.cwd, "lib")
+    // Scan lib directory (under src)
+    const libDir = path.join(scanOptions.cwd, "src", "lib")
     const libComponents = await scanDirectory(libDir, "registry:lib")
     
     const allComponents = [

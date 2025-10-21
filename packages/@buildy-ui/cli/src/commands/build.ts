@@ -12,19 +12,19 @@ interface BuildOptions {
 }
 
 export async function buildCommand(
-  registryPath = "./utility/registry.json",
+  registryPath = "./src/registry.json",
   options: { output?: string; cwd?: string } = {}
 ) {
   const buildOptions: BuildOptions = {
     cwd: path.resolve(options.cwd || process.cwd()),
     registryFile: path.resolve(registryPath),
-    outputDir: path.resolve(options.output || "./packages/registry/r/utility"),
+    outputDir: path.resolve(options.output || "./packages/registry/r/core"),
   }
 
-  console.log(chalk.blue("🔨 Building utility registry..."))
+  console.log(chalk.blue("🔨 Building registry..."))
   
   try {
-    // Read registry.json from utility directory
+    // Read registry.json
     const registryContent = await fs.readFile(buildOptions.registryFile, "utf-8")
     const registryData = JSON.parse(registryContent)
     
@@ -37,7 +37,7 @@ export async function buildCommand(
     // Generate schema files
     await generateSchemaFiles(buildOptions.outputDir)
     
-    const spinner = ora("Processing utility components...").start()
+    const spinner = ora("Processing components...").start()
     
     for (const item of registry.items) {
       spinner.text = `Building ${item.name}...`
@@ -69,12 +69,12 @@ export async function buildCommand(
       await fs.writeFile(outputFile, JSON.stringify(validatedItem, null, 2))
     }
     
-    spinner.succeed(`Built ${registry.items.length} utility components`)
+    spinner.succeed(`Built ${registry.items.length} components`)
     
     // Create index file
     await createIndexFile(registry, buildOptions.outputDir)
     
-    console.log(chalk.green("✅ Utility registry built successfully!"))
+    console.log(chalk.green("✅ Registry built successfully!"))
     console.log(`Output: ${buildOptions.outputDir}`)
     console.log(chalk.green("✅ Schema files generated successfully!"))
     
@@ -113,7 +113,7 @@ async function createIndexFile(registry: any, outputDir: string) {
     categories: ["ui", "components", "blocks", "lib", "templates"],
     version: "1.0.0",
     lastUpdated: new Date().toISOString(),
-    registry: "utility", // Mark this as utility registry
+    registry: registry?.registry || require('path').basename(outputDir),
   }
   
   await fs.writeFile(

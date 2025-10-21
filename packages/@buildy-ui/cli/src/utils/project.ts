@@ -41,34 +41,18 @@ export async function hasReact(): Promise<boolean> {
  * Find configuration for any registry (utility first, then specified registry)
  */
 export async function findConfig(registryType?: string): Promise<Config | null> {
-  // Always try utility first (it's the base configuration)
-  const utilityConfig = await getConfig("./utility")
-  if (utilityConfig) {
-    return utilityConfig
-  }
-  
-  // If no utility config and specific registry requested, try that registry
-  if (registryType && registryType !== "utility") {
+  // Try specific registry directory first (e.g., ./core or ./form)
+  if (registryType) {
     const registryConfig = await getConfig(`./${registryType}`)
     if (registryConfig) {
       return registryConfig
     }
   }
-  
-  // Try default location (root)
+  // Fallback to root config
   return await getConfig()
 }
 
 export async function getConfig(registryPath?: string): Promise<Config | null> {
-  // If trying to access non-utility registry, ensure utility exists
-  if (registryPath && registryPath !== "./utility") {
-    if (!(await isUtilityRegistryInitialized())) {
-      console.error("❌ Utility registry must be initialized first")
-      console.log("Run: npx buildy-ui init")
-      return null
-    }
-  }
-  
   // If registryPath is provided, save config in that directory
   // Otherwise use the default location
   const configPath = registryPath 

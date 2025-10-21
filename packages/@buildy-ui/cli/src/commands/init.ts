@@ -19,11 +19,7 @@ export async function initCommand(options: InitOptions) {
   
   console.log(chalk.blue(`🚀 Initializing UI8Kit buildy in your project (${registryName} registry)...`))
   
-  // Validate registry usage (ensure utility is initialized first for non-utility registries)
-  const validation = await canUseRegistry(registryName)
-  if (!validation.isValid) {
-    handleValidationError(validation)
-  }
+  // In core/form model, registry is always usable
   
   // Check if it's a Vite project
   if (!(await isViteProject())) {
@@ -57,13 +53,10 @@ export async function initCommand(options: InitOptions) {
 
   const aliases = {
     "@": "./src",
-    "@/components": `${registryPath}/components`,
-    "@/ui": `${registryPath}/ui`,
-    "@/blocks": `${registryPath}/blocks`,
-    "@/lib": "./lib",
-    "@/utility": "./utility",
-    "@/semantic": "./semantic",
-    "@/theme": "./theme",
+    "@/components": `./src/components`,
+    "@/ui": `./src/ui`,
+    "@/blocks": `./src/blocks`,
+    "@/lib": "./src/lib"
   }
 
   let config: Config
@@ -76,8 +69,8 @@ export async function initCommand(options: InitOptions) {
       typescript: true,
       aliases,
       registry: "@ui8kit",
-      componentsDir: `${registryPath}/ui`,
-      libDir: "./lib",
+      componentsDir: `./src/ui`,
+      libDir: "./src/lib",
     }
   } else {
     // Interactive setup
@@ -96,38 +89,31 @@ export async function initCommand(options: InitOptions) {
       typescript: responses.typescript,
       aliases,
       registry: "@ui8kit",
-      componentsDir: `${registryPath}/ui`,
-      libDir: "./lib",
+      componentsDir: `./src/ui`,
+      libDir: "./src/lib",
     }
   }
   
   const spinner = ora(`Setting up UI8Kit ${registryName} structure...`).start()
   
   try {
-    // Save configuration to registry-specific directory
+    // Save configuration at project root or registry root
     await saveConfig(config, registryPath)
     
-    // Create UI8Kit directory structure
+    // Create src-based directory structure
     await ensureDir(config.libDir)
     await ensureDir(config.componentsDir)
-    await ensureDir(`${registryPath}/components`)
-    await ensureDir(`${registryPath}/blocks`)
-    
-    // Create utils.ts file in lib directory (only for utility registry)
-    if (registryName === "utility") {
-      await createUtilsFile(config.libDir, config.typescript)
-    }
+    await ensureDir(`./src/components`)
+    await ensureDir(`./src/blocks`)
     
     spinner.succeed(`UI8Kit ${registryName} structure initialized successfully!`)
     
     console.log(chalk.green(`\n✅ UI8Kit ${registryName} Setup complete!`))
     console.log("\nDirectories created:")
-    if (registryName === "utility") {
-      console.log(`  ${chalk.cyan("lib/")} - Utils, helpers, functions`)
-    }
-    console.log(`  ${chalk.cyan(`${registryPath}/ui/`)} - UI components`)
-    console.log(`  ${chalk.cyan(`${registryPath}/components/`)} - Complex components`)
-    console.log(`  ${chalk.cyan(`${registryPath}/blocks/`)} - Component blocks`)
+    console.log(`  ${chalk.cyan("src/lib/")} - Utils, helpers, functions`)
+    console.log(`  ${chalk.cyan("src/ui/")} - UI components`)
+    console.log(`  ${chalk.cyan("src/components/")} - Complex components`)
+    console.log(`  ${chalk.cyan("src/blocks/")} - Component blocks`)
     
     console.log("\nNext steps:")
     console.log(`  ${chalk.cyan(`npx buildy-ui@latest add button --registry ${registryName}`)} - Add a button component`)
