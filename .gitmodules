@@ -1,0 +1,6 @@
+[submodule "packages/@buildy-ui/ui8kit/core"]
+	path = packages/@buildy-ui/ui8kit/core
+	url = https://github.com/ui8kit/core.git
+[submodule "packages/@buildy-ui/ui8kit/form"]
+	path = packages/@buildy-ui/ui8kit/form
+	url = https://github.com/ui8kit/form.git
