@@ -1,8 +1,6 @@
 import fs from "fs-extra"
 import path from "path"
 import { Config, configSchema } from "../registry/schema.js"
-import { isUtilityRegistryInitialized } from "./registry-validator.js"
-import { SCHEMA_CONFIG } from "./schema-config.js"
 
 export async function isViteProject(): Promise<boolean> {
   const viteConfigFiles = [

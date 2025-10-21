@@ -1,6 +1,7 @@
 import fs from "fs-extra"
 import path from "path"
 import chalk from "chalk"
+import { SCHEMA_CONFIG } from "./schema-config.js"
 
 export interface ValidationResult {
   isValid: boolean

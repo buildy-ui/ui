@@ -22,7 +22,7 @@ const fullRegistrySchema = z.object({
 })
 
 export function generateConfigSchema() {
-  const baseSchema = zodToJsonSchema(configSchema, {
+  const baseSchema = zodToJsonSchema(configSchema as any, {
     name: "BuildyConfiguration",
     $refStrategy: "none",
   }) as any
@@ -79,7 +79,7 @@ export function generateConfigSchema() {
 }
 
 export function generateRegistrySchema() {
-  const baseSchema = zodToJsonSchema(fullRegistrySchema, {
+  const baseSchema = zodToJsonSchema(fullRegistrySchema as any, {
     name: "BuildyRegistry", 
     $refStrategy: "none",
   }) as any
@@ -157,7 +157,7 @@ export function generateRegistrySchema() {
 }
 
 export function generateRegistryItemSchema() {
-  const baseSchema = zodToJsonSchema(registryItemSchema, {
+  const baseSchema = zodToJsonSchema(registryItemSchema as any, {
     name: "BuildyRegistryItem",
     $refStrategy: "none",
   }) as any

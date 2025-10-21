@@ -7,8 +7,8 @@ import { getComponent, getAllComponents } from "../registry/api.js"
 import { getComponentWithRetry, getAllComponentsWithRetry } from "../registry/retry-api.js"
 import { findConfig } from "../utils/project.js"
 import { Component, type Config } from "../registry/schema.js"
-import { SCHEMA_CONFIG, getInstallPath, type RegistryType } from "../utils/schema-config.js"
-import { validateComponentInstallation, handleValidationError, showUtilityComponentsSummary } from "../utils/registry-validator.js"
+import { SCHEMA_CONFIG, type RegistryType } from "../utils/schema-config.js"
+import { validateComponentInstallation, handleValidationError } from "../utils/registry-validator.js"
 import { checkProjectDependencies, showDependencyStatus, filterMissingDependencies, isWorkspaceError } from "../utils/dependency-checker.js"
 
 interface AddOptions {

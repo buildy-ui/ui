@@ -4,7 +4,7 @@ import ora from "ora"
 import { isViteProject, hasReact, getConfig, saveConfig, ensureDir } from "../utils/project.js"
 import { Config } from "../registry/schema.js"
 import { SCHEMA_CONFIG } from "../utils/schema-config.js"
-import { canUseRegistry, handleValidationError } from "../utils/registry-validator.js"
+// import { canUseRegistry, handleValidationError } from "../utils/registry-validator.js"
 import path from "path"
 import fs from "fs/promises"
 
