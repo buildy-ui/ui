@@ -10,7 +10,6 @@ node_modules/
 dist/
 build/
 @registry/
-@buildy-ui/
 bun.lock
 .env
 package-lock.json
