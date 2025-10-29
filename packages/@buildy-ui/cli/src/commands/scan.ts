@@ -4,7 +4,8 @@ import chalk from "chalk"
 import ora from "ora"
 import { glob } from "glob"
 import * as ts from "typescript"
-import { SCHEMA_CONFIG, isExternalDependency } from "../utils/schema-config.js"
+import { SCHEMA_CONFIG, isExternalDependency, TYPE_TO_FOLDER } from "../utils/schema-config.js"
+import { CLI_MESSAGES } from "../utils/cli-messages.js"
 
 interface ScanOptions {
   cwd: string
@@ -35,6 +36,28 @@ interface ASTAnalysis {
   hasExports: boolean
 }
 
+// Dev dependency patterns
+const DEV_PATTERNS = [
+  '@types/',
+  'eslint',
+  'prettier',
+  'typescript',
+  'jest',
+  'vitest',
+  'testing-library',
+  '@testing-library/',
+  'storybook',
+  '@storybook/',
+  'webpack',
+  'vite',
+  'rollup',
+  'babel',
+  '@babel/',
+  'postcss',
+  'tailwindcss',
+  'autoprefixer'
+] as const
+
 export async function scanCommand(
   options: { cwd?: string; registry?: string; output?: string; source?: string } = {}
 ) {
@@ -48,16 +71,16 @@ export async function scanCommand(
     sourceDir: path.resolve(options.source || "./src"),
   }
 
-  console.log(chalk.blue(`🔍 Scanning ${registryName} components...`))
+  console.log(chalk.blue(`🔍 ${CLI_MESSAGES.info.scanningComponents(registryName)}`))
   
   try {
-    const spinner = ora("Scanning directories...").start()
+    const spinner = ora(CLI_MESSAGES.info.scanningDirectories).start()
     
     // Scan different component types
     const uiComponents = await scanDirectory(path.join(scanOptions.sourceDir, "ui"), "registry:ui")
     const blockComponents = await scanDirectory(path.join(scanOptions.sourceDir, "blocks"), "registry:block")
     const componentComponents = await scanDirectory(path.join(scanOptions.sourceDir, "components"), "registry:component")
-    const templateComponents = await scanDirectory(path.join(scanOptions.sourceDir, "templates"), "registry:template")
+    const layoutComponents = await scanDirectory(path.join(scanOptions.sourceDir, "layouts"), "registry:layout")
     
     // Scan lib directory (under src)
     const libDir = path.join(scanOptions.cwd, "src", "lib")
@@ -67,11 +90,11 @@ export async function scanCommand(
       ...uiComponents,
       ...blockComponents,
       ...componentComponents,
-      ...templateComponents,
+      ...layoutComponents,
       ...libComponents
     ]
     
-    spinner.text = `Found ${allComponents.length} components, analyzing dependencies...`
+    spinner.text = CLI_MESSAGES.info.analyzingDeps.replace("{count}", allComponents.length.toString())
     
     // Analyze each component for dependencies and devDependencies
     for (const component of allComponents) {
@@ -100,9 +123,9 @@ export async function scanCommand(
     // Write registry file
     await fs.writeFile(scanOptions.outputFile, JSON.stringify(registry, null, 2))
     
-    spinner.succeed(`Scanned ${allComponents.length} components`)
+    spinner.succeed(CLI_MESSAGES.status.scannedComponents(allComponents.length))
     
-    console.log(chalk.green(`✅ ${registryName} registry generated successfully!`))
+    console.log(chalk.green(`✅ ${CLI_MESSAGES.success.registryGenerated(registryName)}`))
     console.log(`Output: ${scanOptions.outputFile}`)
     
     // Show summary
@@ -129,7 +152,7 @@ export async function scanCommand(
     console.log(`   DevDependencies: ${allDevDeps.size} unique (${Array.from(allDevDeps).join(", ") || "none"})`)
     
   } catch (error) {
-    console.error(chalk.red("❌ Scan failed:"), (error as Error).message)
+    console.error(chalk.red(`❌ ${CLI_MESSAGES.errors.scanFailed}`), (error as Error).message)
     process.exit(1)
   }
 }
@@ -167,8 +190,8 @@ async function scanDirectory(dirPath: string, type: string): Promise<RegistryIte
         name: fileName,
         type,
         description,
-        dependencies: [], // Will be filled later
-        devDependencies: [], // Will be filled later
+        dependencies: [],
+        devDependencies: [],
         files: [{
           path: relativePath,
           target: getTargetFromType(type)
@@ -238,7 +261,7 @@ async function analyzeComponentDependencies(files: ComponentFile[], cwd: string)
       }
       
     } catch (error) {
-      console.warn(`Warning: Could not analyze dependencies for ${file.path}:`, (error as Error).message)
+      console.warn(CLI_MESSAGES.errors.failedToAnalyzeDeps(file.path), (error as Error).message)
     }
   }
   
@@ -303,29 +326,7 @@ function analyzeAST(sourceFile: ts.SourceFile): ASTAnalysis {
 }
 
 function isDevDependency(moduleName: string): boolean {
-  // Common dev dependency patterns
-  const devPatterns = [
-    '@types/',
-    'eslint',
-    'prettier',
-    'typescript',
-    'jest',
-    'vitest',
-    'testing-library',
-    '@testing-library/',
-    'storybook',
-    '@storybook/',
-    'webpack',
-    'vite',
-    'rollup',
-    'babel',
-    '@babel/',
-    'postcss',
-    'tailwindcss',
-    'autoprefixer'
-  ]
-  
-  return devPatterns.some(pattern => moduleName.includes(pattern))
+  return DEV_PATTERNS.some(pattern => moduleName.includes(pattern))
 }
 
 function hasExportModifier(node: ts.Node): boolean {
@@ -359,18 +360,6 @@ function getJSDocComment(node: ts.Node): string | undefined {
 }
 
 function getTargetFromType(type: string): string {
-  switch (type) {
-    case "registry:ui":
-      return "ui"
-    case "registry:block":
-      return "blocks"
-    case "registry:component":
-      return "components"
-    case "registry:template":
-      return "templates"
-    case "registry:lib":
-      return "lib"
-    default:
-      return "components"
-  }
+  const folder = TYPE_TO_FOLDER[type as keyof typeof TYPE_TO_FOLDER]
+  return folder || "components"
 } 

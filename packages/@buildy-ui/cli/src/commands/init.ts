@@ -4,7 +4,7 @@ import ora from "ora"
 import { isViteProject, hasReact, getConfig, saveConfig, ensureDir } from "../utils/project.js"
 import { Config } from "../registry/schema.js"
 import { SCHEMA_CONFIG } from "../utils/schema-config.js"
-// import { canUseRegistry, handleValidationError } from "../utils/registry-validator.js"
+import { CLI_MESSAGES } from "../utils/cli-messages.js"
 import path from "path"
 import fs from "fs/promises"
 
@@ -17,20 +17,18 @@ export async function initCommand(options: InitOptions) {
   const registryName = options.registry || SCHEMA_CONFIG.defaultRegistryType
   const registryPath = `./${registryName}`
   
-  console.log(chalk.blue(`🚀 Initializing UI8Kit buildy in your project (${registryName} registry)...`))
-  
-  // In core/form model, registry is always usable
+  console.log(chalk.blue(`🚀 ${CLI_MESSAGES.info.initializing(registryName)}`))
   
   // Check if it's a Vite project
   if (!(await isViteProject())) {
-    console.error(chalk.red("❌ This doesn't appear to be a Vite project."))
+    console.error(chalk.red(`❌ ${CLI_MESSAGES.errors.notViteProject}`))
     console.log("Please run this command in a Vite project directory.")
     process.exit(1)
   }
   
   // Check if React is installed
   if (!(await hasReact())) {
-    console.error(chalk.red("❌ React is not installed in this project."))
+    console.error(chalk.red(`❌ ${CLI_MESSAGES.errors.reactNotInstalled}`))
     console.log("Please install React first: npm install react react-dom")
     process.exit(1)
   }
@@ -41,36 +39,29 @@ export async function initCommand(options: InitOptions) {
     const { overwrite } = await prompts({
       type: "confirm",
       name: "overwrite",
-      message: `UI8Kit buildy is already initialized for ${registryName} registry. Overwrite configuration?`,
+      message: CLI_MESSAGES.prompts.overwrite(registryName),
       initial: false
     })
     
     if (!overwrite) {
-      console.log(chalk.yellow("⚠️  Initialization cancelled."))
+      console.log(chalk.yellow(`⚠️  ${CLI_MESSAGES.info.installationCancelled}`))
       return
     }
   }
 
-  const aliases = {
-    "@": "./src",
-    "@/components": `./src/components`,
-    "@/ui": `./src/ui`,
-    "@/blocks": `./src/blocks`,
-    "@/lib": "./src/lib"
-  }
+  const aliases = SCHEMA_CONFIG.defaultAliases
 
   let config: Config
   
   if (options.yes) {
-    // Use defaults for UI8Kit structure
     config = {
       $schema: "https://buildy.tw/schema.json",
       framework: "vite-react",
       typescript: true,
       aliases,
-      registry: "@ui8kit",
-      componentsDir: `./src/ui`,
-      libDir: "./src/lib",
+      registry: SCHEMA_CONFIG.defaultRegistry,
+      componentsDir: SCHEMA_CONFIG.defaultDirectories.components,
+      libDir: SCHEMA_CONFIG.defaultDirectories.lib,
     }
   } else {
     // Interactive setup
@@ -78,7 +69,7 @@ export async function initCommand(options: InitOptions) {
       {
         type: "confirm",
         name: "typescript",
-        message: "Are you using TypeScript?",
+        message: CLI_MESSAGES.prompts.typescript,
         initial: true
       }
     ])
@@ -88,13 +79,13 @@ export async function initCommand(options: InitOptions) {
       framework: "vite-react",
       typescript: responses.typescript,
       aliases,
-      registry: "@ui8kit",
-      componentsDir: `./src/ui`,
-      libDir: "./src/lib",
+      registry: SCHEMA_CONFIG.defaultRegistry,
+      componentsDir: SCHEMA_CONFIG.defaultDirectories.components,
+      libDir: SCHEMA_CONFIG.defaultDirectories.lib,
     }
   }
   
-  const spinner = ora(`Setting up UI8Kit ${registryName} structure...`).start()
+  const spinner = ora(CLI_MESSAGES.info.initializing(registryName)).start()
   
   try {
     // Save configuration at project root or registry root
@@ -103,26 +94,22 @@ export async function initCommand(options: InitOptions) {
     // Create src-based directory structure
     await ensureDir(config.libDir)
     await ensureDir(config.componentsDir)
-    await ensureDir(`./src/components`)
-    await ensureDir(`./src/blocks`)
+    await ensureDir(SCHEMA_CONFIG.defaultDirectories.blocks)
+    await ensureDir(SCHEMA_CONFIG.defaultDirectories.layouts)
     
-    spinner.succeed(`UI8Kit ${registryName} structure initialized successfully!`)
+    spinner.succeed(CLI_MESSAGES.success.initialized(registryName))
     
-    console.log(chalk.green(`\n✅ UI8Kit ${registryName} Setup complete!`))
+    console.log(chalk.green(`\n✅ ${CLI_MESSAGES.success.setupComplete(registryName)}`))
     console.log("\nDirectories created:")
-    console.log(`  ${chalk.cyan("src/lib/")} - Utils, helpers, functions`)
-    console.log(`  ${chalk.cyan("src/ui/")} - UI components`)
-    console.log(`  ${chalk.cyan("src/components/")} - Complex components`)
-    console.log(`  ${chalk.cyan("src/blocks/")} - Component blocks`)
+    Object.entries(CLI_MESSAGES.directories).forEach(([dir, description]) => {
+      console.log(`  ${chalk.cyan(`src/${dir}/`)} - ${description}`)
+    })
     
     console.log("\nNext steps:")
-    console.log(`  ${chalk.cyan(`npx buildy-ui@latest add button --registry ${registryName}`)} - Add a button component`)
-    console.log(`  ${chalk.cyan(`npx buildy-ui@latest add card input --registry ${registryName}`)} - Add multiple components`)
-    console.log(`  ${chalk.cyan(`npx buildy-ui@latest add --all --registry ${registryName}`)} - Add all components`)
-    console.log(`  ${chalk.cyan('npx buildy-ui@latest add "https://example.com/component.json"')} - Add from external URL`)
+    CLI_MESSAGES.examples.init.forEach(example => console.log(`  ${chalk.cyan(example)}`))
 
   } catch (error) {
-    spinner.fail(`Failed to initialize UI8Kit ${registryName}`)
+    spinner.fail(CLI_MESSAGES.errors.buildFailed)
     console.error(chalk.red("❌ Error:"), (error as Error).message)
     process.exit(1)
   }

@@ -10,6 +10,7 @@ import { Component, type Config } from "../registry/schema.js"
 import { SCHEMA_CONFIG, type RegistryType } from "../utils/schema-config.js"
 import { validateComponentInstallation, handleValidationError } from "../utils/registry-validator.js"
 import { checkProjectDependencies, showDependencyStatus, filterMissingDependencies, isWorkspaceError } from "../utils/dependency-checker.js"
+import { CLI_MESSAGES } from "../utils/cli-messages.js"
 
 interface AddOptions {
   force?: boolean
@@ -20,7 +21,6 @@ interface AddOptions {
 }
 
 export async function addCommand(components: string[], options: AddOptions) {
-  // Resolve registry type
   const registryType = resolveRegistryType(options.registry)
   
   if (options.all || components.includes("all")) {
@@ -28,60 +28,129 @@ export async function addCommand(components: string[], options: AddOptions) {
   }
   
   if (components.length === 0) {
-    console.error(chalk.red("❌ Please specify at least one component to add."))
-    console.log("Example: npx buildy-ui@latest add button card")
-    console.log("Example: npx buildy-ui@latest add button --registry core")
-    console.log("Example: npx buildy-ui@latest add all  # Install all components")
-    console.log("Example: npx buildy-ui@latest add --all --registry core  # Install all core components")
-    console.log("Example: npx buildy-ui@latest add --retry  # Enable retry for unreliable connections")
-    console.log("Example: npx buildy-ui@latest add \"https://example.com/component.json\"")
+    console.error(chalk.red(`❌ ${CLI_MESSAGES.errors.noComponentsSpecified}`))
+    CLI_MESSAGES.examples.add.forEach(example => console.log(example))
     process.exit(1)
   }
   
-  // Validate component installation before proceeding
   const validation = await validateComponentInstallation(components, registryType)
   if (!validation.isValid) {
     handleValidationError(validation)
   }
   
-  // Get project configuration (try utility first, then specified registry)
   const config = await findConfig(registryType)
   if (!config) {
-    console.error(chalk.red("❌ buildy is not initialized in this project."))
+    console.error(chalk.red(`❌ ${CLI_MESSAGES.errors.notInitialized}`))
     console.log(`Run 'npx buildy-ui@latest init' first.`)
     console.log(`For ${registryType} registry, run: npx buildy-ui@latest init --registry ${registryType}`)
     process.exit(1)
   }
   
-  // Choose API based on retry flag
   const getComponentFn = options.retry ? getComponentWithRetry : getComponent
   
   if (options.retry) {
-    console.log(chalk.blue("🔄 Retry mode enabled - using enhanced connection logic"))
+    console.log(chalk.blue(`🔄 ${CLI_MESSAGES.info.retryEnabled}`))
   }
   
-  console.log(chalk.blue(`📦 Installing from ${registryType} registry...`))
+  console.log(chalk.blue(`📦 ${CLI_MESSAGES.info.installing(registryType)}`))
   
+  const results = await processComponents(components, registryType, config, getComponentFn, options)
+  
+  displayInstallationSummary(registryType, results)
+}
+
+async function addAllComponents(options: AddOptions, registryType: RegistryType) {
+  console.log(chalk.blue(`🚀 ${CLI_MESSAGES.info.installingAll(registryType)}`))
+
+  const config = await findConfig(registryType)
+  if (!config) {
+    console.error(chalk.red(`❌ ${CLI_MESSAGES.errors.notInitialized}`))
+    console.log(`Run 'npx buildy-ui@latest init' first.`)
+    console.log(`For ${registryType} registry, run: npx buildy-ui@latest init --registry ${registryType}`)
+    process.exit(1)
+  }
+  
+  const getAllComponentsFn = options.retry ? getAllComponentsWithRetry : getAllComponents
+  
+  if (options.retry) {
+    console.log(chalk.blue(`🔄 ${CLI_MESSAGES.info.retryEnabled}`))
+  }
+  
+  const spinner = ora(CLI_MESSAGES.info.fetchingComponentList(registryType)).start()
+  
+  try {
+    const allComponents = await getAllComponentsFn(registryType)
+    
+    if (allComponents.length === 0) {
+      spinner.fail(`No components found in ${registryType} registry`)
+      console.log(chalk.yellow(`\n⚠️  ${registryType} ${CLI_MESSAGES.errors.registryTempUnavailable}`))
+      console.log("Try these alternatives:")
+      CLI_MESSAGES.examples.troubleshooting.forEach(alt => console.log(`  • ${alt}`))
+      return
+    }
+    
+    spinner.succeed(CLI_MESSAGES.status.foundComponents(allComponents.length, registryType))
+    
+    if (options.dryRun) {
+      console.log(chalk.blue(`\n📋 ${CLI_MESSAGES.status.wouldInstallFrom(registryType)}`))
+      allComponents.forEach(comp => {
+        console.log(`   - ${comp.name} (${comp.type})`)
+      })
+      return
+    }
+    
+    const results = await processComponents(
+      allComponents.map(c => c.name),
+      registryType,
+      config,
+      options.retry ? getComponentWithRetry : getComponent,
+      options,
+      allComponents
+    )
+    
+    displayInstallationSummary(registryType, results)
+    
+  } catch (error) {
+    spinner.fail(CLI_MESSAGES.errors.failedToFetch(registryType))
+    console.error(chalk.red("❌ Error:"), (error as Error).message)
+    console.log(chalk.yellow(`\n⚠️  ${registryType} ${CLI_MESSAGES.errors.registryTempUnavailable}`))
+    console.log("Try these alternatives:")
+    CLI_MESSAGES.examples.troubleshooting.forEach(alt => console.log(`  • ${alt}`))
+    process.exit(1)
+  }
+}
+
+async function processComponents(
+  componentNames: string[],
+  registryType: RegistryType,
+  config: Config,
+  getComponentFn: (name: string, type: RegistryType) => Promise<Component | null>,
+  options: AddOptions,
+  preloadedComponents?: Component[]
+): Promise<Array<{ name: string; status: "success" | "error"; error?: string }>> {
   const results: Array<{ name: string; status: "success" | "error"; error?: string }> = []
+  const componentMap = new Map(preloadedComponents?.map(c => [c.name, c]))
   
-  for (const componentName of components) {
-    const spinner = ora(`Installing ${componentName} from ${registryType}...`).start()
+  for (const componentName of componentNames) {
+    const spinner = ora(CLI_MESSAGES.status.installing(componentName, registryType)).start()
     
     try {
-      // Get component data from specified registry
-      const component = await getComponentFn(componentName, registryType)
+      let component = componentMap?.get(componentName)
       
       if (!component) {
-        throw new Error(`Component "${componentName}" not found in ${registryType} registry`)
+        component = await getComponentFn(componentName, registryType)
+      }
+      
+      if (!component) {
+        throw new Error(CLI_MESSAGES.errors.componentNotFound(componentName, registryType))
       }
       
       if (options.dryRun) {
-        spinner.succeed(`Would install: ${component.name} from ${registryType}`)
+        spinner.succeed(CLI_MESSAGES.status.wouldInstall(component.name, registryType))
         console.log(`   Type: ${component.type}`)
         console.log(`   Files: ${component.files.length}`)
         console.log(`   Dependencies: ${component.dependencies.join(", ") || "none"}`)
         
-        // Show dependency status for dry run
         if (component.dependencies.length > 0) {
           const depStatus = await checkProjectDependencies(component.dependencies)
           showDependencyStatus(depStatus)
@@ -89,26 +158,23 @@ export async function addCommand(components: string[], options: AddOptions) {
         continue
       }
       
-      // Install component files
       await installComponentFiles(component, config, options.force)
       
-      // Install dependencies with improved error handling
       if (component.dependencies.length > 0) {
         try {
           await installDependencies(component.dependencies)
         } catch (error) {
-          console.log(chalk.yellow(`   ⚠️  Warning: Could not install some dependencies for ${component.name}`))
+          console.log(chalk.yellow(`   ⚠️  ${CLI_MESSAGES.errors.couldNotInstallDeps(component.name)}`))
           console.log(chalk.yellow(`   Dependencies: ${component.dependencies.join(", ")}`))
           console.log(chalk.yellow(`   Please install them manually if needed`))
-          // Don't fail the entire installation for dependency issues
         }
       }
       
-      spinner.succeed(`Installed ${component.name} from ${registryType}`)
+      spinner.succeed(CLI_MESSAGES.status.installing(component.name, registryType))
       results.push({ name: component.name, status: "success" })
       
     } catch (error) {
-      spinner.fail(`Failed to install ${componentName} from ${registryType}`)
+      spinner.fail(CLI_MESSAGES.errors.failedToInstall(componentName, registryType))
       console.error(chalk.red(`   Error: ${(error as Error).message}`))
       results.push({ 
         name: componentName, 
@@ -118,7 +184,13 @@ export async function addCommand(components: string[], options: AddOptions) {
     }
   }
   
-  // Summary
+  return results
+}
+
+function displayInstallationSummary(
+  registryType: RegistryType,
+  results: Array<{ name: string; status: "success" | "error" }>
+) {
   const successful = results.filter(r => r.status === "success")
   const failed = results.filter(r => r.status === "error")
   
@@ -128,125 +200,11 @@ export async function addCommand(components: string[], options: AddOptions) {
   console.log(`   ❌ Failed: ${failed.length}`)
   
   if (successful.length > 0) {
-    console.log(chalk.green("\n🎉 Components installed successfully!"))
+    console.log(chalk.green(`\n🎉 ${CLI_MESSAGES.success.componentsInstalled}`))
     console.log("You can now import and use them in your project.")
   }
   
   if (failed.length > 0) {
-    process.exit(1)
-  }
-}
-
-async function addAllComponents(options: AddOptions, registryType: RegistryType) {
-  console.log(chalk.blue(`🚀 Installing all available components from ${registryType} registry...`))
-
-  
-  // Get project configuration (try utility first, then specified registry)
-  const config = await findConfig(registryType)
-  if (!config) {
-    console.error(chalk.red("❌ buildy is not initialized in this project."))
-    console.log(`Run 'npx buildy-ui@latest init' first.`)
-    console.log(`For ${registryType} registry, run: npx buildy-ui@latest init --registry ${registryType}`)
-    process.exit(1)
-  }
-  
-  // Choose API based on retry flag
-  const getAllComponentsFn = options.retry ? getAllComponentsWithRetry : getAllComponents
-  
-  if (options.retry) {
-    console.log(chalk.blue("🔄 Retry mode enabled - using enhanced connection logic"))
-  }
-  
-  const spinner = ora(`Fetching component list from ${registryType}...`).start()
-  
-  try {
-    const allComponents = await getAllComponentsFn(registryType)
-    
-    if (allComponents.length === 0) {
-      spinner.fail(`No components found in ${registryType} registry`)
-      console.log(chalk.yellow(`\n⚠️  ${registryType} registry temporarily unavailable`))
-      console.log("Try these alternatives:")
-      console.log("  • Check your internet connection")
-      console.log(`  • Use --retry flag: npx buildy-ui@latest add --all --registry ${registryType} --retry`)
-      console.log("  • Use VPN if available")
-      console.log("  • Install from URL: npx buildy-ui@latest add 'https://...'")
-      console.log("  • Check https://buildy.tw for manual download")
-      return
-    }
-    
-    spinner.succeed(`Found ${allComponents.length} components in ${registryType}`)
-    
-    if (options.dryRun) {
-      console.log(chalk.blue(`\n📋 Would install from ${registryType}:`))
-      allComponents.forEach(comp => {
-        console.log(`   - ${comp.name} (${comp.type})`)
-      })
-      return
-    }
-    
-    const results: Array<{ name: string; status: "success" | "error"; error?: string }> = []
-    
-    for (const component of allComponents) {
-      const componentSpinner = ora(`Installing ${component.name} from ${registryType}...`).start()
-      
-      try {
-      // Install component files
-      await installComponentFiles(component, config, options.force)
-        
-        // Install dependencies with improved error handling
-        if (component.dependencies.length > 0) {
-          try {
-            await installDependencies(component.dependencies)
-          } catch (error) {
-            console.log(chalk.yellow(`   ⚠️  Warning: Could not install some dependencies for ${component.name}`))
-            console.log(chalk.yellow(`   Dependencies: ${component.dependencies.join(", ")}`))
-            console.log(chalk.yellow(`   Please install them manually if needed`))
-            // Don't fail the entire installation for dependency issues
-          }
-        }
-        
-        componentSpinner.succeed(`Installed ${component.name} from ${registryType}`)
-        results.push({ name: component.name, status: "success" })
-        
-      } catch (error) {
-        componentSpinner.fail(`Failed to install ${component.name}`)
-        console.error(chalk.red(`   Error: ${(error as Error).message}`))
-        results.push({ 
-          name: component.name, 
-          status: "error", 
-          error: (error as Error).message 
-        })
-      }
-    }
-    
-    // Summary
-    const successful = results.filter(r => r.status === "success")
-    const failed = results.filter(r => r.status === "error")
-    
-    console.log(chalk.blue("\n📊 Installation Summary:"))
-    console.log(`   Registry: ${registryType}`)
-    console.log(`   ✅ Successful: ${successful.length}`)
-    console.log(`   ❌ Failed: ${failed.length}`)
-    
-    if (successful.length > 0) {
-      console.log(chalk.green(`\n🎉 All ${registryType} components installed successfully!`))
-      console.log("You can now import and use them in your project.")
-    }
-    
-    if (failed.length > 0) {
-      process.exit(1)
-    }
-    
-  } catch (error) {
-    spinner.fail(`Failed to fetch components from ${registryType}`)
-    console.error(chalk.red("❌ Error:"), (error as Error).message)
-    console.log(chalk.yellow(`\n⚠️  ${registryType} registry temporarily unavailable`))
-    console.log("Try these alternatives:")
-    console.log("  • Check your internet connection")
-    console.log(`  • Use --retry flag: npx buildy-ui@latest add --all --registry ${registryType} --retry`)
-    console.log("  • Use VPN if available")
-    console.log("  • Install from URL: npx buildy-ui@latest add 'https://...'")
-    console.log("  • Check https://buildy.tw for manual download")
     process.exit(1)
   }
 }
@@ -259,13 +217,12 @@ async function installComponentFiles(
   for (const file of component.files) {
     const fileName = path.basename(file.path)
 
-    // Determine base install folder by target or component type
     const target = file.target || inferTargetFromType(component.type)
     const installDir = resolveInstallDir(target, config)
     const targetPath = path.join(process.cwd(), installDir, fileName)
 
     if (!force && await fs.pathExists(targetPath)) {
-      console.log(`   ⚠️  Skipped ${fileName} (already exists, use --force to overwrite)`) 
+      console.log(`   ⚠️  ${CLI_MESSAGES.status.skipped(fileName)}`) 
       continue
     }
 
@@ -282,8 +239,8 @@ function inferTargetFromType(componentType: string): string {
       return "blocks"
     case "registry:component":
       return "components"
-    case "registry:template":
-      return "templates"
+    case "registry:layout":
+      return "layouts"
     case "registry:lib":
       return "lib"
     default:
@@ -293,11 +250,10 @@ function inferTargetFromType(componentType: string): string {
 
 function resolveInstallDir(target: string, config: Config): string {
   if (target === "lib") {
-    return normalizeDir(config.libDir || "src/lib")
+    return normalizeDir(config.libDir || SCHEMA_CONFIG.defaultDirectories.lib)
   }
 
-  // Prefer config.componentsDir for UI; derive siblings for other targets
-  const baseUiDir = normalizeDir(config.componentsDir || "src/ui")
+  const baseUiDir = normalizeDir(config.componentsDir || SCHEMA_CONFIG.defaultDirectories.components)
   if (target === "ui") return baseUiDir
 
   const parent = baseUiDir.replace(/[/\\]ui$/i, "") || "src"
@@ -306,8 +262,8 @@ function resolveInstallDir(target: string, config: Config): string {
       return path.join(parent, "components").replace(/\\/g, "/")
     case "blocks":
       return path.join(parent, "blocks").replace(/\\/g, "/")
-    case "templates":
-      return path.join(parent, "templates").replace(/\\/g, "/")
+    case "layouts":
+      return path.join(parent, "layouts").replace(/\\/g, "/")
     default:
       return baseUiDir
   }
@@ -322,7 +278,6 @@ function resolveRegistryType(registryInput?: string): RegistryType {
     return SCHEMA_CONFIG.defaultRegistryType
   }
   
-  // Check if it's a valid registry type
   if (SCHEMA_CONFIG.registryTypes.includes(registryInput as any)) {
     return registryInput as RegistryType
   }
@@ -335,27 +290,22 @@ function resolveRegistryType(registryInput?: string): RegistryType {
 }
 
 async function installDependencies(dependencies: string[]): Promise<void> {
-  const spinner = ora("Installing dependencies...").start()
+  const spinner = ora(CLI_MESSAGES.status.installing("dependencies", "")).start()
   
   try {
-    // Check dependency status first
     const depStatus = await checkProjectDependencies(dependencies)
-    
-    // Filter out dependencies that are already installed or are workspace dependencies
     const missingDependencies = await filterMissingDependencies(dependencies)
     
     if (missingDependencies.length === 0) {
-      spinner.succeed("All dependencies already available")
+      spinner.succeed(CLI_MESSAGES.success.depsAvailable)
       if (depStatus.workspace.length > 0) {
         console.log(chalk.blue(`   🔗 Using workspace dependencies: ${depStatus.workspace.join(", ")}`))
       }
       return
     }
     
-    // Show what we're about to install
     showDependencyStatus(depStatus)
     
-    // Detect package manager
     const packageManager = await detectPackageManager()
     
     const installCommand = packageManager === "npm" 
@@ -367,17 +317,15 @@ async function installDependencies(dependencies: string[]): Promise<void> {
       stdio: "pipe"
     })
     
-    spinner.succeed("Dependencies installed")
+    spinner.succeed(CLI_MESSAGES.success.depsInstalled)
   } catch (error) {
-    spinner.fail("Failed to install dependencies")
+    spinner.fail(CLI_MESSAGES.errors.dependenciesFailed)
     
-    // Show more helpful error message
     const errorMessage = (error as any).stderr || (error as Error).message
     
     if (isWorkspaceError(errorMessage)) {
-      console.log(chalk.yellow("\n💡 Workspace dependency detected. Installing individually..."))
+      console.log(chalk.yellow(`\n💡 ${CLI_MESSAGES.info.workspaceDepsDetected}`))
       
-      // Try to install each dependency individually
       const results = await installDependenciesIndividually(dependencies)
       
       if (results.some(r => r.success)) {
@@ -386,7 +334,7 @@ async function installDependencies(dependencies: string[]): Promise<void> {
       }
     }
     
-    throw new Error(`Failed to install dependencies: ${errorMessage}`)
+    throw new Error(`${CLI_MESSAGES.errors.dependenciesFailed}: ${errorMessage}`)
   }
 }
 
@@ -394,7 +342,6 @@ async function installDependenciesIndividually(dependencies: string[]): Promise<
   const packageManager = await detectPackageManager()
   const results: Array<{dep: string, success: boolean}> = []
   
-  // Filter out workspace dependencies first
   const missingDeps = await filterMissingDependencies(dependencies)
   
   for (const dep of missingDeps) {

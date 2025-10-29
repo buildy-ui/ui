@@ -1,5 +1,5 @@
 // Configuration for schema generation
-// This file contains all the sensitive data that might change over time
+// Centralized configuration file with all constants and defaults
 
 export const SCHEMA_CONFIG = {
   // Base schema information
@@ -7,33 +7,33 @@ export const SCHEMA_CONFIG = {
   baseUrl: "https://buildy.tw/schema",
   
   // Framework configuration
-  supportedFrameworks: ["vite-react"],
+  supportedFrameworks: ["vite-react"] as const,
   
   // Default aliases for path mapping
   defaultAliases: {
     "@": "./src",
     "@/components": "./src/components",
     "@/ui": "./src/ui",
-    "@/blocks": "./src/blocks",
+    "@/layouts": "./src/layouts",
     "@/lib": "./src/lib"
   },
   
   // Registry configuration
   defaultRegistry: "@ui8kit",
-  registryTypes: ["core", "form"],
+  registryTypes: ["ui"] as const,
 
   // Default registry type
-  defaultRegistryType: "core",
+  defaultRegistryType: "ui" as const,
   
   // CDN base URLs (registryName will be substituted)
   cdnBaseUrls: [
     "https://cdn.jsdelivr.net/npm/ui8kit@latest/r",
     "https://unpkg.com/ui8kit@latest/r", 
     "https://raw.githubusercontent.com/buildy-ui/ui/main/packages/ui/packages/registry/r"
-  ],
+  ] as const,
   
   // Component categories
-  componentCategories: ["ui", "components", "blocks", "lib", "templates"],
+  componentCategories: ["ui", "components", "layouts", "lib", "blocks"] as const,
   
   // Component types (should match registryItemTypeSchema)
   componentTypes: [
@@ -41,14 +41,16 @@ export const SCHEMA_CONFIG = {
     "registry:block", 
     "registry:component",
     "registry:ui",
-    "registry:template"
-  ],
+    "registry:layout"
+  ] as const,
   
-  // Default directories
+  // Default directories structure
   defaultDirectories: {
     components: "./src/ui",
     lib: "./src/lib",
-  },
+    layouts: "./src/layouts",
+    blocks: "./src/blocks",
+  } as const,
   
   // Schema descriptions and titles
   descriptions: {
@@ -64,7 +66,7 @@ export const SCHEMA_CONFIG = {
       title: "Buildy Registry Item",
       description: "Schema for individual registry items in the UI8Kit component system",
     }
-  },
+  } as const,
   
   // Field descriptions
   fieldDescriptions: {
@@ -77,16 +79,16 @@ export const SCHEMA_CONFIG = {
     libDir: "Directory for utility libraries",
     registryName: "Registry name",
     registryHomepage: "Registry homepage URL",
-    registryType: "Registry type (e.g., core, form)",
+    registryType: "Registry type (e.g., ui)",
     registryVersion: "Registry version",
     lastUpdated: "Last update timestamp",
     categories: "Available component categories",
     components: "Component metadata for quick lookup",
     items: "Full component definitions",
-  }
+  } as const
 } as const
 
-export type RegistryType = "core" | "form"
+export type RegistryType = typeof SCHEMA_CONFIG.registryTypes[number]
 
 // Map component types to their corresponding folders
 export const TYPE_TO_FOLDER = {
@@ -94,7 +96,7 @@ export const TYPE_TO_FOLDER = {
   "registry:block": "blocks", 
   "registry:component": "components",
   "registry:lib": "lib",
-  "registry:template": "templates"
+  "registry:layout": "layouts"
 } as const
 
 // Helper functions to generate URLs dynamically
@@ -106,7 +108,7 @@ export function getInstallPath(registryType: RegistryType, componentType: string
   // Deprecated: install path should be resolved via project config. This remains only for backward compatibility.
   const folder = TYPE_TO_FOLDER[componentType as keyof typeof TYPE_TO_FOLDER]
   if (componentType === "registry:lib") {
-    return "src/lib"
+    return SCHEMA_CONFIG.defaultDirectories.lib
   }
   return `src/${folder}`
 }

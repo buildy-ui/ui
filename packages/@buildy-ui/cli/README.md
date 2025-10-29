@@ -1,86 +1,76 @@
 # buildy-ui CLI
 
-A powerful CLI for adding UI components to your Vite React projects with simplified package-based registries (`core`, `form`) and intelligent dependency validation.
+A powerful CLI for adding UI components to your Vite React projects with intelligent dependency validation and simplified registry management.
 
 ## Quick Start
 
 No installation needed! Use directly with `npx` or `bun x`:
 
 ```bash
-# Initialize project (defaults to core)
-npx buildy-ui@latest init --registry core
+# Initialize project (uses 'ui' registry by default)
+npx buildy-ui@latest init
 
-# Initialize form registry
-npx buildy-ui@latest init --registry form
+# Add components from the registry
+npx buildy-ui@latest add button card
 
-# Add components from different registries
-npx buildy-ui@latest add button card --registry core
-npx buildy-ui@latest add input --registry form
-
-# Install all components from a registry
-npx buildy-ui@latest add --all --registry core
+# Install all available components
+npx buildy-ui@latest add --all
 
 # Build and scan registries
-npx buildy-ui@latest scan --registry core
+npx buildy-ui@latest scan
 npx buildy-ui@latest build
 ```
 
-## Package Registries
+## Registry
 
-The CLI supports two package registries:
+The CLI uses a unified **`ui`** registry:
 
-- **`core`** - Base UI components (`@ui8kit/core`)
-- **`form`** - Form components (`@ui8kit/form`)
+- **`ui`** - All UI components and utilities
+
+Simple and streamlined for better developer experience.
 
 ## Commands
 
 ### Initialize project
 ```bash
-# Initialize core registry
-npx buildy-ui@latest init --registry core
-
-# Initialize form registry
-npx buildy-ui@latest init --registry form
+# Initialize with defaults (uses 'ui' registry)
+npx buildy-ui@latest init
 
 # Skip prompts and use defaults
-npx buildy-ui@latest init --yes --registry core
+npx buildy-ui@latest init --yes
 ```
 
 Creates project configuration, `src/` directories, and dependencies.
 
 ### Add components
 ```bash
-# Add from core registry (default)
-npx buildy-ui@latest add button card --registry core
-
-# Add from form registry
-npx buildy-ui@latest add input --registry form
+# Add from registry
+npx buildy-ui@latest add button card
 
 # Add multiple components at once
-npx buildy-ui@latest add button card hero-section --registry core
+npx buildy-ui@latest add button card hero-section
 
 # Add from external URL
 npx buildy-ui@latest add "https://ui.example.com/button.json"
 
-# Install ALL available components from a registry
-npx buildy-ui@latest add --all --registry core
-npx buildy-ui@latest add --all --registry form
+# Install ALL available components
+npx buildy-ui@latest add --all
 
 # Preview what would be installed
-npx buildy-ui@latest add --all --dry-run --registry core
-npx buildy-ui@latest add button --dry-run --registry form
+npx buildy-ui@latest add button --dry-run
+npx buildy-ui@latest add --all --dry-run
 
 # Force overwrite existing files
-npx buildy-ui@latest add button --force --registry core
+npx buildy-ui@latest add button --force
 
 # Enable retry logic for unreliable connections
-npx buildy-ui@latest add button --retry --registry core
-npx buildy-ui@latest add --all --retry --registry form
+npx buildy-ui@latest add button --retry
+npx buildy-ui@latest add --all --retry
 ```
 
 **Smart Features**:
-- **Simplified registries**: `core` and `form` with no prerequisite ordering
-- **Smart Search**: Automatically searches across all categories (`ui`, `blocks`, `components`, `lib`, `templates`)
+- **Simplified registry**: Single `ui` registry for all components
+- **Smart Search**: Automatically searches across all categories (`ui`, `blocks`, `components`, `lib`, `layouts`)
 - **Dependency Intelligence**: Handles workspace dependencies and filters real npm packages
 - **Skip Existing**: Already installed files are skipped automatically (use `--force` to overwrite)
 - **Retry Mode**: Use `--retry` flag for enhanced connection logic with automatic retries and timeouts
@@ -88,18 +78,18 @@ npx buildy-ui@latest add --all --retry --registry form
 
 ### Scan existing components
 ```bash
-# Scan core registry
-npx buildy-ui@latest scan --registry core
+# Scan components
+npx buildy-ui@latest scan
 
-# Scan form registry
-npx buildy-ui@latest scan --registry form --output ./form/registry.json
+# Scan with custom output
+npx buildy-ui@latest scan --output ./registry.json
 
 # Scan with custom source directory
-npx buildy-ui@latest scan --registry core --source ./src --output ./src/registry.json
+npx buildy-ui@latest scan --source ./src --output ./src/registry.json
 ```
 
 **Scan Features**:
-- **Multi-category scanning**: Scans `ui`, `components`, `blocks`, `templates`, and `lib` directories
+- **Multi-category scanning**: Scans `ui`, `components`, `blocks`, `layouts`, and `lib` directories
 - **Dependency analysis**: Uses TypeScript AST to extract real dependencies vs devDependencies
 - **Smart filtering**: Excludes local aliases (`@/`, `./`, `~/`) and workspace dependencies
 - **JSDoc extraction**: Automatically extracts component descriptions from comments
@@ -109,8 +99,8 @@ npx buildy-ui@latest scan --registry core --source ./src --output ./src/registry
 # Build with default settings
 npx buildy-ui@latest build
 
-# Build specific registry
-npx buildy-ui@latest build ./src/registry.json --output ./packages/registry/r/core
+# Build specific registry file
+npx buildy-ui@latest build ./src/registry.json --output ./packages/registry/r/ui
 
 # Build from different working directory
 npx buildy-ui@latest build --cwd ./packages/ui --output ./packages/registry/r
@@ -125,7 +115,7 @@ src/
 ├── ui/              # UI components (@/ui)
 ├── blocks/          # Component blocks (@/blocks)
 ├── components/      # Generic components (@/components)
-├── templates/       # Template components (@/templates)
+├── layouts/         # Layout components (@/layouts)
 └── lib/             # Utilities (@/lib)
 ```
 
@@ -133,20 +123,20 @@ Components are automatically installed to the correct directory based on their t
 - `registry:ui` → `src/ui/`
 - `registry:block` → `src/blocks/`
 - `registry:component` → `src/components/`
-- `registry:template` → `src/templates/`
+- `registry:layout` → `src/layouts/`
 - `registry:lib` → `src/lib/`
 
 ## Component Types
 
 - `registry:ui` - Basic UI components (buttons, inputs, etc.)
-- `registry:lib` - Utility libraries and functions (shared across registries)
+- `registry:lib` - Utility libraries and functions
 - `registry:block` - Complex component blocks
 - `registry:component` - Generic components
-- `registry:template` - Template components
+- `registry:layout` - Layout and page template components
 
 ## Configuration
 
-Each registry can have its own `buildy.config.json` file (at project root or under `./core` or `./form`):
+Each project can have a `buildy.config.json` file at the project root:
 
 ### Example Config
 ```json
@@ -158,7 +148,7 @@ Each registry can have its own `buildy.config.json` file (at project root or und
     "@": "./src",
     "@/components": "./src/components",
     "@/ui": "./src/ui",
-    "@/blocks": "./src/blocks",
+    "@/layouts": "./src/layouts",
     "@/lib": "./src/lib"
   },
   "registry": "@ui8kit",
@@ -167,10 +157,6 @@ Each registry can have its own `buildy.config.json` file (at project root or und
 }
 ```
 
-## Validation
-
-Validation is simplified; there is no dependency between registries. Component dependency checks focus on external npm packages only.
-
 ## Dependency Management
 
 The CLI intelligently handles dependencies:
@@ -178,7 +164,7 @@ The CLI intelligently handles dependencies:
 ### Workspace Dependencies
 ```bash
 # Automatically detects and handles workspace dependencies
-npx buildy-ui@latest add button --registry semantic
+npx buildy-ui@latest add button
 
 # Output:
 # ✅ Already installed: clsx, tailwind-merge
@@ -233,7 +219,7 @@ npx buildy-ui@latest add button --registry semantic
       ]
     }
   ],
-  "registry": "core",
+  "registry": "ui",
   "version": "1.0.0"
 }
 ```
@@ -241,7 +227,7 @@ npx buildy-ui@latest add button --registry semantic
 ### Output: Built Registry
 ```
 packages/registry/r/
-├── core/
+├── ui/
 │   ├── index.json          # Registry index
 │   ├── ui/
 │   │   └── button.json     # UI components
@@ -249,6 +235,8 @@ packages/registry/r/
 │   │   └── utils.json      # Utility libraries
 │   ├── blocks/
 │   │   └── hero.json       # Component blocks
+│   ├── layouts/
+│   │   └── page.json       # Layout components
 │   └── components/
 │       └── card.json       # Generic components
 ```
@@ -260,22 +248,20 @@ packages/registry/r/
 3. **Scan registries** to generate registry.json files
 4. **Build registries** to generate distribution files
 5. **Deploy** the registry directories to your CDN
-6. **Users install** with registry-specific commands
+6. **Users install** with simplified commands
 
 ### Example Workflow
 ```bash
 # Development setup
-npx buildy-ui@latest init --registry core
-npx buildy-ui@latest init --registry form
+npx buildy-ui@latest init
 
 # Develop components in src/ directories
 
 # Generate registry files
-npx buildy-ui@latest scan --registry core --output ./src/registry.json
-npx buildy-ui@latest scan --registry form --output ./form/registry.json
+npx buildy-ui@latest scan --output ./src/registry.json
 
 # Build distribution
-npx buildy-ui@latest build ./src/registry.json --output ./packages/registry/r/core
+npx buildy-ui@latest build ./src/registry.json --output ./packages/registry/r/ui
 
 # Deploy packages/registry/r/ to your CDN
 ```

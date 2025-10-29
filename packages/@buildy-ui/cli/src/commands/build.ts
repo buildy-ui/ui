@@ -4,6 +4,8 @@ import chalk from "chalk"
 import ora from "ora"
 import { registrySchema, registryItemSchema } from "../registry/build-schema.js"
 import { generateConfigSchema, generateRegistrySchema, generateRegistryItemSchema } from "../utils/schema-generator.js"
+import { TYPE_TO_FOLDER, SCHEMA_CONFIG } from "../utils/schema-config.js"
+import { CLI_MESSAGES } from "../utils/cli-messages.js"
 
 interface BuildOptions {
   cwd: string
@@ -18,10 +20,10 @@ export async function buildCommand(
   const buildOptions: BuildOptions = {
     cwd: path.resolve(options.cwd || process.cwd()),
     registryFile: path.resolve(registryPath),
-    outputDir: path.resolve(options.output || "./packages/registry/r/core"),
+    outputDir: path.resolve(options.output || "./packages/registry/r/ui"),
   }
 
-  console.log(chalk.blue("🔨 Building registry..."))
+  console.log(chalk.blue(CLI_MESSAGES.info.building))
   
   try {
     // Read registry.json
@@ -37,7 +39,7 @@ export async function buildCommand(
     // Generate schema files
     await generateSchemaFiles(buildOptions.outputDir)
     
-    const spinner = ora("Processing components...").start()
+    const spinner = ora(CLI_MESSAGES.info.processingComponents).start()
     
     for (const item of registry.items) {
       spinner.text = `Building ${item.name}...`
@@ -52,7 +54,7 @@ export async function buildCommand(
         if (await fs.pathExists(filePath)) {
           file.content = await fs.readFile(filePath, "utf-8")
         } else {
-          throw new Error(`File not found: ${file.path}`)
+          throw new Error(CLI_MESSAGES.errors.fileNotFound(file.path))
         }
       }
       
@@ -69,36 +71,24 @@ export async function buildCommand(
       await fs.writeFile(outputFile, JSON.stringify(validatedItem, null, 2))
     }
     
-    spinner.succeed(`Built ${registry.items.length} components`)
+    spinner.succeed(CLI_MESSAGES.status.builtComponents(registry.items.length))
     
     // Create index file
     await createIndexFile(registry, buildOptions.outputDir)
     
-    console.log(chalk.green("✅ Registry built successfully!"))
+    console.log(chalk.green(`✅ ${CLI_MESSAGES.success.registryBuilt}`))
     console.log(`Output: ${buildOptions.outputDir}`)
-    console.log(chalk.green("✅ Schema files generated successfully!"))
+    console.log(chalk.green(`✅ ${CLI_MESSAGES.success.schemasGenerated}`))
     
   } catch (error) {
-    console.error(chalk.red("❌ Build failed:"), (error as Error).message)
+    console.error(chalk.red(`❌ ${CLI_MESSAGES.errors.buildFailed}`), (error as Error).message)
     process.exit(1)
   }
 }
 
 function getOutputDir(type: string): string {
-  switch (type) {
-    case "registry:ui":
-      return "ui"
-    case "registry:component":
-      return "components"
-    case "registry:block":
-      return "blocks"
-    case "registry:lib":
-      return "lib"
-    case "registry:template":
-      return "templates"
-    default:
-      return "misc"
-  }
+  const folder = TYPE_TO_FOLDER[type as keyof typeof TYPE_TO_FOLDER]
+  return folder || "misc"
 }
 
 async function createIndexFile(registry: any, outputDir: string) {
@@ -110,10 +100,10 @@ async function createIndexFile(registry: any, outputDir: string) {
       title: item.title,
       description: item.description,
     })),
-    categories: ["ui", "components", "blocks", "lib", "templates"],
+    categories: SCHEMA_CONFIG.componentCategories,
     version: "1.0.0",
     lastUpdated: new Date().toISOString(),
-    registry: registry?.registry || require('path').basename(outputDir),
+    registry: registry?.registry || path.basename(outputDir),
   }
   
   await fs.writeFile(
@@ -123,7 +113,7 @@ async function createIndexFile(registry: any, outputDir: string) {
 }
 
 async function generateSchemaFiles(outputDir: string) {
-  const registryBaseDir = path.dirname(outputDir) // Go up from r/utility to registry
+  const registryBaseDir = path.dirname(outputDir)
   
   // Create schema directory
   const schemaDir = path.join(registryBaseDir, "schema")
