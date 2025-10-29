@@ -27,9 +27,9 @@ export const SCHEMA_CONFIG = {
   
   // CDN base URLs (registryName will be substituted)
   cdnBaseUrls: [
-    "https://cdn.jsdelivr.net/npm/ui8kit@latest/r",
-    "https://unpkg.com/ui8kit@latest/r", 
-    "https://raw.githubusercontent.com/buildy-ui/ui/main/packages/ui/packages/registry/r"
+    "https://cdn.jsdelivr.net/npm/@ui8kit/registry@latest/r",
+    "https://unpkg.com/@ui8kit/registry@latest/r", 
+    "https://raw.githubusercontent.com/buildy-ui/ui/main/packages/@ui8kit/registry/r"
   ] as const,
   
   // Component categories

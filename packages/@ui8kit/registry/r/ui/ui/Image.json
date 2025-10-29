@@ -1,0 +1,17 @@
+{
+  "$schema": "https://buildy.tw/schema/registry-item.json",
+  "name": "Image",
+  "type": "registry:ui",
+  "description": "",
+  "dependencies": [
+    "react"
+  ],
+  "devDependencies": [],
+  "files": [
+    {
+      "path": "src/ui/Image/Image.tsx",
+      "content": "import { forwardRef } from \"react\";\r\nimport {\r\n  Image as BaseImage,\r\n  spacingVariants,\r\n  roundedVariants,\r\n  shadowVariants,\r\n  layoutVariants,\r\n  imageFitVariants,\r\n  imagePositionVariants,\r\n  aspectRatioVariants,\r\n  type VariantSpacingProps,\r\n  type RoundedProps,\r\n  type ShadowProps,\r\n  type VariantLayoutProps,\r\n  type ImageFitProps,\r\n  type ImagePositionProps,\r\n  type AspectRatioProps,\r\n  cn\r\n} from \"@ui8kit/core\";\r\n\r\nexport interface ImageProps \r\n  extends Omit<React.ImgHTMLAttributes<HTMLImageElement>, 'width' | 'height'>,\r\n    Pick<VariantSpacingProps, 'm' | 'mx' | 'my'>,\r\n    RoundedProps,\r\n    ShadowProps,\r\n    Pick<VariantLayoutProps, 'w' | 'h'>,\r\n    ImageFitProps,\r\n    ImagePositionProps,\r\n    AspectRatioProps {\r\n  width?: string | number;\r\n  height?: string | number;\r\n  fallbackSrc?: string;\r\n  withPlaceholder?: boolean;\r\n}\r\n\r\nexport const Image = forwardRef<HTMLImageElement, ImageProps>(\r\n  ({ \r\n    className,\r\n    src,\r\n    alt,\r\n    width,\r\n    height,\r\n    fit = 'cover',\r\n    position = 'center',\r\n    aspect = 'auto',\r\n    rounded,\r\n    shadow,\r\n    fallbackSrc,\r\n    withPlaceholder = false,\r\n    onError,\r\n    // Spacing props  \r\n    m, mx, my,\r\n    // Layout props\r\n    w,\r\n    h,\r\n    ...props \r\n  }, ref) => {\r\n    const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {\r\n      if (fallbackSrc) {\r\n        e.currentTarget.src = fallbackSrc;\r\n      }\r\n      onError?.(e);\r\n    };\r\n\r\n    return (\r\n      <BaseImage\r\n        ref={ref}\r\n        data-class=\"image\"\r\n        src={src}\r\n        alt={alt}\r\n        width={width}\r\n        height={height}\r\n        onError={handleError}\r\n        className={cn(\r\n          // Base image styles\r\n          'block',\r\n          // Placeholder background\r\n          withPlaceholder && 'bg-muted',\r\n          // Apply CVA variants\r\n          imageFitVariants({ fit }),\r\n          imagePositionVariants({ position }),\r\n          aspectRatioVariants({ aspect }),\r\n          spacingVariants({ m, mx, my }),\r\n          layoutVariants({ w, h }),\r\n          roundedVariants({ rounded }),\r\n          shadowVariants({ shadow }),\r\n          className\r\n        )}\r\n        {...props}\r\n      />\r\n    );\r\n  }\r\n);\r\n\r\nImage.displayName = \"Image\"; ",
+      "target": "ui"
+    }
+  ]
+}

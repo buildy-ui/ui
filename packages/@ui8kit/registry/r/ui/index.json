@@ -3,77 +3,77 @@
   "components": [
     {
       "name": "Title",
-      "type": "registry:component",
+      "type": "registry:ui",
       "description": ""
     },
     {
       "name": "Text",
-      "type": "registry:component",
-      "description": ""
-    },
-    {
-      "name": "Icon",
-      "type": "registry:component",
-      "description": ""
-    },
-    {
-      "name": "Image",
-      "type": "registry:component",
-      "description": ""
-    },
-    {
-      "name": "Sheet",
-      "type": "registry:component",
+      "type": "registry:ui",
       "description": ""
     },
     {
       "name": "Stack",
-      "type": "registry:component",
+      "type": "registry:ui",
+      "description": ""
+    },
+    {
+      "name": "Sheet",
+      "type": "registry:ui",
+      "description": ""
+    },
+    {
+      "name": "Image",
+      "type": "registry:ui",
+      "description": ""
+    },
+    {
+      "name": "Icon",
+      "type": "registry:ui",
       "description": ""
     },
     {
       "name": "Group",
-      "type": "registry:component",
+      "type": "registry:ui",
       "description": ""
     },
     {
       "name": "Grid",
-      "type": "registry:component",
+      "type": "registry:ui",
       "description": "Main Grid component interface"
     },
     {
       "name": "Container",
-      "type": "registry:component",
+      "type": "registry:ui",
       "description": ""
     },
     {
       "name": "Card",
-      "type": "registry:component",
+      "type": "registry:ui",
       "description": "Main Card component interface"
     },
     {
       "name": "Button",
-      "type": "registry:component",
+      "type": "registry:ui",
       "description": ""
     },
     {
       "name": "Box",
-      "type": "registry:component",
+      "type": "registry:ui",
       "description": ""
     },
     {
       "name": "Block",
-      "type": "registry:component",
+      "type": "registry:ui",
       "description": ""
     },
     {
       "name": "Badge",
-      "type": "registry:component",
+      "type": "registry:ui",
       "description": ""
     },
     {
       "name": "Accordion",
-      "type": "registry:component",
+      "type": "registry:ui",
       "description": ""
     },
     {
@@ -100,6 +100,6 @@
     "blocks"
   ],
   "version": "1.0.0",
-  "lastUpdated": "2025-10-29T13:13:24.467Z",
+  "lastUpdated": "2025-10-29T15:04:51.534Z",
   "registry": "ui"
 }
