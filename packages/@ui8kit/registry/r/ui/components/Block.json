@@ -1,0 +1,17 @@
+{
+  "$schema": "https://buildy.tw/schema/registry-item.json",
+  "name": "Block",
+  "type": "registry:component",
+  "description": "",
+  "dependencies": [
+    "react"
+  ],
+  "devDependencies": [],
+  "files": [
+    {
+      "path": "src/components/Block/Block.tsx",
+      "content": "import type { ReactNode, ElementType } from \"react\";\r\nimport { forwardRef } from \"react\";\r\nimport {\r\n  Block as BaseBlock,\r\n  spacingVariants,\r\n  colorVariants,\r\n  layoutVariants,\r\n  roundedVariants,\r\n  shadowVariants,\r\n  borderVariants,\r\n  type VariantSpacingProps,\r\n  type ColorProps,\r\n  type VariantLayoutProps,\r\n  type RoundedProps,\r\n  type ShadowProps,\r\n  type BorderProps,\r\n  cn\r\n} from \"../../core\";\r\n\r\nexport interface BlockProps \r\n  extends React.HTMLAttributes<HTMLElement>,\r\n    VariantSpacingProps,\r\n    ColorProps,\r\n    Pick<VariantLayoutProps, 'w' | 'h' | 'minH' | 'position'>,\r\n    RoundedProps,\r\n    ShadowProps,\r\n    BorderProps {\r\n  children: ReactNode;\r\n  component?: ElementType;\r\n  variant?: 'section' | 'main' | 'nav' | 'article' | 'header' | 'footer' | 'aside' | 'div';\r\n}\r\n\r\nexport const Block = forwardRef<HTMLElement, BlockProps>(\r\n  ({ \r\n    children, \r\n    className,\r\n    component,\r\n    variant = 'div',\r\n    // Spacing props\r\n    p, px, py, pt, pb, pl, pr,\r\n    m, mx, my, mt, mb, ml, mr,\r\n    // Color props\r\n    bg,\r\n    c,\r\n    borderColor,\r\n    // Layout props\r\n    w = 'full',\r\n    h,\r\n    minH,\r\n    position,\r\n    // Visual props\r\n    rounded,\r\n    shadow,\r\n    // Border props\r\n    border,\r\n    borderTop,\r\n    borderBottom,\r\n    borderLeft,\r\n    borderRight,\r\n    ...props \r\n  }, ref) => {\r\n    // Use variant as component if no component is explicitly provided\r\n    const elementType = component || variant;\r\n\r\n    return (\r\n      <BaseBlock\r\n        ref={ref}\r\n        component={elementType}\r\n        data-class=\"block\"\r\n        className={cn(\r\n          // Apply variants\r\n          spacingVariants({ p, px, py, pt, pb, pl, pr, m, mx, my, mt, mb, ml, mr }),\r\n          colorVariants({ bg, c, borderColor }),\r\n          layoutVariants({ w, h, minH, position }),\r\n          roundedVariants({ rounded }),\r\n          shadowVariants({ shadow }),\r\n          borderVariants({ border, borderTop, borderBottom, borderLeft, borderRight }),\r\n          className\r\n        )}\r\n        {...props}\r\n      >\r\n        {children}\r\n      </BaseBlock>\r\n    );\r\n  }\r\n);\r\n\r\nBlock.displayName = \"Block\"; ",
+      "target": "components"
+    }
+  ]
+}

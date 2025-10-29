@@ -1,0 +1,17 @@
+{
+  "$schema": "https://buildy.tw/schema/registry-item.json",
+  "name": "Title",
+  "type": "registry:component",
+  "description": "",
+  "dependencies": [
+    "react"
+  ],
+  "devDependencies": [],
+  "files": [
+    {
+      "path": "src/components/Title/Title.tsx",
+      "content": "import type { ReactNode, ElementType } from \"react\";\r\nimport { forwardRef } from \"react\";\r\nimport {\r\n  Element,\r\n  spacingVariants,\r\n  colorVariants,\r\n  layoutVariants,\r\n  textSizeVariants,\r\n  fontWeightVariants,\r\n  textAlignVariants,\r\n  leadingVariants,\r\n  typographyModifierVariants,\r\n  trackingVariants,\r\n  type VariantSpacingProps,\r\n  type ColorProps,\r\n  type VariantLayoutProps,\r\n  type TextSizeProps,\r\n  type FontWeightProps,\r\n  type TextAlignProps,\r\n  type LeadingProps,\r\n  type TypographyModifierProps,\r\n  type TrackingProps,\r\n  cn\r\n} from \"../../core\";\r\n\r\nexport interface TitleProps \r\n  extends React.HTMLAttributes<HTMLHeadingElement>,\r\n    Pick<VariantSpacingProps, 'm' | 'mx' | 'my' | 'mb' | 'mt'>,\r\n    Pick<ColorProps, 'c'>,\r\n    Pick<VariantLayoutProps, 'w'>,\r\n    TextSizeProps,\r\n    FontWeightProps,\r\n    TextAlignProps,\r\n    LeadingProps,\r\n    TrackingProps,\r\n    Pick<TypographyModifierProps, 'truncate'> {\r\n  children: ReactNode;\r\n  order?: 1 | 2 | 3 | 4 | 5 | 6;\r\n}\r\n\r\nexport const Title = forwardRef<HTMLHeadingElement, TitleProps>(\r\n  ({ \r\n    children, \r\n    className,\r\n    order = 1,\r\n    size = 'lg',\r\n    fw = 'semibold',\r\n    ta = 'left',\r\n    leading = 'normal',\r\n    tracking,\r\n    truncate = false,\r\n    // Spacing props\r\n    m, mx, my, mb, mt,\r\n    // Color props\r\n    c = 'foreground',\r\n    // Layout props\r\n    w,\r\n    ...props \r\n  }, ref) => {\r\n    const headingTag = `h${order}` as ElementType;\r\n\r\n    return (\r\n      <Element\r\n        ref={ref}\r\n        as={headingTag}\r\n        data-class=\"title\"\r\n        className={cn(\r\n          // Base title styles\r\n          'font-semibold tracking-tight',\r\n          // Apply CVA variants\r\n          textSizeVariants({ size }),\r\n          fontWeightVariants({ fw }),\r\n          textAlignVariants({ ta }),\r\n          leadingVariants({ leading }),\r\n          trackingVariants({ tracking }),\r\n          typographyModifierVariants({ truncate }),\r\n          spacingVariants({ m, mx, my, mb, mt }),\r\n          colorVariants({ c }),\r\n          layoutVariants({ w }),\r\n          className\r\n        )}\r\n        {...props}\r\n      >\r\n        {children}\r\n      </Element>\r\n    );\r\n  }\r\n);\r\n\r\nTitle.displayName = \"Title\"; ",
+      "target": "components"
+    }
+  ]
+}

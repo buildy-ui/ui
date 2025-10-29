@@ -19,11 +19,9 @@
     "registry": {
       "type": "string",
       "enum": [
-        "utility",
-        "semantic",
-        "theme"
+        "ui"
       ],
-      "description": "Registry type in UI8Kit architecture"
+      "description": "Registry type (e.g., ui)"
     },
     "version": {
       "type": "string",
@@ -41,9 +39,9 @@
         "enum": [
           "ui",
           "components",
-          "blocks",
+          "layouts",
           "lib",
-          "templates"
+          "blocks"
         ]
       },
       "description": "Available component categories"
@@ -63,7 +61,7 @@
               "registry:block",
               "registry:component",
               "registry:ui",
-              "registry:template"
+              "registry:layout"
             ]
           },
           "description": {

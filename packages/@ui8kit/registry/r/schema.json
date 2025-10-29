@@ -27,13 +27,10 @@
       },
       "default": {
         "@": "./src",
-        "@/components": "./utility/components",
-        "@/ui": "./utility/ui",
-        "@/blocks": "./utility/blocks",
-        "@/lib": "./lib",
-        "@/utility": "./utility",
-        "@/semantic": "./semantic",
-        "@/theme": "./theme"
+        "@/components": "./src/components",
+        "@/ui": "./src/ui",
+        "@/layouts": "./src/layouts",
+        "@/lib": "./src/lib"
       },
       "description": "Path aliases for imports in UI8Kit structure"
     },
@@ -44,12 +41,12 @@
     },
     "componentsDir": {
       "type": "string",
-      "default": "./utility/ui",
+      "default": "./src/ui",
       "description": "Directory where utility components will be installed"
     },
     "libDir": {
       "type": "string",
-      "default": "./lib",
+      "default": "./src/lib",
       "description": "Directory for utility libraries"
     }
   },
