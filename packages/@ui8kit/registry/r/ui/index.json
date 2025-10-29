@@ -1,6 +1,6 @@
 {
   "$schema": "https://buildy.tw/schema/registry.json",
-  "components": [
+  "ui": [
     {
       "name": "Title",
       "type": "registry:ui",
