@@ -35,7 +35,7 @@ export async function initCommand(options: InitOptions) {
   }
   
   // Check if already initialized for this registry
-  const existingConfig = await getConfig(registryPath)
+  const existingConfig = await getConfig("./src")
   if (existingConfig && !options.yes) {
     const { overwrite } = await prompts({
       type: "confirm",
@@ -89,8 +89,8 @@ export async function initCommand(options: InitOptions) {
   const spinner = ora(CLI_MESSAGES.info.initializing(registryName)).start()
   
   try {
-    // Save configuration at project root or registry root
-    await saveConfig(config, registryPath)
+    // Save configuration under ./src
+    await saveConfig(config, "./src")
     
     // Create src-based directory structure
     await ensureDir(config.libDir)

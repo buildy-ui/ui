@@ -117,8 +117,8 @@ async function getComponentByType(name: string, registryType: RegistryType): Pro
       return null
     }
     
-    // 4. Make targeted request to exact location
-    console.log(`🎯 Loading ${name} from /${registryType}/${folder}/ (type: ${componentInfo.type})`)
+    // 4. Make targeted request to exact location (relative to /r)
+    console.log(`🎯 Loading ${name} from /${folder}/ (type: ${componentInfo.type})`)
     const data = await fetchFromWorkingCDN(`${folder}/${name}.json`, registryType)
     return componentSchema.parse(data)
     

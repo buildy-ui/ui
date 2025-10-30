@@ -67,7 +67,7 @@ export async function scanCommand(
   const scanOptions: ScanOptions = {
     cwd: path.resolve(options.cwd || process.cwd()),
     registry: path.resolve(registryPath),
-    outputFile: path.resolve(options.output || registryPath + "/registry.json"),
+    outputFile: path.resolve(options.output || "./src/registry.json"),
     sourceDir: path.resolve(options.source || "./src"),
   }
 

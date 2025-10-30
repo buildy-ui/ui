@@ -36,17 +36,20 @@ export async function hasReact(): Promise<boolean> {
 }
 
 /**
- * Find configuration for any registry (utility first, then specified registry)
+ * Find configuration for the project (prefer ./src)
  */
-export async function findConfig(registryType?: string): Promise<Config | null> {
-  // Try specific registry directory first (e.g., ./core or ./form)
-  if (registryType) {
-    const registryConfig = await getConfig(`./${registryType}`)
-    if (registryConfig) {
-      return registryConfig
-    }
+export async function findConfig(_registryType?: string): Promise<Config | null> {
+  // Prefer config inside ./src
+  const srcConfig = await getConfig("./src")
+  if (srcConfig) return srcConfig
+
+  // Backward compatibility: ./ui or legacy registry folders
+  if (_registryType) {
+    const registryConfig = await getConfig(`./${_registryType}`)
+    if (registryConfig) return registryConfig
   }
-  // Fallback to root config
+
+  // Fallback to project root
   return await getConfig()
 }
 

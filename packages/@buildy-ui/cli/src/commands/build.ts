@@ -20,7 +20,7 @@ export async function buildCommand(
   const buildOptions: BuildOptions = {
     cwd: path.resolve(options.cwd || process.cwd()),
     registryFile: path.resolve(registryPath),
-    outputDir: path.resolve(options.output || "./packages/registry/r/ui"),
+    outputDir: path.resolve(options.output || "./packages/registry/r"),
   }
 
   console.log(chalk.blue(CLI_MESSAGES.info.building))
@@ -73,7 +73,7 @@ export async function buildCommand(
     
     spinner.succeed(CLI_MESSAGES.status.builtComponents(registry.items.length))
     
-    // Create index file
+    // Create index file at /r/index.json
     await createIndexFile(registry, buildOptions.outputDir)
     
     // Copy core-classes.json to registry if it exists
@@ -106,7 +106,7 @@ async function createIndexFile(registry: any, outputDir: string) {
     categories: SCHEMA_CONFIG.componentCategories,
     version: "1.0.0",
     lastUpdated: new Date().toISOString(),
-    registry: registry?.registry || path.basename(outputDir),
+    registry: registry?.registry || SCHEMA_CONFIG.defaultRegistryType,
   }
   
   await fs.writeFile(

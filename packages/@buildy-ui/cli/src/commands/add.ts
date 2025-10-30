@@ -253,19 +253,18 @@ function resolveInstallDir(target: string, config: Config): string {
     return normalizeDir(config.libDir || SCHEMA_CONFIG.defaultDirectories.lib)
   }
 
-  const baseUiDir = normalizeDir(config.componentsDir || SCHEMA_CONFIG.defaultDirectories.components)
-  if (target === "ui") return baseUiDir
+  // Base components directory
+  const baseComponentsDir = normalizeDir(config.componentsDir || SCHEMA_CONFIG.defaultDirectories.components)
+  if (target === "ui") return path.join(baseComponentsDir, "ui").replace(/\\/g, "/")
+  if (target === "components") return baseComponentsDir
 
-  const parent = baseUiDir.replace(/[/\\]ui$/i, "") || "src"
   switch (target) {
-    case "components":
-      return path.join(parent, "components").replace(/\\/g, "/")
     case "blocks":
-      return path.join(parent, "blocks").replace(/\\/g, "/")
+      return normalizeDir(SCHEMA_CONFIG.defaultDirectories.blocks)
     case "layouts":
-      return path.join(parent, "layouts").replace(/\\/g, "/")
+      return normalizeDir(SCHEMA_CONFIG.defaultDirectories.layouts)
     default:
-      return baseUiDir
+      return baseComponentsDir
   }
 }
 

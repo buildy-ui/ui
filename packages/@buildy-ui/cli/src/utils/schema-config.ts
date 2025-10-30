@@ -13,8 +13,9 @@ export const SCHEMA_CONFIG = {
   defaultAliases: {
     "@": "./src",
     "@/components": "./src/components",
-    "@/ui": "./src/ui",
+    "@/ui": "./src/components/ui",
     "@/layouts": "./src/layouts",
+    "@/blocks": "./src/blocks",
     "@/lib": "./src/lib"
   },
   
@@ -46,7 +47,8 @@ export const SCHEMA_CONFIG = {
   
   // Default directories structure
   defaultDirectories: {
-    components: "./src/ui",
+    ui: "./src/components/ui",
+    components: "./src/components",
     lib: "./src/lib",
     layouts: "./src/layouts",
     blocks: "./src/blocks",
@@ -92,7 +94,7 @@ export type RegistryType = typeof SCHEMA_CONFIG.registryTypes[number]
 
 // Map component types to their corresponding folders
 export const TYPE_TO_FOLDER = {
-  "registry:ui": "ui",
+  "registry:ui": "components/ui",
   "registry:block": "blocks", 
   "registry:component": "components",
   "registry:lib": "lib",
@@ -100,8 +102,9 @@ export const TYPE_TO_FOLDER = {
 } as const
 
 // Helper functions to generate URLs dynamically
-export function getCdnUrls(registryType: RegistryType): string[] {
-  return SCHEMA_CONFIG.cdnBaseUrls.map(baseUrl => `${baseUrl}/${registryType}`)
+export function getCdnUrls(_registryType: RegistryType): string[] {
+  // Use base URLs directly; paths are relative to /r root
+  return [...SCHEMA_CONFIG.cdnBaseUrls]
 }
 
 export function getInstallPath(registryType: RegistryType, componentType: string): string {
