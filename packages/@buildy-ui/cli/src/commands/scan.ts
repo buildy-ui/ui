@@ -58,6 +58,10 @@ const DEV_PATTERNS = [
   'autoprefixer'
 ] as const
 
+function toGlobAll(dir: string): string {
+  return path.join(dir, "**/*").replace(/\\/g, "/")
+}
+
 export async function scanCommand(
   options: { cwd?: string; registry?: string; output?: string; source?: string } = {}
 ) {
@@ -76,23 +80,36 @@ export async function scanCommand(
   try {
     const spinner = ora(CLI_MESSAGES.info.scanningDirectories).start()
     
-    // Scan different component types
-    const uiComponents = await scanDirectory(path.join(scanOptions.sourceDir, "ui"), "registry:ui")
-    const blockComponents = await scanDirectory(path.join(scanOptions.sourceDir, "blocks"), "registry:block")
-    const componentComponents = await scanDirectory(path.join(scanOptions.sourceDir, "components"), "registry:component")
-    const layoutComponents = await scanDirectory(path.join(scanOptions.sourceDir, "layouts"), "registry:layout")
+    // Resolve directories based on SCHEMA_CONFIG
+    const uiDir = path.resolve(scanOptions.cwd, normalizeDir(SCHEMA_CONFIG.defaultDirectories.ui))
+    const componentsDir = path.resolve(scanOptions.cwd, normalizeDir(SCHEMA_CONFIG.defaultDirectories.components))
+    const blocksDir = path.resolve(scanOptions.cwd, normalizeDir(SCHEMA_CONFIG.defaultDirectories.blocks))
+    const layoutsDir = path.resolve(scanOptions.cwd, normalizeDir(SCHEMA_CONFIG.defaultDirectories.layouts))
+    const libDir = path.resolve(scanOptions.cwd, normalizeDir(SCHEMA_CONFIG.defaultDirectories.lib))
     
-    // Scan lib directory (under src)
-    const libDir = path.join(scanOptions.cwd, "src", "lib")
+    // Scan different component types (exclude ui subtree from components scan)
+    const uiComponents = await scanDirectory(uiDir, "registry:ui")
+    const componentComponents = await scanDirectory(componentsDir, "registry:component", [toGlobAll(uiDir)])
+    const blockComponents = await scanDirectory(blocksDir, "registry:block")
+    const layoutComponents = await scanDirectory(layoutsDir, "registry:layout")
     const libComponents = await scanDirectory(libDir, "registry:lib")
     
-    const allComponents = [
+    // Merge and deduplicate by (type,name)
+    const allComponentsRaw = [
       ...uiComponents,
       ...blockComponents,
       ...componentComponents,
       ...layoutComponents,
       ...libComponents
     ]
+    const seen = new Set<string>()
+    const allComponents: RegistryItem[] = []
+    for (const comp of allComponentsRaw) {
+      const key = `${comp.type}:${comp.name}`
+      if (seen.has(key)) continue
+      seen.add(key)
+      allComponents.push(comp)
+    }
     
     spinner.text = CLI_MESSAGES.info.analyzingDeps.replace("{count}", allComponents.length.toString())
     
@@ -157,7 +174,7 @@ export async function scanCommand(
   }
 }
 
-async function scanDirectory(dirPath: string, type: string): Promise<RegistryItem[]> {
+async function scanDirectory(dirPath: string, type: string, ignorePatterns: string[] = []): Promise<RegistryItem[]> {
   if (!(await fs.pathExists(dirPath))) {
     return []
   }
@@ -166,7 +183,8 @@ async function scanDirectory(dirPath: string, type: string): Promise<RegistryIte
   
   // Find all TypeScript/JavaScript files
   const pattern = path.join(dirPath, "**/*.{ts,tsx,js,jsx}").replace(/\\/g, "/")
-  const files = await glob(pattern, { windowsPathsNoEscape: true })
+  const ignore = ignorePatterns.map(p => p.replace(/\\/g, "/"))
+  const files = await glob(pattern, { windowsPathsNoEscape: true, ignore })
   
   for (const filePath of files) {
     const relativePath = path.relative(process.cwd(), filePath).replace(/\\/g, "/")
@@ -362,4 +380,8 @@ function getJSDocComment(node: ts.Node): string | undefined {
 function getTargetFromType(type: string): string {
   const folder = TYPE_TO_FOLDER[type as keyof typeof TYPE_TO_FOLDER]
   return folder || "components"
+}
+
+function normalizeDir(dir: string): string {
+  return dir.replace(/^\.\//, "").replace(/\\/g, "/")
 } 

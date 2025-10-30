@@ -249,16 +249,25 @@ function inferTargetFromType(componentType: string): string {
 }
 
 function resolveInstallDir(target: string, config: Config): string {
-  if (target === "lib") {
+  const normalizedTarget = target.replace(/\\/g, "/").replace(/^\/?src\//i, "")
+
+  // lib has own root
+  if (normalizedTarget === "lib") {
     return normalizeDir(config.libDir || SCHEMA_CONFIG.defaultDirectories.lib)
   }
 
-  // Base components directory
   const baseComponentsDir = normalizeDir(config.componentsDir || SCHEMA_CONFIG.defaultDirectories.components)
-  if (target === "ui") return path.join(baseComponentsDir, "ui").replace(/\\/g, "/")
-  if (target === "components") return baseComponentsDir
 
-  switch (target) {
+  // Composite targets like "components/ui" → parent(src) + target
+  if (normalizedTarget.includes("/")) {
+    const parentRoot = baseComponentsDir.replace(/[/\\]components$/i, "") || "src"
+    return path.join(parentRoot, normalizedTarget).replace(/\\/g, "/")
+  }
+
+  if (normalizedTarget === "ui") return path.join(baseComponentsDir, "ui").replace(/\\/g, "/")
+  if (normalizedTarget === "components") return baseComponentsDir
+
+  switch (normalizedTarget) {
     case "blocks":
       return normalizeDir(SCHEMA_CONFIG.defaultDirectories.blocks)
     case "layouts":
