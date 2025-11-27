@@ -16,7 +16,8 @@ export const SCHEMA_CONFIG = {
     "@/ui": "./src/components/ui",
     "@/layouts": "./src/layouts",
     "@/blocks": "./src/blocks",
-    "@/lib": "./src/lib"
+    "@/lib": "./src/lib",
+    "@/variants": "./src/components/variants"
   },
   
   // Registry configuration
@@ -34,7 +35,7 @@ export const SCHEMA_CONFIG = {
   ] as const,
   
   // Component categories
-  componentCategories: ["ui", "components", "layouts", "lib", "blocks"] as const,
+  componentCategories: ["ui", "components", "layouts", "lib", "blocks", "variants"] as const,
   
   // Component types (should match registryItemTypeSchema)
   componentTypes: [
@@ -42,7 +43,8 @@ export const SCHEMA_CONFIG = {
     "registry:block", 
     "registry:component",
     "registry:ui",
-    "registry:layout"
+    "registry:layout",
+    "registry:variants"
   ] as const,
   
   // Default directories structure
@@ -52,6 +54,7 @@ export const SCHEMA_CONFIG = {
     lib: "./src/lib",
     layouts: "./src/layouts",
     blocks: "./src/blocks",
+    variants: "./src/components/variants",
   } as const,
   
   // Schema descriptions and titles
@@ -98,7 +101,8 @@ export const TYPE_TO_FOLDER = {
   "registry:block": "blocks", 
   "registry:component": "components",
   "registry:lib": "lib",
-  "registry:layout": "layouts"
+  "registry:layout": "layouts",
+  "registry:variants": "components/variants"
 } as const
 
 // Helper functions to generate URLs dynamically

@@ -1,10 +1,9 @@
 import chalk from "chalk"
 import prompts from "prompts"
 import ora from "ora"
-import fetch from "node-fetch"
 import { isViteProject, hasReact, getConfig, saveConfig, ensureDir } from "../utils/project.js"
 import { Config } from "../registry/schema.js"
-import { SCHEMA_CONFIG, getCdnUrls } from "../utils/schema-config.js"
+import { SCHEMA_CONFIG } from "../utils/schema-config.js"
 import { CLI_MESSAGES } from "../utils/cli-messages.js"
 import path from "path"
 import fs from "fs-extra"
@@ -97,11 +96,8 @@ export async function initCommand(options: InitOptions) {
     await ensureDir(config.componentsDir)
     await ensureDir(SCHEMA_CONFIG.defaultDirectories.blocks)
     await ensureDir(SCHEMA_CONFIG.defaultDirectories.layouts)
-    
-    spinner.text = `Installing core utilities...`
-    
-    // Install core-classes.json from registry
-    await installCoreClasses(registryName, config.libDir, spinner)
+    await ensureDir(SCHEMA_CONFIG.defaultDirectories.variants)
+    await ensureDir(SCHEMA_CONFIG.defaultDirectories.ui)
     
     spinner.succeed(CLI_MESSAGES.success.initialized(registryName))
     
@@ -118,41 +114,6 @@ export async function initCommand(options: InitOptions) {
     spinner.fail(CLI_MESSAGES.errors.buildFailed)
     console.error(chalk.red("❌ Error:"), (error as Error).message)
     process.exit(1)
-  }
-}
-
-async function installCoreClasses(registryType: string, libDir: string, spinner: ora.Ora) {
-  try {
-    const cdnUrls = getCdnUrls(registryType as any)
-    let downloaded = false
-    let lastError: Error | null = null
-    
-    for (const baseUrl of cdnUrls) {
-      try {
-        const url = `${baseUrl}/lib/core-classes.json`
-        const response = await fetch(url)
-        
-        if (response.ok) {
-          const content = await response.text()
-          const libPath = path.join(process.cwd(), libDir)
-          await fs.ensureDir(libPath)
-          await fs.writeFile(path.join(libPath, "core-classes.json"), content, "utf-8")
-          downloaded = true
-          spinner.text = `✅ Installed core utilities`
-          break
-        }
-      } catch (error) {
-        lastError = error as Error
-        continue
-      }
-    }
-    
-    if (!downloaded && lastError) {
-      spinner.text = `⚠️  Could not download core-classes.json (optional)`
-    }
-  } catch (error) {
-    // Gracefully handle failure - core-classes.json is optional
-    spinner.text = `⚠️  Skipped core utilities installation (optional)`
   }
 }
 

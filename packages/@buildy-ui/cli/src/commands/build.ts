@@ -76,9 +76,6 @@ export async function buildCommand(
     // Create index file at /r/index.json
     await createIndexFile(registry, buildOptions.outputDir)
     
-    // Copy core-classes.json to registry if it exists
-    await copyCoreClassesFile(buildOptions)
-    
     console.log(chalk.green(`✅ ${CLI_MESSAGES.success.registryBuilt}`))
     console.log(`Output: ${buildOptions.outputDir}`)
     console.log(chalk.green(`✅ ${CLI_MESSAGES.success.schemasGenerated}`))
@@ -113,22 +110,6 @@ async function createIndexFile(registry: any, outputDir: string) {
     path.join(outputDir, "index.json"),
     JSON.stringify(index, null, 2)
   )
-}
-
-async function copyCoreClassesFile(buildOptions: BuildOptions) {
-  const sourceFile = path.join(buildOptions.cwd, "src/lib/core-classes.json")
-  const libDir = path.join(buildOptions.outputDir, "lib")
-  const targetFile = path.join(libDir, "core-classes.json")
-  
-  try {
-    if (await fs.pathExists(sourceFile)) {
-      await fs.ensureDir(libDir)
-      await fs.copy(sourceFile, targetFile)
-      console.log(chalk.gray(`   📄 Copied core-classes.json to lib/`))
-    }
-  } catch (error) {
-    console.log(chalk.yellow(`   ⚠️  Could not copy core-classes.json: ${(error as Error).message}`))
-  }
 }
 
 async function generateSchemaFiles(outputDir: string) {

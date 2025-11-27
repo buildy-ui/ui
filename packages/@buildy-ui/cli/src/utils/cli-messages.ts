@@ -100,6 +100,7 @@ export const CLI_MESSAGES = {
     components: "Complex components",
     layouts: "Page layouts and structures",
     blocks: "Component blocks",
+    variants: "CVA variant configurations",
   },
 
   // Spinners and status

@@ -5,7 +5,8 @@ export const registryItemTypeSchema = z.enum([
   "registry:block", 
   "registry:component",
   "registry:ui",
-  "registry:layout"
+  "registry:layout",
+  "registry:variants"
 ])
 
 export const registryItemFileSchema = z.object({

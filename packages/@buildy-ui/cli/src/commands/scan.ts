@@ -86,10 +86,12 @@ export async function scanCommand(
     const blocksDir = path.resolve(scanOptions.cwd, normalizeDir(SCHEMA_CONFIG.defaultDirectories.blocks))
     const layoutsDir = path.resolve(scanOptions.cwd, normalizeDir(SCHEMA_CONFIG.defaultDirectories.layouts))
     const libDir = path.resolve(scanOptions.cwd, normalizeDir(SCHEMA_CONFIG.defaultDirectories.lib))
+    const variantsDir = path.resolve(scanOptions.cwd, normalizeDir(SCHEMA_CONFIG.defaultDirectories.variants))
     
-    // Scan different component types (exclude ui subtree from components scan)
+    // Scan different component types (exclude ui and variants subtrees from components scan)
     const uiComponents = await scanDirectory(uiDir, "registry:ui")
-    const componentComponents = await scanDirectory(componentsDir, "registry:component", [toGlobAll(uiDir)])
+    const variantComponents = await scanDirectory(variantsDir, "registry:variants")
+    const componentComponents = await scanDirectory(componentsDir, "registry:component", [toGlobAll(uiDir), toGlobAll(variantsDir)])
     const blockComponents = await scanDirectory(blocksDir, "registry:block")
     const layoutComponents = await scanDirectory(layoutsDir, "registry:layout")
     const libComponents = await scanDirectory(libDir, "registry:lib")
@@ -97,6 +99,7 @@ export async function scanCommand(
     // Merge and deduplicate by (type,name)
     const allComponentsRaw = [
       ...uiComponents,
+      ...variantComponents,
       ...blockComponents,
       ...componentComponents,
       ...layoutComponents,
@@ -381,6 +384,8 @@ function getTargetFromType(type: string): string {
   const folder = TYPE_TO_FOLDER[type as keyof typeof TYPE_TO_FOLDER]
   return folder || "components"
 }
+
+// Note: TYPE_TO_FOLDER now includes "registry:variants" → "components/variants"
 
 function normalizeDir(dir: string): string {
   return dir.replace(/^\.\//, "").replace(/\\/g, "/")

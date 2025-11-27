@@ -243,6 +243,8 @@ function inferTargetFromType(componentType: string): string {
       return "layouts"
     case "registry:lib":
       return "lib"
+    case "registry:variants":
+      return "variants"
     default:
       return "components"
   }
@@ -265,6 +267,7 @@ function resolveInstallDir(target: string, config: Config): string {
   }
 
   if (normalizedTarget === "ui") return path.join(baseComponentsDir, "ui").replace(/\\/g, "/")
+  if (normalizedTarget === "variants") return path.join(baseComponentsDir, "variants").replace(/\\/g, "/")
   if (normalizedTarget === "components") return baseComponentsDir
 
   switch (normalizedTarget) {
