@@ -253,9 +253,14 @@ function inferTargetFromType(componentType: string): string {
 function resolveInstallDir(target: string, config: Config): string {
   const normalizedTarget = target.replace(/\\/g, "/").replace(/^\/?src\//i, "")
 
-  // lib has own root
+  // lib has own root at src/lib
   if (normalizedTarget === "lib") {
     return normalizeDir(config.libDir || SCHEMA_CONFIG.defaultDirectories.lib)
+  }
+
+  // variants has own root at src/variants
+  if (normalizedTarget === "variants") {
+    return normalizeDir(SCHEMA_CONFIG.defaultDirectories.variants)
   }
 
   const baseComponentsDir = normalizeDir(config.componentsDir || SCHEMA_CONFIG.defaultDirectories.components)
@@ -267,7 +272,6 @@ function resolveInstallDir(target: string, config: Config): string {
   }
 
   if (normalizedTarget === "ui") return path.join(baseComponentsDir, "ui").replace(/\\/g, "/")
-  if (normalizedTarget === "variants") return path.join(baseComponentsDir, "variants").replace(/\\/g, "/")
   if (normalizedTarget === "components") return baseComponentsDir
 
   switch (normalizedTarget) {

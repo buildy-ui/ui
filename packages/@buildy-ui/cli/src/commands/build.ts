@@ -86,8 +86,19 @@ export async function buildCommand(
   }
 }
 
+// Build output directories (for CDN/registry structure)
+// Note: This differs from TYPE_TO_FOLDER which is for user installation paths
+const BUILD_OUTPUT_FOLDERS = {
+  "registry:ui": "components/ui",
+  "registry:block": "blocks", 
+  "registry:component": "components",
+  "registry:lib": "lib",
+  "registry:layout": "layouts",
+  "registry:variants": "components/variants"
+} as const
+
 function getOutputDir(type: string): string {
-  const folder = TYPE_TO_FOLDER[type as keyof typeof TYPE_TO_FOLDER]
+  const folder = BUILD_OUTPUT_FOLDERS[type as keyof typeof BUILD_OUTPUT_FOLDERS]
   return folder || "misc"
 }
 

@@ -1,0 +1,156 @@
+{
+  "$schema": "https://buildy.tw/schema/registry.json",
+  "components": [
+    {
+      "name": "Title",
+      "type": "registry:ui",
+      "description": ""
+    },
+    {
+      "name": "Text",
+      "type": "registry:ui",
+      "description": ""
+    },
+    {
+      "name": "Stack",
+      "type": "registry:ui",
+      "description": ""
+    },
+    {
+      "name": "Sheet",
+      "type": "registry:ui",
+      "description": ""
+    },
+    {
+      "name": "Image",
+      "type": "registry:ui",
+      "description": ""
+    },
+    {
+      "name": "Icon",
+      "type": "registry:ui",
+      "description": ""
+    },
+    {
+      "name": "Group",
+      "type": "registry:ui",
+      "description": ""
+    },
+    {
+      "name": "Grid",
+      "type": "registry:ui",
+      "description": "Main Grid component interface"
+    },
+    {
+      "name": "Container",
+      "type": "registry:ui",
+      "description": ""
+    },
+    {
+      "name": "Card",
+      "type": "registry:ui",
+      "description": "Main Card component interface"
+    },
+    {
+      "name": "Button",
+      "type": "registry:ui",
+      "description": ""
+    },
+    {
+      "name": "Box",
+      "type": "registry:ui",
+      "description": ""
+    },
+    {
+      "name": "Block",
+      "type": "registry:ui",
+      "description": ""
+    },
+    {
+      "name": "Badge",
+      "type": "registry:ui",
+      "description": ""
+    },
+    {
+      "name": "Accordion",
+      "type": "registry:ui",
+      "description": ""
+    },
+    {
+      "name": "typography",
+      "type": "registry:variants",
+      "description": "Text size variants"
+    },
+    {
+      "name": "spacing",
+      "type": "registry:variants",
+      "description": "Type for spacing props"
+    },
+    {
+      "name": "sizing",
+      "type": "registry:variants",
+      "description": "Specific size configurations for different component types"
+    },
+    {
+      "name": "shadow",
+      "type": "registry:variants",
+      "description": "Type for shadow props"
+    },
+    {
+      "name": "rounded",
+      "type": "registry:variants",
+      "description": "Side-specific rounded"
+    },
+    {
+      "name": "layout",
+      "type": "registry:variants",
+      "description": "Type for layout props"
+    },
+    {
+      "name": "image",
+      "type": "registry:variants",
+      "description": "Image fit variants"
+    },
+    {
+      "name": "flex",
+      "type": "registry:variants",
+      "description": "Types for flex props"
+    },
+    {
+      "name": "colors",
+      "type": "registry:variants",
+      "description": "Types for color props"
+    },
+    {
+      "name": "button",
+      "type": "registry:variants",
+      "description": "Button size variants"
+    },
+    {
+      "name": "border",
+      "type": "registry:variants",
+      "description": "Type for border props"
+    },
+    {
+      "name": "badge",
+      "type": "registry:variants",
+      "description": "Badge size variants"
+    },
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "description": ""
+    }
+  ],
+  "categories": [
+    "ui",
+    "components",
+    "layouts",
+    "lib",
+    "blocks",
+    "variants"
+  ],
+  "version": "1.0.0",
+  "lastUpdated": "2025-11-27T14:26:07.670Z",
+  "registry": "ui"
+}

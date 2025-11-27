@@ -96,11 +96,11 @@ export const CLI_MESSAGES = {
   // Directory descriptions
   directories: {
     lib: "Utils, helpers, functions",
-    ui: "UI components",
+    variants: "CVA variant configurations",
+    "components/ui": "UI components",
     components: "Complex components",
     layouts: "Page layouts and structures",
     blocks: "Component blocks",
-    variants: "CVA variant configurations",
   },
 
   // Spinners and status

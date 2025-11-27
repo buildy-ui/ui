@@ -1,0 +1,17 @@
+{
+  "$schema": "https://buildy.tw/schema/registry-item.json",
+  "name": "button",
+  "type": "registry:variants",
+  "description": "Button size variants",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "devDependencies": [],
+  "files": [
+    {
+      "path": "src/variants/button.ts",
+      "content": "import { cva, type VariantProps } from \"class-variance-authority\";\r\n\r\n// Button size variants\r\nexport const buttonSizeVariants = cva(\"\", {\r\n  variants: {\r\n    size: {\r\n      xs: \"h-6 px-2 text-xs\",\r\n      sm: \"h-9 px-3 text-sm\", \r\n      default: \"h-10 px-4 py-2\",\r\n      md: \"h-10 px-4 py-2\",\r\n      lg: \"h-11 px-8\",\r\n      xl: \"h-12 px-10 text-base\",\r\n      icon: \"h-10 w-10\"\r\n    }\r\n  },\r\n  defaultVariants: {\r\n    size: \"default\"\r\n  }\r\n});\r\n\r\n// Button style variants\r\nexport const buttonStyleVariants = cva(\"\", {\r\n  variants: {\r\n    variant: {\r\n      default: \"bg-primary text-primary-foreground hover:bg-primary/90\",\r\n      primary: \"bg-primary text-primary-foreground hover:bg-primary/90\",\r\n      destructive: \"bg-destructive text-destructive-foreground hover:bg-destructive/90\",\r\n      outline: \"border border-input bg-background hover:bg-accent hover:text-accent-foreground\",\r\n      secondary: \"bg-secondary text-secondary-foreground hover:bg-secondary/80\",\r\n      ghost: \"hover:bg-accent hover:text-accent-foreground\",\r\n      link: \"text-primary underline-offset-4 hover:underline\"\r\n    }\r\n  },\r\n  defaultVariants: {\r\n    variant: \"default\"\r\n  }\r\n});\r\n\r\n// Button content alignment variants (layout-only, no visual decoration)\r\nexport const buttonContentAlignVariants = cva(\"\", {\r\n  variants: {\r\n    contentAlign: {\r\n      start: \"justify-start\",\r\n      center: \"justify-center\",\r\n      end: \"justify-end\",\r\n      between: \"justify-between\"\r\n    }\r\n  }\r\n});\r\n\r\nexport interface ButtonSizeProps extends VariantProps<typeof buttonSizeVariants> {}\r\nexport interface ButtonStyleProps extends VariantProps<typeof buttonStyleVariants> {} \r\nexport interface ButtonContentAlignProps extends VariantProps<typeof buttonContentAlignVariants> {}",
+      "target": "variants"
+    }
+  ]
+}

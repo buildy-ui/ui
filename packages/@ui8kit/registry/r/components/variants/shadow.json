@@ -1,0 +1,17 @@
+{
+  "$schema": "https://buildy.tw/schema/registry-item.json",
+  "name": "shadow",
+  "type": "registry:variants",
+  "description": "Type for shadow props",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "devDependencies": [],
+  "files": [
+    {
+      "path": "src/variants/shadow.ts",
+      "content": "import { cva, type VariantProps } from \"class-variance-authority\";\r\n\r\nexport const shadowVariants = cva(\"\", {\r\n  variants: {\r\n    shadow: {\r\n      none: \"shadow-none\",\r\n      sm: \"shadow-sm\",\r\n      md: \"shadow-md\",\r\n      lg: \"shadow-lg\",\r\n      xl: \"shadow-xl\",\r\n      \"2xl\": \"shadow-2xl\",\r\n      inner: \"shadow-inner\"\r\n    }\r\n  }\r\n});\r\n\r\n// Type for shadow props\r\nexport interface ShadowProps extends VariantProps<typeof shadowVariants> {} ",
+      "target": "variants"
+    }
+  ]
+}

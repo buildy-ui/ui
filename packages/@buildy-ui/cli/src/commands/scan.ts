@@ -385,7 +385,10 @@ function getTargetFromType(type: string): string {
   return folder || "components"
 }
 
-// Note: TYPE_TO_FOLDER now includes "registry:variants" → "components/variants"
+// TYPE_TO_FOLDER mapping:
+// - "registry:ui" → "components/ui"
+// - "registry:variants" → "variants"
+// - "registry:lib" → "lib"
 
 function normalizeDir(dir: string): string {
   return dir.replace(/^\.\//, "").replace(/\\/g, "/")

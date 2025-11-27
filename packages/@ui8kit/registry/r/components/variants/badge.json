@@ -1,0 +1,17 @@
+{
+  "$schema": "https://buildy.tw/schema/registry-item.json",
+  "name": "badge",
+  "type": "registry:variants",
+  "description": "Badge size variants",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "devDependencies": [],
+  "files": [
+    {
+      "path": "src/variants/badge.ts",
+      "content": "import { cva, type VariantProps } from \"class-variance-authority\";\r\n\r\n// Badge size variants\r\nexport const badgeSizeVariants = cva(\"\", {\r\n  variants: {\r\n    size: {\r\n      xs: \"px-1.5 py-0.5 text-xs\",\r\n      sm: \"px-2 py-0.5 text-xs\",\r\n      default: \"px-2.5 py-0.5 text-xs\",\r\n      lg: \"px-3 py-1 text-sm\"\r\n    }\r\n  },\r\n  defaultVariants: {\r\n    size: \"default\"\r\n  }\r\n});\r\n\r\n// Badge style variants\r\nexport const badgeStyleVariants = cva(\"\", {\r\n  variants: {\r\n    variant: {\r\n      default: \"bg-primary text-primary-foreground hover:bg-primary/80\",\r\n      secondary: \"bg-secondary text-secondary-foreground hover:bg-secondary/80\",\r\n      destructive: \"bg-destructive text-destructive-foreground hover:bg-destructive/80\",\r\n      outline: \"text-foreground border-border\",\r\n      success: \"bg-green-500 text-white hover:bg-green-600\",\r\n      warning: \"bg-yellow-500 text-white hover:bg-yellow-600\",\r\n      info: \"bg-blue-500 text-white hover:bg-blue-600\"\r\n    }\r\n  },\r\n  defaultVariants: {\r\n    variant: \"default\"\r\n  }\r\n});\r\n\r\nexport interface BadgeSizeProps extends VariantProps<typeof badgeSizeVariants> {}\r\nexport interface BadgeStyleProps extends VariantProps<typeof badgeStyleVariants> {} ",
+      "target": "variants"
+    }
+  ]
+}

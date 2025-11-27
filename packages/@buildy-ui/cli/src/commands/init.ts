@@ -2,11 +2,12 @@ import chalk from "chalk"
 import prompts from "prompts"
 import ora from "ora"
 import { isViteProject, hasReact, getConfig, saveConfig, ensureDir } from "../utils/project.js"
-import { Config } from "../registry/schema.js"
-import { SCHEMA_CONFIG } from "../utils/schema-config.js"
+import { Config, Component } from "../registry/schema.js"
+import { SCHEMA_CONFIG, getCdnUrls, type RegistryType } from "../utils/schema-config.js"
 import { CLI_MESSAGES } from "../utils/cli-messages.js"
 import path from "path"
 import fs from "fs-extra"
+import fetch from "node-fetch"
 
 interface InitOptions {
   yes?: boolean
@@ -94,18 +95,26 @@ export async function initCommand(options: InitOptions) {
     // Create src-based directory structure
     await ensureDir(config.libDir)
     await ensureDir(config.componentsDir)
+    await ensureDir(path.join(config.componentsDir, "ui")) // src/components/ui
     await ensureDir(SCHEMA_CONFIG.defaultDirectories.blocks)
     await ensureDir(SCHEMA_CONFIG.defaultDirectories.layouts)
     await ensureDir(SCHEMA_CONFIG.defaultDirectories.variants)
-    await ensureDir(SCHEMA_CONFIG.defaultDirectories.ui)
+    
+    spinner.text = "Installing core utilities and variants..."
+    
+    // Install utils and all variants from registry
+    await installCoreFiles(registryName as RegistryType, config, spinner)
     
     spinner.succeed(CLI_MESSAGES.success.initialized(registryName))
     
     console.log(chalk.green(`\n✅ ${CLI_MESSAGES.success.setupComplete(registryName)}`))
     console.log("\nDirectories created:")
-    Object.entries(CLI_MESSAGES.directories).forEach(([dir, description]) => {
-      console.log(`  ${chalk.cyan(`src/${dir}/`)} - ${description}`)
-    })
+    console.log(`  ${chalk.cyan("src/lib/")} - Utils, helpers, functions`)
+    console.log(`  ${chalk.cyan("src/variants/")} - CVA variant configurations`)
+    console.log(`  ${chalk.cyan("src/components/ui/")} - UI components`)
+    console.log(`  ${chalk.cyan("src/components/")} - Complex components`)
+    console.log(`  ${chalk.cyan("src/layouts/")} - Page layouts and structures`)
+    console.log(`  ${chalk.cyan("src/blocks/")} - Component blocks`)
     
     console.log("\nNext steps:")
     CLI_MESSAGES.examples.init.forEach(example => console.log(`  ${chalk.cyan(example)}`))
@@ -114,6 +123,91 @@ export async function initCommand(options: InitOptions) {
     spinner.fail(CLI_MESSAGES.errors.buildFailed)
     console.error(chalk.red("❌ Error:"), (error as Error).message)
     process.exit(1)
+  }
+}
+
+async function installCoreFiles(registryType: RegistryType, config: Config, spinner: ora.Ora): Promise<void> {
+  const cdnUrls = getCdnUrls(registryType)
+  
+  // Try to fetch registry index to get list of variants and utils
+  let registryIndex: { components: Array<{ name: string; type: string }> } | null = null
+  
+  for (const baseUrl of cdnUrls) {
+    try {
+      const indexUrl = `${baseUrl}/index.json`
+      const response = await fetch(indexUrl)
+      if (response.ok) {
+        registryIndex = await response.json() as typeof registryIndex
+        break
+      }
+    } catch {
+      continue
+    }
+  }
+  
+  if (!registryIndex) {
+    spinner.text = "⚠️  Could not fetch registry index, creating local utils..."
+    // Fallback: create utils file locally
+    await createUtilsFile(config.libDir, config.typescript)
+    return
+  }
+  
+  // Filter variants and lib items
+  const variantItems = registryIndex.components.filter(c => c.type === "registry:variants")
+  const libItems = registryIndex.components.filter(c => c.type === "registry:lib")
+  
+  // Install utils (lib items)
+  for (const item of libItems) {
+    spinner.text = `Installing ${item.name}...`
+    await installComponentFromRegistry(item.name, "registry:lib", cdnUrls, config)
+  }
+  
+  // Install all variants
+  for (const item of variantItems) {
+    spinner.text = `Installing variant: ${item.name}...`
+    await installComponentFromRegistry(item.name, "registry:variants", cdnUrls, config)
+  }
+  
+  spinner.text = `✅ Installed ${libItems.length} utilities and ${variantItems.length} variants`
+}
+
+async function installComponentFromRegistry(
+  name: string, 
+  type: string, 
+  cdnUrls: string[], 
+  config: Config
+): Promise<void> {
+  const folder = type === "registry:lib" ? "lib" : type === "registry:variants" ? "components/variants" : "components/ui"
+  
+  for (const baseUrl of cdnUrls) {
+    try {
+      const url = `${baseUrl}/${folder}/${name}.json`
+      const response = await fetch(url)
+      
+      if (response.ok) {
+        const component = await response.json() as Component
+        
+        for (const file of component.files) {
+          const fileName = path.basename(file.path)
+          let targetDir: string
+          
+          if (type === "registry:lib") {
+            targetDir = config.libDir
+          } else if (type === "registry:variants") {
+            targetDir = SCHEMA_CONFIG.defaultDirectories.variants
+          } else {
+            targetDir = path.join(config.componentsDir, "ui")
+          }
+          
+          const targetPath = path.join(process.cwd(), targetDir, fileName)
+          await fs.ensureDir(path.dirname(targetPath))
+          await fs.writeFile(targetPath, file.content || "", "utf-8")
+        }
+        return
+      }
+    } catch {
+      continue
+    }
   }
 }
 

@@ -17,7 +17,7 @@ export const SCHEMA_CONFIG = {
     "@/layouts": "./src/layouts",
     "@/blocks": "./src/blocks",
     "@/lib": "./src/lib",
-    "@/variants": "./src/components/variants"
+    "@/variants": "./src/variants"
   },
   
   // Registry configuration
@@ -48,13 +48,14 @@ export const SCHEMA_CONFIG = {
   ] as const,
   
   // Default directories structure
+  // Source directories (where CLI scans for components)
   defaultDirectories: {
-    ui: "./src/components/ui",
+    ui: "./src/ui",
     components: "./src/components",
     lib: "./src/lib",
     layouts: "./src/layouts",
     blocks: "./src/blocks",
-    variants: "./src/components/variants",
+    variants: "./src/variants",
   } as const,
   
   // Schema descriptions and titles
@@ -95,14 +96,14 @@ export const SCHEMA_CONFIG = {
 
 export type RegistryType = typeof SCHEMA_CONFIG.registryTypes[number]
 
-// Map component types to their corresponding folders
+// Map component types to their target installation folders (on user's project side)
 export const TYPE_TO_FOLDER = {
   "registry:ui": "components/ui",
   "registry:block": "blocks", 
   "registry:component": "components",
   "registry:lib": "lib",
   "registry:layout": "layouts",
-  "registry:variants": "components/variants"
+  "registry:variants": "variants"
 } as const
 
 // Helper functions to generate URLs dynamically

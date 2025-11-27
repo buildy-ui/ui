@@ -1,0 +1,17 @@
+{
+  "$schema": "https://buildy.tw/schema/registry-item.json",
+  "name": "image",
+  "type": "registry:variants",
+  "description": "Image fit variants",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "devDependencies": [],
+  "files": [
+    {
+      "path": "src/variants/image.ts",
+      "content": "import { cva, type VariantProps } from \"class-variance-authority\";\r\n\r\n// Image fit variants\r\nexport const imageFitVariants = cva(\"\", {\r\n  variants: {\r\n    fit: {\r\n      contain: \"object-contain\",\r\n      cover: \"object-cover\",\r\n      fill: \"object-fill\",\r\n      \"scale-down\": \"object-scale-down\",\r\n      none: \"object-none\"\r\n    }\r\n  },\r\n  defaultVariants: {\r\n    fit: \"cover\"\r\n  }\r\n});\r\n\r\n// Image position variants\r\nexport const imagePositionVariants = cva(\"\", {\r\n  variants: {\r\n    position: {\r\n      center: \"object-center\",\r\n      top: \"object-top\",\r\n      \"top-right\": \"object-top object-right\",\r\n      right: \"object-right\",\r\n      \"bottom-right\": \"object-bottom object-right\",\r\n      bottom: \"object-bottom\",\r\n      \"bottom-left\": \"object-bottom object-left\",\r\n      left: \"object-left\",\r\n      \"top-left\": \"object-top object-left\"\r\n    }\r\n  },\r\n  defaultVariants: {\r\n    position: \"center\"\r\n  }\r\n});\r\n\r\n// Aspect ratio variants\r\nexport const aspectRatioVariants = cva(\"\", {\r\n  variants: {\r\n    aspect: {\r\n      auto: \"\",\r\n      square: \"aspect-square\",\r\n      video: \"aspect-video\",\r\n      \"4/3\": \"aspect-[4/3]\",\r\n      \"3/2\": \"aspect-[3/2]\",\r\n      \"16/9\": \"aspect-[16/9]\",\r\n      \"9/16\": \"aspect-[9/16]\"\r\n    }\r\n  },\r\n  defaultVariants: {\r\n    aspect: \"auto\"\r\n  }\r\n});\r\n\r\nexport interface ImageFitProps extends VariantProps<typeof imageFitVariants> {}\r\nexport interface ImagePositionProps extends VariantProps<typeof imagePositionVariants> {}\r\nexport interface AspectRatioProps extends VariantProps<typeof aspectRatioVariants> {} ",
+      "target": "variants"
+    }
+  ]
+}

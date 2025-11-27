@@ -1,0 +1,17 @@
+{
+  "$schema": "https://buildy.tw/schema/registry-item.json",
+  "name": "Icon",
+  "type": "registry:ui",
+  "description": "",
+  "dependencies": [
+    "react"
+  ],
+  "devDependencies": [],
+  "files": [
+    {
+      "path": "src/ui/Icon/Icon.tsx",
+      "content": "import type { ElementType, ReactNode } from \"react\";\r\nimport { forwardRef } from \"react\";\r\nimport { cn } from \"../../lib/utils\";\r\nimport {\r\n  spacingVariants,\r\n  colorVariants,\r\n  iconSizeVariants,\r\n  type VariantSpacingProps,\r\n  type ColorProps,\r\n  type IconSizingProps\r\n} from \"../../variants\";\r\n\r\nexport interface IconProps \r\n  extends React.HTMLAttributes<HTMLElement>,\r\n    Pick<VariantSpacingProps, 'm' | 'mx' | 'my'>,\r\n    Pick<ColorProps, 'c'>,\r\n    IconSizingProps {\r\n  children?: ReactNode;\r\n  component?: ElementType;\r\n  lucideIcon?: any; // For Lucide React icons\r\n}\r\n\r\nexport const Icon = forwardRef<HTMLElement, IconProps>(\r\n  ({ \r\n    children,\r\n    className,\r\n    component = 'span',\r\n    size = 'sm',\r\n    lucideIcon: LucideIcon,\r\n    m, mx, my,\r\n    c = 'foreground',\r\n    ...props \r\n  }, ref) => {\r\n    const Element = component as ElementType;\r\n    const { 'aria-hidden': ariaHidden, role, ...rest } = props;\r\n\r\n    const baseClasses = cn(\r\n      'inline-block flex items-center justify-center',\r\n      iconSizeVariants({ size }),\r\n      spacingVariants({ m, mx, my }),\r\n      colorVariants({ c }),\r\n      className\r\n    );\r\n\r\n    return (\r\n      <Element\r\n        ref={ref}\r\n        data-class=\"icon\"\r\n        className={baseClasses}\r\n        aria-hidden={ariaHidden}\r\n        role={role}\r\n        {...rest}\r\n      >\r\n        {LucideIcon ? (\r\n          <span>\r\n            <LucideIcon\r\n              className={cn(\r\n                iconSizeVariants({ size }),\r\n                spacingVariants({ m, mx, my }),\r\n                colorVariants({ c })\r\n              )}\r\n            />\r\n          </span>\r\n        ) : (\r\n          children\r\n        )}\r\n      </Element>\r\n    );\r\n  }\r\n);\r\n\r\nIcon.displayName = \"Icon\"; ",
+      "target": "components/ui"
+    }
+  ]
+}

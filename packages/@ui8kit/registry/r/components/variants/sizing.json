@@ -1,0 +1,17 @@
+{
+  "$schema": "https://buildy.tw/schema/registry-item.json",
+  "name": "sizing",
+  "type": "registry:variants",
+  "description": "Specific size configurations for different component types",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "devDependencies": [],
+  "files": [
+    {
+      "path": "src/variants/sizing.ts",
+      "content": "import { cva, type VariantProps } from \"class-variance-authority\";\r\n\r\nexport const sizingVariants = cva(\"\", {\r\n  variants: {\r\n    size: {\r\n      xs: \"\",\r\n      sm: \"\",\r\n      md: \"\",\r\n      lg: \"\",\r\n      xl: \"\",\r\n      \"2xl\": \"\"\r\n    }\r\n  }\r\n});\r\n\r\n// Specific size configurations for different component types\r\nexport const iconSizeVariants = cva(\"\", {\r\n  variants: {\r\n    size: {\r\n      xs: \"w-3 h-3\",\r\n      sm: \"w-4 h-4\",\r\n      md: \"w-5 h-5\",\r\n      lg: \"w-6 h-6\",\r\n      xl: \"w-8 h-8\",\r\n      \"2xl\": \"w-12 h-12\"\r\n    }\r\n  }\r\n});\r\n\r\nexport const containerSizeVariants = cva(\"\", {\r\n  variants: {\r\n    size: {\r\n      xs: \"max-w-screen-sm\",\r\n      sm: \"max-w-screen-md\",\r\n      md: \"max-w-screen-lg\",\r\n      lg: \"max-w-screen-xl\",\r\n      xl: \"max-w-screen-2xl\",\r\n      \"2xl\": \"max-w-2xl\",\r\n      \"4xl\": \"max-w-4xl\",\r\n      \"6xl\": \"max-w-6xl\",\r\n      full: \"max-w-none\"\r\n    }\r\n  }\r\n});\r\n\r\n// Types for sizing props\r\nexport interface SizingProps extends VariantProps<typeof sizingVariants> {}\r\n\r\nexport interface IconSizingProps extends VariantProps<typeof iconSizeVariants> {}\r\n\r\nexport interface ContainerSizingProps extends VariantProps<typeof containerSizeVariants> {} ",
+      "target": "variants"
+    }
+  ]
+}

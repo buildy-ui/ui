@@ -1,0 +1,17 @@
+{
+  "$schema": "https://buildy.tw/schema/registry-item.json",
+  "name": "rounded",
+  "type": "registry:variants",
+  "description": "Side-specific rounded",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "devDependencies": [],
+  "files": [
+    {
+      "path": "src/variants/rounded.ts",
+      "content": "import { cva, type VariantProps } from \"class-variance-authority\";\r\n\r\nexport const roundedVariants = cva(\"\", {\r\n  variants: {\r\n    rounded: {\r\n      none: \"rounded-none\",\r\n      default: \"rounded\",\r\n      sm: \"rounded-sm\",\r\n      md: \"rounded-md\",\r\n      lg: \"rounded-lg\",\r\n      xl: \"rounded-xl\",\r\n      \"2xl\": \"rounded-2xl\",\r\n      \"3xl\": \"rounded-3xl\",\r\n      full: \"rounded-full\"\r\n    }\r\n  }\r\n});\r\n\r\n// Side-specific rounded\r\nexport const roundedSideVariants = cva(\"\", {\r\n  variants: {\r\n    roundedTop: {\r\n      none: \"rounded-t-none\",\r\n      sm: \"rounded-t-sm\",\r\n      md: \"rounded-t-md\",\r\n      lg: \"rounded-t-lg\",\r\n      xl: \"rounded-t-xl\",\r\n      full: \"rounded-t-full\"\r\n    },\r\n    roundedRight: {\r\n      none: \"rounded-r-none\",\r\n      sm: \"rounded-r-sm\",\r\n      md: \"rounded-r-md\",\r\n      lg: \"rounded-r-lg\",\r\n      xl: \"rounded-r-xl\",\r\n      full: \"rounded-r-full\"\r\n    },\r\n    roundedBottom: {\r\n      none: \"rounded-b-none\",\r\n      sm: \"rounded-b-sm\",\r\n      md: \"rounded-b-md\",\r\n      lg: \"rounded-b-lg\",\r\n      xl: \"rounded-b-xl\",\r\n      full: \"rounded-b-full\"\r\n    },\r\n    roundedLeft: {\r\n      none: \"rounded-l-none\",\r\n      sm: \"rounded-l-sm\",\r\n      md: \"rounded-l-md\",\r\n      lg: \"rounded-l-lg\",\r\n      xl: \"rounded-l-xl\",\r\n      full: \"rounded-l-full\"\r\n    }\r\n  }\r\n});\r\n\r\n// Type for rounded props\r\nexport interface RoundedProps extends VariantProps<typeof roundedVariants> {} ",
+      "target": "variants"
+    }
+  ]
+}

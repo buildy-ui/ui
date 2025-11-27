@@ -1,0 +1,17 @@
+{
+  "$schema": "https://buildy.tw/schema/registry-item.json",
+  "name": "colors",
+  "type": "registry:variants",
+  "description": "Types for color props",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "devDependencies": [],
+  "files": [
+    {
+      "path": "src/variants/colors.ts",
+      "content": "import { cva, type VariantProps } from \"class-variance-authority\";\r\n\r\nexport const colorVariants = cva(\"\", {\r\n  variants: {\r\n    // Background colors\r\n    bg: {\r\n      transparent: \"bg-transparent\",\r\n      background: \"bg-background\",\r\n      foreground: \"bg-foreground\",\r\n      primary: \"bg-primary\",\r\n      \"primary-foreground\": \"bg-primary-foreground\",\r\n      secondary: \"bg-secondary\",\r\n      \"secondary-foreground\": \"bg-secondary-foreground\",\r\n      muted: \"bg-muted\",\r\n      \"muted-foreground\": \"bg-muted-foreground\",\r\n      accent: \"bg-accent\",\r\n      \"accent-foreground\": \"bg-accent-foreground\",\r\n      destructive: \"bg-destructive\",\r\n      \"destructive-foreground\": \"bg-destructive-foreground\",\r\n      border: \"bg-border\",\r\n      input: \"bg-input\",\r\n      ring: \"bg-ring\",\r\n      card: \"bg-card\",\r\n      popover: \"bg-popover\"\r\n    },\r\n    // Text colors\r\n    c: {\r\n      foreground: \"text-foreground\",\r\n      primary: \"text-primary\",\r\n      \"primary-foreground\": \"text-primary-foreground\",\r\n      secondary: \"text-secondary\",\r\n      \"secondary-foreground\": \"text-secondary-foreground\",\r\n      muted: \"text-muted-foreground\",\r\n      accent: \"text-accent-foreground\",\r\n      destructive: \"text-destructive\",\r\n      \"destructive-foreground\": \"text-destructive-foreground\"\r\n    },\r\n    // Accent color utility\r\n    accentColor: {\r\n      auto: \"accent-auto\",\r\n      inherit: \"accent-inherit\",\r\n      current: \"accent-current\"\r\n    },\r\n    // Placeholder color\r\n    placeholder: {\r\n      foreground: \"placeholder-foreground\",\r\n      muted: \"placeholder-muted-foreground\"\r\n    },\r\n    // Caret color\r\n    caret: {\r\n      primary: \"caret-primary\",\r\n      secondary: \"caret-secondary\",\r\n      accent: \"caret-accent\",\r\n      foreground: \"caret-foreground\",\r\n      current: \"caret-current\",\r\n      transparent: \"caret-transparent\"\r\n    },\r\n    // Border colors\r\n    borderColor: {\r\n      transparent: \"border-transparent\",\r\n      current: \"border-current\",\r\n      border: \"border-border\",\r\n      input: \"border-input\",\r\n      ring: \"border-ring\",\r\n      foreground: \"border-foreground\",\r\n      primary: \"border-primary\",\r\n      secondary: \"border-secondary\",\r\n      destructive: \"border-destructive\",\r\n      muted: \"border-muted\",\r\n      accent: \"border-accent\"\r\n    },\r\n    // Selection color (requires global selection styles support)\r\n    selectionBg: {\r\n      primary: \"selection:bg-primary\",\r\n      secondary: \"selection:bg-secondary\",\r\n      accent: \"selection:bg-accent\"\r\n    },\r\n    selectionText: {\r\n      foreground: \"selection:text-foreground\",\r\n      primary: \"selection:text-primary\"\r\n    }\r\n  }\r\n});\r\n\r\n// Types for color props\r\nexport interface ColorProps extends VariantProps<typeof colorVariants> {} ",
+      "target": "variants"
+    }
+  ]
+}

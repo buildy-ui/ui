@@ -1,0 +1,17 @@
+{
+  "$schema": "https://buildy.tw/schema/registry-item.json",
+  "name": "border",
+  "type": "registry:variants",
+  "description": "Type for border props",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "devDependencies": [],
+  "files": [
+    {
+      "path": "src/variants/border.ts",
+      "content": "import { cva, type VariantProps } from \"class-variance-authority\";\r\n\r\nexport const borderVariants = cva(\"\", {\r\n  variants: {\r\n    border: {\r\n      none: \"border-0\",\r\n      \"1px\": \"border\",\r\n      \"2px\": \"border-2\",\r\n      \"4px\": \"border-4\"\r\n    },\r\n    // Ring width\r\n    ring: {\r\n      0: \"ring-0\",\r\n      1: \"ring-1\",\r\n      2: \"ring-2\",\r\n      4: \"ring-4\",\r\n      8: \"ring-8\"\r\n    },\r\n    // Ring offset width\r\n    ringOffset: {\r\n      0: \"ring-offset-0\",\r\n      1: \"ring-offset-1\",\r\n      2: \"ring-offset-2\",\r\n      4: \"ring-offset-4\",\r\n      8: \"ring-offset-8\"\r\n    },\r\n    borderStyle: {\r\n      solid: \"border-solid\",\r\n      dashed: \"border-dashed\",\r\n      dotted: \"border-dotted\"\r\n    },\r\n    borderTop: {\r\n      none: \"border-t-0\",\r\n      \"1px\": \"border-t\",\r\n      \"2px\": \"border-t-2\",\r\n      \"4px\": \"border-t-4\"\r\n    },\r\n    borderBottom: {\r\n      none: \"border-b-0\",\r\n      \"1px\": \"border-b\",\r\n      \"2px\": \"border-b-2\",\r\n      \"4px\": \"border-b-4\"\r\n    },\r\n    borderLeft: {\r\n      none: \"border-l-0\",\r\n      \"1px\": \"border-l\",\r\n      \"2px\": \"border-l-2\",\r\n      \"4px\": \"border-l-4\"\r\n    },\r\n    borderRight: {\r\n      none: \"border-r-0\",\r\n      \"1px\": \"border-r\",\r\n      \"2px\": \"border-r-2\",\r\n      \"4px\": \"border-r-4\"\r\n    }\r\n  }\r\n});\r\n\r\n// Type for border props\r\nexport interface BorderProps extends VariantProps<typeof borderVariants> {} ",
+      "target": "variants"
+    }
+  ]
+}
