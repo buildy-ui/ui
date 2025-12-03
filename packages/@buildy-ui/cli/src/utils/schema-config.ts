@@ -35,7 +35,7 @@ export const SCHEMA_CONFIG = {
   ] as const,
   
   // Component categories
-  componentCategories: ["ui", "components", "layouts", "lib", "blocks", "variants"] as const,
+  componentCategories: ["ui", "composite", "components", "layouts", "lib", "blocks", "variants"] as const,
   
   // Component types (should match registryItemTypeSchema)
   componentTypes: [
@@ -43,6 +43,7 @@ export const SCHEMA_CONFIG = {
     "registry:block", 
     "registry:component",
     "registry:ui",
+    "registry:composite",
     "registry:layout",
     "registry:variants"
   ] as const,
@@ -50,7 +51,6 @@ export const SCHEMA_CONFIG = {
   // Default directories structure
   // Source directories (where CLI scans for components)
   defaultDirectories: {
-    ui: "./src/ui",
     components: "./src/components",
     lib: "./src/lib",
     layouts: "./src/layouts",
@@ -99,6 +99,7 @@ export type RegistryType = typeof SCHEMA_CONFIG.registryTypes[number]
 // Map component types to their target installation folders (on user's project side)
 export const TYPE_TO_FOLDER = {
   "registry:ui": "components/ui",
+  "registry:composite": "components",
   "registry:block": "blocks", 
   "registry:component": "components",
   "registry:lib": "lib",

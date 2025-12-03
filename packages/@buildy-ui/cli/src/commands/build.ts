@@ -90,6 +90,7 @@ export async function buildCommand(
 // Note: This differs from TYPE_TO_FOLDER which is for user installation paths
 const BUILD_OUTPUT_FOLDERS = {
   "registry:ui": "components/ui",
+  "registry:composite": "components",
   "registry:block": "blocks", 
   "registry:component": "components",
   "registry:lib": "lib",

@@ -168,6 +168,10 @@ async function installCoreFiles(registryType: RegistryType, config: Config, spin
     await installComponentFromRegistry(item.name, "registry:variants", cdnUrls, config)
   }
   
+  // Install variants/index.ts
+  spinner.text = `Installing variants index...`
+  await installVariantsIndex(cdnUrls, config)
+  
   spinner.text = `✅ Installed ${libItems.length} utilities and ${variantItems.length} variants`
 }
 
@@ -206,6 +210,32 @@ async function installComponentFromRegistry(
         return
       }
     } catch {
+      continue
+    }
+  }
+}
+
+async function installVariantsIndex(cdnUrls: string[], config: Config): Promise<void> {
+  for (const baseUrl of cdnUrls) {
+    try {
+      // Try to fetch index component from variants
+      const url = `${baseUrl}/components/variants/index.json`
+      const response = await fetch(url)
+      
+      if (response.ok) {
+        const component = await response.json() as Component
+        
+        for (const file of component.files) {
+          const fileName = path.basename(file.path)
+          const targetDir = SCHEMA_CONFIG.defaultDirectories.variants
+          const targetPath = path.join(process.cwd(), targetDir, fileName)
+          await fs.ensureDir(path.dirname(targetPath))
+          await fs.writeFile(targetPath, file.content || "", "utf-8")
+        }
+        return
+      }
+    } catch {
+      // Fallback: just continue if index doesn't exist
       continue
     }
   }

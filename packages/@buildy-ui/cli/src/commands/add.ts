@@ -3,6 +3,7 @@ import ora from "ora"
 import path from "path"
 import fs from "fs-extra"
 import { execa } from "execa"
+import fetch from "node-fetch"
 import { getComponent, getAllComponents } from "../registry/api.js"
 import { getComponentWithRetry, getAllComponentsWithRetry } from "../registry/retry-api.js"
 import { findConfig } from "../utils/project.js"
@@ -107,6 +108,9 @@ async function addAllComponents(options: AddOptions, registryType: RegistryType)
       options,
       allComponents
     )
+    
+    // Install components/index.ts when using --all
+    await installComponentsIndex(registryType, config)
     
     displayInstallationSummary(registryType, results)
     
@@ -235,6 +239,8 @@ function inferTargetFromType(componentType: string): string {
   switch (componentType) {
     case "registry:ui":
       return "ui"
+    case "registry:composite":
+      return "components"
     case "registry:block":
       return "blocks"
     case "registry:component":
@@ -386,4 +392,40 @@ async function detectPackageManager(): Promise<string> {
   if (await fs.pathExists("pnpm-lock.yaml")) return "pnpm"
   if (await fs.pathExists("yarn.lock")) return "yarn"
   return "npm"
+}
+
+async function installComponentsIndex(registryType: RegistryType, config: Config): Promise<void> {
+  const spinner = ora("Installing components index...").start()
+  
+  try {
+    const cdnUrls = SCHEMA_CONFIG.cdnBaseUrls
+    
+    for (const baseUrl of cdnUrls) {
+      try {
+        const url = `${baseUrl}/components/index.json`
+        const response = await fetch(url)
+        
+        if (response.ok) {
+          const component = await response.json() as Component
+          
+          for (const file of component.files) {
+            const fileName = path.basename(file.path)
+            const targetDir = config.componentsDir
+            const targetPath = path.join(process.cwd(), targetDir, fileName)
+            await fs.ensureDir(path.dirname(targetPath))
+            await fs.writeFile(targetPath, file.content || "", "utf-8")
+          }
+          
+          spinner.succeed("Installed components index")
+          return
+        }
+      } catch {
+        continue
+      }
+    }
+    
+    spinner.info("Components index not found in registry (optional)")
+  } catch (error) {
+    spinner.fail("Could not install components index")
+  }
 } 

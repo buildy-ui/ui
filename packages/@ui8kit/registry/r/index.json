@@ -17,11 +17,6 @@
       "description": ""
     },
     {
-      "name": "Sheet",
-      "type": "registry:ui",
-      "description": ""
-    },
-    {
       "name": "Image",
       "type": "registry:ui",
       "description": ""
@@ -37,11 +32,6 @@
       "description": ""
     },
     {
-      "name": "Grid",
-      "type": "registry:ui",
-      "description": "Main Grid component interface"
-    },
-    {
       "name": "Container",
       "type": "registry:ui",
       "description": ""
@@ -54,7 +44,7 @@
     {
       "name": "Button",
       "type": "registry:ui",
-      "description": ""
+      "description": "Loading spinner - pure presentational"
     },
     {
       "name": "Box",
@@ -69,11 +59,21 @@
     {
       "name": "Badge",
       "type": "registry:ui",
+      "description": "Dot indicator - pure presentational"
+    },
+    {
+      "name": "Sheet",
+      "type": "registry:composite",
       "description": ""
     },
     {
+      "name": "Grid",
+      "type": "registry:composite",
+      "description": "Grid component using Tailwind CSS classes (JIT-compatible)\r\n *\r\n * Uses existing gridVariants from @src/variants/flex.ts to avoid duplication\r\n * All class strings are static for proper Tailwind JIT compilation"
+    },
+    {
       "name": "Accordion",
-      "type": "registry:ui",
+      "type": "registry:composite",
       "description": ""
     },
     {
@@ -137,6 +137,16 @@
       "description": "Badge size variants"
     },
     {
+      "name": "index",
+      "type": "registry:variants",
+      "description": "Base variants"
+    },
+    {
+      "name": "index",
+      "type": "registry:composite",
+      "description": "Layout Components"
+    },
+    {
       "name": "utils",
       "type": "registry:lib",
       "description": ""
@@ -144,6 +154,7 @@
   ],
   "categories": [
     "ui",
+    "composite",
     "components",
     "layouts",
     "lib",
@@ -151,6 +162,6 @@
     "variants"
   ],
   "version": "1.0.0",
-  "lastUpdated": "2025-11-27T14:26:07.670Z",
+  "lastUpdated": "2025-12-03T12:28:35.825Z",
   "registry": "ui"
 }

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://buildy.tw/schema/registry-item.json",
+  "name": "index",
+  "type": "registry:composite",
+  "description": "Layout Components",
+  "dependencies": [],
+  "devDependencies": [],
+  "files": [
+    {
+      "path": "src/components/index.ts",
+      "content": "// Layout Components\r\nexport { Block, type BlockProps } from \"./ui/Block\";\r\nexport { Container, type ContainerProps } from \"./ui/Container\";\r\nexport { Stack, type StackProps } from \"./ui/Stack\";\r\nexport { Group, type GroupProps } from \"./ui/Group\";\r\nexport { Box, type BoxProps } from \"./ui/Box\";\r\n\r\n// Typography Components  \r\nexport { Title, type TitleProps } from \"./ui/Title\";\r\nexport { Text, type TextProps } from \"./ui/Text\";\r\n\r\n// Interactive Components\r\nexport { Button, type ButtonProps } from \"./ui/Button\";\r\nexport { Badge, type BadgeProps } from \"./ui/Badge\";\r\n\r\n// Media Components\r\nexport { Image, type ImageProps } from \"./ui/Image\";\r\nexport { Icon, type IconProps } from \"./ui/Icon\";\r\n\r\n// Composite Components\r\nexport { Grid, type GridProps } from \"./Grid\";\r\nexport { Card, type CardProps } from \"./ui/Card\"; \r\nexport { Sheet, type SheetProps } from \"./Sheet\";\r\nexport { Accordion, AccordionItem, AccordionTrigger, AccordionContent, type AccordionProps, type AccordionItemProps, type AccordionTriggerProps, type AccordionContentProps } from \"./Accordion\";",
+      "target": "components"
+    }
+  ]
+}

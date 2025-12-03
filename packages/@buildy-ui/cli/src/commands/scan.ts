@@ -81,27 +81,33 @@ export async function scanCommand(
     const spinner = ora(CLI_MESSAGES.info.scanningDirectories).start()
     
     // Resolve directories based on SCHEMA_CONFIG
-    const uiDir = path.resolve(scanOptions.cwd, normalizeDir(SCHEMA_CONFIG.defaultDirectories.ui))
     const componentsDir = path.resolve(scanOptions.cwd, normalizeDir(SCHEMA_CONFIG.defaultDirectories.components))
+    const uiDir = path.join(componentsDir, "ui")
     const blocksDir = path.resolve(scanOptions.cwd, normalizeDir(SCHEMA_CONFIG.defaultDirectories.blocks))
     const layoutsDir = path.resolve(scanOptions.cwd, normalizeDir(SCHEMA_CONFIG.defaultDirectories.layouts))
     const libDir = path.resolve(scanOptions.cwd, normalizeDir(SCHEMA_CONFIG.defaultDirectories.lib))
     const variantsDir = path.resolve(scanOptions.cwd, normalizeDir(SCHEMA_CONFIG.defaultDirectories.variants))
     
-    // Scan different component types (exclude ui and variants subtrees from components scan)
+    // Scan different component types
     const uiComponents = await scanDirectory(uiDir, "registry:ui")
-    const variantComponents = await scanDirectory(variantsDir, "registry:variants")
-    const componentComponents = await scanDirectory(componentsDir, "registry:component", [toGlobAll(uiDir), toGlobAll(variantsDir)])
+    const compositeComponents = await scanDirectoryFlat(componentsDir, "registry:composite", ["index.ts"])
+    const variantComponents = await scanDirectory(variantsDir, "registry:variants", ["index.ts"])
     const blockComponents = await scanDirectory(blocksDir, "registry:block")
     const layoutComponents = await scanDirectory(layoutsDir, "registry:layout")
     const libComponents = await scanDirectory(libDir, "registry:lib")
     
+    // Scan index files as special items
+    const variantsIndexItem = await scanSingleFile(path.join(variantsDir, "index.ts"), "registry:variants")
+    const componentsIndexItem = await scanSingleFile(path.join(componentsDir, "index.ts"), "registry:composite")
+    
     // Merge and deduplicate by (type,name)
     const allComponentsRaw = [
       ...uiComponents,
+      ...compositeComponents,
       ...variantComponents,
+      ...(variantsIndexItem ? [variantsIndexItem] : []),
+      ...(componentsIndexItem ? [componentsIndexItem] : []),
       ...blockComponents,
-      ...componentComponents,
       ...layoutComponents,
       ...libComponents
     ]
@@ -224,6 +230,88 @@ async function scanDirectory(dirPath: string, type: string, ignorePatterns: stri
   }
   
   return components
+}
+
+async function scanDirectoryFlat(dirPath: string, type: string, ignoreFiles: string[] = []): Promise<RegistryItem[]> {
+  if (!(await fs.pathExists(dirPath))) {
+    return []
+  }
+  
+  const components: RegistryItem[] = []
+  
+  // Find only files in the root of the directory (no subdirectories)
+  const pattern = path.join(dirPath, "*.{ts,tsx,js,jsx}").replace(/\\/g, "/")
+  const files = await glob(pattern, { windowsPathsNoEscape: true })
+  
+  for (const filePath of files) {
+    const relativePath = path.relative(process.cwd(), filePath).replace(/\\/g, "/")
+    const fileName = path.basename(filePath, path.extname(filePath))
+    
+    // Skip specified files and files starting with underscore
+    if (ignoreFiles.includes(fileName + path.extname(filePath)) || fileName.startsWith("_")) {
+      continue
+    }
+    
+    try {
+      const content = await fs.readFile(filePath, "utf-8")
+      const description = extractDescription(content)
+      
+      // Check if file has valid exports
+      if (!hasValidExports(content)) {
+        continue
+      }
+      
+      components.push({
+        name: fileName,
+        type,
+        description,
+        dependencies: [],
+        devDependencies: [],
+        files: [{
+          path: relativePath,
+          target: getTargetFromType(type)
+        }]
+      })
+    } catch (error) {
+      console.warn(`Warning: Could not process ${filePath}:`, (error as Error).message)
+    }
+  }
+  
+  return components
+}
+
+async function scanSingleFile(filePath: string, type: string): Promise<RegistryItem | null> {
+  if (!(await fs.pathExists(filePath))) {
+    return null
+  }
+  
+  try {
+    const content = await fs.readFile(filePath, "utf-8")
+    const description = extractDescription(content)
+    
+    // Check if file has valid exports
+    if (!hasValidExports(content)) {
+      return null
+    }
+    
+    const relativePath = path.relative(process.cwd(), filePath).replace(/\\/g, "/")
+    const fileName = path.basename(filePath, path.extname(filePath))
+    
+    return {
+      name: fileName,
+      type,
+      description,
+      dependencies: [],
+      devDependencies: [],
+      files: [{
+        path: relativePath,
+        target: getTargetFromType(type)
+      }]
+    }
+  } catch (error) {
+    console.warn(`Warning: Could not process ${filePath}:`, (error as Error).message)
+    return null
+  }
 }
 
 function extractDescription(content: string): string {

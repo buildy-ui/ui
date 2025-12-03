@@ -38,6 +38,7 @@
         "type": "string",
         "enum": [
           "ui",
+          "composite",
           "components",
           "layouts",
           "lib",
@@ -62,6 +63,7 @@
               "registry:block",
               "registry:component",
               "registry:ui",
+              "registry:composite",
               "registry:layout",
               "registry:variants"
             ]
